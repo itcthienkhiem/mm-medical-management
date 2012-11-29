@@ -28,62 +28,54 @@ namespace MM.Controls
         #endregion
 
         #region UI Command
-        public void Display(string patientGUID, DataTable dtPatient)
+        public void Display(DataRow patientRow)
         {
-            if (dtPatient == null)
-                docBar.Visible = false;
-            else
+            if (patientRow == null) return;
+            string patientGUID = patientRow["PatientGUID"].ToString();
+
+            DataRow[] rows = null;
+            bool isAddNew = true;
+            //Update patient row to all doctab
+            foreach (DockContainerItem item in docBar.Items)
             {
-                DataRow[] rows = null;
-                bool isAddNew = true;
-                //Update patient row to all doctab
-                foreach (DockContainerItem item in docBar.Items)
-                {
-                    if (item.Control.Tag == null) continue;
-                    string id = item.Control.Tag.ToString();
-                    rows = dtPatient.Select(string.Format("PatientGUID='{0}'", id));
+                if (item.Control.Tag == null) continue;
+                string id = item.Control.Tag.ToString();
+                rows = Global.dtOpenPatient.Select(string.Format("PatientGUID='{0}'", id));
 
-                    if (id != patientGUID)
-                    {
-                        if (rows != null && rows.Length > 0)
-                        {
-                            PanelDockContainer p = item.Control as PanelDockContainer;
-                            uPatient ctrl = p.Controls[0] as uPatient;
-                            ctrl.PatientRow = rows[0];
-                            //item.Visible = true;
-                        }
-                        else
-                            item.Visible = false;
-                    }
-                    else
-                    {
-                        item.Text = string.Format("{0} - {1}", rows[0]["FileNum"], rows[0]["FullName"]);
-                        PanelDockContainer p = item.Control as PanelDockContainer;
-                        uPatient ctrl = p.Controls[0] as uPatient;
-                        p.Tag = patientGUID;
-                        ctrl.PatientRow = rows[0];
-                        ctrl.DisplayInfo();
-                        item.Visible = true;
-                        item.Selected = true;
-                        isAddNew = false;
-                    }
-                }
-
-                if (isAddNew)
+                if (id != patientGUID)
                 {
-                    rows = dtPatient.Select(string.Format("PatientGUID='{0}'", patientGUID));
                     if (rows != null && rows.Length > 0)
                     {
-                        _patientRow = rows[0];
-
-                        string fileNum = _patientRow["FileNum"] as string;
-                        string fullName = _patientRow["Fullname"] as string;
-                        AddDockContainerItem(fileNum, fullName, patientGUID);
+                        PanelDockContainer p = item.Control as PanelDockContainer;
+                        uPatient ctrl = p.Controls[0] as uPatient;
+                        ctrl.PatientRow = rows[0];
                     }
+                    else
+                        item.Visible = false;
                 }
-
-                docBar.Visible = true;
+                else
+                {
+                    item.Text = string.Format("{0} - {1}", rows[0]["FileNum"], rows[0]["FullName"]);
+                    PanelDockContainer p = item.Control as PanelDockContainer;
+                    uPatient ctrl = p.Controls[0] as uPatient;
+                    p.Tag = patientGUID;
+                    ctrl.PatientRow = rows[0];
+                    ctrl.DisplayInfo();
+                    item.Visible = true;
+                    item.Selected = true;
+                    isAddNew = false;
+                }
             }
+
+            if (isAddNew)
+            {
+                _patientRow = patientRow;
+                string fileNum = _patientRow["FileNum"] as string;
+                string fullName = _patientRow["Fullname"] as string;
+                AddDockContainerItem(fileNum, fullName, patientGUID);
+            }
+
+            docBar.Visible = true;
         }
 
         private void AddDockContainerItem(string fileNum, string fullName, string patientGUID)
@@ -171,11 +163,6 @@ namespace MM.Controls
             }
         }
         #endregion
-
-        private void docBar_Closing(object sender, BarClosingEventArgs e)
-        {
-
-        }
 
         #region Window Event Handlers
 

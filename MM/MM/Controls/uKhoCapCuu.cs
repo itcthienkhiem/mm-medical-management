@@ -22,6 +22,7 @@ namespace MM.Controls
         private DataTable _dtTemp = null;
         private Dictionary<string, DataRow> _dictKhoCapCuu = new Dictionary<string,DataRow>();
         private string _name = string.Empty;
+        private Object _thisLock = new Object();
         #endregion
 
         #region Constructor
@@ -111,23 +112,26 @@ namespace MM.Controls
 
         private void OnDisplayKhoCapCuu()
         {
-            Result result = KhoCapCuuBus.GetDanhSachCapCuu(_name);
-            if (result.IsOK)
+            lock (_thisLock)
             {
-                dgThuoc.Invoke(new MethodInvoker(delegate()
+                Result result = KhoCapCuuBus.GetDanhSachCapCuu(_name);
+                if (result.IsOK)
                 {
-                    ClearData();
+                    dgThuoc.Invoke(new MethodInvoker(delegate()
+                    {
+                        ClearData();
 
-                    DataTable dt = result.QueryResult as DataTable;
-                    if (_dtTemp == null) _dtTemp = dt.Clone();
-                    UpdateChecked(dt);
-                    dgThuoc.DataSource = dt;
-                }));
-            }
-            else
-            {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("KhoCapCuuBus.GetDanhSachCapCuu"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("KhoCapCuuBus.GetDanhSachCapCuu"));
+                        DataTable dt = result.QueryResult as DataTable;
+                        if (_dtTemp == null) _dtTemp = dt.Clone();
+                        UpdateChecked(dt);
+                        dgThuoc.DataSource = dt;
+                    }));
+                }
+                else
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("KhoCapCuuBus.GetDanhSachCapCuu"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("KhoCapCuuBus.GetDanhSachCapCuu"));
+                }
             }
         }
 

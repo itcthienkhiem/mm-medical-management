@@ -17,9 +17,6 @@ namespace MM.Controls
     public partial class uPrintLabel : uBase
     {
         #region Members
-        private DataTable _dataSource = null;
-        //private int _width = 202;
-        //private int _height = 168;
         private float _labelWidth = 36;
         private float _labelHeight = 19;
         private float _deltaWidth = 3;
@@ -33,8 +30,6 @@ namespace MM.Controls
         private int _labelIndex = 0;
         private float _solution = 100;
         private List<LabelInfo> _labels = null;
-        //private int _widthPxl = 0;
-        //private int _heightPxl = 0;
         private float _labelWidthPxl = 0;
         private float _labelHeightPxl = 0;
         private float _deltaWidthPxl = 0;
@@ -51,6 +46,9 @@ namespace MM.Controls
         private bool _flag = false;
         private bool _isAscending1 = true;
         private bool _isAscending2 = true;
+        private string _name = string.Empty;
+        private int _type = 0;
+        private Object _thisLock = new Object();
         #endregion
 
         #region Constructor
@@ -62,18 +60,6 @@ namespace MM.Controls
 
         #region UI Command
         public void ClearData()
-        {
-            if (_dataSource != null)
-            {
-                _dataSource.Rows.Clear();
-                _dataSource.Clear();
-                _dataSource = null;
-            }
-
-            ClearDataSource();
-        }
-
-        private void ClearDataSource()
         {
             DataTable dt = dgMembers.DataSource as DataTable;
             if (dt != null)
@@ -89,6 +75,10 @@ namespace MM.Controls
         {
             try
             {
+                _name = txtSearchPatient.Text;
+                if (chkMaBenhNhan.Checked) _type = 1;
+                else if (chkTheoSoDienThoai.Checked) _type = 2;
+                else _type = 0;
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayPatientListProc));
                 base.ShowWaiting();
             }
@@ -103,26 +93,44 @@ namespace MM.Controls
             }
         }
 
+        private void SearchAsThread()
+        {
+            try
+            {
+                _name = txtSearchPatient.Text;
+                if (chkMaBenhNhan.Checked) _type = 1;
+                else if (chkTheoSoDienThoai.Checked) _type = 2;
+                else _type = 0;
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnSearchProc));
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+        }
+
         private void OnDisplayPatientList()
         {
-            Result result = PatientBus.GetPatientList();
-
-            if (result.IsOK)
+            lock (_thisLock)
             {
-                MethodInvoker method = delegate
+                Result result = PatientBus.GetPatientList(_name, _type);
+
+                if (result.IsOK)
                 {
-                    ClearData();
-                    _dataSource = GetDataSource(result.QueryResult as DataTable);
-                    dgMembers.DataSource = _dataSource;
-                };
+                    dgMembers.Invoke(new MethodInvoker(delegate()
+                    {
+                        ClearData();
 
-                if (InvokeRequired) BeginInvoke(method);
-                else method.Invoke();
-            }
-            else
-            {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("PatientBus.GetPatientList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
+                        DataTable dt = result.QueryResult as DataTable;
+                        dgMembers.DataSource = GetDataSource(dt);
+                    }));
+                }
+                else
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("PatientBus.GetPatientList"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
+                }
             }
         }
 
@@ -139,95 +147,6 @@ namespace MM.Controls
             }
 
             return dt;
-        }
-
-        private void OnSearchPatient()
-        {
-            ClearDataSource();
-            List<DataRow> results = null;
-            DataTable newDataSource = null;
-            if (txtSearchPatient.Text.Trim() == string.Empty)
-            {
-                results = (from p in _dataSource.AsEnumerable()
-                           orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                           select p).ToList<DataRow>();
-
-                newDataSource = _dataSource.Clone();
-                foreach (DataRow row in results)
-                    newDataSource.ImportRow(row);
-
-                dgMembers.DataSource = newDataSource;
-                _isAscending1 = true;
-                return;
-            }
-
-            string str = txtSearchPatient.Text.ToLower();
-            newDataSource = _dataSource.Clone();
-
-            if (chkMaBenhNhan.Checked)
-            {
-                //FileNum
-                results = (from p in _dataSource.AsEnumerable()
-                           where p.Field<string>("FileNum") != null &&
-                               p.Field<string>("FileNum").Trim() != string.Empty &&
-                               //(p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0 ||
-                               //str.IndexOf(p.Field<string>("FileNum").ToLower()) >= 0)
-                           p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0
-                           orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                           select p).ToList<DataRow>();
-
-                foreach (DataRow row in results)
-                    newDataSource.Rows.Add(row.ItemArray);
-
-                if (newDataSource.Rows.Count > 0)
-                {
-                    dgMembers.DataSource = newDataSource;
-                    return;
-                }
-            }
-
-            if (chkTheoSoDienThoai.Checked)
-            {
-                //FileNum
-                results = (from p in _dataSource.AsEnumerable()
-                           where p.Field<string>("Mobile") != null &&
-                               p.Field<string>("Mobile").Trim() != string.Empty &&
-                               //(p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0 ||
-                               //str.IndexOf(p.Field<string>("FileNum").ToLower()) >= 0)
-                           p.Field<string>("Mobile").ToLower().IndexOf(str) >= 0
-                           orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                           select p).ToList<DataRow>();
-
-                foreach (DataRow row in results)
-                    newDataSource.Rows.Add(row.ItemArray);
-
-                if (newDataSource.Rows.Count > 0)
-                {
-                    dgMembers.DataSource = newDataSource;
-                    return;
-                }
-            }
-
-            //FullName
-            results = (from p in _dataSource.AsEnumerable()
-                       where p.Field<string>("FullName") != null &&
-                       p.Field<string>("FullName").Trim() != string.Empty &&
-                           //(p.Field<string>("FullName").ToLower().IndexOf(str) >= 0 ||
-                           //str.IndexOf(p.Field<string>("FullName").ToLower()) >= 0)
-                       p.Field<string>("FullName").ToLower().IndexOf(str) >= 0
-                       orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                       select p).ToList<DataRow>();
-
-            foreach (DataRow row in results)
-                newDataSource.Rows.Add(row.ItemArray);
-
-            if (newDataSource.Rows.Count > 0)
-            {
-                dgMembers.DataSource = newDataSource;
-                return;
-            }
-
-            dgMembers.DataSource = newDataSource;
         }
 
         private void InitData()
@@ -560,53 +479,35 @@ namespace MM.Controls
             if (dgMembers.RowCount <= 0) return;
             if (dgMembers.SelectedRows == null || dgMembers.SelectedRows.Count <= 0) return;
 
+            DataTable dt = dgMembers.DataSource as DataTable;
+            if (dt == null) return;
             DataTable dt2 = dgSelectedMember.DataSource as DataTable;
+            
             if (dt2 == null)
             {
-                dt2 = _dataSource.Clone();
+                dt2 = dt.Clone();
                 dgSelectedMember.DataSource = dt2;
             }
-
+            
             foreach  (DataGridViewRow row in dgMembers.SelectedRows)
             {
                 DataRow drMember = (row.DataBoundItem as DataRowView).Row;
                 dt2.ImportRow(drMember);
 
-                DataRow[] rows = _dataSource.Select(string.Format("PatientGUID='{0}'", drMember["PatientGUID"]));
+                DataRow[] rows = dt.Select(string.Format("PatientGUID='{0}'", drMember["PatientGUID"]));
                 if (rows != null && rows.Length > 0)
-                    _dataSource.Rows.Remove(rows[0]);
+                    dt.Rows.Remove(rows[0]);
             }
-
-            OnSearchPatient();
         }
 
         private void OnMoveAllRight()
         {
             if (dgMembers.RowCount <= 0) return;
             DataTable dt = dgMembers.DataSource as DataTable;
-            DataTable dt2 = dgSelectedMember.DataSource as DataTable;
-            if (dt2 == null)
-            {
-                dt2 = dt.Clone();
-                dgSelectedMember.DataSource = dt2;
-            }
-
-            List<DataRow> deletedRows = new List<DataRow>();
-
-            foreach (DataRow row in dt.Rows)
-            {
-                dt2.ImportRow(row);
-                DataRow[] rows = _dataSource.Select(string.Format("PatientGUID='{0}'", row["PatientGUID"]));
-                if (rows != null && rows.Length > 0)
-                    deletedRows.Add(rows[0]);
-            }
-
-            foreach (DataRow row in deletedRows)
-            {
-                _dataSource.Rows.Remove(row);
-            }
-
-            OnSearchPatient();
+            if (dt == null) return;
+            dgSelectedMember.DataSource = dt.Copy();
+            
+            dt.Rows.Clear();
         }
 
         private void OnMoveLeft()
@@ -619,27 +520,18 @@ namespace MM.Controls
             foreach (DataGridViewRow row in dgSelectedMember.SelectedRows)
             {
                 DataRow drMember = (row.DataBoundItem as DataRowView).Row;
-                _dataSource.ImportRow(drMember);
-
-               dt2.Rows.Remove(drMember);
+                dt2.Rows.Remove(drMember);
             }
 
-            OnSearchPatient();
+            SearchAsThread();
         }
 
         private void OnMoveAllLeft()
         {
             if (dgSelectedMember.RowCount <= 0) return;
             DataTable dt2 = dgSelectedMember.DataSource as DataTable;
-
-            foreach (DataRow row in dt2.Rows)
-            {
-                _dataSource.ImportRow(row);
-            }
-
             dt2.Rows.Clear();
-
-            OnSearchPatient();
+            SearchAsThread();
         }
         #endregion
 
@@ -719,7 +611,7 @@ namespace MM.Controls
 
         private void txtSearchPatient_TextChanged(object sender, EventArgs e)
         {
-            OnSearchPatient();
+            SearchAsThread();
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
@@ -759,28 +651,29 @@ namespace MM.Controls
                 _isAscending1 = !_isAscending1;
 
                 DataTable dt = dgMembers.DataSource as DataTable;
-                List<DataRow> results = null;
+                DataTable newDataSource = null;
 
                 if (_isAscending1)
                 {
-                    results = (from p in dt.AsEnumerable()
-                               orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                               select p).ToList<DataRow>();
+                    newDataSource = (from p in dt.AsEnumerable()
+                                     orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
+                                     select p).CopyToDataTable();
                 }
                 else
                 {
-                    results = (from p in dt.AsEnumerable()
-                               orderby p.Field<string>("FirstName") descending, p.Field<string>("FullName") descending
-                               select p).ToList<DataRow>();
+                    newDataSource = (from p in dt.AsEnumerable()
+                                     orderby p.Field<string>("FirstName") descending, p.Field<string>("FullName") descending
+                                     select p).CopyToDataTable();
                 }
 
-
-                DataTable newDataSource = dt.Clone();
-
-                foreach (DataRow row in results)
-                    newDataSource.ImportRow(row);
-
                 dgMembers.DataSource = newDataSource;
+
+                if (dt != null)
+                {
+                    dt.Rows.Clear();
+                    dt.Clear();
+                    dt = null;
+                }
             }
             else
                 _isAscending1 = false;
@@ -793,28 +686,29 @@ namespace MM.Controls
                 _isAscending2 = !_isAscending2;
 
                 DataTable dt = dgSelectedMember.DataSource as DataTable;
-                List<DataRow> results = null;
+                DataTable newDataSource = null;
 
                 if (_isAscending2)
                 {
-                    results = (from p in dt.AsEnumerable()
-                               orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                               select p).ToList<DataRow>();
+                    newDataSource = (from p in dt.AsEnumerable()
+                                     orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
+                                     select p).CopyToDataTable();
                 }
                 else
                 {
-                    results = (from p in dt.AsEnumerable()
-                               orderby p.Field<string>("FirstName") descending, p.Field<string>("FullName") descending
-                               select p).ToList<DataRow>();
+                    newDataSource = (from p in dt.AsEnumerable()
+                                     orderby p.Field<string>("FirstName") descending, p.Field<string>("FullName") descending
+                                     select p).CopyToDataTable();
                 }
 
-
-                DataTable newDataSource = dt.Clone();
-
-                foreach (DataRow row in results)
-                    newDataSource.ImportRow(row);
-
                 dgSelectedMember.DataSource = newDataSource;
+
+                if (dt != null)
+                {
+                    dt.Rows.Clear();
+                    dt.Clear();
+                    dt = null;
+                }
             }
             else
                 _isAscending2 = false;
@@ -822,7 +716,12 @@ namespace MM.Controls
 
         private void chkMaBenhNhan_CheckedChanged(object sender, EventArgs e)
         {
-            OnSearchPatient();
+            SearchAsThread();
+        }
+
+        private void chkTheoSoDienThoai_CheckedChanged(object sender, EventArgs e)
+        {
+            SearchAsThread();
         }
         #endregion
 
@@ -831,7 +730,6 @@ namespace MM.Controls
         {
             try
             {
-                //Thread.Sleep(500);
                 OnDisplayPatientList();
             }
             catch (Exception e)
@@ -842,6 +740,19 @@ namespace MM.Controls
             finally
             {
                 base.HideWaiting();
+            }
+        }
+
+        private void OnSearchProc(object state)
+        {
+            try
+            {
+                OnDisplayPatientList();
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
             }
         }
         #endregion

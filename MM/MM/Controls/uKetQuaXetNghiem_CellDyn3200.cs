@@ -156,15 +156,11 @@ namespace MM.Controls
                 TinhTrang tinhTrang = (TinhTrang)Convert.ToByte(dr["TinhTrang"]);
                 if (tinhTrang == TinhTrang.BatThuong)
                 {
-                    //row.DefaultCellStyle.Font = _boldFont;
-                    //row.DefaultCellStyle.ForeColor = Color.Red;
                     row.Cells["TestResult"].Style.Font = _boldFont;
                     row.Cells["TestResult"].Style.ForeColor = Color.Red;
                 }
                 else
                 {
-                    //row.DefaultCellStyle.Font = _normalFont;
-                    //row.DefaultCellStyle.ForeColor = Color.Black;
                     row.Cells["TestResult"].Style.Font = _normalFont;
                     row.Cells["TestResult"].Style.ForeColor = Color.Black;
                 }
@@ -182,7 +178,7 @@ namespace MM.Controls
             DataRow row = (dgXetNghiem.SelectedRows[0].DataBoundItem as DataRowView).Row;
             if (row == null) return;
 
-            dlgSelectPatient dlg = new dlgSelectPatient();
+            dlgSelectPatient dlg = new dlgSelectPatient(PatientSearchType.BenhNhan);
             if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
                 DataRow patientRow = dlg.PatientRow;
@@ -315,32 +311,13 @@ namespace MM.Controls
 
                 row["LamThem"] = dlg.ChiTietKQXN.LamThem;
 
-                //if (dlg.ChiTietKQXN.FromPercent.HasValue)
-                //    row["FromPercent"] = dlg.ChiTietKQXN.FromPercent.Value;
-                //else
-                //    row["FromPercent"] = DBNull.Value;
-
-                //if (dlg.ChiTietKQXN.ToPercent.HasValue)
-                //    row["ToPercent"] = dlg.ChiTietKQXN.ToPercent.Value;
-                //else
-                //    row["ToPercent"] = DBNull.Value;
-
-                //if (dlg.ChiTietKQXN.TestPercent.HasValue)
-                //    row["TestPercent"] = dlg.ChiTietKQXN.TestPercent.Value;
-
                 if ((TinhTrang)dlg.ChiTietKQXN.TinhTrang == TinhTrang.BatThuong)
                 {
-                    //dgChiTietKQXN.SelectedRows[0].DefaultCellStyle.Font = _boldFont;
-                    //dgChiTietKQXN.SelectedRows[0].DefaultCellStyle.ForeColor = Color.Red;
-
                     dgChiTietKQXN.SelectedRows[0].Cells["TestResult"].Style.Font = _boldFont;
                     dgChiTietKQXN.SelectedRows[0].Cells["TestResult"].Style.ForeColor = Color.Red;
                 }
                 else
                 {
-                    //dgChiTietKQXN.SelectedRows[0].DefaultCellStyle.Font = _normalFont;
-                    //dgChiTietKQXN.SelectedRows[0].DefaultCellStyle.ForeColor = Color.Black;
-
                     dgChiTietKQXN.SelectedRows[0].Cells["TestResult"].Style.Font = _normalFont;
                     dgChiTietKQXN.SelectedRows[0].Cells["TestResult"].Style.ForeColor = Color.Black;
                 }
@@ -438,11 +415,6 @@ namespace MM.Controls
 
             OnDisplayChiTietKetQuaXetNghiem(row["KQXN_CellDyn3200GUID"].ToString());
         }
-
-        private void uKetQuaXetNghiem_CellDyn3200_Load(object sender, EventArgs e)
-        {
-            
-        }
         #endregion
 
         #region Working Thread
@@ -450,7 +422,6 @@ namespace MM.Controls
         {
             try
             {
-                //Thread.Sleep(500);
                 OnDisplayKetQuaXetNghiemList();
             }
             catch (Exception e)

@@ -21,7 +21,6 @@ namespace MM.Dialogs
         private PhieuThuThuoc _phieuThuThuoc = new PhieuThuThuoc();
         private DataRow _drPhieuThu = null;
         private string _tenCongTy = string.Empty;
-        private DataTable _dataSourceBenhNhan = null;
         private ComboBox _cboBox = null;
         private bool _isExportedInvoice = false;
         #endregion
@@ -108,18 +107,6 @@ namespace MM.Dialogs
             dtpkNgayThu.Value = DateTime.Now;
             OnDisplayToaThuocList();
             OnDisplayThuoc();
-        }
-
-        private void OnGetSanhSachBenhNhan()
-        {
-            Result result = PatientBus.GetPatientList();
-            if (result.IsOK)
-                _dataSourceBenhNhan = result.QueryResult as DataTable;
-            else
-            {
-                MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.GetPatientList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
-            }
         }
 
         private void DisplayInfo(DataRow drPhieuThu)
@@ -696,7 +683,7 @@ namespace MM.Dialogs
             InitData();
             if (_isNew)
             {
-                OnGetSanhSachBenhNhan();
+                //OnGetSanhSachBenhNhan();
                 OnGetChiTietPhieuThuThuoc(Guid.Empty.ToString());
             }
             else
@@ -1019,7 +1006,7 @@ namespace MM.Dialogs
 
         private void btnChonBenhNhan_Click(object sender, EventArgs e)
         {
-            dlgSelectPatient dlg = new dlgSelectPatient(_dataSourceBenhNhan);
+            dlgSelectPatient dlg = new dlgSelectPatient(PatientSearchType.BenhNhan);
             if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
                 DataRow patientRow = dlg.PatientRow;

@@ -25,6 +25,7 @@ namespace MM.Controls
         private DateTime _tuNgay = DateTime.Now;
         private DateTime _denNgay = DateTime.Now;
         private bool _flag = true;
+        private Object _thisLock = new Object();
         #endregion
 
         #region Constructor
@@ -106,32 +107,35 @@ namespace MM.Controls
 
         private void OnDisplayNhapKhoCapCuuList()
         {
-            Result result = NhapKhoCapCuuBus.GetNhapKhoCapCuuList(_name, _tuNgay, _denNgay, _isTenCapCuu);
-            if (result.IsOK)
+            lock (_thisLock)
             {
-                dgNhapKhoCapCuu.Invoke(new MethodInvoker(delegate()
+                Result result = NhapKhoCapCuuBus.GetNhapKhoCapCuuList(_name, _tuNgay, _denNgay, _isTenCapCuu);
+                if (result.IsOK)
                 {
-                    if (dgNhapKhoCapCuu.CurrentRow != null)
-                        _currentRowIndex = dgNhapKhoCapCuu.CurrentRow.Index;
-
-                    ClearData();
-
-                    DataTable dt = result.QueryResult as DataTable;
-                    if (_dtTemp == null) _dtTemp = dt.Clone();
-                    UpdateChecked(dt);
-                    dgNhapKhoCapCuu.DataSource = dt;
-
-                    if (_currentRowIndex < dt.Rows.Count)
+                    dgNhapKhoCapCuu.Invoke(new MethodInvoker(delegate()
                     {
-                        dgNhapKhoCapCuu.CurrentCell = dgNhapKhoCapCuu[0, _currentRowIndex];
-                        dgNhapKhoCapCuu.Rows[_currentRowIndex].Selected = true;
-                    }
-                }));
-            }
-            else
-            {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("NhapKhoCapCuuBus.GetNhapKhoCapCuuList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("NhapKhoCapCuuBus.GetNhapKhoCapCuuList"));
+                        if (dgNhapKhoCapCuu.CurrentRow != null)
+                            _currentRowIndex = dgNhapKhoCapCuu.CurrentRow.Index;
+
+                        ClearData();
+
+                        DataTable dt = result.QueryResult as DataTable;
+                        if (_dtTemp == null) _dtTemp = dt.Clone();
+                        UpdateChecked(dt);
+                        dgNhapKhoCapCuu.DataSource = dt;
+
+                        if (_currentRowIndex < dt.Rows.Count)
+                        {
+                            dgNhapKhoCapCuu.CurrentCell = dgNhapKhoCapCuu[0, _currentRowIndex];
+                            dgNhapKhoCapCuu.Rows[_currentRowIndex].Selected = true;
+                        }
+                    }));
+                }
+                else
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("NhapKhoCapCuuBus.GetNhapKhoCapCuuList"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("NhapKhoCapCuuBus.GetNhapKhoCapCuuList"));
+                }
             }
         }
 

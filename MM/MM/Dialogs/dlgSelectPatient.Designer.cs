@@ -61,7 +61,7 @@
             // 
             // _uSearchPatient
             // 
-            this._uSearchPatient.DataSource = null;
+            //this._uSearchPatient.DataSource = null;
             this._uSearchPatient.Dock = System.Windows.Forms.DockStyle.Top;
             this._uSearchPatient.Location = new System.Drawing.Point(0, 0);
             this._uSearchPatient.Name = "_uSearchPatient";
@@ -85,7 +85,6 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Chon benh nhan";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.dlgSelectPatient_FormClosing);
             this.ResumeLayout(false);
 
         }

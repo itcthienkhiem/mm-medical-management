@@ -18,7 +18,7 @@ namespace MM.Controls
     public partial class uPatient : uBase
     {
         #region Members
-        private object _patientRow = null;
+        private DataRow _patientRow = null;
         private bool _isCallDisplayInfo = false;
         #endregion
 
@@ -52,7 +52,7 @@ namespace MM.Controls
         #endregion
 
         #region Properties
-        public object PatientRow
+        public DataRow PatientRow
         {
             get { return _patientRow; }
             set 
@@ -60,16 +60,16 @@ namespace MM.Controls
                 _patientRow = value;
                 _uServiceHistory.PatientRow = value;
                 _uDailyServiceHistory.PatientRow = value;
-                _uToaThuocList.PatientRow = (DataRow)value;
-                _uChiDinhList.PatientRow = (DataRow)value;
-                _uCanDoList.PatientRow = (DataRow)value;
-                _uLoiKhuyenList.PatientRow = (DataRow)value;
-                _uKetQuaLamSangList.PatientRow = (DataRow)value;
-                _uKetQuaCanLamSangList.PatientRow = (DataRow)value;
-                _uKetLuanList.PatientRow = (DataRow)value;
-                _uKetQuaNoiSoiList.PatientRow = (DataRow)value;
-                _uKetQuaSoiCTCList.PatientRow = (DataRow)value;
-                _uKetQuaSieuAmList.PatientRow = (DataRow)value;
+                _uToaThuocList.PatientRow = value;
+                _uChiDinhList.PatientRow = value;
+                _uCanDoList.PatientRow = value;
+                _uLoiKhuyenList.PatientRow = value;
+                _uKetQuaLamSangList.PatientRow = value;
+                _uKetQuaCanLamSangList.PatientRow = value;
+                _uKetLuanList.PatientRow = value;
+                _uKetQuaNoiSoiList.PatientRow = value;
+                _uKetQuaSoiCTCList.PatientRow = value;
+                _uKetQuaSieuAmList.PatientRow = value;
             }
         }
         #endregion
@@ -617,10 +617,6 @@ namespace MM.Controls
         {
             dlgAddYKienKhachHang dlg = new dlgAddYKienKhachHang(_patientRow);
             dlg.ShowDialog(this);
-        }
-
-        private void uPatient_Load(object sender, EventArgs e)
-        {
         }
 
         private void _uServiceHistory_OnServiceHistoryChanged()

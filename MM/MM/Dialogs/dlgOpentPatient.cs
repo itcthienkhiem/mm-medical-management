@@ -16,7 +16,7 @@ namespace MM.Dialogs
     public partial class dlgOpentPatient : dlgBase
     {
         #region Members
-        private object _patientRow = null;
+        private DataRow _patientRow = null;
         #endregion
 
         #region Constructor
@@ -29,19 +29,19 @@ namespace MM.Dialogs
         #endregion
 
         #region Properties
-        public object DataSource
-        {
-            get { return _uSearchPatient.DataSource; }
-            set { _uSearchPatient.DataSource = value; }
-        }
+        //public object DataSource
+        //{
+        //    get { return _uSearchPatient.DataSource; }
+        //    set { _uSearchPatient.DataSource = value; }
+        //}
 
-        public Dictionary<string, DataRow> DictPatient
-        {
-            get { return _uSearchPatient.DictPatient; }
-            set { _uSearchPatient.DictPatient = value; }
-        }
+        //public Dictionary<string, DataRow> DictPatient
+        //{
+        //    get { return _uSearchPatient.DictPatient; }
+        //    set { _uSearchPatient.DictPatient = value; }
+        //}
 
-        public object PatientRow
+        public DataRow PatientRow
         {
             get { return _patientRow; }
             set { _patientRow = value; }
@@ -63,7 +63,7 @@ namespace MM.Dialogs
             }
         }
 
-        private void _uSearchPatient_OnOpenPatient(object patientRow)
+        private void _uSearchPatient_OnOpenPatient(DataRow patientRow)
         {
             _patientRow = patientRow;
             if (_patientRow != null)
@@ -71,10 +71,6 @@ namespace MM.Dialogs
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 this.Close();
             }
-        }
-
-        private void dlgOpentPatient_Load(object sender, EventArgs e)
-        {
         }
 
         private void btnVaoPhongCho_Click(object sender, EventArgs e)

@@ -176,6 +176,55 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetContractMemberList(string contractGUID, string serviceGUID, string patientGUID, string tenBenhNhan, int type)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Empty;
+
+                if (tenBenhNhan.Trim() == string.Empty)
+                {
+                    query = "SELECT TOP 0 * FROM ContractMemberView WITH(NOLOCK)";
+                }
+                else if (tenBenhNhan.Trim() == "*")
+                {
+                    query = string.Format("SELECT DISTINCT C.* FROM ContractMemberView C WITH(NOLOCK), CompanyCheckList L WITH(NOLOCK) WHERE C.CompanyContractGUID='{0}' AND  C.ContractMemberGUID = L.ContractMemberGUID AND L.Status = {2} AND C.Status={2} AND C.CompanyMemberStatus={2} AND C.Archived='False' AND L.ServiceGUID = '{1}' AND C.PatientGUID <> '{3}' ORDER BY C.FirstName, C.FullName",
+                        contractGUID, serviceGUID, (byte)Status.Actived, patientGUID);
+                }
+                else if (type == 0)
+                {
+                    query = string.Format("SELECT DISTINCT C.* FROM ContractMemberView C WITH(NOLOCK), CompanyCheckList L WITH(NOLOCK) WHERE C.CompanyContractGUID='{0}' AND  C.ContractMemberGUID = L.ContractMemberGUID AND L.Status = {2} AND C.Status={2} AND C.CompanyMemberStatus={2} AND C.Archived='False' AND L.ServiceGUID = '{1}' AND FullName LIKE N'%{3}%' AND C.PatientGUID <> '{4}' ORDER BY C.FirstName, C.FullName",
+                        contractGUID, serviceGUID, (byte)Status.Actived, tenBenhNhan, patientGUID);
+                }
+                else if (type == 1)
+                {
+                    query = string.Format("SELECT DISTINCT C.* FROM ContractMemberView C WITH(NOLOCK), CompanyCheckList L WITH(NOLOCK) WHERE C.CompanyContractGUID='{0}' AND  C.ContractMemberGUID = L.ContractMemberGUID AND L.Status = {2} AND C.Status={2} AND C.CompanyMemberStatus={2} AND C.Archived='False' AND L.ServiceGUID = '{1}' AND FileNum LIKE N'%{3}%' AND C.PatientGUID <> '{4}' ORDER BY C.FirstName, C.FullName",
+                        contractGUID, serviceGUID, (byte)Status.Actived, tenBenhNhan, patientGUID);
+                }
+                else if (type == 2)
+                {
+                    query = string.Format("SELECT DISTINCT C.* FROM ContractMemberView C WITH(NOLOCK), CompanyCheckList L WITH(NOLOCK) WHERE C.CompanyContractGUID='{0}' AND  C.ContractMemberGUID = L.ContractMemberGUID AND L.Status = {2} AND C.Status={2} AND C.CompanyMemberStatus={2} AND C.Archived='False' AND L.ServiceGUID = '{1}' AND Mobile LIKE N'%{3}%' AND C.PatientGUID <> '{4}' ORDER BY C.FirstName, C.FullName",
+                        contractGUID, serviceGUID, (byte)Status.Actived, tenBenhNhan, patientGUID);
+                }
+
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetCheckList(string contractMemberGUID)
         {
             Result result = null;

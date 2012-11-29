@@ -20,6 +20,7 @@ namespace MM.Controls
         private DataTable _dtTemp = null;
         private Dictionary<string, DataRow> _dictGiaCapCuu = new Dictionary<string,DataRow>();
         private string _name = string.Empty;
+        private Object _thisLock = new Object();
         #endregion
 
         #region Constructor
@@ -91,22 +92,25 @@ namespace MM.Controls
 
         private void OnDisplayGiaThuocList()
         {
-            Result result = GiaCapCuuBus.GetGiaCapCuuList(_name);
-            if (result.IsOK)
+            lock (_thisLock)
             {
-                dgGiaThuoc.Invoke(new MethodInvoker(delegate()
+                Result result = GiaCapCuuBus.GetGiaCapCuuList(_name);
+                if (result.IsOK)
                 {
-                    ClearData();
-                    DataTable dt = result.QueryResult as DataTable;
-                    if (_dtTemp == null) _dtTemp = dt.Clone();
-                    UpdateChecked(dt);
-                    dgGiaThuoc.DataSource = dt;
-                }));
-            }
-            else
-            {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("GiaCapCuuBus.GetGiaCapCuuList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("GiaCapCuuBus.GetGiaCapCuuList"));
+                    dgGiaThuoc.Invoke(new MethodInvoker(delegate()
+                    {
+                        ClearData();
+                        DataTable dt = result.QueryResult as DataTable;
+                        if (_dtTemp == null) _dtTemp = dt.Clone();
+                        UpdateChecked(dt);
+                        dgGiaThuoc.DataSource = dt;
+                    }));
+                }
+                else
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("GiaCapCuuBus.GetGiaCapCuuList"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("GiaCapCuuBus.GetGiaCapCuuList"));
+                }
             }
         }
 

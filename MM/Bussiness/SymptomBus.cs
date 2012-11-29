@@ -35,7 +35,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetSymptomList(string symtomName)
+        public static Result GetSymptomList(string symtomName, int type) //0: Name; 1: Code
         {
             Result result = null;
 
@@ -47,9 +47,14 @@ namespace MM.Bussiness
                     query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM Symptom WITH(NOLOCK) WHERE Status={0} ORDER BY SymptomName",
                         (byte)Status.Actived);
                 }
-                else
+                else if (type == 0)
                 {
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM Symptom WITH(NOLOCK) WHERE SymptomName LIKE N'%{0}%' AND Status={1} ORDER BY SymptomName",
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM Symptom WITH(NOLOCK) WHERE SymptomName LIKE N'{0}%' AND Status={1} ORDER BY SymptomName",
+                        symtomName, (byte)Status.Actived);
+                }
+                else if (type == 1)
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM Symptom WITH(NOLOCK) WHERE Code LIKE N'{0}%' AND Status={1} ORDER BY SymptomName",
                         symtomName, (byte)Status.Actived);
                 }
 

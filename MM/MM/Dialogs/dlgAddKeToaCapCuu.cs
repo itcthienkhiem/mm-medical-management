@@ -21,7 +21,6 @@ namespace MM.Dialogs
         private ToaCapCuu _toaCapCuu = new ToaCapCuu();
         private DataRow _drToaCapCuu = null;
         private string _tenCongTy = string.Empty;
-        private DataTable _dataSourceBenhNhan = null;
         private ComboBox _cboBox = null;
         private List<string> _deletedKeys = new List<string>();
         #endregion
@@ -88,19 +87,6 @@ namespace MM.Dialogs
             dtpkNgayKeToa.Value = DateTime.Now;
             DisplayDocStaffList();
             OnDisplayKhoCapCuu();
-            OnGetSanhSachBenhNhan();
-        }
-
-        private void OnGetSanhSachBenhNhan()
-        {
-            Result result = PatientBus.GetPatientList();
-            if (result.IsOK)
-                _dataSourceBenhNhan = result.QueryResult as DataTable;
-            else
-            {
-                MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.GetPatientList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
-            }
         }
 
         private void DisplayDocStaffList()
@@ -656,7 +642,7 @@ namespace MM.Dialogs
 
         private void btnChonBenhNhan_Click(object sender, EventArgs e)
         {
-            dlgSelectPatient dlg = new dlgSelectPatient(_dataSourceBenhNhan);
+            dlgSelectPatient dlg = new dlgSelectPatient(PatientSearchType.BenhNhan);
             if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
                 DataRow patientRow = dlg.PatientRow;

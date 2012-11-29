@@ -59,6 +59,7 @@
             this.txtSearchPatient = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
+            this.lbKetQuaTimDuoc = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
@@ -272,6 +273,7 @@
             this.chkMaBenhNhan.TabIndex = 2;
             this.chkMaBenhNhan.Text = "Theo mã bệnh nhân";
             this.chkMaBenhNhan.UseVisualStyleBackColor = true;
+            this.chkMaBenhNhan.CheckedChanged += new System.EventHandler(this.chkMaBenhNhan_CheckedChanged);
             // 
             // txtSearchPatient
             // 
@@ -284,6 +286,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lbKetQuaTimDuoc);
             this.panel1.Controls.Add(this.chkMaBenhNhan);
             this.panel1.Controls.Add(this.txtSearchPatient);
             this.panel1.Controls.Add(this.label1);
@@ -301,6 +304,16 @@
             this.label1.Size = new System.Drawing.Size(81, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Tìm bệnh nhân:";
+            // 
+            // lbKetQuaTimDuoc
+            // 
+            this.lbKetQuaTimDuoc.AutoSize = true;
+            this.lbKetQuaTimDuoc.ForeColor = System.Drawing.Color.Blue;
+            this.lbKetQuaTimDuoc.Location = new System.Drawing.Point(534, 12);
+            this.lbKetQuaTimDuoc.Name = "lbKetQuaTimDuoc";
+            this.lbKetQuaTimDuoc.Size = new System.Drawing.Size(100, 13);
+            this.lbKetQuaTimDuoc.TabIndex = 17;
+            this.lbKetQuaTimDuoc.Text = "Kết quả tìm được: 0";
             // 
             // uPhucHoiBenhNhan
             // 
@@ -345,5 +358,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn workPhoneDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn mobileDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label lbKetQuaTimDuoc;
     }
 }

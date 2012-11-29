@@ -20,6 +20,7 @@ namespace MM.Controls
         private DataTable _dtTemp = null;
         private Dictionary<string, DataRow> _dictGiaThuoc = new Dictionary<string,DataRow>();
         private string _name = string.Empty;
+        private Object _thisLock = new Object();
         #endregion
 
         #region Constructor
@@ -91,23 +92,26 @@ namespace MM.Controls
 
         private void OnDisplayGiaThuocList()
         {
-            Result result = GiaThuocBus.GetGiaThuocList(_name);
-            if (result.IsOK)
+            lock (_thisLock)
             {
-                dgGiaThuoc.Invoke(new MethodInvoker(delegate()
+                Result result = GiaThuocBus.GetGiaThuocList(_name);
+                if (result.IsOK)
                 {
-                    ClearData();
+                    dgGiaThuoc.Invoke(new MethodInvoker(delegate()
+                    {
+                        ClearData();
 
-                    DataTable dt = result.QueryResult as DataTable;
-                    if (_dtTemp == null) _dtTemp = dt.Clone();
-                    UpdateChecked(dt);
-                    dgGiaThuoc.DataSource = dt;
-                }));
-            }
-            else
-            {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("GiaThuocBus.GetGiaThuocList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("GiaThuocBus.GetGiaThuocList"));
+                        DataTable dt = result.QueryResult as DataTable;
+                        if (_dtTemp == null) _dtTemp = dt.Clone();
+                        UpdateChecked(dt);
+                        dgGiaThuoc.DataSource = dt;
+                    }));
+                }
+                else
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("GiaThuocBus.GetGiaThuocList"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("GiaThuocBus.GetGiaThuocList"));
+                }
             }
         }
 

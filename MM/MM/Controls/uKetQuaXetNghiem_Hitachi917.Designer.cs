@@ -820,7 +820,6 @@
             this.Controls.Add(this.panel3);
             this.Name = "uKetQuaXetNghiem_Hitachi917";
             this.Size = new System.Drawing.Size(955, 546);
-            this.Load += new System.EventHandler(this.uKetQuaXetNghiem_Hitachi917_Load);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel2.ResumeLayout(false);

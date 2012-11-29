@@ -71,7 +71,7 @@ namespace MM.Controls
             }
         }
 
-        private void ClearData()
+        public void ClearData()
         {
             DataTable dt = dgBenhNhanNgoaiGoiKham.DataSource as DataTable;
             if (dt != null)

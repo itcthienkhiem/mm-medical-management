@@ -220,7 +220,7 @@ namespace MM.Dialogs
 
         private void btnChonBenhNhan_Click(object sender, EventArgs e)
         {
-            dlgSelectPatient dlg = new dlgSelectPatient();
+            dlgSelectPatient dlg = new dlgSelectPatient(PatientSearchType.BenhNhan);
             if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
                 DataRow patientRow = dlg.PatientRow;

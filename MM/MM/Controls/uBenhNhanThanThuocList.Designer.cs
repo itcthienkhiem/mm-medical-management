@@ -104,6 +104,7 @@
             this.chkTheoSoDienThoai.TabIndex = 6;
             this.chkTheoSoDienThoai.Text = "Theo số điện thoại";
             this.chkTheoSoDienThoai.UseVisualStyleBackColor = true;
+            this.chkTheoSoDienThoai.CheckedChanged += new System.EventHandler(this.chkTheoSoDienThoai_CheckedChanged);
             // 
             // chkMaBenhNhan
             // 

@@ -36,6 +36,149 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetPatientList(string tenBenhNhan, int type) //type = 0: tên bệnh nhân; 1: mã bệnh nhân; 2: số điện thoại
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Empty;
+                if (tenBenhNhan.Trim() == string.Empty)
+                {
+                    query = "SELECT TOP 0 CAST(0 AS Bit) AS Checked, * FROM PatientView WITH(NOLOCK)";
+                }
+                else if (tenBenhNhan.Trim() == "*")
+                {
+                    query = "SELECT CAST(0 AS Bit) AS Checked, * FROM PatientView WITH(NOLOCK) WHERE Archived = 'False' ORDER BY FirstName, FullName";
+                }
+                else if (type == 0)
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM PatientView WITH(NOLOCK) WHERE FullName LIKE N'%{0}%' AND Archived = 'False' ORDER BY FirstName, FullName",
+                        tenBenhNhan);
+                }
+                else if (type == 1)
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM PatientView WITH(NOLOCK) WHERE FileNum LIKE N'%{0}%' AND Archived = 'False' ORDER BY FirstName, FullName",
+                        tenBenhNhan);
+                }
+                else if (type == 2)
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM PatientView WITH(NOLOCK) WHERE Mobile LIKE N'%{0}%' AND Archived = 'False' ORDER BY FirstName, FullName",
+                        tenBenhNhan);
+                }
+                
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
+        public static Result GetBenhNhanThanThuocList(string tenBenhNhan, int type)
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Empty;
+                if (tenBenhNhan.Trim() == string.Empty)
+                {
+                    query = "SELECT TOP 0 CAST(0 AS Bit) AS Checked, * FROM PatientView WITH(NOLOCK)";
+                }
+                else if (tenBenhNhan.Trim() == "*")
+                {
+                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView P WITH(NOLOCK), BenhNhanThanThuoc B WITH(NOLOCK) WHERE Archived = 'False' AND P.PatientGUID = B.PatientGUID AND B.DocStaffGUID = '{0}' ORDER BY FirstName, FullName",
+                        Global.UserGUID);
+                }
+                else if (type == 0)
+                {
+                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView P WITH(NOLOCK), BenhNhanThanThuoc B WITH(NOLOCK) WHERE Archived = 'False' AND P.PatientGUID = B.PatientGUID AND B.DocStaffGUID = '{0}' AND FullName LIKE N'%{1}%' ORDER BY FirstName, FullName",
+                        Global.UserGUID, tenBenhNhan);
+                }
+                else if (type == 1)
+                {
+                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView P WITH(NOLOCK), BenhNhanThanThuoc B WITH(NOLOCK) WHERE Archived = 'False' AND P.PatientGUID = B.PatientGUID AND B.DocStaffGUID = '{0}' AND FileNum LIKE N'%{1}%' ORDER BY FirstName, FullName",
+                        Global.UserGUID, tenBenhNhan);
+                }
+                else if (type == 2)
+                {
+                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView P WITH(NOLOCK), BenhNhanThanThuoc B WITH(NOLOCK) WHERE Archived = 'False' AND P.PatientGUID = B.PatientGUID AND B.DocStaffGUID = '{0}' AND Mobile LIKE N'%{1}%' ORDER BY FirstName, FullName",
+                        Global.UserGUID, tenBenhNhan);
+                }
+
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
+        public static Result GetBenhNhanKhongThanThuocList(string tenBenhNhan, int type)
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Empty;
+                if (tenBenhNhan.Trim() == string.Empty)
+                {
+                    query = "SELECT TOP 0 CAST(0 AS Bit) AS Checked, * FROM PatientView WITH(NOLOCK)";
+                }
+                else if (tenBenhNhan.Trim() == "*")
+                {
+                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView WITH(NOLOCK) WHERE Archived = 'False' AND NOT EXISTS (SELECT PatientGUID FROM BenhNhanThanThuoc WITH(NOLOCK) WHERE PatientGUID = PatientView.PatientGUID AND DocStaffGUID = '{0}') ORDER BY FirstName, FullName",
+                        Global.UserGUID);
+                }
+                else if (type == 0)
+                {
+                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView WITH(NOLOCK) WHERE Archived = 'False' AND NOT EXISTS (SELECT PatientGUID FROM BenhNhanThanThuoc WITH(NOLOCK) WHERE PatientGUID = PatientView.PatientGUID AND DocStaffGUID = '{0}') AND FullName LIKE N'%{1}%' ORDER BY FirstName, FullName",
+                        Global.UserGUID, tenBenhNhan);
+                }
+                else if (type == 1)
+                {
+                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView WITH(NOLOCK) WHERE Archived = 'False' AND NOT EXISTS (SELECT PatientGUID FROM BenhNhanThanThuoc WITH(NOLOCK) WHERE PatientGUID = PatientView.PatientGUID AND DocStaffGUID = '{0}') AND FileNum LIKE N'%{1}%' ORDER BY FirstName, FullName",
+                        Global.UserGUID, tenBenhNhan);
+                }
+                else if (type == 2)
+                {
+                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView WITH(NOLOCK) WHERE Archived = 'False' AND NOT EXISTS (SELECT PatientGUID FROM BenhNhanThanThuoc WITH(NOLOCK) WHERE PatientGUID = PatientView.PatientGUID AND DocStaffGUID = '{0}') AND Mobile LIKE N'%{1}%' ORDER BY FirstName, FullName",
+                        Global.UserGUID, tenBenhNhan);
+                }
+
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetPatientList(DateTime tuNgay, DateTime denNgay)
         {
             Result result = new Result();
@@ -131,6 +274,53 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetPatientBiXoaList(string tenBenhNhan, int type)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Empty;
+                if (tenBenhNhan.Trim() == string.Empty)
+                {
+                    query = "SELECT TOP 0 CAST(0 AS Bit) AS Checked, * FROM PatientView WITH(NOLOCK)";
+                }
+                else if (tenBenhNhan.Trim() == "*")
+                {
+                    query = "SELECT CAST(0 AS Bit) AS Checked, * FROM PatientView WITH(NOLOCK) WHERE Archived = 'True' ORDER BY FirstName, FullName";
+                }
+                else if (type == 0)
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM PatientView WITH(NOLOCK) WHERE FullName LIKE N'%{0}%' AND Archived = 'True' ORDER BY FirstName, FullName",
+                        tenBenhNhan);
+                }
+                else if (type == 1)
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM PatientView WITH(NOLOCK) WHERE FileNum LIKE N'%{0}%' AND Archived = 'True' ORDER BY FirstName, FullName",
+                        tenBenhNhan);
+                }
+                else if (type == 2)
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM PatientView WITH(NOLOCK) WHERE Mobile LIKE N'%{0}%' AND Archived = 'True' ORDER BY FirstName, FullName",
+                        tenBenhNhan);
+                }
+
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetDuplicatePatientList()
         {
             Result result = null;
@@ -153,6 +343,54 @@ namespace MM.Bussiness
 
             return result;
         }
+
+        public static Result GetDuplicatePatientList(string tenBenhNhan, int type)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Empty;
+                if (tenBenhNhan.Trim() == string.Empty)
+                {
+                    query = "SELECT TOP 0 CAST(0 AS Bit) AS Checked, * FROM PatientView WITH(NOLOCK)";
+                }
+                else if (tenBenhNhan.Trim() == "*")
+                {
+                    query = "SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView pv1 WHERE pv1.Archived = 'False' And pv1.FullName in (select pv2.FullName from PatientView pv2 where pv2.FullName =pv1.FullName and pv2.Gender = pv1.Gender and pv2.Archived='False' and pv2.ContactGUID != pv1.ContactGUID) ORDER BY FirstName, FullName";
+                }
+                else if (type == 0)
+                {
+                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView pv1 WHERE pv1.Archived = 'False' And pv1.FullName in (select pv2.FullName from PatientView pv2 where pv2.FullName =pv1.FullName and pv2.Gender = pv1.Gender and pv2.Archived='False' and pv2.ContactGUID != pv1.ContactGUID) AND pv1.FullName LIKE N'%{0}%' ORDER BY FirstName, FullName",
+                        tenBenhNhan);
+                }
+                else if (type == 1)
+                {
+                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView pv1 WHERE pv1.Archived = 'False' And pv1.FullName in (select pv2.FullName from PatientView pv2 where pv2.FullName =pv1.FullName and pv2.Gender = pv1.Gender and pv2.Archived='False' and pv2.ContactGUID != pv1.ContactGUID) AND pv1.FileNum LIKE N'%{0}%' ORDER BY FirstName, FullName",
+                        tenBenhNhan);
+                }
+                else if (type == 2)
+                {
+                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM PatientView pv1 WHERE pv1.Archived = 'False' And pv1.FullName in (select pv2.FullName from PatientView pv2 where pv2.FullName =pv1.FullName and pv2.Gender = pv1.Gender and pv2.Archived='False' and pv2.ContactGUID != pv1.ContactGUID) AND pv1.Mobile LIKE N'%{0}%' ORDER BY FirstName, FullName",
+                        tenBenhNhan);
+                }
+
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result Merge2Patients(string keepPatientGuid, string mergePatientGuid, string doneByGuid)
         {
             Result result = null;

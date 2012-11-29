@@ -20,7 +20,7 @@ namespace MM.Controls
     public partial class uServiceHistory : uBase
     {
         #region Members
-        private object _patientRow = null;
+        private DataRow _patientRow = null;
         private string _patientGUID = string.Empty;
         private DateTime _fromDate = DateTime.Now;
         private DateTime _toDate = DateTime.Now;
@@ -38,7 +38,7 @@ namespace MM.Controls
         #endregion
 
         #region Properties
-        public object PatientRow
+        public DataRow PatientRow
         {
             get { return _patientRow; }
             set { _patientRow = value; }
@@ -190,7 +190,7 @@ namespace MM.Controls
 
             try
             {
-                DataRow row = _patientRow as DataRow;
+                DataRow row = _patientRow;
                 _patientGUID = row["PatientGUID"].ToString();
                 if (!_isDailyService)
                 {

@@ -67,7 +67,7 @@ namespace MM.Controls
             }
         }
 
-        private void ClearData()
+        public void ClearData()
         {
             DataTable dt = dgCongTacNgoaiGio.DataSource as DataTable;
             if (dt != null)

@@ -23,6 +23,7 @@ namespace MM.Controls
         private Dictionary<string, DataRow> _dictSymptom = new Dictionary<string, DataRow>();
         private string _name = string.Empty;
         private DataTable _dtTemp = null;
+        private Object _thisLock = new Object();
         #endregion
 
         #region Constructor
@@ -96,22 +97,25 @@ namespace MM.Controls
 
         private void OnDisplaySymptomList()
         {
-            Result result = SymptomBus.GetSymptomList(_name);
-            if (result.IsOK)
+            lock (_thisLock)
             {
-                dgSymptom.Invoke(new MethodInvoker(delegate()
+                Result result = SymptomBus.GetSymptomList(_name, 0);
+                if (result.IsOK)
                 {
-                    ClearData();
-                    DataTable dt = result.QueryResult as DataTable;
-                    if (_dtTemp == null) _dtTemp = dt.Clone();
-                    UpdateChecked(dt);
-                    dgSymptom.DataSource = dt;
-                }));
-            }
-            else
-            {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("SymptomBus.GetSymptomList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("SymptomBus.GetSymptomList"));
+                    dgSymptom.Invoke(new MethodInvoker(delegate()
+                    {
+                        ClearData();
+                        DataTable dt = result.QueryResult as DataTable;
+                        if (_dtTemp == null) _dtTemp = dt.Clone();
+                        UpdateChecked(dt);
+                        dgSymptom.DataSource = dt;
+                    }));
+                }
+                else
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("SymptomBus.GetSymptomList"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("SymptomBus.GetSymptomList"));
+                }
             }
         }
 

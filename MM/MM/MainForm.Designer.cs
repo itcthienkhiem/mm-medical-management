@@ -2522,8 +2522,6 @@
             // 
             // _uPatientList
             // 
-            this._uPatientList.DataSource = null;
-            this._uPatientList.DictPatient = null;
             resources.ApplyResources(this._uPatientList, "_uPatientList");
             this._uPatientList.Name = "_uPatientList";
             // 
@@ -2550,7 +2548,6 @@
             // _timerPatient
             // 
             this._timerPatient.Interval = 5000;
-            this._timerPatient.Tick += new System.EventHandler(this._timerPatient_Tick);
             // 
             // MainForm
             // 

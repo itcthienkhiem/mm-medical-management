@@ -29,6 +29,9 @@ namespace MM.Dialogs
             _activedDate = activedDate;
             _serviceGUID = serviceGUID;
             _patientGUID = patientGUID;
+            _uSearchPatient.ServiceGUID = _serviceGUID;
+            _uSearchPatient.PatientGUID = _patientGUID;
+            _uSearchPatient.PatientSearchType = PatientSearchType.NhanVienHopDong;
             _uSearchPatient.OnOpenPatientEvent += new MM.Controls.OpenPatientHandler(_uSearchPatient_OnOpenPatient);
         }
         #endregion
@@ -36,7 +39,7 @@ namespace MM.Dialogs
         #region Properties
         public DataRow PatientRow
         {
-            get { return (DataRow)_uSearchPatient.PatientRow; }
+            get { return _uSearchPatient.PatientRow; }
         }
 
         public string HopDongGUID
@@ -99,38 +102,38 @@ namespace MM.Dialogs
             return string.Empty;
         }
 
-        private void GetDanhSachNhanVienTheoHopDong()
-        {
-            Cursor.Current = Cursors.WaitCursor;
-            Result result = CompanyContractBus.GetContractMemberList(_hopDongGUID, _serviceGUID);
-            if (result.IsOK)
-            {
-                DataTable dt = result.QueryResult as DataTable;
-                DataRow[] rows = dt.Select(string.Format("PatientGUID = '{0}'", _patientGUID));
-                if (rows != null && rows.Length > 0)
-                {
-                    foreach (DataRow row in rows)
-                        dt.Rows.Remove(row);
-                }
+        //private void GetDanhSachNhanVienTheoHopDong()
+        //{
+        //    Cursor.Current = Cursors.WaitCursor;
+        //    Result result = CompanyContractBus.GetContractMemberList(_hopDongGUID, _serviceGUID);
+        //    if (result.IsOK)
+        //    {
+        //        DataTable dt = result.QueryResult as DataTable;
+        //        DataRow[] rows = dt.Select(string.Format("PatientGUID = '{0}'", _patientGUID));
+        //        if (rows != null && rows.Length > 0)
+        //        {
+        //            foreach (DataRow row in rows)
+        //                dt.Rows.Remove(row);
+        //        }
 
-                _uSearchPatient.DataSource = dt;
-                _uSearchPatient.OnSearch();
-            }
-            else
-            {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyContractBus.GetContractMemberList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.GetContractMemberList"));
-            }
-        }
+        //        _uSearchPatient.DataSource = dt;
+        //        _uSearchPatient.OnSearch();
+        //    }
+        //    else
+        //    {
+        //        MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyContractBus.GetContractMemberList"), IconType.Error);
+        //        Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.GetContractMemberList"));
+        //    }
+        //}
         #endregion
 
         #region Window Event Handles
         private void dlgSelectNhanVienHopDong_Load(object sender, EventArgs e)
         {
-            DisplayHopDongByThread();
+            //DisplayHopDongByThread();
         }
 
-        private void _uSearchPatient_OnOpenPatient(object patientRow)
+        private void _uSearchPatient_OnOpenPatient(DataRow patientRow)
         {
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.Close();
@@ -140,10 +143,12 @@ namespace MM.Dialogs
         {
             if (cboMaHopDong.SelectedValue == null || cboMaHopDong.SelectedValue == DBNull.Value) return;
             _hopDongGUID = cboMaHopDong.SelectedValue.ToString();
+            _uSearchPatient.HopDongGUID = _hopDongGUID;
 
             txtTenHopDong.Text = GetTenHopDong();
 
-            GetDanhSachNhanVienTheoHopDong();
+            _uSearchPatient.DisplayAsThread();
+            //GetDanhSachNhanVienTheoHopDong();
         }
         #endregion
 

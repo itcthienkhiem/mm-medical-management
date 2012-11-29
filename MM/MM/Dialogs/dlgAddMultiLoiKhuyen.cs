@@ -17,7 +17,11 @@ namespace MM.Dialogs
     {
         #region Members
         private string _patientGUID = string.Empty;
-        private DataTable _dataSource = null;
+        private DataTable _dtTemp = null;
+        private Dictionary<string, DataRow> _dictLoiKhuyen = new Dictionary<string, DataRow>();
+        private string _name = string.Empty;
+        private int _type = 0;
+        private Object _thisLock = new Object();
         #endregion
 
         #region Constructor
@@ -61,31 +65,102 @@ namespace MM.Dialogs
             }
 
             //Symptom
-            result = SymptomBus.GetSymptomList();
-            if (!result.IsOK)
+            DisplayAsThread();
+        }
+
+        public void ClearData()
+        {
+            DataTable dt = dgSymptom.DataSource as DataTable;
+            if (dt != null)
             {
-                MsgBox.Show(this.Text, result.GetErrorAsString("SymptomBus.GetSymptomList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("SymptomBus.GetSymptomList"));
-                return;
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
             }
-            else
+
+            dgSymptom.DataSource = null;
+        }
+
+        public void DisplayAsThread()
+        {
+            try
             {
-                dgSymptom.DataSource = result.QueryResult;
-                _dataSource = result.QueryResult as DataTable;
+                chkChecked.Checked = false;
+                _name = txtTimTrieuChung.Text;
+                if (chkTheoMaTrieuChung.Checked) _type = 1;
+                else _type = 0;
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayTrieuChungListProc));
+                base.ShowWaiting();
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
+        }
+
+        private void SearchAsThread()
+        {
+            try
+            {
+                chkChecked.Checked = false;
+                _name = txtTimTrieuChung.Text;
+                if (chkTheoMaTrieuChung.Checked) _type = 1;
+                else _type = 0;
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnSearchProc));
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+        }
+
+        private void OnDisplayTrieuChungList()
+        {
+            lock (_thisLock)
+            {
+                Result result = SymptomBus.GetSymptomList(_name, _type);
+                if (result.IsOK)
+                {
+                    dgSymptom.Invoke(new MethodInvoker(delegate()
+                    {
+                        ClearData();
+
+                        DataTable dt = result.QueryResult as DataTable;
+                        if (_dtTemp == null) _dtTemp = dt.Clone();
+                        UpdateChecked(dt);
+                        dgSymptom.DataSource = dt;
+                    }));
+                }
+                else
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("ThuocBus.GetThuocList"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("ThuocBus.GetThuocList"));
+                }
+            }
+        }
+
+        private void UpdateChecked(DataTable dt)
+        {
+            foreach (DataRow row in dt.Rows)
+            {
+                string key = row["SymptomGUID"].ToString();
+                if (_dictLoiKhuyen.ContainsKey(key))
+                    row["Checked"] = true;
             }
         }
 
         private List<string> GetCheckedSymptomList()
         {
-            UpdateChecked();
             List<string> checkedSympList = new List<string>();
-            //DataTable dt = dgSymptom.DataSource as DataTable;
-            foreach (DataRow row in _dataSource.Rows)
+            foreach (DataRow row in _dictLoiKhuyen.Values.ToList())
             {
-                if (Boolean.Parse(row["Checked"].ToString()))
-                {
-                    checkedSympList.Add(row["SymptomGUID"].ToString());
-                }
+                checkedSympList.Add(row["SymptomGUID"].ToString());
             }
 
             return checkedSympList;
@@ -93,7 +168,7 @@ namespace MM.Dialogs
 
         private bool CheckInfo()
         {
-            if (cboDocStaff.Text.Trim() == string.Empty)
+            if (cboDocStaff.SelectedValue == null || cboDocStaff.Text.Trim() == string.Empty)
             {
                 MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ.", IconType.Information);
                 cboDocStaff.Focus();
@@ -167,116 +242,6 @@ namespace MM.Dialogs
             }
 
         }
-
-        private void OnSearchTrieuChung()
-        {
-            UpdateChecked();
-            chkChecked.Checked = false;
-            List<DataRow> results = null;
-            DataTable newDataSource = null;
-
-            if (txtTimTrieuChung.Text.Trim() == string.Empty)
-            {
-                results = (from p in _dataSource.AsEnumerable()
-                           orderby p.Field<string>("SymptomName")
-                           select p).ToList<DataRow>();
-
-                newDataSource = _dataSource.Clone();
-                foreach (DataRow row in results)
-                    newDataSource.ImportRow(row);
-
-                dgSymptom.DataSource = newDataSource;
-                if (dgSymptom.RowCount > 0) dgSymptom.Rows[0].Selected = true;
-                return;
-            }
-
-            string str = txtTimTrieuChung.Text.ToLower();
-            newDataSource = _dataSource.Clone();
-
-            if (chkTheoMaTrieuChung.Checked)
-            {
-                //Code
-                results = (from p in _dataSource.AsEnumerable()
-                           where p.Field<string>("Code") != null &&
-                             p.Field<string>("Code").Trim() != string.Empty &&
-                             //(p.Field<string>("Code").ToLower().IndexOf(str) == 0 ||
-                           //str.IndexOf(p.Field<string>("Code").ToLower()) == 0)
-                           p.Field<string>("Code").ToLower().IndexOf(str) == 0
-                           orderby p.Field<string>("SymptomName")
-                           select p).ToList<DataRow>();
-
-                foreach (DataRow row in results)
-                    newDataSource.ImportRow(row);
-
-                if (newDataSource.Rows.Count > 0)
-                {
-                    dgSymptom.DataSource = newDataSource;
-                    return;
-                }
-            }
-            else
-            {
-                //FullName
-                results = (from p in _dataSource.AsEnumerable()
-                           where //(p.Field<string>("SymptomName").ToLower().IndexOf(str) == 0 ||
-                           //str.IndexOf(p.Field<string>("SymptomName").ToLower()) == 0) &&
-                           p.Field<string>("SymptomName").ToLower().IndexOf(str) == 0 &&
-                           p.Field<string>("SymptomName") != null &&
-                           p.Field<string>("SymptomName").Trim() != string.Empty
-                           orderby p.Field<string>("SymptomName")
-                           select p).ToList<DataRow>();
-
-
-                foreach (DataRow row in results)
-                    newDataSource.ImportRow(row);
-
-                if (newDataSource.Rows.Count > 0)
-                {
-                    dgSymptom.DataSource = newDataSource;
-                    return;
-                }
-            }
-
-            dgSymptom.DataSource = newDataSource;
-        }
-
-        private void UpdateChecked()
-        {
-            DataTable dt = dgSymptom.DataSource as DataTable;
-            if (dt == null) return;
-
-            DataRow[] rows1 = dt.Select("Checked='True'");
-            if (rows1 == null || rows1.Length <= 0) return;
-
-            foreach (DataRow row1 in rows1)
-            {
-                string patientGUID1 = row1["SymptomGUID"].ToString();
-                DataRow[] rows2 = _dataSource.Select(string.Format("SymptomGUID='{0}'", patientGUID1));
-                if (rows2 == null || rows2.Length <= 0) continue;
-
-                rows2[0]["Checked"] = row1["Checked"];
-            }
-
-            //DataTable dt = dgSymptom.DataSource as DataTable;
-            //if (dt == null) return;
-
-            //foreach (DataRow row1 in dt.Rows)
-            //{
-            //    string patientGUID1 = row1["SymptomGUID"].ToString();
-            //    bool isChecked1 = Convert.ToBoolean(row1["Checked"]);
-            //    foreach (DataRow row2 in _dataSource.Rows)
-            //    {
-            //        string patientGUID2 = row2["SymptomGUID"].ToString();
-            //        bool isChecked2 = Convert.ToBoolean(row2["Checked"]);
-
-            //        if (patientGUID1 == patientGUID2)
-            //        {
-            //            row2["Checked"] = row1["Checked"];
-            //            break;
-            //        }
-            //    }
-            //}
-        }
         #endregion
 
         #region Window Event Handlers
@@ -309,6 +274,36 @@ namespace MM.Dialogs
             }
         }
 
+        private void dgSymptom_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.RowIndex < 0 || e.ColumnIndex != 0) return;
+
+            DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dgSymptom.Rows[e.RowIndex].Cells[0];
+            DataRow row = (dgSymptom.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            string symptomGUID = row["SymptomGUID"].ToString();
+            bool isChecked = Convert.ToBoolean(cell.EditingCellFormattedValue);
+
+            if (isChecked)
+            {
+                if (!_dictLoiKhuyen.ContainsKey(symptomGUID))
+                {
+                    _dtTemp.ImportRow(row);
+                    _dictLoiKhuyen.Add(symptomGUID, _dtTemp.Rows[_dtTemp.Rows.Count - 1]);
+                }
+            }
+            else
+            {
+                if (_dictLoiKhuyen.ContainsKey(symptomGUID))
+                {
+                    _dictLoiKhuyen.Remove(symptomGUID);
+
+                    DataRow[] rows = _dtTemp.Select(string.Format("SymptomGUID='{0}'", symptomGUID));
+                    if (rows != null && rows.Length > 0)
+                        _dtTemp.Rows.Remove(rows[0]);
+                }
+            }
+        }
+
         private void chkChecked_CheckedChanged(object sender, EventArgs e)
         {
             DataTable dt = dgSymptom.DataSource as DataTable;
@@ -316,17 +311,37 @@ namespace MM.Dialogs
             foreach (DataRow row in dt.Rows)
             {
                 row["Checked"] = chkChecked.Checked;
+                string symptomGUID = row["SymptomGUID"].ToString();
+                if (chkChecked.Checked)
+                {
+                    if (!_dictLoiKhuyen.ContainsKey(symptomGUID))
+                    {
+                        _dtTemp.ImportRow(row);
+                        _dictLoiKhuyen.Add(symptomGUID, _dtTemp.Rows[_dtTemp.Rows.Count - 1]);
+                    }
+                }
+                else
+                {
+                    if (_dictLoiKhuyen.ContainsKey(symptomGUID))
+                    {
+                        _dictLoiKhuyen.Remove(symptomGUID);
+
+                        DataRow[] rows = _dtTemp.Select(string.Format("SymptomGUID='{0}'", symptomGUID));
+                        if (rows != null && rows.Length > 0)
+                            _dtTemp.Rows.Remove(rows[0]);
+                    }
+                }
             }
         }
 
         private void txtTimTrieuChung_TextChanged(object sender, EventArgs e)
         {
-            OnSearchTrieuChung();
+            SearchAsThread();
         }
 
         private void chkTheoMaTrieuChung_CheckedChanged(object sender, EventArgs e)
         {
-            OnSearchTrieuChung();
+            SearchAsThread();
         }
         #endregion
 
@@ -335,7 +350,6 @@ namespace MM.Dialogs
         {
             try
             {
-                //Thread.Sleep(500);
                 OnSaveInfo();
             }
             catch (Exception e)
@@ -347,6 +361,38 @@ namespace MM.Dialogs
                 base.HideWaiting();
             }
         }
+
+        private void OnDisplayTrieuChungListProc(object state)
+        {
+            try
+            {
+                OnDisplayTrieuChungList();
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
+        }
+
+        private void OnSearchProc(object state)
+        {
+            try
+            {
+                OnDisplayTrieuChungList();
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+        }
         #endregion
+
+        
     }
 }

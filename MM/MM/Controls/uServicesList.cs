@@ -21,6 +21,7 @@ namespace MM.Controls
         private DataTable _dtTemp = null;
         private Dictionary<string, DataRow> _dictServices = new Dictionary<string,DataRow>();
         private string _name = string.Empty;
+        private Object _thisLock = new Object();
         #endregion
 
         #region Constructor
@@ -95,23 +96,26 @@ namespace MM.Controls
 
         private void OnDisplayServicesList()
         {
-            Result result = ServicesBus.GetServicesList(_name);
-            if (result.IsOK)
+            lock (_thisLock)
             {
-                dgService.Invoke(new MethodInvoker(delegate()
+                Result result = ServicesBus.GetServicesList(_name);
+                if (result.IsOK)
                 {
-                    ClearData();
+                    dgService.Invoke(new MethodInvoker(delegate()
+                    {
+                        ClearData();
 
-                    DataTable dt = result.QueryResult as DataTable;
-                    if (_dtTemp == null) _dtTemp = dt.Clone();
-                    UpdateChecked(dt);
-                    dgService.DataSource = dt;
-                }));
-            }
-            else
-            {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("ServicesBus.GetServicesList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("ServicesBus.GetServicesList"));
+                        DataTable dt = result.QueryResult as DataTable;
+                        if (_dtTemp == null) _dtTemp = dt.Clone();
+                        UpdateChecked(dt);
+                        dgService.DataSource = dt;
+                    }));
+                }
+                else
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("ServicesBus.GetServicesList"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("ServicesBus.GetServicesList"));
+                }
             }
         }
 

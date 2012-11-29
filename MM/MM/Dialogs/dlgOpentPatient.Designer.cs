@@ -97,7 +97,7 @@
             // 
             // _uSearchPatient
             // 
-            this._uSearchPatient.DataSource = null;
+            //this._uSearchPatient.DataSource = null;
             this._uSearchPatient.Dock = System.Windows.Forms.DockStyle.Fill;
             this._uSearchPatient.Location = new System.Drawing.Point(0, 0);
             this._uSearchPatient.Name = "_uSearchPatient";
@@ -116,7 +116,6 @@
             this.Name = "dlgOpentPatient";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mo benh nhan";
-            this.Load += new System.EventHandler(this.dlgOpentPatient_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);

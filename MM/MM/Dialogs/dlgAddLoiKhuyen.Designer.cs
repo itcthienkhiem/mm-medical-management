@@ -31,21 +31,21 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddLoiKhuyen));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtLoiKhuyen = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.cboTrieuChung = new System.Windows.Forms.ComboBox();
+            this.symptomBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.cboDocStaff = new System.Windows.Forms.ComboBox();
+            this.docStaffViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dtpkNgay = new System.Windows.Forms.DateTimePicker();
             this.label1 = new System.Windows.Forms.Label();
-            this.docStaffViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.cboDocStaff = new System.Windows.Forms.ComboBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.cboTrieuChung = new System.Windows.Forms.ComboBox();
-            this.label4 = new System.Windows.Forms.Label();
-            this.txtLoiKhuyen = new System.Windows.Forms.TextBox();
-            this.symptomBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.symptomBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -65,6 +65,79 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin lời khuyên";
             // 
+            // txtLoiKhuyen
+            // 
+            this.txtLoiKhuyen.Location = new System.Drawing.Point(81, 94);
+            this.txtLoiKhuyen.MaxLength = 4000;
+            this.txtLoiKhuyen.Multiline = true;
+            this.txtLoiKhuyen.Name = "txtLoiKhuyen";
+            this.txtLoiKhuyen.ReadOnly = true;
+            this.txtLoiKhuyen.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtLoiKhuyen.Size = new System.Drawing.Size(393, 122);
+            this.txtLoiKhuyen.TabIndex = 10;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(15, 97);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(62, 13);
+            this.label4.TabIndex = 9;
+            this.label4.Text = "Lời khuyên:";
+            // 
+            // cboTrieuChung
+            // 
+            this.cboTrieuChung.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cboTrieuChung.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboTrieuChung.DataSource = this.symptomBindingSource;
+            this.cboTrieuChung.DisplayMember = "SymptomName";
+            this.cboTrieuChung.FormattingEnabled = true;
+            this.cboTrieuChung.Location = new System.Drawing.Point(81, 69);
+            this.cboTrieuChung.Name = "cboTrieuChung";
+            this.cboTrieuChung.Size = new System.Drawing.Size(393, 21);
+            this.cboTrieuChung.TabIndex = 8;
+            this.cboTrieuChung.ValueMember = "SymptomGUID";
+            this.cboTrieuChung.SelectedIndexChanged += new System.EventHandler(this.cboTrieuChung_SelectedIndexChanged);
+            // 
+            // symptomBindingSource
+            // 
+            this.symptomBindingSource.DataSource = typeof(MM.Databasae.Symptom);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(10, 72);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(67, 13);
+            this.label3.TabIndex = 7;
+            this.label3.Text = "Triệu chứng:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(35, 47);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(42, 13);
+            this.label2.TabIndex = 6;
+            this.label2.Text = "Bác sĩ:";
+            // 
+            // cboDocStaff
+            // 
+            this.cboDocStaff.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cboDocStaff.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboDocStaff.DataSource = this.docStaffViewBindingSource;
+            this.cboDocStaff.DisplayMember = "FullName";
+            this.cboDocStaff.FormattingEnabled = true;
+            this.cboDocStaff.Location = new System.Drawing.Point(81, 44);
+            this.cboDocStaff.Name = "cboDocStaff";
+            this.cboDocStaff.Size = new System.Drawing.Size(242, 21);
+            this.cboDocStaff.TabIndex = 5;
+            this.cboDocStaff.ValueMember = "DocStaffGUID";
+            // 
+            // docStaffViewBindingSource
+            // 
+            this.docStaffViewBindingSource.DataSource = typeof(MM.Databasae.DocStaffView);
+            // 
             // dtpkNgay
             // 
             this.dtpkNgay.CustomFormat = "dd/MM/yyyy";
@@ -82,81 +155,6 @@
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 3;
             this.label1.Text = "Ngày:";
-            // 
-            // docStaffViewBindingSource
-            // 
-            this.docStaffViewBindingSource.DataSource = typeof(MM.Databasae.DocStaffView);
-            // 
-            // cboDocStaff
-            // 
-            this.cboDocStaff.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboDocStaff.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboDocStaff.DataSource = this.docStaffViewBindingSource;
-            this.cboDocStaff.DisplayMember = "FullName";
-            this.cboDocStaff.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboDocStaff.FormattingEnabled = true;
-            this.cboDocStaff.Location = new System.Drawing.Point(81, 44);
-            this.cboDocStaff.Name = "cboDocStaff";
-            this.cboDocStaff.Size = new System.Drawing.Size(242, 21);
-            this.cboDocStaff.TabIndex = 5;
-            this.cboDocStaff.ValueMember = "DocStaffGUID";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(35, 47);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(42, 13);
-            this.label2.TabIndex = 6;
-            this.label2.Text = "Bác sĩ:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(10, 72);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(67, 13);
-            this.label3.TabIndex = 7;
-            this.label3.Text = "Triệu chứng:";
-            // 
-            // cboTrieuChung
-            // 
-            this.cboTrieuChung.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboTrieuChung.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboTrieuChung.DataSource = this.symptomBindingSource;
-            this.cboTrieuChung.DisplayMember = "SymptomName";
-            this.cboTrieuChung.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboTrieuChung.FormattingEnabled = true;
-            this.cboTrieuChung.Location = new System.Drawing.Point(81, 69);
-            this.cboTrieuChung.Name = "cboTrieuChung";
-            this.cboTrieuChung.Size = new System.Drawing.Size(393, 21);
-            this.cboTrieuChung.TabIndex = 8;
-            this.cboTrieuChung.ValueMember = "SymptomGUID";
-            this.cboTrieuChung.SelectedIndexChanged += new System.EventHandler(this.cboTrieuChung_SelectedIndexChanged);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(15, 97);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(62, 13);
-            this.label4.TabIndex = 9;
-            this.label4.Text = "Lời khuyên:";
-            // 
-            // txtLoiKhuyen
-            // 
-            this.txtLoiKhuyen.Location = new System.Drawing.Point(81, 94);
-            this.txtLoiKhuyen.MaxLength = 4000;
-            this.txtLoiKhuyen.Multiline = true;
-            this.txtLoiKhuyen.Name = "txtLoiKhuyen";
-            this.txtLoiKhuyen.ReadOnly = true;
-            this.txtLoiKhuyen.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtLoiKhuyen.Size = new System.Drawing.Size(393, 122);
-            this.txtLoiKhuyen.TabIndex = 10;
-            // 
-            // symptomBindingSource
-            // 
-            this.symptomBindingSource.DataSource = typeof(MM.Databasae.Symptom);
             // 
             // btnCancel
             // 
@@ -204,8 +202,8 @@
             this.Load += new System.EventHandler(this.dlgAddLoiKhuyen_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.symptomBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
