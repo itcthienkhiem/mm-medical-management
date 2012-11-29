@@ -30,16 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddMultiLoiKhuyen));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkTheoMaTrieuChung = new System.Windows.Forms.CheckBox();
+            this.txtTimTrieuChung = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgSymptom = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.colChecked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
-            this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.symptomNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.adviceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.bindingSource1 = new System.Windows.Forms.BindingSource(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.cboDocStaff = new System.Windows.Forms.ComboBox();
@@ -49,9 +47,10 @@
             this.symptomBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.chkTheoMaTrieuChung = new System.Windows.Forms.CheckBox();
-            this.txtTimTrieuChung = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
+            this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.symptomNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.adviceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgSymptom)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.bindingSource1)).BeginInit();
@@ -77,10 +76,38 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin lời khuyên";
             // 
+            // chkTheoMaTrieuChung
+            // 
+            this.chkTheoMaTrieuChung.AutoSize = true;
+            this.chkTheoMaTrieuChung.Location = new System.Drawing.Point(393, 79);
+            this.chkTheoMaTrieuChung.Name = "chkTheoMaTrieuChung";
+            this.chkTheoMaTrieuChung.Size = new System.Drawing.Size(124, 17);
+            this.chkTheoMaTrieuChung.TabIndex = 11;
+            this.chkTheoMaTrieuChung.Text = "Theo mã triệu chứng";
+            this.chkTheoMaTrieuChung.UseVisualStyleBackColor = true;
+            this.chkTheoMaTrieuChung.CheckedChanged += new System.EventHandler(this.chkTheoMaTrieuChung_CheckedChanged);
+            // 
+            // txtTimTrieuChung
+            // 
+            this.txtTimTrieuChung.Location = new System.Drawing.Point(95, 76);
+            this.txtTimTrieuChung.Name = "txtTimTrieuChung";
+            this.txtTimTrieuChung.Size = new System.Drawing.Size(291, 20);
+            this.txtTimTrieuChung.TabIndex = 10;
+            this.txtTimTrieuChung.TextChanged += new System.EventHandler(this.txtTimTrieuChung_TextChanged);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(12, 79);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(83, 13);
+            this.label3.TabIndex = 9;
+            this.label3.Text = "Tìm triệu chứng:";
+            // 
             // chkChecked
             // 
             this.chkChecked.AutoSize = true;
-            this.chkChecked.Location = new System.Drawing.Point(57, 106);
+            this.chkChecked.Location = new System.Drawing.Point(56, 106);
             this.chkChecked.Name = "chkChecked";
             this.chkChecked.Size = new System.Drawing.Size(15, 14);
             this.chkChecked.TabIndex = 8;
@@ -108,66 +135,25 @@
             this.symptomNameDataGridViewTextBoxColumn,
             this.adviceDataGridViewTextBoxColumn});
             this.dgSymptom.DataSource = this.bindingSource1;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgSymptom.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgSymptom.DefaultCellStyle = dataGridViewCellStyle2;
             this.dgSymptom.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgSymptom.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgSymptom.HighlightSelectedColumnHeaders = false;
             this.dgSymptom.Location = new System.Drawing.Point(12, 101);
             this.dgSymptom.MultiSelect = false;
             this.dgSymptom.Name = "dgSymptom";
-            this.dgSymptom.ReadOnly = true;
             this.dgSymptom.RowHeadersWidth = 30;
             this.dgSymptom.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgSymptom.Size = new System.Drawing.Size(512, 365);
             this.dgSymptom.TabIndex = 7;
-            // 
-            // colChecked
-            // 
-            this.colChecked.Checked = true;
-            this.colChecked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.colChecked.CheckValue = "N";
-            this.colChecked.DataPropertyName = "Checked";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colChecked.DefaultCellStyle = dataGridViewCellStyle2;
-            this.colChecked.Frozen = true;
-            this.colChecked.HeaderText = "";
-            this.colChecked.Name = "colChecked";
-            this.colChecked.ReadOnly = true;
-            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.colChecked.Width = 40;
-            // 
-            // codeDataGridViewTextBoxColumn
-            // 
-            this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
-            this.codeDataGridViewTextBoxColumn.HeaderText = "Mã triệu chứng";
-            this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
-            this.codeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.codeDataGridViewTextBoxColumn.Width = 120;
-            // 
-            // symptomNameDataGridViewTextBoxColumn
-            // 
-            this.symptomNameDataGridViewTextBoxColumn.DataPropertyName = "SymptomName";
-            this.symptomNameDataGridViewTextBoxColumn.HeaderText = "Triệu chứng";
-            this.symptomNameDataGridViewTextBoxColumn.Name = "symptomNameDataGridViewTextBoxColumn";
-            this.symptomNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.symptomNameDataGridViewTextBoxColumn.Width = 300;
-            // 
-            // adviceDataGridViewTextBoxColumn
-            // 
-            this.adviceDataGridViewTextBoxColumn.DataPropertyName = "Advice";
-            this.adviceDataGridViewTextBoxColumn.HeaderText = "Lời khuyên";
-            this.adviceDataGridViewTextBoxColumn.Name = "adviceDataGridViewTextBoxColumn";
-            this.adviceDataGridViewTextBoxColumn.ReadOnly = true;
-            this.adviceDataGridViewTextBoxColumn.Visible = false;
-            this.adviceDataGridViewTextBoxColumn.Width = 350;
+            this.dgSymptom.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgSymptom_CellMouseUp);
             // 
             // bindingSource1
             // 
@@ -176,7 +162,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(11, 47);
+            this.label2.Location = new System.Drawing.Point(53, 48);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(42, 13);
             this.label2.TabIndex = 6;
@@ -184,15 +170,14 @@
             // 
             // cboDocStaff
             // 
-            this.cboDocStaff.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDocStaff.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboDocStaff.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboDocStaff.DataSource = this.docStaffViewBindingSource;
             this.cboDocStaff.DisplayMember = "FullName";
-            this.cboDocStaff.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDocStaff.FormattingEnabled = true;
-            this.cboDocStaff.Location = new System.Drawing.Point(57, 44);
+            this.cboDocStaff.Location = new System.Drawing.Point(95, 45);
             this.cboDocStaff.Name = "cboDocStaff";
-            this.cboDocStaff.Size = new System.Drawing.Size(272, 21);
+            this.cboDocStaff.Size = new System.Drawing.Size(291, 21);
             this.cboDocStaff.TabIndex = 5;
             this.cboDocStaff.ValueMember = "DocStaffGUID";
             // 
@@ -204,7 +189,7 @@
             // 
             this.dtpkNgay.CustomFormat = "dd/MM/yyyy";
             this.dtpkNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkNgay.Location = new System.Drawing.Point(57, 20);
+            this.dtpkNgay.Location = new System.Drawing.Point(95, 21);
             this.dtpkNgay.Name = "dtpkNgay";
             this.dtpkNgay.Size = new System.Drawing.Size(106, 20);
             this.dtpkNgay.TabIndex = 4;
@@ -212,7 +197,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(18, 24);
+            this.label1.Location = new System.Drawing.Point(60, 24);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 3;
@@ -246,33 +231,40 @@
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
-            // chkTheoMaTrieuChung
+            // colChecked
             // 
-            this.chkTheoMaTrieuChung.AutoSize = true;
-            this.chkTheoMaTrieuChung.Location = new System.Drawing.Point(393, 78);
-            this.chkTheoMaTrieuChung.Name = "chkTheoMaTrieuChung";
-            this.chkTheoMaTrieuChung.Size = new System.Drawing.Size(124, 17);
-            this.chkTheoMaTrieuChung.TabIndex = 11;
-            this.chkTheoMaTrieuChung.Text = "Theo mã triệu chứng";
-            this.chkTheoMaTrieuChung.UseVisualStyleBackColor = true;
-            this.chkTheoMaTrieuChung.CheckedChanged += new System.EventHandler(this.chkTheoMaTrieuChung_CheckedChanged);
+            this.colChecked.DataPropertyName = "Checked";
+            this.colChecked.Frozen = true;
+            this.colChecked.HeaderText = "";
+            this.colChecked.Name = "colChecked";
+            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colChecked.Width = 40;
             // 
-            // txtTimTrieuChung
+            // codeDataGridViewTextBoxColumn
             // 
-            this.txtTimTrieuChung.Location = new System.Drawing.Point(95, 75);
-            this.txtTimTrieuChung.Name = "txtTimTrieuChung";
-            this.txtTimTrieuChung.Size = new System.Drawing.Size(291, 20);
-            this.txtTimTrieuChung.TabIndex = 10;
-            this.txtTimTrieuChung.TextChanged += new System.EventHandler(this.txtTimTrieuChung_TextChanged);
+            this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
+            this.codeDataGridViewTextBoxColumn.HeaderText = "Mã triệu chứng";
+            this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
+            this.codeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.codeDataGridViewTextBoxColumn.Width = 120;
             // 
-            // label3
+            // symptomNameDataGridViewTextBoxColumn
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 78);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(83, 13);
-            this.label3.TabIndex = 9;
-            this.label3.Text = "Tìm triệu chứng:";
+            this.symptomNameDataGridViewTextBoxColumn.DataPropertyName = "SymptomName";
+            this.symptomNameDataGridViewTextBoxColumn.HeaderText = "Triệu chứng";
+            this.symptomNameDataGridViewTextBoxColumn.Name = "symptomNameDataGridViewTextBoxColumn";
+            this.symptomNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.symptomNameDataGridViewTextBoxColumn.Width = 300;
+            // 
+            // adviceDataGridViewTextBoxColumn
+            // 
+            this.adviceDataGridViewTextBoxColumn.DataPropertyName = "Advice";
+            this.adviceDataGridViewTextBoxColumn.HeaderText = "Lời khuyên";
+            this.adviceDataGridViewTextBoxColumn.Name = "adviceDataGridViewTextBoxColumn";
+            this.adviceDataGridViewTextBoxColumn.ReadOnly = true;
+            this.adviceDataGridViewTextBoxColumn.Visible = false;
+            this.adviceDataGridViewTextBoxColumn.Width = 350;
             // 
             // dlgAddMultiLoiKhuyen
             // 
@@ -316,14 +308,14 @@
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgSymptom;
-        private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn colChecked;
-        private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn symptomNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn adviceDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource bindingSource1;
         private System.Windows.Forms.CheckBox chkChecked;
         private System.Windows.Forms.CheckBox chkTheoMaTrieuChung;
         private System.Windows.Forms.TextBox txtTimTrieuChung;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn colChecked;
+        private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn symptomNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn adviceDataGridViewTextBoxColumn;
     }
 }

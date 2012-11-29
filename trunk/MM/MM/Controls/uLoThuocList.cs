@@ -25,6 +25,7 @@ namespace MM.Controls
         private DateTime _tuNgay = DateTime.Now;
         private DateTime _denNgay = DateTime.Now;
         private bool _flag = true;
+        private Object _thisLock = new Object();
         #endregion
 
         #region Constructor
@@ -107,32 +108,35 @@ namespace MM.Controls
 
         private void OnDisplayLoThuocList()
         {
-            Result result = LoThuocBus.GetLoThuocList(_name, _tuNgay, _denNgay, _isTenThuoc);
-            if (result.IsOK)
+            lock (_thisLock)
             {
-                dgLoThuoc.Invoke(new MethodInvoker(delegate()
+                Result result = LoThuocBus.GetLoThuocList(_name, _tuNgay, _denNgay, _isTenThuoc);
+                if (result.IsOK)
                 {
-                    if (dgLoThuoc.CurrentRow != null)
-                        _currentRowIndex = dgLoThuoc.CurrentRow.Index;
-
-                    ClearData();
-
-                    DataTable dt = result.QueryResult as DataTable;
-                    if (_dtTemp == null) _dtTemp = dt.Clone();
-                    UpdateChecked(dt);
-                    dgLoThuoc.DataSource = dt;
-
-                    if (_currentRowIndex < dt.Rows.Count)
+                    dgLoThuoc.Invoke(new MethodInvoker(delegate()
                     {
-                        dgLoThuoc.CurrentCell = dgLoThuoc[0, _currentRowIndex];
-                        dgLoThuoc.Rows[_currentRowIndex].Selected = true;
-                    }
-                }));
-            }
-            else
-            {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("LoThuocBus.GetLoThuocList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("LoThuocBus.GetLoThuocList"));
+                        if (dgLoThuoc.CurrentRow != null)
+                            _currentRowIndex = dgLoThuoc.CurrentRow.Index;
+
+                        ClearData();
+
+                        DataTable dt = result.QueryResult as DataTable;
+                        if (_dtTemp == null) _dtTemp = dt.Clone();
+                        UpdateChecked(dt);
+                        dgLoThuoc.DataSource = dt;
+
+                        if (_currentRowIndex < dt.Rows.Count)
+                        {
+                            dgLoThuoc.CurrentCell = dgLoThuoc[0, _currentRowIndex];
+                            dgLoThuoc.Rows[_currentRowIndex].Selected = true;
+                        }
+                    }));
+                }
+                else
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("LoThuocBus.GetLoThuocList"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("LoThuocBus.GetLoThuocList"));
+                }
             }
         }
 

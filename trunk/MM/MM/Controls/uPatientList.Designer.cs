@@ -67,7 +67,6 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnRefresh = new System.Windows.Forms.Button();
             this.lbKetQuaTimDuoc = new System.Windows.Forms.Label();
             this.chkTheoSoDienThoai = new System.Windows.Forms.CheckBox();
             this.chkMaBenhNhan = new System.Windows.Forms.CheckBox();
@@ -86,9 +85,9 @@
             this.panel3.Controls.Add(this.dgPatient);
             this.panel3.Controls.Add(this._uPrintKetQuaSieuAm);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 63);
+            this.panel3.Location = new System.Drawing.Point(0, 36);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1039, 341);
+            this.panel3.Size = new System.Drawing.Size(1039, 368);
             this.panel3.TabIndex = 1;
             // 
             // chkChecked
@@ -146,7 +145,7 @@
             this.dgPatient.Name = "dgPatient";
             this.dgPatient.RowHeadersWidth = 30;
             this.dgPatient.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgPatient.Size = new System.Drawing.Size(1039, 341);
+            this.dgPatient.Size = new System.Drawing.Size(1039, 368);
             this.dgPatient.TabIndex = 2;
             this.dgPatient.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPatient_CellMouseUp);
             this.dgPatient.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPatient_ColumnHeaderMouseClick);
@@ -407,7 +406,6 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.btnRefresh);
             this.panel1.Controls.Add(this.lbKetQuaTimDuoc);
             this.panel1.Controls.Add(this.chkTheoSoDienThoai);
             this.panel1.Controls.Add(this.chkMaBenhNhan);
@@ -416,20 +414,8 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1039, 63);
+            this.panel1.Size = new System.Drawing.Size(1039, 36);
             this.panel1.TabIndex = 0;
-            // 
-            // btnRefresh
-            // 
-            this.btnRefresh.Image = global::MM.Properties.Resources.Refresh_icon;
-            this.btnRefresh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnRefresh.Location = new System.Drawing.Point(94, 33);
-            this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(95, 23);
-            this.btnRefresh.TabIndex = 8;
-            this.btnRefresh.Text = "  Làm mới";
-            this.btnRefresh.UseVisualStyleBackColor = true;
-            this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
             // lbKetQuaTimDuoc
             // 
@@ -450,6 +436,7 @@
             this.chkTheoSoDienThoai.TabIndex = 6;
             this.chkTheoSoDienThoai.Text = "Theo số điện thoại";
             this.chkTheoSoDienThoai.UseVisualStyleBackColor = true;
+            this.chkTheoSoDienThoai.CheckedChanged += new System.EventHandler(this.chkTheoSoDienThoai_CheckedChanged);
             // 
             // chkMaBenhNhan
             // 
@@ -519,7 +506,6 @@
         private System.Windows.Forms.Button btnVaoPhongCho;
         private System.Windows.Forms.CheckBox chkTheoSoDienThoai;
         private System.Windows.Forms.Label lbKetQuaTimDuoc;
-        private System.Windows.Forms.Button btnRefresh;
         private System.Windows.Forms.Button btnTaoHoSo;
         private uPrintKetQuaSieuAm _uPrintKetQuaSieuAm;
         private System.Windows.Forms.Button btnUploadHoSo;

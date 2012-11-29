@@ -138,7 +138,7 @@
             // 
             // _uSearchPatient
             // 
-            this._uSearchPatient.DataSource = null;
+            //this._uSearchPatient.DataSource = null;
             this._uSearchPatient.Dock = System.Windows.Forms.DockStyle.Fill;
             this._uSearchPatient.Location = new System.Drawing.Point(0, 0);
             this._uSearchPatient.Name = "_uSearchPatient";

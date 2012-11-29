@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Data;
 
 namespace MM.Common
 {
@@ -165,6 +166,8 @@ namespace MM.Common
         public static PageSetupConfig PageSetupConfig = new PageSetupConfig();
         public static string PageSetupConfigPath = string.Format("{0}\\PageSetupConfig.xml", AppDomain.CurrentDomain.BaseDirectory);
         public static List<string> ExcelTemplates = new List<string>();
+
+        public static DataTable dtOpenPatient = null;
 
         public static void InitExcelTempates()
         {

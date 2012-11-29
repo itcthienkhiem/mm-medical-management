@@ -63,7 +63,7 @@ namespace MM.Controls
             }
         }
 
-        private void ClearData()
+        public void ClearData()
         {
             DataTable dt = cboNhanVien.DataSource as DataTable;
             if (dt != null)

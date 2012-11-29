@@ -150,6 +150,7 @@
             this.dgService.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgService.Size = new System.Drawing.Size(494, 394);
             this.dgService.TabIndex = 7;
+            this.dgService.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgService_CellMouseUp);
             this.dgService.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgService_ColumnHeaderMouseClick);
             // 
             // Checked
@@ -200,15 +201,14 @@
             // 
             // cboDocStaff
             // 
-            this.cboDocStaff.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDocStaff.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboDocStaff.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboDocStaff.DataSource = this.docStaffViewBindingSource;
             this.cboDocStaff.DisplayMember = "Fullname";
-            this.cboDocStaff.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDocStaff.FormattingEnabled = true;
             this.cboDocStaff.Location = new System.Drawing.Point(102, 46);
             this.cboDocStaff.Name = "cboDocStaff";
-            this.cboDocStaff.Size = new System.Drawing.Size(269, 21);
+            this.cboDocStaff.Size = new System.Drawing.Size(299, 21);
             this.cboDocStaff.TabIndex = 2;
             this.cboDocStaff.ValueMember = "DocStaffGUID";
             // 

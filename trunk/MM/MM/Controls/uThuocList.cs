@@ -22,6 +22,7 @@ namespace MM.Controls
         private Dictionary<string, DataRow> _dictThuoc = new Dictionary<string,DataRow>();
         private DataTable _dtTemp = null;
         private string _name = string.Empty;
+        private Object _thisLock = new Object();
         #endregion
 
         #region Constructor
@@ -107,23 +108,26 @@ namespace MM.Controls
 
         private void OnDisplayThuocList()
         {
-            Result result = ThuocBus.GetThuocList(_name);
-            if (result.IsOK)
+            lock (_thisLock)
             {
-                dgThuoc.Invoke(new MethodInvoker(delegate()
+                Result result = ThuocBus.GetThuocList(_name);
+                if (result.IsOK)
                 {
-                    ClearData();
+                    dgThuoc.Invoke(new MethodInvoker(delegate()
+                    {
+                        ClearData();
 
-                    DataTable dt = result.QueryResult as DataTable;
-                    if (_dtTemp == null) _dtTemp = dt.Clone();
-                    UpdateChecked(dt);
-                    dgThuoc.DataSource = dt;
-                }));
-            }
-            else
-            {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("ThuocBus.GetThuocList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("ThuocBus.GetThuocList"));
+                        DataTable dt = result.QueryResult as DataTable;
+                        if (_dtTemp == null) _dtTemp = dt.Clone();
+                        UpdateChecked(dt);
+                        dgThuoc.DataSource = dt;
+                    }));
+                }
+                else
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("ThuocBus.GetThuocList"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("ThuocBus.GetThuocList"));
+                }
             }
         }
 

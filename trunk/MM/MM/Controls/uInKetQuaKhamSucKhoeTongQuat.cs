@@ -19,7 +19,6 @@ namespace MM.Controls
     {
         #region Members
         private DataRow _patientRow = null;
-        private DataTable _dataSourceBenhNhan = null;
         #endregion
 
         #region Constructor
@@ -38,20 +37,7 @@ namespace MM.Controls
         #region UI Command
         public void InitData()
         {
-            OnDisplayBenhNhan();
             UpdateGUI();
-        }
-
-        private void OnDisplayBenhNhan()
-        {
-            Result result = PatientBus.GetPatientList();
-            if (result.IsOK)
-                _dataSourceBenhNhan = result.QueryResult as DataTable;
-            else
-            {
-                MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.GetPatientList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
-            }
         }
 
         private void UpdateGUI()
@@ -142,7 +128,7 @@ namespace MM.Controls
         #region Window Event Handlers
         private void btnChonBenhNhan_Click(object sender, EventArgs e)
         {
-            dlgSelectPatient dlg = new dlgSelectPatient(_dataSourceBenhNhan);
+            dlgSelectPatient dlg = new dlgSelectPatient(PatientSearchType.BenhNhan);
             if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
                 _patientRow = dlg.PatientRow;

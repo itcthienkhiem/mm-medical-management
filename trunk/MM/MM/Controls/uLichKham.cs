@@ -203,7 +203,7 @@ namespace MM.Controls
             return cell;
         }
 
-        private void ClearData()
+        public void ClearData()
         {
             for (int i = 0; i < dgLichKham.RowsCount; i++)
             {

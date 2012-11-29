@@ -641,7 +641,6 @@
             this.Controls.Add(this.panel3);
             this.Name = "uKetQuaXetNghiem_CellDyn3200";
             this.Size = new System.Drawing.Size(962, 468);
-            this.Load += new System.EventHandler(this.uKetQuaXetNghiem_CellDyn3200_Load);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             this.panel4.ResumeLayout(false);

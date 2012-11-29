@@ -33,6 +33,11 @@ namespace MM.Controls
         #endregion
 
         #region UI Command
+        public void ClearData()
+        {
+            _uThuocList.ClearData();
+        }
+
         private void UpdateGUI()
         {
             _ucReportViewer.ShowPrintButton = AllowPrint;

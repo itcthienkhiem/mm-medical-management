@@ -19,7 +19,6 @@ namespace MM.Dialogs
         private bool _isNew = true;
         private YKienKhachHang _yKienKhachHang = new YKienKhachHang();
         private DataRow _drYKienKhachHang = null;
-        private DataTable _dataSourceBenhNhan = null;
         private bool _isView = false;
         #endregion
 
@@ -242,18 +241,6 @@ namespace MM.Dialogs
             }
         }
 
-        private void OnDisplayBenhNhan()
-        {
-            Result result = PatientBus.GetPatientList();
-            if (result.IsOK)
-                _dataSourceBenhNhan = result.QueryResult as DataTable;
-            else
-            {
-                MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.GetPatientList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
-            }
-        }
-
         private void DisplayBacSiPhuTrach()
         {
             //DocStaff
@@ -281,7 +268,6 @@ namespace MM.Dialogs
         private void dlgAddYKienKhachHang_Load(object sender, EventArgs e)
         {
             OnDisplayNguonList();
-            OnDisplayBenhNhan();
             DisplayBacSiPhuTrach();
             if (!_isNew) DisplayInfo(_drYKienKhachHang);
         }
@@ -312,7 +298,7 @@ namespace MM.Dialogs
 
         private void btnChonBenhNhan_Click(object sender, EventArgs e)
         {
-            dlgSelectPatient dlg = new dlgSelectPatient(_dataSourceBenhNhan);
+            dlgSelectPatient dlg = new dlgSelectPatient(PatientSearchType.BenhNhan);
             if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
                 DataRow patientRow = dlg.PatientRow;

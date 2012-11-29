@@ -51,6 +51,7 @@
             this.IdentityCard = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
+            this.chkTheoSoDienThoai = new System.Windows.Forms.CheckBox();
             this.chkMaBenhNhan = new System.Windows.Forms.CheckBox();
             this.ra5x11 = new System.Windows.Forms.RadioButton();
             this.ra5x8 = new System.Windows.Forms.RadioButton();
@@ -80,7 +81,6 @@
             this.btnAllRight = new System.Windows.Forms.Button();
             this.btnRight = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.chkTheoSoDienThoai = new System.Windows.Forms.CheckBox();
             ((System.ComponentModel.ISupportInitialize)(this.dgMembers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
             this.panel2.SuspendLayout();
@@ -233,6 +233,17 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1102, 81);
             this.panel2.TabIndex = 5;
+            // 
+            // chkTheoSoDienThoai
+            // 
+            this.chkTheoSoDienThoai.AutoSize = true;
+            this.chkTheoSoDienThoai.Location = new System.Drawing.Point(518, 36);
+            this.chkTheoSoDienThoai.Name = "chkTheoSoDienThoai";
+            this.chkTheoSoDienThoai.Size = new System.Drawing.Size(115, 17);
+            this.chkTheoSoDienThoai.TabIndex = 14;
+            this.chkTheoSoDienThoai.Text = "Theo số điện thoại";
+            this.chkTheoSoDienThoai.UseVisualStyleBackColor = true;
+            this.chkTheoSoDienThoai.CheckedChanged += new System.EventHandler(this.chkTheoSoDienThoai_CheckedChanged);
             // 
             // chkMaBenhNhan
             // 
@@ -565,16 +576,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(524, 481);
             this.panel3.TabIndex = 12;
-            // 
-            // chkTheoSoDienThoai
-            // 
-            this.chkTheoSoDienThoai.AutoSize = true;
-            this.chkTheoSoDienThoai.Location = new System.Drawing.Point(518, 36);
-            this.chkTheoSoDienThoai.Name = "chkTheoSoDienThoai";
-            this.chkTheoSoDienThoai.Size = new System.Drawing.Size(115, 17);
-            this.chkTheoSoDienThoai.TabIndex = 14;
-            this.chkTheoSoDienThoai.Text = "Theo số điện thoại";
-            this.chkTheoSoDienThoai.UseVisualStyleBackColor = true;
             // 
             // uPrintLabel
             // 

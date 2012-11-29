@@ -16,9 +16,12 @@ namespace MM.Controls
     public partial class uPhucHoiBenhNhan : uBase
     {
         #region Members
-        private DataTable _dataSource = null;
+        private DataTable _dtTemp = null;
         private bool _isAscending = true;
-        private Dictionary<string, DataRow> _dictPatient = null;
+        private Dictionary<string, DataRow> _dictPatient = new Dictionary<string,DataRow>();
+        private string _name = string.Empty;
+        private int _type = 0;
+        private Object _thisLock = new Object();
         #endregion
 
         #region Constructor
@@ -44,6 +47,9 @@ namespace MM.Controls
             {
                 UpdateGUI();
                 chkChecked.Checked = false;
+                _name = txtSearchPatient.Text;
+                if (chkMaBenhNhan.Checked) _type = 1;
+                else _type = 0;
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayPatientListProc));
                 base.ShowWaiting();
             }
@@ -58,25 +64,24 @@ namespace MM.Controls
             }
         }
 
-        public void ClearData()
+        private void SearchAsThread()
         {
-            if (_dataSource != null)
+            try
             {
-                _dataSource.Rows.Clear();
-                _dataSource.Clear();
-                _dataSource = null;
+                chkChecked.Checked = false;
+                _name = txtSearchPatient.Text;
+                if (chkMaBenhNhan.Checked) _type = 1;
+                else _type = 0;
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnSearchProc));
             }
-
-            if (_dictPatient != null)
+            catch (Exception e)
             {
-                _dictPatient.Clear();
-                _dictPatient = null;
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
             }
-
-            ClearDataSource();
         }
 
-        private void ClearDataSource()
+        public void ClearData()
         {
             DataTable dt = dgPatient.DataSource as DataTable;
             if (dt != null)
@@ -90,142 +95,49 @@ namespace MM.Controls
 
         private void OnDisplayPatientList()
         {
-            Result result = PatientBus.GetPatientBiXoaList();
-            if (result.IsOK)
+            lock (_thisLock)
             {
-                MethodInvoker method = delegate
+                Result result = PatientBus.GetPatientBiXoaList(_name, _type);
+                if (result.IsOK)
                 {
-                    ClearData();
-                    _dataSource = result.QueryResult as DataTable;
-
-                    if (_dictPatient == null) _dictPatient = new Dictionary<string, DataRow>();
-                    foreach (DataRow row in _dataSource.Rows)
+                    dgPatient.Invoke(new MethodInvoker(delegate()
                     {
-                        string patientGUID = row["PatientGUID"].ToString();
-                        _dictPatient.Add(patientGUID, row);
-                    }
+                        ClearData();
 
-                    OnSearchPatient();
-                };
+                        DataTable dt = result.QueryResult as DataTable;
+                        if (_dtTemp == null) _dtTemp = dt.Clone();
+                        UpdateChecked(dt);
+                        dgPatient.DataSource = dt;
 
-                if (InvokeRequired) BeginInvoke(method);
-                else method.Invoke();
-            }
-            else
-            {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("PatientBus.GetPatientList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
+                        lbKetQuaTimDuoc.Text = string.Format("Kết quả tìm được: {0}", dt.Rows.Count);
+                    }));
+                }
+                else
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("PatientBus.GetPatientList"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
+                }
             }
         }
 
-        //private void UpdateChecked()
-        //{
-        //    DataTable dt = dgPatient.DataSource as DataTable;
-        //    if (dt == null) return;
-
-        //    DataRow[] rows1 = dt.Select("Checked='True'");
-        //    if (rows1 == null || rows1.Length <= 0) return;
-
-        //    foreach (DataRow row1 in rows1)
-        //    {
-        //        string patientGUID1 = row1["PatientGUID"].ToString();
-        //        DataRow[] rows2 = _dataSource.Select(string.Format("PatientGUID='{0}'", patientGUID1));
-        //        if (rows2 == null || rows2.Length <= 0) continue;
-
-        //        rows2[0]["Checked"] = row1["Checked"];
-        //    }
-        //}
-
-        private void OnSearchPatient()
+        private void UpdateChecked(DataTable dt)
         {
-            //UpdateChecked();
-            ClearDataSource();
-            chkChecked.Checked = false;
-            List<DataRow> results = null;
-            DataTable newDataSource = null;
-
-            if (txtSearchPatient.Text.Trim() == string.Empty)
+            foreach (DataRow row in dt.Rows)
             {
-                results = (from p in _dataSource.AsEnumerable()
-                           orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                           select p).ToList<DataRow>();
-
-                newDataSource = _dataSource.Clone();
-                foreach (DataRow row in results)
-                    newDataSource.ImportRow(row);
-
-                dgPatient.DataSource = newDataSource;
-                if (dgPatient.RowCount > 0) dgPatient.Rows[0].Selected = true;
-                _isAscending = true;
-                return;
+                string key = row["PatientGUID"].ToString();
+                if (_dictPatient.ContainsKey(key))
+                    row["Checked"] = true;
             }
-
-            string str = txtSearchPatient.Text.ToLower();
-
-            newDataSource = _dataSource.Clone();
-
-            if (chkMaBenhNhan.Checked)
-            {
-                //FileNum
-                results = (from p in _dataSource.AsEnumerable()
-                           where p.Field<string>("FileNum") != null &&
-                             p.Field<string>("FileNum").Trim() != string.Empty &&
-                             p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0
-                           //(p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0 ||
-                           //str.IndexOf(p.Field<string>("FileNum").ToLower()) >= 0)
-                           orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                           select p).ToList<DataRow>();
-
-                foreach (DataRow row in results)
-                    newDataSource.ImportRow(row);
-
-                if (newDataSource.Rows.Count > 0)
-                {
-                    dgPatient.DataSource = newDataSource;
-                    return;
-                }
-            }
-            else
-            {
-                //FullName
-                results = (from p in _dataSource.AsEnumerable()
-                           where //(p.Field<string>("FullName").ToLower().IndexOf(str) >= 0 ||
-                               //str.IndexOf(p.Field<string>("FullName").ToLower()) >= 0) &&
-                           p.Field<string>("FullName").ToLower().IndexOf(str) >= 0 &&
-                           p.Field<string>("FullName") != null &&
-                           p.Field<string>("FullName").Trim() != string.Empty
-                           orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                           select p).ToList<DataRow>();
-
-
-                foreach (DataRow row in results)
-                    newDataSource.ImportRow(row);
-
-                if (newDataSource.Rows.Count > 0)
-                {
-                    dgPatient.DataSource = newDataSource;
-                    return;
-                }
-            }
-
-            dgPatient.DataSource = newDataSource;
         }
 
         private void OnPhucHoiBenhNhan()
         {
-            if (_dataSource == null) return;
-            //UpdateChecked();
             List<string> checkedPatientList = new List<string>();
-            List<DataRow> checkedRows = new List<DataRow>();
-            DataRow[] rows = _dataSource.Select("Checked='True'");
-            if (rows != null && rows.Length > 0)
+            List<DataRow> checkedRows = _dictPatient.Values.ToList();
+            foreach (DataRow row in checkedRows)
             {
-                foreach (DataRow row in rows)
-                {
-                    string patientGUID = row["PatientGUID"].ToString();
-                    checkedPatientList.Add(patientGUID);
-                    checkedRows.Add(row);
-                }
+                string patientGUID = row["PatientGUID"].ToString();
+                checkedPatientList.Add(patientGUID);
             }
 
             if (checkedPatientList.Count > 0)
@@ -235,13 +147,17 @@ namespace MM.Controls
                     Result result = PatientBus.PhucHoiPatient(checkedPatientList);
                     if (result.IsOK)
                     {
-                        foreach (DataRow row in checkedRows)
+                        DataTable dt = dgPatient.DataSource as DataTable;
+                        if (dt == null || dt.Rows.Count <= 0) return;
+                        foreach (string key in checkedPatientList)
                         {
-                            _dictPatient.Remove(row["PatientGUID"].ToString());
-                            _dataSource.Rows.Remove(row);
+                            DataRow[] rows = dt.Select(string.Format("PatientGUID='{0}'", key));
+                            if (rows != null && rows.Length > 0)
+                                dt.Rows.Remove(rows[0]);
                         }
 
-                        OnSearchPatient();
+                        _dictPatient.Clear();
+                        _dtTemp.Rows.Clear();
                     }
                     else
                     {
@@ -259,14 +175,31 @@ namespace MM.Controls
         private void dgPatient_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.RowIndex < 0 || e.ColumnIndex != 0) return;
-            if (_dataSource == null) return;
 
             DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dgPatient.Rows[e.RowIndex].Cells[0];
             DataRow row = (dgPatient.SelectedRows[0].DataBoundItem as DataRowView).Row;
             string patientGUID = row["PatientGUID"].ToString();
             bool isChecked = Convert.ToBoolean(cell.EditingCellFormattedValue);
 
-            _dictPatient[patientGUID]["Checked"] = isChecked;
+            if (isChecked)
+            {
+                if (!_dictPatient.ContainsKey(patientGUID))
+                {
+                    _dtTemp.ImportRow(row);
+                    _dictPatient.Add(patientGUID, _dtTemp.Rows[_dtTemp.Rows.Count - 1]);
+                }
+            }
+            else
+            {
+                if (_dictPatient.ContainsKey(patientGUID))
+                {
+                    _dictPatient.Remove(patientGUID);
+
+                    DataRow[] rows = _dtTemp.Select(string.Format("PatientGUID='{0}'", patientGUID));
+                    if (rows != null && rows.Length > 0)
+                        _dtTemp.Rows.Remove(rows[0]);
+                }
+            }
         }
 
         private void btnPhucHoi_Click(object sender, EventArgs e)
@@ -281,15 +214,32 @@ namespace MM.Controls
             foreach (DataRow row in dt.Rows)
             {
                 row["Checked"] = chkChecked.Checked;
-
                 string patientGUID = row["PatientGUID"].ToString();
-                _dictPatient[patientGUID]["Checked"] = chkChecked.Checked;
+                if (chkChecked.Checked)
+                {
+                    if (!_dictPatient.ContainsKey(patientGUID))
+                    {
+                        _dtTemp.ImportRow(row);
+                        _dictPatient.Add(patientGUID, _dtTemp.Rows[_dtTemp.Rows.Count - 1]);
+                    }
+                }
+                else
+                {
+                    if (_dictPatient.ContainsKey(patientGUID))
+                    {
+                        _dictPatient.Remove(patientGUID);
+
+                        DataRow[] rows = _dtTemp.Select(string.Format("PatientGUID='{0}'", patientGUID));
+                        if (rows != null && rows.Length > 0)
+                            _dtTemp.Rows.Remove(rows[0]);
+                    }
+                }
             }
         }
 
         private void txtSearchPatient_TextChanged(object sender, EventArgs e)
         {
-            OnSearchPatient();
+            SearchAsThread();
         }
 
         private void txtSearchPatient_KeyDown(object sender, KeyEventArgs e)
@@ -326,6 +276,11 @@ namespace MM.Controls
                 }
             }
         }
+
+        private void chkMaBenhNhan_CheckedChanged(object sender, EventArgs e)
+        {
+            SearchAsThread();
+        }
         #endregion
 
         #region Working Thread
@@ -333,7 +288,6 @@ namespace MM.Controls
         {
             try
             {
-                //Thread.Sleep(500);
                 OnDisplayPatientList();
             }
             catch (Exception e)
@@ -346,10 +300,19 @@ namespace MM.Controls
                 base.HideWaiting();
             }
         }
+
+        private void OnSearchProc(object state)
+        {
+            try
+            {
+                OnDisplayPatientList();
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+        }
         #endregion
-
-        
-
-        
     }
 }

@@ -41,18 +41,19 @@
             this.Mobile = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.chkTheoSoDienThoai = new System.Windows.Forms.CheckBox();
             this.chkMaBenhNhan = new System.Windows.Forms.CheckBox();
             this.txtSearchPatient = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnMerge = new System.Windows.Forms.Button();
-            this.chkTheoSoDienThoai = new System.Windows.Forms.CheckBox();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.lbKetQuaTimDuoc = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgDuplicatePatient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
-            this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.panel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgDuplicatePatient
@@ -95,7 +96,7 @@
             this.dgDuplicatePatient.ReadOnly = true;
             this.dgDuplicatePatient.RowHeadersWidth = 30;
             this.dgDuplicatePatient.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgDuplicatePatient.Size = new System.Drawing.Size(867, 437);
+            this.dgDuplicatePatient.Size = new System.Drawing.Size(867, 399);
             this.dgDuplicatePatient.TabIndex = 3;
             this.dgDuplicatePatient.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgDuplicatePatient_ColumnHeaderMouseClick);
             // 
@@ -152,6 +153,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lbKetQuaTimDuoc);
             this.panel1.Controls.Add(this.chkTheoSoDienThoai);
             this.panel1.Controls.Add(this.chkMaBenhNhan);
             this.panel1.Controls.Add(this.txtSearchPatient);
@@ -161,6 +163,17 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(867, 37);
             this.panel1.TabIndex = 4;
+            // 
+            // chkTheoSoDienThoai
+            // 
+            this.chkTheoSoDienThoai.AutoSize = true;
+            this.chkTheoSoDienThoai.Location = new System.Drawing.Point(512, 12);
+            this.chkTheoSoDienThoai.Name = "chkTheoSoDienThoai";
+            this.chkTheoSoDienThoai.Size = new System.Drawing.Size(115, 17);
+            this.chkTheoSoDienThoai.TabIndex = 7;
+            this.chkTheoSoDienThoai.Text = "Theo số điện thoại";
+            this.chkTheoSoDienThoai.UseVisualStyleBackColor = true;
+            this.chkTheoSoDienThoai.CheckedChanged += new System.EventHandler(this.chkTheoSoDienThoai_CheckedChanged);
             // 
             // chkMaBenhNhan
             // 
@@ -179,6 +192,7 @@
             this.txtSearchPatient.Name = "txtSearchPatient";
             this.txtSearchPatient.Size = new System.Drawing.Size(291, 20);
             this.txtSearchPatient.TabIndex = 3;
+            this.txtSearchPatient.TextChanged += new System.EventHandler(this.txtSearchPatient_TextChanged);
             // 
             // label1
             // 
@@ -188,15 +202,6 @@
             this.label1.Size = new System.Drawing.Size(81, 13);
             this.label1.TabIndex = 2;
             this.label1.Text = "Tìm bệnh nhân:";
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.dgDuplicatePatient);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel2.Location = new System.Drawing.Point(0, 37);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(867, 437);
-            this.panel2.TabIndex = 5;
             // 
             // panel3
             // 
@@ -219,22 +224,31 @@
             this.btnMerge.UseVisualStyleBackColor = true;
             this.btnMerge.Click += new System.EventHandler(this.btnMerge_Click);
             // 
-            // chkTheoSoDienThoai
+            // panel2
             // 
-            this.chkTheoSoDienThoai.AutoSize = true;
-            this.chkTheoSoDienThoai.Location = new System.Drawing.Point(512, 12);
-            this.chkTheoSoDienThoai.Name = "chkTheoSoDienThoai";
-            this.chkTheoSoDienThoai.Size = new System.Drawing.Size(115, 17);
-            this.chkTheoSoDienThoai.TabIndex = 7;
-            this.chkTheoSoDienThoai.Text = "Theo số điện thoại";
-            this.chkTheoSoDienThoai.UseVisualStyleBackColor = true;
+            this.panel2.Controls.Add(this.dgDuplicatePatient);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel2.Location = new System.Drawing.Point(0, 37);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(867, 399);
+            this.panel2.TabIndex = 7;
+            // 
+            // lbKetQuaTimDuoc
+            // 
+            this.lbKetQuaTimDuoc.AutoSize = true;
+            this.lbKetQuaTimDuoc.ForeColor = System.Drawing.Color.Blue;
+            this.lbKetQuaTimDuoc.Location = new System.Drawing.Point(643, 13);
+            this.lbKetQuaTimDuoc.Name = "lbKetQuaTimDuoc";
+            this.lbKetQuaTimDuoc.Size = new System.Drawing.Size(100, 13);
+            this.lbKetQuaTimDuoc.TabIndex = 18;
+            this.lbKetQuaTimDuoc.Text = "Kết quả tìm được: 0";
             // 
             // uDuplicatePatient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
+            this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel1);
             this.Name = "uDuplicatePatient";
             this.Size = new System.Drawing.Size(867, 474);
@@ -242,8 +256,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            this.panel2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -255,7 +269,6 @@
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.TextBox txtSearchPatient;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btnMerge;
         private System.Windows.Forms.DataGridViewTextBoxColumn FileNum;
@@ -266,5 +279,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Mobile;
         private System.Windows.Forms.CheckBox chkMaBenhNhan;
         private System.Windows.Forms.CheckBox chkTheoSoDienThoai;
+        private System.Windows.Forms.Panel panel2;
+        private System.Windows.Forms.Label lbKetQuaTimDuoc;
     }
 }

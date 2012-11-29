@@ -902,7 +902,6 @@
             this.Controls.Add(this.panel1);
             this.Name = "uPatient";
             this.Size = new System.Drawing.Size(1173, 638);
-            this.Load += new System.EventHandler(this.uPatient_Load);
             this.tabControlPanel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.tabServiceHistory)).EndInit();

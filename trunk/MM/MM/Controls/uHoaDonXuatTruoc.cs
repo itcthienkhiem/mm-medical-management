@@ -83,7 +83,7 @@ namespace MM.Controls
             btnDelete.Enabled = AllowDeleteDangKy;
         }
 
-        private void ClearData()
+        public void ClearData()
         {
             DataTable dt = dgSoHoaDon.DataSource as DataTable;
             if (dt != null)

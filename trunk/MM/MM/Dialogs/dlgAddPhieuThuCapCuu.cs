@@ -21,7 +21,6 @@ namespace MM.Dialogs
         private PhieuThuCapCuu _phieuThuCapCuu = new PhieuThuCapCuu();
         private DataRow _drPhieuThu = null;
         private string _tenCongTy = string.Empty;
-        private DataTable _dataSourceBenhNhan = null;
         private ComboBox _cboBox = null;
         private bool _isExportedInvoice = false;
         private DataTable _dtKhoCapCuu = null;
@@ -93,7 +92,6 @@ namespace MM.Dialogs
             else
             {
                 bool isExportedInvoice = Convert.ToBoolean(_drPhieuThu["IsExported"]);
-                //btnExportInvoice.Enabled = Global.AllowExportHoaDonCap && !isExportedInvoice;
             }
         }
 
@@ -118,7 +116,6 @@ namespace MM.Dialogs
             dtpkNgayThu.Value = DateTime.Now;
             OnDisplayKhoCapCuu();
             OnDisplayToaCapCuu();
-            //OnGetSanhSachBenhNhan();
         }
 
         private void OnDisplayToaCapCuu()
@@ -139,18 +136,6 @@ namespace MM.Dialogs
             {
                 MsgBox.Show(this.Text, result.GetErrorAsString("KeToaCapCuuBus.GetToaCapCuuChuaXuatPhieuThuList"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("KeToaCapCuuBus.GetToaCapCuuChuaXuatPhieuThuList"));
-            }
-        }
-
-        private void OnGetSanhSachBenhNhan()
-        {
-            Result result = PatientBus.GetPatientList();
-            if (result.IsOK)
-                _dataSourceBenhNhan = result.QueryResult as DataTable;
-            else
-            {
-                MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.GetPatientList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
             }
         }
 
@@ -206,7 +191,6 @@ namespace MM.Dialogs
         {
             Result result = KhoCapCuuBus.GetDanhSachCapCuu();
             if (result.IsOK)
-                //KhoCapCuuGUID.DataSource = result.QueryResult;
                 _dtKhoCapCuu = result.QueryResult as DataTable;
             else
             {
@@ -431,13 +415,6 @@ namespace MM.Dialogs
                 cboMaToaCapCuu.Focus();
                 return false;
             }
-
-            //if (txtTenBenhNhan.Text.Trim() == string.Empty)
-            //{
-            //    MsgBox.Show(this.Text, "Vui lòng chọn tên bệnh nhân.", IconType.Information);
-            //    txtTenBenhNhan.Focus();
-            //    return false;
-            //}
 
             string phieuThuCapCuuGUID = _isNew ? string.Empty : _phieuThuCapCuu.PhieuThuCapCuuGUID.ToString();
             Result result = PhieuThuCapCuuBus.CheckPhieuThuCapCuuExistCode(phieuThuCapCuuGUID, txtMaPhieuThu.Text);
@@ -874,7 +851,7 @@ namespace MM.Dialogs
 
         private void btnChonBenhNhan_Click(object sender, EventArgs e)
         {
-            dlgSelectPatient dlg = new dlgSelectPatient(_dataSourceBenhNhan);
+            dlgSelectPatient dlg = new dlgSelectPatient(PatientSearchType.BenhNhan);
             if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
                 DataRow patientRow = dlg.PatientRow;

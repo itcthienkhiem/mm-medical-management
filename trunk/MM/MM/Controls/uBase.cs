@@ -14,13 +14,10 @@ namespace MM.Controls
     #region Delegate Events
     public delegate void ColorClickedHandler(Color color);
     public delegate void DrawTypeClickedHandler(DrawType type, int width);
-    public delegate void OpenPatientHandler(object patientRow);
+    public delegate void OpenPatientHandler(DataRow patientRow);
     public delegate void ServiceHistoryChangedHandler();
     public delegate void ExportReceiptChangedHandler();
     public delegate void RefreshCheckListHandler();
-    public delegate void RefreshPatientHandler();
-    public delegate void DeletePatientHandler(List<string> keys);
-    public delegate void EditPatientHandler(DataRow patientRow);
     #endregion
 
     public partial class uBase : UserControl
@@ -32,9 +29,6 @@ namespace MM.Controls
         public event ServiceHistoryChangedHandler OnServiceHistoryChanged;
         public event ExportReceiptChangedHandler OnExportReceiptChanged;
         public event RefreshCheckListHandler OnRefreshCheckList;
-        public event RefreshPatientHandler OnRefreshPatient;
-        public event DeletePatientHandler OnDeletePatientEvent;
-        public event EditPatientHandler OnEditPatientEvent;
         #endregion
 
         #region Members
@@ -77,7 +71,7 @@ namespace MM.Controls
                 OnDrawTypeClicked(type, width);
         }
 
-        public void RaiseOpentPatient(object patientRow)
+        public void RaiseOpentPatient(DataRow patientRow)
         {
             if (OnOpenPatientEvent != null)
                 OnOpenPatientEvent(patientRow);
@@ -100,24 +94,6 @@ namespace MM.Controls
             if (OnRefreshCheckList != null)
                 OnRefreshCheckList();
         }
-
-        public void RaiseRefreshPatient()
-        {
-            if (OnRefreshPatient != null)
-                OnRefreshPatient();
-        }
-
-        public void RaiseDeletePatient(List<string> keys)
-        {
-            if (OnDeletePatientEvent != null)
-                OnDeletePatientEvent(keys);
-        }
-
-        public void RaiseEditPatient(DataRow patientRow)
-        {
-            if (OnEditPatientEvent != null)
-                OnEditPatientEvent(patientRow);
-        }
         #endregion
 
         #region Methods
@@ -129,21 +105,6 @@ namespace MM.Controls
 
         protected void HideWaiting()
         {
-            /*MethodInvoker method = delegate
-            {
-                if (_dlgWaiting != null)
-                {
-                    _dlgWaiting.Close();
-                    _dlgWaiting = null;
-                }
-            };
-
-            if (InvokeRequired)
-                BeginInvoke(method);
-            else
-                method.Invoke();*/
-
-
             try
             {
                 this.Invoke(new MethodInvoker(delegate()

@@ -17,21 +17,16 @@ namespace MM.Controls
     public partial class uDuplicatePatient : uBase
     {
         #region Members
-        private DataTable _dataSource = null;
         private bool _isAscending = true;
+        private string _name = string.Empty;
+        private int _type = 0;
+        private Object _thisLock = new Object();
         #endregion
 
         #region Constructor
         public uDuplicatePatient()
         {
             InitializeComponent();
-        }
-        #endregion
-
-        #region Properties
-        public object DataSource
-        {
-            get { return dgDuplicatePatient.DataSource; }
         }
         #endregion
 
@@ -42,25 +37,6 @@ namespace MM.Controls
         }
 
         public void ClearData()
-        {
-            if (_dataSource != null)
-            {
-                _dataSource.Rows.Clear();
-                _dataSource.Clear();
-                _dataSource = null;
-            }
-
-            DataTable dt = dgDuplicatePatient.DataSource as DataTable;
-            if (dt != null)
-            {
-                dt.Rows.Clear();
-                dt.Clear();
-                dt = null;
-                dgDuplicatePatient.DataSource = null;
-            }
-        }
-
-        public void ClearDataSource()
         {
             DataTable dt = dgDuplicatePatient.DataSource as DataTable;
             if (dt != null)
@@ -77,6 +53,10 @@ namespace MM.Controls
             try
             {
                 UpdateGUI();
+                _name = txtSearchPatient.Text;
+                if (chkMaBenhNhan.Checked) _type = 1;
+                else if (chkTheoSoDienThoai.Checked) _type = 2;
+                else _type = 0;
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayDuplicatePatientListProc));
                 base.ShowWaiting();
             }
@@ -91,172 +71,46 @@ namespace MM.Controls
             }
         }
 
-        private void OnDisplayDuplicatePatientList()
+        private void SearchAsThread()
         {
-            Result result = PatientBus.GetDuplicatePatientList();
-            if (result.IsOK)
+            try
             {
-                MethodInvoker method = delegate
-                {
-                    ClearData();
-                    _dataSource = result.QueryResult as DataTable;
-                    OnSearchPatient();
-                };
-
-                if (InvokeRequired) BeginInvoke(method);
-                else method.Invoke();
+                _name = txtSearchPatient.Text;
+                if (chkMaBenhNhan.Checked) _type = 1;
+                else if (chkTheoSoDienThoai.Checked) _type = 2;
+                else _type = 0;
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnSearchProc));
             }
-            else
+            catch (Exception e)
             {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("PatientBus.GetPatientList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
             }
         }
 
-        private void OnSearchPatient()
+        private void OnDisplayDuplicatePatientList()
         {
-            ClearDataSource();
-            List<DataRow> results = null;
-            DataTable newDataSource = null;
-            if (txtSearchPatient.Text.Trim() == string.Empty)
+            lock (_thisLock)
             {
-                results = (from p in _dataSource.AsEnumerable()
-                           orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                           select p).ToList<DataRow>();
-
-                newDataSource = _dataSource.Clone();
-                foreach (DataRow row in results)
-                    newDataSource.ImportRow(row);
-
-                dgDuplicatePatient.DataSource = newDataSource;
-                if (dgDuplicatePatient.RowCount > 0) dgDuplicatePatient.Rows[0].Selected = true;
-                _isAscending = true;
-                return;
-            }
-
-            string str = txtSearchPatient.Text.ToLower();
-            newDataSource = _dataSource.Clone();
-
-            if (chkMaBenhNhan.Checked)
-            {
-                //FileNum
-                results = (from p in _dataSource.AsEnumerable()
-                           where p.Field<string>("FileNum") != null &&
-                               p.Field<string>("FileNum").Trim() != string.Empty &&
-                               //(p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0 ||
-                           //str.IndexOf(p.Field<string>("FileNum").ToLower()) >= 0)
-                           p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0
-                           orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                           select p).ToList<DataRow>();
-
-                foreach (DataRow row in results)
-                    newDataSource.Rows.Add(row.ItemArray);
-
-                if (newDataSource.Rows.Count > 0)
+                Result result = PatientBus.GetDuplicatePatientList(_name, _type);
+                if (result.IsOK)
                 {
-                    dgDuplicatePatient.DataSource = newDataSource;
-                    return;
+                    dgDuplicatePatient.Invoke(new MethodInvoker(delegate()
+                    {
+                        ClearData();
+
+                        DataTable dt = result.QueryResult as DataTable;
+                        dgDuplicatePatient.DataSource = dt;
+
+                        lbKetQuaTimDuoc.Text = string.Format("Kết quả tìm được: {0}", dt.Rows.Count);
+                    }));
+                }
+                else
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("PatientBus.GetPatientList"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
                 }
             }
-
-            if (chkTheoSoDienThoai.Checked)
-            {
-                //FileNum
-                results = (from p in _dataSource.AsEnumerable()
-                           where p.Field<string>("Mobile") != null &&
-                               p.Field<string>("Mobile").Trim() != string.Empty &&
-                               //(p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0 ||
-                               //str.IndexOf(p.Field<string>("FileNum").ToLower()) >= 0)
-                           p.Field<string>("Mobile").ToLower().IndexOf(str) >= 0
-                           orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                           select p).ToList<DataRow>();
-
-                foreach (DataRow row in results)
-                    newDataSource.Rows.Add(row.ItemArray);
-
-                if (newDataSource.Rows.Count > 0)
-                {
-                    dgDuplicatePatient.DataSource = newDataSource;
-                    return;
-                }
-            }
-
-            //FullName
-            results = (from p in _dataSource.AsEnumerable()
-                        where //(p.Field<string>("FullName").ToLower().IndexOf(str) >= 0 ||
-                        //str.IndexOf(p.Field<string>("FullName").ToLower()) >= 0) &&
-                        p.Field<string>("FullName").ToLower().IndexOf(str) >= 0 &&
-                        p.Field<string>("FullName") != null &&
-                        p.Field<string>("FullName").Trim() != string.Empty
-                        orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                        select p).ToList<DataRow>();
-
-
-            foreach (DataRow row in results)
-                newDataSource.Rows.Add(row.ItemArray);
-
-            if (newDataSource.Rows.Count > 0)
-            {
-                dgDuplicatePatient.DataSource = newDataSource;
-                return;
-            }
-
-            //HomePhone
-            /*results = (from p in _dataSource.AsEnumerable()
-                        where p.Field<string>("HomePhone") != null &&
-                        p.Field<string>("HomePhone").Trim() != string.Empty &&
-                        (p.Field<string>("HomePhone").ToLower().IndexOf(str) >= 0 ||
-                        str.IndexOf(p.Field<string>("HomePhone").ToLower()) >= 0)
-                        orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                        select p).ToList<DataRow>();
-
-            foreach (DataRow row in results)
-                newDataSource.Rows.Add(row.ItemArray);
-
-            if (newDataSource.Rows.Count > 0)
-            {
-                dgDuplicatePatient.DataSource = newDataSource;
-                return;
-            }
-
-            //WorkPhone
-            results = (from p in _dataSource.AsEnumerable()
-                        where p.Field<string>("WorkPhone") != null &&
-                            p.Field<string>("WorkPhone").Trim() != string.Empty &&
-                            (p.Field<string>("WorkPhone").ToLower().IndexOf(str) >= 0 ||
-                        str.IndexOf(p.Field<string>("WorkPhone").ToLower()) >= 0)
-                        orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                        select p).ToList<DataRow>();
-
-            foreach (DataRow row in results)
-                newDataSource.Rows.Add(row.ItemArray);
-
-            if (newDataSource.Rows.Count > 0)
-            {
-                dgDuplicatePatient.DataSource = newDataSource;
-                return;
-            }
-
-            //Mobile
-            results = (from p in _dataSource.AsEnumerable()
-                        where p.Field<string>("Mobile") != null &&
-                            p.Field<string>("Mobile").Trim() != string.Empty &&
-                            (p.Field<string>("Mobile").ToLower().IndexOf(str) >= 0 ||
-                        str.IndexOf(p.Field<string>("Mobile").ToLower()) >= 0)
-                        orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                        select p).ToList<DataRow>();
-
-            foreach (DataRow row in results)
-                newDataSource.Rows.Add(row.ItemArray);
-
-
-            if (newDataSource.Rows.Count > 0)
-            {
-                dgDuplicatePatient.DataSource = newDataSource;
-                return;
-            }*/
-
-            dgDuplicatePatient.DataSource = newDataSource;
         }
         #endregion
         
@@ -265,7 +119,6 @@ namespace MM.Controls
         {
             try
             {
-                //Thread.Sleep(500);
                 OnDisplayDuplicatePatientList();
             }
             catch (Exception e)
@@ -278,13 +131,24 @@ namespace MM.Controls
                 base.HideWaiting();
             }
         }
+
+        private void OnSearchProc(object state)
+        {
+            try
+            {
+                OnDisplayDuplicatePatientList();
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+        }
         #endregion
 
         #region Window Event Handers
         private void btnMerge_Click(object sender, EventArgs e)
         {
-            if (_dataSource == null) return;
-
             if (dgDuplicatePatient.SelectedRows == null || dgDuplicatePatient.SelectedRows.Count <= 1)
             {
                 MsgBox.Show(Application.ProductName, "Vui lòng chọn ít nhất 2 bệnh nhân để merge.", IconType.Information);
@@ -292,7 +156,7 @@ namespace MM.Controls
             }
             else
             {
-                DataTable dt = _dataSource.Clone();
+                DataTable dt = (dgDuplicatePatient.DataSource as DataTable).Clone();
                 for (int i = 0; i < dgDuplicatePatient.SelectedRows.Count; i++)
                 {
                     DataRow dr = (dgDuplicatePatient.SelectedRows[i].DataBoundItem as DataRowView).Row;
@@ -305,7 +169,6 @@ namespace MM.Controls
                     //re-bind data soource
                     OnDisplayDuplicatePatientList();
                 }
-
             }
         }
 
@@ -316,28 +179,29 @@ namespace MM.Controls
                 _isAscending = !_isAscending;
                 DataTable dt = dgDuplicatePatient.DataSource as DataTable;
 
-                List<DataRow> results = null;
-
+                DataTable newDataSource = null;
+                
                 if (_isAscending)
                 {
-                    results = (from p in dt.AsEnumerable()
-                               orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                               select p).ToList<DataRow>();
+                    newDataSource = (from p in dt.AsEnumerable()
+                                     orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
+                                     select p).CopyToDataTable();
                 }
                 else
                 {
-                    results = (from p in dt.AsEnumerable()
-                               orderby p.Field<string>("FirstName") descending, p.Field<string>("FullName") descending
-                               select p).ToList<DataRow>();
+                    newDataSource = (from p in dt.AsEnumerable()
+                                     orderby p.Field<string>("FirstName") descending, p.Field<string>("FullName") descending
+                                     select p).CopyToDataTable();
                 }
 
-
-                DataTable newDataSource = dt.Clone();
-
-                foreach (DataRow row in results)
-                    newDataSource.ImportRow(row);
-
                 dgDuplicatePatient.DataSource = newDataSource;
+
+                if (dt != null)
+                {
+                    dt.Rows.Clear();
+                    dt.Clear();
+                    dt = null;
+                }
             }
             else
                 _isAscending = false;
@@ -345,7 +209,17 @@ namespace MM.Controls
 
         private void chkMaBenhNhan_CheckedChanged(object sender, EventArgs e)
         {
-            OnSearchPatient();
+            SearchAsThread();
+        }
+
+        private void chkTheoSoDienThoai_CheckedChanged(object sender, EventArgs e)
+        {
+            SearchAsThread();
+        }
+
+        private void txtSearchPatient_TextChanged(object sender, EventArgs e)
+        {
+            SearchAsThread();
         }
         #endregion
     }

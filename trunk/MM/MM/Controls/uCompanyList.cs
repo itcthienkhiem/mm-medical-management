@@ -35,7 +35,6 @@ namespace MM.Controls
         private void UpdateGUI()
         {
             btnAdd.Enabled = AllowAdd;
-            //btnEdit.Enabled = AllowEdit;
             btnDelete.Enabled = AllowDelete;
         }
 
@@ -174,8 +173,6 @@ namespace MM.Controls
             }
         }
 
-        
-
         private void OnDeleteCompany()
         {
             List<string> deletedComList = new List<string>();
@@ -242,11 +239,10 @@ namespace MM.Controls
 
         private void dgCompany_DoubleClick(object sender, EventArgs e)
         {
-            //if (!AllowEdit) return;
             OnEditCompany();
         }
 
-        private void dlg_OnOpenPatient(object patientRow)
+        private void dlg_OnOpenPatient(DataRow patientRow)
         {
             base.RaiseOpentPatient(patientRow);
         }
@@ -257,7 +253,6 @@ namespace MM.Controls
         {
             try
             {
-                //Thread.Sleep(500);
                 OnDisplayCompanyList();
             }
             catch (Exception e)

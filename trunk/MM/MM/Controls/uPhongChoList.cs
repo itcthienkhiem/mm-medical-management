@@ -179,8 +179,45 @@ namespace MM.Controls
         {
             if (dgPatient.SelectedRows == null || dgPatient.SelectedRows.Count <= 0) return;
 
-            DataRow drPatient = (dgPatient.SelectedRows[0].DataBoundItem as DataRowView).Row;
-            base.RaiseOpentPatient(drPatient);
+            DataRow patientRow = (dgPatient.SelectedRows[0].DataBoundItem as DataRowView).Row;
+
+            if (patientRow != null)
+            {
+                string patientGUID = patientRow["PatientGUID"].ToString();
+                DataRow[] rows = Global.dtOpenPatient.Select(string.Format("PatientGUID='{0}'", patientGUID));
+                if (rows == null || rows.Length <= 0)
+                {
+                    DataRow newRow = Global.dtOpenPatient.NewRow();
+                    newRow["PatientGUID"] = patientRow["PatientGUID"];
+                    newRow["FileNum"] = patientRow["FileNum"];
+                    newRow["FullName"] = patientRow["FullName"];
+                    newRow["GenderAsStr"] = patientRow["GenderAsStr"];
+                    newRow["DobStr"] = patientRow["DobStr"];
+                    newRow["IdentityCard"] = patientRow["IdentityCard"];
+                    newRow["WorkPhone"] = patientRow["WorkPhone"];
+                    newRow["Mobile"] = patientRow["Mobile"];
+                    newRow["Email"] = patientRow["Email"];
+                    newRow["Address"] = patientRow["Address"];
+                    newRow["Thuoc_Di_Ung"] = patientRow["Thuoc_Di_Ung"];
+                    Global.dtOpenPatient.Rows.Add(newRow);
+                    base.RaiseOpentPatient(newRow);
+                }
+                else
+                {
+                    rows[0]["PatientGUID"] = patientRow["PatientGUID"];
+                    rows[0]["FileNum"] = patientRow["FileNum"];
+                    rows[0]["FullName"] = patientRow["FullName"];
+                    rows[0]["GenderAsStr"] = patientRow["GenderAsStr"];
+                    rows[0]["DobStr"] = patientRow["DobStr"];
+                    rows[0]["IdentityCard"] = patientRow["IdentityCard"];
+                    rows[0]["WorkPhone"] = patientRow["WorkPhone"];
+                    rows[0]["Mobile"] = patientRow["Mobile"];
+                    rows[0]["Email"] = patientRow["Email"];
+                    rows[0]["Address"] = patientRow["Address"];
+                    rows[0]["Thuoc_Di_Ung"] = patientRow["Thuoc_Di_Ung"];
+                    base.RaiseOpentPatient(rows[0]);
+                }
+            }
         }
         #endregion
     }

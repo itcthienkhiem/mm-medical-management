@@ -64,7 +64,7 @@ namespace MM.Controls
             }
         }
 
-        private void ClearData()
+        public void ClearData()
         {
             DataTable dt = cboHopDong.DataSource as DataTable;
             if (dt != null)

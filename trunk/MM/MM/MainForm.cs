@@ -40,9 +40,6 @@ namespace MM
             InitializeComponent();
 
             _uPatientList.OnOpenPatientEvent += new OpenPatientHandler(_uPatientList_OnOpenPatient);
-            _uPatientList.OnDeletePatientEvent += new DeletePatientHandler(_uPatientList_OnDeletePatientEvent);
-            _uPatientList.OnEditPatientEvent += new EditPatientHandler(_uPatientList_OnEditPatientEvent);
-
             _uCompanyList.OnOpenPatientEvent += new OpenPatientHandler(_uPatientList_OnOpenPatient);
             _uContractList.OnOpenPatientEvent += new OpenPatientHandler(_uPatientList_OnOpenPatient);
             _uPhongChoList.OnOpenPatientEvent += new OpenPatientHandler(_uPatientList_OnOpenPatient);
@@ -51,10 +48,6 @@ namespace MM
             Utility.CreateFolder(Global.UsersPath);
 
             InitControl();
-
-            //OpenCOMPort();
-            //ParseTestResult_Hitachi917(string.Empty, "COM1");
-            //ParseTestResult_CellDyn3200(string.Empty, "COM1");
         }
         #endregion
 
@@ -71,18 +64,6 @@ namespace MM
             _mainPanel.Controls.Add(_uNguoiSuDungList);
             _uNguoiSuDungList.Dock = DockStyle.Fill;
             _uNguoiSuDungList.Visible = false;
-        }
-
-        private void StartTimerPatient()
-        {
-            _timerPatient.Enabled = true;
-            _timerPatient.Start();
-        }
-
-        private void StopTimerPatient()
-        {
-            _timerPatient.Stop();
-            _timerPatient.Enabled = false;
         }
 
         private void StartTimerShowAlert()
@@ -242,6 +223,16 @@ namespace MM
 
                 if (!Directory.Exists(Global.HinhChupPath))
                     Utility.CreateFolder(Global.HinhChupPath);
+
+                //Init DataTable Open Patient
+                result = PatientBus.GetPatientList(string.Empty, 0);
+                if (result.IsOK)
+                {
+                    Global.dtOpenPatient = result.QueryResult as DataTable;
+                    dgPatient.DataSource = Global.dtOpenPatient;
+                }
+                else
+                    Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
             };
 
             if (InvokeRequired) BeginInvoke(method);
@@ -1717,10 +1708,12 @@ namespace MM
                     break;
 
                 case "Services List":
+                    ClearAllData();
                     OnServicesList();
                     break;
 
                 case "Patient List":
+                    ClearAllData();
                     OnPatientList();
                     break;
 
@@ -1729,14 +1722,17 @@ namespace MM
                     break;
 
                 case "DuplicatePatient":
+                    ClearAllData();
                     OnDuplicatePatient();
                     break;
 
                 case "Doctor List":
+                    ClearAllData();
                     OnDoctorList();
                     break;
 
                 case "Speciality List":
+                    ClearAllData();
                     OnSpecialityList();
                     break;
 
@@ -1749,14 +1745,17 @@ namespace MM
                     break;
 
                 case "Symptom List":
+                    ClearAllData();
                     OnSymptomList();
                     break;
 
                 case "Company List":
+                    ClearAllData();
                     OnCompanyList();
                     break;
 
                 case "Contract List":
+                    ClearAllData();
                     OnContractList();
                     break;
 
@@ -1776,130 +1775,162 @@ namespace MM
                     break;
 
                 case "Permission":
+                    ClearAllData();
                     OnPermission();
                     break;
 
                 case "Print Label":
+                    ClearAllData();
                     OnPrintLabel();
                     break;
 
                 case "Receipt List":
+                    ClearAllData();
                     OnReceiptList();
                     break;
 
                 case "Invoice List":
+                    ClearAllData();
                     OnInvoiceList();
                     break;
 
                 case "DoanhThuNhanVien":
+                    ClearAllData();
                     OnDoanhThuNhanVien();
                     break;
                     
                 case "DichVuHopDong":
+                    ClearAllData();
                     OnDichVuHopDong();
                     break;
 
                 case "DanhMucThuoc":
+                    ClearAllData();
                     OnDanhMucThuoc();
                     break;
 
                 case "NhomThuoc":
+                    ClearAllData();
                     OnNhomThuoc();
                     break;
 
                 case "LoThuoc":
+                    ClearAllData();
                     OnLoThuoc();
                     break;
 
                 case "GiaThuoc":
+                    ClearAllData();
                     OnGiaThuoc();
                     break;
 
                 case "KeToa":
+                    ClearAllData();
                     OnKeToa();
                     break;
 
                 case "ThuocHetHan":
+                    ClearAllData();
                     OnThuocHetHan();
                     break;
 
                 case "ThuocTonKho":
+                    ClearAllData();
                     OnBaoCaoThuocTonKhoTheoKhoangThoiGian();
                     break;
 
                 case "PhieuThuThuoc":
+                    ClearAllData();
                     OnPhieuThuThuoc();
                     break;
 
                 case "DichVuTuTuc":
+                    ClearAllData();
                     OnDichVuTuTuc();
                     break;
 
                 case "Tracking":
+                    ClearAllData();
                     OnTracking();
                     break;
 
                 case "ServiceGroup":
+                    ClearAllData();
                     OnServiceGroup();
                     break;
 
                 case "InKetQuaKhamSucKhoeTongQuat":
+                    ClearAllData();
                     OnInKetQuaKhamSucKhoeTongQuat();
                     break;
 
                 case "GiaVonDichVu":
+                    ClearAllData();
                     OnGiaVonDichVu();
                     break;
 
                 case "DoanhThuTheoNgay":
+                    ClearAllData();
                     OnDoanhThuTheoNgay();
                     break;
 
                 case "DichVuChuaXuatPhieuThu":
+                    ClearAllData();
                     OnBaoCaoDichVuChuaXuatPhieuThu();
                     break;
 
                 case "HoaDonThuoc":
+                    ClearAllData();
                     OnHoaDonThuoc();
                     break;
 
                 case "HoaDonXuatTruoc":
+                    ClearAllData();
                     OnHoaDonXuatTruoc();
                     break;
 
                 case "ThongKeHoaDon":
+                    ClearAllData();
                     OnThongKeHoaDon();
                     break;
 
                 case "PhucHoiBenhNhan":
+                    ClearAllData();
                     OnPhucHoiBenhNhan();
                     break;
 
                 case "PhieuThuHopDong":
+                    ClearAllData();
                     OnPhieuThuHopDong();
                     break;
                     
                 case "HoaDonHopDong":
+                    ClearAllData();
                     OnHoaDonHopDong();
                     break;
 
                 case "YKienKhachHang":
+                    ClearAllData();
                     OnYKienKhachHang();
                     break;
 
                 case "NhatKyLienHeCongTy":
+                    ClearAllData();
                     OnNhatKyLienHeCongTy();
                     break;
 
                 case "Booking":
+                    ClearAllData();
                     OnBooking();
                     break;
 
                 case "XetNghiem_Hitachi917":
+                    ClearAllData();
                     OnXetNghiem_Hitachi917();        
                     break;
 
                 case "XetNghiem_CellDyn3200":
+                    ClearAllData();
                     OnXetNghiem_CellDyn3200();
                     break;
 
@@ -1908,30 +1939,37 @@ namespace MM
                     break;
 
                 case "BaoCaoKhachHangMuaThuoc":
+                    ClearAllData();
                     OnBaoCaoKhachHangMuaThuoc();
                     break;
 
                 case "XetNghiemTay":
+                    ClearAllData();
                     OnXetNghiemTay();
                     break;
 
                 case "KetQuaXetNghiemTay":
+                    ClearAllData();
                     OnKetQuaXetNghiemTay();
                     break;
 
                 case "KetQuaXetNghiemTongHop":
+                    ClearAllData();
                     OnKetQuaXetNghiemTongHop();
                     break;
 
                 case "DanhSachXetNghiemHitachi917":
+                    ClearAllData();
                     OnDanhSachXetNghiemHitachi917();
                     break;
 
                 case "DanhSachXetNghiemCellDyn3200":
+                    ClearAllData();
                     OnDanhSachXetNghiemCellDyn3200();
                     break;
 
                 case "BaoCaoSoLuongKham":
+                    ClearAllData();
                     OnBaoCaoSoLuongKham();
                     break;
 
@@ -1944,14 +1982,17 @@ namespace MM
                     break;
 
                 case "TraCuuThongTinKhachHang":
+                    ClearAllData();
                     OnTraCuuThongTinKhachHang();
                     break;
 
                 case "DiaChiCongTy":
+                    ClearAllData();
                     OnDiaChiCongTy();
                     break;
 
                 case "ChiTietPhieuThuDichVu":
+                    ClearAllData();
                     OnChiTietPhieuThuDichVu();
                     break;
 
@@ -1960,18 +2001,22 @@ namespace MM
                     break;
 
                 case "BenhNhanThanThuoc":
+                    ClearAllData();
                     OnBenhNhanThanThuoc();
                     break;
 
                 case "XetNghiem":
+                    ClearAllData();
                     OnXetNghiem();
                     break;
 
                 case "LoaiSieuAm":
+                    ClearAllData();
                     OnLoaiSieuAm();
                     break;
 
                 case "TiemNgua":
+                    ClearAllData();
                     OnTiemNgua();
                     break;
 
@@ -1980,30 +2025,37 @@ namespace MM
                     break;
 
                 case "CongTacNgoaiGio":
+                    ClearAllData();
                     OnCongTacNgoaiGio();
                     break;
 
                 case "LichKham":
+                    ClearAllData();
                     OnLichKham();
                     break;
 
                 case  "KhoCapCuu":
+                    ClearAllData();
                     OnKhoCapCuu();
                     break;
 
                 case "NhapKhoCapCuu":
+                    ClearAllData();
                     OnNhapKhoCapCuu();
                     break;
 
                 case "XuatKhoCapCuu":
+                    ClearAllData();
                     OnXuatKhoCapCuu();
                     break;
 
                 case "BaoCaoCapCuuHetHan":
+                    ClearAllData();
                     OnBaoCaoCapCuuHetHan();
                     break;
 
                 case "BaoCaoTonKhoCapCuu":
+                    ClearAllData();
                     OnBaoCaoTonKhoCapCuu();
                     break;
 
@@ -2012,30 +2064,37 @@ namespace MM
                     break;
 
                 case "ThongBao":
+                    ClearAllData();
                     OnThongBao();
                     break;
 
                 case "BenhNhanNgoaiGoiKham":
+                    ClearAllData();
                     OnBenhNhanNgoaiGoiKham();
                     break;
 
                 case "GiaCapCuu":
+                    ClearAllData();
                     OnGiaCapCuu();
                     break;
 
                 case "PhieuThuCapCuu":
+                    ClearAllData();
                     OnPhieuThuCapCuu();
                     break;
 
                 case "NguoiSuDung":
+                    ClearAllData();
                     OnNguoiSuDung();
                     break;
 
                 case "NhomNguoiSuDung":
+                    ClearAllData();
                     OnNhomNguoiSuDung();
                     break;
 
                 case "KeToaCapCuu":
+                    ClearAllData();
                     OnKeToaCapCuu();
                     break;
 
@@ -2631,7 +2690,7 @@ namespace MM
                 statusLabel.Text = string.Empty;
                 RefreshFunction(false);
                 HideAllControls();
-                ClearData();
+                ClearAllData();
             }
         }
 
@@ -2647,6 +2706,7 @@ namespace MM
         {
             dgPatient.DataSource = null;
             _uPatientHistory.ClearData();
+            Global.dtOpenPatient.Rows.Clear();
 
             Control ctrl = GetControlActive();
             if (ctrl == null) return;
@@ -2764,41 +2824,62 @@ namespace MM
         private void OnOpenPatient()
         {
             dlgOpentPatient dlg = new dlgOpentPatient();
-            dlg.DataSource = _uPatientList.DataSource;
-            dlg.DictPatient = _uPatientList.DictPatient;
+            //dlg.DataSource = _uPatientList.DataSource;
+            //dlg.DictPatient = _uPatientList.DictPatient;
             
             if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
-                OnPatientHistory(dlg.PatientRow);
+                DataRow patientRow = dlg.PatientRow;
+                if (patientRow != null)
+                {
+                    string patientGUID = patientRow["PatientGUID"].ToString();
+                    DataRow[] rows = Global.dtOpenPatient.Select(string.Format("PatientGUID='{0}'", patientGUID));
+                    if (rows == null || rows.Length <= 0)
+                    {
+                        DataRow newRow = Global.dtOpenPatient.NewRow();
+                        newRow["PatientGUID"] = patientRow["PatientGUID"];
+                        newRow["FileNum"] = patientRow["FileNum"];
+                        newRow["FullName"] = patientRow["FullName"];
+                        newRow["GenderAsStr"] = patientRow["GenderAsStr"];
+                        newRow["DobStr"] = patientRow["DobStr"];
+                        newRow["IdentityCard"] = patientRow["IdentityCard"];
+                        newRow["WorkPhone"] = patientRow["WorkPhone"];
+                        newRow["Mobile"] = patientRow["Mobile"];
+                        newRow["Email"] = patientRow["Email"];
+                        newRow["Address"] = patientRow["Address"];
+                        newRow["Thuoc_Di_Ung"] = patientRow["Thuoc_Di_Ung"];
+                        Global.dtOpenPatient.Rows.Add(newRow);
+                        OnPatientHistory(newRow);
+                    }
+                    else
+                    {
+                        rows[0]["PatientGUID"] = patientRow["PatientGUID"];
+                        rows[0]["FileNum"] = patientRow["FileNum"];
+                        rows[0]["FullName"] = patientRow["FullName"];
+                        rows[0]["GenderAsStr"] = patientRow["GenderAsStr"];
+                        rows[0]["DobStr"] = patientRow["DobStr"];
+                        rows[0]["IdentityCard"] = patientRow["IdentityCard"];
+                        rows[0]["WorkPhone"] = patientRow["WorkPhone"];
+                        rows[0]["Mobile"] = patientRow["Mobile"];
+                        rows[0]["Email"] = patientRow["Email"];
+                        rows[0]["Address"] = patientRow["Address"];
+                        rows[0]["Thuoc_Di_Ung"] = patientRow["Thuoc_Di_Ung"];
+                        OnPatientHistory(rows[0]);
+                    }
+                }
             }
 
-            _uPatientList.DataSource = dlg.DataSource;
-            _uPatientList.DictPatient = dlg.DictPatient;
+            //_uPatientList.DataSource = dlg.DataSource;
+            //_uPatientList.DictPatient = dlg.DictPatient;
         }
 
-        private void OnPatientHistory(object patientRow)
+        private void OnPatientHistory(DataRow patientRow)
         {
-            if (_flag) AddPatientToList((DataRow)patientRow);
-
             this.Text = string.Format("{0} - Thong tin benh nhan", Application.ProductName);
             ViewControl(_uPatientHistory);
-            string patientGUID = (patientRow as DataRow)["PatientGUID"].ToString();
-            //_uPatientHistory.PatientRow = patientRow;
-            DataTable dtPatient = _uPatientList.DataSource as DataTable;
-            _uPatientHistory.Display(patientGUID, dtPatient);
+            string patientGUID = patientRow["PatientGUID"].ToString();
+            _uPatientHistory.Display(patientRow);
 
-        }
-
-        private void AddPatientToList(DataRow patientRow)
-        {
-            DataTable dt = dgPatient.DataSource as DataTable;
-            if (dt == null) dt = patientRow.Table.Clone();
-
-            DataRow[] rows = dt.Select(string.Format("PatientGUID='{0}'", patientRow["PatientGUID"].ToString()));
-            if (rows == null || rows.Length <= 0)
-                dt.ImportRow(patientRow);
-
-            dgPatient.DataSource = dt;
         }
 
         private void OnHelp()
@@ -2865,56 +2946,69 @@ namespace MM
             if (_isStartTiemNgua || _isStartCapCuuHetHSD || _isStartCapCuuHetTonKho)
                 StartTimerShowAlert();
         }
+
+        private void ClearAllData()
+        {
+                _uServicesList.ClearData();
+                _uDocStaffList.ClearData();
+                _uPatientList.ClearData();
+                _uSpecialityList.ClearData();
+                _uSymptomList.ClearData();
+                _uCompanyList.ClearData();
+                _uContractList.ClearData();
+                _uPermission.ClearData();
+                _uPrintLabel.ClearData();
+                _uReceiptList.ClearData();
+                _uInvoiceList.ClearData();
+                _uDuplicatePatient.ClearData();
+                _uDoanhThuNhanVien.ClearData();
+                _uDichVuHopDong.ClearData();
+                _uThuocList.ClearData();
+                _uNhomThuocList.ClearData();
+                _uLoThuocList.ClearData();
+                _uGiaThuocList.ClearData();
+                _uToaThuocList.ClearData();
+                _uBaoCaoThuocHetHan.ClearData();
+                _uBaoCaoThuocTonKho.ClearData();
+                _uPhieuThuThuocList.ClearData();
+                _uTrackingList.ClearData();
+                _uServiceGroupList.ClearData();
+                _uGiaVonDichVuList.ClearData();
+                _uHoaDonThuocList.ClearData();
+                _uHoaDonXuatTruoc.ClearData();
+                _uThongKeHoaDon.ClearData();
+                _uPhucHoiBenhNhan.ClearData();
+                _uPhieuThuHopDongList.ClearData();
+                _uHoaDonHopDongList.ClearData();
+                _uYKienKhachHangList.ClearData();
+                _uNhatKyLienHeCongTy.ClearData();
+                _uXetNghiemTay.ClearData();
+                _uKetQuaXetNghiemTongHop.UpdateGUI();
+                _uTraCuuThongTinKhachHang.ClearData();
+                _uDiaChiCongTyList.ClearData();
+                _uChiTietPhieuThuDichVu.ClearData();
+                _uBaoCaoThuocTonKhoTheoKhoangThoiGian.ClearData();
+                _uBenhNhanThanThuocList.ClearData();
+                _uTiemNguaList.ClearData();
+                _uCongTacNgoaiGioList.ClearData();
+                _uLichKham.ClearData();
+                _uKhoCapCuu.ClearData();
+                _uNhapKhoCapCuuList.ClearData();
+                _uXuatKhoCapCuuList.ClearData();
+                _uBaoCaoCapCuuHetHan.ClearData();
+                _uBaoCaoTonKhoCapCuu.ClearData();
+                _uThongBaoList.ClearData();
+                _uBenhNhanNgoaiGoiKhamList.ClearData();
+                _uGiaCapCuuList.ClearData();
+                _uPhieuThuCapCuuList.ClearData();
+                _uUserGroupList.ClearData();
+                _uNguoiSuDungList.ClearData();
+                _uToaCapCuuList.ClearData();
+        }
         #endregion
 
         #region Window Event Handlers
-        private void _timerPatient_Tick(object sender, EventArgs e)
-        {
-            DateTime denNgay = DateTime.Now;
-            DateTime tungay = denNgay.AddSeconds(-5);
-            Result result = PatientBus.GetPatientList(tungay, denNgay);
-            if (!result.IsOK)
-            {
-                Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
-                return;
-            }
-
-            DataTable dt = result.QueryResult as DataTable;
-            if (dt == null || dt.Rows.Count <= 0) return;
-
-            _uPatientList.UpdatePatients(dt);
-        }
-
-        private void _uPatientList_OnEditPatientEvent(DataRow patientRow)
-        {
-            DataTable dt = dgPatient.DataSource as DataTable;
-            if (dt == null) return;
-            DataRow[] rows = dt.Select(string.Format("PatientGUID='{0}'", patientRow["PatientGUID"].ToString()));
-
-            if (rows != null && rows.Length > 0)
-            {
-                for (int i = 0; i < patientRow.Table.Columns.Count; i++)
-                {
-                    rows[0][i] = patientRow[i];
-                }    
-            }
-        }
-
-        private void _uPatientList_OnDeletePatientEvent(List<string> keys)
-        {
-            DataTable dt = dgPatient.DataSource as DataTable;
-            if (dt == null) return;
-
-            foreach (string key in keys)
-            {
-                DataRow[] rows = dt.Select(string.Format("PatientGUID='{0}'", key));
-                if (rows == null || rows.Length <= 0) continue;
-
-                dt.Rows.Remove(rows[0]);
-            }
-        }
-
-        private void _uPatientList_OnOpenPatient(object patientRow)
+        private void _uPatientList_OnOpenPatient(DataRow patientRow)
         {
             OnPatientHistory(patientRow);
         }
@@ -2933,7 +3027,6 @@ namespace MM
             InitConfigAsThread();
             OnCheckAlert();
             StartTimerCheckAlert();
-            StartTimerPatient();
 
             if (!System.Diagnostics.Debugger.IsAttached)
                 AutoDetectUpdateAsThread();
@@ -2949,7 +3042,6 @@ namespace MM
                     SaveAppConfig();
                     StopTimerShowAlert();
                     StopTimerCheckAlert();
-                    StopTimerPatient();
                 }
                 else
                     e.Cancel = true;

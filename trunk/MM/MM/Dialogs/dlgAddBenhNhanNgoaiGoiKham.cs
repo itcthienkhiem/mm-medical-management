@@ -18,7 +18,6 @@ namespace MM.Dialogs
     {
         #region Members
         private DataTable _dtSource = null;
-        private DataTable _dtBenhNhan = null;
         #endregion
 
         #region Constructor
@@ -40,27 +39,7 @@ namespace MM.Dialogs
             dgBenhNhanNgoaiGoiKham.DataSource = _dtSource;
             ngayKhamDataGridViewTextBoxColumn.DefaultCellStyle.NullValue = DateTime.Now.ToString("dd/MM/yyyy");
 
-            Result result = PatientBus.GetPatientList();
-            if (result.IsOK)
-            {
-                _dtBenhNhan = result.QueryResult as DataTable;
-                //DataRow row = _dtBenhNhan.NewRow();
-                //row["PatientGUID"] = Guid.Empty.ToString();
-                //row["FullName"] = " ";
-                //_dtBenhNhan.Rows.InsertAt(row, 0);
-
-                //patientGUIDDataGridViewTextBoxColumn.DataSource = _dtBenhNhan;
-                //patientGUIDDataGridViewTextBoxColumn.DisplayMember = "FullName";
-                //patientGUIDDataGridViewTextBoxColumn.ValueMember = "PatientGUID";
-            }
-            else
-            {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("PatientBus.GetPatientList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
-                this.Close();
-            }
-
-            result = ServicesBus.GetServicesList();
+            Result result = ServicesBus.GetServicesList();
             if (result.IsOK)
             {
                 DataTable dtService = result.QueryResult as DataTable;
@@ -265,7 +244,7 @@ namespace MM.Dialogs
         {
             if (e.ColumnIndex == 3 && e.RowIndex >= 0)
             {
-                dlgSelectPatient dlg = new dlgSelectPatient(_dtBenhNhan);
+                dlgSelectPatient dlg = new dlgSelectPatient(PatientSearchType.BenhNhan);
                 if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
                 {
                     string patientGUID = dlg.PatientRow["PatientGUID"].ToString();

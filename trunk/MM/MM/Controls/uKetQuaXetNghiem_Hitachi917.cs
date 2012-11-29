@@ -157,15 +157,11 @@ namespace MM.Controls
                 TinhTrang tinhTrang = (TinhTrang)Convert.ToByte(dr["TinhTrang"]);
                 if (tinhTrang == TinhTrang.BatThuong)
                 {
-                    //row.DefaultCellStyle.Font = _boldFont;
-                    //row.DefaultCellStyle.ForeColor = Color.Red;
                     row.Cells["TestResult"].Style.Font = _boldFont;
                     row.Cells["TestResult"].Style.ForeColor = Color.Red;
                 }
                 else
                 {
-                    //row.DefaultCellStyle.Font = _normalFont;
-                    //row.DefaultCellStyle.ForeColor = Color.Black;
                     row.Cells["TestResult"].Style.Font = _normalFont;
                     row.Cells["TestResult"].Style.ForeColor = Color.Black;
                 }
@@ -183,7 +179,7 @@ namespace MM.Controls
             DataRow row = (dgXetNghiem.SelectedRows[0].DataBoundItem as DataRowView).Row;
             if (row == null) return;
 
-            dlgSelectPatient dlg = new dlgSelectPatient();
+            dlgSelectPatient dlg = new dlgSelectPatient(PatientSearchType.BenhNhan);
             if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
                 DataRow patientRow = dlg.PatientRow;
@@ -280,16 +276,11 @@ namespace MM.Controls
 
                 if ((TinhTrang)dlg.ChiTietKQXN.TinhTrang == TinhTrang.BatThuong)
                 {
-                    //dgChiTietKQXN.SelectedRows[0].DefaultCellStyle.Font = _boldFont;
-                    //dgChiTietKQXN.SelectedRows[0].DefaultCellStyle.ForeColor = Color.Red;
                     dgChiTietKQXN.SelectedRows[0].Cells["TestResult"].Style.Font = _boldFont;
                     dgChiTietKQXN.SelectedRows[0].Cells["TestResult"].Style.ForeColor = Color.Red;
                 }
                 else
                 {
-                    //dgChiTietKQXN.SelectedRows[0].DefaultCellStyle.Font = _normalFont;
-                    //dgChiTietKQXN.SelectedRows[0].DefaultCellStyle.ForeColor = Color.Black;
-
                     dgChiTietKQXN.SelectedRows[0].Cells["TestResult"].Style.Font = _normalFont;
                     dgChiTietKQXN.SelectedRows[0].Cells["TestResult"].Style.ForeColor = Color.Black;
                 }
@@ -344,11 +335,6 @@ namespace MM.Controls
         #endregion
 
         #region Window Event Handlers
-        private void uKetQuaXetNghiem_Hitachi917_Load(object sender, EventArgs e)
-        {
-            
-        }
-
         private void btnView_Click(object sender, EventArgs e)
         {
             DisplayAsThread();
@@ -436,7 +422,6 @@ namespace MM.Controls
         {
             try
             {
-                //Thread.Sleep(500);
                 OnDisplayKetQuaXetNghiemList();
             }
             catch (Exception e)

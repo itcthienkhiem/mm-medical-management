@@ -20,7 +20,6 @@ namespace MM.Dialogs
         private DataRow _drToaThuoc = null;
         private ToaThuoc _toaThuoc = new ToaThuoc();
         private List<string> _deletedKeys = new List<string>();
-        private DataTable _dataSourceBenhNhan = null;
         private DataRow _patientRow = null;
         private bool _allowEdit = true;
         #endregion
@@ -112,7 +111,6 @@ namespace MM.Dialogs
             dtpkNgayKham.Value = DateTime.Now;
             dtpkNgayTaiKham.Value = DateTime.Now.AddDays(7);
             OnDisplayBacSi();
-            OnDisplayBenhNhan();
         }
 
         private void OnDisplayBacSi()
@@ -137,18 +135,6 @@ namespace MM.Dialogs
             {
                 MsgBox.Show(this.Text, result.GetErrorAsString("DocStaffBus.GetDocStaffList"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("DocStaffBus.GetDocStaffList"));
-            }
-        }
-
-        private void OnDisplayBenhNhan()
-        {
-            Result result = PatientBus.GetPatientList();
-            if (result.IsOK)
-                _dataSourceBenhNhan = result.QueryResult as DataTable;
-            else
-            {
-                MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.GetPatientList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
             }
         }
 
@@ -634,7 +620,7 @@ namespace MM.Dialogs
 
         private void btnChonBenhNhan_Click(object sender, EventArgs e)
         {
-            dlgSelectPatient dlg = new dlgSelectPatient(_dataSourceBenhNhan);
+            dlgSelectPatient dlg = new dlgSelectPatient(PatientSearchType.BenhNhan);
             if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
                 _patientRow = dlg.PatientRow;

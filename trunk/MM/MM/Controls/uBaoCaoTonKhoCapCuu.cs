@@ -37,6 +37,11 @@ namespace MM.Controls
         #endregion
 
         #region UI Command
+        public void ClearData()
+        {
+            _uKhoCapCuu.ClearData();
+        }
+
         private void UpdateGUI()
         {
             btnExportExcel.Enabled = AllowExport;

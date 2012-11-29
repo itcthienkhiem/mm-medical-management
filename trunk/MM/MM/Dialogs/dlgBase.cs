@@ -11,14 +11,12 @@ using MM.Controls;
 namespace MM.Dialogs
 {
     public delegate void AddMemberHandler(List<DataRow> checkedMembers, List<string> addedServices, DataTable serviceDataSource);
-    public delegate void RefreshPatientHandler();
 
     public partial class dlgBase : Form
     {
         #region Events
         public event AddMemberHandler OnAddMemberEvent = null;
         public event OpenPatientHandler OnOpenPatientEvent;
-        public event RefreshPatientHandler OnRefreshPatient;
         #endregion
 
         #region Members
@@ -41,16 +39,10 @@ namespace MM.Dialogs
                 OnAddMemberEvent(checkedMembers, addedServices, serviceDataSource);
         }
 
-        public void RaiseOpentPatient(object patientRow)
+        public void RaiseOpentPatient(DataRow patientRow)
         {
             if (OnOpenPatientEvent != null)
                 OnOpenPatientEvent(patientRow);
-        }
-
-        public void RaiseRefreshPatient()
-        {
-            if (OnRefreshPatient != null)
-                OnRefreshPatient();
         }
         #endregion
 
@@ -63,21 +55,6 @@ namespace MM.Dialogs
 
         protected void HideWaiting()
         {
-           /* MethodInvoker method = delegate
-            {
-                if (_dlgWaiting != null)
-                {
-                    _dlgWaiting.Hide();
-                    _dlgWaiting.Close();
-                    _dlgWaiting = null;
-                }
-            };
-
-            if (InvokeRequired) 
-                BeginInvoke(method);
-            else 
-                method.Invoke();*/
-
             try
             {
                 this.Invoke(new MethodInvoker(delegate()

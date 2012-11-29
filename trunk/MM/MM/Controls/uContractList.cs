@@ -21,6 +21,7 @@ namespace MM.Controls
         private Dictionary<string, DataRow> _dictContract = new Dictionary<string,DataRow>();
         private string _name = string.Empty;
         private bool _isMaHopDong = false;
+        private Object _thisLock = new Object();
         #endregion
 
         #region Constructor
@@ -95,23 +96,26 @@ namespace MM.Controls
 
         private void OnDisplayContractList()
         {
-            Result result = CompanyContractBus.GetContractList(_name, _isMaHopDong);
-            if (result.IsOK)
+            lock (_thisLock)
             {
-                dgContract.Invoke(new MethodInvoker(delegate()
+                Result result = CompanyContractBus.GetContractList(_name, _isMaHopDong);
+                if (result.IsOK)
                 {
-                    ClearData();
+                    dgContract.Invoke(new MethodInvoker(delegate()
+                    {
+                        ClearData();
 
-                    DataTable dt = result.QueryResult as DataTable;
-                    if (_dtTemp == null) _dtTemp = dt.Clone();
-                    UpdateChecked(dt);
-                    dgContract.DataSource = dt;
-                }));
-            }
-            else
-            {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyContractBus.GetContractList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.GetContractList"));
+                        DataTable dt = result.QueryResult as DataTable;
+                        if (_dtTemp == null) _dtTemp = dt.Clone();
+                        UpdateChecked(dt);
+                        dgContract.DataSource = dt;
+                    }));
+                }
+                else
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyContractBus.GetContractList"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.GetContractList"));
+                }
             }
         }
 
@@ -230,7 +234,7 @@ namespace MM.Controls
             }
         }
 
-        private void dlg_OnOpenPatient(object patientRow)
+        private void dlg_OnOpenPatient(DataRow patientRow)
         {
             base.RaiseOpentPatient(patientRow);
         }

@@ -280,11 +280,11 @@ Giá thuốc (x)
 Danh mục cấp cứu (x)
 Nhập kho cấp cứu (x)
 Giá cấp cứu (x)
-In nhãn
-Mở bệnh nhân
-Danh sách bệnh nhân
-Phục hồi bệnh nhân
-Bệnh nhân thân thuộc
+In nhãn (x)
+Mở bệnh nhân (x)
+Danh sách bệnh nhân (x)
+Phục hồi bệnh nhân (x)
+Bệnh nhân thân thuộc (x)
 Danh sách XN tay
 Danh sách địa chỉ công ty
 
