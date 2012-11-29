@@ -379,7 +379,7 @@ namespace MM
                 _uThongBaoList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uBenhNhanNgoaiGoiKhamList))
                 _uBenhNhanNgoaiGoiKhamList.DisplayAsThread();
-            else if (ctrl.GetType() == typeof(uGiaThuocList))
+            else if (ctrl.GetType() == typeof(uGiaCapCuuList))
                 _uGiaCapCuuList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uPhieuThuCapCuuList))
                 _uPhieuThuCapCuuList.DisplayAsThread();
