@@ -134,14 +134,14 @@ namespace MM.Dialogs
 
         private bool CheckInfo()
         {
-            if (cboBSCD.Text == string.Empty)
+            if (cboBSCD.SelectedValue == null || cboBSCD.Text == string.Empty)
             {
                 MsgBox.Show(this.Text, "Vui lòng nhập bác sĩ chỉ định.", IconType.Information);
                 cboBSCD.Focus();
                 return false;
             }
 
-            if (cboBSSoi.Text == string.Empty)
+            if (cboBSSoi.SelectedValue == null || cboBSSoi.Text == string.Empty)
             {
                 MsgBox.Show(this.Text, "Vui lòng nhập bác sĩ soi.", IconType.Information);
                 cboBSSoi.Focus();

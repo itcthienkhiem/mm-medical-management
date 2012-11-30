@@ -137,7 +137,7 @@ namespace MM.Dialogs
 
         private bool CheckInfo()
         {
-            if (cboDocStaff.Text.Trim() == string.Empty)
+            if (cboDocStaff.SelectedValue == null || cboDocStaff.Text.Trim() == string.Empty)
             {
                 MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ.", IconType.Information);
                 cboDocStaff.Focus();

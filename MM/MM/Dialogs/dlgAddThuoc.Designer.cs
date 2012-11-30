@@ -83,7 +83,7 @@
             // 
             // cboDonViTinh
             // 
-            this.cboDonViTinh.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDonViTinh.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboDonViTinh.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboDonViTinh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDonViTinh.FormattingEnabled = true;

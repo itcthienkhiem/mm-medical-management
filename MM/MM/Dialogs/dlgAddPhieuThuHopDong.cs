@@ -193,7 +193,7 @@ namespace MM.Dialogs
                 return false;
             }
 
-            if (cboMaHopDong.Text == string.Empty)
+            if (cboMaHopDong.SelectedValue == null || cboMaHopDong.Text == string.Empty)
             {
                 MsgBox.Show(this.Text, "Vui lòng chọn hợp đồng cần xuất phiếu thu.", IconType.Information);
                 cboMaHopDong.Focus();

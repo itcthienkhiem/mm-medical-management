@@ -33,11 +33,11 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.cboUserName = new System.Windows.Forms.ComboBox();
+            this.userViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.userViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.userViewBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -65,17 +65,20 @@
             // 
             // cboUserName
             // 
-            this.cboUserName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboUserName.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboUserName.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboUserName.DataSource = this.userViewBindingSource;
             this.cboUserName.DisplayMember = "FullName";
-            this.cboUserName.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboUserName.FormattingEnabled = true;
             this.cboUserName.Location = new System.Drawing.Point(97, 22);
             this.cboUserName.Name = "cboUserName";
             this.cboUserName.Size = new System.Drawing.Size(214, 21);
             this.cboUserName.TabIndex = 2;
             this.cboUserName.ValueMember = "DocStaffGUID";
+            // 
+            // userViewBindingSource
+            // 
+            this.userViewBindingSource.DataSource = typeof(MM.Databasae.UserView);
             // 
             // label2
             // 
@@ -118,10 +121,6 @@
             this.btnOK.TabIndex = 5;
             this.btnOK.Text = "     &Đăng nhập";
             this.btnOK.UseVisualStyleBackColor = true;
-            // 
-            // userViewBindingSource
-            // 
-            this.userViewBindingSource.DataSource = typeof(MM.Databasae.UserView);
             // 
             // dlgLogin
             // 

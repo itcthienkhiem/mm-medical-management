@@ -414,11 +414,10 @@
             // 
             // cboDocStaff_KhamPhuKhoa
             // 
-            this.cboDocStaff_KhamPhuKhoa.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDocStaff_KhamPhuKhoa.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboDocStaff_KhamPhuKhoa.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboDocStaff_KhamPhuKhoa.DataSource = this.docStaffViewBindingSource;
             this.cboDocStaff_KhamPhuKhoa.DisplayMember = "FullName";
-            this.cboDocStaff_KhamPhuKhoa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDocStaff_KhamPhuKhoa.Enabled = false;
             this.cboDocStaff_KhamPhuKhoa.FormattingEnabled = true;
             this.cboDocStaff_KhamPhuKhoa.Location = new System.Drawing.Point(93, 361);
@@ -442,11 +441,10 @@
             // 
             // cboDocStaff_CoQuanKhac
             // 
-            this.cboDocStaff_CoQuanKhac.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDocStaff_CoQuanKhac.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboDocStaff_CoQuanKhac.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboDocStaff_CoQuanKhac.DataSource = this.docStaffViewBindingSource;
             this.cboDocStaff_CoQuanKhac.DisplayMember = "FullName";
-            this.cboDocStaff_CoQuanKhac.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDocStaff_CoQuanKhac.Enabled = false;
             this.cboDocStaff_CoQuanKhac.FormattingEnabled = true;
             this.cboDocStaff_CoQuanKhac.Location = new System.Drawing.Point(484, 297);
@@ -466,11 +464,10 @@
             // 
             // cboDocStaff_NoiTiet
             // 
-            this.cboDocStaff_NoiTiet.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDocStaff_NoiTiet.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboDocStaff_NoiTiet.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboDocStaff_NoiTiet.DataSource = this.docStaffViewBindingSource;
             this.cboDocStaff_NoiTiet.DisplayMember = "FullName";
-            this.cboDocStaff_NoiTiet.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDocStaff_NoiTiet.Enabled = false;
             this.cboDocStaff_NoiTiet.FormattingEnabled = true;
             this.cboDocStaff_NoiTiet.Location = new System.Drawing.Point(93, 297);
@@ -490,11 +487,10 @@
             // 
             // cboDocStaff_ThanKinh
             // 
-            this.cboDocStaff_ThanKinh.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDocStaff_ThanKinh.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboDocStaff_ThanKinh.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboDocStaff_ThanKinh.DataSource = this.docStaffViewBindingSource;
             this.cboDocStaff_ThanKinh.DisplayMember = "FullName";
-            this.cboDocStaff_ThanKinh.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDocStaff_ThanKinh.Enabled = false;
             this.cboDocStaff_ThanKinh.FormattingEnabled = true;
             this.cboDocStaff_ThanKinh.Location = new System.Drawing.Point(484, 232);
@@ -514,11 +510,10 @@
             // 
             // cboDocStaff_DaLieu
             // 
-            this.cboDocStaff_DaLieu.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDocStaff_DaLieu.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboDocStaff_DaLieu.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboDocStaff_DaLieu.DataSource = this.docStaffViewBindingSource;
             this.cboDocStaff_DaLieu.DisplayMember = "FullName";
-            this.cboDocStaff_DaLieu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDocStaff_DaLieu.Enabled = false;
             this.cboDocStaff_DaLieu.FormattingEnabled = true;
             this.cboDocStaff_DaLieu.Location = new System.Drawing.Point(93, 232);
@@ -538,11 +533,10 @@
             // 
             // cboDocStaff_CoXuongKhop
             // 
-            this.cboDocStaff_CoXuongKhop.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDocStaff_CoXuongKhop.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboDocStaff_CoXuongKhop.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboDocStaff_CoXuongKhop.DataSource = this.docStaffViewBindingSource;
             this.cboDocStaff_CoXuongKhop.DisplayMember = "FullName";
-            this.cboDocStaff_CoXuongKhop.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDocStaff_CoXuongKhop.Enabled = false;
             this.cboDocStaff_CoXuongKhop.FormattingEnabled = true;
             this.cboDocStaff_CoXuongKhop.Location = new System.Drawing.Point(484, 166);
@@ -562,11 +556,10 @@
             // 
             // cboDocStaff_TietNieuSinhDuc
             // 
-            this.cboDocStaff_TietNieuSinhDuc.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDocStaff_TietNieuSinhDuc.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboDocStaff_TietNieuSinhDuc.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboDocStaff_TietNieuSinhDuc.DataSource = this.docStaffViewBindingSource;
             this.cboDocStaff_TietNieuSinhDuc.DisplayMember = "FullName";
-            this.cboDocStaff_TietNieuSinhDuc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDocStaff_TietNieuSinhDuc.Enabled = false;
             this.cboDocStaff_TietNieuSinhDuc.FormattingEnabled = true;
             this.cboDocStaff_TietNieuSinhDuc.Location = new System.Drawing.Point(93, 166);
@@ -586,11 +579,10 @@
             // 
             // cboDocStaff_TieuHoa
             // 
-            this.cboDocStaff_TieuHoa.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDocStaff_TieuHoa.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboDocStaff_TieuHoa.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboDocStaff_TieuHoa.DataSource = this.docStaffViewBindingSource;
             this.cboDocStaff_TieuHoa.DisplayMember = "FullName";
-            this.cboDocStaff_TieuHoa.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDocStaff_TieuHoa.Enabled = false;
             this.cboDocStaff_TieuHoa.FormattingEnabled = true;
             this.cboDocStaff_TieuHoa.Location = new System.Drawing.Point(484, 100);
@@ -610,11 +602,10 @@
             // 
             // cboDocStaff_TimMach
             // 
-            this.cboDocStaff_TimMach.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDocStaff_TimMach.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboDocStaff_TimMach.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboDocStaff_TimMach.DataSource = this.docStaffViewBindingSource;
             this.cboDocStaff_TimMach.DisplayMember = "FullName";
-            this.cboDocStaff_TimMach.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDocStaff_TimMach.Enabled = false;
             this.cboDocStaff_TimMach.FormattingEnabled = true;
             this.cboDocStaff_TimMach.Location = new System.Drawing.Point(93, 100);
@@ -634,11 +625,10 @@
             // 
             // cboDocStaff_HoHap
             // 
-            this.cboDocStaff_HoHap.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDocStaff_HoHap.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboDocStaff_HoHap.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboDocStaff_HoHap.DataSource = this.docStaffViewBindingSource;
             this.cboDocStaff_HoHap.DisplayMember = "FullName";
-            this.cboDocStaff_HoHap.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDocStaff_HoHap.Enabled = false;
             this.cboDocStaff_HoHap.FormattingEnabled = true;
             this.cboDocStaff_HoHap.Location = new System.Drawing.Point(484, 35);
@@ -658,11 +648,10 @@
             // 
             // cboDocStaff_Mat
             // 
-            this.cboDocStaff_Mat.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDocStaff_Mat.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboDocStaff_Mat.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboDocStaff_Mat.DataSource = this.docStaffViewBindingSource;
             this.cboDocStaff_Mat.DisplayMember = "FullName";
-            this.cboDocStaff_Mat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDocStaff_Mat.Enabled = false;
             this.cboDocStaff_Mat.FormattingEnabled = true;
             this.cboDocStaff_Mat.Location = new System.Drawing.Point(93, 35);
@@ -1229,11 +1218,10 @@
             // 
             // cboDocStaff_RangHamMat
             // 
-            this.cboDocStaff_RangHamMat.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDocStaff_RangHamMat.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboDocStaff_RangHamMat.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboDocStaff_RangHamMat.DataSource = this.docStaffViewBindingSource;
             this.cboDocStaff_RangHamMat.DisplayMember = "FullName";
-            this.cboDocStaff_RangHamMat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDocStaff_RangHamMat.Enabled = false;
             this.cboDocStaff_RangHamMat.FormattingEnabled = true;
             this.cboDocStaff_RangHamMat.Location = new System.Drawing.Point(484, 36);
@@ -1253,11 +1241,10 @@
             // 
             // cboDocStaff_TaiMuiHong
             // 
-            this.cboDocStaff_TaiMuiHong.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDocStaff_TaiMuiHong.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboDocStaff_TaiMuiHong.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboDocStaff_TaiMuiHong.DataSource = this.docStaffViewBindingSource;
             this.cboDocStaff_TaiMuiHong.DisplayMember = "FullName";
-            this.cboDocStaff_TaiMuiHong.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDocStaff_TaiMuiHong.Enabled = false;
             this.cboDocStaff_TaiMuiHong.FormattingEnabled = true;
             this.cboDocStaff_TaiMuiHong.Location = new System.Drawing.Point(93, 36);

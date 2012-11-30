@@ -83,7 +83,7 @@
             // 
             // cboBookingMonitorInOut
             // 
-            this.cboBookingMonitorInOut.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboBookingMonitorInOut.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboBookingMonitorInOut.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboBookingMonitorInOut.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboBookingMonitorInOut.FormattingEnabled = true;
@@ -106,7 +106,7 @@
             // 
             // cboBookingMonitorCompany
             // 
-            this.cboBookingMonitorCompany.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboBookingMonitorCompany.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboBookingMonitorCompany.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboBookingMonitorCompany.FormattingEnabled = true;
             this.cboBookingMonitorCompany.Location = new System.Drawing.Point(70, 44);

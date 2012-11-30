@@ -78,6 +78,14 @@ namespace MM.Dialogs
         {
             if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
+                if (cboUserName.SelectedValue == null)
+                {
+                    MsgBox.Show(this.Text, "Tên đăng nhập không hợp lệ. Vui lòng nhập lại.", IconType.Information);
+                    cboUserName.Focus();
+                    e.Cancel = true;
+                    return;
+                }
+
                 DataTable dt = cboUserName.DataSource as DataTable;
                 DataRow[] rows = dt.Select(string.Format("DocStaffGUID='{0}'", cboUserName.SelectedValue.ToString()));
                 if (rows != null && rows.Length > 0)

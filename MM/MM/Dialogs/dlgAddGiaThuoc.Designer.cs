@@ -154,11 +154,10 @@
             // 
             // cboThuoc
             // 
-            this.cboThuoc.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboThuoc.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboThuoc.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboThuoc.DataSource = this.thuocBindingSource;
             this.cboThuoc.DisplayMember = "TenThuoc";
-            this.cboThuoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboThuoc.FormattingEnabled = true;
             this.cboThuoc.Location = new System.Drawing.Point(90, 21);
             this.cboThuoc.Name = "cboThuoc";

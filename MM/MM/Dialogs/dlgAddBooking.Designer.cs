@@ -85,7 +85,7 @@
             // 
             // cboBookingMonitorInOut
             // 
-            this.cboBookingMonitorInOut.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboBookingMonitorInOut.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboBookingMonitorInOut.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboBookingMonitorInOut.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboBookingMonitorInOut.FormattingEnabled = true;
@@ -108,7 +108,7 @@
             // 
             // cboBookingMonitorCompany
             // 
-            this.cboBookingMonitorCompany.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboBookingMonitorCompany.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboBookingMonitorCompany.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboBookingMonitorCompany.FormattingEnabled = true;
             this.cboBookingMonitorCompany.Location = new System.Drawing.Point(70, 44);
@@ -249,7 +249,7 @@
             // 
             // cboBloodTakingInOut
             // 
-            this.cboBloodTakingInOut.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboBloodTakingInOut.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboBloodTakingInOut.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboBloodTakingInOut.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboBloodTakingInOut.FormattingEnabled = true;
@@ -272,7 +272,7 @@
             // 
             // cboBloodTakingCompany
             // 
-            this.cboBloodTakingCompany.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboBloodTakingCompany.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboBloodTakingCompany.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboBloodTakingCompany.FormattingEnabled = true;
             this.cboBloodTakingCompany.Location = new System.Drawing.Point(70, 46);

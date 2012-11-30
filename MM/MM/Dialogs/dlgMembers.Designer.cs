@@ -63,6 +63,7 @@
             this.txtSearchService = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.raNuCoGiaDinh = new System.Windows.Forms.RadioButton();
             this.raNu = new System.Windows.Forms.RadioButton();
             this.raNam = new System.Windows.Forms.RadioButton();
             this.raAll = new System.Windows.Forms.RadioButton();
@@ -71,7 +72,6 @@
             this.txtSearchPatient = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.raNuCoGiaDinh = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).BeginInit();
             this.panel4.SuspendLayout();
@@ -200,7 +200,6 @@
             this.colChecked.HeaderText = "";
             this.colChecked.Name = "colChecked";
             this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.colChecked.Width = 40;
             // 
             // fileNumDataGridViewTextBoxColumn
@@ -216,6 +215,7 @@
             this.fullNameDataGridViewTextBoxColumn.HeaderText = "Họ tên";
             this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
             this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fullNameDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.fullNameDataGridViewTextBoxColumn.Width = 180;
             // 
             // dobStrDataGridViewTextBoxColumn
@@ -325,7 +325,6 @@
             this.dataGridViewCheckBoxXColumn2.HeaderText = "";
             this.dataGridViewCheckBoxXColumn2.Name = "dataGridViewCheckBoxXColumn2";
             this.dataGridViewCheckBoxXColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewCheckBoxXColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.dataGridViewCheckBoxXColumn2.Width = 40;
             // 
             // dataGridViewTextBoxColumn1
@@ -390,6 +389,17 @@
             this.panel2.Size = new System.Drawing.Size(681, 58);
             this.panel2.TabIndex = 0;
             // 
+            // raNuCoGiaDinh
+            // 
+            this.raNuCoGiaDinh.AutoSize = true;
+            this.raNuCoGiaDinh.Location = new System.Drawing.Point(335, 36);
+            this.raNuCoGiaDinh.Name = "raNuCoGiaDinh";
+            this.raNuCoGiaDinh.Size = new System.Drawing.Size(95, 17);
+            this.raNuCoGiaDinh.TabIndex = 19;
+            this.raNuCoGiaDinh.Text = "Nữ có gia đình";
+            this.raNuCoGiaDinh.UseVisualStyleBackColor = true;
+            this.raNuCoGiaDinh.CheckedChanged += new System.EventHandler(this.raNuCoGiaDinh_CheckedChanged);
+            // 
             // raNu
             // 
             this.raNu.AutoSize = true;
@@ -434,6 +444,8 @@
             this.chkTheoSoDienThoai.TabIndex = 15;
             this.chkTheoSoDienThoai.Text = "Theo số điện thoại";
             this.chkTheoSoDienThoai.UseVisualStyleBackColor = true;
+            this.chkTheoSoDienThoai.Visible = false;
+            this.chkTheoSoDienThoai.CheckedChanged += new System.EventHandler(this.chkTheoSoDienThoai_CheckedChanged);
             // 
             // chkMaBenhNhan
             // 
@@ -474,17 +486,6 @@
             this.panel1.Size = new System.Drawing.Size(681, 38);
             this.panel1.TabIndex = 4;
             // 
-            // raNuCoGiaDinh
-            // 
-            this.raNuCoGiaDinh.AutoSize = true;
-            this.raNuCoGiaDinh.Location = new System.Drawing.Point(335, 36);
-            this.raNuCoGiaDinh.Name = "raNuCoGiaDinh";
-            this.raNuCoGiaDinh.Size = new System.Drawing.Size(95, 17);
-            this.raNuCoGiaDinh.TabIndex = 19;
-            this.raNuCoGiaDinh.Text = "Nữ có gia đình";
-            this.raNuCoGiaDinh.UseVisualStyleBackColor = true;
-            this.raNuCoGiaDinh.CheckedChanged += new System.EventHandler(this.raNuCoGiaDinh_CheckedChanged);
-            // 
             // dlgMembers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -501,7 +502,6 @@
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Them nhan vien";
-            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.dlgMembers_FormClosing);
             this.Load += new System.EventHandler(this.dlgMembers_Load);
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).EndInit();
@@ -544,19 +544,19 @@
         private DevComponents.DotNetBar.Controls.DataGridViewX dgService;
         private System.Windows.Forms.CheckBox chkMaBenhNhan;
         private System.Windows.Forms.CheckBox chkTheoSoDienThoai;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxXColumn2;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.RadioButton raNu;
+        private System.Windows.Forms.RadioButton raNam;
+        private System.Windows.Forms.RadioButton raAll;
+        private System.Windows.Forms.RadioButton raNuCoGiaDinh;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn fileNumDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn dobStrDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn genderAsStrDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn IdentityCard;
-        private System.Windows.Forms.Panel panel3;
-        private System.Windows.Forms.RadioButton raNu;
-        private System.Windows.Forms.RadioButton raNam;
-        private System.Windows.Forms.RadioButton raAll;
-        private System.Windows.Forms.RadioButton raNuCoGiaDinh;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxXColumn2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
     }
 }

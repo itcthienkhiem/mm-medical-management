@@ -73,7 +73,7 @@ namespace MM.Dialogs
                 return false;
             }
 
-            if (cboNguoiDeXuat.Text == string.Empty)
+            if (cboNguoiDeXuat.SelectedValue == null || cboNguoiDeXuat.Text == string.Empty)
             {
                 MsgBox.Show(this.Text, "Vui lòng chọn người đề xuất.", IconType.Information);
                 return false;

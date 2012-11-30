@@ -81,7 +81,7 @@
             // 
             // cboStaffType
             // 
-            this.cboStaffType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboStaffType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboStaffType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboStaffType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboStaffType.FormattingEnabled = true;
@@ -110,7 +110,7 @@
             // 
             // cboType
             // 
-            this.cboType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboType.FormattingEnabled = true;

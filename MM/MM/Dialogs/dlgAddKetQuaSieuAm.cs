@@ -179,7 +179,7 @@ namespace MM.Dialogs
                 return false;
             }
 
-            if (cboBSSieuAm.Text.Trim() == string.Empty)
+            if (cboBSSieuAm.SelectedValue == null || cboBSSieuAm.Text.Trim() == string.Empty)
             {
                 MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ siêu âm.", IconType.Information);
                 cboBSSieuAm.Focus();
@@ -342,7 +342,7 @@ namespace MM.Dialogs
                     _ketQuaSieuAm.BacSiSieuAmGUID = Guid.Parse(cboBSSieuAm.SelectedValue.ToString());
                     _ketQuaSieuAm.LoaiSieuAmGUID = Guid.Parse(cboLoaiSieuAm.SelectedValue.ToString());
 
-                    if (cboBSCD.Text.Trim() != string.Empty)
+                    if (cboBSCD.SelectedValue != null && cboBSCD.Text.Trim() != string.Empty)
                         _ketQuaSieuAm.BacSiChiDinhGUID = Guid.Parse(cboBSCD.SelectedValue.ToString());
 
                     _ketQuaSieuAm.LamSang = txtLamSang.Text;

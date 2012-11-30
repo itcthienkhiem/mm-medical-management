@@ -150,6 +150,8 @@ namespace MM.Controls
         {
             try
             {
+                if (_patientSearchType == Common.PatientSearchType.NhanVienHopDong &&
+                    (_hopDongGUID == null || _hopDongGUID == string.Empty)) return;
                 chkChecked.Checked = false;
                 _name = txtSearchPatient.Text;
                 if (chkMaBenhNhan.Checked) _type = 1;
@@ -174,6 +176,9 @@ namespace MM.Controls
         {
             try
             {
+                if (_patientSearchType == Common.PatientSearchType.NhanVienHopDong &&
+                    (_hopDongGUID == null || _hopDongGUID == string.Empty)) return;
+
                 chkChecked.Checked = false;
                 _name = txtSearchPatient.Text;
                 if (chkMaBenhNhan.Checked) _type = 1;

@@ -256,7 +256,7 @@ namespace MM.Dialogs
                 return false;
             }
 
-            if (cboBacSi.Text.Trim() == string.Empty)
+            if (cboBacSi.SelectedValue == null || cboBacSi.Text.Trim() == string.Empty)
             {
                 MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ kê toa.", IconType.Information);
                 cboBacSi.Focus();

@@ -288,11 +288,10 @@
             // 
             // cboBSSoi
             // 
-            this.cboBSSoi.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboBSSoi.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboBSSoi.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboBSSoi.DataSource = this.docStaffViewBindingSource;
             this.cboBSSoi.DisplayMember = "Fullname";
-            this.cboBSSoi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboBSSoi.FormattingEnabled = true;
             this.cboBSSoi.Location = new System.Drawing.Point(265, 9);
             this.cboBSSoi.Name = "cboBSSoi";

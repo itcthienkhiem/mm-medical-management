@@ -185,7 +185,7 @@ namespace MM.Dialogs
                 return false;
             }
 
-            if (cboCompany.Text == string.Empty)
+            if (cboCompany.SelectedValue == null || cboCompany.Text == string.Empty)
             {
                 MsgBox.Show(this.Text, "Vui lòng chọn công ty.", IconType.Information);
                 tabContract.SelectedTabIndex = 0;
@@ -352,7 +352,7 @@ namespace MM.Dialogs
                 {
                     dgMembers.DataSource = result.QueryResult;
 
-                    if (cboCompany.Text == string.Empty) return;
+                    if (cboCompany.SelectedValue == null || cboCompany.Text == string.Empty) return;
                     string companyGUID = cboCompany.SelectedValue.ToString();
                     if (!_htCompany.ContainsKey(companyGUID))
                     {
@@ -391,7 +391,7 @@ namespace MM.Dialogs
                 {
                     dgGiaDichVu.DataSource = result.QueryResult;
 
-                    if (cboCompany.Text == string.Empty) return;
+                    if (cboCompany.SelectedValue == null || cboCompany.Text == string.Empty) return;
                     string companyGUID = cboCompany.SelectedValue.ToString();
                     if (!_htCompany.ContainsKey(companyGUID))
                     {
@@ -418,7 +418,7 @@ namespace MM.Dialogs
 
         private void OnAddMember()
         {
-            if (cboCompany.Text == string.Empty)
+            if (cboCompany.SelectedValue == null || cboCompany.Text == string.Empty)
             {
                 MsgBox.Show(this.Text, "Vui lòng chọn công ty.", IconType.Information);
                 tabContract.SelectedTabIndex = 0;
@@ -1057,7 +1057,7 @@ namespace MM.Dialogs
         }
         private void OnImportDVHD()
         {
-            if (cboCompany.Text == string.Empty)
+            if (cboCompany.SelectedValue == null || cboCompany.Text == string.Empty)
             {
                 MsgBox.Show(this.Text, "Vui lòng chọn công ty.", IconType.Information);
                 tabContract.SelectedTabIndex = 0;
@@ -1330,7 +1330,7 @@ namespace MM.Dialogs
 
         private void cboCompany_SelectedValueChanged(object sender, EventArgs e)
         {
-            if (cboCompany.Text == string.Empty) return;
+            if (cboCompany.SelectedValue == null || cboCompany.Text == string.Empty) return;
             DataTable dt = dgMembers.DataSource as DataTable;
             if (dt == null) return;
 

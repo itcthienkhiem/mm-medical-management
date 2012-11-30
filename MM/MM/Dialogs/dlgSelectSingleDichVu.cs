@@ -74,8 +74,6 @@ namespace MM.Dialogs
             results = (from p in dt.AsEnumerable()
                        where p.Field<string>("Name") != null &&
                        p.Field<string>("Name").Trim() != string.Empty &&
-                       //(p.Field<string>("TenThuoc").ToLower().IndexOf(str) == 0 ||
-                       //str.IndexOf(p.Field<string>("TenThuoc").ToLower()) == 0)
                        p.Field<string>("Name").ToLower().IndexOf(str) == 0
                        orderby p.Field<string>("Name")
                        select p).ToList<DataRow>();

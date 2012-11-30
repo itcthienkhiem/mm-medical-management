@@ -35,6 +35,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddToaThuoc));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkNgayTaiKham = new System.Windows.Forms.CheckBox();
             this.raToaSanKhoa = new System.Windows.Forms.RadioButton();
             this.raToaChung = new System.Windows.Forms.RadioButton();
             this.label12 = new System.Windows.Forms.Label();
@@ -75,7 +76,6 @@
             this.btnAddMember = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.chkChecked = new System.Windows.Forms.CheckBox();
-            this.chkNgayTaiKham = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgChiTiet)).BeginInit();
@@ -84,7 +84,6 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.chkNgayTaiKham);
             this.groupBox1.Controls.Add(this.raToaSanKhoa);
             this.groupBox1.Controls.Add(this.raToaChung);
             this.groupBox1.Controls.Add(this.label12);
@@ -111,12 +110,26 @@
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label1);
+            this.groupBox1.Controls.Add(this.chkNgayTaiKham);
             this.groupBox1.Location = new System.Drawing.Point(7, 4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(789, 263);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin toa thuốc";
+            // 
+            // chkNgayTaiKham
+            // 
+            this.chkNgayTaiKham.AutoSize = true;
+            this.chkNgayTaiKham.Checked = true;
+            this.chkNgayTaiKham.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkNgayTaiKham.Location = new System.Drawing.Point(221, 47);
+            this.chkNgayTaiKham.Name = "chkNgayTaiKham";
+            this.chkNgayTaiKham.Size = new System.Drawing.Size(94, 17);
+            this.chkNgayTaiKham.TabIndex = 65;
+            this.chkNgayTaiKham.Text = "Ngày tái khám";
+            this.chkNgayTaiKham.UseVisualStyleBackColor = true;
+            this.chkNgayTaiKham.CheckedChanged += new System.EventHandler(this.chkNgayTaiKham_CheckedChanged);
             // 
             // raToaSanKhoa
             // 
@@ -311,11 +324,10 @@
             // 
             // cboBacSi
             // 
-            this.cboBacSi.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboBacSi.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboBacSi.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboBacSi.DataSource = this.docStaffViewBindingSource;
             this.cboBacSi.DisplayMember = "FullName";
-            this.cboBacSi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboBacSi.FormattingEnabled = true;
             this.cboBacSi.Location = new System.Drawing.Point(93, 69);
             this.cboBacSi.Name = "cboBacSi";
@@ -534,19 +546,6 @@
             this.chkChecked.Size = new System.Drawing.Size(15, 14);
             this.chkChecked.TabIndex = 15;
             this.chkChecked.UseVisualStyleBackColor = true;
-            // 
-            // chkNgayTaiKham
-            // 
-            this.chkNgayTaiKham.AutoSize = true;
-            this.chkNgayTaiKham.Checked = true;
-            this.chkNgayTaiKham.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkNgayTaiKham.Location = new System.Drawing.Point(221, 47);
-            this.chkNgayTaiKham.Name = "chkNgayTaiKham";
-            this.chkNgayTaiKham.Size = new System.Drawing.Size(94, 17);
-            this.chkNgayTaiKham.TabIndex = 65;
-            this.chkNgayTaiKham.Text = "Ngày tái khám";
-            this.chkNgayTaiKham.UseVisualStyleBackColor = true;
-            this.chkNgayTaiKham.CheckedChanged += new System.EventHandler(this.chkNgayTaiKham_CheckedChanged);
             // 
             // dlgAddToaThuoc
             // 

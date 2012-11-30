@@ -32,6 +32,8 @@
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddKhamLamSang));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox3 = new System.Windows.Forms.GroupBox();
+            this.txtPhuKhoaNote = new System.Windows.Forms.TextBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.dtpkNgayKinhChot = new System.Windows.Forms.DateTimePicker();
             this.chkKinhChot = new System.Windows.Forms.CheckBox();
             this.chkAbnormal_KhamPhuKhoa = new System.Windows.Forms.CheckBox();
@@ -110,8 +112,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.txtPhuKhoaNote = new System.Windows.Forms.TextBox();
-            this.label16 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -203,6 +203,24 @@
             this.groupBox3.TabIndex = 4;
             this.groupBox3.TabStop = false;
             this.groupBox3.Text = "Khám nội khoa";
+            // 
+            // txtPhuKhoaNote
+            // 
+            this.txtPhuKhoaNote.Location = new System.Drawing.Point(476, 379);
+            this.txtPhuKhoaNote.MaxLength = 100;
+            this.txtPhuKhoaNote.Name = "txtPhuKhoaNote";
+            this.txtPhuKhoaNote.ReadOnly = true;
+            this.txtPhuKhoaNote.Size = new System.Drawing.Size(220, 20);
+            this.txtPhuKhoaNote.TabIndex = 74;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(423, 383);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(47, 13);
+            this.label16.TabIndex = 82;
+            this.label16.Text = "Ghi chú:";
             // 
             // dtpkNgayKinhChot
             // 
@@ -992,11 +1010,10 @@
             // 
             // cboDocStaff
             // 
-            this.cboDocStaff.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDocStaff.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboDocStaff.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboDocStaff.DataSource = this.docStaffViewBindingSource;
             this.cboDocStaff.DisplayMember = "FullName";
-            this.cboDocStaff.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDocStaff.FormattingEnabled = true;
             this.cboDocStaff.Location = new System.Drawing.Point(242, 20);
             this.cboDocStaff.Name = "cboDocStaff";
@@ -1058,24 +1075,6 @@
             this.btnOK.TabIndex = 5;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
-            // 
-            // txtPhuKhoaNote
-            // 
-            this.txtPhuKhoaNote.Location = new System.Drawing.Point(476, 379);
-            this.txtPhuKhoaNote.MaxLength = 100;
-            this.txtPhuKhoaNote.Name = "txtPhuKhoaNote";
-            this.txtPhuKhoaNote.ReadOnly = true;
-            this.txtPhuKhoaNote.Size = new System.Drawing.Size(220, 20);
-            this.txtPhuKhoaNote.TabIndex = 74;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(423, 383);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(47, 13);
-            this.label16.TabIndex = 82;
-            this.label16.Text = "Ghi chú:";
             // 
             // dlgAddKhamLamSang
             // 

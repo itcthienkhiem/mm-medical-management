@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddThuocKeToa));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnChonThuoc = new System.Windows.Forms.Button();
             this.btnThuocThayThe = new System.Windows.Forms.Button();
             this.gbToaSanKhoa = new System.Windows.Forms.GroupBox();
             this.txtGhiChu = new System.Windows.Forms.TextBox();
@@ -67,7 +68,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.btnChonThuoc = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.gbToaSanKhoa.SuspendLayout();
             this.gbToaChung.SuspendLayout();
@@ -91,6 +91,16 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin thuốc kê toa";
+            // 
+            // btnChonThuoc
+            // 
+            this.btnChonThuoc.Location = new System.Drawing.Point(381, 21);
+            this.btnChonThuoc.Name = "btnChonThuoc";
+            this.btnChonThuoc.Size = new System.Drawing.Size(75, 23);
+            this.btnChonThuoc.TabIndex = 7;
+            this.btnChonThuoc.Text = "&Chọn thuốc";
+            this.btnChonThuoc.UseVisualStyleBackColor = true;
+            this.btnChonThuoc.Click += new System.EventHandler(this.btnChonThuoc_Click);
             // 
             // btnThuocThayThe
             // 
@@ -443,11 +453,10 @@
             // 
             // cboThuoc
             // 
-            this.cboThuoc.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboThuoc.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboThuoc.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboThuoc.DataSource = this.thuocBindingSource;
             this.cboThuoc.DisplayMember = "TenThuoc";
-            this.cboThuoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboThuoc.FormattingEnabled = true;
             this.cboThuoc.Location = new System.Drawing.Point(80, 22);
             this.cboThuoc.Name = "cboThuoc";
@@ -491,16 +500,6 @@
             this.btnOK.TabIndex = 17;
             this.btnOK.Text = "    &Đồng ý";
             this.btnOK.UseVisualStyleBackColor = true;
-            // 
-            // btnChonThuoc
-            // 
-            this.btnChonThuoc.Location = new System.Drawing.Point(381, 21);
-            this.btnChonThuoc.Name = "btnChonThuoc";
-            this.btnChonThuoc.Size = new System.Drawing.Size(75, 23);
-            this.btnChonThuoc.TabIndex = 7;
-            this.btnChonThuoc.Text = "&Chọn thuốc";
-            this.btnChonThuoc.UseVisualStyleBackColor = true;
-            this.btnChonThuoc.Click += new System.EventHandler(this.btnChonThuoc_Click);
             // 
             // dlgAddThuocKeToa
             // 

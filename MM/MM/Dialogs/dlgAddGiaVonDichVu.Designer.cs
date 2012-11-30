@@ -38,15 +38,15 @@
             this.label1 = new System.Windows.Forms.Label();
             this.label28 = new System.Windows.Forms.Label();
             this.cboService = new System.Windows.Forms.ComboBox();
-            this.thuocBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.serviceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label3 = new System.Windows.Forms.Label();
+            this.thuocBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.serviceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numGiaBan)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.thuocBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.thuocBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -132,11 +132,10 @@
             // 
             // cboService
             // 
-            this.cboService.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboService.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboService.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboService.DataSource = this.serviceBindingSource;
             this.cboService.DisplayMember = "Name";
-            this.cboService.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboService.FormattingEnabled = true;
             this.cboService.Location = new System.Drawing.Point(90, 21);
             this.cboService.Name = "cboService";
@@ -144,9 +143,9 @@
             this.cboService.TabIndex = 70;
             this.cboService.ValueMember = "ServiceGUID";
             // 
-            // thuocBindingSource
+            // serviceBindingSource
             // 
-            this.thuocBindingSource.DataSource = typeof(MM.Databasae.Thuoc);
+            this.serviceBindingSource.DataSource = typeof(MM.Databasae.Service);
             // 
             // label3
             // 
@@ -156,6 +155,10 @@
             this.label3.Size = new System.Drawing.Size(47, 13);
             this.label3.TabIndex = 69;
             this.label3.Text = "Dịch vụ:";
+            // 
+            // thuocBindingSource
+            // 
+            this.thuocBindingSource.DataSource = typeof(MM.Databasae.Thuoc);
             // 
             // btnCancel
             // 
@@ -181,10 +184,6 @@
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
-            // serviceBindingSource
-            // 
-            this.serviceBindingSource.DataSource = typeof(MM.Databasae.Service);
-            // 
             // dlgAddGiaVonDichVu
             // 
             this.AcceptButton = this.btnOK;
@@ -208,8 +207,8 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numGiaBan)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.thuocBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.thuocBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
