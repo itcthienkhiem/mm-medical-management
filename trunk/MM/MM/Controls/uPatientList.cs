@@ -69,6 +69,8 @@ namespace MM.Controls
                 UpdateGUI();
                 chkChecked.Checked = false;
                 _name = txtSearchPatient.Text;
+                if (_name.Trim() == string.Empty) _name = "*";
+                else if (_name.Trim() == "*") _name = string.Empty;
                 if (chkMaBenhNhan.Checked) _type = 1;
                 else if (chkTheoSoDienThoai.Checked) _type = 2;
                 else _type = 0;
@@ -93,6 +95,8 @@ namespace MM.Controls
             {
                 chkChecked.Checked = false;
                 _name = txtSearchPatient.Text;
+                if (_name.Trim() == string.Empty) _name = "*";
+                else if (_name.Trim() == "*") _name = string.Empty;
                 if (chkMaBenhNhan.Checked) _type = 1;
                 else if (chkTheoSoDienThoai.Checked) _type = 2;
                 else _type = 0;
