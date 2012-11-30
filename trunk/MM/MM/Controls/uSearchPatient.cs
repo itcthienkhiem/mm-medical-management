@@ -217,6 +217,9 @@ namespace MM.Controls
                         if (_dtTemp == null) _dtTemp = dt.Clone();
                         if (_isMulti) UpdateChecked(dt);
                         dgPatient.DataSource = dt;
+
+                        lbKetQuaTimDuoc.Text = string.Format("Kết quả tìm được: {0}", dt.Rows.Count);
+                        dgPatient.Refresh();
                     }));
                 }
                 else
