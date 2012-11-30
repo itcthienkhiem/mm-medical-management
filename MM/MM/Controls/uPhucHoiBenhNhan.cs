@@ -48,6 +48,8 @@ namespace MM.Controls
                 UpdateGUI();
                 chkChecked.Checked = false;
                 _name = txtSearchPatient.Text;
+                if (_name.Trim() == string.Empty) _name = "*";
+                else if (_name.Trim() == "*") _name = string.Empty;
                 if (chkMaBenhNhan.Checked) _type = 1;
                 else _type = 0;
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayPatientListProc));
@@ -70,6 +72,8 @@ namespace MM.Controls
             {
                 chkChecked.Checked = false;
                 _name = txtSearchPatient.Text;
+                if (_name.Trim() == string.Empty) _name = "*";
+                else if (_name.Trim() == "*") _name = string.Empty;
                 if (chkMaBenhNhan.Checked) _type = 1;
                 else _type = 0;
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnSearchProc));
