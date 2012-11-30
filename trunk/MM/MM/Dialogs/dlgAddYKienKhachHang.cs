@@ -161,7 +161,7 @@ namespace MM.Dialogs
                 return false;
             }
 
-            if (cboDocStaff.Text.Trim() == string.Empty)
+            if (cboDocStaff.SelectedValue == null || cboDocStaff.Text.Trim() == string.Empty)
             {
                 MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ phụ trách.", IconType.Information);
                 cboDocStaff.Focus();

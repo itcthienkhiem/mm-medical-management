@@ -41,6 +41,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddPhieuThuThuoc));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtLyDoGiam = new System.Windows.Forms.TextBox();
+            this.label9 = new System.Windows.Forms.Label();
             this.txtGhiChu = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.chkDaXuatHD = new System.Windows.Forms.CheckBox();
@@ -79,8 +81,6 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.lbTongTien = new System.Windows.Forms.Label();
             this.btnExportInvoice = new System.Windows.Forms.Button();
-            this.label9 = new System.Windows.Forms.Label();
-            this.txtLyDoGiam = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.toaThuocViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgChiTiet)).BeginInit();
@@ -118,6 +118,23 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin phiếu thu";
+            // 
+            // txtLyDoGiam
+            // 
+            this.txtLyDoGiam.Location = new System.Drawing.Point(279, 71);
+            this.txtLyDoGiam.MaxLength = 500;
+            this.txtLyDoGiam.Name = "txtLyDoGiam";
+            this.txtLyDoGiam.Size = new System.Drawing.Size(346, 20);
+            this.txtLyDoGiam.TabIndex = 7;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(216, 75);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(61, 13);
+            this.label9.TabIndex = 52;
+            this.label9.Text = "Lý do giảm:";
             // 
             // txtGhiChu
             // 
@@ -243,9 +260,10 @@
             // 
             // cboMaToaThuoc
             // 
+            this.cboMaToaThuoc.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cboMaToaThuoc.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboMaToaThuoc.DataSource = this.toaThuocViewBindingSource;
             this.cboMaToaThuoc.DisplayMember = "MaToaThuoc";
-            this.cboMaToaThuoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMaToaThuoc.FormattingEnabled = true;
             this.cboMaToaThuoc.Location = new System.Drawing.Point(97, 46);
             this.cboMaToaThuoc.Name = "cboMaToaThuoc";
@@ -533,23 +551,6 @@
             this.btnExportInvoice.Text = "      &Xuất hóa đơn";
             this.btnExportInvoice.UseVisualStyleBackColor = true;
             this.btnExportInvoice.Click += new System.EventHandler(this.btnExportInvoice_Click);
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.Location = new System.Drawing.Point(216, 75);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(61, 13);
-            this.label9.TabIndex = 52;
-            this.label9.Text = "Lý do giảm:";
-            // 
-            // txtLyDoGiam
-            // 
-            this.txtLyDoGiam.Location = new System.Drawing.Point(279, 71);
-            this.txtLyDoGiam.MaxLength = 500;
-            this.txtLyDoGiam.Name = "txtLyDoGiam";
-            this.txtLyDoGiam.Size = new System.Drawing.Size(346, 20);
-            this.txtLyDoGiam.TabIndex = 7;
             // 
             // dlgAddPhieuThuThuoc
             // 

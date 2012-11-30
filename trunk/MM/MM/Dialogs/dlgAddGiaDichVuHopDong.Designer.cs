@@ -108,11 +108,10 @@
             // 
             // cboService
             // 
-            this.cboService.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboService.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboService.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboService.DataSource = this.serviceBindingSource;
             this.cboService.DisplayMember = "Name";
-            this.cboService.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboService.FormattingEnabled = true;
             this.cboService.Location = new System.Drawing.Point(60, 22);
             this.cboService.Name = "cboService";

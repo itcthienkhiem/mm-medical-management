@@ -145,7 +145,7 @@
             // 
             // cboStaffType
             // 
-            this.cboStaffType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboStaffType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboStaffType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboStaffType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboStaffType.FormattingEnabled = true;
@@ -177,7 +177,7 @@
             // 
             // cboWorkType
             // 
-            this.cboWorkType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboWorkType.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboWorkType.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboWorkType.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboWorkType.FormattingEnabled = true;
@@ -200,7 +200,7 @@
             // 
             // cboSpeciality
             // 
-            this.cboSpeciality.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboSpeciality.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboSpeciality.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboSpeciality.DataSource = this.specialityBindingSource;
             this.cboSpeciality.DisplayMember = "Name";
@@ -394,7 +394,7 @@
             // 
             // cboGender
             // 
-            this.cboGender.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboGender.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboGender.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboGender.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboGender.FormattingEnabled = true;

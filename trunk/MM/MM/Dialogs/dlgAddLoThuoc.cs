@@ -210,7 +210,7 @@ namespace MM.Dialogs
                 return false;
             }
 
-            if (cboThuoc.Text.Trim() == string.Empty)
+            if (cboThuoc.SelectedValue == null || cboThuoc.Text.Trim() == string.Empty)
             {
                 MsgBox.Show(this.Text, "Vui lòng chọn thuốc.", IconType.Information);
                 cboThuoc.Focus();

@@ -332,7 +332,7 @@
             // 
             // cboNhaPhanPhoi
             // 
-            this.cboNhaPhanPhoi.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboNhaPhanPhoi.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboNhaPhanPhoi.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboNhaPhanPhoi.DisplayMember = "ThuocGUID";
             this.cboNhaPhanPhoi.FormattingEnabled = true;
@@ -433,11 +433,10 @@
             // 
             // cboKhoCapCuu
             // 
-            this.cboKhoCapCuu.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboKhoCapCuu.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboKhoCapCuu.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboKhoCapCuu.DataSource = this.khoCapCuuBindingSource;
             this.cboKhoCapCuu.DisplayMember = "TenCapCuu";
-            this.cboKhoCapCuu.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboKhoCapCuu.FormattingEnabled = true;
             this.cboKhoCapCuu.Location = new System.Drawing.Point(102, 19);
             this.cboKhoCapCuu.Name = "cboKhoCapCuu";

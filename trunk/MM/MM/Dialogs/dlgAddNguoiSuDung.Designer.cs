@@ -40,11 +40,11 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgPermission = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.groupNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Checked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.userGroupBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.groupNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Checked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             this.groupBox2.SuspendLayout();
@@ -85,15 +85,14 @@
             // 
             // cboDocStaff
             // 
-            this.cboDocStaff.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDocStaff.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboDocStaff.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboDocStaff.DataSource = this.docStaffViewBindingSource;
             this.cboDocStaff.DisplayMember = "FullName";
-            this.cboDocStaff.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDocStaff.FormattingEnabled = true;
             this.cboDocStaff.Location = new System.Drawing.Point(78, 23);
             this.cboDocStaff.Name = "cboDocStaff";
-            this.cboDocStaff.Size = new System.Drawing.Size(271, 21);
+            this.cboDocStaff.Size = new System.Drawing.Size(351, 21);
             this.cboDocStaff.TabIndex = 1;
             this.cboDocStaff.ValueMember = "DocStaffGUID";
             // 
@@ -160,6 +159,24 @@
             this.dgPermission.Size = new System.Drawing.Size(432, 338);
             this.dgPermission.TabIndex = 4;
             // 
+            // groupNameDataGridViewTextBoxColumn
+            // 
+            this.groupNameDataGridViewTextBoxColumn.DataPropertyName = "GroupName";
+            this.groupNameDataGridViewTextBoxColumn.HeaderText = "Nhóm người sử dụng";
+            this.groupNameDataGridViewTextBoxColumn.Name = "groupNameDataGridViewTextBoxColumn";
+            this.groupNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.groupNameDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.groupNameDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.groupNameDataGridViewTextBoxColumn.Width = 350;
+            // 
+            // Checked
+            // 
+            this.Checked.DataPropertyName = "Checked";
+            this.Checked.HeaderText = "Sử dụng";
+            this.Checked.Name = "Checked";
+            this.Checked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Checked.Width = 60;
+            // 
             // userGroupBindingSource
             // 
             this.userGroupBindingSource.DataSource = typeof(MM.Databasae.UserGroup);
@@ -187,24 +204,6 @@
             this.btnOK.TabIndex = 14;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
-            // 
-            // groupNameDataGridViewTextBoxColumn
-            // 
-            this.groupNameDataGridViewTextBoxColumn.DataPropertyName = "GroupName";
-            this.groupNameDataGridViewTextBoxColumn.HeaderText = "Nhóm người sử dụng";
-            this.groupNameDataGridViewTextBoxColumn.Name = "groupNameDataGridViewTextBoxColumn";
-            this.groupNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.groupNameDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.groupNameDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.groupNameDataGridViewTextBoxColumn.Width = 350;
-            // 
-            // Checked
-            // 
-            this.Checked.DataPropertyName = "Checked";
-            this.Checked.HeaderText = "Sử dụng";
-            this.Checked.Name = "Checked";
-            this.Checked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Checked.Width = 60;
             // 
             // dlgAddNguoiSuDung
             // 

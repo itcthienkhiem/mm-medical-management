@@ -67,7 +67,7 @@
             // 
             this.txtTimDichVu.Location = new System.Drawing.Point(78, 9);
             this.txtTimDichVu.Name = "txtTimDichVu";
-            this.txtTimDichVu.Size = new System.Drawing.Size(314, 20);
+            this.txtTimDichVu.Size = new System.Drawing.Size(452, 20);
             this.txtTimDichVu.TabIndex = 5;
             this.txtTimDichVu.TextChanged += new System.EventHandler(this.txtTimThuoc_TextChanged);
             this.txtTimDichVu.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTimDichVu_KeyDown);

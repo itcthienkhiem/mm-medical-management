@@ -40,9 +40,9 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dgXetNghiem = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.xetNghiemManualBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.fullnameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.GroupName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.xetNghiemManualBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -64,7 +64,7 @@
             // 
             this.txtXetNghiem.Location = new System.Drawing.Point(94, 9);
             this.txtXetNghiem.Name = "txtXetNghiem";
-            this.txtXetNghiem.Size = new System.Drawing.Size(494, 20);
+            this.txtXetNghiem.Size = new System.Drawing.Size(485, 20);
             this.txtXetNghiem.TabIndex = 5;
             this.txtXetNghiem.TextChanged += new System.EventHandler(this.txtXetNghiem_TextChanged);
             this.txtXetNghiem.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtXetNghiem_KeyDown);
@@ -162,10 +162,6 @@
             this.dgXetNghiem.TabIndex = 9;
             this.dgXetNghiem.DoubleClick += new System.EventHandler(this.dgXetNghiem_DoubleClick);
             // 
-            // xetNghiemManualBindingSource
-            // 
-            this.xetNghiemManualBindingSource.DataSource = typeof(MM.Databasae.XetNghiem_Manual);
-            // 
             // fullnameDataGridViewTextBoxColumn
             // 
             this.fullnameDataGridViewTextBoxColumn.DataPropertyName = "Fullname";
@@ -181,6 +177,10 @@
             this.GroupName.Name = "GroupName";
             this.GroupName.ReadOnly = true;
             this.GroupName.Width = 300;
+            // 
+            // xetNghiemManualBindingSource
+            // 
+            this.xetNghiemManualBindingSource.DataSource = typeof(MM.Databasae.XetNghiem_Manual);
             // 
             // dlgSelectXetNghiemTay
             // 

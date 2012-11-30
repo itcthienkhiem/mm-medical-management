@@ -31,6 +31,7 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddCongTacNgoaiGio));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtTenNguoiLam = new System.Windows.Forms.TextBox();
             this.txtGhiChu = new System.Windows.Forms.TextBox();
             this.label8 = new System.Windows.Forms.Label();
             this.cboNguoiDeXuat = new System.Windows.Forms.ComboBox();
@@ -49,7 +50,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.txtTenNguoiLam = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -78,6 +78,13 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
+            // txtTenNguoiLam
+            // 
+            this.txtTenNguoiLam.Location = new System.Drawing.Point(107, 43);
+            this.txtTenNguoiLam.Name = "txtTenNguoiLam";
+            this.txtTenNguoiLam.Size = new System.Drawing.Size(238, 20);
+            this.txtTenNguoiLam.TabIndex = 6;
+            // 
             // txtGhiChu
             // 
             this.txtGhiChu.Location = new System.Drawing.Point(107, 189);
@@ -96,11 +103,10 @@
             // 
             // cboNguoiDeXuat
             // 
-            this.cboNguoiDeXuat.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboNguoiDeXuat.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboNguoiDeXuat.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboNguoiDeXuat.DataSource = this.docStaffViewBindingSource;
             this.cboNguoiDeXuat.DisplayMember = "Fullname";
-            this.cboNguoiDeXuat.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboNguoiDeXuat.FormattingEnabled = true;
             this.cboNguoiDeXuat.Location = new System.Drawing.Point(107, 164);
             this.cboNguoiDeXuat.Name = "cboNguoiDeXuat";
@@ -241,13 +247,6 @@
             this.btnOK.TabIndex = 16;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
-            // 
-            // txtTenNguoiLam
-            // 
-            this.txtTenNguoiLam.Location = new System.Drawing.Point(107, 43);
-            this.txtTenNguoiLam.Name = "txtTenNguoiLam";
-            this.txtTenNguoiLam.Size = new System.Drawing.Size(238, 20);
-            this.txtTenNguoiLam.TabIndex = 6;
             // 
             // dlgAddCongTacNgoaiGio
             // 

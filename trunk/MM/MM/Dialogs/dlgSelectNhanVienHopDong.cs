@@ -101,36 +101,12 @@ namespace MM.Dialogs
 
             return string.Empty;
         }
-
-        //private void GetDanhSachNhanVienTheoHopDong()
-        //{
-        //    Cursor.Current = Cursors.WaitCursor;
-        //    Result result = CompanyContractBus.GetContractMemberList(_hopDongGUID, _serviceGUID);
-        //    if (result.IsOK)
-        //    {
-        //        DataTable dt = result.QueryResult as DataTable;
-        //        DataRow[] rows = dt.Select(string.Format("PatientGUID = '{0}'", _patientGUID));
-        //        if (rows != null && rows.Length > 0)
-        //        {
-        //            foreach (DataRow row in rows)
-        //                dt.Rows.Remove(row);
-        //        }
-
-        //        _uSearchPatient.DataSource = dt;
-        //        _uSearchPatient.OnSearch();
-        //    }
-        //    else
-        //    {
-        //        MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyContractBus.GetContractMemberList"), IconType.Error);
-        //        Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.GetContractMemberList"));
-        //    }
-        //}
         #endregion
 
         #region Window Event Handles
         private void dlgSelectNhanVienHopDong_Load(object sender, EventArgs e)
         {
-            //DisplayHopDongByThread();
+            DisplayHopDongByThread();
         }
 
         private void _uSearchPatient_OnOpenPatient(DataRow patientRow)
@@ -148,7 +124,6 @@ namespace MM.Dialogs
             txtTenHopDong.Text = GetTenHopDong();
 
             _uSearchPatient.DisplayAsThread();
-            //GetDanhSachNhanVienTheoHopDong();
         }
         #endregion
 
@@ -157,7 +132,6 @@ namespace MM.Dialogs
         {
             try
             {
-                //Thread.Sleep(500);
                 OnDisplayHopDong();
             }
             catch (Exception e)
@@ -171,6 +145,8 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
 
         
     }

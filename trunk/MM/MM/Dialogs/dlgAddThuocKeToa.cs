@@ -130,7 +130,7 @@ namespace MM.Dialogs
 
         private bool CheckInfo()
         {
-            if (cboThuoc.Text == string.Empty)
+            if (cboThuoc.SelectedValue == null || cboThuoc.Text == string.Empty)
             {
                 MsgBox.Show(this.Text, "Vui lòng chọn 1 thuốc.", IconType.Information);
                 cboThuoc.Focus();
@@ -353,7 +353,7 @@ namespace MM.Dialogs
 
         private void btnThuocThayThe_Click(object sender, EventArgs e)
         {
-            if (cboThuoc.Text == string.Empty) return;
+            if (cboThuoc.SelectedValue == null || cboThuoc.Text == string.Empty) return;
             string thuocGUID = cboThuoc.SelectedValue.ToString();
             dlgThuocThayThe dlg = new dlgThuocThayThe(thuocGUID);
             if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)

@@ -34,6 +34,8 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtGhiChu = new System.Windows.Forms.TextBox();
+            this.label15 = new System.Windows.Forms.Label();
             this.chkDaThuTien = new System.Windows.Forms.CheckBox();
             this.label14 = new System.Windows.Forms.Label();
             this.numThu = new System.Windows.Forms.NumericUpDown();
@@ -61,8 +63,6 @@
             this.label22 = new System.Windows.Forms.Label();
             this.txtMaPhieuThu = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.txtGhiChu = new System.Windows.Forms.TextBox();
-            this.label15 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numThu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCongNo)).BeginInit();
@@ -141,6 +141,23 @@
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin phiếu thu";
+            // 
+            // txtGhiChu
+            // 
+            this.txtGhiChu.Location = new System.Drawing.Point(103, 237);
+            this.txtGhiChu.MaxLength = 500;
+            this.txtGhiChu.Name = "txtGhiChu";
+            this.txtGhiChu.Size = new System.Drawing.Size(346, 20);
+            this.txtGhiChu.TabIndex = 74;
+            // 
+            // label15
+            // 
+            this.label15.AutoSize = true;
+            this.label15.Location = new System.Drawing.Point(52, 240);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(47, 13);
+            this.label15.TabIndex = 73;
+            this.label15.Text = "Ghi chú:";
             // 
             // chkDaThuTien
             // 
@@ -363,9 +380,10 @@
             // 
             // cboMaHopDong
             // 
+            this.cboMaHopDong.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cboMaHopDong.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboMaHopDong.DataSource = this.companyContractViewBindingSource;
             this.cboMaHopDong.DisplayMember = "ContractName";
-            this.cboMaHopDong.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMaHopDong.FormattingEnabled = true;
             this.cboMaHopDong.Location = new System.Drawing.Point(103, 44);
             this.cboMaHopDong.Name = "cboMaHopDong";
@@ -414,23 +432,6 @@
             this.label6.Size = new System.Drawing.Size(72, 13);
             this.label6.TabIndex = 48;
             this.label6.Text = "Mã phiếu thu:";
-            // 
-            // txtGhiChu
-            // 
-            this.txtGhiChu.Location = new System.Drawing.Point(103, 237);
-            this.txtGhiChu.MaxLength = 500;
-            this.txtGhiChu.Name = "txtGhiChu";
-            this.txtGhiChu.Size = new System.Drawing.Size(346, 20);
-            this.txtGhiChu.TabIndex = 74;
-            // 
-            // label15
-            // 
-            this.label15.AutoSize = true;
-            this.label15.Location = new System.Drawing.Point(52, 240);
-            this.label15.Name = "label15";
-            this.label15.Size = new System.Drawing.Size(47, 13);
-            this.label15.TabIndex = 73;
-            this.label15.Text = "Ghi chú:";
             // 
             // dlgAddPhieuThuHopDong
             // 

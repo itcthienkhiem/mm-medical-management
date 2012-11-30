@@ -177,7 +177,7 @@ namespace MM.Dialogs
                 DataTable dt = result.QueryResult as DataTable;
                 DataRow newRow = dt.NewRow();
                 newRow["ToaThuocGUID"] = Guid.Empty.ToString();
-                newRow["MaToaThuoc"] = "----Không có----";
+                newRow["MaToaThuoc"] = string.Empty;
                 dt.Rows.InsertAt(newRow, 0);
                 cboMaToaThuoc.DataSource = dt;
             }
@@ -597,7 +597,7 @@ namespace MM.Dialogs
                 MethodInvoker method = delegate
                 {
                     _phieuThuThuoc.MaPhieuThuThuoc = txtMaPhieuThu.Text;
-                    if (cboMaToaThuoc.SelectedValue.ToString() != Guid.Empty.ToString())
+                    if (cboMaToaThuoc.SelectedValue != null && cboMaToaThuoc.SelectedValue.ToString() != Guid.Empty.ToString())
                         _phieuThuThuoc.ToaThuocGUID = Guid.Parse(cboMaToaThuoc.SelectedValue.ToString());
                     else
                         _phieuThuThuoc.ToaThuocGUID = Guid.Empty;
@@ -740,6 +740,7 @@ namespace MM.Dialogs
         private void cboMaToaThuoc_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (!_isNew) return;
+            if (cboMaToaThuoc.SelectedValue == null) return;
             string toaThuocGUID = cboMaToaThuoc.SelectedValue.ToString();
             if (toaThuocGUID == Guid.Empty.ToString())
             {

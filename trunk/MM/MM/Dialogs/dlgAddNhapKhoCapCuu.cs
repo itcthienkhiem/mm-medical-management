@@ -179,7 +179,7 @@ namespace MM.Dialogs
 
         private bool CheckInfo()
         {
-            if (cboKhoCapCuu.Text.Trim() == string.Empty)
+            if (cboKhoCapCuu.SelectedValue == null || cboKhoCapCuu.Text.Trim() == string.Empty)
             {
                 MsgBox.Show(this.Text, "Vui lòng chọn thông tin cấp cứu.", IconType.Information);
                 cboKhoCapCuu.Focus();

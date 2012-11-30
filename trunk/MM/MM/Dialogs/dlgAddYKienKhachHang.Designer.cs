@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddYKienKhachHang));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtHuongGiaiQuyet = new System.Windows.Forms.TextBox();
+            this.label7 = new System.Windows.Forms.Label();
             this.chkDaXong = new System.Windows.Forms.CheckBox();
             this.cboDocStaff = new System.Windows.Forms.ComboBox();
             this.docStaffViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -48,8 +50,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.txtHuongGiaiQuyet = new System.Windows.Forms.TextBox();
-            this.label7 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             this.SuspendLayout();
@@ -78,6 +78,23 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
+            // txtHuongGiaiQuyet
+            // 
+            this.txtHuongGiaiQuyet.Location = new System.Drawing.Point(138, 157);
+            this.txtHuongGiaiQuyet.Multiline = true;
+            this.txtHuongGiaiQuyet.Name = "txtHuongGiaiQuyet";
+            this.txtHuongGiaiQuyet.Size = new System.Drawing.Size(347, 73);
+            this.txtHuongGiaiQuyet.TabIndex = 10;
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(42, 160);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(90, 13);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "Hướng giải quyết:";
+            // 
             // chkDaXong
             // 
             this.chkDaXong.AutoSize = true;
@@ -90,11 +107,10 @@
             // 
             // cboDocStaff
             // 
-            this.cboDocStaff.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboDocStaff.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboDocStaff.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboDocStaff.DataSource = this.docStaffViewBindingSource;
             this.cboDocStaff.DisplayMember = "Fullname";
-            this.cboDocStaff.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboDocStaff.FormattingEnabled = true;
             this.cboDocStaff.Location = new System.Drawing.Point(138, 256);
             this.cboDocStaff.Name = "cboDocStaff";
@@ -117,6 +133,8 @@
             // 
             // cboNguon
             // 
+            this.cboNguon.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cboNguon.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboNguon.FormattingEnabled = true;
             this.cboNguon.Location = new System.Drawing.Point(138, 232);
             this.cboNguon.Name = "cboNguon";
@@ -233,23 +251,6 @@
             this.btnOK.TabIndex = 7;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
-            // 
-            // txtHuongGiaiQuyet
-            // 
-            this.txtHuongGiaiQuyet.Location = new System.Drawing.Point(138, 157);
-            this.txtHuongGiaiQuyet.Multiline = true;
-            this.txtHuongGiaiQuyet.Name = "txtHuongGiaiQuyet";
-            this.txtHuongGiaiQuyet.Size = new System.Drawing.Size(347, 73);
-            this.txtHuongGiaiQuyet.TabIndex = 10;
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(42, 160);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(90, 13);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "Hướng giải quyết:";
             // 
             // dlgAddYKienKhachHang
             // 

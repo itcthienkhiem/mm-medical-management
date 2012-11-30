@@ -121,7 +121,7 @@
             // 
             // cboNhomXetNghiem
             // 
-            this.cboNhomXetNghiem.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboNhomXetNghiem.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboNhomXetNghiem.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboNhomXetNghiem.FormattingEnabled = true;
             this.cboNhomXetNghiem.Location = new System.Drawing.Point(105, 68);
@@ -162,7 +162,7 @@
             // 
             // cboLoaiXetNghiem
             // 
-            this.cboLoaiXetNghiem.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboLoaiXetNghiem.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboLoaiXetNghiem.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboLoaiXetNghiem.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboLoaiXetNghiem.FormattingEnabled = true;

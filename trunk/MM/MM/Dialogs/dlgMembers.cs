@@ -16,7 +16,6 @@ namespace MM.Dialogs
     public partial class dlgMembers : dlgBase
     {
         #region Members
-        private DataTable _dataSourceMember = null;
         private DataTable _dataSourceService = null;
         private bool _isContractMember = false;
         private string _companyGUID = string.Empty;
@@ -25,8 +24,13 @@ namespace MM.Dialogs
         private List<DataRow> _deletedMemberRows = null;
         private bool _isAscending = true;
         private DataTable _giaDichVuDataSource = null;
-        private Dictionary<string, DataRow> _dictMembers = null;
+        private Dictionary<string, DataRow> _dictMembers = new Dictionary<string,DataRow>();
         private Dictionary<string, DataRow> _dictServices = null;
+        private DataTable _dtTemp = null;
+        private string _name = string.Empty;
+        private int _type = 0;
+        private int _doiTuong = 0;
+        private Object _thisLock = new Object();
         #endregion
 
         #region Constructor
@@ -58,24 +62,7 @@ namespace MM.Dialogs
         #region Properties
         public List<DataRow> CheckedMembers
         {
-            get
-            {
-                if (_dataSourceMember == null) return null;
-
-                //UpdateCheckedMembers();
-
-                List<DataRow> checkedRows = new List<DataRow>();
-                foreach (DataRow row in _dataSourceMember.Rows)
-                {
-                    if (Boolean.Parse(row["Checked"].ToString()))
-                    {
-                        checkedRows.Add(row);
-                    }
-                }
-
-                return checkedRows;
-            }
-
+            get { return _dictMembers.Values.ToList(); }
         }
 
         public List<DataRow> CheckedServices
@@ -83,7 +70,6 @@ namespace MM.Dialogs
             get
             {
                 if (_dataSourceService == null) return null;
-                //UpdateCheckedServices();
                 List<DataRow> checkedRows = new List<DataRow>();
                 foreach (DataRow row in _dataSourceService.Rows)
                 {
@@ -93,7 +79,6 @@ namespace MM.Dialogs
 
                 return checkedRows;
             }
-
         }
 
         public List<string> AddedServices
@@ -102,13 +87,11 @@ namespace MM.Dialogs
             {
                 List<string> addedServices = new List<string>();
                 if (_dataSourceService == null) return addedServices;
-                //UpdateCheckedServices();
                 foreach (DataRow row in _dataSourceService.Rows)
                 {
                     if (Boolean.Parse(row["Checked"].ToString()))
                         addedServices.Add(row["ServiceGUID"].ToString());
                 }
-
 
                 return addedServices; 
             }
@@ -119,7 +102,6 @@ namespace MM.Dialogs
             get 
             {
                 if (_dataSourceService == null) return null;
-                //UpdateCheckedServices();
                 DataTable dt = _dataSourceService.Clone();
                 foreach (DataRow row in _dataSourceService.Rows)
                 {
@@ -142,6 +124,17 @@ namespace MM.Dialogs
             try
             {
                 chkChecked.Checked = false;
+                _name = txtSearchPatient.Text;
+
+                if (chkMaBenhNhan.Checked) _type = 1;
+                else if (chkTheoSoDienThoai.Checked) _type = 2;
+                else _type = 0;
+
+                if (raAll.Checked) _doiTuong = 0;
+                else if (raNam.Checked) _doiTuong = 1;
+                else if (raNu.Checked) _doiTuong = 2;
+                else _doiTuong = 3;
+
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayPatientListProc));
                 base.ShowWaiting();
             }
@@ -153,6 +146,31 @@ namespace MM.Dialogs
             finally
             {
                 base.HideWaiting();
+            }
+        }
+
+        private void SearchAsThread()
+        {
+            try
+            {
+                chkChecked.Checked = false;
+                _name = txtSearchPatient.Text;
+
+                if (chkMaBenhNhan.Checked) _type = 1;
+                else if (chkTheoSoDienThoai.Checked) _type = 2;
+                else _type = 0;
+
+                if (raAll.Checked) _doiTuong = 0;
+                else if (raNam.Checked) _doiTuong = 1;
+                else if (raNu.Checked) _doiTuong = 2;
+                else _doiTuong = 3;
+
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnSearchProc));
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
             }
         }
 
@@ -205,46 +223,65 @@ namespace MM.Dialogs
             return dt;
         }
 
+        public void ClearData()
+        {
+            DataTable dt = dgMembers.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+            }
+
+            dgMembers.DataSource = null;
+        }
+
         private void OnDisplayPatientList()
         {
-            Result result;
-
-            if (!_isContractMember)
-                result = PatientBus.GetPatientListNotInCompany();
-            else
-                result = CompanyBus.GetCompanyMemberListNotInContractMember(_companyGUID, _contractGUID);
-
-            if (result.IsOK)
+            lock (_thisLock)
             {
-                MethodInvoker method = delegate
-                {
-                    _dataSourceMember = GetDataSource((DataTable)result.QueryResult);//result.QueryResult as DataTable;
-
-                    if (_dictMembers == null) _dictMembers = new Dictionary<string, DataRow>();
-                    foreach (DataRow row in _dataSourceMember.Rows)
-                    {
-                        string patientGUID = row["PatientGUID"].ToString();
-                        _dictMembers.Add(patientGUID, row);
-                    }
-
-                    dgMembers.DataSource = _dataSourceMember;
-                };
-
-                if (InvokeRequired) BeginInvoke(method);
-                else method.Invoke();
-            }
-            else
-            {
+                Result result;
                 if (!_isContractMember)
+                    result = PatientBus.GetPatientListNotInCompany(_name, _type, _doiTuong);
+                else
+                    result = CompanyBus.GetCompanyMemberListNotInContractMember(_companyGUID, _contractGUID, _name, _type, _doiTuong);
+
+                if (result.IsOK)
                 {
-                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("PatientBus.GetPatientListNotInCompany"), IconType.Error);
-                    Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientListNotInCompany"));
+                    dgMembers.Invoke(new MethodInvoker(delegate()
+                    {
+                        ClearData();
+
+                        DataTable dt = result.QueryResult as DataTable;
+                        dt = GetDataSource(dt);
+                        if (_dtTemp == null) _dtTemp = dt.Clone();
+                        UpdateChecked(dt);
+                        dgMembers.DataSource = dt;
+                    }));
                 }
                 else
                 {
-                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyBus.GetCompanyMemberListNotInContractMember"), IconType.Error);
-                    Utility.WriteToTraceLog(result.GetErrorAsString("CompanyBus.GetCompanyMemberListNotInContractMember"));
+                    if (!_isContractMember)
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("PatientBus.GetPatientListNotInCompany"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientListNotInCompany"));
+                    }
+                    else
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyBus.GetCompanyMemberListNotInContractMember"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("CompanyBus.GetCompanyMemberListNotInContractMember"));
+                    }
                 }
+            }
+        }
+
+        private void UpdateChecked(DataTable dt)
+        {
+            foreach (DataRow row in dt.Rows)
+            {
+                string key = row["PatientGUID"].ToString();
+                if (_dictMembers.ContainsKey(key))
+                    row["Checked"] = true;
             }
         }
 
@@ -266,332 +303,10 @@ namespace MM.Dialogs
 
             if (InvokeRequired) BeginInvoke(method);
             else method.Invoke();
-
-            //Result result = ServicesBus.GetServicesList();
-
-            //if (result.IsOK)
-            //{
-            //    MethodInvoker method = delegate
-            //    {
-            //        _dataSourceService = (DataTable)result.QueryResult;
-            //        dgService.DataSource = _dataSourceService;
-            //    };
-
-            //    if (InvokeRequired) BeginInvoke(method);
-            //    else method.Invoke();
-            //}
-            //else
-            //{
-            //    MsgBox.Show(Application.ProductName, result.GetErrorAsString("ServicesBus.GetServicesListNotInCheckList"), IconType.Error);
-            //    Utility.WriteToTraceLog(result.GetErrorAsString("ServicesBus.GetServicesListNotInCheckList"));
-            //}
         }
-
-        private void OnSearchPatient()
-        {
-            //UpdateCheckedMembers();
-            List<DataRow> results = null;
-            DataTable newDataSource = null;
-            chkChecked.Checked = false;
-            if (txtSearchPatient.Text.Trim() == string.Empty)
-            {
-                if (raAll.Checked)
-                {
-                    results = (from p in _dataSourceMember.AsEnumerable()
-                               orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                               select p).ToList<DataRow>();
-                }
-                else if (raNam.Checked)
-                {
-                    results = (from p in _dataSourceMember.AsEnumerable()
-                               where p.Field<string>("GenderAsStr").Trim().ToLower() == "nam"
-                               orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                               select p).ToList<DataRow>();
-                }
-                else if (raNu.Checked)
-                {
-                    results = (from p in _dataSourceMember.AsEnumerable()
-                               where p.Field<string>("GenderAsStr").Trim().ToLower() == "nữ" &&
-                               (p.Field<string>("Tinh_Trang_Gia_Dinh") == null ||
-                               p.Field<string>("Tinh_Trang_Gia_Dinh").Trim().ToLower() != "có gia đình")
-                               orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                               select p).ToList<DataRow>();
-                }
-                else if (raNuCoGiaDinh.Checked)
-                {
-                    results = (from p in _dataSourceMember.AsEnumerable()
-                               where p.Field<string>("GenderAsStr").Trim().ToLower() == "nữ" &&
-                               p.Field<string>("Tinh_Trang_Gia_Dinh") != null &&
-                               p.Field<string>("Tinh_Trang_Gia_Dinh").Trim().ToLower() == "có gia đình"
-                               orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                               select p).ToList<DataRow>();
-                }
-
-                newDataSource = _dataSourceMember.Clone();
-                foreach (DataRow row in results)
-                    newDataSource.ImportRow(row);
-
-                dgMembers.DataSource = newDataSource;
-                _isAscending = true;
-                return;
-            }
-
-            string str = txtSearchPatient.Text.ToLower();
-            newDataSource = _dataSourceMember.Clone();
-            
-
-            if (chkMaBenhNhan.Checked)
-            {
-                //FileNum
-                if (raAll.Checked)
-                {
-                    results = (from p in _dataSourceMember.AsEnumerable()
-                               where p.Field<string>("FileNum") != null &&
-                                   p.Field<string>("FileNum").Trim() != string.Empty &&
-                               p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0
-                               orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                               select p).ToList<DataRow>();
-                }
-                else if (raNam.Checked)
-                {
-                    results = (from p in _dataSourceMember.AsEnumerable()
-                               where p.Field<string>("FileNum") != null &&
-                                   p.Field<string>("FileNum").Trim() != string.Empty &&
-                               p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0 &&
-                               p.Field<string>("GenderAsStr").Trim().ToLower() == "nam"
-                               orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                               select p).ToList<DataRow>();
-                }
-                else if (raNu.Checked)
-                {
-                    results = (from p in _dataSourceMember.AsEnumerable()
-                               where p.Field<string>("FileNum") != null &&
-                                   p.Field<string>("FileNum").Trim() != string.Empty &&
-                               p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0 &&
-                               p.Field<string>("GenderAsStr").Trim().ToLower() == "nữ" &&
-                               (p.Field<string>("Tinh_Trang_Gia_Dinh") == null ||
-                               p.Field<string>("Tinh_Trang_Gia_Dinh").Trim().ToLower() != "có gia đình")
-                               orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                               select p).ToList<DataRow>();
-                }
-                else if (raNuCoGiaDinh.Checked)
-                {
-                    results = (from p in _dataSourceMember.AsEnumerable()
-                               where p.Field<string>("FileNum") != null &&
-                                   p.Field<string>("FileNum").Trim() != string.Empty &&
-                               p.Field<string>("FileNum").ToLower().IndexOf(str) >= 0 &&
-                               p.Field<string>("GenderAsStr").Trim().ToLower() == "nữ" &&
-                               p.Field<string>("Tinh_Trang_Gia_Dinh") != null &&
-                               p.Field<string>("Tinh_Trang_Gia_Dinh").Trim().ToLower() == "có gia đình"
-                               orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                               select p).ToList<DataRow>();
-                }
-
-                foreach (DataRow row in results)
-                    newDataSource.Rows.Add(row.ItemArray);
-
-                if (newDataSource.Rows.Count > 0)
-                {
-                    dgMembers.DataSource = newDataSource;
-                    return;
-                }
-            }
-
-            if (chkTheoSoDienThoai.Checked)
-            {
-                //FileNum
-                if (raAll.Checked)
-                {
-                    results = (from p in _dataSourceMember.AsEnumerable()
-                               where p.Field<string>("Mobile") != null &&
-                                   p.Field<string>("Mobile").Trim() != string.Empty &&
-                               p.Field<string>("Mobile").ToLower().IndexOf(str) >= 0
-                               orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                               select p).ToList<DataRow>();
-                }
-                else if (raNam.Checked)
-                {
-                    results = (from p in _dataSourceMember.AsEnumerable()
-                               where p.Field<string>("Mobile") != null &&
-                                   p.Field<string>("Mobile").Trim() != string.Empty &&
-                               p.Field<string>("Mobile").ToLower().IndexOf(str) >= 0 &&
-                               p.Field<string>("GenderAsStr").Trim().ToLower() == "nam"
-                               orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                               select p).ToList<DataRow>();
-                }
-                else if (raNu.Checked)
-                {
-                    results = (from p in _dataSourceMember.AsEnumerable()
-                               where p.Field<string>("Mobile") != null &&
-                                   p.Field<string>("Mobile").Trim() != string.Empty &&
-                               p.Field<string>("Mobile").ToLower().IndexOf(str) >= 0 &&
-                               p.Field<string>("GenderAsStr").Trim().ToLower() == "nữ" &&
-                               (p.Field<string>("Tinh_Trang_Gia_Dinh") == null ||
-                               p.Field<string>("Tinh_Trang_Gia_Dinh").Trim().ToLower() != "có gia đình")
-                               orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                               select p).ToList<DataRow>();
-                }
-                else if (raNuCoGiaDinh.Checked)
-                {
-                    results = (from p in _dataSourceMember.AsEnumerable()
-                               where p.Field<string>("Mobile") != null &&
-                                   p.Field<string>("Mobile").Trim() != string.Empty &&
-                               p.Field<string>("Mobile").ToLower().IndexOf(str) >= 0 &&
-                               p.Field<string>("GenderAsStr").Trim().ToLower() == "nữ" &&
-                               p.Field<string>("Tinh_Trang_Gia_Dinh") != null &&
-                               p.Field<string>("Tinh_Trang_Gia_Dinh").Trim().ToLower() == "có gia đình"
-                               orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                               select p).ToList<DataRow>();
-                }
-
-                foreach (DataRow row in results)
-                    newDataSource.Rows.Add(row.ItemArray);
-
-                if (newDataSource.Rows.Count > 0)
-                {
-                    dgMembers.DataSource = newDataSource;
-                    return;
-                }
-            }
-
-            //FullName
-            if (raAll.Checked)
-            {
-
-                results = (from p in _dataSourceMember.AsEnumerable()
-                           where p.Field<string>("FullName") != null &&
-                           p.Field<string>("FullName").Trim() != string.Empty &&
-                           p.Field<string>("FullName").ToLower().IndexOf(str) >= 0
-                           orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                           select p).ToList<DataRow>();
-            }
-            else if (raNam.Checked)
-            {
-                results = (from p in _dataSourceMember.AsEnumerable()
-                           where p.Field<string>("FullName") != null &&
-                           p.Field<string>("FullName").Trim() != string.Empty &&
-                           p.Field<string>("FullName").ToLower().IndexOf(str) >= 0 &&
-                           p.Field<string>("GenderAsStr").Trim().ToLower() == "nam"
-                           orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                           select p).ToList<DataRow>();
-            }
-            else if (raNu.Checked)
-            {
-                results = (from p in _dataSourceMember.AsEnumerable()
-                           where p.Field<string>("FullName") != null &&
-                           p.Field<string>("FullName").Trim() != string.Empty &&
-                           p.Field<string>("FullName").ToLower().IndexOf(str) >= 0 &&
-                           p.Field<string>("GenderAsStr").Trim().ToLower() == "nữ" &&
-                           (p.Field<string>("Tinh_Trang_Gia_Dinh") == null ||
-                           p.Field<string>("Tinh_Trang_Gia_Dinh").Trim().ToLower() != "có gia đình")
-                           orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                           select p).ToList<DataRow>();
-            }
-            else if (raNuCoGiaDinh.Checked)
-            {
-                results = (from p in _dataSourceMember.AsEnumerable()
-                           where p.Field<string>("FullName") != null &&
-                           p.Field<string>("FullName").Trim() != string.Empty &&
-                           p.Field<string>("FullName").ToLower().IndexOf(str) >= 0 &&
-                           p.Field<string>("GenderAsStr").Trim().ToLower() == "nữ" &&
-                           p.Field<string>("Tinh_Trang_Gia_Dinh") != null &&
-                           p.Field<string>("Tinh_Trang_Gia_Dinh").Trim().ToLower() == "có gia đình"
-                           orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                           select p).ToList<DataRow>();
-            }
-
-            foreach (DataRow row in results)
-                newDataSource.Rows.Add(row.ItemArray);
-
-            if (newDataSource.Rows.Count > 0)
-            {
-                dgMembers.DataSource = newDataSource;
-                return;
-            }
-
-            dgMembers.DataSource = newDataSource;
-        }
-
-        //private void UpdateCheckedServices()
-        //{
-        //    /*DataTable dt = dgService.DataSource as DataTable;
-        //    if (dt == null) return;
-
-        //    foreach (DataRow row1 in dt.Rows)
-        //    {
-        //        string patientGUID1 = row1["ServiceGUID"].ToString();
-        //        bool isChecked1 = Convert.ToBoolean(row1["Checked"]);
-        //        foreach (DataRow row2 in _dataSourceService.Rows)
-        //        {
-        //            string patientGUID2 = row2["ServiceGUID"].ToString();
-        //            bool isChecked2 = Convert.ToBoolean(row2["Checked"]);
-
-        //            if (patientGUID1 == patientGUID2)
-        //            {
-        //                row2["Checked"] = row1["Checked"];
-        //                break;
-        //            }
-        //        }
-        //    }*/
-
-        //    DataTable dt = dgService.DataSource as DataTable;
-        //    if (dt == null) return;
-
-        //    DataRow[] rows1 = dt.Select("Checked='True'");
-        //    if (rows1 == null || rows1.Length <= 0) return;
-
-        //    foreach (DataRow row1 in rows1)
-        //    {
-        //        string patientGUID1 = row1["ServiceGUID"].ToString();
-        //        DataRow[] rows2 = _dataSourceService.Select(string.Format("ServiceGUID='{0}'", patientGUID1));
-        //        if (rows2 == null || rows2.Length <= 0) continue;
-
-        //        rows2[0]["Checked"] = row1["Checked"];
-        //    }
-        //}
-
-        //private void UpdateCheckedMembers()
-        //{
-        //    /*DataTable dt = dgMembers.DataSource as DataTable;
-        //    if (dt == null) return;
-
-        //    foreach (DataRow row1 in dt.Rows)
-        //    {
-        //        string patientGUID1 = row1["PatientGUID"].ToString();
-        //        bool isChecked1 = Convert.ToBoolean(row1["Checked"]);
-        //        foreach (DataRow row2 in _dataSourceMember.Rows)
-        //        {
-        //            string patientGUID2 = row2["PatientGUID"].ToString();
-        //            bool isChecked2 = Convert.ToBoolean(row2["Checked"]);
-
-        //            if (patientGUID1 == patientGUID2)
-        //            {
-        //                row2["Checked"] = row1["Checked"];
-        //                break;
-        //            }
-        //        }
-        //    }*/
-
-        //    DataTable dt = dgMembers.DataSource as DataTable;
-        //    if (dt == null) return;
-
-        //    DataRow[] rows1 = dt.Select("Checked='True'");
-        //    if (rows1 == null || rows1.Length <= 0) return;
-
-        //    foreach (DataRow row1 in rows1)
-        //    {
-        //        string patientGUID1 = row1["PatientGUID"].ToString();
-        //        DataRow[] rows2 = _dataSourceMember.Select(string.Format("PatientGUID='{0}'", patientGUID1));
-        //        if (rows2 == null || rows2.Length <= 0) continue;
-
-        //        rows2[0]["Checked"] = row1["Checked"];
-        //    }
-        //}
 
         private void OnSearchService()
         {
-            //UpdateCheckedServices();
-
             chkChecked.Checked = false;
             if (txtSearchService.Text.Trim() == string.Empty)
             {
@@ -618,7 +333,6 @@ namespace MM.Dialogs
                 dgService.DataSource = newDataSource;
                 return;
             }
-
 
             //Name
             results = (from p in _dataSourceService.AsEnumerable()
@@ -662,14 +376,21 @@ namespace MM.Dialogs
 
             //Members
             List<DataRow> checkedMembers = this.CheckedMembers;
-            if (checkedMembers != null && checkedMembers.Count >= 0 && _dataSourceMember != null)
+            DataTable dtMember = dgMembers.DataSource as DataTable;
+            if (dtMember == null) return;
+            if (checkedMembers != null && checkedMembers.Count > 0 && dgMembers.RowCount > 0)
             {
                 foreach (DataRow row in checkedMembers)
                 {
-                    _dataSourceMember.Rows.Remove(row);
+                    _addedMembers.Add(row["CompanyMemberGUID"].ToString());
+
+                    DataRow[] rows = dtMember.Select(string.Format("PatientGUID='{0}'", row["PatientGUID"].ToString()));
+                    if (rows != null && rows.Length > 0)
+                        dtMember.Rows.Remove(rows[0]);
                 }
 
-                OnSearchPatient();
+                _dictMembers.Clear();
+                _dtTemp.Rows.Clear();
             }
         }
         #endregion
@@ -678,14 +399,31 @@ namespace MM.Dialogs
         private void dgMembers_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.RowIndex < 0 || e.ColumnIndex != 0) return;
-            if (_dataSourceMember == null) return;
 
             DataGridViewCheckBoxCell cell = (DataGridViewCheckBoxCell)dgMembers.Rows[e.RowIndex].Cells[0];
             DataRow row = (dgMembers.SelectedRows[0].DataBoundItem as DataRowView).Row;
             string patientGUID = row["PatientGUID"].ToString();
             bool isChecked = Convert.ToBoolean(cell.EditingCellFormattedValue);
 
-            _dictMembers[patientGUID]["Checked"] = isChecked;
+            if (isChecked)
+            {
+                if (!_dictMembers.ContainsKey(patientGUID))
+                {
+                    _dtTemp.ImportRow(row);
+                    _dictMembers.Add(patientGUID, _dtTemp.Rows[_dtTemp.Rows.Count - 1]);
+                }
+            }
+            else
+            {
+                if (_dictMembers.ContainsKey(patientGUID))
+                {
+                    _dictMembers.Remove(patientGUID);
+
+                    DataRow[] rows = _dtTemp.Select(string.Format("PatientGUID='{0}'", patientGUID));
+                    if (rows != null && rows.Length > 0)
+                        _dtTemp.Rows.Remove(rows[0]);
+                }
+            }
         }
 
         private void dgService_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
@@ -743,12 +481,13 @@ namespace MM.Dialogs
 
         private void txtSearchPatient_TextChanged(object sender, EventArgs e)
         {
-            OnSearchPatient();
+            SearchAsThread();
         }
 
         private void dlgMembers_Load(object sender, EventArgs e)
         {
             DisplayAsThread();
+            if (_isContractMember) OnDisplayServiceList();
         }
 
         private void btnOK_Click(object sender, EventArgs e)
@@ -776,29 +515,6 @@ namespace MM.Dialogs
                 this.DialogResult = System.Windows.Forms.DialogResult.OK;
                 this.Close();
             }
-        }
-
-        private void dlgMembers_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            /*if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
-            {
-                List<DataRow> checkedRows = CheckedMembers;
-                if (checkedRows == null || checkedRows.Count <= 0)
-                {
-                    MsgBox.Show(this.Text, "Vui lòng đánh dấu ít nhất 1 bệnh nhân.", IconType.Information);
-                    e.Cancel = true;
-                    return;
-                }
-
-                if (_isContractMember)
-                {
-                    if (CheckedServices == null || CheckedServices.Count <= 0)
-                    {
-                        MsgBox.Show(this.Text, "Vui lòng đánh dấu ít nhất 1 dịch vụ.", IconType.Information);
-                        e.Cancel = true;
-                    }
-                }
-            }*/
         }
 
         private void txtSearchPatient_KeyDown(object sender, KeyEventArgs e)
@@ -843,9 +559,26 @@ namespace MM.Dialogs
             foreach (DataRow row in dt.Rows)
             {
                 row["Checked"] = chkChecked.Checked;
-
                 string patientGUID = row["PatientGUID"].ToString();
-                _dictMembers[patientGUID]["Checked"] = chkChecked.Checked;
+                if (chkChecked.Checked)
+                {
+                    if (!_dictMembers.ContainsKey(patientGUID))
+                    {
+                        _dtTemp.ImportRow(row);
+                        _dictMembers.Add(patientGUID, _dtTemp.Rows[_dtTemp.Rows.Count - 1]);
+                    }
+                }
+                else
+                {
+                    if (_dictMembers.ContainsKey(patientGUID))
+                    {
+                        _dictMembers.Remove(patientGUID);
+
+                        DataRow[] rows = _dtTemp.Select(string.Format("PatientGUID='{0}'", patientGUID));
+                        if (rows != null && rows.Length > 0)
+                            _dtTemp.Rows.Remove(rows[0]);
+                    }
+                }
             }
         }
 
@@ -858,7 +591,7 @@ namespace MM.Dialogs
                 row["Checked"] = chkServiceChecked.Checked;
 
                 string serviceGUID = row["ServiceGUID"].ToString();
-                _dictServices[serviceGUID]["Checked"] = chkChecked.Checked;
+                _dictServices[serviceGUID]["Checked"] = chkServiceChecked.Checked;
             }
         }
 
@@ -870,28 +603,29 @@ namespace MM.Dialogs
 
                 DataTable dt = dgMembers.DataSource as DataTable;
                 if (dt == null || dt.Rows.Count <= 0) return;
-                List<DataRow> results = null;
+                DataTable newDataSource = null;
 
                 if (_isAscending)
                 {
-                    results = (from p in dt.AsEnumerable()
-                               orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
-                               select p).ToList<DataRow>();
+                    newDataSource = (from p in dt.AsEnumerable()
+                                     orderby p.Field<string>("FirstName"), p.Field<string>("FullName")
+                                     select p).CopyToDataTable();
                 }
                 else
                 {
-                    results = (from p in dt.AsEnumerable()
-                               orderby p.Field<string>("FirstName") descending, p.Field<string>("FullName") descending
-                               select p).ToList<DataRow>();
+                    newDataSource = (from p in dt.AsEnumerable()
+                                     orderby p.Field<string>("FirstName") descending, p.Field<string>("FullName") descending
+                                     select p).CopyToDataTable();
                 }
 
-
-                DataTable newDataSource = dt.Clone();
-
-                foreach (DataRow row in results)
-                    newDataSource.ImportRow(row);
-
                 dgMembers.DataSource = newDataSource;
+
+                if (dt != null)
+                {
+                    dt.Rows.Clear();
+                    dt.Clear();
+                    dt = null;
+                }
             }
             else
                 _isAscending = false;
@@ -899,27 +633,32 @@ namespace MM.Dialogs
 
         private void chkMaBenhNhan_CheckedChanged(object sender, EventArgs e)
         {
-            OnSearchPatient();
+            SearchAsThread();
+        }
+
+        private void chkTheoSoDienThoai_CheckedChanged(object sender, EventArgs e)
+        {
+            SearchAsThread();
         }
 
         private void raAll_CheckedChanged(object sender, EventArgs e)
         {
-            if (raAll.Checked) OnSearchPatient();
+            if (raAll.Checked) SearchAsThread();
         }
 
         private void raNam_CheckedChanged(object sender, EventArgs e)
         {
-            if (raNam.Checked) OnSearchPatient();
+            if (raNam.Checked) SearchAsThread();
         }
 
         private void raNu_CheckedChanged(object sender, EventArgs e)
         {
-            if (raNu.Checked) OnSearchPatient();
+            if (raNu.Checked) SearchAsThread();
         }
 
         private void raNuCoGiaDinh_CheckedChanged(object sender, EventArgs e)
         {
-            if (raNuCoGiaDinh.Checked) OnSearchPatient();
+            if (raNuCoGiaDinh.Checked) SearchAsThread();
         }
         #endregion
 
@@ -928,10 +667,7 @@ namespace MM.Dialogs
         {
             try
             {
-                //Thread.Sleep(500);
                 OnDisplayPatientList();
-                if (_isContractMember)
-                    OnDisplayServiceList();
             }
             catch (Exception e)
             {
@@ -943,7 +679,22 @@ namespace MM.Dialogs
                 base.HideWaiting();
             }
         }
+
+        private void OnSearchProc(object state)
+        {
+            try
+            {
+                OnDisplayPatientList();
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+        }
         #endregion
+
+        
 
         
     }

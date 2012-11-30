@@ -121,91 +121,91 @@ namespace MM.Dialogs
 
         private bool CheckInfo()
         {
-            if (cboDocStaff_TaiMuiHong.Text.Trim() == string.Empty && chkTaiMuiHong.Checked)
+            if ((cboDocStaff_TaiMuiHong.SelectedValue == null || cboDocStaff_TaiMuiHong.Text.Trim() == string.Empty) && chkTaiMuiHong.Checked)
             {
                 MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ.", IconType.Information);
                 cboDocStaff_TaiMuiHong.Focus();
                 return false;
             }
 
-            if (cboDocStaff_RangHamMat.Text.Trim() == string.Empty && chkRangHamMat.Checked)
+            if ((cboDocStaff_RangHamMat.SelectedValue == null || cboDocStaff_RangHamMat.Text.Trim() == string.Empty) && chkRangHamMat.Checked)
             {
                 MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ.", IconType.Information);
                 cboDocStaff_RangHamMat.Focus();
                 return false;
             }
 
-            if (cboDocStaff_Mat.Text.Trim() == string.Empty && chkMat.Checked)
+            if ((cboDocStaff_Mat.SelectedValue == null || cboDocStaff_Mat.Text.Trim() == string.Empty) && chkMat.Checked)
             {
                 MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ.", IconType.Information);
                 cboDocStaff_Mat.Focus();
                 return false;
             }
 
-            if (cboDocStaff_HoHap.Text.Trim() == string.Empty && chkHoHap.Checked)
+            if ((cboDocStaff_HoHap.SelectedValue == null || cboDocStaff_HoHap.Text.Trim() == string.Empty) && chkHoHap.Checked)
             {
                 MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ.", IconType.Information);
                 cboDocStaff_HoHap.Focus();
                 return false;
             }
 
-            if (cboDocStaff_TimMach.Text.Trim() == string.Empty && chkTimMach.Checked)
+            if ((cboDocStaff_TimMach.SelectedValue == null || cboDocStaff_TimMach.Text.Trim() == string.Empty) && chkTimMach.Checked)
             {
                 MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ.", IconType.Information);
                 cboDocStaff_TimMach.Focus();
                 return false;
             }
 
-            if (cboDocStaff_TieuHoa.Text.Trim() == string.Empty && chkTieuHoa.Checked)
+            if ((cboDocStaff_TieuHoa.SelectedValue == null || cboDocStaff_TieuHoa.Text.Trim() == string.Empty) && chkTieuHoa.Checked)
             {
                 MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ.", IconType.Information);
                 cboDocStaff_TieuHoa.Focus();
                 return false;
             }
 
-            if (cboDocStaff_TietNieuSinhDuc.Text.Trim() == string.Empty && chkTietNieuSinhDuc.Checked)
+            if ((cboDocStaff_TietNieuSinhDuc.SelectedValue == null || cboDocStaff_TietNieuSinhDuc.Text.Trim() == string.Empty) && chkTietNieuSinhDuc.Checked)
             {
                 MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ.", IconType.Information);
                 cboDocStaff_TietNieuSinhDuc.Focus();
                 return false;
             }
 
-            if (cboDocStaff_CoXuongKhop.Text.Trim() == string.Empty && chkCoXuongKhop.Checked)
+            if ((cboDocStaff_CoXuongKhop.SelectedValue == null || cboDocStaff_CoXuongKhop.Text.Trim() == string.Empty) && chkCoXuongKhop.Checked)
             {
                 MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ.", IconType.Information);
                 cboDocStaff_CoXuongKhop.Focus();
                 return false;
             }
 
-            if (cboDocStaff_DaLieu.Text.Trim() == string.Empty && chkDaLieu.Checked)
+            if ((cboDocStaff_DaLieu.SelectedValue == null || cboDocStaff_DaLieu.Text.Trim() == string.Empty) && chkDaLieu.Checked)
             {
                 MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ.", IconType.Information);
                 cboDocStaff_DaLieu.Focus();
                 return false;
             }
 
-            if (cboDocStaff_ThanKinh.Text.Trim() == string.Empty && chkThanKinh.Checked)
+            if ((cboDocStaff_ThanKinh.SelectedValue == null || cboDocStaff_ThanKinh.Text.Trim() == string.Empty) && chkThanKinh.Checked)
             {
                 MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ.", IconType.Information);
                 cboDocStaff_ThanKinh.Focus();
                 return false;
             }
 
-            if (cboDocStaff_NoiTiet.Text.Trim() == string.Empty && chkNoiTiet.Checked)
+            if ((cboDocStaff_NoiTiet.SelectedValue == null || cboDocStaff_NoiTiet.Text.Trim() == string.Empty) && chkNoiTiet.Checked)
             {
                 MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ.", IconType.Information);
                 cboDocStaff_NoiTiet.Focus();
                 return false;
             }
 
-            if (cboDocStaff_CoQuanKhac.Text.Trim() == string.Empty && chkCacCoQuanKhac.Checked)
+            if ((cboDocStaff_CoQuanKhac.SelectedValue == null || cboDocStaff_CoQuanKhac.Text.Trim() == string.Empty) && chkCacCoQuanKhac.Checked)
             {
                 MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ.", IconType.Information);
                 cboDocStaff_CoQuanKhac.Focus();
                 return false;
             }
 
-            if (cboDocStaff_KhamPhuKhoa.Text.Trim() == string.Empty && chkKhamPhuKhoa.Checked)
+            if ((cboDocStaff_KhamPhuKhoa.SelectedValue == null || cboDocStaff_KhamPhuKhoa.Text.Trim() == string.Empty) && chkKhamPhuKhoa.Checked)
             {
                 MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ.", IconType.Information);
                 cboDocStaff_KhamPhuKhoa.Focus();

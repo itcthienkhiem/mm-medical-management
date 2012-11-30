@@ -14,44 +14,7 @@ namespace MM.Dialogs
 {
     public partial class dlgSelectPatient : dlgBase
     {
-        #region Members
-        //private DataTable _dataSource = null;
-        //private bool _isBenhNhanThanThuoc = false;
-        #endregion
-
         #region Constructor
-        //public dlgSelectPatient(DataTable dataSource, Dictionary<string, DataRow> dictPatient)
-        //{
-        //    InitializeComponent();
-        //    _dataSource = dataSource;
-        //    _uSearchPatient.DataSource = dataSource;
-        //    _uSearchPatient.DictPatient = dictPatient;
-        //    _uSearchPatient.OnOpenPatientEvent += new MM.Controls.OpenPatientHandler(_uSearchPatient_OnOpenPatient);
-        //}
-
-        //public dlgSelectPatient(DataTable dataSource)
-        //{
-        //    InitializeComponent();
-        //    _dataSource = dataSource;
-        //    _uSearchPatient.DataSource = dataSource;
-        //    _uSearchPatient.DictPatient = new Dictionary<string,DataRow>();
-        //    foreach (DataRow row in dataSource.Rows)
-        //    {
-        //        string patientGUID = row["PatientGUID"].ToString();
-        //        _uSearchPatient.DictPatient.Add(patientGUID, row);
-        //    }
-
-        //    _uSearchPatient.OnOpenPatientEvent += new MM.Controls.OpenPatientHandler(_uSearchPatient_OnOpenPatient);
-        //}
-
-        //public dlgSelectPatient()
-        //{
-        //    InitializeComponent();
-        //    //OnDisplayBenhNhan();
-        //    _uSearchPatient.IsBenhNhanThanThuoc = false;
-        //    _uSearchPatient.OnOpenPatientEvent += new MM.Controls.OpenPatientHandler(_uSearchPatient_OnOpenPatient);
-        //}
-
         public dlgSelectPatient(PatientSearchType patientSearchType)
         {
             InitializeComponent();
@@ -60,22 +23,10 @@ namespace MM.Dialogs
                 this.IsMulti = true;
             else
                 _uSearchPatient.OnOpenPatientEvent += new MM.Controls.OpenPatientHandler(_uSearchPatient_OnOpenPatient);
-            //OnDisplayBenhNhan();
         }
         #endregion
 
         #region Properties
-        //public DataTable DataSource
-        //{
-        //    get { return _dataSource; }
-        //    set 
-        //    {
-        //        _dataSource = value;
-        //        if (_dataSource == null)
-        //            OnDisplayBenhNhan();
-        //    }
-        //}
-
         public DataRow PatientRow
         {
             get { return _uSearchPatient.PatientRow; }
@@ -91,64 +42,6 @@ namespace MM.Dialogs
         {
             get { return _uSearchPatient.CheckedPatientRows; }
         }
-        #endregion
-
-        #region UI Command
-        //private void OnDisplayBenhNhan()
-        //{
-        //    Cursor.Current = Cursors.WaitCursor;
-            
-        //    if (!_isBenhNhanThanThuoc)
-        //    {
-        //        Result result = PatientBus.GetPatientList();
-
-        //        if (result.IsOK)
-        //        {
-        //            _dataSource = result.QueryResult as DataTable;
-        //            _uSearchPatient.DataSource = _dataSource;
-
-        //            if (IsMulti)
-        //            {
-        //                _uSearchPatient.DictPatient = new Dictionary<string, DataRow>();
-        //                foreach (DataRow row in _dataSource.Rows)
-        //                {
-        //                    string patientGUID = row["PatientGUID"].ToString();
-        //                    _uSearchPatient.DictPatient.Add(patientGUID, row);
-        //                }
-        //            }
-        //        }
-        //        else
-        //        {
-        //            MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.GetPatientList"), IconType.Error);
-        //            Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
-        //        }
-        //    }
-        //    else
-        //    {
-        //        Result result = PatientBus.GetBenhNhanKhongThanThuocList();
-
-        //        if (result.IsOK)
-        //        {
-        //            _dataSource = result.QueryResult as DataTable;
-        //            _uSearchPatient.DataSource = _dataSource;
-
-        //            if (IsMulti)
-        //            {
-        //                _uSearchPatient.DictPatient = new Dictionary<string, DataRow>();
-        //                foreach (DataRow row in _dataSource.Rows)
-        //                {
-        //                    string patientGUID = row["PatientGUID"].ToString();
-        //                    _uSearchPatient.DictPatient.Add(patientGUID, row);
-        //                }
-        //            }
-        //        }
-        //        else
-        //        {
-        //            MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.GetBenhNhanKhongThanThuocList"), IconType.Error);
-        //            Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetBenhNhanKhongThanThuocList"));
-        //        }
-        //    }
-        //}
         #endregion
 
         #region Window Event Handlers

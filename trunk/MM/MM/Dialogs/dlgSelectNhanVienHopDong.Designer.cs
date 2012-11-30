@@ -67,11 +67,10 @@
             // 
             // cboMaHopDong
             // 
-            this.cboMaHopDong.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboMaHopDong.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboMaHopDong.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboMaHopDong.DataSource = this.companyContractViewBindingSource;
             this.cboMaHopDong.DisplayMember = "ContractCode";
-            this.cboMaHopDong.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboMaHopDong.FormattingEnabled = true;
             this.cboMaHopDong.Location = new System.Drawing.Point(89, 10);
             this.cboMaHopDong.Name = "cboMaHopDong";
@@ -138,10 +137,14 @@
             // 
             // _uSearchPatient
             // 
-            //this._uSearchPatient.DataSource = null;
             this._uSearchPatient.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uSearchPatient.HopDongGUID = "";
+            this._uSearchPatient.IsMulti = false;
             this._uSearchPatient.Location = new System.Drawing.Point(0, 0);
             this._uSearchPatient.Name = "_uSearchPatient";
+            this._uSearchPatient.PatientGUID = "";
+            this._uSearchPatient.PatientSearchType = MM.Common.PatientSearchType.BenhNhan;
+            this._uSearchPatient.ServiceGUID = "";
             this._uSearchPatient.Size = new System.Drawing.Size(803, 500);
             this._uSearchPatient.TabIndex = 1;
             // 

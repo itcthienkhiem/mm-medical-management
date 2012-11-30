@@ -151,7 +151,7 @@
             // 
             // cboLoaiSieuAm
             // 
-            this.cboLoaiSieuAm.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboLoaiSieuAm.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboLoaiSieuAm.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboLoaiSieuAm.DataSource = this.loaiSieuAmBindingSource;
             this.cboLoaiSieuAm.DisplayMember = "TenSieuAm";
@@ -187,11 +187,10 @@
             // 
             // cboBSSieuAm
             // 
-            this.cboBSSieuAm.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboBSSieuAm.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboBSSieuAm.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboBSSieuAm.DataSource = this.docStaffViewBindingSource;
             this.cboBSSieuAm.DisplayMember = "Fullname";
-            this.cboBSSieuAm.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboBSSieuAm.FormattingEnabled = true;
             this.cboBSSieuAm.Location = new System.Drawing.Point(412, 32);
             this.cboBSSieuAm.Name = "cboBSSieuAm";
@@ -205,11 +204,10 @@
             // 
             // cboBSCD
             // 
-            this.cboBSCD.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboBSCD.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboBSCD.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboBSCD.DataSource = this.docStaffViewBindingSource;
             this.cboBSCD.DisplayMember = "Fullname";
-            this.cboBSCD.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboBSCD.FormattingEnabled = true;
             this.cboBSCD.Location = new System.Drawing.Point(94, 32);
             this.cboBSCD.Name = "cboBSCD";

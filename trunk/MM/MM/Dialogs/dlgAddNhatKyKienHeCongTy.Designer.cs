@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddNhatKyKienHeCongTy));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chkHighlight = new System.Windows.Forms.CheckBox();
             this.txtThangKham = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtSoNguoiKham = new System.Windows.Forms.TextBox();
@@ -50,7 +51,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.chkHighlight = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -80,6 +80,16 @@
             this.groupBox1.Size = new System.Drawing.Size(410, 299);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // chkHighlight
+            // 
+            this.chkHighlight.AutoSize = true;
+            this.chkHighlight.Location = new System.Drawing.Point(109, 274);
+            this.chkHighlight.Name = "chkHighlight";
+            this.chkHighlight.Size = new System.Drawing.Size(67, 17);
+            this.chkHighlight.TabIndex = 17;
+            this.chkHighlight.Text = "Highlight";
+            this.chkHighlight.UseVisualStyleBackColor = true;
             // 
             // txtThangKham
             // 
@@ -192,7 +202,7 @@
             // 
             // cboCongTyLienHe
             // 
-            this.cboCongTyLienHe.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboCongTyLienHe.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboCongTyLienHe.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboCongTyLienHe.FormattingEnabled = true;
             this.cboCongTyLienHe.Location = new System.Drawing.Point(109, 39);
@@ -260,16 +270,6 @@
             this.btnOK.TabIndex = 9;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
-            // 
-            // chkHighlight
-            // 
-            this.chkHighlight.AutoSize = true;
-            this.chkHighlight.Location = new System.Drawing.Point(109, 274);
-            this.chkHighlight.Name = "chkHighlight";
-            this.chkHighlight.Size = new System.Drawing.Size(67, 17);
-            this.chkHighlight.TabIndex = 17;
-            this.chkHighlight.Text = "Highlight";
-            this.chkHighlight.UseVisualStyleBackColor = true;
             // 
             // dlgAddNhatKyKienHeCongTy
             // 

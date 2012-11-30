@@ -208,11 +208,10 @@
             // 
             // cboBSCD
             // 
-            this.cboBSCD.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboBSCD.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboBSCD.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboBSCD.DataSource = this.docStaffViewBindingSource;
             this.cboBSCD.DisplayMember = "Fullname";
-            this.cboBSCD.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboBSCD.FormattingEnabled = true;
             this.cboBSCD.Location = new System.Drawing.Point(98, 30);
             this.cboBSCD.Name = "cboBSCD";
@@ -222,11 +221,10 @@
             // 
             // cboBSSoi
             // 
-            this.cboBSSoi.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboBSSoi.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboBSSoi.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboBSSoi.DataSource = this.docStaffViewBindingSource;
             this.cboBSSoi.DisplayMember = "Fullname";
-            this.cboBSSoi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboBSSoi.FormattingEnabled = true;
             this.cboBSSoi.Location = new System.Drawing.Point(399, 30);
             this.cboBSSoi.Name = "cboBSSoi";
@@ -364,7 +362,7 @@
             // 
             // cboLoaiNoiSoi
             // 
-            this.cboLoaiNoiSoi.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboLoaiNoiSoi.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
             this.cboLoaiNoiSoi.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboLoaiNoiSoi.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboLoaiNoiSoi.FormattingEnabled = true;

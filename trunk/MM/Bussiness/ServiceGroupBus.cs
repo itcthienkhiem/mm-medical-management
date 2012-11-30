@@ -83,6 +83,40 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetServiceListNotInGroup(string tenDichVu)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Empty;
+                if (tenDichVu.Trim() == string.Empty)
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM Services WITH(NOLOCK) WHERE Status={0} AND ServiceGUID NOT IN (SELECT ServiceGUID FROM Service_ServiceGroupView WITH(NOLOCK) WHERE Service_ServiceGroupStatus={0} AND ServiceStatus={0} AND ServiceGroupStatus={0}) ORDER BY Name",
+                        (byte)Status.Actived);
+                }
+                else
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM Services WITH(NOLOCK) WHERE Status={0} AND ServiceGUID NOT IN (SELECT ServiceGUID FROM Service_ServiceGroupView WITH(NOLOCK) WHERE Service_ServiceGroupStatus={0} AND ServiceStatus={0} AND ServiceGroupStatus={0}) AND Name LIKE N'%{1}%' ORDER BY Name",
+                        (byte)Status.Actived, tenDichVu);
+                }
+
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetServiceGroupCount()
         {
             Result result = null;
