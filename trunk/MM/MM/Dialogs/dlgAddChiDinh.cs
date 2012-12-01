@@ -25,7 +25,6 @@ namespace MM.Dialogs
         private ChiDinh _chiDinh = new ChiDinh();
         private DataRow _patientRow = null;
         private string _name = string.Empty;
-        private Object _thisLock = new Object();
         private Dictionary<string, DataRow> _dictService = new Dictionary<string, DataRow>();
         #endregion
 
@@ -148,7 +147,7 @@ namespace MM.Dialogs
             }
         }
 
-        private void SearchAsThread()
+        public override void SearchAsThread()
         {
             try
             {
@@ -165,7 +164,7 @@ namespace MM.Dialogs
 
         private void OnDisplayServicesList()
         {
-            lock (_thisLock)
+            lock (ThisLock)
             {
                 Result result = ServicesBus.GetServicesList(_name);
 
@@ -381,7 +380,7 @@ namespace MM.Dialogs
         #region Window Event Handlers
         private void txtSearchService_TextChanged(object sender, EventArgs e)
         {
-            SearchAsThread();
+            StartTimer();
         }
 
         private void txtSearchService_KeyDown(object sender, KeyEventArgs e)
@@ -572,6 +571,8 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
 
         
 

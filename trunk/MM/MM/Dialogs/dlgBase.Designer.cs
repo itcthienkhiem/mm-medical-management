@@ -29,10 +29,27 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
+            this.timerSearch = new System.Windows.Forms.Timer(this.components);
+            this.SuspendLayout();
+            // 
+            // timerSearch
+            // 
+            this.timerSearch.Interval = 200;
+            this.timerSearch.Tick += new System.EventHandler(this.timerSearch_Tick);
+            // 
+            // dlgBase
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.ClientSize = new System.Drawing.Size(284, 262);
+            this.Name = "dlgBase";
             this.Text = "dlgBase";
+            this.ResumeLayout(false);
+
         }
 
         #endregion
+
+        private System.Windows.Forms.Timer timerSearch;
     }
 }

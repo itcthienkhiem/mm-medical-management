@@ -20,7 +20,6 @@ namespace MM.Controls
         private bool _isAscending = true;
         private string _name = string.Empty;
         private int _type = 0;
-        private Object _thisLock = new Object();
         #endregion
 
         #region Constructor
@@ -74,7 +73,7 @@ namespace MM.Controls
             }
         }
 
-        private void SearchAsThread()
+        public override void SearchAsThread()
         {
             try
             {
@@ -96,7 +95,7 @@ namespace MM.Controls
 
         private void OnDisplayDuplicatePatientList()
         {
-            lock (_thisLock)
+            lock (ThisLock)
             {
                 Result result = PatientBus.GetDuplicatePatientList(_name, _type);
                 if (result.IsOK)
@@ -225,7 +224,7 @@ namespace MM.Controls
 
         private void txtSearchPatient_TextChanged(object sender, EventArgs e)
         {
-            SearchAsThread();
+            StartTimer();
         }
         #endregion
     }

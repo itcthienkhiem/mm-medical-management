@@ -23,6 +23,7 @@ namespace MM.Dialogs
         private dlgWaiting _dlgWaiting = null;
         public bool AllowShowServicePrice = true;
         public bool AllowLock = true;
+        public Object ThisLock = new Object();
         #endregion
 
         #region Constructor
@@ -76,6 +77,35 @@ namespace MM.Dialogs
             }
             
         }
+
+        public void StartTimer()
+        {
+            if (timerSearch.Enabled) return;
+            timerSearch.Enabled = true;
+            timerSearch.Start();
+        }
+
+        public void StopTimer()
+        {
+            timerSearch.Stop();
+            timerSearch.Enabled = false;
+        }
         #endregion
+
+        #region Virtual Methods
+        public virtual void SearchAsThread()
+        {
+
+        }
+        #endregion
+
+        #region Window Event Handlers
+        private void timerSearch_Tick(object sender, EventArgs e)
+        {
+            SearchAsThread();
+            StopTimer();
+        }
+        #endregion
+        
     }
 }

@@ -26,7 +26,6 @@ namespace MM.Controls
         private string _name = string.Empty;
         private int _type = 0;
         private DataTable _dtTemp = null;
-        private Object _thisLock = new Object();
         #endregion
 
         #region Constructor
@@ -89,7 +88,7 @@ namespace MM.Controls
             }
         }
 
-        private void SearchAsThread()
+        public override void SearchAsThread()
         {
             try
             {
@@ -111,7 +110,7 @@ namespace MM.Controls
 
         private void OnDisplayPatientList()
         {
-            lock (_thisLock)
+            lock (ThisLock)
             {
                 Result result = PatientBus.GetPatientList(_name, _type);
                 if (result.IsOK)
@@ -1084,7 +1083,7 @@ namespace MM.Controls
 
         private void txtSearchPatient_TextChanged(object sender, EventArgs e)
         {
-            SearchAsThread();
+            StartTimer();
         }
 
         private void txtSearchPatient_KeyDown(object sender, KeyEventArgs e)
@@ -1336,6 +1335,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
         
     }

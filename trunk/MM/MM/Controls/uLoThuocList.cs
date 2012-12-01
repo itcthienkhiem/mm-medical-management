@@ -25,7 +25,6 @@ namespace MM.Controls
         private DateTime _tuNgay = DateTime.Now;
         private DateTime _denNgay = DateTime.Now;
         private bool _flag = true;
-        private Object _thisLock = new Object();
         #endregion
 
         #region Constructor
@@ -88,7 +87,7 @@ namespace MM.Controls
             }
         }
 
-        private void SearchAsThread()
+        public override void SearchAsThread()
         {
             try
             {
@@ -108,7 +107,7 @@ namespace MM.Controls
 
         private void OnDisplayLoThuocList()
         {
-            lock (_thisLock)
+            lock (ThisLock)
             {
                 Result result = LoThuocBus.GetLoThuocList(_name, _tuNgay, _denNgay, _isTenThuoc);
                 if (result.IsOK)
@@ -347,7 +346,7 @@ namespace MM.Controls
 
         private void txtTenThuoc_TextChanged(object sender, EventArgs e)
         {
-            SearchAsThread();
+            StartTimer();
         }
         #endregion
 
