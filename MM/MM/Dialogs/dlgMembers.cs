@@ -30,7 +30,6 @@ namespace MM.Dialogs
         private string _name = string.Empty;
         private int _type = 0;
         private int _doiTuong = 0;
-        private Object _thisLock = new Object();
         #endregion
 
         #region Constructor
@@ -149,7 +148,7 @@ namespace MM.Dialogs
             }
         }
 
-        private void SearchAsThread()
+        public override void SearchAsThread()
         {
             try
             {
@@ -238,7 +237,7 @@ namespace MM.Dialogs
 
         private void OnDisplayPatientList()
         {
-            lock (_thisLock)
+            lock (ThisLock)
             {
                 Result result;
                 if (!_isContractMember)
@@ -481,7 +480,7 @@ namespace MM.Dialogs
 
         private void txtSearchPatient_TextChanged(object sender, EventArgs e)
         {
-            SearchAsThread();
+            StartTimer();
         }
 
         private void dlgMembers_Load(object sender, EventArgs e)

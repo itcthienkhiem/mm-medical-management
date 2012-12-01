@@ -49,6 +49,7 @@ namespace MM.Controls
         public bool AllowExportAll = true;
         public bool AllowView = true;
         public bool AllowExportInvoice = true;
+        public Object ThisLock = new Object();
         #endregion
 
         #region Constructor
@@ -124,6 +125,34 @@ namespace MM.Controls
                     _dlgWaiting = null;
                 }
             }
+        }
+
+        public void StartTimer()
+        {
+            if (timerSearch.Enabled) return;
+            timerSearch.Enabled = true;
+            timerSearch.Start();
+        }
+
+        public void StopTimer()
+        {
+            timerSearch.Stop();
+            timerSearch.Enabled = false;
+        }
+        #endregion
+
+        #region Virtual Methods
+        public virtual void SearchAsThread()
+        {
+
+        }
+        #endregion
+
+        #region Window Event Handlers
+        private void timerSearch_Tick(object sender, EventArgs e)
+        {
+            SearchAsThread();
+            StopTimer();
         }
         #endregion
     }

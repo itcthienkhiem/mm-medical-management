@@ -28,7 +28,14 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            this.timerSearch = new System.Windows.Forms.Timer(this.components);
             this.SuspendLayout();
+            // 
+            // timerSearch
+            // 
+            this.timerSearch.Interval = 200;
+            this.timerSearch.Tick += new System.EventHandler(this.timerSearch_Tick);
             // 
             // uBase
             // 
@@ -41,6 +48,8 @@
         }
 
         #endregion
+
+        private System.Windows.Forms.Timer timerSearch;
 
     }
 }

@@ -21,7 +21,6 @@ namespace MM.Controls
         private Dictionary<string, DataRow> _dictContract = new Dictionary<string,DataRow>();
         private string _name = string.Empty;
         private bool _isMaHopDong = false;
-        private Object _thisLock = new Object();
         #endregion
 
         #region Constructor
@@ -78,7 +77,7 @@ namespace MM.Controls
             }
         }
 
-        private void SearchAsThread()
+        public override void SearchAsThread()
         {
             try
             {
@@ -96,7 +95,7 @@ namespace MM.Controls
 
         private void OnDisplayContractList()
         {
-            lock (_thisLock)
+            lock (ThisLock)
             {
                 Result result = CompanyContractBus.GetContractList(_name, _isMaHopDong);
                 if (result.IsOK)
@@ -292,7 +291,7 @@ namespace MM.Controls
 
         private void txtHopDong_TextChanged(object sender, EventArgs e)
         {
-            SearchAsThread();
+            StartTimer();
         }
 
         private void chkMaHopDong_CheckedChanged(object sender, EventArgs e)

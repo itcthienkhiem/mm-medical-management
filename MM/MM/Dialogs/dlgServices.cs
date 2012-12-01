@@ -25,7 +25,6 @@ namespace MM.Dialogs
         private DataTable _dtTemp = null;
         private string _name = string.Empty;
         private Dictionary<string, DataRow> _dictServices = new Dictionary<string, DataRow>();
-        private Object _thisLock = new Object();
         #endregion
 
         #region Constructor
@@ -77,7 +76,7 @@ namespace MM.Dialogs
             }
         }
 
-        private void SearchAsThread()
+        public override void SearchAsThread()
         {
             try
             {
@@ -160,7 +159,7 @@ namespace MM.Dialogs
 
         private void OnDisplayServicesList()
         {
-            lock (_thisLock)
+            lock (ThisLock)
             {
                 Result result = null;
 
@@ -283,7 +282,7 @@ namespace MM.Dialogs
 
         private void txtSearchService_TextChanged(object sender, EventArgs e)
         {
-            SearchAsThread();
+            StartTimer();
         }
 
         private void txtSearchService_KeyDown(object sender, KeyEventArgs e)

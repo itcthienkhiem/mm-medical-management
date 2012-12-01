@@ -29,18 +29,6 @@ namespace MM.Dialogs
         #endregion
 
         #region Properties
-        //public object DataSource
-        //{
-        //    get { return _uSearchPatient.DataSource; }
-        //    set { _uSearchPatient.DataSource = value; }
-        //}
-
-        //public Dictionary<string, DataRow> DictPatient
-        //{
-        //    get { return _uSearchPatient.DictPatient; }
-        //    set { _uSearchPatient.DictPatient = value; }
-        //}
-
         public DataRow PatientRow
         {
             get { return _patientRow; }

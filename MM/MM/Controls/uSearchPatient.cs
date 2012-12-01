@@ -27,7 +27,6 @@ namespace MM.Controls
         private string _hopDongGUID = string.Empty;
         private string _serviceGUID = string.Empty;
         private string _patientGUID = string.Empty;
-        private Object _thisLock = new Object();
         #endregion
 
         #region Constructor
@@ -172,7 +171,7 @@ namespace MM.Controls
             }
         }
 
-        private void SearchAsThread()
+        public override void  SearchAsThread()
         {
             try
             {
@@ -195,7 +194,7 @@ namespace MM.Controls
 
         private void OnDisplayPatientList()
         {
-            lock (_thisLock)
+            lock (ThisLock)
             {
                 Result result = null;
                 if (_patientSearchType == Common.PatientSearchType.BenhNhan)
@@ -216,10 +215,10 @@ namespace MM.Controls
                         DataTable dt = result.QueryResult as DataTable;
                         if (_dtTemp == null) _dtTemp = dt.Clone();
                         if (_isMulti) UpdateChecked(dt);
+
                         dgPatient.DataSource = dt;
 
                         lbKetQuaTimDuoc.Text = string.Format("Kết quả tìm được: {0}", dt.Rows.Count);
-                        dgPatient.Refresh();
                     }));
                 }
                 else
@@ -276,7 +275,7 @@ namespace MM.Controls
 
         private void txtSearchPatient_TextChanged(object sender, EventArgs e)
         {
-            SearchAsThread();
+            StartTimer();
         }
 
         private void dgPatient_DoubleClick(object sender, EventArgs e)
@@ -418,6 +417,10 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
+
+        
 
         
     }

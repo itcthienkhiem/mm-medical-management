@@ -21,7 +21,6 @@ namespace MM.Dialogs
         private Dictionary<string, DataRow> _dictLoiKhuyen = new Dictionary<string, DataRow>();
         private string _name = string.Empty;
         private int _type = 0;
-        private Object _thisLock = new Object();
         #endregion
 
         #region Constructor
@@ -103,7 +102,7 @@ namespace MM.Dialogs
             }
         }
 
-        private void SearchAsThread()
+        public override void SearchAsThread()
         {
             try
             {
@@ -122,7 +121,7 @@ namespace MM.Dialogs
 
         private void OnDisplayTrieuChungList()
         {
-            lock (_thisLock)
+            lock (ThisLock)
             {
                 Result result = SymptomBus.GetSymptomList(_name, _type);
                 if (result.IsOK)
@@ -336,7 +335,7 @@ namespace MM.Dialogs
 
         private void txtTimTrieuChung_TextChanged(object sender, EventArgs e)
         {
-            SearchAsThread();
+            StartTimer();
         }
 
         private void chkTheoMaTrieuChung_CheckedChanged(object sender, EventArgs e)
@@ -392,6 +391,8 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
 
         
     }

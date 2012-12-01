@@ -20,7 +20,6 @@ namespace MM.Controls
         private DataTable _dtTemp = null;
         private Dictionary<string, DataRow> _dictGiaCapCuu = new Dictionary<string,DataRow>();
         private string _name = string.Empty;
-        private Object _thisLock = new Object();
         #endregion
 
         #region Constructor
@@ -75,7 +74,7 @@ namespace MM.Controls
             }
         }
 
-        private void SearchAsThread()
+        public override void SearchAsThread()
         {
             try
             {
@@ -92,7 +91,7 @@ namespace MM.Controls
 
         private void OnDisplayGiaThuocList()
         {
-            lock (_thisLock)
+            lock (ThisLock)
             {
                 Result result = GiaCapCuuBus.GetGiaCapCuuList(_name);
                 if (result.IsOK)
@@ -249,7 +248,7 @@ namespace MM.Controls
 
         private void txtTenThuoc_TextChanged(object sender, EventArgs e)
         {
-            SearchAsThread();
+            StartTimer();
         }
 
         private void chkChecked_CheckedChanged(object sender, EventArgs e)
