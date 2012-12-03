@@ -2453,6 +2453,7 @@ namespace MM.Exports
                     //if (result.QueryResult != null && result.QueryResult.ToString() != string.Empty)
                     //    tenCongTy = result.QueryResult.ToString();
 
+                    string thuTien = receipt.ChuaThuTien == true ? "Chưa thu" : "Đã thu";
                     string tenCongTy = string.Empty;
                     tenCongTy = Utility.GetMaCongTy(receipt.FileNum);
                     if (tenCongTy.Trim() == string.Empty || tenCongTy.ToLower() == "tt" || tenCongTy.ToLower() == "vgh")
@@ -2524,11 +2525,14 @@ namespace MM.Exports
                         range = workSheet.Cells[rowIndex, 7];
                         range.Value = bacSiChiDinh;
 
+                        range = workSheet.Cells[rowIndex, 8];
+                        range.Value = thuTien;
+
                         rowIndex++;
                     }
                 }
 
-                range = workSheet.Cells[string.Format("A3:H{0}", rowIndex)];
+                range = workSheet.Cells[string.Format("A3:I{0}", rowIndex)];
                 range.Borders.Color = Color.Black;
                 range.Borders.LineStyle = LineStyle.Continuous;
                 range.Borders.Weight = BorderWeight.Thin;
