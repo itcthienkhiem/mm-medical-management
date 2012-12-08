@@ -541,7 +541,7 @@ namespace MM.Dialogs
                 {
                     int count = 0;
                     Bitmap bmp = null;
-                    while (bmp == null && count <= 10)
+                    while (bmp == null && count <= 1000)
                     {
                         try
                         {
