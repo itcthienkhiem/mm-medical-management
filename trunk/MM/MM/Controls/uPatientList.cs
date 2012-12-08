@@ -404,6 +404,24 @@ namespace MM.Controls
             }
         }
 
+        private bool IsExistFileNum(string code)
+        {
+            Result result = PatientBus.CheckPatientExistFileNum(string.Empty, code);
+            if (result.Error.Code == MM.Common.ErrorCode.EXIST || result.Error.Code == MM.Common.ErrorCode.NOT_EXIST)
+            {
+                if (result.Error.Code == MM.Common.ErrorCode.EXIST)
+                    return true;
+                else
+                    return false;
+            }
+            else
+            {
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("PatientBus.CheckPatientExist"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.CheckPatientExist"));
+                return false;
+            }
+        }
+
         private bool CheckTemplate(IWorksheet ws, ref string message)
         {
             string s = string.Format("Sheet {0} không đúng định dạng nên không được nhập", ws.Name) + System.Environment.NewLine;
@@ -578,6 +596,9 @@ namespace MM.Controls
                                     if (ct.FullName == null || ct.FullName == string.Empty)
                                         ct.FullName = ct.SurName + " " + ct.FirstName;
                                     ct.Source = Path.GetFileName(_fileName);
+
+                                    if (!generateCode && IsExistFileNum(sCode)) continue;
+
                                     if (!IsPatientExist(ct.FullName, ct.DobStr, ct.Gender.Value, ct.Source))
                                     {
                                         ct.CreatedBy = Guid.Parse(Global.UserGUID);
@@ -585,13 +606,9 @@ namespace MM.Controls
                                         int iCount = GetPatientQuantity();
                                         iCount++;
                                         if (generateCode)
-                                        {
-                                            p.FileNum = Utility.GetCode(sCode, iCount, 5);
-                                        }
+                                            p.FileNum = Utility.GetCode("VHG", iCount, 5);
                                         else
-                                        {
                                             p.FileNum = sCode;
-                                        }
 
                                         Result result = PatientBus.InsertPatient(ct, p, ph);
                                         if (!result.IsOK)
