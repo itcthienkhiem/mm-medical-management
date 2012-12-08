@@ -479,7 +479,7 @@ namespace MM.Dialogs
             {
                 int count = 0;
                 Bitmap bmp = null;
-                while (bmp == null && count <= 1000)
+                while (bmp == null && count <= 10)
                 {
                     try
                     {
@@ -490,6 +490,7 @@ namespace MM.Dialogs
                         bmp = null;
                     }
 
+                    Thread.Sleep(1000);
                     count++;
                 }
 
