@@ -57,7 +57,7 @@ namespace MM.Dialogs
                 btnPrint.Visible = true;
                 btnClose2.Visible = true;
                 cboTenNguoiMuaHang.Enabled = false;
-                txtTenDonVi.ReadOnly = true;
+                cboTenDonVi.Enabled = false;
                 txtMaSoThue.ReadOnly = true;
                 txtAddress.ReadOnly = true;
                 txtSoTaiKhoan.ReadOnly = true;
@@ -107,9 +107,28 @@ namespace MM.Dialogs
             }
         }
 
+        private void DisplayTenDonVi()
+        {
+            Result result = ThongTinKhachHangBus.GetTenDonViList();
+            if (result.IsOK)
+            {
+                DataTable dt = result.QueryResult as DataTable;
+                foreach (DataRow row in dt.Rows)
+                {
+                    cboTenDonVi.Items.Add(row["TenDonVi"].ToString());
+                }
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("ThongTinKhachHangBus.GetTenDonViList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("ThongTinKhachHangBus.GetTenDonViList"));
+            }
+        }
+
         private void RefreshThongTinKhachHang(string tenKhachHang)
         {
-            txtTenDonVi.Text = string.Empty;
+            _flag = false;
+            cboTenDonVi.Text = string.Empty;
             txtMaSoThue.Text = string.Empty;
             txtAddress.Text = string.Empty;
             txtSoTaiKhoan.Text = string.Empty;
@@ -121,14 +140,38 @@ namespace MM.Dialogs
 
             if (results != null && results.Count > 0)
             {
-                txtTenDonVi.Text = results[0]["TenDonVi"] as string;
+                cboTenDonVi.Text = results[0]["TenDonVi"] as string;
                 txtMaSoThue.Text = results[0]["MaSoThue"] as string;
                 txtAddress.Text = results[0]["DiaChi"] as string;
                 txtSoTaiKhoan.Text = results[0]["SoTaiKhoan"] as string;
                 cboHinhThucThanhToan.SelectedIndex = Convert.ToByte(results[0]["HinhThucThanhToan"]);
             }
+            _flag = true;
         }
 
+        private void RefreshThongTinDonVi(string tenDonVi)
+        {
+            txtMaSoThue.Text = string.Empty;
+            txtAddress.Text = string.Empty;
+            txtSoTaiKhoan.Text = string.Empty;
+
+            Result result = ThongTinKhachHangBus.GetThongTinDonVi(tenDonVi);
+            if (result.IsOK)
+            {
+                ThongTinKhachHang ttkh = result.QueryResult as ThongTinKhachHang;
+                if (ttkh == null) return;
+
+                txtMaSoThue.Text = ttkh.MaSoThue;
+                txtAddress.Text = ttkh.DiaChi;
+                txtSoTaiKhoan.Text = ttkh.SoTaiKhoan;
+                cboHinhThucThanhToan.SelectedIndex = ttkh.HinhThucThanhToan.Value;
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("ThongTinKhachHangBus.GetThongTinDonVi"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("ThongTinKhachHangBus.GetThongTinDonVi"));
+            }
+        }
 
         private void GenerateCode()
         {
@@ -195,7 +238,7 @@ namespace MM.Dialogs
                 //string strYear = dt.Year.ToString();
                 //lbDate.Text = string.Format("Ngày {0} tháng {1} năm {2}", strDay, strMonth, strYear);
                 dtpkNgay.Value = Convert.ToDateTime(_drInvoice["NgayXuatHoaDon"]);
-                txtTenDonVi.Text = _drInvoice["TenDonVi"].ToString();
+                cboTenDonVi.Text = _drInvoice["TenDonVi"].ToString();
 
                 if (_drInvoice["MaSoThue"] != null && _drInvoice["MaSoThue"] != DBNull.Value)
                     txtMaSoThue.Text = _drInvoice["MaSoThue"].ToString();
@@ -417,7 +460,7 @@ namespace MM.Dialogs
                 return false;
             }
 
-            if (cboTenNguoiMuaHang.Text.Trim() == string.Empty && txtTenDonVi.Text.Trim() == string.Empty)
+            if (cboTenNguoiMuaHang.Text.Trim() == string.Empty && cboTenDonVi.Text.Trim() == string.Empty)
             {
                 MsgBox.Show(this.Text, "Vui lòng nhập tên người mua hàng hoặc tên đơn vị.", IconType.Information);
                 cboTenNguoiMuaHang.Focus();
@@ -471,7 +514,7 @@ namespace MM.Dialogs
                 invoice.NgayXuatHoaDon = dtpkNgay.Value;
                 invoice.TenNguoiMuaHang = cboTenNguoiMuaHang.Text;
                 invoice.DiaChi = txtAddress.Text;
-                invoice.TenDonVi = txtTenDonVi.Text;
+                invoice.TenDonVi = cboTenDonVi.Text;
                 invoice.MaSoThue = txtMaSoThue.Text;
                 invoice.SoTaiKhoan = txtSoTaiKhoan.Text;
                 invoice.HinhThucThanhToan = (byte)cboHinhThucThanhToan.SelectedIndex;
@@ -557,6 +600,7 @@ namespace MM.Dialogs
         {
             dtpkNgay.Value = DateTime.Now;
             DisplayThongTinKhachHang();
+            DisplayTenDonVi();
             DisplayInfo();
         }
 
@@ -787,11 +831,11 @@ namespace MM.Dialogs
             RefreshThongTinKhachHang(cboTenNguoiMuaHang.Text);   
         }
 
+        private void cboTenDonVi_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_isView || !_flag) return;
+            RefreshThongTinDonVi(cboTenDonVi.Text);
+        }
         #endregion
-
-        
-        
-
-        
     }
 }

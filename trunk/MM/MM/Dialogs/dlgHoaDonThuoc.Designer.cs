@@ -73,7 +73,6 @@
             this.txtSoTaiKhoan = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.lbAddress = new System.Windows.Forms.Label();
-            this.txtTenDonVi = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.lbPatientName = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
@@ -101,6 +100,7 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.cboTenDonVi = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -347,6 +347,7 @@
             // panel6
             // 
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel6.Controls.Add(this.cboTenDonVi);
             this.panel6.Controls.Add(this.cboTenNguoiMuaHang);
             this.panel6.Controls.Add(this.chkDaThuTien);
             this.panel6.Controls.Add(this.txtMaSoThue);
@@ -357,7 +358,6 @@
             this.panel6.Controls.Add(this.txtSoTaiKhoan);
             this.panel6.Controls.Add(this.label10);
             this.panel6.Controls.Add(this.lbAddress);
-            this.panel6.Controls.Add(this.txtTenDonVi);
             this.panel6.Controls.Add(this.label9);
             this.panel6.Controls.Add(this.lbPatientName);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
@@ -369,7 +369,7 @@
             // cboTenNguoiMuaHang
             // 
             this.cboTenNguoiMuaHang.FormattingEnabled = true;
-            this.cboTenNguoiMuaHang.Location = new System.Drawing.Point(143, 4);
+            this.cboTenNguoiMuaHang.Location = new System.Drawing.Point(143, 3);
             this.cboTenNguoiMuaHang.Name = "cboTenNguoiMuaHang";
             this.cboTenNguoiMuaHang.Size = new System.Drawing.Size(342, 21);
             this.cboTenNguoiMuaHang.TabIndex = 16;
@@ -463,13 +463,6 @@
             this.lbAddress.TabIndex = 18;
             this.lbAddress.Text = "Địa chỉ:";
             // 
-            // txtTenDonVi
-            // 
-            this.txtTenDonVi.Location = new System.Drawing.Point(143, 27);
-            this.txtTenDonVi.Name = "txtTenDonVi";
-            this.txtTenDonVi.Size = new System.Drawing.Size(342, 20);
-            this.txtTenDonVi.TabIndex = 17;
-            // 
             // label9
             // 
             this.label9.AutoSize = true;
@@ -484,7 +477,7 @@
             // 
             this.lbPatientName.AutoSize = true;
             this.lbPatientName.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lbPatientName.Location = new System.Drawing.Point(5, 6);
+            this.lbPatientName.Location = new System.Drawing.Point(5, 5);
             this.lbPatientName.Name = "lbPatientName";
             this.lbPatientName.Size = new System.Drawing.Size(135, 15);
             this.lbPatientName.TabIndex = 15;
@@ -788,6 +781,15 @@
             this.dataGridViewTextBoxColumn6.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewTextBoxColumn6.Width = 120;
             // 
+            // cboTenDonVi
+            // 
+            this.cboTenDonVi.FormattingEnabled = true;
+            this.cboTenDonVi.Location = new System.Drawing.Point(143, 26);
+            this.cboTenDonVi.Name = "cboTenDonVi";
+            this.cboTenDonVi.Size = new System.Drawing.Size(342, 21);
+            this.cboTenDonVi.TabIndex = 17;
+            this.cboTenDonVi.SelectedIndexChanged += new System.EventHandler(this.cboTenDonVi_SelectedIndexChanged);
+            // 
             // dlgHoaDonThuoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -854,7 +856,6 @@
         private System.Windows.Forms.TextBox txtSoTaiKhoan;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.Label lbAddress;
-        private System.Windows.Forms.TextBox txtTenDonVi;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.Label lbPatientName;
         private System.Windows.Forms.Panel panel7;
@@ -891,6 +892,7 @@
         private System.Windows.Forms.CheckBox chkDaThuTien;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.ComboBox cboTenNguoiMuaHang;
+        private System.Windows.Forms.ComboBox cboTenDonVi;
 
 
     }
