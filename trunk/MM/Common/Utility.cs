@@ -11,12 +11,29 @@ using System.Diagnostics;
 using Microsoft.SqlServer.Management.Smo;
 using System.ServiceProcess;
 using System.Threading;
+using System.Runtime.InteropServices;
 using SpreadsheetGear;
 
 namespace MM.Common
 {
     public class Utility
     {
+        [DllImport("user32.dll", CharSet = CharSet.Auto, ExactSpelling = true)]
+        public static extern IntPtr SetFocus(HandleRef hWnd);
+
+        [DllImport("user32.dll")]
+        public static extern bool SetForegroundWindow(IntPtr hWnd);
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool ShowWindow(IntPtr hWnd, uint nCmdShow);
+        private const int SW_MAXIMIZE = 3;
+        private const uint SW_RESTORE = 0x09;
+
+        [DllImport("user32.dll", CharSet = CharSet.Auto)]
+        [return: MarshalAs(UnmanagedType.Bool)]
+        private static extern bool IsIconic(IntPtr hWnd);
+
         #region WriteToTraceLog
         public static string fpTraceLog = "";
         public static string GenTraceLogFilename()
@@ -1329,6 +1346,14 @@ namespace MM.Common
                 Process[] processList = Process.GetProcessesByName(processName);
                 if (processList == null || processList.Length <= 0)
                     return false;
+                else
+                {
+                    IntPtr hwndMain = processList[0].MainWindowHandle;
+                    SetForegroundWindow(hwndMain);
+
+                    if (IsIconic(hwndMain))
+                        ShowWindow(hwndMain, SW_RESTORE);
+                }
 
                 return true;
             }
