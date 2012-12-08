@@ -475,6 +475,8 @@ namespace MM.Dialogs
 
         private void _watchingFolder_OnCreatedFileEvent(FileSystemEventArgs e)
         {
+            Thread.Sleep(1000);
+
             try
             {
                 int count = 0;
@@ -489,8 +491,7 @@ namespace MM.Dialogs
                     {
                         bmp = null;
                     }
-
-                    Thread.Sleep(1000);
+                    
                     count++;
                 }
 
