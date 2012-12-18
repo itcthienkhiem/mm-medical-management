@@ -168,6 +168,7 @@
             // 
             // panel10
             // 
+            this.panel10.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel10.Controls.Add(this.chkChecked);
             this.panel10.Controls.Add(this.dgService);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -224,7 +225,7 @@
             this.dgService.Name = "dgService";
             this.dgService.RowHeadersWidth = 30;
             this.dgService.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgService.Size = new System.Drawing.Size(435, 469);
+            this.dgService.Size = new System.Drawing.Size(431, 465);
             this.dgService.TabIndex = 16;
             this.dgService.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgService_CellMouseUp);
             // 
@@ -286,6 +287,7 @@
             // 
             // panel5
             // 
+            this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel5.Controls.Add(this.btnLuu);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel5.Location = new System.Drawing.Point(0, 526);
@@ -317,6 +319,7 @@
             // 
             // panel8
             // 
+            this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.panel8.Controls.Add(this.dgPatient);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel8.Location = new System.Drawing.Point(0, 57);
@@ -363,7 +366,7 @@
             this.dgPatient.Name = "dgPatient";
             this.dgPatient.RowHeadersWidth = 30;
             this.dgPatient.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgPatient.Size = new System.Drawing.Size(565, 507);
+            this.dgPatient.Size = new System.Drawing.Size(561, 503);
             this.dgPatient.TabIndex = 4;
             this.dgPatient.SelectionChanged += new System.EventHandler(this.dgPatient_SelectionChanged);
             // 
