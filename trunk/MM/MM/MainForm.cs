@@ -380,6 +380,8 @@ namespace MM
                 _uNguoiSuDungList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uToaCapCuuList))
                 _uToaCapCuuList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uKhamHopDong))
+                _uKhamHopDong.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -1463,6 +1465,20 @@ namespace MM
                         {
                             Global.AllowAddMatKhauHoSo = isAdd;
                         }
+                        else if (functionCode == Const.KhamHopDong)
+                        {
+                            companyToolStripMenuItem.Enabled = isLogin;
+                            khamHopDongToolStripMenuItem.Enabled = isView && isLogin;
+                            _uKhamHopDong.AllowAdd = isAdd;
+                            _uKhamHopDong.AllowEdit = isEdit;
+                            _uKhamHopDong.AllowDelete = isDelete;
+                            _uKhamHopDong.AllowPrint = isPrint;
+                            _uKhamHopDong.AllowExport = isExport;
+                            _uKhamHopDong.AllowImport = isImport;
+                            _uKhamHopDong.AllowLock = isLock;
+                            _uKhamHopDong.AllowExportAll = isExportAll;
+                            _uKhamHopDong.AllowConfirm = isConfirm;
+                        }
                     }
                 }
                 else
@@ -1683,6 +1699,7 @@ namespace MM
                 keToaCapCuuToolStripMenuItem.Enabled = isLogin;
                 cauHinhTVHomeToolStripMenuItem.Enabled = isLogin;
                 cauHinhPageSetupToolStripMenuItem.Enabled = isLogin;
+                khamHopDongToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -2101,7 +2118,18 @@ namespace MM
                 case "TVHomeConfig":
                     OnTVHomeConfig();
                     break;
+
+                case "KhamHopDong":
+                    OnKhamHopDong();
+                    break;
             }
+        }
+
+        private void OnKhamHopDong()
+        {
+            this.Text = string.Format("{0} - Kham hop dong", Application.ProductName);
+            ViewControl(_uKhamHopDong);
+            _uKhamHopDong.DisplayAsThread();
         }
 
         private void OnTVHomeConfig()
@@ -2949,61 +2977,62 @@ namespace MM
 
         private void ClearAllData()
         {
-                _uServicesList.ClearData();
-                _uDocStaffList.ClearData();
-                _uPatientList.ClearData();
-                _uSpecialityList.ClearData();
-                _uSymptomList.ClearData();
-                _uCompanyList.ClearData();
-                _uContractList.ClearData();
-                _uPermission.ClearData();
-                _uPrintLabel.ClearData();
-                _uReceiptList.ClearData();
-                _uInvoiceList.ClearData();
-                _uDuplicatePatient.ClearData();
-                _uDoanhThuNhanVien.ClearData();
-                _uDichVuHopDong.ClearData();
-                _uThuocList.ClearData();
-                _uNhomThuocList.ClearData();
-                _uLoThuocList.ClearData();
-                _uGiaThuocList.ClearData();
-                _uToaThuocList.ClearData();
-                _uBaoCaoThuocHetHan.ClearData();
-                _uBaoCaoThuocTonKho.ClearData();
-                _uPhieuThuThuocList.ClearData();
-                _uTrackingList.ClearData();
-                _uServiceGroupList.ClearData();
-                _uGiaVonDichVuList.ClearData();
-                _uHoaDonThuocList.ClearData();
-                _uHoaDonXuatTruoc.ClearData();
-                _uThongKeHoaDon.ClearData();
-                _uPhucHoiBenhNhan.ClearData();
-                _uPhieuThuHopDongList.ClearData();
-                _uHoaDonHopDongList.ClearData();
-                _uYKienKhachHangList.ClearData();
-                _uNhatKyLienHeCongTy.ClearData();
-                _uXetNghiemTay.ClearData();
-                _uKetQuaXetNghiemTongHop.UpdateGUI();
-                _uTraCuuThongTinKhachHang.ClearData();
-                _uDiaChiCongTyList.ClearData();
-                _uChiTietPhieuThuDichVu.ClearData();
-                _uBaoCaoThuocTonKhoTheoKhoangThoiGian.ClearData();
-                _uBenhNhanThanThuocList.ClearData();
-                _uTiemNguaList.ClearData();
-                _uCongTacNgoaiGioList.ClearData();
-                _uLichKham.ClearData();
-                _uKhoCapCuu.ClearData();
-                _uNhapKhoCapCuuList.ClearData();
-                _uXuatKhoCapCuuList.ClearData();
-                _uBaoCaoCapCuuHetHan.ClearData();
-                _uBaoCaoTonKhoCapCuu.ClearData();
-                _uThongBaoList.ClearData();
-                _uBenhNhanNgoaiGoiKhamList.ClearData();
-                _uGiaCapCuuList.ClearData();
-                _uPhieuThuCapCuuList.ClearData();
-                _uUserGroupList.ClearData();
-                _uNguoiSuDungList.ClearData();
-                _uToaCapCuuList.ClearData();
+            _uServicesList.ClearData();
+            _uDocStaffList.ClearData();
+            _uPatientList.ClearData();
+            _uSpecialityList.ClearData();
+            _uSymptomList.ClearData();
+            _uCompanyList.ClearData();
+            _uContractList.ClearData();
+            _uPermission.ClearData();
+            _uPrintLabel.ClearData();
+            _uReceiptList.ClearData();
+            _uInvoiceList.ClearData();
+            _uDuplicatePatient.ClearData();
+            _uDoanhThuNhanVien.ClearData();
+            _uDichVuHopDong.ClearData();
+            _uThuocList.ClearData();
+            _uNhomThuocList.ClearData();
+            _uLoThuocList.ClearData();
+            _uGiaThuocList.ClearData();
+            _uToaThuocList.ClearData();
+            _uBaoCaoThuocHetHan.ClearData();
+            _uBaoCaoThuocTonKho.ClearData();
+            _uPhieuThuThuocList.ClearData();
+            _uTrackingList.ClearData();
+            _uServiceGroupList.ClearData();
+            _uGiaVonDichVuList.ClearData();
+            _uHoaDonThuocList.ClearData();
+            _uHoaDonXuatTruoc.ClearData();
+            _uThongKeHoaDon.ClearData();
+            _uPhucHoiBenhNhan.ClearData();
+            _uPhieuThuHopDongList.ClearData();
+            _uHoaDonHopDongList.ClearData();
+            _uYKienKhachHangList.ClearData();
+            _uNhatKyLienHeCongTy.ClearData();
+            _uXetNghiemTay.ClearData();
+            _uKetQuaXetNghiemTongHop.UpdateGUI();
+            _uTraCuuThongTinKhachHang.ClearData();
+            _uDiaChiCongTyList.ClearData();
+            _uChiTietPhieuThuDichVu.ClearData();
+            _uBaoCaoThuocTonKhoTheoKhoangThoiGian.ClearData();
+            _uBenhNhanThanThuocList.ClearData();
+            _uTiemNguaList.ClearData();
+            _uCongTacNgoaiGioList.ClearData();
+            _uLichKham.ClearData();
+            _uKhoCapCuu.ClearData();
+            _uNhapKhoCapCuuList.ClearData();
+            _uXuatKhoCapCuuList.ClearData();
+            _uBaoCaoCapCuuHetHan.ClearData();
+            _uBaoCaoTonKhoCapCuu.ClearData();
+            _uThongBaoList.ClearData();
+            _uBenhNhanNgoaiGoiKhamList.ClearData();
+            _uGiaCapCuuList.ClearData();
+            _uPhieuThuCapCuuList.ClearData();
+            _uUserGroupList.ClearData();
+            _uNguoiSuDungList.ClearData();
+            _uToaCapCuuList.ClearData();
+            _uKhamHopDong.ClearData();
         }
         #endregion
 
