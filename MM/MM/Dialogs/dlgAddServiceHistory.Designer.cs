@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddServiceHistory));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtDescription = new System.Windows.Forms.TextBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
             this.raNormal = new System.Windows.Forms.RadioButton();
             this.raNegative = new System.Windows.Forms.RadioButton();
@@ -58,9 +60,7 @@
             this.cboService = new System.Windows.Forms.ComboBox();
             this.serviceBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.lbUnit = new System.Windows.Forms.Label();
-            this.txtDescription = new System.Windows.Forms.TextBox();
             this.numPrice = new System.Windows.Forms.NumericUpDown();
-            this.label4 = new System.Windows.Forms.Label();
             this.lbPrice = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
@@ -80,6 +80,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtDescription);
+            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.panel1);
             this.groupBox1.Controls.Add(this.raKhamTheoHopDong);
             this.groupBox1.Controls.Add(this.raKhamTuTuc);
@@ -97,18 +99,34 @@
             this.groupBox1.Controls.Add(this.cboDocStaff);
             this.groupBox1.Controls.Add(this.cboService);
             this.groupBox1.Controls.Add(this.lbUnit);
-            this.groupBox1.Controls.Add(this.txtDescription);
             this.groupBox1.Controls.Add(this.numPrice);
-            this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.lbPrice);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(6, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(532, 436);
+            this.groupBox1.Size = new System.Drawing.Size(532, 318);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin dịch vụ";
+            // 
+            // txtDescription
+            // 
+            this.txtDescription.Location = new System.Drawing.Point(135, 209);
+            this.txtDescription.MaxLength = 4000;
+            this.txtDescription.Multiline = true;
+            this.txtDescription.Name = "txtDescription";
+            this.txtDescription.Size = new System.Drawing.Size(269, 96);
+            this.txtDescription.TabIndex = 17;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(76, 212);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(53, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Nhận xét:";
             // 
             // panel1
             // 
@@ -116,10 +134,11 @@
             this.panel1.Controls.Add(this.raNegative);
             this.panel1.Controls.Add(this.gbNormal);
             this.panel1.Controls.Add(this.gbNegative);
-            this.panel1.Location = new System.Drawing.Point(117, 211);
+            this.panel1.Location = new System.Drawing.Point(117, 210);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(360, 108);
             this.panel1.TabIndex = 13;
+            this.panel1.Visible = false;
             // 
             // raNormal
             // 
@@ -215,7 +234,7 @@
             // raKhamTheoHopDong
             // 
             this.raKhamTheoHopDong.AutoSize = true;
-            this.raKhamTheoHopDong.Location = new System.Drawing.Point(233, 69);
+            this.raKhamTheoHopDong.Location = new System.Drawing.Point(233, 70);
             this.raKhamTheoHopDong.Name = "raKhamTheoHopDong";
             this.raKhamTheoHopDong.Size = new System.Drawing.Size(125, 17);
             this.raKhamTheoHopDong.TabIndex = 4;
@@ -227,7 +246,7 @@
             // 
             this.raKhamTuTuc.AutoSize = true;
             this.raKhamTuTuc.Checked = true;
-            this.raKhamTuTuc.Location = new System.Drawing.Point(135, 69);
+            this.raKhamTuTuc.Location = new System.Drawing.Point(135, 70);
             this.raKhamTuTuc.Name = "raKhamTuTuc";
             this.raKhamTuTuc.Size = new System.Drawing.Size(82, 17);
             this.raKhamTuTuc.TabIndex = 3;
@@ -309,7 +328,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(209, 189);
+            this.label5.Location = new System.Drawing.Point(209, 188);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(21, 13);
             this.label5.TabIndex = 12;
@@ -318,7 +337,7 @@
             // numDiscount
             // 
             this.numDiscount.DecimalPlaces = 1;
-            this.numDiscount.Location = new System.Drawing.Point(135, 186);
+            this.numDiscount.Location = new System.Drawing.Point(135, 185);
             this.numDiscount.Name = "numDiscount";
             this.numDiscount.Size = new System.Drawing.Size(69, 20);
             this.numDiscount.TabIndex = 12;
@@ -327,7 +346,7 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(95, 189);
+            this.label3.Location = new System.Drawing.Point(95, 188);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(34, 13);
             this.label3.TabIndex = 10;
@@ -337,7 +356,7 @@
             // 
             this.dtpkActiveDate.CustomFormat = "dd/MM/yyyy";
             this.dtpkActiveDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkActiveDate.Location = new System.Drawing.Point(135, 44);
+            this.dtpkActiveDate.Location = new System.Drawing.Point(135, 45);
             this.dtpkActiveDate.Name = "dtpkActiveDate";
             this.dtpkActiveDate.Size = new System.Drawing.Size(122, 20);
             this.dtpkActiveDate.TabIndex = 2;
@@ -346,7 +365,7 @@
             // label6
             // 
             this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(53, 48);
+            this.label6.Location = new System.Drawing.Point(53, 49);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(76, 13);
             this.label6.TabIndex = 9;
@@ -386,20 +405,11 @@
             // lbUnit
             // 
             this.lbUnit.AutoSize = true;
-            this.lbUnit.Location = new System.Drawing.Point(260, 166);
+            this.lbUnit.Location = new System.Drawing.Point(260, 165);
             this.lbUnit.Name = "lbUnit";
             this.lbUnit.Size = new System.Drawing.Size(36, 13);
             this.lbUnit.TabIndex = 8;
             this.lbUnit.Text = "(VNĐ)";
-            // 
-            // txtDescription
-            // 
-            this.txtDescription.Location = new System.Drawing.Point(135, 326);
-            this.txtDescription.MaxLength = 4000;
-            this.txtDescription.Multiline = true;
-            this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(269, 96);
-            this.txtDescription.TabIndex = 17;
             // 
             // numPrice
             // 
@@ -408,7 +418,7 @@
             0,
             0,
             0});
-            this.numPrice.Location = new System.Drawing.Point(135, 163);
+            this.numPrice.Location = new System.Drawing.Point(135, 162);
             this.numPrice.Maximum = new decimal(new int[] {
             999999999,
             0,
@@ -424,19 +434,10 @@
             0,
             0});
             // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(76, 329);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(53, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Nhận xét:";
-            // 
             // lbPrice
             // 
             this.lbPrice.AutoSize = true;
-            this.lbPrice.Location = new System.Drawing.Point(103, 166);
+            this.lbPrice.Location = new System.Drawing.Point(103, 165);
             this.lbPrice.Name = "lbPrice";
             this.lbPrice.Size = new System.Drawing.Size(26, 13);
             this.lbPrice.TabIndex = 2;
@@ -469,7 +470,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(274, 448);
+            this.btnCancel.Location = new System.Drawing.Point(274, 330);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 11;
@@ -481,7 +482,7 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(195, 448);
+            this.btnOK.Location = new System.Drawing.Point(195, 330);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 10;
@@ -493,7 +494,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(545, 478);
+            this.ClientSize = new System.Drawing.Size(545, 362);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
