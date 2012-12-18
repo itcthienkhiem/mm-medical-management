@@ -42,7 +42,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT * FROM UserGroup_PermissionView WITH(NOLOCK) WHERE UserGroupGUID = '{0}' ORDER BY FunctionName", userGroupGUID);
+                string query = string.Format("SELECT * FROM UserGroup_PermissionView WITH(NOLOCK) WHERE UserGroupGUID = '{0}' AND FunctionCode <> 'InKetQuaKhamSucKhoeTongQuat' ORDER BY FunctionName", userGroupGUID);
                 result = ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -65,7 +65,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = "SELECT * FROM [Function] WITH(NOLOCK) ORDER BY FunctionName";
+                string query = "SELECT * FROM [Function] WITH(NOLOCK) WHERE FunctionCode <> 'InKetQuaKhamSucKhoeTongQuat' ORDER BY FunctionName";
                 result = ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)

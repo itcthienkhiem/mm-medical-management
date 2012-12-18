@@ -572,13 +572,13 @@
     <value>592, 17</value>
   </metadata>
   <data name="databaseConfigurationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 30</value>
+    <value>184, 22</value>
   </data>
   <data name="databaseConfigurationToolStripMenuItem.Text" xml:space="preserve">
     <value>Cấu hình CSDL</value>
   </data>
   <data name="toolStripSeparator50.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 6</value>
+    <value>181, 6</value>
   </data>
   <data name="cauHinhFTPToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -616,13 +616,13 @@
 </value>
   </data>
   <data name="cauHinhFTPToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 30</value>
+    <value>184, 22</value>
   </data>
   <data name="cauHinhFTPToolStripMenuItem.Text" xml:space="preserve">
     <value>Cấu hình FTP</value>
   </data>
   <data name="toolStripSeparator54.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 6</value>
+    <value>181, 6</value>
   </data>
   <data name="cauHinhPageSetupToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -654,13 +654,13 @@
 </value>
   </data>
   <data name="cauHinhPageSetupToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 30</value>
+    <value>184, 22</value>
   </data>
   <data name="cauHinhPageSetupToolStripMenuItem.Text" xml:space="preserve">
     <value>Cấu hình trang in</value>
   </data>
   <data name="toolStripSeparator68.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 6</value>
+    <value>181, 6</value>
   </data>
   <data name="cauHinhTVHomeToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -692,13 +692,13 @@
 </value>
   </data>
   <data name="cauHinhTVHomeToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 30</value>
+    <value>184, 22</value>
   </data>
   <data name="cauHinhTVHomeToolStripMenuItem.Text" xml:space="preserve">
     <value>Cấu hình TVHome</value>
   </data>
   <data name="toolStripSeparator7.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 6</value>
+    <value>181, 6</value>
   </data>
   <data name="nhomNguoiSuDungToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -731,7 +731,7 @@
 </value>
   </data>
   <data name="nhomNguoiSuDungToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 30</value>
+    <value>184, 22</value>
   </data>
   <data name="nhomNguoiSuDungToolStripMenuItem.Text" xml:space="preserve">
     <value>Nhóm người sử dụng</value>
@@ -770,7 +770,7 @@
 </value>
   </data>
   <data name="nguoiSuDungToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 30</value>
+    <value>184, 22</value>
   </data>
   <data name="nguoiSuDungToolStripMenuItem.Text" xml:space="preserve">
     <value>Người sử dụng</value>
@@ -779,7 +779,7 @@
     <value>False</value>
   </data>
   <data name="permissionToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 30</value>
+    <value>184, 22</value>
   </data>
   <data name="permissionToolStripMenuItem.Text" xml:space="preserve">
     <value>Phân quyền</value>
@@ -788,25 +788,25 @@
     <value>False</value>
   </data>
   <data name="changePasswordToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 30</value>
+    <value>184, 22</value>
   </data>
   <data name="changePasswordToolStripMenuItem.Text" xml:space="preserve">
     <value>Đổi mật khẩu</value>
   </data>
   <data name="toolStripSeparator4.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 6</value>
+    <value>181, 6</value>
   </data>
   <data name="loginToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 30</value>
+    <value>184, 22</value>
   </data>
   <data name="loginToolStripMenuItem.Text" xml:space="preserve">
     <value>Đăng nhập</value>
   </data>
   <data name="toolStripSeparator12.Size" type="System.Drawing.Size, System.Drawing">
-    <value>189, 6</value>
+    <value>181, 6</value>
   </data>
   <data name="exitToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>192, 30</value>
+    <value>184, 22</value>
   </data>
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>Thoát</value>
@@ -1060,6 +1060,50 @@
   </data>
   <data name="contractListToolStripMenuItem.Text" xml:space="preserve">
     <value>Danh mục hợp đồng</value>
+  </data>
+  <data name="toolStripSeparator69.Size" type="System.Drawing.Size, System.Drawing">
+    <value>177, 6</value>
+  </data>
+  <data name="khamHopDongToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="khamHopDongToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        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
+</value>
+  </data>
+  <data name="khamHopDongToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>180, 22</value>
+  </data>
+  <data name="khamHopDongToolStripMenuItem.Text" xml:space="preserve">
+    <value>Khám hợp đồng</value>
   </data>
   <data name="companyToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1373,8 +1417,14 @@
   <data name="inKetQuaKhamSucKhoeTongQuatToolStripMenuItem.Text" xml:space="preserve">
     <value>In kết quả khám sức khỏe tổng quát</value>
   </data>
+  <data name="inKetQuaKhamSucKhoeTongQuatToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="toolStripSeparator32.Size" type="System.Drawing.Size, System.Drawing">
     <value>257, 6</value>
+  </data>
+  <data name="toolStripSeparator32.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
   </data>
   <data name="dichVuChuaXuatPhieuThuToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -3670,6 +3720,33 @@
   <data name="_mainPanel.BackgroundImageLayout" type="System.Windows.Forms.ImageLayout, System.Windows.Forms">
     <value>Stretch</value>
   </data>
+  <data name="_uKhamHopDong.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uKhamHopDong.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uKhamHopDong.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1191, 186</value>
+  </data>
+  <data name="_uKhamHopDong.TabIndex" type="System.Int32, mscorlib">
+    <value>67</value>
+  </data>
+  <data name="_uKhamHopDong.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="&gt;&gt;_uKhamHopDong.Name" xml:space="preserve">
+    <value>_uKhamHopDong</value>
+  </data>
+  <data name="&gt;&gt;_uKhamHopDong.Type" xml:space="preserve">
+    <value>MM.Controls.uKhamHopDong, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uKhamHopDong.Parent" xml:space="preserve">
+    <value>_mainPanel</value>
+  </data>
+  <data name="&gt;&gt;_uKhamHopDong.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
   <data name="_uToaCapCuuList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
   </data>
@@ -3695,7 +3772,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uToaCapCuuList.ZOrder" xml:space="preserve">
-    <value>0</value>
+    <value>1</value>
   </data>
   <data name="_uPhieuThuCapCuuList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -3722,7 +3799,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uPhieuThuCapCuuList.ZOrder" xml:space="preserve">
-    <value>1</value>
+    <value>2</value>
   </data>
   <data name="_uGiaCapCuuList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -3749,7 +3826,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uGiaCapCuuList.ZOrder" xml:space="preserve">
-    <value>2</value>
+    <value>3</value>
   </data>
   <data name="_uBenhNhanNgoaiGoiKhamList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -3776,7 +3853,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uBenhNhanNgoaiGoiKhamList.ZOrder" xml:space="preserve">
-    <value>3</value>
+    <value>4</value>
   </data>
   <data name="_uThongBaoList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -3803,7 +3880,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uThongBaoList.ZOrder" xml:space="preserve">
-    <value>4</value>
+    <value>5</value>
   </data>
   <data name="_uBaoCaoTonKhoCapCuu.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -3830,7 +3907,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uBaoCaoTonKhoCapCuu.ZOrder" xml:space="preserve">
-    <value>5</value>
+    <value>6</value>
   </data>
   <data name="_uBaoCaoCapCuuHetHan.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -3857,7 +3934,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uBaoCaoCapCuuHetHan.ZOrder" xml:space="preserve">
-    <value>6</value>
+    <value>7</value>
   </data>
   <data name="_uXuatKhoCapCuuList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -3884,7 +3961,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uXuatKhoCapCuuList.ZOrder" xml:space="preserve">
-    <value>7</value>
+    <value>8</value>
   </data>
   <data name="_uNhapKhoCapCuuList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -3911,7 +3988,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uNhapKhoCapCuuList.ZOrder" xml:space="preserve">
-    <value>8</value>
+    <value>9</value>
   </data>
   <data name="_uKhoCapCuu.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -3938,7 +4015,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uKhoCapCuu.ZOrder" xml:space="preserve">
-    <value>9</value>
+    <value>10</value>
   </data>
   <data name="_uLichKham.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -3965,7 +4042,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uLichKham.ZOrder" xml:space="preserve">
-    <value>10</value>
+    <value>11</value>
   </data>
   <data name="_uCongTacNgoaiGioList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -3992,7 +4069,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uCongTacNgoaiGioList.ZOrder" xml:space="preserve">
-    <value>11</value>
+    <value>12</value>
   </data>
   <data name="_uTiemNguaList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4019,7 +4096,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uTiemNguaList.ZOrder" xml:space="preserve">
-    <value>12</value>
+    <value>13</value>
   </data>
   <data name="_uLoaiSieuAmList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4046,7 +4123,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uLoaiSieuAmList.ZOrder" xml:space="preserve">
-    <value>13</value>
+    <value>14</value>
   </data>
   <data name="_uXetNghiem.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4073,7 +4150,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uXetNghiem.ZOrder" xml:space="preserve">
-    <value>14</value>
+    <value>15</value>
   </data>
   <data name="_uBenhNhanThanThuocList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4100,7 +4177,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uBenhNhanThanThuocList.ZOrder" xml:space="preserve">
-    <value>15</value>
+    <value>16</value>
   </data>
   <data name="_uBaoCaoThuocTonKhoTheoKhoangThoiGian.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4127,7 +4204,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uBaoCaoThuocTonKhoTheoKhoangThoiGian.ZOrder" xml:space="preserve">
-    <value>16</value>
+    <value>17</value>
   </data>
   <data name="_uChiTietPhieuThuDichVu.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4154,7 +4231,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uChiTietPhieuThuDichVu.ZOrder" xml:space="preserve">
-    <value>17</value>
+    <value>18</value>
   </data>
   <data name="_uDiaChiCongTyList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4181,7 +4258,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uDiaChiCongTyList.ZOrder" xml:space="preserve">
-    <value>18</value>
+    <value>19</value>
   </data>
   <data name="_uTraCuuThongTinKhachHang.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4208,7 +4285,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uTraCuuThongTinKhachHang.ZOrder" xml:space="preserve">
-    <value>19</value>
+    <value>20</value>
   </data>
   <data name="_uBaoCaoSoLuongKham.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4235,7 +4312,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uBaoCaoSoLuongKham.ZOrder" xml:space="preserve">
-    <value>20</value>
+    <value>21</value>
   </data>
   <data name="_uDanhSachXetNghiem_CellDyn3200List.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4262,7 +4339,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uDanhSachXetNghiem_CellDyn3200List.ZOrder" xml:space="preserve">
-    <value>21</value>
+    <value>22</value>
   </data>
   <data name="_uDanhSachXetNghiemHitachi917List.AutoScroll" type="System.Boolean, mscorlib">
     <value>True</value>
@@ -4292,7 +4369,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uDanhSachXetNghiemHitachi917List.ZOrder" xml:space="preserve">
-    <value>22</value>
+    <value>23</value>
   </data>
   <data name="_uKetQuaXetNghiemTongHop.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4319,7 +4396,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uKetQuaXetNghiemTongHop.ZOrder" xml:space="preserve">
-    <value>23</value>
+    <value>24</value>
   </data>
   <data name="_uKetQuaXetNghiemTay.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4346,7 +4423,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uKetQuaXetNghiemTay.ZOrder" xml:space="preserve">
-    <value>24</value>
+    <value>25</value>
   </data>
   <data name="_uXetNghiemTay.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4373,7 +4450,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uXetNghiemTay.ZOrder" xml:space="preserve">
-    <value>25</value>
+    <value>26</value>
   </data>
   <data name="_uBaoCaoKhachHangMuaThuoc.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4400,7 +4477,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uBaoCaoKhachHangMuaThuoc.ZOrder" xml:space="preserve">
-    <value>26</value>
+    <value>27</value>
   </data>
   <data name="_uKetQuaXetNghiem_CellDyn3200.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4427,7 +4504,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uKetQuaXetNghiem_CellDyn3200.ZOrder" xml:space="preserve">
-    <value>27</value>
+    <value>28</value>
   </data>
   <data name="_uKetQuaXetNghiem_Hitachi917.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4454,7 +4531,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uKetQuaXetNghiem_Hitachi917.ZOrder" xml:space="preserve">
-    <value>28</value>
+    <value>29</value>
   </data>
   <data name="_uBookingList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4481,7 +4558,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uBookingList.ZOrder" xml:space="preserve">
-    <value>29</value>
+    <value>30</value>
   </data>
   <data name="_uNhatKyLienHeCongTy.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4508,7 +4585,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uNhatKyLienHeCongTy.ZOrder" xml:space="preserve">
-    <value>30</value>
+    <value>31</value>
   </data>
   <data name="_uYKienKhachHangList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4535,7 +4612,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uYKienKhachHangList.ZOrder" xml:space="preserve">
-    <value>31</value>
+    <value>32</value>
   </data>
   <data name="_uHoaDonHopDongList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4562,7 +4639,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uHoaDonHopDongList.ZOrder" xml:space="preserve">
-    <value>32</value>
+    <value>33</value>
   </data>
   <data name="_uPhieuThuHopDongList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4589,7 +4666,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uPhieuThuHopDongList.ZOrder" xml:space="preserve">
-    <value>33</value>
+    <value>34</value>
   </data>
   <data name="_uPhucHoiBenhNhan.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4616,7 +4693,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uPhucHoiBenhNhan.ZOrder" xml:space="preserve">
-    <value>34</value>
+    <value>35</value>
   </data>
   <data name="_uThongKeHoaDon.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4643,7 +4720,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uThongKeHoaDon.ZOrder" xml:space="preserve">
-    <value>35</value>
+    <value>36</value>
   </data>
   <data name="_uHoaDonXuatTruoc.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4670,7 +4747,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uHoaDonXuatTruoc.ZOrder" xml:space="preserve">
-    <value>36</value>
+    <value>37</value>
   </data>
   <data name="_uHoaDonThuocList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4697,7 +4774,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uHoaDonThuocList.ZOrder" xml:space="preserve">
-    <value>37</value>
+    <value>38</value>
   </data>
   <data name="_uBaoCaoDichVuChuaXuatPhieuThu.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4724,7 +4801,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uBaoCaoDichVuChuaXuatPhieuThu.ZOrder" xml:space="preserve">
-    <value>38</value>
+    <value>39</value>
   </data>
   <data name="_uDoanhThuTheoNgay.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4751,7 +4828,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uDoanhThuTheoNgay.ZOrder" xml:space="preserve">
-    <value>39</value>
+    <value>40</value>
   </data>
   <data name="_uGiaVonDichVuList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4778,7 +4855,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uGiaVonDichVuList.ZOrder" xml:space="preserve">
-    <value>40</value>
+    <value>41</value>
   </data>
   <data name="_uInKetQuaKhamSucKhoeTongQuat.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4805,7 +4882,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uInKetQuaKhamSucKhoeTongQuat.ZOrder" xml:space="preserve">
-    <value>41</value>
+    <value>42</value>
   </data>
   <data name="_uServiceGroupList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4832,7 +4909,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uServiceGroupList.ZOrder" xml:space="preserve">
-    <value>42</value>
+    <value>43</value>
   </data>
   <data name="_uTrackingList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4859,7 +4936,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uTrackingList.ZOrder" xml:space="preserve">
-    <value>43</value>
+    <value>44</value>
   </data>
   <data name="_uDichVuTuTuc.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4886,7 +4963,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uDichVuTuTuc.ZOrder" xml:space="preserve">
-    <value>44</value>
+    <value>45</value>
   </data>
   <data name="_uPhieuThuThuocList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4913,7 +4990,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uPhieuThuThuocList.ZOrder" xml:space="preserve">
-    <value>45</value>
+    <value>46</value>
   </data>
   <data name="_uBaoCaoThuocTonKho.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4940,7 +5017,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uBaoCaoThuocTonKho.ZOrder" xml:space="preserve">
-    <value>46</value>
+    <value>47</value>
   </data>
   <data name="_uBaoCaoThuocHetHan.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4967,7 +5044,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uBaoCaoThuocHetHan.ZOrder" xml:space="preserve">
-    <value>47</value>
+    <value>48</value>
   </data>
   <data name="_uToaThuocList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -4994,7 +5071,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uToaThuocList.ZOrder" xml:space="preserve">
-    <value>48</value>
+    <value>49</value>
   </data>
   <data name="_uGiaThuocList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -5021,7 +5098,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uGiaThuocList.ZOrder" xml:space="preserve">
-    <value>49</value>
+    <value>50</value>
   </data>
   <data name="_uLoThuocList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -5048,7 +5125,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uLoThuocList.ZOrder" xml:space="preserve">
-    <value>50</value>
+    <value>51</value>
   </data>
   <data name="_uNhomThuocList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -5075,7 +5152,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uNhomThuocList.ZOrder" xml:space="preserve">
-    <value>51</value>
+    <value>52</value>
   </data>
   <data name="_uThuocList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -5102,7 +5179,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uThuocList.ZOrder" xml:space="preserve">
-    <value>52</value>
+    <value>53</value>
   </data>
   <data name="_uDichVuHopDong.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -5129,7 +5206,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uDichVuHopDong.ZOrder" xml:space="preserve">
-    <value>53</value>
+    <value>54</value>
   </data>
   <data name="_uDoanhThuNhanVien.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -5156,7 +5233,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uDoanhThuNhanVien.ZOrder" xml:space="preserve">
-    <value>54</value>
+    <value>55</value>
   </data>
   <data name="_uInvoiceList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -5183,7 +5260,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uInvoiceList.ZOrder" xml:space="preserve">
-    <value>55</value>
+    <value>56</value>
   </data>
   <data name="_uReceiptList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -5210,7 +5287,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uReceiptList.ZOrder" xml:space="preserve">
-    <value>56</value>
+    <value>57</value>
   </data>
   <data name="_uPrintLabel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -5237,7 +5314,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uPrintLabel.ZOrder" xml:space="preserve">
-    <value>57</value>
+    <value>58</value>
   </data>
   <data name="_uPermission.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -5264,7 +5341,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uPermission.ZOrder" xml:space="preserve">
-    <value>58</value>
+    <value>59</value>
   </data>
   <data name="_uContractList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -5291,7 +5368,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uContractList.ZOrder" xml:space="preserve">
-    <value>59</value>
+    <value>60</value>
   </data>
   <data name="_uCompanyList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -5318,7 +5395,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uCompanyList.ZOrder" xml:space="preserve">
-    <value>60</value>
+    <value>61</value>
   </data>
   <data name="_uSymptomList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -5345,7 +5422,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uSymptomList.ZOrder" xml:space="preserve">
-    <value>61</value>
+    <value>62</value>
   </data>
   <data name="_uSpecialityList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -5372,7 +5449,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uSpecialityList.ZOrder" xml:space="preserve">
-    <value>62</value>
+    <value>63</value>
   </data>
   <data name="_uPatientHistory.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -5399,7 +5476,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uPatientHistory.ZOrder" xml:space="preserve">
-    <value>63</value>
+    <value>64</value>
   </data>
   <data name="_uPatientList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -5426,7 +5503,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uPatientList.ZOrder" xml:space="preserve">
-    <value>64</value>
+    <value>65</value>
   </data>
   <data name="_uDuplicatePatient.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -5453,7 +5530,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uDuplicatePatient.ZOrder" xml:space="preserve">
-    <value>65</value>
+    <value>66</value>
   </data>
   <data name="_uDocStaffList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -5480,7 +5557,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uDocStaffList.ZOrder" xml:space="preserve">
-    <value>66</value>
+    <value>67</value>
   </data>
   <data name="_uServicesList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -5507,7 +5584,7 @@
     <value>_mainPanel</value>
   </data>
   <data name="&gt;&gt;_uServicesList.ZOrder" xml:space="preserve">
-    <value>67</value>
+    <value>68</value>
   </data>
   <data name="_mainPanel.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Fill</value>
@@ -7694,6 +7771,18 @@
     <value>contractListToolStripMenuItem</value>
   </data>
   <data name="&gt;&gt;contractListToolStripMenuItem.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator69.Name" xml:space="preserve">
+    <value>toolStripSeparator69</value>
+  </data>
+  <data name="&gt;&gt;toolStripSeparator69.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripSeparator, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;khamHopDongToolStripMenuItem.Name" xml:space="preserve">
+    <value>khamHopDongToolStripMenuItem</value>
+  </data>
+  <data name="&gt;&gt;khamHopDongToolStripMenuItem.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripMenuItem, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;receiptToolStripMenuItem.Name" xml:space="preserve">

@@ -124,6 +124,8 @@
             this.companyListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
             this.contractListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator69 = new System.Windows.Forms.ToolStripSeparator();
+            this.khamHopDongToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.receiptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.receiptListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator24 = new System.Windows.Forms.ToolStripSeparator();
@@ -335,6 +337,7 @@
             this._uServicesList = new MM.Controls.uServicesList();
             this._timerCheckAlert = new System.Windows.Forms.Timer(this.components);
             this._timerPatient = new System.Windows.Forms.Timer(this.components);
+            this._uKhamHopDong = new MM.Controls.uKhamHopDong();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -977,7 +980,9 @@
             this.companyToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.companyListToolStripMenuItem,
             this.toolStripSeparator10,
-            this.contractListToolStripMenuItem});
+            this.contractListToolStripMenuItem,
+            this.toolStripSeparator69,
+            this.khamHopDongToolStripMenuItem});
             resources.ApplyResources(this.companyToolStripMenuItem, "companyToolStripMenuItem");
             this.companyToolStripMenuItem.Name = "companyToolStripMenuItem";
             // 
@@ -1001,6 +1006,18 @@
             this.contractListToolStripMenuItem.Name = "contractListToolStripMenuItem";
             this.contractListToolStripMenuItem.Tag = "Contract List";
             this.contractListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator69
+            // 
+            this.toolStripSeparator69.Name = "toolStripSeparator69";
+            resources.ApplyResources(this.toolStripSeparator69, "toolStripSeparator69");
+            // 
+            // khamHopDongToolStripMenuItem
+            // 
+            resources.ApplyResources(this.khamHopDongToolStripMenuItem, "khamHopDongToolStripMenuItem");
+            this.khamHopDongToolStripMenuItem.Name = "khamHopDongToolStripMenuItem";
+            this.khamHopDongToolStripMenuItem.Tag = "KhamHopDong";
+            this.khamHopDongToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // receiptToolStripMenuItem
             // 
@@ -2126,6 +2143,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uKhamHopDong);
             this._mainPanel.Controls.Add(this._uToaCapCuuList);
             this._mainPanel.Controls.Add(this._uPhieuThuCapCuuList);
             this._mainPanel.Controls.Add(this._uGiaCapCuuList);
@@ -2549,6 +2567,11 @@
             // 
             this._timerPatient.Interval = 5000;
             // 
+            // _uKhamHopDong
+            // 
+            resources.ApplyResources(this._uKhamHopDong, "_uKhamHopDong");
+            this._uKhamHopDong.Name = "_uKhamHopDong";
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -2886,6 +2909,9 @@
         private System.Windows.Forms.ToolStripMenuItem traCuuThongTinKhachHangToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator68;
         private System.Windows.Forms.ToolStripMenuItem cauHinhTVHomeToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator69;
+        private System.Windows.Forms.ToolStripMenuItem khamHopDongToolStripMenuItem;
+        private Controls.uKhamHopDong _uKhamHopDong;
 
     }
 }

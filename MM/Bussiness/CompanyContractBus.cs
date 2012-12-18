@@ -36,6 +36,29 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetNoCompletedContractList()
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM CompanyContractView WITH(NOLOCK) WHERE ContractStatus={0} AND CompanyStatus={0} AND ((Completed='False' AND BeginDate <= GetDate()) OR (Completed = 'True' AND GetDate() BETWEEN BeginDate AND EndDate)) ORDER BY BeginDate DESC", (byte)Status.Actived);
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetContractList(string name, bool isMaHopDong)
         {
             Result result = null;
@@ -112,6 +135,81 @@ namespace MM.Bussiness
             {
                 string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} ORDER BY FirstName, FullName",
                     contractGUID, (byte)Status.Actived);
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
+        public static Result GetContractMemberList(string contractGUID, string tenBenhNhan, int type, int doiTuong)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Empty;
+                if (tenBenhNhan.Trim() == string.Empty)
+                {
+                    if (doiTuong == 0) //Tất cả
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} ORDER BY FirstName, FullName",
+                                contractGUID, (byte)Status.Actived);
+                    }
+                    else if (doiTuong == 1)//Nam
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND GenderAsStr = N'Nam' ORDER BY FirstName, FullName",
+                                contractGUID, (byte)Status.Actived);
+                    }
+                    else if (doiTuong == 2)//Nữ độc thân
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND GenderAsStr = N'Nữ' AND (Tinh_Trang_Gia_Dinh IS NULL OR Tinh_Trang_Gia_Dinh <> N'Có gia đình') ORDER BY FirstName, FullName",
+                                contractGUID, (byte)Status.Actived);
+                    }
+                    else if (doiTuong == 3)//Nữ có gia đình
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND GenderAsStr = N'Nữ' AND Tinh_Trang_Gia_Dinh IS NOT NULL AND Tinh_Trang_Gia_Dinh = N'Có gia đình' ORDER BY FirstName, FullName",
+                                contractGUID, (byte)Status.Actived);
+                    }
+                }
+                else
+                {
+                    string fieldName = string.Empty;
+                    if (type == 0) fieldName = "FullName";
+                    else if (type == 1) fieldName = "FileNum";
+                    else fieldName = "Mobile";
+
+                    if (doiTuong == 0) //Tất cả
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND {2} LIKE N'%{3}%' ORDER BY FirstName, FullName",
+                                contractGUID, (byte)Status.Actived, fieldName, tenBenhNhan);
+                    }
+                    else if (doiTuong == 1)//Nam
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND {2} LIKE N'%{3}%' AND GenderAsStr = N'Nam' ORDER BY FirstName, FullName",
+                                contractGUID, (byte)Status.Actived, fieldName, tenBenhNhan);
+                    }
+                    else if (doiTuong == 2)//Nữ độc thân
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND {2} LIKE N'%{3}%' AND GenderAsStr = N'Nữ' AND (Tinh_Trang_Gia_Dinh IS NULL OR Tinh_Trang_Gia_Dinh <> N'Có gia đình') ORDER BY FirstName, FullName",
+                                contractGUID, (byte)Status.Actived, fieldName, tenBenhNhan);
+                    }
+                    else if (doiTuong == 3)//Nữ có gia đình
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND {2} LIKE N'%{3}%' AND GenderAsStr = N'Nữ' AND Tinh_Trang_Gia_Dinh IS NOT NULL AND Tinh_Trang_Gia_Dinh = N'Có gia đình' ORDER BY FirstName, FullName",
+                                contractGUID, (byte)Status.Actived, fieldName, tenBenhNhan);
+                    }
+                }
+
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
