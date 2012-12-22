@@ -45,7 +45,7 @@ namespace MM.Controls
             _textControl.Load(_reportTemplate, TXTextControl.StreamType.RichTextFormat);
             _textControl.Tables.GridLines = false;
 
-            string label = "Số lưu trữ: ";
+            string label = "Mã bệnh nhân: ";
             int index = _textControl.Find(label, 0, TXTextControl.FindOptions.NoMessageBox);
             if (index > -1)
             {
