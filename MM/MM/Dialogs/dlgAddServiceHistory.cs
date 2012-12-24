@@ -321,7 +321,8 @@ namespace MM.Dialogs
 
             string serviceHistoryGUID = _isNew ? string.Empty : _serviceHistory.ServiceHistoryGUID.ToString();
             string serviceGUID = cboService.SelectedValue.ToString();
-            Result result = ServiceHistoryBus.CheckDichVuExist(serviceHistoryGUID, serviceGUID);
+            DateTime ngayKham = dtpkActiveDate.Value;
+            Result result = ServiceHistoryBus.CheckDichVuExist(serviceHistoryGUID, serviceGUID, ngayKham);
             if (result.Error.Code == ErrorCode.EXIST || result.Error.Code == ErrorCode.NOT_EXIST)
             {
                 if (result.Error.Code == ErrorCode.EXIST)
