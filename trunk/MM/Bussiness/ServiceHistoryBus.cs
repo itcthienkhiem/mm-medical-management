@@ -129,6 +129,65 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result CheckDichVuExist(string serviceHistoryGUID, string serviceGUID)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                DateTime tuNgay = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+                DateTime denNgay = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 59, 59);
+
+                ServiceHistory srvHistory = null;
+                if (serviceHistoryGUID == string.Empty)
+                {
+                    srvHistory = (from s in db.ServiceHistories
+                                  where s.Status == (byte)Status.Actived &&
+                                  s.ActivedDate.Value >= tuNgay &&
+                                  s.ActivedDate.Value <= denNgay &&
+                                  s.ServiceGUID.Value.ToString() == serviceGUID &&
+                                  !s.IsExported
+                                  select s).FirstOrDefault();
+                }
+                else
+                {
+                    srvHistory = (from s in db.ServiceHistories
+                                  where s.Status == (byte)Status.Actived &&
+                                  s.ActivedDate.Value >= tuNgay &&
+                                  s.ActivedDate.Value <= denNgay &&
+                                  s.ServiceGUID.Value.ToString() == serviceGUID &&
+                                  !s.IsExported &&
+                                  s.ServiceHistoryGUID.ToString() != serviceHistoryGUID
+                                  select s).FirstOrDefault();
+                }
+
+                if (srvHistory == null) result.Error.Code = ErrorCode.NOT_EXIST;
+                else result.Error.Code = ErrorCode.EXIST;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
         public static Result DeleteServiceHistory(List<String> serviceHistoryKeys)
         {
             Result result = new Result();

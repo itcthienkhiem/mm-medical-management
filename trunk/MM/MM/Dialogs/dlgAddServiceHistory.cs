@@ -319,6 +319,23 @@ namespace MM.Dialogs
                 return false;
             }
 
+            string serviceHistoryGUID = _isNew ? string.Empty : _serviceHistory.ServiceHistoryGUID.ToString();
+            string serviceGUID = cboService.SelectedValue.ToString();
+            Result result = ServiceHistoryBus.CheckDichVuExist(serviceHistoryGUID, serviceGUID);
+            if (result.Error.Code == ErrorCode.EXIST || result.Error.Code == ErrorCode.NOT_EXIST)
+            {
+                if (result.Error.Code == ErrorCode.EXIST)
+                {
+                    MsgBox.Show(this.Text, "Dịch vụ này hôm nay đã có. Vui lòng chọn dịch vụ khác.", IconType.Information);
+                    cboService.Focus();
+                    return false;
+                }
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("ServiceHistoryBus.CheckDichVuExist"), IconType.Error);
+                return false;
+            }
             //if (cboDocStaff.SelectedValue == null || cboDocStaff.Text == string.Empty)
             //{
             //    string serverName = cboService.Text;
