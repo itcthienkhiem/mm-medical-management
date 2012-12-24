@@ -2429,6 +2429,7 @@ namespace MM
         {
             this.Text = string.Format("{0} - Y kien khach hang.", Application.ProductName);
             ViewControl(_uYKienKhachHangList);
+            _uYKienKhachHangList.DisplayBacSiPhuTrach();
             _uYKienKhachHangList.DisplayAsThread();
         }
 

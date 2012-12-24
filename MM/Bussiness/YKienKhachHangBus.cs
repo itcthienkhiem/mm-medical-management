@@ -59,8 +59,16 @@ namespace MM.Bussiness
                 }
                 else
                 {
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM YKienKhachHangView WITH(NOLOCK) WHERE Status={0} AND BacSiPhuTrach LIKE N'%{1}%' ORDER BY ContactDate DESC",
-                        (byte)Status.Actived, tenBenhNhan);
+                    if (tenBenhNhan.Trim() != string.Empty)
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM YKienKhachHangView WITH(NOLOCK) WHERE Status={0} AND BacSiPhuTrach LIKE N'%{1}%' ORDER BY ContactDate DESC",
+                            (byte)Status.Actived, tenBenhNhan);
+                    }
+                    else
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM YKienKhachHangView WITH(NOLOCK) WHERE Status={0} ORDER BY ContactDate DESC",
+                            (byte)Status.Actived);
+                    }
                 }
                 
                 return ExcuteQuery(query);
