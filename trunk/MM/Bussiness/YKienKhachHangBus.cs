@@ -35,7 +35,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetYKienKhachHangList(int type, DateTime fromDate, DateTime toDate, string tenBenhNhan, string tenNguoiTao)
+        public static Result GetYKienKhachHangList(int type, DateTime fromDate, DateTime toDate, string tenBenhNhan)
         {
             Result result = null;
 
@@ -52,10 +52,15 @@ namespace MM.Bussiness
                     query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM YKienKhachHangView WITH(NOLOCK) WHERE Status={0} AND TenKhachHang LIKE N'%{1}%' ORDER BY ContactDate DESC",
                         (byte)Status.Actived, tenBenhNhan);
                 }
-                else
+                else if (type == 2)
                 {
                     query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM YKienKhachHangView WITH(NOLOCK) WHERE Status={0} AND NguoiTao LIKE N'%{1}%' ORDER BY ContactDate DESC",
-                        (byte)Status.Actived, tenNguoiTao);
+                        (byte)Status.Actived, tenBenhNhan);
+                }
+                else
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM YKienKhachHangView WITH(NOLOCK) WHERE Status={0} AND BacSiPhuTrach LIKE N'%{1}%' ORDER BY ContactDate DESC",
+                        (byte)Status.Actived, tenBenhNhan);
                 }
                 
                 return ExcuteQuery(query);
