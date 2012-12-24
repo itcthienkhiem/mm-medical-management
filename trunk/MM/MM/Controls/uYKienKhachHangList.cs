@@ -22,6 +22,7 @@ namespace MM.Controls
         private DateTime _fromDate = DateTime.Now;
         private DateTime _toDate = DateTime.Now;
         private int _type = 0; //0: From date to date; 1: Tên bệnh nhân; 2: Tên người tạo
+        private string _docStaffGUID = string.Empty;
         #endregion
 
         #region Constructor
@@ -50,6 +51,47 @@ namespace MM.Controls
             }
         }
 
+        private void ClearBSPhuTrach()
+        {
+            DataTable dt = cboDocStaff.DataSource as DataTable;
+            if (dt != null)
+            {
+                dt.Rows.Clear();
+                dt.Clear();
+                dt = null;
+                //cboDocStaff.DataSource = null;
+            }
+        }
+
+        public void DisplayBacSiPhuTrach()
+        {
+            ClearBSPhuTrach();
+            //DocStaff
+            List<byte> staffTypes = new List<byte>();
+            staffTypes.Add((byte)StaffType.BacSi);
+            staffTypes.Add((byte)StaffType.BacSiSieuAm);
+            staffTypes.Add((byte)StaffType.BacSiNgoaiTongQuat);
+            staffTypes.Add((byte)StaffType.BacSiNoiTongQuat);
+            staffTypes.Add((byte)StaffType.BacSiPhuKhoa);
+            Result result = DocStaffBus.GetDocStaffList(staffTypes);
+            if (!result.IsOK)
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("DocStaffBus.GetDocStaffList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("DocStaffBus.GetDocStaffList"));
+                return;
+            }
+            else
+            {
+                DataTable dt = result.QueryResult as DataTable;
+                DataRow newRow = dt.NewRow();
+                newRow["DocStaffGUID"] = Guid.Empty.ToString();
+                newRow["FullName"] = string.Empty;
+                dt.Rows.InsertAt(newRow, 0);
+                cboDocStaff.DataSource = dt;
+                //cboDocStaff.DataSource = result.QueryResult;
+            }
+        }
+
         private void UpdateGUI()
         {
             btnAdd.Enabled = AllowAdd;
@@ -58,6 +100,8 @@ namespace MM.Controls
             btnPrint.Enabled = AllowPrint;
             btnPrintPreview.Enabled = AllowPrint;
             btnExportExcel.Enabled = AllowExport;
+            //ClearBSPhuTrach();
+            //DisplayBacSiPhuTrach();
         }
 
         public void DisplayAsThread()
@@ -100,7 +144,7 @@ namespace MM.Controls
                 else if (raBacSiPhuTrach.Checked)
                 {
                     _type = 3;
-                    _tenBenhNhan = txtBacSiPhuTrach.Text;
+                    _tenBenhNhan = cboDocStaff.Text;
                 }
 
 
@@ -389,7 +433,7 @@ namespace MM.Controls
 
         private void raBacSiPhuTrach_CheckedChanged(object sender, EventArgs e)
         {
-            txtBacSiPhuTrach.ReadOnly = !raBacSiPhuTrach.Checked;
+            cboDocStaff.Enabled = raBacSiPhuTrach.Checked;
         }
 
         private void btnView_Click(object sender, EventArgs e)
@@ -455,6 +499,30 @@ namespace MM.Controls
             //    }
             //}
         }
+
+        private void uYKienKhachHangList_Load(object sender, EventArgs e)
+        {
+            //DisplayBacSiPhuTrach();
+        }
+
+        private void cboDocStaff_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                DisplayAsThread();
+        }
+
+        private void txtTenBenhNhan_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                DisplayAsThread();
+        }
+
+        private void txtTenNguoiTao_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+                DisplayAsThread();
+        }
+
         #endregion
 
         #region Working Thread
@@ -477,6 +545,7 @@ namespace MM.Controls
         }
         #endregion
 
+        
         
     }
 }

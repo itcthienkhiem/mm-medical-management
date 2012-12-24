@@ -29,11 +29,14 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.cboDocStaff = new System.Windows.Forms.ComboBox();
+            this.docStaffViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.raBacSiPhuTrach = new System.Windows.Forms.RadioButton();
             this.txtTenNguoiTao = new System.Windows.Forms.TextBox();
             this.raTenNguoiTao = new System.Windows.Forms.RadioButton();
             this.btnView = new System.Windows.Forms.Button();
@@ -68,9 +71,8 @@
             this.NguoiCapNhat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.yKienKhachHangBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._printDialog = new System.Windows.Forms.PrintDialog();
-            this.txtBacSiPhuTrach = new System.Windows.Forms.TextBox();
-            this.raBacSiPhuTrach = new System.Windows.Forms.RadioButton();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgYKienKhachHang)).BeginInit();
@@ -79,7 +81,7 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.txtBacSiPhuTrach);
+            this.panel1.Controls.Add(this.cboDocStaff);
             this.panel1.Controls.Add(this.raBacSiPhuTrach);
             this.panel1.Controls.Add(this.txtTenNguoiTao);
             this.panel1.Controls.Add(this.raTenNguoiTao);
@@ -96,6 +98,36 @@
             this.panel1.Size = new System.Drawing.Size(1188, 106);
             this.panel1.TabIndex = 0;
             // 
+            // cboDocStaff
+            // 
+            this.cboDocStaff.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cboDocStaff.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboDocStaff.DataSource = this.docStaffViewBindingSource;
+            this.cboDocStaff.DisplayMember = "Fullname";
+            this.cboDocStaff.Enabled = false;
+            this.cboDocStaff.FormattingEnabled = true;
+            this.cboDocStaff.Location = new System.Drawing.Point(119, 78);
+            this.cboDocStaff.Name = "cboDocStaff";
+            this.cboDocStaff.Size = new System.Drawing.Size(277, 21);
+            this.cboDocStaff.TabIndex = 13;
+            this.cboDocStaff.ValueMember = "DocStaffGUID";
+            this.cboDocStaff.KeyUp += new System.Windows.Forms.KeyEventHandler(this.cboDocStaff_KeyUp);
+            // 
+            // docStaffViewBindingSource
+            // 
+            this.docStaffViewBindingSource.DataSource = typeof(MM.Databasae.DocStaffView);
+            // 
+            // raBacSiPhuTrach
+            // 
+            this.raBacSiPhuTrach.AutoSize = true;
+            this.raBacSiPhuTrach.Location = new System.Drawing.Point(11, 79);
+            this.raBacSiPhuTrach.Name = "raBacSiPhuTrach";
+            this.raBacSiPhuTrach.Size = new System.Drawing.Size(108, 17);
+            this.raBacSiPhuTrach.TabIndex = 9;
+            this.raBacSiPhuTrach.Text = "Bác sĩ phụ trách:";
+            this.raBacSiPhuTrach.UseVisualStyleBackColor = true;
+            this.raBacSiPhuTrach.CheckedChanged += new System.EventHandler(this.raBacSiPhuTrach_CheckedChanged);
+            // 
             // txtTenNguoiTao
             // 
             this.txtTenNguoiTao.Location = new System.Drawing.Point(119, 55);
@@ -103,6 +135,7 @@
             this.txtTenNguoiTao.ReadOnly = true;
             this.txtTenNguoiTao.Size = new System.Drawing.Size(277, 20);
             this.txtTenNguoiTao.TabIndex = 7;
+            this.txtTenNguoiTao.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtTenNguoiTao_KeyUp);
             // 
             // raTenNguoiTao
             // 
@@ -119,7 +152,7 @@
             // 
             this.btnView.Image = global::MM.Properties.Resources.views_icon;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(401, 76);
+            this.btnView.Location = new System.Drawing.Point(401, 77);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 23);
             this.btnView.TabIndex = 11;
@@ -134,6 +167,7 @@
             this.txtTenBenhNhan.ReadOnly = true;
             this.txtTenBenhNhan.Size = new System.Drawing.Size(277, 20);
             this.txtTenBenhNhan.TabIndex = 5;
+            this.txtTenBenhNhan.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtTenBenhNhan_KeyUp);
             // 
             // raTenBenhNhan
             // 
@@ -298,14 +332,14 @@
             this.dgYKienKhachHang.AllowUserToDeleteRows = false;
             this.dgYKienKhachHang.AllowUserToOrderColumns = true;
             this.dgYKienKhachHang.AutoGenerateColumns = false;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgYKienKhachHang.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgYKienKhachHang.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle5;
             this.dgYKienKhachHang.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgYKienKhachHang.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colChecked,
@@ -322,14 +356,14 @@
             this.NguoiKetLuan,
             this.NguoiCapNhat});
             this.dgYKienKhachHang.DataSource = this.yKienKhachHangBindingSource;
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgYKienKhachHang.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgYKienKhachHang.DefaultCellStyle = dataGridViewCellStyle8;
             this.dgYKienKhachHang.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgYKienKhachHang.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgYKienKhachHang.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -358,10 +392,10 @@
             // contactDateDataGridViewTextBoxColumn
             // 
             this.contactDateDataGridViewTextBoxColumn.DataPropertyName = "ContactDate";
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle10.Format = "dd/MM/yyyy HH:mm:ss";
-            dataGridViewCellStyle10.NullValue = null;
-            this.contactDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.Format = "dd/MM/yyyy HH:mm:ss";
+            dataGridViewCellStyle6.NullValue = null;
+            this.contactDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
             this.contactDateDataGridViewTextBoxColumn.HeaderText = "Ngày liên hệ";
             this.contactDateDataGridViewTextBoxColumn.Name = "contactDateDataGridViewTextBoxColumn";
             this.contactDateDataGridViewTextBoxColumn.ReadOnly = true;
@@ -425,8 +459,8 @@
             // DaXong
             // 
             this.DaXong.DataPropertyName = "DaXongStr";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.DaXong.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.DaXong.DefaultCellStyle = dataGridViewCellStyle7;
             this.DaXong.HeaderText = "Trạng thái";
             this.DaXong.Name = "DaXong";
             this.DaXong.ReadOnly = true;
@@ -470,25 +504,6 @@
             this._printDialog.ShowHelp = true;
             this._printDialog.UseEXDialog = true;
             // 
-            // txtBacSiPhuTrach
-            // 
-            this.txtBacSiPhuTrach.Location = new System.Drawing.Point(119, 78);
-            this.txtBacSiPhuTrach.Name = "txtBacSiPhuTrach";
-            this.txtBacSiPhuTrach.ReadOnly = true;
-            this.txtBacSiPhuTrach.Size = new System.Drawing.Size(277, 20);
-            this.txtBacSiPhuTrach.TabIndex = 10;
-            // 
-            // raBacSiPhuTrach
-            // 
-            this.raBacSiPhuTrach.AutoSize = true;
-            this.raBacSiPhuTrach.Location = new System.Drawing.Point(11, 79);
-            this.raBacSiPhuTrach.Name = "raBacSiPhuTrach";
-            this.raBacSiPhuTrach.Size = new System.Drawing.Size(108, 17);
-            this.raBacSiPhuTrach.TabIndex = 9;
-            this.raBacSiPhuTrach.Text = "Bác sĩ phụ trách:";
-            this.raBacSiPhuTrach.UseVisualStyleBackColor = true;
-            this.raBacSiPhuTrach.CheckedChanged += new System.EventHandler(this.raBacSiPhuTrach_CheckedChanged);
-            // 
             // uYKienKhachHangList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -498,8 +513,10 @@
             this.Controls.Add(this.panel1);
             this.Name = "uYKienKhachHangList";
             this.Size = new System.Drawing.Size(1188, 613);
+            this.Load += new System.EventHandler(this.uYKienKhachHangList_Load);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
@@ -546,7 +563,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn nguonDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn NguoiKetLuan;
         private System.Windows.Forms.DataGridViewTextBoxColumn NguoiCapNhat;
-        private System.Windows.Forms.TextBox txtBacSiPhuTrach;
         private System.Windows.Forms.RadioButton raBacSiPhuTrach;
+        private System.Windows.Forms.BindingSource docStaffViewBindingSource;
+        private System.Windows.Forms.ComboBox cboDocStaff;
     }
 }
