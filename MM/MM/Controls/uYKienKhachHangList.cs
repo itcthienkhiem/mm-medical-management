@@ -23,6 +23,7 @@ namespace MM.Controls
         private DateTime _toDate = DateTime.Now;
         private int _type = 0; //0: From date to date; 1: Tên bệnh nhân; 2: Tên người tạo
         private string _docStaffGUID = string.Empty;
+        private bool _isFillterDateTime = true;
         #endregion
 
         #region Constructor
@@ -30,7 +31,7 @@ namespace MM.Controls
         {
             InitializeComponent();
             dtpkDenNgay.Value = DateTime.Now;
-            dtpkTuNgay.Value = DateTime.Now.AddDays(-30);
+            dtpkTuNgay.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1, 0, 0, 0);
         }
         #endregion
 
@@ -125,13 +126,14 @@ namespace MM.Controls
                 //    return;
                 //}
 
-                if (raTuNgayToiNgay.Checked)
+                _isFillterDateTime = chkTuNgay.Checked;
+                if (chkTuNgay.Checked)
                 {
-                    _type = 0;
                     _fromDate = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
                     _toDate = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
                 }
-                else if (raTenBenhNhan.Checked)
+
+                if (raTenBenhNhan.Checked)
                 {
                     _type = 1;
                     _tenBenhNhan = txtTenBenhNhan.Text;
@@ -146,7 +148,6 @@ namespace MM.Controls
                     _type = 3;
                     _tenBenhNhan = cboDocStaff.Text;
                 }
-
 
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayYKienKhachHangListProc));
                 base.ShowWaiting();
@@ -164,7 +165,7 @@ namespace MM.Controls
 
         private void OnDisplayYKienKhachHangList()
         {
-            Result result = YKienKhachHangBus.GetYKienKhachHangList(_type, _fromDate, _toDate, _tenBenhNhan);
+            Result result = YKienKhachHangBus.GetYKienKhachHangList(_type, _fromDate, _toDate, _tenBenhNhan, _isFillterDateTime);
             if (result.IsOK)
             {
                 MethodInvoker method = delegate
@@ -415,12 +416,6 @@ namespace MM.Controls
             }
         }
 
-        private void raTuNgayToiNgay_CheckedChanged(object sender, EventArgs e)
-        {
-            dtpkTuNgay.Enabled = raTuNgayToiNgay.Checked;
-            dtpkDenNgay.Enabled = raTuNgayToiNgay.Checked;
-        }
-
         private void raTenBenhNhan_CheckedChanged(object sender, EventArgs e)
         {
             txtTenBenhNhan.ReadOnly = !raTenBenhNhan.Checked;
@@ -436,9 +431,15 @@ namespace MM.Controls
             cboDocStaff.Enabled = raBacSiPhuTrach.Checked;
         }
 
+        private void chkTuNgay_CheckedChanged(object sender, EventArgs e)
+        {
+            dtpkTuNgay.Enabled = chkTuNgay.Checked;
+            dtpkDenNgay.Enabled = chkTuNgay.Checked;
+        }
+
         private void btnView_Click(object sender, EventArgs e)
         {
-            if (raTuNgayToiNgay.Checked && dtpkTuNgay.Value > dtpkDenNgay.Value)
+            if (chkTuNgay.Checked && dtpkTuNgay.Value > dtpkDenNgay.Value)
             {
                 MsgBox.Show(Application.ProductName, "Vui lòng nhập từ ngày nhỏ hơn hoặc bằng đến ngày.", IconType.Information);
                 dtpkTuNgay.Focus();
@@ -544,6 +545,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
         
         
