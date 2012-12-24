@@ -22,7 +22,6 @@ namespace MM.Controls
         private DateTime _fromDate = DateTime.Now;
         private DateTime _toDate = DateTime.Now;
         private int _type = 0; //0: From date to date; 1: Tên bệnh nhân; 2: Tên người tạo
-        private string _tenNguoiTao = string.Empty;
         #endregion
 
         #region Constructor
@@ -82,14 +81,28 @@ namespace MM.Controls
                 //    return;
                 //}
 
-                if (raTuNgayToiNgay.Checked) _type = 0;
-                else if (raTenBenhNhan.Checked) _type = 1;
-                else _type = 2;
+                if (raTuNgayToiNgay.Checked)
+                {
+                    _type = 0;
+                    _fromDate = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
+                    _toDate = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
+                }
+                else if (raTenBenhNhan.Checked)
+                {
+                    _type = 1;
+                    _tenBenhNhan = txtTenBenhNhan.Text;
+                }
+                else if (raTenNguoiTao.Checked)
+                {
+                    _type = 2;
+                    _tenBenhNhan = txtTenNguoiTao.Text;
+                }
+                else if (raBacSiPhuTrach.Checked)
+                {
+                    _type = 3;
+                    _tenBenhNhan = txtBacSiPhuTrach.Text;
+                }
 
-                _fromDate = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
-                _toDate = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
-                _tenBenhNhan = txtTenBenhNhan.Text;
-                _tenNguoiTao = txtTenNguoiTao.Text;
 
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayYKienKhachHangListProc));
                 base.ShowWaiting();
@@ -107,7 +120,7 @@ namespace MM.Controls
 
         private void OnDisplayYKienKhachHangList()
         {
-            Result result = YKienKhachHangBus.GetYKienKhachHangList(_type, _fromDate, _toDate, _tenBenhNhan, _tenNguoiTao);
+            Result result = YKienKhachHangBus.GetYKienKhachHangList(_type, _fromDate, _toDate, _tenBenhNhan);
             if (result.IsOK)
             {
                 MethodInvoker method = delegate
@@ -374,6 +387,11 @@ namespace MM.Controls
             txtTenNguoiTao.ReadOnly = !raTenNguoiTao.Checked;
         }
 
+        private void raBacSiPhuTrach_CheckedChanged(object sender, EventArgs e)
+        {
+            txtBacSiPhuTrach.ReadOnly = !raBacSiPhuTrach.Checked;
+        }
+
         private void btnView_Click(object sender, EventArgs e)
         {
             if (raTuNgayToiNgay.Checked && dtpkTuNgay.Value > dtpkDenNgay.Value)
@@ -458,5 +476,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }
