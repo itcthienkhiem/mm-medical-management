@@ -129,7 +129,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result CheckDichVuExist(string serviceHistoryGUID, string serviceGUID)
+        public static Result CheckDichVuExist(string serviceHistoryGUID, string serviceGUID, DateTime ngayKham)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -137,8 +137,8 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-                DateTime tuNgay = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
-                DateTime denNgay = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 59, 59);
+                DateTime tuNgay = new DateTime(ngayKham.Year, ngayKham.Month, ngayKham.Day, 0, 0, 0);
+                DateTime denNgay = new DateTime(ngayKham.Year, ngayKham.Month, ngayKham.Day, 23, 59, 59);
 
                 ServiceHistory srvHistory = null;
                 if (serviceHistoryGUID == string.Empty)
