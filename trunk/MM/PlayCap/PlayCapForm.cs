@@ -75,6 +75,7 @@ namespace PlayCap
         #region Constructor
         public PlayCapForm()
         {
+            
             InitializeComponent();
             PlayCapFactory.PlayCapFact.OnCaptureEvent += new CaptureHandle(PlayCapFact_OnCaptureEvent);
         }
