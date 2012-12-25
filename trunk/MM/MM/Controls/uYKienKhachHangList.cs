@@ -19,11 +19,10 @@ namespace MM.Controls
     {
         #region Members
         private string _tenBenhNhan = string.Empty;
-        private DateTime _fromDate = DateTime.Now;
-        private DateTime _toDate = DateTime.Now;
+        private DateTime _fromDate = Global.MinDateTime;
+        private DateTime _toDate = Global.MaxDateTime;
         private int _type = 0; //0: From date to date; 1: Tên bệnh nhân; 2: Tên người tạo
         private string _docStaffGUID = string.Empty;
-        private bool _isFillterDateTime = true;
         #endregion
 
         #region Constructor
@@ -89,7 +88,6 @@ namespace MM.Controls
                 newRow["FullName"] = string.Empty;
                 dt.Rows.InsertAt(newRow, 0);
                 cboDocStaff.DataSource = dt;
-                //cboDocStaff.DataSource = result.QueryResult;
             }
         }
 
@@ -101,8 +99,6 @@ namespace MM.Controls
             btnPrint.Enabled = AllowPrint;
             btnPrintPreview.Enabled = AllowPrint;
             btnExportExcel.Enabled = AllowExport;
-            //ClearBSPhuTrach();
-            //DisplayBacSiPhuTrach();
         }
 
         public void DisplayAsThread()
@@ -126,12 +122,14 @@ namespace MM.Controls
                 //    return;
                 //}
 
-                _isFillterDateTime = chkTuNgay.Checked;
+                _fromDate = Global.MinDateTime;
+                _toDate = Global.MaxDateTime;
+
                 if (chkTuNgay.Checked)
-                {
                     _fromDate = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
+
+                if (chkDenNgay.Checked && chkTuNgay.Checked)
                     _toDate = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
-                }
 
                 if (raTenBenhNhan.Checked)
                 {
@@ -165,7 +163,7 @@ namespace MM.Controls
 
         private void OnDisplayYKienKhachHangList()
         {
-            Result result = YKienKhachHangBus.GetYKienKhachHangList(_type, _fromDate, _toDate, _tenBenhNhan, _isFillterDateTime);
+            Result result = YKienKhachHangBus.GetYKienKhachHangList(_type, _fromDate, _toDate, _tenBenhNhan);
             if (result.IsOK)
             {
                 MethodInvoker method = delegate
@@ -433,8 +431,23 @@ namespace MM.Controls
 
         private void chkTuNgay_CheckedChanged(object sender, EventArgs e)
         {
-            dtpkTuNgay.Enabled = chkTuNgay.Checked;
-            dtpkDenNgay.Enabled = chkTuNgay.Checked;
+            if (chkTuNgay.Checked)
+            {
+                dtpkTuNgay.Enabled = true;
+                chkDenNgay.Enabled = true;
+                dtpkDenNgay.Enabled = chkDenNgay.Checked;
+            }
+            else
+            {
+                dtpkTuNgay.Enabled = false;
+                dtpkDenNgay.Enabled = false;
+                chkDenNgay.Enabled = false;
+            }
+        }
+
+        private void chkDenNgay_CheckedChanged(object sender, EventArgs e)
+        {
+            dtpkDenNgay.Enabled = chkDenNgay.Checked;
         }
 
         private void btnView_Click(object sender, EventArgs e)
@@ -446,12 +459,12 @@ namespace MM.Controls
                 return;
             }
 
-            if (raTenBenhNhan.Checked && txtTenBenhNhan.Text.Trim() == string.Empty)
-            {
-                MsgBox.Show(Application.ProductName, "Vui lòng nhập tên khách hàng.", IconType.Information);
-                txtTenBenhNhan.Focus();
-                return;
-            }
+            //if (raTenBenhNhan.Checked && txtTenBenhNhan.Text.Trim() == string.Empty)
+            //{
+            //    MsgBox.Show(Application.ProductName, "Vui lòng nhập tên khách hàng.", IconType.Information);
+            //    txtTenBenhNhan.Focus();
+            //    return;
+            //}
 
             DisplayAsThread();
         }
@@ -546,6 +559,7 @@ namespace MM.Controls
         }
         #endregion
 
+        
         
 
         
