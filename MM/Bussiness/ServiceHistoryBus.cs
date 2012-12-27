@@ -129,7 +129,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result CheckDichVuExist(string serviceHistoryGUID, string serviceGUID, DateTime ngayKham)
+        public static Result CheckDichVuExist(string serviceHistoryGUID, string patientGUID, string serviceGUID, DateTime ngayKham)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -148,6 +148,7 @@ namespace MM.Bussiness
                                   s.ActivedDate.Value >= tuNgay &&
                                   s.ActivedDate.Value <= denNgay &&
                                   s.ServiceGUID.Value.ToString() == serviceGUID &&
+                                  s.PatientGUID.Value.ToString() == patientGUID &&
                                   !s.IsExported
                                   select s).FirstOrDefault();
                 }
@@ -158,6 +159,7 @@ namespace MM.Bussiness
                                   s.ActivedDate.Value >= tuNgay &&
                                   s.ActivedDate.Value <= denNgay &&
                                   s.ServiceGUID.Value.ToString() == serviceGUID &&
+                                  s.PatientGUID.Value.ToString() == patientGUID &&
                                   !s.IsExported &&
                                   s.ServiceHistoryGUID.ToString() != serviceHistoryGUID
                                   select s).FirstOrDefault();
