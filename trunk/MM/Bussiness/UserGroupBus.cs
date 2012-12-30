@@ -247,6 +247,7 @@ namespace MM.Bussiness
                             p.IsExportAll = Convert.ToBoolean(row["IsExportAll"]);
                             p.IsCreateReport = Convert.ToBoolean(row["IsCreateReport"]);
                             p.IsUpload = Convert.ToBoolean(row["IsUpload"]);
+                            p.IsSendSMS = Convert.ToBoolean(row["IsSendSMS"]);
                             p.CreatedDate = DateTime.Now;
                             p.CreatedBy = Guid.Parse(Global.UserGUID);
                             db.UserGroup_Permissions.InsertOnSubmit(p);
@@ -298,6 +299,7 @@ namespace MM.Bussiness
                                         p.IsExportAll = Convert.ToBoolean(row["IsExportAll"]);
                                         p.IsCreateReport = Convert.ToBoolean(row["IsCreateReport"]);
                                         p.IsUpload = Convert.ToBoolean(row["IsUpload"]);
+                                        p.IsSendSMS = Convert.ToBoolean(row["IsSendSMS"]);
                                         p.UpdatedDate = DateTime.Now;
                                         p.UpdatedBy = Guid.Parse(Global.UserGUID);
                                     }
@@ -320,6 +322,7 @@ namespace MM.Bussiness
                                     p.IsExportAll = Convert.ToBoolean(row["IsExportAll"]);
                                     p.IsCreateReport = Convert.ToBoolean(row["IsCreateReport"]);
                                     p.IsUpload = Convert.ToBoolean(row["IsUpload"]);
+                                    p.IsSendSMS = Convert.ToBoolean(row["IsSendSMS"]);
                                     p.CreatedDate = DateTime.Now;
                                     p.CreatedBy = Guid.Parse(Global.UserGUID);
                                     db.UserGroup_Permissions.InsertOnSubmit(p);

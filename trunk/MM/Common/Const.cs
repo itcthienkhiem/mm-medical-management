@@ -84,7 +84,6 @@ namespace MM.Common
         public static string TraCuuThongTinKhachHang = "TraCuuThongTinKhachHang";
         public static string DiaChiCongTy = "DiaChiCongTy";
         public static string ChiTietPhieuThuDichVu = "ChiTietPhieuThuDichVu";
-        //public static string BaoCaoThuocTonKhoTheoKhoangThoiGian = "BaoCaoThuocTonKhoTheoKhoangThoiGian";
         public static string CauHinTrangIn = "CauHinhTrangIn";
         public static string BenhNhanThanThuoc = "BenhNhanThanThuoc";
         public static string LoaiSieuAm = "LoaiSieuAm";
@@ -112,6 +111,8 @@ namespace MM.Common
         public static string TaoMatKhauHoSo = "TaoMatKhauHoSo";
         public static string TVHomeConfig = "TVHomeConfig";
         public static string KhamHopDong = "KhamHopDong";
+        public static string TinNhanMau = "TinNhanMau";
+        public static string GuiSMS = "GuiSMS";
 
         public static string CheckListTemplate = "Theo dõi thực hiện";
         public static string ChiTietPhieuThuDichVuTemplate = "Chi tiết phiếu thu dịch vụ";
