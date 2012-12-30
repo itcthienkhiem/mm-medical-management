@@ -382,6 +382,8 @@ namespace MM
                 _uToaCapCuuList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uKhamHopDong))
                 _uKhamHopDong.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uTinNhanMauList))
+                _uTinNhanMauList.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -503,6 +505,7 @@ namespace MM
                 Global.AllowTaoHoSo = false;
                 Global.AllowUploadHoSo = false;
                 Global.AllowAddMatKhauHoSo = false;
+                Global.AllowGuiSMS = false;
 
                 Result result = LogonBus.GetPermission2(Global.LogonGUID);
                 if (result.IsOK)
@@ -524,6 +527,7 @@ namespace MM
                         bool isExportAll = Convert.ToBoolean(row["IsExportAll"]);
                         bool isCreateReport = Convert.ToBoolean(row["IsCreateReport"]);
                         bool isUpload = Convert.ToBoolean(row["IsUpload"]);
+                        bool isSendSMS = Convert.ToBoolean(row["IsSendSMS"]);
 
                         if (functionCode == Const.DocStaff)
                         {
@@ -1479,6 +1483,24 @@ namespace MM
                             _uKhamHopDong.AllowExportAll = isExportAll;
                             _uKhamHopDong.AllowConfirm = isConfirm;
                         }
+                        else if (functionCode == Const.GuiSMS)
+                        {
+                            Global.AllowGuiSMS = isSendSMS;
+                        }
+                        else if (functionCode == Const.TinNhanMau)
+                        {
+                            sMSToolStripMenuItem.Enabled = isLogin;
+                            tinNhanMauToolStripMenuItem.Enabled = isView && isLogin;
+                            _uTinNhanMauList.AllowAdd = isAdd;
+                            _uTinNhanMauList.AllowEdit = isEdit;
+                            _uTinNhanMauList.AllowDelete = isDelete;
+                            _uTinNhanMauList.AllowPrint = isPrint;
+                            _uTinNhanMauList.AllowExport = isExport;
+                            _uTinNhanMauList.AllowImport = isImport;
+                            _uTinNhanMauList.AllowLock = isLock;
+                            _uTinNhanMauList.AllowExportAll = isExportAll;
+                            _uTinNhanMauList.AllowConfirm = isConfirm;
+                        }
                     }
                 }
                 else
@@ -1562,6 +1584,7 @@ namespace MM
                 Global.AllowTaoHoSo = true;
                 Global.AllowUploadHoSo = true;
                 Global.AllowAddMatKhauHoSo = true;
+                Global.AllowGuiSMS = true;
 
                 foreach (Control ctrl in this._mainPanel.Controls)
                 {   
@@ -1700,6 +1723,8 @@ namespace MM
                 cauHinhTVHomeToolStripMenuItem.Enabled = isLogin;
                 cauHinhPageSetupToolStripMenuItem.Enabled = isLogin;
                 khamHopDongToolStripMenuItem.Enabled = isLogin;
+                sMSToolStripMenuItem.Enabled = isLogin;
+                tinNhanMauToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -2122,7 +2147,18 @@ namespace MM
                 case "KhamHopDong":
                     OnKhamHopDong();
                     break;
+
+                case "TinNhanMau":
+                    OnTinNhanMau();
+                    break;
             }
+        }
+
+        private void OnTinNhanMau()
+        {
+            this.Text = string.Format("{0} - Tin nhan mau", Application.ProductName);
+            ViewControl(_uTinNhanMauList);
+            _uTinNhanMauList.DisplayAsThread();
         }
 
         private void OnKhamHopDong()
@@ -3034,6 +3070,7 @@ namespace MM
             _uNguoiSuDungList.ClearData();
             _uToaCapCuuList.ClearData();
             _uKhamHopDong.ClearData();
+            _uTinNhanMauList.ClearData();
         }
         #endregion
 

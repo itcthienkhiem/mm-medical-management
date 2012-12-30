@@ -57,6 +57,7 @@
             this.IsLock = new MM.Controls.DataGridViewDisableCheckBoxColumn();
             this.IsCreateReport = new MM.Controls.DataGridViewDisableCheckBoxColumn();
             this.IsUpload = new MM.Controls.DataGridViewDisableCheckBoxColumn();
+            this.IsSendSMS = new MM.Controls.DataGridViewDisableCheckBoxColumn();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPermission)).BeginInit();
@@ -70,7 +71,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(6, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(832, 54);
+            this.groupBox1.Size = new System.Drawing.Size(886, 54);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin nhóm người sử dụng";
@@ -96,7 +97,7 @@
             this.groupBox2.Controls.Add(this.dgPermission);
             this.groupBox2.Location = new System.Drawing.Point(6, 64);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(832, 471);
+            this.groupBox2.Size = new System.Drawing.Size(886, 471);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Phân quyền";
@@ -131,7 +132,8 @@
             this.IsConfirm,
             this.IsLock,
             this.IsCreateReport,
-            this.IsUpload});
+            this.IsUpload,
+            this.IsSendSMS});
             this.dgPermission.DataSource = this.userGroupPermissionViewBindingSource;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -150,7 +152,7 @@
             this.dgPermission.RowHeadersVisible = false;
             this.dgPermission.RowHeadersWidth = 30;
             this.dgPermission.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgPermission.Size = new System.Drawing.Size(811, 442);
+            this.dgPermission.Size = new System.Drawing.Size(868, 442);
             this.dgPermission.TabIndex = 4;
             this.dgPermission.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPermission_CellMouseDown);
             // 
@@ -163,7 +165,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(425, 541);
+            this.btnCancel.Location = new System.Drawing.Point(450, 541);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 15;
@@ -175,7 +177,7 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(346, 541);
+            this.btnOK.Location = new System.Drawing.Point(371, 541);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 14;
@@ -317,13 +319,20 @@
             this.IsUpload.Name = "IsUpload";
             this.IsUpload.Width = 80;
             // 
+            // IsSendSMS
+            // 
+            this.IsSendSMS.DataPropertyName = "IsSendSMS";
+            this.IsSendSMS.HeaderText = "Gửi SMS";
+            this.IsSendSMS.Name = "IsSendSMS";
+            this.IsSendSMS.Width = 60;
+            // 
             // dlgAddUserGroup
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(846, 573);
+            this.ClientSize = new System.Drawing.Size(897, 573);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupBox2);
@@ -375,5 +384,6 @@
         private Controls.DataGridViewDisableCheckBoxColumn IsLock;
         private Controls.DataGridViewDisableCheckBoxColumn IsCreateReport;
         private Controls.DataGridViewDisableCheckBoxColumn IsUpload;
+        private Controls.DataGridViewDisableCheckBoxColumn IsSendSMS;
     }
 }

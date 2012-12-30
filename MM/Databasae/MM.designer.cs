@@ -303,9 +303,6 @@ namespace MM.Databasae
     partial void InsertKetQuaCanLamSang(KetQuaCanLamSang instance);
     partial void UpdateKetQuaCanLamSang(KetQuaCanLamSang instance);
     partial void DeleteKetQuaCanLamSang(KetQuaCanLamSang instance);
-    partial void InsertUserGroup_Permission(UserGroup_Permission instance);
-    partial void UpdateUserGroup_Permission(UserGroup_Permission instance);
-    partial void DeleteUserGroup_Permission(UserGroup_Permission instance);
     partial void InsertChiTietToaCapCuu(ChiTietToaCapCuu instance);
     partial void UpdateChiTietToaCapCuu(ChiTietToaCapCuu instance);
     partial void DeleteChiTietToaCapCuu(ChiTietToaCapCuu instance);
@@ -315,10 +312,16 @@ namespace MM.Databasae
     partial void InsertPhieuThuCapCuu(PhieuThuCapCuu instance);
     partial void UpdatePhieuThuCapCuu(PhieuThuCapCuu instance);
     partial void DeletePhieuThuCapCuu(PhieuThuCapCuu instance);
+    partial void InsertUserGroup_Permission(UserGroup_Permission instance);
+    partial void UpdateUserGroup_Permission(UserGroup_Permission instance);
+    partial void DeleteUserGroup_Permission(UserGroup_Permission instance);
+    partial void InsertTinNhanMau(TinNhanMau instance);
+    partial void UpdateTinNhanMau(TinNhanMau instance);
+    partial void DeleteTinNhanMau(TinNhanMau instance);
     #endregion
 		
 		public MMDataContext() : 
-				base(global::MM.Databasae.Properties.Settings.Default.MMConnectionString2, mappingSource)
+				base(global::MM.Databasae.Properties.Settings.Default.MMConnectionString5, mappingSource)
 		{
 			OnCreated();
 		}
@@ -1555,22 +1558,6 @@ namespace MM.Databasae
 			}
 		}
 		
-		public System.Data.Linq.Table<UserGroup_Permission> UserGroup_Permissions
-		{
-			get
-			{
-				return this.GetTable<UserGroup_Permission>();
-			}
-		}
-		
-		public System.Data.Linq.Table<UserGroup_PermissionView> UserGroup_PermissionViews
-		{
-			get
-			{
-				return this.GetTable<UserGroup_PermissionView>();
-			}
-		}
-		
 		public System.Data.Linq.Table<ChiTietToaCapCuu> ChiTietToaCapCuus
 		{
 			get
@@ -1616,6 +1603,30 @@ namespace MM.Databasae
 			get
 			{
 				return this.GetTable<PhieuThuCapCuuView>();
+			}
+		}
+		
+		public System.Data.Linq.Table<UserGroup_Permission> UserGroup_Permissions
+		{
+			get
+			{
+				return this.GetTable<UserGroup_Permission>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TinNhanMau> TinNhanMaus
+		{
+			get
+			{
+				return this.GetTable<TinNhanMau>();
+			}
+		}
+		
+		public System.Data.Linq.Table<UserGroup_PermissionView> UserGroup_PermissionViews
+		{
+			get
+			{
+				return this.GetTable<UserGroup_PermissionView>();
 			}
 		}
 		
@@ -71843,1053 +71854,6 @@ namespace MM.Databasae
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserGroup_Permission")]
-	public partial class UserGroup_Permission : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _UserGroup_PermissionGUID;
-		
-		private System.Guid _UserGroupGUID;
-		
-		private System.Guid _FunctionGUID;
-		
-		private bool _IsView;
-		
-		private bool _IsAdd;
-		
-		private bool _IsEdit;
-		
-		private bool _IsDelete;
-		
-		private bool _IsPrint;
-		
-		private bool _IsImport;
-		
-		private bool _IsExport;
-		
-		private bool _IsConfirm;
-		
-		private bool _IsLock;
-		
-		private bool _IsExportAll;
-		
-		private bool _IsCreateReport;
-		
-		private bool _IsUpload;
-		
-		private System.Nullable<System.DateTime> _CreatedDate;
-		
-		private System.Nullable<System.Guid> _CreatedBy;
-		
-		private System.Nullable<System.DateTime> _UpdatedDate;
-		
-		private System.Nullable<System.Guid> _UpdatedBy;
-		
-		private System.Nullable<System.DateTime> _DeletedDate;
-		
-		private System.Nullable<System.Guid> _DeletedBy;
-		
-		private EntityRef<Function> _Function;
-		
-		private EntityRef<UserGroup> _UserGroup;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnUserGroup_PermissionGUIDChanging(System.Guid value);
-    partial void OnUserGroup_PermissionGUIDChanged();
-    partial void OnUserGroupGUIDChanging(System.Guid value);
-    partial void OnUserGroupGUIDChanged();
-    partial void OnFunctionGUIDChanging(System.Guid value);
-    partial void OnFunctionGUIDChanged();
-    partial void OnIsViewChanging(bool value);
-    partial void OnIsViewChanged();
-    partial void OnIsAddChanging(bool value);
-    partial void OnIsAddChanged();
-    partial void OnIsEditChanging(bool value);
-    partial void OnIsEditChanged();
-    partial void OnIsDeleteChanging(bool value);
-    partial void OnIsDeleteChanged();
-    partial void OnIsPrintChanging(bool value);
-    partial void OnIsPrintChanged();
-    partial void OnIsImportChanging(bool value);
-    partial void OnIsImportChanged();
-    partial void OnIsExportChanging(bool value);
-    partial void OnIsExportChanged();
-    partial void OnIsConfirmChanging(bool value);
-    partial void OnIsConfirmChanged();
-    partial void OnIsLockChanging(bool value);
-    partial void OnIsLockChanged();
-    partial void OnIsExportAllChanging(bool value);
-    partial void OnIsExportAllChanged();
-    partial void OnIsCreateReportChanging(bool value);
-    partial void OnIsCreateReportChanged();
-    partial void OnIsUploadChanging(bool value);
-    partial void OnIsUploadChanged();
-    partial void OnCreatedDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnCreatedDateChanged();
-    partial void OnCreatedByChanging(System.Nullable<System.Guid> value);
-    partial void OnCreatedByChanged();
-    partial void OnUpdatedDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnUpdatedDateChanged();
-    partial void OnUpdatedByChanging(System.Nullable<System.Guid> value);
-    partial void OnUpdatedByChanged();
-    partial void OnDeletedDateChanging(System.Nullable<System.DateTime> value);
-    partial void OnDeletedDateChanged();
-    partial void OnDeletedByChanging(System.Nullable<System.Guid> value);
-    partial void OnDeletedByChanged();
-    #endregion
-		
-		public UserGroup_Permission()
-		{
-			this._Function = default(EntityRef<Function>);
-			this._UserGroup = default(EntityRef<UserGroup>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserGroup_PermissionGUID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid UserGroup_PermissionGUID
-		{
-			get
-			{
-				return this._UserGroup_PermissionGUID;
-			}
-			set
-			{
-				if ((this._UserGroup_PermissionGUID != value))
-				{
-					this.OnUserGroup_PermissionGUIDChanging(value);
-					this.SendPropertyChanging();
-					this._UserGroup_PermissionGUID = value;
-					this.SendPropertyChanged("UserGroup_PermissionGUID");
-					this.OnUserGroup_PermissionGUIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserGroupGUID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid UserGroupGUID
-		{
-			get
-			{
-				return this._UserGroupGUID;
-			}
-			set
-			{
-				if ((this._UserGroupGUID != value))
-				{
-					if (this._UserGroup.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnUserGroupGUIDChanging(value);
-					this.SendPropertyChanging();
-					this._UserGroupGUID = value;
-					this.SendPropertyChanged("UserGroupGUID");
-					this.OnUserGroupGUIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FunctionGUID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid FunctionGUID
-		{
-			get
-			{
-				return this._FunctionGUID;
-			}
-			set
-			{
-				if ((this._FunctionGUID != value))
-				{
-					if (this._Function.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnFunctionGUIDChanging(value);
-					this.SendPropertyChanging();
-					this._FunctionGUID = value;
-					this.SendPropertyChanged("FunctionGUID");
-					this.OnFunctionGUIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsView", DbType="Bit NOT NULL")]
-		public bool IsView
-		{
-			get
-			{
-				return this._IsView;
-			}
-			set
-			{
-				if ((this._IsView != value))
-				{
-					this.OnIsViewChanging(value);
-					this.SendPropertyChanging();
-					this._IsView = value;
-					this.SendPropertyChanged("IsView");
-					this.OnIsViewChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsAdd", DbType="Bit NOT NULL")]
-		public bool IsAdd
-		{
-			get
-			{
-				return this._IsAdd;
-			}
-			set
-			{
-				if ((this._IsAdd != value))
-				{
-					this.OnIsAddChanging(value);
-					this.SendPropertyChanging();
-					this._IsAdd = value;
-					this.SendPropertyChanged("IsAdd");
-					this.OnIsAddChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsEdit", DbType="Bit NOT NULL")]
-		public bool IsEdit
-		{
-			get
-			{
-				return this._IsEdit;
-			}
-			set
-			{
-				if ((this._IsEdit != value))
-				{
-					this.OnIsEditChanging(value);
-					this.SendPropertyChanging();
-					this._IsEdit = value;
-					this.SendPropertyChanged("IsEdit");
-					this.OnIsEditChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsDelete", DbType="Bit NOT NULL")]
-		public bool IsDelete
-		{
-			get
-			{
-				return this._IsDelete;
-			}
-			set
-			{
-				if ((this._IsDelete != value))
-				{
-					this.OnIsDeleteChanging(value);
-					this.SendPropertyChanging();
-					this._IsDelete = value;
-					this.SendPropertyChanged("IsDelete");
-					this.OnIsDeleteChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsPrint", DbType="Bit NOT NULL")]
-		public bool IsPrint
-		{
-			get
-			{
-				return this._IsPrint;
-			}
-			set
-			{
-				if ((this._IsPrint != value))
-				{
-					this.OnIsPrintChanging(value);
-					this.SendPropertyChanging();
-					this._IsPrint = value;
-					this.SendPropertyChanged("IsPrint");
-					this.OnIsPrintChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsImport", DbType="Bit NOT NULL")]
-		public bool IsImport
-		{
-			get
-			{
-				return this._IsImport;
-			}
-			set
-			{
-				if ((this._IsImport != value))
-				{
-					this.OnIsImportChanging(value);
-					this.SendPropertyChanging();
-					this._IsImport = value;
-					this.SendPropertyChanged("IsImport");
-					this.OnIsImportChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsExport", DbType="Bit NOT NULL")]
-		public bool IsExport
-		{
-			get
-			{
-				return this._IsExport;
-			}
-			set
-			{
-				if ((this._IsExport != value))
-				{
-					this.OnIsExportChanging(value);
-					this.SendPropertyChanging();
-					this._IsExport = value;
-					this.SendPropertyChanged("IsExport");
-					this.OnIsExportChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsConfirm", DbType="Bit NOT NULL")]
-		public bool IsConfirm
-		{
-			get
-			{
-				return this._IsConfirm;
-			}
-			set
-			{
-				if ((this._IsConfirm != value))
-				{
-					this.OnIsConfirmChanging(value);
-					this.SendPropertyChanging();
-					this._IsConfirm = value;
-					this.SendPropertyChanged("IsConfirm");
-					this.OnIsConfirmChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsLock", DbType="Bit NOT NULL")]
-		public bool IsLock
-		{
-			get
-			{
-				return this._IsLock;
-			}
-			set
-			{
-				if ((this._IsLock != value))
-				{
-					this.OnIsLockChanging(value);
-					this.SendPropertyChanging();
-					this._IsLock = value;
-					this.SendPropertyChanged("IsLock");
-					this.OnIsLockChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsExportAll", DbType="Bit NOT NULL")]
-		public bool IsExportAll
-		{
-			get
-			{
-				return this._IsExportAll;
-			}
-			set
-			{
-				if ((this._IsExportAll != value))
-				{
-					this.OnIsExportAllChanging(value);
-					this.SendPropertyChanging();
-					this._IsExportAll = value;
-					this.SendPropertyChanged("IsExportAll");
-					this.OnIsExportAllChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsCreateReport", DbType="Bit NOT NULL")]
-		public bool IsCreateReport
-		{
-			get
-			{
-				return this._IsCreateReport;
-			}
-			set
-			{
-				if ((this._IsCreateReport != value))
-				{
-					this.OnIsCreateReportChanging(value);
-					this.SendPropertyChanging();
-					this._IsCreateReport = value;
-					this.SendPropertyChanged("IsCreateReport");
-					this.OnIsCreateReportChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsUpload", DbType="Bit NOT NULL")]
-		public bool IsUpload
-		{
-			get
-			{
-				return this._IsUpload;
-			}
-			set
-			{
-				if ((this._IsUpload != value))
-				{
-					this.OnIsUploadChanging(value);
-					this.SendPropertyChanging();
-					this._IsUpload = value;
-					this.SendPropertyChanged("IsUpload");
-					this.OnIsUploadChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> CreatedDate
-		{
-			get
-			{
-				return this._CreatedDate;
-			}
-			set
-			{
-				if ((this._CreatedDate != value))
-				{
-					this.OnCreatedDateChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedDate = value;
-					this.SendPropertyChanged("CreatedDate");
-					this.OnCreatedDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> CreatedBy
-		{
-			get
-			{
-				return this._CreatedBy;
-			}
-			set
-			{
-				if ((this._CreatedBy != value))
-				{
-					this.OnCreatedByChanging(value);
-					this.SendPropertyChanging();
-					this._CreatedBy = value;
-					this.SendPropertyChanged("CreatedBy");
-					this.OnCreatedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> UpdatedDate
-		{
-			get
-			{
-				return this._UpdatedDate;
-			}
-			set
-			{
-				if ((this._UpdatedDate != value))
-				{
-					this.OnUpdatedDateChanging(value);
-					this.SendPropertyChanging();
-					this._UpdatedDate = value;
-					this.SendPropertyChanged("UpdatedDate");
-					this.OnUpdatedDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> UpdatedBy
-		{
-			get
-			{
-				return this._UpdatedBy;
-			}
-			set
-			{
-				if ((this._UpdatedBy != value))
-				{
-					this.OnUpdatedByChanging(value);
-					this.SendPropertyChanging();
-					this._UpdatedBy = value;
-					this.SendPropertyChanged("UpdatedBy");
-					this.OnUpdatedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> DeletedDate
-		{
-			get
-			{
-				return this._DeletedDate;
-			}
-			set
-			{
-				if ((this._DeletedDate != value))
-				{
-					this.OnDeletedDateChanging(value);
-					this.SendPropertyChanging();
-					this._DeletedDate = value;
-					this.SendPropertyChanged("DeletedDate");
-					this.OnDeletedDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedBy", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> DeletedBy
-		{
-			get
-			{
-				return this._DeletedBy;
-			}
-			set
-			{
-				if ((this._DeletedBy != value))
-				{
-					this.OnDeletedByChanging(value);
-					this.SendPropertyChanging();
-					this._DeletedBy = value;
-					this.SendPropertyChanged("DeletedBy");
-					this.OnDeletedByChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Function_UserGroup_Permission", Storage="_Function", ThisKey="FunctionGUID", OtherKey="FunctionGUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public Function Function
-		{
-			get
-			{
-				return this._Function.Entity;
-			}
-			set
-			{
-				Function previousValue = this._Function.Entity;
-				if (((previousValue != value) 
-							|| (this._Function.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Function.Entity = null;
-						previousValue.UserGroup_Permissions.Remove(this);
-					}
-					this._Function.Entity = value;
-					if ((value != null))
-					{
-						value.UserGroup_Permissions.Add(this);
-						this._FunctionGUID = value.FunctionGUID;
-					}
-					else
-					{
-						this._FunctionGUID = default(System.Guid);
-					}
-					this.SendPropertyChanged("Function");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserGroup_UserGroup_Permission", Storage="_UserGroup", ThisKey="UserGroupGUID", OtherKey="UserGroupGUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public UserGroup UserGroup
-		{
-			get
-			{
-				return this._UserGroup.Entity;
-			}
-			set
-			{
-				UserGroup previousValue = this._UserGroup.Entity;
-				if (((previousValue != value) 
-							|| (this._UserGroup.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._UserGroup.Entity = null;
-						previousValue.UserGroup_Permissions.Remove(this);
-					}
-					this._UserGroup.Entity = value;
-					if ((value != null))
-					{
-						value.UserGroup_Permissions.Add(this);
-						this._UserGroupGUID = value.UserGroupGUID;
-					}
-					else
-					{
-						this._UserGroupGUID = default(System.Guid);
-					}
-					this.SendPropertyChanged("UserGroup");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserGroup_PermissionView")]
-	public partial class UserGroup_PermissionView
-	{
-		
-		private string _FunctionCode;
-		
-		private string _FunctionName;
-		
-		private System.Guid _UserGroup_PermissionGUID;
-		
-		private System.Guid _UserGroupGUID;
-		
-		private System.Guid _FunctionGUID;
-		
-		private bool _IsView;
-		
-		private bool _IsAdd;
-		
-		private bool _IsEdit;
-		
-		private bool _IsDelete;
-		
-		private bool _IsPrint;
-		
-		private bool _IsImport;
-		
-		private bool _IsExport;
-		
-		private bool _IsConfirm;
-		
-		private bool _IsLock;
-		
-		private bool _IsExportAll;
-		
-		private bool _IsCreateReport;
-		
-		private bool _IsUpload;
-		
-		private System.Nullable<System.DateTime> _CreatedDate;
-		
-		private System.Nullable<System.Guid> _CreatedBy;
-		
-		private System.Nullable<System.DateTime> _UpdatedDate;
-		
-		private System.Nullable<System.Guid> _UpdatedBy;
-		
-		private System.Nullable<System.DateTime> _DeletedDate;
-		
-		private System.Nullable<System.Guid> _DeletedBy;
-		
-		public UserGroup_PermissionView()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FunctionCode", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
-		public string FunctionCode
-		{
-			get
-			{
-				return this._FunctionCode;
-			}
-			set
-			{
-				if ((this._FunctionCode != value))
-				{
-					this._FunctionCode = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FunctionName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string FunctionName
-		{
-			get
-			{
-				return this._FunctionName;
-			}
-			set
-			{
-				if ((this._FunctionName != value))
-				{
-					this._FunctionName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserGroup_PermissionGUID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid UserGroup_PermissionGUID
-		{
-			get
-			{
-				return this._UserGroup_PermissionGUID;
-			}
-			set
-			{
-				if ((this._UserGroup_PermissionGUID != value))
-				{
-					this._UserGroup_PermissionGUID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserGroupGUID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid UserGroupGUID
-		{
-			get
-			{
-				return this._UserGroupGUID;
-			}
-			set
-			{
-				if ((this._UserGroupGUID != value))
-				{
-					this._UserGroupGUID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FunctionGUID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid FunctionGUID
-		{
-			get
-			{
-				return this._FunctionGUID;
-			}
-			set
-			{
-				if ((this._FunctionGUID != value))
-				{
-					this._FunctionGUID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsView", DbType="Bit NOT NULL")]
-		public bool IsView
-		{
-			get
-			{
-				return this._IsView;
-			}
-			set
-			{
-				if ((this._IsView != value))
-				{
-					this._IsView = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsAdd", DbType="Bit NOT NULL")]
-		public bool IsAdd
-		{
-			get
-			{
-				return this._IsAdd;
-			}
-			set
-			{
-				if ((this._IsAdd != value))
-				{
-					this._IsAdd = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsEdit", DbType="Bit NOT NULL")]
-		public bool IsEdit
-		{
-			get
-			{
-				return this._IsEdit;
-			}
-			set
-			{
-				if ((this._IsEdit != value))
-				{
-					this._IsEdit = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsDelete", DbType="Bit NOT NULL")]
-		public bool IsDelete
-		{
-			get
-			{
-				return this._IsDelete;
-			}
-			set
-			{
-				if ((this._IsDelete != value))
-				{
-					this._IsDelete = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsPrint", DbType="Bit NOT NULL")]
-		public bool IsPrint
-		{
-			get
-			{
-				return this._IsPrint;
-			}
-			set
-			{
-				if ((this._IsPrint != value))
-				{
-					this._IsPrint = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsImport", DbType="Bit NOT NULL")]
-		public bool IsImport
-		{
-			get
-			{
-				return this._IsImport;
-			}
-			set
-			{
-				if ((this._IsImport != value))
-				{
-					this._IsImport = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsExport", DbType="Bit NOT NULL")]
-		public bool IsExport
-		{
-			get
-			{
-				return this._IsExport;
-			}
-			set
-			{
-				if ((this._IsExport != value))
-				{
-					this._IsExport = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsConfirm", DbType="Bit NOT NULL")]
-		public bool IsConfirm
-		{
-			get
-			{
-				return this._IsConfirm;
-			}
-			set
-			{
-				if ((this._IsConfirm != value))
-				{
-					this._IsConfirm = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsLock", DbType="Bit NOT NULL")]
-		public bool IsLock
-		{
-			get
-			{
-				return this._IsLock;
-			}
-			set
-			{
-				if ((this._IsLock != value))
-				{
-					this._IsLock = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsExportAll", DbType="Bit NOT NULL")]
-		public bool IsExportAll
-		{
-			get
-			{
-				return this._IsExportAll;
-			}
-			set
-			{
-				if ((this._IsExportAll != value))
-				{
-					this._IsExportAll = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsCreateReport", DbType="Bit NOT NULL")]
-		public bool IsCreateReport
-		{
-			get
-			{
-				return this._IsCreateReport;
-			}
-			set
-			{
-				if ((this._IsCreateReport != value))
-				{
-					this._IsCreateReport = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsUpload", DbType="Bit NOT NULL")]
-		public bool IsUpload
-		{
-			get
-			{
-				return this._IsUpload;
-			}
-			set
-			{
-				if ((this._IsUpload != value))
-				{
-					this._IsUpload = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> CreatedDate
-		{
-			get
-			{
-				return this._CreatedDate;
-			}
-			set
-			{
-				if ((this._CreatedDate != value))
-				{
-					this._CreatedDate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> CreatedBy
-		{
-			get
-			{
-				return this._CreatedBy;
-			}
-			set
-			{
-				if ((this._CreatedBy != value))
-				{
-					this._CreatedBy = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> UpdatedDate
-		{
-			get
-			{
-				return this._UpdatedDate;
-			}
-			set
-			{
-				if ((this._UpdatedDate != value))
-				{
-					this._UpdatedDate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> UpdatedBy
-		{
-			get
-			{
-				return this._UpdatedBy;
-			}
-			set
-			{
-				if ((this._UpdatedBy != value))
-				{
-					this._UpdatedBy = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime")]
-		public System.Nullable<System.DateTime> DeletedDate
-		{
-			get
-			{
-				return this._DeletedDate;
-			}
-			set
-			{
-				if ((this._DeletedDate != value))
-				{
-					this._DeletedDate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedBy", DbType="UniqueIdentifier")]
-		public System.Nullable<System.Guid> DeletedBy
-		{
-			get
-			{
-				return this._DeletedBy;
-			}
-			set
-			{
-				if ((this._DeletedBy != value))
-				{
-					this._DeletedBy = value;
-				}
-			}
-		}
-	}
-	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ChiTietToaCapCuu")]
 	public partial class ChiTietToaCapCuu : INotifyPropertyChanging, INotifyPropertyChanged
 	{
@@ -75374,6 +74338,1181 @@ namespace MM.Databasae
 				if ((this._MaToaCapCuu != value))
 				{
 					this._MaToaCapCuu = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserGroup_Permission")]
+	public partial class UserGroup_Permission : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _UserGroup_PermissionGUID;
+		
+		private System.Guid _UserGroupGUID;
+		
+		private System.Guid _FunctionGUID;
+		
+		private bool _IsView;
+		
+		private bool _IsAdd;
+		
+		private bool _IsEdit;
+		
+		private bool _IsDelete;
+		
+		private bool _IsPrint;
+		
+		private bool _IsImport;
+		
+		private bool _IsExport;
+		
+		private bool _IsConfirm;
+		
+		private bool _IsLock;
+		
+		private bool _IsExportAll;
+		
+		private System.Nullable<System.DateTime> _CreatedDate;
+		
+		private System.Nullable<System.Guid> _CreatedBy;
+		
+		private System.Nullable<System.DateTime> _UpdatedDate;
+		
+		private System.Nullable<System.Guid> _UpdatedBy;
+		
+		private System.Nullable<System.DateTime> _DeletedDate;
+		
+		private System.Nullable<System.Guid> _DeletedBy;
+		
+		private bool _IsCreateReport;
+		
+		private bool _IsUpload;
+		
+		private bool _IsSendSMS;
+		
+		private EntityRef<Function> _Function;
+		
+		private EntityRef<UserGroup> _UserGroup;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnUserGroup_PermissionGUIDChanging(System.Guid value);
+    partial void OnUserGroup_PermissionGUIDChanged();
+    partial void OnUserGroupGUIDChanging(System.Guid value);
+    partial void OnUserGroupGUIDChanged();
+    partial void OnFunctionGUIDChanging(System.Guid value);
+    partial void OnFunctionGUIDChanged();
+    partial void OnIsViewChanging(bool value);
+    partial void OnIsViewChanged();
+    partial void OnIsAddChanging(bool value);
+    partial void OnIsAddChanged();
+    partial void OnIsEditChanging(bool value);
+    partial void OnIsEditChanged();
+    partial void OnIsDeleteChanging(bool value);
+    partial void OnIsDeleteChanged();
+    partial void OnIsPrintChanging(bool value);
+    partial void OnIsPrintChanged();
+    partial void OnIsImportChanging(bool value);
+    partial void OnIsImportChanged();
+    partial void OnIsExportChanging(bool value);
+    partial void OnIsExportChanged();
+    partial void OnIsConfirmChanging(bool value);
+    partial void OnIsConfirmChanged();
+    partial void OnIsLockChanging(bool value);
+    partial void OnIsLockChanged();
+    partial void OnIsExportAllChanging(bool value);
+    partial void OnIsExportAllChanged();
+    partial void OnCreatedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnCreatedDateChanged();
+    partial void OnCreatedByChanging(System.Nullable<System.Guid> value);
+    partial void OnCreatedByChanged();
+    partial void OnUpdatedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnUpdatedDateChanged();
+    partial void OnUpdatedByChanging(System.Nullable<System.Guid> value);
+    partial void OnUpdatedByChanged();
+    partial void OnDeletedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnDeletedDateChanged();
+    partial void OnDeletedByChanging(System.Nullable<System.Guid> value);
+    partial void OnDeletedByChanged();
+    partial void OnIsCreateReportChanging(bool value);
+    partial void OnIsCreateReportChanged();
+    partial void OnIsUploadChanging(bool value);
+    partial void OnIsUploadChanged();
+    partial void OnIsSendSMSChanging(bool value);
+    partial void OnIsSendSMSChanged();
+    #endregion
+		
+		public UserGroup_Permission()
+		{
+			this._Function = default(EntityRef<Function>);
+			this._UserGroup = default(EntityRef<UserGroup>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserGroup_PermissionGUID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid UserGroup_PermissionGUID
+		{
+			get
+			{
+				return this._UserGroup_PermissionGUID;
+			}
+			set
+			{
+				if ((this._UserGroup_PermissionGUID != value))
+				{
+					this.OnUserGroup_PermissionGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._UserGroup_PermissionGUID = value;
+					this.SendPropertyChanged("UserGroup_PermissionGUID");
+					this.OnUserGroup_PermissionGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserGroupGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid UserGroupGUID
+		{
+			get
+			{
+				return this._UserGroupGUID;
+			}
+			set
+			{
+				if ((this._UserGroupGUID != value))
+				{
+					if (this._UserGroup.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnUserGroupGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._UserGroupGUID = value;
+					this.SendPropertyChanged("UserGroupGUID");
+					this.OnUserGroupGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FunctionGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid FunctionGUID
+		{
+			get
+			{
+				return this._FunctionGUID;
+			}
+			set
+			{
+				if ((this._FunctionGUID != value))
+				{
+					if (this._Function.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnFunctionGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._FunctionGUID = value;
+					this.SendPropertyChanged("FunctionGUID");
+					this.OnFunctionGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsView", DbType="Bit NOT NULL")]
+		public bool IsView
+		{
+			get
+			{
+				return this._IsView;
+			}
+			set
+			{
+				if ((this._IsView != value))
+				{
+					this.OnIsViewChanging(value);
+					this.SendPropertyChanging();
+					this._IsView = value;
+					this.SendPropertyChanged("IsView");
+					this.OnIsViewChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsAdd", DbType="Bit NOT NULL")]
+		public bool IsAdd
+		{
+			get
+			{
+				return this._IsAdd;
+			}
+			set
+			{
+				if ((this._IsAdd != value))
+				{
+					this.OnIsAddChanging(value);
+					this.SendPropertyChanging();
+					this._IsAdd = value;
+					this.SendPropertyChanged("IsAdd");
+					this.OnIsAddChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsEdit", DbType="Bit NOT NULL")]
+		public bool IsEdit
+		{
+			get
+			{
+				return this._IsEdit;
+			}
+			set
+			{
+				if ((this._IsEdit != value))
+				{
+					this.OnIsEditChanging(value);
+					this.SendPropertyChanging();
+					this._IsEdit = value;
+					this.SendPropertyChanged("IsEdit");
+					this.OnIsEditChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsDelete", DbType="Bit NOT NULL")]
+		public bool IsDelete
+		{
+			get
+			{
+				return this._IsDelete;
+			}
+			set
+			{
+				if ((this._IsDelete != value))
+				{
+					this.OnIsDeleteChanging(value);
+					this.SendPropertyChanging();
+					this._IsDelete = value;
+					this.SendPropertyChanged("IsDelete");
+					this.OnIsDeleteChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsPrint", DbType="Bit NOT NULL")]
+		public bool IsPrint
+		{
+			get
+			{
+				return this._IsPrint;
+			}
+			set
+			{
+				if ((this._IsPrint != value))
+				{
+					this.OnIsPrintChanging(value);
+					this.SendPropertyChanging();
+					this._IsPrint = value;
+					this.SendPropertyChanged("IsPrint");
+					this.OnIsPrintChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsImport", DbType="Bit NOT NULL")]
+		public bool IsImport
+		{
+			get
+			{
+				return this._IsImport;
+			}
+			set
+			{
+				if ((this._IsImport != value))
+				{
+					this.OnIsImportChanging(value);
+					this.SendPropertyChanging();
+					this._IsImport = value;
+					this.SendPropertyChanged("IsImport");
+					this.OnIsImportChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsExport", DbType="Bit NOT NULL")]
+		public bool IsExport
+		{
+			get
+			{
+				return this._IsExport;
+			}
+			set
+			{
+				if ((this._IsExport != value))
+				{
+					this.OnIsExportChanging(value);
+					this.SendPropertyChanging();
+					this._IsExport = value;
+					this.SendPropertyChanged("IsExport");
+					this.OnIsExportChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsConfirm", DbType="Bit NOT NULL")]
+		public bool IsConfirm
+		{
+			get
+			{
+				return this._IsConfirm;
+			}
+			set
+			{
+				if ((this._IsConfirm != value))
+				{
+					this.OnIsConfirmChanging(value);
+					this.SendPropertyChanging();
+					this._IsConfirm = value;
+					this.SendPropertyChanged("IsConfirm");
+					this.OnIsConfirmChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsLock", DbType="Bit NOT NULL")]
+		public bool IsLock
+		{
+			get
+			{
+				return this._IsLock;
+			}
+			set
+			{
+				if ((this._IsLock != value))
+				{
+					this.OnIsLockChanging(value);
+					this.SendPropertyChanging();
+					this._IsLock = value;
+					this.SendPropertyChanged("IsLock");
+					this.OnIsLockChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsExportAll", DbType="Bit NOT NULL")]
+		public bool IsExportAll
+		{
+			get
+			{
+				return this._IsExportAll;
+			}
+			set
+			{
+				if ((this._IsExportAll != value))
+				{
+					this.OnIsExportAllChanging(value);
+					this.SendPropertyChanging();
+					this._IsExportAll = value;
+					this.SendPropertyChanged("IsExportAll");
+					this.OnIsExportAllChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this.OnCreatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedDate = value;
+					this.SendPropertyChanged("CreatedDate");
+					this.OnCreatedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this.OnCreatedByChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedBy = value;
+					this.SendPropertyChanged("CreatedBy");
+					this.OnCreatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> UpdatedDate
+		{
+			get
+			{
+				return this._UpdatedDate;
+			}
+			set
+			{
+				if ((this._UpdatedDate != value))
+				{
+					this.OnUpdatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._UpdatedDate = value;
+					this.SendPropertyChanged("UpdatedDate");
+					this.OnUpdatedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> UpdatedBy
+		{
+			get
+			{
+				return this._UpdatedBy;
+			}
+			set
+			{
+				if ((this._UpdatedBy != value))
+				{
+					this.OnUpdatedByChanging(value);
+					this.SendPropertyChanging();
+					this._UpdatedBy = value;
+					this.SendPropertyChanged("UpdatedBy");
+					this.OnUpdatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DeletedDate
+		{
+			get
+			{
+				return this._DeletedDate;
+			}
+			set
+			{
+				if ((this._DeletedDate != value))
+				{
+					this.OnDeletedDateChanging(value);
+					this.SendPropertyChanging();
+					this._DeletedDate = value;
+					this.SendPropertyChanged("DeletedDate");
+					this.OnDeletedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> DeletedBy
+		{
+			get
+			{
+				return this._DeletedBy;
+			}
+			set
+			{
+				if ((this._DeletedBy != value))
+				{
+					this.OnDeletedByChanging(value);
+					this.SendPropertyChanging();
+					this._DeletedBy = value;
+					this.SendPropertyChanged("DeletedBy");
+					this.OnDeletedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsCreateReport", DbType="Bit NOT NULL")]
+		public bool IsCreateReport
+		{
+			get
+			{
+				return this._IsCreateReport;
+			}
+			set
+			{
+				if ((this._IsCreateReport != value))
+				{
+					this.OnIsCreateReportChanging(value);
+					this.SendPropertyChanging();
+					this._IsCreateReport = value;
+					this.SendPropertyChanged("IsCreateReport");
+					this.OnIsCreateReportChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsUpload", DbType="Bit NOT NULL")]
+		public bool IsUpload
+		{
+			get
+			{
+				return this._IsUpload;
+			}
+			set
+			{
+				if ((this._IsUpload != value))
+				{
+					this.OnIsUploadChanging(value);
+					this.SendPropertyChanging();
+					this._IsUpload = value;
+					this.SendPropertyChanged("IsUpload");
+					this.OnIsUploadChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsSendSMS", DbType="Bit NOT NULL")]
+		public bool IsSendSMS
+		{
+			get
+			{
+				return this._IsSendSMS;
+			}
+			set
+			{
+				if ((this._IsSendSMS != value))
+				{
+					this.OnIsSendSMSChanging(value);
+					this.SendPropertyChanging();
+					this._IsSendSMS = value;
+					this.SendPropertyChanged("IsSendSMS");
+					this.OnIsSendSMSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Function_UserGroup_Permission", Storage="_Function", ThisKey="FunctionGUID", OtherKey="FunctionGUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public Function Function
+		{
+			get
+			{
+				return this._Function.Entity;
+			}
+			set
+			{
+				Function previousValue = this._Function.Entity;
+				if (((previousValue != value) 
+							|| (this._Function.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Function.Entity = null;
+						previousValue.UserGroup_Permissions.Remove(this);
+					}
+					this._Function.Entity = value;
+					if ((value != null))
+					{
+						value.UserGroup_Permissions.Add(this);
+						this._FunctionGUID = value.FunctionGUID;
+					}
+					else
+					{
+						this._FunctionGUID = default(System.Guid);
+					}
+					this.SendPropertyChanged("Function");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="UserGroup_UserGroup_Permission", Storage="_UserGroup", ThisKey="UserGroupGUID", OtherKey="UserGroupGUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public UserGroup UserGroup
+		{
+			get
+			{
+				return this._UserGroup.Entity;
+			}
+			set
+			{
+				UserGroup previousValue = this._UserGroup.Entity;
+				if (((previousValue != value) 
+							|| (this._UserGroup.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._UserGroup.Entity = null;
+						previousValue.UserGroup_Permissions.Remove(this);
+					}
+					this._UserGroup.Entity = value;
+					if ((value != null))
+					{
+						value.UserGroup_Permissions.Add(this);
+						this._UserGroupGUID = value.UserGroupGUID;
+					}
+					else
+					{
+						this._UserGroupGUID = default(System.Guid);
+					}
+					this.SendPropertyChanged("UserGroup");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TinNhanMau")]
+	public partial class TinNhanMau : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _TinNhanMauGUID;
+		
+		private string _NoiDung;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTinNhanMauGUIDChanging(System.Guid value);
+    partial void OnTinNhanMauGUIDChanged();
+    partial void OnNoiDungChanging(string value);
+    partial void OnNoiDungChanged();
+    #endregion
+		
+		public TinNhanMau()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TinNhanMauGUID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid TinNhanMauGUID
+		{
+			get
+			{
+				return this._TinNhanMauGUID;
+			}
+			set
+			{
+				if ((this._TinNhanMauGUID != value))
+				{
+					this.OnTinNhanMauGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._TinNhanMauGUID = value;
+					this.SendPropertyChanged("TinNhanMauGUID");
+					this.OnTinNhanMauGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_NoiDung", DbType="NVarChar(160)")]
+		public string NoiDung
+		{
+			get
+			{
+				return this._NoiDung;
+			}
+			set
+			{
+				if ((this._NoiDung != value))
+				{
+					this.OnNoiDungChanging(value);
+					this.SendPropertyChanging();
+					this._NoiDung = value;
+					this.SendPropertyChanged("NoiDung");
+					this.OnNoiDungChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.UserGroup_PermissionView")]
+	public partial class UserGroup_PermissionView
+	{
+		
+		private string _FunctionCode;
+		
+		private string _FunctionName;
+		
+		private System.Guid _UserGroup_PermissionGUID;
+		
+		private System.Guid _UserGroupGUID;
+		
+		private System.Guid _FunctionGUID;
+		
+		private bool _IsView;
+		
+		private bool _IsAdd;
+		
+		private bool _IsEdit;
+		
+		private bool _IsDelete;
+		
+		private bool _IsPrint;
+		
+		private bool _IsImport;
+		
+		private bool _IsExport;
+		
+		private bool _IsConfirm;
+		
+		private bool _IsLock;
+		
+		private bool _IsExportAll;
+		
+		private bool _IsCreateReport;
+		
+		private bool _IsUpload;
+		
+		private System.Nullable<System.DateTime> _CreatedDate;
+		
+		private System.Nullable<System.Guid> _CreatedBy;
+		
+		private System.Nullable<System.DateTime> _UpdatedDate;
+		
+		private System.Nullable<System.Guid> _UpdatedBy;
+		
+		private System.Nullable<System.DateTime> _DeletedDate;
+		
+		private System.Nullable<System.Guid> _DeletedBy;
+		
+		private bool _IsSendSMS;
+		
+		public UserGroup_PermissionView()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FunctionCode", DbType="NVarChar(100) NOT NULL", CanBeNull=false)]
+		public string FunctionCode
+		{
+			get
+			{
+				return this._FunctionCode;
+			}
+			set
+			{
+				if ((this._FunctionCode != value))
+				{
+					this._FunctionCode = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FunctionName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string FunctionName
+		{
+			get
+			{
+				return this._FunctionName;
+			}
+			set
+			{
+				if ((this._FunctionName != value))
+				{
+					this._FunctionName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserGroup_PermissionGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid UserGroup_PermissionGUID
+		{
+			get
+			{
+				return this._UserGroup_PermissionGUID;
+			}
+			set
+			{
+				if ((this._UserGroup_PermissionGUID != value))
+				{
+					this._UserGroup_PermissionGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UserGroupGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid UserGroupGUID
+		{
+			get
+			{
+				return this._UserGroupGUID;
+			}
+			set
+			{
+				if ((this._UserGroupGUID != value))
+				{
+					this._UserGroupGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FunctionGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid FunctionGUID
+		{
+			get
+			{
+				return this._FunctionGUID;
+			}
+			set
+			{
+				if ((this._FunctionGUID != value))
+				{
+					this._FunctionGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsView", DbType="Bit NOT NULL")]
+		public bool IsView
+		{
+			get
+			{
+				return this._IsView;
+			}
+			set
+			{
+				if ((this._IsView != value))
+				{
+					this._IsView = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsAdd", DbType="Bit NOT NULL")]
+		public bool IsAdd
+		{
+			get
+			{
+				return this._IsAdd;
+			}
+			set
+			{
+				if ((this._IsAdd != value))
+				{
+					this._IsAdd = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsEdit", DbType="Bit NOT NULL")]
+		public bool IsEdit
+		{
+			get
+			{
+				return this._IsEdit;
+			}
+			set
+			{
+				if ((this._IsEdit != value))
+				{
+					this._IsEdit = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsDelete", DbType="Bit NOT NULL")]
+		public bool IsDelete
+		{
+			get
+			{
+				return this._IsDelete;
+			}
+			set
+			{
+				if ((this._IsDelete != value))
+				{
+					this._IsDelete = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsPrint", DbType="Bit NOT NULL")]
+		public bool IsPrint
+		{
+			get
+			{
+				return this._IsPrint;
+			}
+			set
+			{
+				if ((this._IsPrint != value))
+				{
+					this._IsPrint = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsImport", DbType="Bit NOT NULL")]
+		public bool IsImport
+		{
+			get
+			{
+				return this._IsImport;
+			}
+			set
+			{
+				if ((this._IsImport != value))
+				{
+					this._IsImport = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsExport", DbType="Bit NOT NULL")]
+		public bool IsExport
+		{
+			get
+			{
+				return this._IsExport;
+			}
+			set
+			{
+				if ((this._IsExport != value))
+				{
+					this._IsExport = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsConfirm", DbType="Bit NOT NULL")]
+		public bool IsConfirm
+		{
+			get
+			{
+				return this._IsConfirm;
+			}
+			set
+			{
+				if ((this._IsConfirm != value))
+				{
+					this._IsConfirm = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsLock", DbType="Bit NOT NULL")]
+		public bool IsLock
+		{
+			get
+			{
+				return this._IsLock;
+			}
+			set
+			{
+				if ((this._IsLock != value))
+				{
+					this._IsLock = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsExportAll", DbType="Bit NOT NULL")]
+		public bool IsExportAll
+		{
+			get
+			{
+				return this._IsExportAll;
+			}
+			set
+			{
+				if ((this._IsExportAll != value))
+				{
+					this._IsExportAll = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsCreateReport", DbType="Bit NOT NULL")]
+		public bool IsCreateReport
+		{
+			get
+			{
+				return this._IsCreateReport;
+			}
+			set
+			{
+				if ((this._IsCreateReport != value))
+				{
+					this._IsCreateReport = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsUpload", DbType="Bit NOT NULL")]
+		public bool IsUpload
+		{
+			get
+			{
+				return this._IsUpload;
+			}
+			set
+			{
+				if ((this._IsUpload != value))
+				{
+					this._IsUpload = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this._CreatedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this._CreatedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> UpdatedDate
+		{
+			get
+			{
+				return this._UpdatedDate;
+			}
+			set
+			{
+				if ((this._UpdatedDate != value))
+				{
+					this._UpdatedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> UpdatedBy
+		{
+			get
+			{
+				return this._UpdatedBy;
+			}
+			set
+			{
+				if ((this._UpdatedBy != value))
+				{
+					this._UpdatedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DeletedDate
+		{
+			get
+			{
+				return this._DeletedDate;
+			}
+			set
+			{
+				if ((this._DeletedDate != value))
+				{
+					this._DeletedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> DeletedBy
+		{
+			get
+			{
+				return this._DeletedBy;
+			}
+			set
+			{
+				if ((this._DeletedBy != value))
+				{
+					this._DeletedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_IsSendSMS", DbType="Bit NOT NULL")]
+		public bool IsSendSMS
+		{
+			get
+			{
+				return this._IsSendSMS;
+			}
+			set
+			{
+				if ((this._IsSendSMS != value))
+				{
+					this._IsSendSMS = value;
 				}
 			}
 		}
