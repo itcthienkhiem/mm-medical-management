@@ -121,31 +121,6 @@
     <value>359, 17</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="_mainToolbar.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 24</value>
-  </data>
-  <data name="_mainToolbar.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1195, 31</value>
-  </data>
-  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="_mainToolbar.TabIndex" type="System.Int32, mscorlib">
-    <value>6</value>
-  </data>
-  <data name="_mainToolbar.Text" xml:space="preserve">
-    <value>toolStrip1</value>
-  </data>
-  <data name="&gt;&gt;_mainToolbar.Name" xml:space="preserve">
-    <value>_mainToolbar</value>
-  </data>
-  <data name="&gt;&gt;_mainToolbar.Type" xml:space="preserve">
-    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;_mainToolbar.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;_mainToolbar.ZOrder" xml:space="preserve">
-    <value>3</value>
-  </data>
   <data name="tbLogin.ImageTransparentColor" type="System.Drawing.Color, System.Drawing">
     <value>Magenta</value>
   </data>
@@ -155,6 +130,7 @@
   <data name="tbLogin.ToolTipText" xml:space="preserve">
     <value>Đăng nhập</value>
   </data>
+  <assembly alias="mscorlib" name="mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="tbLogin.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
@@ -428,35 +404,35 @@
   <data name="tbPhieuThuThuoc.ToolTipText" xml:space="preserve">
     <value>Phiếu thu thuốc</value>
   </data>
+  <data name="_mainToolbar.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 24</value>
+  </data>
+  <data name="_mainToolbar.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1195, 31</value>
+  </data>
+  <data name="_mainToolbar.TabIndex" type="System.Int32, mscorlib">
+    <value>6</value>
+  </data>
+  <data name="_mainToolbar.Text" xml:space="preserve">
+    <value>toolStrip1</value>
+  </data>
+  <data name="&gt;&gt;_mainToolbar.Name" xml:space="preserve">
+    <value>_mainToolbar</value>
+  </data>
+  <data name="&gt;&gt;_mainToolbar.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_mainToolbar.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;_mainToolbar.ZOrder" xml:space="preserve">
+    <value>3</value>
+  </data>
   <metadata name="_mainStatus.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>479, 17</value>
   </metadata>
   <data name="_mainStatus.AutoSize" type="System.Boolean, mscorlib">
     <value>False</value>
-  </data>
-  <data name="_mainStatus.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 666</value>
-  </data>
-  <data name="_mainStatus.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1195, 29</value>
-  </data>
-  <data name="_mainStatus.TabIndex" type="System.Int32, mscorlib">
-    <value>5</value>
-  </data>
-  <data name="_mainStatus.Text" xml:space="preserve">
-    <value>statusStrip1</value>
-  </data>
-  <data name="&gt;&gt;_mainStatus.Name" xml:space="preserve">
-    <value>_mainStatus</value>
-  </data>
-  <data name="&gt;&gt;_mainStatus.Type" xml:space="preserve">
-    <value>System.Windows.Forms.StatusStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;_mainStatus.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;_mainStatus.ZOrder" xml:space="preserve">
-    <value>11</value>
   </data>
   <data name="statusLabel.Size" type="System.Drawing.Size, System.Drawing">
     <value>1180, 24</value>
@@ -568,36 +544,33 @@
   <data name="statusAlert.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
+  <data name="_mainStatus.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 666</value>
+  </data>
+  <data name="_mainStatus.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1195, 29</value>
+  </data>
+  <data name="_mainStatus.TabIndex" type="System.Int32, mscorlib">
+    <value>5</value>
+  </data>
+  <data name="_mainStatus.Text" xml:space="preserve">
+    <value>statusStrip1</value>
+  </data>
+  <data name="&gt;&gt;_mainStatus.Name" xml:space="preserve">
+    <value>_mainStatus</value>
+  </data>
+  <data name="&gt;&gt;_mainStatus.Type" xml:space="preserve">
+    <value>System.Windows.Forms.StatusStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_mainStatus.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;_mainStatus.ZOrder" xml:space="preserve">
+    <value>11</value>
+  </data>
   <metadata name="_mainMenu.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>592, 17</value>
   </metadata>
-  <data name="_mainMenu.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_mainMenu.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1195, 24</value>
-  </data>
-  <data name="_mainMenu.TabIndex" type="System.Int32, mscorlib">
-    <value>4</value>
-  </data>
-  <data name="&gt;&gt;_mainMenu.Name" xml:space="preserve">
-    <value>_mainMenu</value>
-  </data>
-  <data name="&gt;&gt;_mainMenu.Type" xml:space="preserve">
-    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
-  </data>
-  <data name="&gt;&gt;_mainMenu.Parent" xml:space="preserve">
-    <value>$this</value>
-  </data>
-  <data name="&gt;&gt;_mainMenu.ZOrder" xml:space="preserve">
-    <value>4</value>
-  </data>
-  <data name="systemToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>69, 20</value>
-  </data>
-  <data name="systemToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Hệ thống</value>
-  </data>
   <data name="databaseConfigurationToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>188, 22</value>
   </data>
@@ -838,14 +811,11 @@
   <data name="exitToolStripMenuItem.Text" xml:space="preserve">
     <value>Thoát</value>
   </data>
-  <data name="danhmụcToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
-    <value>False</value>
+  <data name="systemToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>69, 20</value>
   </data>
-  <data name="danhmụcToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>74, 20</value>
-  </data>
-  <data name="danhmụcToolStripMenuItem.Text" xml:space="preserve">
-    <value>Danh &amp;mục</value>
+  <data name="systemToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Hệ thống</value>
   </data>
   <data name="chuyenKhoaToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -941,14 +911,14 @@
   <data name="loaiSieuAmToolStripMenuItem.Text" xml:space="preserve">
     <value>Loại siêu âm</value>
   </data>
-  <data name="servicesToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+  <data name="danhmụcToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="servicesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>59, 20</value>
+  <data name="danhmụcToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>74, 20</value>
   </data>
-  <data name="servicesToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Dịch vụ</value>
+  <data name="danhmụcToolStripMenuItem.Text" xml:space="preserve">
+    <value>Danh &amp;mục</value>
   </data>
   <data name="serviceListToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -983,14 +953,14 @@
   <data name="giaVonDichVuToolStripMenuItem.Text" xml:space="preserve">
     <value>Giá vốn dịch vụ</value>
   </data>
-  <data name="patientToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+  <data name="servicesToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="patientToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>76, 20</value>
+  <data name="servicesToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>59, 20</value>
   </data>
-  <data name="patientToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Bệnh nhân</value>
+  <data name="servicesToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Dịch vụ</value>
   </data>
   <data name="openPatientToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1061,14 +1031,14 @@
   <data name="benhNhanNgoaiGoiKhamToolStripMenuItem.Text" xml:space="preserve">
     <value>Bệnh nhân ngoài gói khám</value>
   </data>
-  <data name="companyToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+  <data name="patientToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="companyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 20</value>
+  <data name="patientToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>76, 20</value>
   </data>
-  <data name="companyToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Công ty</value>
+  <data name="patientToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Bệnh nhân</value>
   </data>
   <data name="companyListToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1135,14 +1105,14 @@
   <data name="khamHopDongToolStripMenuItem.Text" xml:space="preserve">
     <value>Khám hợp đồng</value>
   </data>
-  <data name="receiptToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+  <data name="companyToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="receiptToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>70, 20</value>
+  <data name="companyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 20</value>
   </data>
-  <data name="receiptToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Phiếu thu</value>
+  <data name="companyToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Công ty</value>
   </data>
   <data name="receiptListToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1225,14 +1195,14 @@
   <data name="chiTietPhieuThuDichVuToolStripMenuItem.Text" xml:space="preserve">
     <value>Danh sách dịch vụ xuất phiếu thu</value>
   </data>
-  <data name="invoiceToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+  <data name="receiptToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="invoiceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>65, 20</value>
+  <data name="receiptToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>70, 20</value>
   </data>
-  <data name="invoiceToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Hóa đơn</value>
+  <data name="receiptToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Phiếu thu</value>
   </data>
   <data name="invoiceListToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1279,14 +1249,14 @@
   <data name="hoaDonHopDongToolStripMenuItem.Text" xml:space="preserve">
     <value>Hóa đơn hợp đồng</value>
   </data>
-  <data name="thuocToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+  <data name="invoiceToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="thuocToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>53, 20</value>
+  <data name="invoiceToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>65, 20</value>
   </data>
-  <data name="thuocToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Thuốc</value>
+  <data name="invoiceToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Hóa đơn</value>
   </data>
   <data name="danhMucThuocToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1345,14 +1315,14 @@
   <data name="keToaToolStripMenuItem.Text" xml:space="preserve">
     <value>Kê toa</value>
   </data>
-  <data name="reportToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+  <data name="thuocToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="reportToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 20</value>
+  <data name="thuocToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>53, 20</value>
   </data>
-  <data name="reportToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Báo cáo</value>
+  <data name="thuocToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Thuốc</value>
   </data>
   <data name="doanhThuNhanVienToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1572,14 +1542,14 @@
   <data name="baoCaoSoLuongKhamToolStripMenuItem.Text" xml:space="preserve">
     <value>Báo cáo số lượng khám</value>
   </data>
-  <data name="chamSocKhachHangToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+  <data name="reportToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="chamSocKhachHangToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>137, 20</value>
+  <data name="reportToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>61, 20</value>
   </data>
-  <data name="chamSocKhachHangToolStripMenuItem.Text" xml:space="preserve">
-    <value>Chăm sóc &amp;khách hàng</value>
+  <data name="reportToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Báo cáo</value>
   </data>
   <data name="yKienKhachHangToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1656,14 +1626,14 @@
   <data name="nhatKyLienHeCongTyToolStripMenuItem.Text" xml:space="preserve">
     <value>Nhật ký liên hệ công ty</value>
   </data>
-  <data name="xetNghiemToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+  <data name="chamSocKhachHangToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="xetNghiemToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>80, 20</value>
+  <data name="chamSocKhachHangToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>137, 20</value>
   </data>
-  <data name="xetNghiemToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Xét nghiệm</value>
+  <data name="chamSocKhachHangToolStripMenuItem.Text" xml:space="preserve">
+    <value>Chăm sóc &amp;khách hàng</value>
   </data>
   <data name="danhSachXetNghiemHitachi917ToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>259, 22</value>
@@ -1776,14 +1746,14 @@
   <data name="danhMucDiaChiCongTyToolStripMenuItem.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="khoCapCuuToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+  <data name="xetNghiemToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="khoCapCuuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>85, 20</value>
+  <data name="xetNghiemToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>80, 20</value>
   </data>
-  <data name="khoCapCuuToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Kho cấp cứu</value>
+  <data name="xetNghiemToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Xét nghiệm</value>
   </data>
   <data name="danhMucCapCuuToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -2041,17 +2011,17 @@
   <data name="cauHinhKhoCapCuuToolStripMenuItem.Text" xml:space="preserve">
     <value>Cấu hình kho cấp cứu</value>
   </data>
-  <data name="toolsToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+  <data name="khoCapCuuToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
-  <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 20</value>
+  <data name="khoCapCuuToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>85, 20</value>
   </data>
-  <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Công cụ</value>
+  <data name="khoCapCuuToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Kho cấp cứu</value>
   </data>
   <data name="dICOMToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 22</value>
+    <value>254, 30</value>
   </data>
   <data name="dICOMToolStripMenuItem.Text" xml:space="preserve">
     <value>DICOM</value>
@@ -2060,25 +2030,25 @@
     <value>False</value>
   </data>
   <data name="printLabelToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 22</value>
+    <value>254, 30</value>
   </data>
   <data name="printLabelToolStripMenuItem.Text" xml:space="preserve">
     <value>In nhãn</value>
   </data>
   <data name="toolStripSeparator27.Size" type="System.Drawing.Size, System.Drawing">
-    <value>243, 6</value>
+    <value>251, 6</value>
   </data>
   <data name="trackingToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="trackingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 22</value>
+    <value>254, 30</value>
   </data>
   <data name="trackingToolStripMenuItem.Text" xml:space="preserve">
     <value>Truy vết</value>
   </data>
   <data name="toolStripSeparator42.Size" type="System.Drawing.Size, System.Drawing">
-    <value>243, 6</value>
+    <value>251, 6</value>
   </data>
   <data name="bookingToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -2109,13 +2079,13 @@
 </value>
   </data>
   <data name="bookingToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 22</value>
+    <value>254, 30</value>
   </data>
   <data name="bookingToolStripMenuItem.Text" xml:space="preserve">
     <value>Lịch hẹn</value>
   </data>
   <data name="toolStripSeparator49.Size" type="System.Drawing.Size, System.Drawing">
-    <value>243, 6</value>
+    <value>251, 6</value>
   </data>
   <data name="thayDoiSoHoaDonToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -2149,13 +2119,13 @@
 </value>
   </data>
   <data name="thayDoiSoHoaDonToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 22</value>
+    <value>254, 30</value>
   </data>
   <data name="thayDoiSoHoaDonToolStripMenuItem.Text" xml:space="preserve">
     <value>Thay đổi số hóa đơn</value>
   </data>
   <data name="toolStripSeparator57.Size" type="System.Drawing.Size, System.Drawing">
-    <value>243, 6</value>
+    <value>251, 6</value>
   </data>
   <data name="tiemNguaToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -2182,7 +2152,7 @@
 </value>
   </data>
   <data name="tiemNguaToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 22</value>
+    <value>254, 30</value>
   </data>
   <data name="tiemNguaToolStripMenuItem.Text" xml:space="preserve">
     <value>Tiêm ngừa</value>
@@ -2220,13 +2190,13 @@
 </value>
   </data>
   <data name="cauHinhSoNgayToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 22</value>
+    <value>254, 30</value>
   </data>
   <data name="cauHinhSoNgayToolStripMenuItem.Text" xml:space="preserve">
     <value>Cấu hình số ngày báo tiêm ngừa</value>
   </data>
   <data name="toolStripSeparator58.Size" type="System.Drawing.Size, System.Drawing">
-    <value>243, 6</value>
+    <value>251, 6</value>
   </data>
   <data name="congTacNgoaiGioToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -2263,13 +2233,13 @@
 </value>
   </data>
   <data name="congTacNgoaiGioToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 22</value>
+    <value>254, 30</value>
   </data>
   <data name="congTacNgoaiGioToolStripMenuItem.Text" xml:space="preserve">
     <value>Công tác ngoài giờ</value>
   </data>
   <data name="toolStripSeparator59.Size" type="System.Drawing.Size, System.Drawing">
-    <value>243, 6</value>
+    <value>251, 6</value>
   </data>
   <data name="lichKhamToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -2301,13 +2271,13 @@
 </value>
   </data>
   <data name="lichKhamToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 22</value>
+    <value>254, 30</value>
   </data>
   <data name="lichKhamToolStripMenuItem.Text" xml:space="preserve">
     <value>Lịch khám</value>
   </data>
   <data name="toolStripSeparator63.Size" type="System.Drawing.Size, System.Drawing">
-    <value>243, 6</value>
+    <value>251, 6</value>
   </data>
   <data name="thongBaoToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -2340,13 +2310,13 @@
 </value>
   </data>
   <data name="thongBaoToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 22</value>
+    <value>254, 30</value>
   </data>
   <data name="thongBaoToolStripMenuItem.Text" xml:space="preserve">
     <value>Thông báo</value>
   </data>
   <data name="toolStripSeparator52.Size" type="System.Drawing.Size, System.Drawing">
-    <value>243, 6</value>
+    <value>251, 6</value>
   </data>
   <data name="traCuuThongTinKhachHangToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -2387,10 +2357,45 @@
 </value>
   </data>
   <data name="traCuuThongTinKhachHangToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>246, 22</value>
+    <value>254, 30</value>
   </data>
   <data name="traCuuThongTinKhachHangToolStripMenuItem.Text" xml:space="preserve">
     <value>Tra cứu thông tin khách hàng</value>
+  </data>
+  <data name="toolsToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
+  <data name="toolsToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 20</value>
+  </data>
+  <data name="toolsToolStripMenuItem.Text" xml:space="preserve">
+    <value>&amp;Công cụ</value>
+  </data>
+  <data name="tinNhanMauToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAANMSURBVEhLlZVbSFRhEMfPORVkSk9FTxFoUorarjfU0PQhDSmCXoOIytJEIStfwh6CoBBBijIi
+        qYgwwyiTiMqIRU2LvLGZd/NCa7q6ut7WPeZMM9/uylnbPbQf/Dn/mZ3fzH7ftxdJ+ndtpVSWLMut9Gwh
+        ZZMeyIoyTM980nnF5Svdr7VQbRv5QyRmdVe2FBQ8I8VnwNGiEszKL0YpOROC0g5j2aMq9iIue1iFwelH
+        gONMqjl26SoQg4J1vSGfK0TavMW26WY1nm7oh/Km71jaYMYLX4agqLEHnze1sxdxdWM7XmzoBo65przR
+        DMQgs9yDuof4mpAqGVPhpKkHFpcc0NHVC986f8D45BT0DY2AqaVNeJapuRV6B4eF55o2s4thlntQ81Rf
+        AzJ4m4WNfWibtcOtO/fw+o1S5CY1L2uxsKgYRy2/WVBYdBlfvKrjAaLmdsV9IAYLiOXjpeYZvgfEpWOu
+        qRstM3MwOD6JA5YJHLHagIQ9o7/Yi9jtRZ5rqBaIEawUl64zIPYA5H3qgom5RQYCEjPMStTD/w6MaXi2
+        3owWKh6bnUe3tJ5zntirhhjBSsY0nQGGVMyr70Tb0jJMLTjQLa3nnCf2qiFGsJJBXLKfO9i3Hwo+dIBD
+        XYElpxqQmGFWoh5+B8gxKZj/rg0XnCsw71TRLa3nnCf2qiFGsNRDZ0B0Mpx78xWsS06YDFDMMCtTD/87
+        iErCc3UtaHU4wepQ6Smk9dp4XY1TsHJUks6AyETMq/2MdjqiOdoyS+u18foaigUrRybqDIhIwMLaJlxd
+        XQUARJd4ebw21uYBCBGsHJGgM2BvPOTWmMC+rMKc+icgMcOsTD383oGyJxZznn3EyUUnTC2r6JbWc84T
+        e9XQh0Kw1ENnQLgRzzx9jxOL9EULcAAxglXCjToDdhsg78lbcKqq6+gDWMwwq1AP/0cUFoOnKl+LnwO6
+        A3RL6znnib1q+GeFWSUsRmdAaDQer6jBgWk7WOhMheg+1rw21ubJD07bBauERvsdYJB37IKUkrvQ1f8T
+        LBNW0tR/yioYZrkHHZHB1x+OTMnmjXEHcduJK7Az5xq6pfWc88ReNcQgs9yDxL18ru2UfSzJ8pikbBgP
+        SMwwK0ncY239BcDrIixzqEjFAAAAAElFTkSuQmCC
+</value>
+  </data>
+  <data name="tinNhanMauToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>160, 30</value>
+  </data>
+  <data name="tinNhanMauToolStripMenuItem.Text" xml:space="preserve">
+    <value>Tin nhắn mẫu</value>
   </data>
   <data name="sMSToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -2400,18 +2405,6 @@
   </data>
   <data name="sMSToolStripMenuItem.Text" xml:space="preserve">
     <value>&amp;SMS</value>
-  </data>
-  <data name="tinNhanMauToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>148, 22</value>
-  </data>
-  <data name="tinNhanMauToolStripMenuItem.Text" xml:space="preserve">
-    <value>Tin nhắn mẫu</value>
-  </data>
-  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>64, 20</value>
-  </data>
-  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
-    <value>Trợ giúp</value>
   </data>
   <data name="medicalManagementHelpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
     <value>186, 22</value>
@@ -2469,9 +2462,175 @@
   <data name="biểuMẫuPhòngSaleToolStripMenuItem.Text" xml:space="preserve">
     <value>Biểu mẫu phòng Sale</value>
   </data>
+  <data name="helpToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
+    <value>64, 20</value>
+  </data>
+  <data name="helpToolStripMenuItem.Text" xml:space="preserve">
+    <value>Trợ giúp</value>
+  </data>
+  <data name="_mainMenu.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_mainMenu.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1195, 24</value>
+  </data>
+  <data name="_mainMenu.TabIndex" type="System.Int32, mscorlib">
+    <value>4</value>
+  </data>
+  <data name="&gt;&gt;_mainMenu.Name" xml:space="preserve">
+    <value>_mainMenu</value>
+  </data>
+  <data name="&gt;&gt;_mainMenu.Type" xml:space="preserve">
+    <value>System.Windows.Forms.MenuStrip, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;_mainMenu.Parent" xml:space="preserve">
+    <value>$this</value>
+  </data>
+  <data name="&gt;&gt;_mainMenu.ZOrder" xml:space="preserve">
+    <value>4</value>
+  </data>
   <metadata name="_dotNetBarManager.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>701, 17</value>
   </metadata>
+  <data name="bar1.AccessibleDescription" xml:space="preserve">
+    <value>Danh sách bệnh nhân được khám (bar1)</value>
+  </data>
+  <data name="bar1.AccessibleName" xml:space="preserve">
+    <value>Danh sách bệnh nhân được khám</value>
+  </data>
+  <data name="fileNumDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>Mã bệnh nhân</value>
+  </data>
+  <metadata name="Fullname.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="Fullname.HeaderText" xml:space="preserve">
+    <value>Họ Tên</value>
+  </data>
+  <data name="Fullname.Width" type="System.Int32, mscorlib">
+    <value>150</value>
+  </data>
+  <metadata name="FullAddress.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="FullAddress.HeaderText" xml:space="preserve">
+    <value>Địa chỉ</value>
+  </data>
+  <data name="FullAddress.Width" type="System.Int32, mscorlib">
+    <value>250</value>
+  </data>
+  <metadata name="GenderAsStr.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>True</value>
+  </metadata>
+  <data name="GenderAsStr.HeaderText" xml:space="preserve">
+    <value>Giới tính</value>
+  </data>
+  <data name="dobDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>Ngày sinh</value>
+  </data>
+  <data name="dobDataGridViewTextBoxColumn.Width" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
+  <data name="identityCardDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>CMND</value>
+  </data>
+  <data name="identityCardDataGridViewTextBoxColumn.Width" type="System.Int32, mscorlib">
+    <value>90</value>
+  </data>
+  <data name="homePhoneDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>SĐT nhà</value>
+  </data>
+  <data name="homePhoneDataGridViewTextBoxColumn.Width" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
+  <data name="workPhoneDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>SĐT làm việc</value>
+  </data>
+  <data name="workPhoneDataGridViewTextBoxColumn.Width" type="System.Int32, mscorlib">
+    <value>95</value>
+  </data>
+  <data name="mobileDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>Số DTDĐ</value>
+  </data>
+  <data name="mobileDataGridViewTextBoxColumn.Width" type="System.Int32, mscorlib">
+    <value>80</value>
+  </data>
+  <data name="emailDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
+    <value>Email</value>
+  </data>
+  <data name="emailDataGridViewTextBoxColumn.Width" type="System.Int32, mscorlib">
+    <value>150</value>
+  </data>
+  <metadata name="patientViewBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>852, 17</value>
+  </metadata>
+  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
+  <data name="dgPatient.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="dgPatient.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="dgPatient.RowHeadersWidth" type="System.Int32, mscorlib">
+    <value>30</value>
+  </data>
+  <data name="dgPatient.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1189, 167</value>
+  </data>
+  <data name="dgPatient.TabIndex" type="System.Int32, mscorlib">
+    <value>3</value>
+  </data>
+  <data name="&gt;&gt;dgPatient.Name" xml:space="preserve">
+    <value>dgPatient</value>
+  </data>
+  <data name="&gt;&gt;dgPatient.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.Controls.DataGridViewX, DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170</value>
+  </data>
+  <data name="&gt;&gt;dgPatient.Parent" xml:space="preserve">
+    <value>panelDockContainer1</value>
+  </data>
+  <data name="&gt;&gt;dgPatient.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panelDockContainer1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 23</value>
+  </data>
+  <data name="panelDockContainer1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1189, 167</value>
+  </data>
+  <data name="panelDockContainer1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;panelDockContainer1.Name" xml:space="preserve">
+    <value>panelDockContainer1</value>
+  </data>
+  <data name="&gt;&gt;panelDockContainer1.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.PanelDockContainer, DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170</value>
+  </data>
+  <data name="&gt;&gt;panelDockContainer1.Parent" xml:space="preserve">
+    <value>bar1</value>
+  </data>
+  <data name="&gt;&gt;panelDockContainer1.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="bar1.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
+  </data>
+  <data name="dockContainerItem1.Text" xml:space="preserve">
+    <value>Danh sách bệnh nhân được khám</value>
+  </data>
+  <data name="bar1.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 3</value>
+  </data>
+  <data name="bar1.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1195, 193</value>
+  </data>
+  <data name="bar1.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="bar1.Text" xml:space="preserve">
+    <value>Danh sách bệnh nhân được khám</value>
+  </data>
   <data name="&gt;&gt;bar1.Name" xml:space="preserve">
     <value>bar1</value>
   </data>
@@ -2483,6 +2642,75 @@
   </data>
   <data name="&gt;&gt;bar1.ZOrder" xml:space="preserve">
     <value>0</value>
+  </data>
+  <data name="bar2.AccessibleDescription" xml:space="preserve">
+    <value>Phòng chờ (bar2)</value>
+  </data>
+  <data name="bar2.AccessibleName" xml:space="preserve">
+    <value>Phòng chờ</value>
+  </data>
+  <data name="_uPhongChoList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
+    <value>Fill</value>
+  </data>
+  <data name="_uPhongChoList.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 0</value>
+  </data>
+  <data name="_uPhongChoList.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1189, 196</value>
+  </data>
+  <data name="_uPhongChoList.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;_uPhongChoList.Name" xml:space="preserve">
+    <value>_uPhongChoList</value>
+  </data>
+  <data name="&gt;&gt;_uPhongChoList.Type" xml:space="preserve">
+    <value>MM.Controls.uPhongChoList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
+  </data>
+  <data name="&gt;&gt;_uPhongChoList.Parent" xml:space="preserve">
+    <value>panelDockContainer2</value>
+  </data>
+  <data name="&gt;&gt;_uPhongChoList.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="panelDockContainer2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>3, 23</value>
+  </data>
+  <data name="panelDockContainer2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1189, 196</value>
+  </data>
+  <data name="panelDockContainer2.TabIndex" type="System.Int32, mscorlib">
+    <value>0</value>
+  </data>
+  <data name="&gt;&gt;panelDockContainer2.Name" xml:space="preserve">
+    <value>panelDockContainer2</value>
+  </data>
+  <data name="&gt;&gt;panelDockContainer2.Type" xml:space="preserve">
+    <value>DevComponents.DotNetBar.PanelDockContainer, DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170</value>
+  </data>
+  <data name="&gt;&gt;panelDockContainer2.Parent" xml:space="preserve">
+    <value>bar2</value>
+  </data>
+  <data name="&gt;&gt;panelDockContainer2.ZOrder" xml:space="preserve">
+    <value>0</value>
+  </data>
+  <data name="bar2.Font" type="System.Drawing.Font, System.Drawing">
+    <value>Microsoft Sans Serif, 8.25pt</value>
+  </data>
+  <data name="dockContainerItem2.Text" xml:space="preserve">
+    <value>Phòng chờ</value>
+  </data>
+  <data name="bar2.Location" type="System.Drawing.Point, System.Drawing">
+    <value>0, 199</value>
+  </data>
+  <data name="bar2.Size" type="System.Drawing.Size, System.Drawing">
+    <value>1195, 222</value>
+  </data>
+  <data name="bar2.TabIndex" type="System.Int32, mscorlib">
+    <value>1</value>
+  </data>
+  <data name="bar2.Text" xml:space="preserve">
+    <value>Phòng chờ</value>
   </data>
   <data name="&gt;&gt;bar2.Name" xml:space="preserve">
     <value>bar2</value>
@@ -2496,7 +2724,6 @@
   <data name="&gt;&gt;bar2.ZOrder" xml:space="preserve">
     <value>1</value>
   </data>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
   <data name="dockSite4.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
     <value>Bottom</value>
   </data>
@@ -8403,261 +8630,6 @@
   </data>
   <data name="&gt;&gt;$this.Type" xml:space="preserve">
     <value>MM.Dialogs.dlgBase, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="bar1.AccessibleDescription" xml:space="preserve">
-    <value>Danh sách bệnh nhân được khám (bar1)</value>
-  </data>
-  <data name="bar1.AccessibleName" xml:space="preserve">
-    <value>Danh sách bệnh nhân được khám</value>
-  </data>
-  <data name="&gt;&gt;dgPatient.Name" xml:space="preserve">
-    <value>dgPatient</value>
-  </data>
-  <data name="&gt;&gt;dgPatient.Type" xml:space="preserve">
-    <value>DevComponents.DotNetBar.Controls.DataGridViewX, DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170</value>
-  </data>
-  <data name="&gt;&gt;dgPatient.Parent" xml:space="preserve">
-    <value>panelDockContainer1</value>
-  </data>
-  <data name="&gt;&gt;dgPatient.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="panelDockContainer1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 23</value>
-  </data>
-  <data name="panelDockContainer1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1189, 167</value>
-  </data>
-  <data name="panelDockContainer1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;panelDockContainer1.Name" xml:space="preserve">
-    <value>panelDockContainer1</value>
-  </data>
-  <data name="&gt;&gt;panelDockContainer1.Type" xml:space="preserve">
-    <value>DevComponents.DotNetBar.PanelDockContainer, DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170</value>
-  </data>
-  <data name="&gt;&gt;panelDockContainer1.Parent" xml:space="preserve">
-    <value>bar1</value>
-  </data>
-  <data name="&gt;&gt;panelDockContainer1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="bar1.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 8.25pt</value>
-  </data>
-  <data name="dockContainerItem1.Text" xml:space="preserve">
-    <value>Danh sách bệnh nhân được khám</value>
-  </data>
-  <data name="bar1.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 3</value>
-  </data>
-  <data name="bar1.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1195, 193</value>
-  </data>
-  <data name="bar1.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="bar1.Text" xml:space="preserve">
-    <value>Danh sách bệnh nhân được khám</value>
-  </data>
-  <data name="&gt;&gt;bar1.Name" xml:space="preserve">
-    <value>bar1</value>
-  </data>
-  <data name="&gt;&gt;bar1.Type" xml:space="preserve">
-    <value>DevComponents.DotNetBar.Bar, DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170</value>
-  </data>
-  <data name="&gt;&gt;bar1.Parent" xml:space="preserve">
-    <value>dockSite4</value>
-  </data>
-  <data name="&gt;&gt;bar1.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="fileNumDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
-    <value>Mã bệnh nhân</value>
-  </data>
-  <metadata name="Fullname.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="Fullname.HeaderText" xml:space="preserve">
-    <value>Họ Tên</value>
-  </data>
-  <data name="Fullname.Width" type="System.Int32, mscorlib">
-    <value>150</value>
-  </data>
-  <metadata name="FullAddress.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="FullAddress.HeaderText" xml:space="preserve">
-    <value>Địa chỉ</value>
-  </data>
-  <data name="FullAddress.Width" type="System.Int32, mscorlib">
-    <value>250</value>
-  </data>
-  <metadata name="GenderAsStr.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <data name="GenderAsStr.HeaderText" xml:space="preserve">
-    <value>Giới tính</value>
-  </data>
-  <data name="dobDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
-    <value>Ngày sinh</value>
-  </data>
-  <data name="dobDataGridViewTextBoxColumn.Width" type="System.Int32, mscorlib">
-    <value>80</value>
-  </data>
-  <data name="identityCardDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
-    <value>CMND</value>
-  </data>
-  <data name="identityCardDataGridViewTextBoxColumn.Width" type="System.Int32, mscorlib">
-    <value>90</value>
-  </data>
-  <data name="homePhoneDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
-    <value>SĐT nhà</value>
-  </data>
-  <data name="homePhoneDataGridViewTextBoxColumn.Width" type="System.Int32, mscorlib">
-    <value>80</value>
-  </data>
-  <data name="workPhoneDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
-    <value>SĐT làm việc</value>
-  </data>
-  <data name="workPhoneDataGridViewTextBoxColumn.Width" type="System.Int32, mscorlib">
-    <value>95</value>
-  </data>
-  <data name="mobileDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
-    <value>Số DTDĐ</value>
-  </data>
-  <data name="mobileDataGridViewTextBoxColumn.Width" type="System.Int32, mscorlib">
-    <value>80</value>
-  </data>
-  <data name="emailDataGridViewTextBoxColumn.HeaderText" xml:space="preserve">
-    <value>Email</value>
-  </data>
-  <data name="emailDataGridViewTextBoxColumn.Width" type="System.Int32, mscorlib">
-    <value>150</value>
-  </data>
-  <metadata name="patientViewBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>852, 17</value>
-  </metadata>
-  <data name="dgPatient.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="dgPatient.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="dgPatient.RowHeadersWidth" type="System.Int32, mscorlib">
-    <value>30</value>
-  </data>
-  <data name="dgPatient.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1189, 167</value>
-  </data>
-  <data name="dgPatient.TabIndex" type="System.Int32, mscorlib">
-    <value>3</value>
-  </data>
-  <data name="&gt;&gt;dgPatient.Name" xml:space="preserve">
-    <value>dgPatient</value>
-  </data>
-  <data name="&gt;&gt;dgPatient.Type" xml:space="preserve">
-    <value>DevComponents.DotNetBar.Controls.DataGridViewX, DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170</value>
-  </data>
-  <data name="&gt;&gt;dgPatient.Parent" xml:space="preserve">
-    <value>panelDockContainer1</value>
-  </data>
-  <data name="&gt;&gt;dgPatient.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="bar2.AccessibleDescription" xml:space="preserve">
-    <value>Phòng chờ (bar2)</value>
-  </data>
-  <data name="bar2.AccessibleName" xml:space="preserve">
-    <value>Phòng chờ</value>
-  </data>
-  <data name="&gt;&gt;_uPhongChoList.Name" xml:space="preserve">
-    <value>_uPhongChoList</value>
-  </data>
-  <data name="&gt;&gt;_uPhongChoList.Type" xml:space="preserve">
-    <value>MM.Controls.uPhongChoList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;_uPhongChoList.Parent" xml:space="preserve">
-    <value>panelDockContainer2</value>
-  </data>
-  <data name="&gt;&gt;_uPhongChoList.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="panelDockContainer2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>3, 23</value>
-  </data>
-  <data name="panelDockContainer2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1189, 196</value>
-  </data>
-  <data name="panelDockContainer2.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;panelDockContainer2.Name" xml:space="preserve">
-    <value>panelDockContainer2</value>
-  </data>
-  <data name="&gt;&gt;panelDockContainer2.Type" xml:space="preserve">
-    <value>DevComponents.DotNetBar.PanelDockContainer, DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170</value>
-  </data>
-  <data name="&gt;&gt;panelDockContainer2.Parent" xml:space="preserve">
-    <value>bar2</value>
-  </data>
-  <data name="&gt;&gt;panelDockContainer2.ZOrder" xml:space="preserve">
-    <value>0</value>
-  </data>
-  <data name="bar2.Font" type="System.Drawing.Font, System.Drawing">
-    <value>Microsoft Sans Serif, 8.25pt</value>
-  </data>
-  <data name="dockContainerItem2.Text" xml:space="preserve">
-    <value>Phòng chờ</value>
-  </data>
-  <data name="bar2.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 199</value>
-  </data>
-  <data name="bar2.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1195, 222</value>
-  </data>
-  <data name="bar2.TabIndex" type="System.Int32, mscorlib">
-    <value>1</value>
-  </data>
-  <data name="bar2.Text" xml:space="preserve">
-    <value>Phòng chờ</value>
-  </data>
-  <data name="&gt;&gt;bar2.Name" xml:space="preserve">
-    <value>bar2</value>
-  </data>
-  <data name="&gt;&gt;bar2.Type" xml:space="preserve">
-    <value>DevComponents.DotNetBar.Bar, DevComponents.DotNetBar2, Version=9.4.0.0, Culture=neutral, PublicKeyToken=d159a0cb0c2a1170</value>
-  </data>
-  <data name="&gt;&gt;bar2.Parent" xml:space="preserve">
-    <value>dockSite4</value>
-  </data>
-  <data name="&gt;&gt;bar2.ZOrder" xml:space="preserve">
-    <value>1</value>
-  </data>
-  <data name="_uPhongChoList.Dock" type="System.Windows.Forms.DockStyle, System.Windows.Forms">
-    <value>Fill</value>
-  </data>
-  <data name="_uPhongChoList.Location" type="System.Drawing.Point, System.Drawing">
-    <value>0, 0</value>
-  </data>
-  <data name="_uPhongChoList.Size" type="System.Drawing.Size, System.Drawing">
-    <value>1189, 196</value>
-  </data>
-  <data name="_uPhongChoList.TabIndex" type="System.Int32, mscorlib">
-    <value>0</value>
-  </data>
-  <data name="&gt;&gt;_uPhongChoList.Name" xml:space="preserve">
-    <value>_uPhongChoList</value>
-  </data>
-  <data name="&gt;&gt;_uPhongChoList.Type" xml:space="preserve">
-    <value>MM.Controls.uPhongChoList, MM, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null</value>
-  </data>
-  <data name="&gt;&gt;_uPhongChoList.Parent" xml:space="preserve">
-    <value>panelDockContainer2</value>
-  </data>
-  <data name="&gt;&gt;_uPhongChoList.ZOrder" xml:space="preserve">
-    <value>0</value>
   </data>
   <metadata name="_timerShowAlert.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>1021, 16</value>
