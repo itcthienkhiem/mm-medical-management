@@ -101,6 +101,12 @@
     <Compile Include="Controls\uKhamHopDong.Designer.cs">
       <DependentUpon>uKhamHopDong.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uSendSMS.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uSendSMS.Designer.cs">
+      <DependentUpon>uSendSMS.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uTinNhanMauList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1070,6 +1076,12 @@
     <Compile Include="Dialogs\dlgEditChiTietKetQuaXetNghiemTay.Designer.cs">
       <DependentUpon>dlgEditChiTietKetQuaXetNghiemTay.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgHelpCauHinhNoiSoiSieuAm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgHelpCauHinhNoiSoiSieuAm.Designer.cs">
+      <DependentUpon>dlgHelpCauHinhNoiSoiSieuAm.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgKetLuan.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1562,6 +1574,9 @@
     <EmbeddedResource Include="Controls\uKhamHopDong.resx">
       <DependentUpon>uKhamHopDong.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uSendSMS.resx">
+      <DependentUpon>uSendSMS.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uTinNhanMauList.resx">
       <DependentUpon>uTinNhanMauList.cs</DependentUpon>
     </EmbeddedResource>
@@ -1981,6 +1996,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgEditChiTietKetQuaXetNghiemTay.resx">
       <DependentUpon>dlgEditChiTietKetQuaXetNghiemTay.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgHelpCauHinhNoiSoiSieuAm.resx">
+      <DependentUpon>dlgHelpCauHinhNoiSoiSieuAm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgKetLuan.resx">
       <DependentUpon>dlgKetLuan.cs</DependentUpon>

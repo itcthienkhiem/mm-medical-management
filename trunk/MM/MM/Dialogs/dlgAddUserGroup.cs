@@ -1043,7 +1043,7 @@ namespace MM.Dialogs
                 {
                     (row.Cells["IsSendSMS"] as DataGridViewDisableCheckBoxCell).Enabled = true;
                     (row.Cells["IsUpload"] as DataGridViewDisableCheckBoxCell).Enabled = false;
-                    (row.Cells["IsView"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsView"] as DataGridViewDisableCheckBoxCell).Enabled = true;
                     (row.Cells["IsAdd"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsEdit"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsDelete"] as DataGridViewDisableCheckBoxCell).Enabled = false;

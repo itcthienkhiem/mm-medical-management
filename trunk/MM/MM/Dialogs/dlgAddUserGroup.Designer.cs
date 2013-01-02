@@ -37,12 +37,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.dgPermission = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.userGroupPermissionViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnOK = new System.Windows.Forms.Button();
-            this.ctmPermission = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.unselectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.FunctionCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.FunctionName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsView = new MM.Controls.DataGridViewDisableCheckBoxColumn();
@@ -58,6 +52,12 @@
             this.IsCreateReport = new MM.Controls.DataGridViewDisableCheckBoxColumn();
             this.IsUpload = new MM.Controls.DataGridViewDisableCheckBoxColumn();
             this.IsSendSMS = new MM.Controls.DataGridViewDisableCheckBoxColumn();
+            this.userGroupPermissionViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnCancel = new System.Windows.Forms.Button();
+            this.btnOK = new System.Windows.Forms.Button();
+            this.ctmPermission = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.selectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.unselectAllToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPermission)).BeginInit();
@@ -71,7 +71,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(6, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(886, 54);
+            this.groupBox1.Size = new System.Drawing.Size(895, 54);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin nhóm người sử dụng";
@@ -97,7 +97,7 @@
             this.groupBox2.Controls.Add(this.dgPermission);
             this.groupBox2.Location = new System.Drawing.Point(6, 64);
             this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(886, 471);
+            this.groupBox2.Size = new System.Drawing.Size(895, 471);
             this.groupBox2.TabIndex = 1;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Phân quyền";
@@ -152,59 +152,9 @@
             this.dgPermission.RowHeadersVisible = false;
             this.dgPermission.RowHeadersWidth = 30;
             this.dgPermission.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgPermission.Size = new System.Drawing.Size(868, 442);
+            this.dgPermission.Size = new System.Drawing.Size(873, 442);
             this.dgPermission.TabIndex = 4;
             this.dgPermission.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPermission_CellMouseDown);
-            // 
-            // userGroupPermissionViewBindingSource
-            // 
-            this.userGroupPermissionViewBindingSource.DataSource = typeof(MM.Databasae.UserGroup_PermissionView);
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
-            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(450, 541);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 25);
-            this.btnCancel.TabIndex = 15;
-            this.btnCancel.Text = "   &Đóng";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            // 
-            // btnOK
-            // 
-            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Image = global::MM.Properties.Resources.save;
-            this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(371, 541);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 25);
-            this.btnOK.TabIndex = 14;
-            this.btnOK.Text = "   &Lưu";
-            this.btnOK.UseVisualStyleBackColor = true;
-            // 
-            // ctmPermission
-            // 
-            this.ctmPermission.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.selectAllToolStripMenuItem,
-            this.unselectAllToolStripMenuItem});
-            this.ctmPermission.Name = "ctmPermission";
-            this.ctmPermission.Size = new System.Drawing.Size(155, 48);
-            // 
-            // selectAllToolStripMenuItem
-            // 
-            this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
-            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
-            this.selectAllToolStripMenuItem.Text = "&Chọn tất cả";
-            this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.selectAllToolStripMenuItem_Click);
-            // 
-            // unselectAllToolStripMenuItem
-            // 
-            this.unselectAllToolStripMenuItem.Name = "unselectAllToolStripMenuItem";
-            this.unselectAllToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
-            this.unselectAllToolStripMenuItem.Text = "&Bỏ chọn tất cả";
-            this.unselectAllToolStripMenuItem.Click += new System.EventHandler(this.unselectAllToolStripMenuItem_Click);
             // 
             // FunctionCode
             // 
@@ -326,13 +276,63 @@
             this.IsSendSMS.Name = "IsSendSMS";
             this.IsSendSMS.Width = 60;
             // 
+            // userGroupPermissionViewBindingSource
+            // 
+            this.userGroupPermissionViewBindingSource.DataSource = typeof(MM.Databasae.UserGroup_PermissionView);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
+            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancel.Location = new System.Drawing.Point(456, 541);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 25);
+            this.btnCancel.TabIndex = 15;
+            this.btnCancel.Text = "   &Đóng";
+            this.btnCancel.UseVisualStyleBackColor = true;
+            // 
+            // btnOK
+            // 
+            this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
+            this.btnOK.Image = global::MM.Properties.Resources.save;
+            this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOK.Location = new System.Drawing.Point(377, 541);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(75, 25);
+            this.btnOK.TabIndex = 14;
+            this.btnOK.Text = "   &Lưu";
+            this.btnOK.UseVisualStyleBackColor = true;
+            // 
+            // ctmPermission
+            // 
+            this.ctmPermission.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.selectAllToolStripMenuItem,
+            this.unselectAllToolStripMenuItem});
+            this.ctmPermission.Name = "ctmPermission";
+            this.ctmPermission.Size = new System.Drawing.Size(155, 48);
+            // 
+            // selectAllToolStripMenuItem
+            // 
+            this.selectAllToolStripMenuItem.Name = "selectAllToolStripMenuItem";
+            this.selectAllToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.selectAllToolStripMenuItem.Text = "&Chọn tất cả";
+            this.selectAllToolStripMenuItem.Click += new System.EventHandler(this.selectAllToolStripMenuItem_Click);
+            // 
+            // unselectAllToolStripMenuItem
+            // 
+            this.unselectAllToolStripMenuItem.Name = "unselectAllToolStripMenuItem";
+            this.unselectAllToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
+            this.unselectAllToolStripMenuItem.Text = "&Bỏ chọn tất cả";
+            this.unselectAllToolStripMenuItem.Click += new System.EventHandler(this.unselectAllToolStripMenuItem_Click);
+            // 
             // dlgAddUserGroup
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(897, 573);
+            this.ClientSize = new System.Drawing.Size(908, 573);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupBox2);
