@@ -83,6 +83,53 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetPatientWithMobiList(string tenBenhNhan, int type) //type = 0: tên bệnh nhân; 1: mã bệnh nhân; 2: số điện thoại
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Empty;
+                if (tenBenhNhan.Trim() == string.Empty)
+                {
+                    query = "SELECT TOP 0 CAST(0 AS Bit) AS Checked, * FROM PatientView WITH(NOLOCK)";
+                }
+                else if (tenBenhNhan.Trim() == "*")
+                {
+                    query = "SELECT CAST(0 AS Bit) AS Checked, * FROM PatientView WITH(NOLOCK) WHERE Archived = 'False' AND Mobile IS NOT NULL AND Mobile <> '' ORDER BY FirstName, FullName";
+                }
+                else if (type == 0)
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM PatientView WITH(NOLOCK) WHERE FullName LIKE N'%{0}%' AND Archived = 'False' AND Mobile IS NOT NULL AND Mobile <> '' ORDER BY FirstName, FullName",
+                        tenBenhNhan);
+                }
+                else if (type == 1)
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM PatientView WITH(NOLOCK) WHERE FileNum LIKE N'%{0}%' AND Archived = 'False' AND Mobile IS NOT NULL AND Mobile <> '' ORDER BY FirstName, FullName",
+                        tenBenhNhan);
+                }
+                else if (type == 2)
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM PatientView WITH(NOLOCK) WHERE Mobile LIKE N'%{0}%' AND Archived = 'False' AND Mobile IS NOT NULL AND Mobile <> '' ORDER BY FirstName, FullName",
+                        tenBenhNhan);
+                }
+
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetBenhNhanThanThuocList(string tenBenhNhan, int type)
         {
             Result result = new Result();
