@@ -384,6 +384,8 @@ namespace MM
                 _uKhamHopDong.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uTinNhanMauList))
                 _uTinNhanMauList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uSendSMS))
+                _uSendSMS.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -505,7 +507,6 @@ namespace MM
                 Global.AllowTaoHoSo = false;
                 Global.AllowUploadHoSo = false;
                 Global.AllowAddMatKhauHoSo = false;
-                Global.AllowGuiSMS = false;
 
                 Result result = LogonBus.GetPermission2(Global.LogonGUID);
                 if (result.IsOK)
@@ -1485,7 +1486,18 @@ namespace MM
                         }
                         else if (functionCode == Const.GuiSMS)
                         {
-                            Global.AllowGuiSMS = isSendSMS;
+                            sMSToolStripMenuItem.Enabled = isLogin;
+                            guiSMSToolStripMenuItem.Enabled = isView && isLogin;
+                            _uSendSMS.AllowAdd = isAdd;
+                            _uSendSMS.AllowEdit = isEdit;
+                            _uSendSMS.AllowDelete = isDelete;
+                            _uSendSMS.AllowPrint = isPrint;
+                            _uSendSMS.AllowExport = isExport;
+                            _uSendSMS.AllowImport = isImport;
+                            _uSendSMS.AllowLock = isLock;
+                            _uSendSMS.AllowExportAll = isExportAll;
+                            _uSendSMS.AllowConfirm = isConfirm;
+                            _uSendSMS.AllowSendSMS = isSendSMS;
                         }
                         else if (functionCode == Const.TinNhanMau)
                         {
@@ -1584,7 +1596,6 @@ namespace MM
                 Global.AllowTaoHoSo = true;
                 Global.AllowUploadHoSo = true;
                 Global.AllowAddMatKhauHoSo = true;
-                Global.AllowGuiSMS = true;
 
                 foreach (Control ctrl in this._mainPanel.Controls)
                 {   
@@ -1725,6 +1736,7 @@ namespace MM
                 khamHopDongToolStripMenuItem.Enabled = isLogin;
                 sMSToolStripMenuItem.Enabled = isLogin;
                 tinNhanMauToolStripMenuItem.Enabled = isLogin;
+                guiSMSToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -2151,7 +2163,28 @@ namespace MM
                 case "TinNhanMau":
                     OnTinNhanMau();
                     break;
+
+                case "GuiSMS":
+                    OnSendSMS();
+                    break;
+
+                case "CauHinhNoiSoiSieuAm":
+                    OnHelpCauHinhNoiSoiSieuAm();
+                    break;
             }
+        }
+
+        private void OnSendSMS()
+        {
+            this.Text = string.Format("{0} - Gui SMS", Application.ProductName);
+            ViewControl(_uSendSMS);
+            _uSendSMS.DisplayAsThread();
+        }
+
+        private void OnHelpCauHinhNoiSoiSieuAm()
+        {
+            dlgHelpCauHinhNoiSoiSieuAm dlg = new dlgHelpCauHinhNoiSoiSieuAm();
+            dlg.ShowDialog(this);
         }
 
         private void OnTinNhanMau()
@@ -3071,6 +3104,7 @@ namespace MM
             _uToaCapCuuList.ClearData();
             _uKhamHopDong.ClearData();
             _uTinNhanMauList.ClearData();
+            _uSendSMS.ClearData();
         }
         #endregion
 

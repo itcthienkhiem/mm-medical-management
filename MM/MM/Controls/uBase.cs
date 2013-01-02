@@ -49,6 +49,7 @@ namespace MM.Controls
         public bool AllowExportAll = true;
         public bool AllowView = true;
         public bool AllowExportInvoice = true;
+        public bool AllowSendSMS = true;
         public Object ThisLock = new Object();
         #endregion
 

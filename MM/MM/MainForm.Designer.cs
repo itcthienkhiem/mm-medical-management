@@ -232,6 +232,8 @@
             this.traCuuThongTinKhachHangToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sMSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tinNhanMauToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator71 = new System.Windows.Forms.ToolStripSeparator();
+            this.guiSMSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.medicalManagementHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -239,6 +241,8 @@
             this.toolStripSeparator25 = new System.Windows.Forms.ToolStripSeparator();
             this.templateExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.biểuMẫuPhòngSaleToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator70 = new System.Windows.Forms.ToolStripSeparator();
+            this.cauHinhNoiSoiSieuAmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._dotNetBarManager = new DevComponents.DotNetBar.DotNetBarManager(this.components);
             this.dockSite4 = new DevComponents.DotNetBar.DockSite();
             this.bar1 = new DevComponents.DotNetBar.Bar();
@@ -341,6 +345,7 @@
             this._uServicesList = new MM.Controls.uServicesList();
             this._timerCheckAlert = new System.Windows.Forms.Timer(this.components);
             this._timerPatient = new System.Windows.Forms.Timer(this.components);
+            this._uSendSMS = new MM.Controls.uSendSMS();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -1791,7 +1796,9 @@
             // sMSToolStripMenuItem
             // 
             this.sMSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.tinNhanMauToolStripMenuItem});
+            this.tinNhanMauToolStripMenuItem,
+            this.toolStripSeparator71,
+            this.guiSMSToolStripMenuItem});
             resources.ApplyResources(this.sMSToolStripMenuItem, "sMSToolStripMenuItem");
             this.sMSToolStripMenuItem.Name = "sMSToolStripMenuItem";
             // 
@@ -1802,6 +1809,18 @@
             this.tinNhanMauToolStripMenuItem.Tag = "TinNhanMau";
             this.tinNhanMauToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
+            // toolStripSeparator71
+            // 
+            this.toolStripSeparator71.Name = "toolStripSeparator71";
+            resources.ApplyResources(this.toolStripSeparator71, "toolStripSeparator71");
+            // 
+            // guiSMSToolStripMenuItem
+            // 
+            resources.ApplyResources(this.guiSMSToolStripMenuItem, "guiSMSToolStripMenuItem");
+            this.guiSMSToolStripMenuItem.Name = "guiSMSToolStripMenuItem";
+            this.guiSMSToolStripMenuItem.Tag = "GuiSMS";
+            this.guiSMSToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1810,7 +1829,9 @@
             this.aboutMedicalManagementToolStripMenuItem,
             this.toolStripSeparator25,
             this.templateExcelToolStripMenuItem,
-            this.biểuMẫuPhòngSaleToolStripMenuItem});
+            this.biểuMẫuPhòngSaleToolStripMenuItem,
+            this.toolStripSeparator70,
+            this.cauHinhNoiSoiSieuAmToolStripMenuItem});
             this.helpToolStripMenuItem.Name = "helpToolStripMenuItem";
             resources.ApplyResources(this.helpToolStripMenuItem, "helpToolStripMenuItem");
             // 
@@ -1854,6 +1875,18 @@
             this.biểuMẫuPhòngSaleToolStripMenuItem.Name = "biểuMẫuPhòngSaleToolStripMenuItem";
             this.biểuMẫuPhòngSaleToolStripMenuItem.Tag = "TemplateForSale";
             this.biểuMẫuPhòngSaleToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator70
+            // 
+            this.toolStripSeparator70.Name = "toolStripSeparator70";
+            resources.ApplyResources(this.toolStripSeparator70, "toolStripSeparator70");
+            // 
+            // cauHinhNoiSoiSieuAmToolStripMenuItem
+            // 
+            this.cauHinhNoiSoiSieuAmToolStripMenuItem.Name = "cauHinhNoiSoiSieuAmToolStripMenuItem";
+            resources.ApplyResources(this.cauHinhNoiSoiSieuAmToolStripMenuItem, "cauHinhNoiSoiSieuAmToolStripMenuItem");
+            this.cauHinhNoiSoiSieuAmToolStripMenuItem.Tag = "CauHinhNoiSoiSieuAm";
+            this.cauHinhNoiSoiSieuAmToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // _dotNetBarManager
             // 
@@ -1927,7 +1960,7 @@
             this.dgPatient.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -1948,7 +1981,7 @@
             this.dgPatient.DataSource = this.patientViewBindingSource;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText;
@@ -2161,6 +2194,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uSendSMS);
             this._mainPanel.Controls.Add(this._uTinNhanMauList);
             this._mainPanel.Controls.Add(this._uKhamHopDong);
             this._mainPanel.Controls.Add(this._uToaCapCuuList);
@@ -2596,6 +2630,11 @@
             // 
             this._timerPatient.Interval = 5000;
             // 
+            // _uSendSMS
+            // 
+            resources.ApplyResources(this._uSendSMS, "_uSendSMS");
+            this._uSendSMS.Name = "_uSendSMS";
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -2939,6 +2978,11 @@
         private System.Windows.Forms.ToolStripMenuItem sMSToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tinNhanMauToolStripMenuItem;
         private Controls.uTinNhanMauList _uTinNhanMauList;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator70;
+        private System.Windows.Forms.ToolStripMenuItem cauHinhNoiSoiSieuAmToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator71;
+        private System.Windows.Forms.ToolStripMenuItem guiSMSToolStripMenuItem;
+        private Controls.uSendSMS _uSendSMS;
 
     }
 }
