@@ -95,6 +95,12 @@
     <Reference Include="TXTextControl, Version=15.1.800.500, Culture=neutral, PublicKeyToken=6b83fe9a75cfb638" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Dialogs\dlgSelectTinNhanMau.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgSelectTinNhanMau.Designer.cs">
+      <DependentUpon>dlgSelectTinNhanMau.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uSendSMS.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1577,6 +1583,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Dialogs\dlgSelectTinNhanMau.resx">
+      <DependentUpon>dlgSelectTinNhanMau.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uSendSMS.resx">
       <DependentUpon>uSendSMS.cs</DependentUpon>
     </EmbeddedResource>
