@@ -148,7 +148,30 @@ namespace MM.Controls
                     dlgSelectTinNhanMau dlg = new dlgSelectTinNhanMau();
                     if (dlg.ShowDialog(this) == DialogResult.OK)
                     {
+                        Cursor.Current = Cursors.WaitCursor;
                         string tinNhanMau = dlg.TinNhanMau;
+                        foreach (DataRow row in checkedRows)
+                        {
+                            string maBenhNhan = row["FileNum"].ToString();
+                            string tenBenhNhan = row["FullName"].ToString();
+                            string ngaySinh = row["DobStr"].ToString();
+                            string gioiTinh = row["GenderAsStr"].ToString();
+                            string diaChi = row["Address"].ToString();
+                            string cmnd = row["IdentityCard"].ToString();
+                            string mobile = row["Mobile"].ToString();
+                            string email = row["Email"].ToString();
+
+                            string noiDung = tinNhanMau.Replace("#MaBenhNhan#", maBenhNhan);
+                            noiDung = noiDung.Replace("#TenBenhNhan#", tenBenhNhan);
+                            noiDung = noiDung.Replace("#NgaySinh#", ngaySinh);
+                            noiDung = noiDung.Replace("#GioiTinh#", gioiTinh);
+                            noiDung = noiDung.Replace("#DiaChi#", diaChi);
+                            noiDung = noiDung.Replace("#CMND#", cmnd);
+                            noiDung = noiDung.Replace("#Mobile#", mobile);
+                            noiDung = noiDung.Replace("#Email#", email);
+
+
+                        }
                     }
                 }
             }
