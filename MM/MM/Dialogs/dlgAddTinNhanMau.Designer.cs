@@ -46,7 +46,7 @@
             this.txtNoiDung.Location = new System.Drawing.Point(7, 52);
             this.txtNoiDung.MaxLength = 122;
             this.txtNoiDung.Name = "txtNoiDung";
-            this.txtNoiDung.Size = new System.Drawing.Size(368, 168);
+            this.txtNoiDung.Size = new System.Drawing.Size(368, 183);
             this.txtNoiDung.TabIndex = 2;
             this.txtNoiDung.Text = "";
             // 
@@ -64,7 +64,7 @@
             // 
             this.lvBookMarks.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colName});
-            this.lvBookMarks.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lvBookMarks.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             this.lvBookMarks.ForeColor = System.Drawing.SystemColors.ControlText;
             this.lvBookMarks.FullRowSelect = true;
             this.lvBookMarks.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
@@ -72,7 +72,7 @@
             this.lvBookMarks.Location = new System.Drawing.Point(381, 52);
             this.lvBookMarks.MultiSelect = false;
             this.lvBookMarks.Name = "lvBookMarks";
-            this.lvBookMarks.Size = new System.Drawing.Size(161, 168);
+            this.lvBookMarks.Size = new System.Drawing.Size(161, 183);
             this.lvBookMarks.TabIndex = 3;
             this.lvBookMarks.UseCompatibleStateImageBehavior = false;
             this.lvBookMarks.View = System.Windows.Forms.View.Details;
@@ -89,7 +89,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(291, 226);
+            this.btnCancel.Location = new System.Drawing.Point(276, 241);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 17;
@@ -101,7 +101,7 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(212, 226);
+            this.btnOK.Location = new System.Drawing.Point(197, 241);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 16;
@@ -129,7 +129,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(549, 257);
+            this.ClientSize = new System.Drawing.Size(549, 272);
             this.Controls.Add(this.txtTieuDe);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnCancel);
