@@ -145,7 +145,11 @@ namespace MM.Controls
             {
                 if (MsgBox.Question(Application.ProductName, "Bạn có muốn gửi SMS những bệnh nhân mà bạn đã đánh dấu ?") == DialogResult.Yes)
                 {
-
+                    dlgSelectTinNhanMau dlg = new dlgSelectTinNhanMau();
+                    if (dlg.ShowDialog(this) == DialogResult.OK)
+                    {
+                        string tinNhanMau = dlg.TinNhanMau;
+                    }
                 }
             }
             else

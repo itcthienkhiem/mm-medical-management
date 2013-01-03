@@ -18,7 +18,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM TinNhanMau WITH(NOLOCK) WHERE Status={0} ORDER BY CreatedDate", (byte)Status.Actived);
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM TinNhanMau WITH(NOLOCK) WHERE Status={0} ORDER BY TieuDe", (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
