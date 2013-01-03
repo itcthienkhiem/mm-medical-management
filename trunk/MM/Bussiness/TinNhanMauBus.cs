@@ -55,7 +55,8 @@ namespace MM.Bussiness
                             tnm.DeletedBy = Guid.Parse(Global.UserGUID);
                             tnm.Status = (byte)Status.Deactived;
                             
-                            desc += string.Format("- GUID: '{0}', Nội dung: '{1}'\n", tnm.TinNhanMauGUID.ToString(), tnm.NoiDung);
+                            desc += string.Format("- GUID: '{0}', Tiêu đề: '{1}', Nội dung: '{2}'\n", 
+                                tnm.TinNhanMauGUID.ToString(), tnm.TieuDe, tnm.NoiDung);
                         }
                     }
 
@@ -116,7 +117,8 @@ namespace MM.Bussiness
                         db.SubmitChanges();
 
                         //Tracking
-                        desc += string.Format("- GUID: '{0}', Nội dung: '{1}'", tinNhanMau.TinNhanMauGUID.ToString(), tinNhanMau.NoiDung);
+                        desc += string.Format("- GUID: '{0}', Tiêu đề: '{1}', Nội dung: '{2}'", 
+                            tinNhanMau.TinNhanMauGUID.ToString(), tinNhanMau.TieuDe, tinNhanMau.NoiDung);
 
                         Tracking tk = new Tracking();
                         tk.TrackingGUID = Guid.NewGuid();
@@ -135,6 +137,7 @@ namespace MM.Bussiness
                         TinNhanMau tnm = db.TinNhanMaus.SingleOrDefault<TinNhanMau>(s => s.TinNhanMauGUID == tinNhanMau.TinNhanMauGUID);
                         if (tnm != null)
                         {
+                            tnm.TieuDe = tinNhanMau.TieuDe;
                             tnm.NoiDung = tinNhanMau.NoiDung;
                             tnm.CreatedDate = tinNhanMau.CreatedDate;
                             tnm.CreatedBy = tinNhanMau.CreatedBy;
@@ -145,7 +148,8 @@ namespace MM.Bussiness
                             tnm.Status = tinNhanMau.Status;
 
                             //Tracking
-                            desc += string.Format("- GUID: '{0}', Nội dung: '{1}'", tnm.TinNhanMauGUID.ToString(), tnm.NoiDung);
+                            desc += string.Format("- GUID: '{0}', Tiêu đề: '{1}', Nội dung: '{2}'",
+                                    tnm.TinNhanMauGUID.ToString(), tnm.TieuDe, tnm.NoiDung);
 
                             Tracking tk = new Tracking();
                             tk.TrackingGUID = Guid.NewGuid();
