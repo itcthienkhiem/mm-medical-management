@@ -938,6 +938,12 @@
     <Compile Include="Dialogs\dlgAddNguoiSuDung.Designer.cs">
       <DependentUpon>dlgAddNguoiSuDung.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgAddTinNhanMau.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddTinNhanMau.Designer.cs">
+      <DependentUpon>dlgAddTinNhanMau.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgAddUserGroup.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1928,6 +1934,9 @@
     <EmbeddedResource Include="Dialogs\dlgAddNguoiSuDung.resx">
       <DependentUpon>dlgAddNguoiSuDung.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddTinNhanMau.resx">
+      <DependentUpon>dlgAddTinNhanMau.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddUserGroup.resx">
       <DependentUpon>dlgAddUserGroup.cs</DependentUpon>
     </EmbeddedResource>
@@ -2336,6 +2345,7 @@
     <None Include="Properties\DataSources\MM.Databasae.Thuoc.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ThuocResult.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.TiemNguaView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.TinNhanMau.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ToaCapCuu.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ToaCapCuuView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ToaThuocView.datasource" />

@@ -321,7 +321,7 @@ namespace MM.Databasae
     #endregion
 		
 		public MMDataContext() : 
-				base(global::MM.Databasae.Properties.Settings.Default.MMConnectionString6, mappingSource)
+				base(global::MM.Databasae.Properties.Settings.Default.MMConnectionString2, mappingSource)
 		{
 			OnCreated();
 		}
@@ -75440,6 +75440,8 @@ namespace MM.Databasae
 		
 		private System.Guid _TinNhanMauGUID;
 		
+		private string _TieuDe;
+		
 		private string _NoiDung;
 		
 		private System.Nullable<System.DateTime> _CreatedDate;
@@ -75462,6 +75464,8 @@ namespace MM.Databasae
     partial void OnCreated();
     partial void OnTinNhanMauGUIDChanging(System.Guid value);
     partial void OnTinNhanMauGUIDChanged();
+    partial void OnTieuDeChanging(string value);
+    partial void OnTieuDeChanged();
     partial void OnNoiDungChanging(string value);
     partial void OnNoiDungChanged();
     partial void OnCreatedDateChanging(System.Nullable<System.DateTime> value);
@@ -75501,6 +75505,26 @@ namespace MM.Databasae
 					this._TinNhanMauGUID = value;
 					this.SendPropertyChanged("TinNhanMauGUID");
 					this.OnTinNhanMauGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TieuDe", DbType="NVarChar(255)")]
+		public string TieuDe
+		{
+			get
+			{
+				return this._TieuDe;
+			}
+			set
+			{
+				if ((this._TieuDe != value))
+				{
+					this.OnTieuDeChanging(value);
+					this.SendPropertyChanging();
+					this._TieuDe = value;
+					this.SendPropertyChanged("TieuDe");
+					this.OnTieuDeChanged();
 				}
 			}
 		}
