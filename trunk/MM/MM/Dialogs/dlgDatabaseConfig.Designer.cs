@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgDatabaseConfig));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnMacDinh = new System.Windows.Forms.Button();
             this.cboServerName = new System.Windows.Forms.ComboBox();
             this.btnTestConnection = new System.Windows.Forms.Button();
             this.txtPassword = new System.Windows.Forms.TextBox();
@@ -43,12 +44,13 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.btnMacDinh = new System.Windows.Forms.Button();
+            this.btnKhamNgoaiMang = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnKhamNgoaiMang);
             this.groupBox1.Controls.Add(this.btnMacDinh);
             this.groupBox1.Controls.Add(this.cboServerName);
             this.groupBox1.Controls.Add(this.btnTestConnection);
@@ -61,12 +63,23 @@
             this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Location = new System.Drawing.Point(8, 4);
+            this.groupBox1.Location = new System.Drawing.Point(7, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(318, 176);
+            this.groupBox1.Size = new System.Drawing.Size(401, 176);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin kết nối CSDL";
+            // 
+            // btnMacDinh
+            // 
+            this.btnMacDinh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnMacDinh.Location = new System.Drawing.Point(78, 143);
+            this.btnMacDinh.Name = "btnMacDinh";
+            this.btnMacDinh.Size = new System.Drawing.Size(72, 25);
+            this.btnMacDinh.TabIndex = 10;
+            this.btnMacDinh.Text = "&Mặc Định";
+            this.btnMacDinh.UseVisualStyleBackColor = true;
+            this.btnMacDinh.Click += new System.EventHandler(this.btnMacDinh_Click);
             // 
             // cboServerName
             // 
@@ -75,17 +88,17 @@
             this.cboServerName.FormattingEnabled = true;
             this.cboServerName.Location = new System.Drawing.Point(78, 20);
             this.cboServerName.Name = "cboServerName";
-            this.cboServerName.Size = new System.Drawing.Size(222, 21);
+            this.cboServerName.Size = new System.Drawing.Size(306, 21);
             this.cboServerName.TabIndex = 1;
             // 
             // btnTestConnection
             // 
             this.btnTestConnection.Image = global::MM.Properties.Resources.check;
             this.btnTestConnection.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTestConnection.Location = new System.Drawing.Point(181, 144);
+            this.btnTestConnection.Location = new System.Drawing.Point(265, 143);
             this.btnTestConnection.Name = "btnTestConnection";
             this.btnTestConnection.Size = new System.Drawing.Size(119, 25);
-            this.btnTestConnection.TabIndex = 11;
+            this.btnTestConnection.TabIndex = 12;
             this.btnTestConnection.Text = "   &Kiểm tra kết nối";
             this.btnTestConnection.UseVisualStyleBackColor = true;
             this.btnTestConnection.Click += new System.EventHandler(this.btnTestConnection_Click);
@@ -95,14 +108,14 @@
             this.txtPassword.Location = new System.Drawing.Point(78, 118);
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.PasswordChar = '*';
-            this.txtPassword.Size = new System.Drawing.Size(222, 20);
+            this.txtPassword.Size = new System.Drawing.Size(306, 20);
             this.txtPassword.TabIndex = 9;
             // 
             // txtUserName
             // 
             this.txtUserName.Location = new System.Drawing.Point(78, 94);
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(222, 20);
+            this.txtUserName.Size = new System.Drawing.Size(306, 20);
             this.txtUserName.TabIndex = 8;
             // 
             // cboAuthentication
@@ -114,7 +127,7 @@
             "SQL Server Authentication"});
             this.cboAuthentication.Location = new System.Drawing.Point(78, 69);
             this.cboAuthentication.Name = "cboAuthentication";
-            this.cboAuthentication.Size = new System.Drawing.Size(222, 21);
+            this.cboAuthentication.Size = new System.Drawing.Size(306, 21);
             this.cboAuthentication.TabIndex = 3;
             this.cboAuthentication.SelectedIndexChanged += new System.EventHandler(this.cboAuthentication_SelectedIndexChanged);
             // 
@@ -122,7 +135,7 @@
             // 
             this.txtDatabaseName.Location = new System.Drawing.Point(78, 45);
             this.txtDatabaseName.Name = "txtDatabaseName";
-            this.txtDatabaseName.Size = new System.Drawing.Size(222, 20);
+            this.txtDatabaseName.Size = new System.Drawing.Size(306, 20);
             this.txtDatabaseName.TabIndex = 2;
             // 
             // label5
@@ -175,7 +188,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(169, 186);
+            this.btnCancel.Location = new System.Drawing.Point(209, 186);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 4;
@@ -188,23 +201,23 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(90, 186);
+            this.btnOK.Location = new System.Drawing.Point(130, 186);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 3;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
-            // btnMacDinh
+            // btnKhamNgoaiMang
             // 
-            this.btnMacDinh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnMacDinh.Location = new System.Drawing.Point(105, 144);
-            this.btnMacDinh.Name = "btnMacDinh";
-            this.btnMacDinh.Size = new System.Drawing.Size(72, 25);
-            this.btnMacDinh.TabIndex = 10;
-            this.btnMacDinh.Text = "&Mặc Định";
-            this.btnMacDinh.UseVisualStyleBackColor = true;
-            this.btnMacDinh.Click += new System.EventHandler(this.btnMacDinh_Click);
+            this.btnKhamNgoaiMang.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnKhamNgoaiMang.Location = new System.Drawing.Point(154, 143);
+            this.btnKhamNgoaiMang.Name = "btnKhamNgoaiMang";
+            this.btnKhamNgoaiMang.Size = new System.Drawing.Size(107, 25);
+            this.btnKhamNgoaiMang.TabIndex = 11;
+            this.btnKhamNgoaiMang.Text = "&Khám ngoài mạng";
+            this.btnKhamNgoaiMang.UseVisualStyleBackColor = true;
+            this.btnKhamNgoaiMang.Click += new System.EventHandler(this.btnKhamNgoaiMang_Click);
             // 
             // dlgDatabaseConfig
             // 
@@ -212,7 +225,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(334, 214);
+            this.ClientSize = new System.Drawing.Size(415, 214);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupBox1);
@@ -249,5 +262,6 @@
         private System.Windows.Forms.Button btnTestConnection;
         private System.Windows.Forms.ComboBox cboServerName;
         private System.Windows.Forms.Button btnMacDinh;
+        private System.Windows.Forms.Button btnKhamNgoaiMang;
     }
 }
