@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgDatabaseConfig));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnKhamNgoaiMang = new System.Windows.Forms.Button();
             this.btnMacDinh = new System.Windows.Forms.Button();
             this.cboServerName = new System.Windows.Forms.ComboBox();
             this.btnTestConnection = new System.Windows.Forms.Button();
@@ -44,7 +45,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.btnKhamNgoaiMang = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -69,6 +69,17 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin kết nối CSDL";
+            // 
+            // btnKhamNgoaiMang
+            // 
+            this.btnKhamNgoaiMang.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnKhamNgoaiMang.Location = new System.Drawing.Point(154, 143);
+            this.btnKhamNgoaiMang.Name = "btnKhamNgoaiMang";
+            this.btnKhamNgoaiMang.Size = new System.Drawing.Size(107, 25);
+            this.btnKhamNgoaiMang.TabIndex = 11;
+            this.btnKhamNgoaiMang.Text = "&Khám ngoài viện";
+            this.btnKhamNgoaiMang.UseVisualStyleBackColor = true;
+            this.btnKhamNgoaiMang.Click += new System.EventHandler(this.btnKhamNgoaiMang_Click);
             // 
             // btnMacDinh
             // 
@@ -207,17 +218,6 @@
             this.btnOK.TabIndex = 3;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
-            // 
-            // btnKhamNgoaiMang
-            // 
-            this.btnKhamNgoaiMang.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnKhamNgoaiMang.Location = new System.Drawing.Point(154, 143);
-            this.btnKhamNgoaiMang.Name = "btnKhamNgoaiMang";
-            this.btnKhamNgoaiMang.Size = new System.Drawing.Size(107, 25);
-            this.btnKhamNgoaiMang.TabIndex = 11;
-            this.btnKhamNgoaiMang.Text = "&Khám ngoài mạng";
-            this.btnKhamNgoaiMang.UseVisualStyleBackColor = true;
-            this.btnKhamNgoaiMang.Click += new System.EventHandler(this.btnKhamNgoaiMang_Click);
             // 
             // dlgDatabaseConfig
             // 
