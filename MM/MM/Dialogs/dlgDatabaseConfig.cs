@@ -210,6 +210,15 @@ namespace MM.Dialogs
             txtUserName.Text = "sa";
             txtPassword.Text = "vghpassword";
         }
+
+        private void btnKhamNgoaiMang_Click(object sender, EventArgs e)
+        {
+            cboServerName.Text = "localhost";
+            txtDatabaseName.Text = "MM";
+            cboAuthentication.SelectedIndex = 1;
+            txtUserName.Text = "sa";
+            txtPassword.Text = "vghpassword";
+        }
         #endregion
 
         #region Working Thread
