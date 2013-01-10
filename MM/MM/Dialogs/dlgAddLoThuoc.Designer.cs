@@ -71,6 +71,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
+            this.label11 = new System.Windows.Forms.Label();
+            this.txtGhiChu = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numGiaNhapQuiDoi)).BeginInit();
@@ -83,6 +85,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtGhiChu);
+            this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.groupBox2);
             this.groupBox1.Controls.Add(this.groupBoxNhap);
             this.groupBox1.Controls.Add(this.cboNhaPhanPhoi);
@@ -106,7 +110,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(6, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(452, 336);
+            this.groupBox1.Size = new System.Drawing.Size(452, 402);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin lô thuốc";
@@ -121,7 +125,7 @@
             this.groupBox2.Controls.Add(this.label30);
             this.groupBox2.Controls.Add(this.txtDonViTinhQuiDoi);
             this.groupBox2.Controls.Add(this.numSoLuongQuiDoi);
-            this.groupBox2.Location = new System.Drawing.Point(193, 216);
+            this.groupBox2.Location = new System.Drawing.Point(193, 277);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(240, 109);
             this.groupBox2.TabIndex = 76;
@@ -230,7 +234,7 @@
             this.groupBoxNhap.Controls.Add(this.label27);
             this.groupBoxNhap.Controls.Add(this.cboDonViTinhNhap);
             this.groupBoxNhap.Controls.Add(this.label29);
-            this.groupBoxNhap.Location = new System.Drawing.Point(18, 216);
+            this.groupBoxNhap.Location = new System.Drawing.Point(18, 277);
             this.groupBoxNhap.Name = "groupBoxNhap";
             this.groupBoxNhap.Size = new System.Drawing.Size(168, 109);
             this.groupBoxNhap.TabIndex = 75;
@@ -525,7 +529,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(234, 346);
+            this.btnCancel.Location = new System.Drawing.Point(234, 412);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 13;
@@ -537,12 +541,30 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(155, 346);
+            this.btnOK.Location = new System.Drawing.Point(155, 412);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 12;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(48, 217);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(47, 13);
+            this.label11.TabIndex = 77;
+            this.label11.Text = "Ghi chú:";
+            // 
+            // txtGhiChu
+            // 
+            this.txtGhiChu.Location = new System.Drawing.Point(102, 214);
+            this.txtGhiChu.MaxLength = 50;
+            this.txtGhiChu.Multiline = true;
+            this.txtGhiChu.Name = "txtGhiChu";
+            this.txtGhiChu.Size = new System.Drawing.Size(331, 58);
+            this.txtGhiChu.TabIndex = 65;
             // 
             // dlgAddLoThuoc
             // 
@@ -550,7 +572,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(464, 377);
+            this.ClientSize = new System.Drawing.Size(464, 443);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupBox1);
@@ -622,5 +644,7 @@
         private System.Windows.Forms.GroupBox groupBoxNhap;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.NumericUpDown numGiaNhapQuiDoi;
+        private System.Windows.Forms.TextBox txtGhiChu;
+        private System.Windows.Forms.Label label11;
     }
 }

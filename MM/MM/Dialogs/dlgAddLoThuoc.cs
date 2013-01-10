@@ -158,6 +158,7 @@ namespace MM.Dialogs
                 cboDonViTinhNhap.Text = drLoThuoc["DonViTinhNhap"] as string;
                 txtDonViTinhQuiDoi.Text = drLoThuoc["DonViTinhQuiDoi"] as string;
                 numSoLuongQuiDoi.Value = (Decimal)Convert.ToInt32(drLoThuoc["SoLuongQuiDoi"]);
+                txtGhiChu.Text = drLoThuoc["Note"] as string;
 
                 _loThuoc.LoThuocGUID = Guid.Parse(drLoThuoc["LoThuocGUID"].ToString());
 
@@ -261,6 +262,13 @@ namespace MM.Dialogs
                 return false;
             }
 
+            if (!_isNew && txtGhiChu.Text.Trim() == string.Empty)
+            {
+                MsgBox.Show(this.Text, "Vui lòng nhập lý do sửa lô thuốc.", IconType.Information);
+                txtGhiChu.Focus();
+                return false;
+            }
+
             return true;
         }
 
@@ -303,6 +311,7 @@ namespace MM.Dialogs
                     _loThuoc.SoLuongQuiDoi = (int)numSoLuongQuiDoi.Value;
                     _loThuoc.GiaNhapQuiDoi = (double)numGiaNhapQuiDoi.Value;
                     _loThuoc.SoLuongXuat = 0;
+                    _loThuoc.Note = txtGhiChu.Text;
                     _loThuoc.Status = (byte)Status.Actived;
 
                     if (_isNew)

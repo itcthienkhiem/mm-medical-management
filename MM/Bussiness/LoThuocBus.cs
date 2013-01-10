@@ -361,7 +361,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result DeleteLoThuoc(List<string> loThuocKeys)
+        public static Result DeleteLoThuoc(List<string> loThuocKeys, List<string> noteList)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -372,20 +372,24 @@ namespace MM.Bussiness
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
                     string desc = string.Empty;
+                    int index = 0;
                     foreach (string key in loThuocKeys)
                     {
                         LoThuoc loThuoc = db.LoThuocs.SingleOrDefault<LoThuoc>(l => l.LoThuocGUID.ToString() == key);
                         if (loThuoc != null)
                         {
+                            loThuoc.Note = noteList[index];
                             loThuoc.DeletedDate = DateTime.Now;
                             loThuoc.DeletedBy = Guid.Parse(Global.UserGUID);
                             loThuoc.Status = (byte)Status.Deactived;
 
-                            desc += string.Format("- GUID: '{0}', Mã lô: '{1}', Tên lô: '{2}', Thuốc: '{3}', Số đăng ký: '{4}', Hãng SX: '{5}', Ngày SX: '{6}', Ngày hết hạn: '{7}', Nhà phân phối: '{8}', SL nhập: '{9}', ĐVT nhập: '{10}', Giá nhập: '{11}', SL qui đổi: '{12}', ĐVT qui đổi: '{13}', Giá nhập qui đổi: '{14}', SL xuất: '{15}'\n",
+                            desc += string.Format("- GUID: '{0}', Mã lô: '{1}', Tên lô: '{2}', Thuốc: '{3}', Số đăng ký: '{4}', Hãng SX: '{5}', Ngày SX: '{6}', Ngày hết hạn: '{7}', Nhà phân phối: '{8}', SL nhập: '{9}', ĐVT nhập: '{10}', Giá nhập: '{11}', SL qui đổi: '{12}', ĐVT qui đổi: '{13}', Giá nhập qui đổi: '{14}', SL xuất: '{15}', Ghi chú: '{16}'\n",
                                 loThuoc.LoThuocGUID.ToString(), loThuoc.MaLoThuoc, loThuoc.TenLoThuoc, loThuoc.Thuoc.TenThuoc, loThuoc.SoDangKy, loThuoc.HangSanXuat,
                                 loThuoc.NgaySanXuat.ToString("dd/MM/yyyy"), loThuoc.NgayHetHan.ToString("dd/MM/yyyy"), loThuoc.NhaPhanPhoi, loThuoc.SoLuongNhap, 
-                                loThuoc.DonViTinhNhap, loThuoc.GiaNhap, loThuoc.SoLuongQuiDoi, loThuoc.DonViTinhQuiDoi, loThuoc.GiaNhapQuiDoi, loThuoc.SoLuongXuat);
+                                loThuoc.DonViTinhNhap, loThuoc.GiaNhap, loThuoc.SoLuongQuiDoi, loThuoc.DonViTinhQuiDoi, loThuoc.GiaNhapQuiDoi, loThuoc.SoLuongXuat, noteList[index]);
                         }
+
+                        index++;
                     }
 
                     //Tracking
@@ -488,10 +492,10 @@ namespace MM.Bussiness
                         db.SubmitChanges();
 
                         //Tracking
-                        desc += string.Format("- GUID: '{0}', Mã lô: '{1}', Tên lô: '{2}', Thuốc: '{3}', Số đăng ký: '{4}', Hãng SX: '{5}', Ngày SX: '{6}', Ngày hết hạn: '{7}', Nhà phân phối: '{8}', SL nhập: '{9}', ĐVT nhập: '{10}', Giá nhập: '{11}', SL qui đổi: '{12}', ĐVT qui đổi: '{13}', Giá nhập qui đổi: '{14}', SL xuất: '{15}'",
+                        desc += string.Format("- GUID: '{0}', Mã lô: '{1}', Tên lô: '{2}', Thuốc: '{3}', Số đăng ký: '{4}', Hãng SX: '{5}', Ngày SX: '{6}', Ngày hết hạn: '{7}', Nhà phân phối: '{8}', SL nhập: '{9}', ĐVT nhập: '{10}', Giá nhập: '{11}', SL qui đổi: '{12}', ĐVT qui đổi: '{13}', Giá nhập qui đổi: '{14}', SL xuất: '{15}', Ghi chú: '{16}'",
                                 loThuoc.LoThuocGUID.ToString(), loThuoc.MaLoThuoc, loThuoc.TenLoThuoc, loThuoc.Thuoc.TenThuoc, loThuoc.SoDangKy, loThuoc.HangSanXuat,
                                 loThuoc.NgaySanXuat.ToString("dd/MM/yyyy"), loThuoc.NgayHetHan.ToString("dd/MM/yyyy"), loThuoc.NhaPhanPhoi, loThuoc.SoLuongNhap,
-                                loThuoc.DonViTinhNhap, loThuoc.GiaNhap, loThuoc.SoLuongQuiDoi, loThuoc.DonViTinhQuiDoi, loThuoc.GiaNhapQuiDoi, loThuoc.SoLuongXuat);
+                                loThuoc.DonViTinhNhap, loThuoc.GiaNhap, loThuoc.SoLuongQuiDoi, loThuoc.DonViTinhQuiDoi, loThuoc.GiaNhapQuiDoi, loThuoc.SoLuongXuat, loThuoc.Note);
 
                         Tracking tk = new Tracking();
                         tk.TrackingGUID = Guid.NewGuid();
@@ -540,11 +544,11 @@ namespace MM.Bussiness
                             db.SubmitChanges();
 
                             //Tracking
-                            desc += string.Format("- GUID: '{0}', Mã lô: '{1}', Tên lô: '{2}', Thuốc: '{3}', Số đăng ký: '{4}', Hãng SX: '{5}', Ngày SX: '{6}', Ngày hết hạn: '{7}', Nhà phân phối: '{8}', SL nhập: cũ: '{9}' - mới: '{10}', ĐVT nhập: '{11}', Giá nhập: cũ: '{12}' - mới: '{13}', SL qui đổi: cũ: '{14}' - mới: '{15}', ĐVT qui đổi: '{16}', Giá nhập qui đổi: cũ: '{17}' - mới: '{18}', SL xuất: '{19}'",
+                            desc += string.Format("- GUID: '{0}', Mã lô: '{1}', Tên lô: '{2}', Thuốc: '{3}', Số đăng ký: '{4}', Hãng SX: '{5}', Ngày SX: '{6}', Ngày hết hạn: '{7}', Nhà phân phối: '{8}', SL nhập: cũ: '{9}' - mới: '{10}', ĐVT nhập: '{11}', Giá nhập: cũ: '{12}' - mới: '{13}', SL qui đổi: cũ: '{14}' - mới: '{15}', ĐVT qui đổi: '{16}', Giá nhập qui đổi: cũ: '{17}' - mới: '{18}', SL xuất: '{19}', Ghi chú: '{20}'",
                                     lt.LoThuocGUID.ToString(), lt.MaLoThuoc, lt.TenLoThuoc, lt.Thuoc.TenThuoc, lt.SoDangKy, lt.HangSanXuat,
                                     lt.NgaySanXuat.ToString("dd/MM/yyyy"), lt.NgayHetHan.ToString("dd/MM/yyyy"), lt.NhaPhanPhoi, soLuongNhapCu,
                                     lt.SoLuongNhap, lt.DonViTinhNhap, giaNhapCu, lt.GiaNhap, soLuongQuiDoiCu, lt.SoLuongQuiDoi,
-                                    lt.DonViTinhQuiDoi, giaNhapQuiDoiCu, lt.GiaNhapQuiDoi, lt.SoLuongXuat);
+                                    lt.DonViTinhQuiDoi, giaNhapQuiDoiCu, lt.GiaNhapQuiDoi, lt.SoLuongXuat, lt.Note);
 
                             Tracking tk = new Tracking();
                             tk.TrackingGUID = Guid.NewGuid();
