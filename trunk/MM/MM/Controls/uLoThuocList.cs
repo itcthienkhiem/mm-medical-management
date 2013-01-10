@@ -181,15 +181,16 @@ namespace MM.Controls
             List<string> deletedLoThuocList = new List<string>();
             List<DataRow> deletedRows = _dictLoThuoc.Values.ToList();
 
-            foreach (DataRow row in deletedRows)
-            {
-                deletedLoThuocList.Add(row["LoThuocGUID"].ToString());
-            }
+            //foreach (DataRow row in deletedRows)
+            //{
+            //    deletedLoThuocList.Add(row["LoThuocGUID"].ToString());
+            //}
 
-            if (deletedLoThuocList.Count > 0)
+            if (deletedRows.Count > 0)
             {
-                foreach (string key in deletedLoThuocList)
+                foreach (DataRow row in deletedRows)
                 {
+                    string key = row["LoThuocGUID"].ToString();
                     Result rs = LoThuocBus.GetLoThuoc(key);
                     if (!rs.IsOK)
                     {
@@ -209,26 +210,48 @@ namespace MM.Controls
 
                 if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những lô thuốc mà bạn đã đánh dấu ?") == DialogResult.Yes)
                 {
-                    Result result = LoThuocBus.DeleteLoThuoc(deletedLoThuocList);
-                    if (result.IsOK)
-                    {
-                        DataTable dt = dgLoThuoc.DataSource as DataTable;
-                        if (dt == null || dt.Rows.Count <= 0) return;
+                    List<string> noteList = new List<string>();
 
-                        foreach (string key in deletedLoThuocList)
+                    foreach (DataRow row in deletedRows)
+                    {
+                        string loThuocGUID = row["LoThuocGUID"].ToString();
+                        string maLoThuoc = row["MaLoThuoc"].ToString();
+                        dlgLyDoXoa dlg = new dlgLyDoXoa(maLoThuoc, 3);
+                        if (dlg.ShowDialog(this) == DialogResult.OK)
                         {
-                            DataRow[] rows = dt.Select(string.Format("LoThuocGUID='{0}'", key));
-                            if (rows == null || rows.Length <= 0) continue;
-                            dt.Rows.Remove(rows[0]);
+                            noteList.Add(dlg.Notes);
+                            deletedLoThuocList.Add(loThuocGUID);
                         }
-
-                        _dictLoThuoc.Clear();
-                        _dtTemp.Rows.Clear();
                     }
-                    else
+
+                    if (deletedLoThuocList.Count > 0)
                     {
-                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("LoThuocBus.DeleteLoThuoc"), IconType.Error);
-                        Utility.WriteToTraceLog(result.GetErrorAsString("LoThuocBus.DeleteLoThuoc"));
+                        Result result = LoThuocBus.DeleteLoThuoc(deletedLoThuocList, noteList);
+                        if (result.IsOK)
+                        {
+                            DataTable dt = dgLoThuoc.DataSource as DataTable;
+                            if (dt == null || dt.Rows.Count <= 0) return;
+
+                            foreach (string key in deletedLoThuocList)
+                            {
+                                DataRow[] rows = dt.Select(string.Format("LoThuocGUID='{0}'", key));
+                                if (rows == null || rows.Length <= 0) continue;
+                                dt.Rows.Remove(rows[0]);
+
+                                _dictLoThuoc.Remove(key);
+                                rows = _dtTemp.Select(string.Format("LoThuocGUID='{0}'", key));
+                                if (rows != null && rows.Length > 0)
+                                    _dtTemp.Rows.Remove(rows[0]);
+                            }
+
+                            //_dictLoThuoc.Clear();
+                            //_dtTemp.Rows.Clear();
+                        }
+                        else
+                        {
+                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("LoThuocBus.DeleteLoThuoc"), IconType.Error);
+                            Utility.WriteToTraceLog(result.GetErrorAsString("LoThuocBus.DeleteLoThuoc"));
+                        }
                     }
                 }
             }

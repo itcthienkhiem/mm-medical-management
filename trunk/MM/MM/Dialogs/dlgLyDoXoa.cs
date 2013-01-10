@@ -12,7 +12,7 @@ namespace MM.Dialogs
     public partial class dlgLyDoXoa : dlgBase
     {
         #region Members
-        private int _type = 0; //0: phiếu thu; 1: hóa đơn; 2: dịch vụ
+        private int _type = 0; //0: phiếu thu; 1: hóa đơn; 2: dịch vụ; 3: lô thuốc
         #endregion
 
         #region Constructor
@@ -56,6 +56,8 @@ namespace MM.Dialogs
                     msg = string.Format("Bạn không nhập lý do xóa nên hóa đơn: '{0}' không được xóa.", this.Text);
                 else if (_type == 2)
                     msg = string.Format("Bạn không nhập lý do xóa nên dịch vụ: '{0}' không được xóa.", this.Text);
+                else if (_type == 3)
+                    msg = string.Format("Bạn không nhập lý do xóa nên lô thuốc: '{0}' không được xóa.", this.Text);
                         
                 MsgBox.Show(this.Text, msg, Common.IconType.Information);
             }
