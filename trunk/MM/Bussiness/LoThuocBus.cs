@@ -378,15 +378,19 @@ namespace MM.Bussiness
                         LoThuoc loThuoc = db.LoThuocs.SingleOrDefault<LoThuoc>(l => l.LoThuocGUID.ToString() == key);
                         if (loThuoc != null)
                         {
-                            loThuoc.Note = noteList[index];
+                            if (loThuoc.Note != null && loThuoc.Note.Trim() != string.Empty)
+                                loThuoc.Note += string.Format("\r\nXóa {0}: {1}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), noteList[index]);
+                            else
+                                loThuoc.Note = string.Format("Xóa {0}: {1}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), noteList[index]);
+
                             loThuoc.DeletedDate = DateTime.Now;
                             loThuoc.DeletedBy = Guid.Parse(Global.UserGUID);
                             loThuoc.Status = (byte)Status.Deactived;
 
                             desc += string.Format("- GUID: '{0}', Mã lô: '{1}', Tên lô: '{2}', Thuốc: '{3}', Số đăng ký: '{4}', Hãng SX: '{5}', Ngày SX: '{6}', Ngày hết hạn: '{7}', Nhà phân phối: '{8}', SL nhập: '{9}', ĐVT nhập: '{10}', Giá nhập: '{11}', SL qui đổi: '{12}', ĐVT qui đổi: '{13}', Giá nhập qui đổi: '{14}', SL xuất: '{15}', Ghi chú: '{16}'\n",
                                 loThuoc.LoThuocGUID.ToString(), loThuoc.MaLoThuoc, loThuoc.TenLoThuoc, loThuoc.Thuoc.TenThuoc, loThuoc.SoDangKy, loThuoc.HangSanXuat,
-                                loThuoc.NgaySanXuat.ToString("dd/MM/yyyy"), loThuoc.NgayHetHan.ToString("dd/MM/yyyy"), loThuoc.NhaPhanPhoi, loThuoc.SoLuongNhap, 
-                                loThuoc.DonViTinhNhap, loThuoc.GiaNhap, loThuoc.SoLuongQuiDoi, loThuoc.DonViTinhQuiDoi, loThuoc.GiaNhapQuiDoi, loThuoc.SoLuongXuat, noteList[index]);
+                                loThuoc.NgaySanXuat.ToString("dd/MM/yyyy"), loThuoc.NgayHetHan.ToString("dd/MM/yyyy"), loThuoc.NhaPhanPhoi, loThuoc.SoLuongNhap,
+                                loThuoc.DonViTinhNhap, loThuoc.GiaNhap, loThuoc.SoLuongQuiDoi, loThuoc.DonViTinhQuiDoi, loThuoc.GiaNhapQuiDoi, loThuoc.SoLuongXuat, loThuoc.Note);
                         }
 
                         index++;
