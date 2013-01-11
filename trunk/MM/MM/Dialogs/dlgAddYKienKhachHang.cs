@@ -161,12 +161,12 @@ namespace MM.Dialogs
                 return false;
             }
 
-            if (cboDocStaff.SelectedValue == null || cboDocStaff.Text.Trim() == string.Empty)
-            {
-                MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ phụ trách.", IconType.Information);
-                cboDocStaff.Focus();
-                return false;
-            }
+            //if (cboDocStaff.SelectedValue == null || cboDocStaff.Text.Trim() == string.Empty)
+            //{
+            //    MsgBox.Show(this.Text, "Vui lòng chọn bác sĩ phụ trách.", IconType.Information);
+            //    cboDocStaff.Focus();
+            //    return false;
+            //}
 
             return true;
         }
@@ -218,7 +218,12 @@ namespace MM.Dialogs
                     _yKienKhachHang.YeuCau = txtYeuCau.Text;
                     _yKienKhachHang.Nguon = cboNguon.Text;
                     _yKienKhachHang.Note = string.Empty;
-                    _yKienKhachHang.BacSiPhuTrachGUID = Guid.Parse(cboDocStaff.SelectedValue.ToString());
+
+                    if (cboDocStaff.SelectedValue != null && cboDocStaff.Text.Trim() != string.Empty)
+                        _yKienKhachHang.BacSiPhuTrachGUID = Guid.Parse(cboDocStaff.SelectedValue.ToString());
+                    else
+                        _yKienKhachHang.BacSiPhuTrachGUID = null;
+
                     _yKienKhachHang.DaXong = chkDaXong.Checked;
                     _yKienKhachHang.KetLuan = txtHuongGiaiQuyet.Text;
 
@@ -259,7 +264,13 @@ namespace MM.Dialogs
             }
             else
             {
-                cboDocStaff.DataSource = result.QueryResult;
+                DataTable dt = result.QueryResult as DataTable;
+                DataRow newRow = dt.NewRow();
+                newRow["DocStaffGUID"] = Guid.Empty.ToString();
+                newRow["FullName"] = string.Empty;
+                dt.Rows.InsertAt(newRow, 0);
+
+                cboDocStaff.DataSource = dt;
             }
         }
         #endregion
