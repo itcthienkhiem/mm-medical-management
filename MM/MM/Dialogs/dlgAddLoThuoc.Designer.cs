@@ -110,7 +110,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(6, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(452, 402);
+            this.groupBox1.Size = new System.Drawing.Size(452, 434);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin lô thuốc";
@@ -125,7 +125,7 @@
             this.groupBox2.Controls.Add(this.label30);
             this.groupBox2.Controls.Add(this.txtDonViTinhQuiDoi);
             this.groupBox2.Controls.Add(this.numSoLuongQuiDoi);
-            this.groupBox2.Location = new System.Drawing.Point(193, 277);
+            this.groupBox2.Location = new System.Drawing.Point(193, 310);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(240, 109);
             this.groupBox2.TabIndex = 76;
@@ -234,7 +234,7 @@
             this.groupBoxNhap.Controls.Add(this.label27);
             this.groupBoxNhap.Controls.Add(this.cboDonViTinhNhap);
             this.groupBoxNhap.Controls.Add(this.label29);
-            this.groupBoxNhap.Location = new System.Drawing.Point(18, 277);
+            this.groupBoxNhap.Location = new System.Drawing.Point(18, 310);
             this.groupBoxNhap.Name = "groupBoxNhap";
             this.groupBoxNhap.Size = new System.Drawing.Size(168, 109);
             this.groupBoxNhap.TabIndex = 75;
@@ -529,7 +529,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(234, 412);
+            this.btnCancel.Location = new System.Drawing.Point(234, 444);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 13;
@@ -541,7 +541,7 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(155, 412);
+            this.btnOK.Location = new System.Drawing.Point(155, 444);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 12;
@@ -563,7 +563,9 @@
             this.txtGhiChu.MaxLength = 50;
             this.txtGhiChu.Multiline = true;
             this.txtGhiChu.Name = "txtGhiChu";
-            this.txtGhiChu.Size = new System.Drawing.Size(331, 58);
+            this.txtGhiChu.ReadOnly = true;
+            this.txtGhiChu.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtGhiChu.Size = new System.Drawing.Size(331, 88);
             this.txtGhiChu.TabIndex = 65;
             // 
             // dlgAddLoThuoc
@@ -572,7 +574,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(464, 443);
+            this.ClientSize = new System.Drawing.Size(464, 474);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupBox1);

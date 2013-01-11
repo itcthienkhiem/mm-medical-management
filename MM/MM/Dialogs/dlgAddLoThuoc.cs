@@ -20,6 +20,7 @@ namespace MM.Dialogs
         private LoThuoc _loThuoc = new LoThuoc();
         private DataRow _drLoThuoc = null;
         private bool _allowEdit = true;
+        private string _ghiChu = string.Empty;
         #endregion
 
         #region Constructor
@@ -158,7 +159,6 @@ namespace MM.Dialogs
                 cboDonViTinhNhap.Text = drLoThuoc["DonViTinhNhap"] as string;
                 txtDonViTinhQuiDoi.Text = drLoThuoc["DonViTinhQuiDoi"] as string;
                 numSoLuongQuiDoi.Value = (Decimal)Convert.ToInt32(drLoThuoc["SoLuongQuiDoi"]);
-                txtGhiChu.Text = drLoThuoc["Note"] as string;
 
                 _loThuoc.LoThuocGUID = Guid.Parse(drLoThuoc["LoThuocGUID"].ToString());
 
@@ -181,6 +181,10 @@ namespace MM.Dialogs
                     _loThuoc.DeletedBy = Guid.Parse(drLoThuoc["DeletedBy"].ToString());
 
                 _loThuoc.Status = Convert.ToByte(drLoThuoc["LoThuocStatus"]);
+                _loThuoc.Note = drLoThuoc["Note"] as string;
+                txtGhiChu.Text = _loThuoc.Note;
+                _loThuoc.MaLoThuoc = drLoThuoc["MaLoThuoc"] as string;
+
 
                 if (!_allowEdit)
                 {
@@ -262,13 +266,6 @@ namespace MM.Dialogs
                 return false;
             }
 
-            if (!_isNew && txtGhiChu.Text.Trim() == string.Empty)
-            {
-                MsgBox.Show(this.Text, "Vui lòng nhập lý do sửa lô thuốc.", IconType.Information);
-                txtGhiChu.Focus();
-                return false;
-            }
-
             return true;
         }
 
@@ -297,7 +294,6 @@ namespace MM.Dialogs
                 {
                     _loThuoc.MaLoThuoc = txtMaLoThuoc.Text;
                     _loThuoc.TenLoThuoc = txtTenLoThuoc.Text;
-                    //if (_isNew) _loThuoc.TenLoThuoc += string.Format("-{0}", DateTime.Now.ToString("yyyyMMdd"));
                     _loThuoc.ThuocGUID = Guid.Parse(cboThuoc.SelectedValue.ToString());
                     _loThuoc.SoDangKy = txtSoDangKy.Text;
                     _loThuoc.NgaySanXuat = dtpkNgaySanXuat.Value;
@@ -311,7 +307,7 @@ namespace MM.Dialogs
                     _loThuoc.SoLuongQuiDoi = (int)numSoLuongQuiDoi.Value;
                     _loThuoc.GiaNhapQuiDoi = (double)numGiaNhapQuiDoi.Value;
                     _loThuoc.SoLuongXuat = 0;
-                    _loThuoc.Note = txtGhiChu.Text;
+
                     _loThuoc.Status = (byte)Status.Actived;
 
                     if (_isNew)
@@ -323,6 +319,11 @@ namespace MM.Dialogs
                     {
                         _loThuoc.UpdatedDate = DateTime.Now;
                         _loThuoc.UpdatedBy = Guid.Parse(Global.UserGUID);
+
+                        if (_loThuoc.Note != null && _loThuoc.Note.Trim() != string.Empty)
+                            _loThuoc.Note += string.Format("\r\nSửa {0}: {1}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), _ghiChu);
+                        else
+                            _loThuoc.Note = string.Format("Sửa {0}: {1}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"), _ghiChu);
                     }     
 
                     Result result = LoThuocBus.InsertLoThuoc(_loThuoc);
@@ -395,7 +396,20 @@ namespace MM.Dialogs
             if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
                 if (CheckInfo())
-                    SaveInfoAsThread();
+                {
+                    if (_isNew) SaveInfoAsThread();
+                    else
+                    {
+                        dlgLyDoXoa dlg = new dlgLyDoXoa(_loThuoc.MaLoThuoc, 3, false);
+                        if (dlg.ShowDialog(this) == DialogResult.OK)
+                        {
+                            _ghiChu = dlg.Notes;
+                            SaveInfoAsThread();
+                        }
+                        else
+                            e.Cancel = true;
+                    }
+                }
                 else
                     e.Cancel = true;
             }
@@ -406,7 +420,19 @@ namespace MM.Dialogs
                     if (CheckInfo())
                     {
                         this.DialogResult = System.Windows.Forms.DialogResult.OK;
-                        SaveInfoAsThread();
+
+                        if (_isNew) SaveInfoAsThread();
+                        else
+                        {
+                            dlgLyDoXoa dlg = new dlgLyDoXoa(_loThuoc.MaLoThuoc, 3, false);
+                            if (dlg.ShowDialog(this) == DialogResult.OK)
+                            {
+                                _ghiChu = dlg.Notes;
+                                SaveInfoAsThread();
+                            }
+                            else
+                                e.Cancel = true;
+                        }
                     }
                     else
                         e.Cancel = true;

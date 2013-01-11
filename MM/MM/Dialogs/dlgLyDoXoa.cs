@@ -13,6 +13,7 @@ namespace MM.Dialogs
     {
         #region Members
         private int _type = 0; //0: phiếu thu; 1: hóa đơn; 2: dịch vụ; 3: lô thuốc
+        private bool _isDeleted = true;
         #endregion
 
         #region Constructor
@@ -21,6 +22,16 @@ namespace MM.Dialogs
             InitializeComponent();
             this.Text = code;
             _type = type;
+        }
+
+        public dlgLyDoXoa(string code, int type, bool isDeleted)
+        {
+            InitializeComponent();
+            this.Text = code;
+            _type = type;
+            _isDeleted = isDeleted;
+
+            if (!_isDeleted) lbTitle.Text = "Lý do sửa:";
         }
         #endregion
 
@@ -42,7 +53,11 @@ namespace MM.Dialogs
             {
                 if (txtLyDo.Text.Trim() == string.Empty)
                 {
-                    MsgBox.Show(this.Text, "Vui lòng nhập lý do xóa.", Common.IconType.Information);
+                    if (_isDeleted)
+                        MsgBox.Show(this.Text, "Vui lòng nhập lý do xóa.", Common.IconType.Information);
+                    else
+                        MsgBox.Show(this.Text, "Vui lòng nhập lý do sửa.", Common.IconType.Information);
+
                     txtLyDo.Focus();
                     e.Cancel = true;
                 }
@@ -50,14 +65,22 @@ namespace MM.Dialogs
             else
             {
                 string msg = string.Empty;
-                if (_type == 0)
-                    msg = string.Format("Bạn không nhập lý do xóa nên phiếu thu: '{0}' không được xóa.", this.Text);
-                else if (_type == 1)
-                    msg = string.Format("Bạn không nhập lý do xóa nên hóa đơn: '{0}' không được xóa.", this.Text);
-                else if (_type == 2)
-                    msg = string.Format("Bạn không nhập lý do xóa nên dịch vụ: '{0}' không được xóa.", this.Text);
-                else if (_type == 3)
-                    msg = string.Format("Bạn không nhập lý do xóa nên lô thuốc: '{0}' không được xóa.", this.Text);
+                if (_isDeleted)
+                {
+                    if (_type == 0)
+                        msg = string.Format("Bạn không nhập lý do xóa nên phiếu thu: '{0}' không được xóa.", this.Text);
+                    else if (_type == 1)
+                        msg = string.Format("Bạn không nhập lý do xóa nên hóa đơn: '{0}' không được xóa.", this.Text);
+                    else if (_type == 2)
+                        msg = string.Format("Bạn không nhập lý do xóa nên dịch vụ: '{0}' không được xóa.", this.Text);
+                    else if (_type == 3)
+                        msg = string.Format("Bạn không nhập lý do xóa nên lô thuốc: '{0}' không được xóa.", this.Text);
+                }
+                else
+                {
+                    if (_type == 3)
+                        msg = string.Format("Bạn không nhập lý do sửa nên lô thuốc: '{0}' không được cập nhật.", this.Text);
+                }
                         
                 MsgBox.Show(this.Text, msg, Common.IconType.Information);
             }
