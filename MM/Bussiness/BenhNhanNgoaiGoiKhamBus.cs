@@ -66,9 +66,11 @@ namespace MM.Bussiness
                             bnngk.DeletedBy = Guid.Parse(Global.UserGUID);
                             bnngk.Status = (byte)Status.Deactived;
 
-                            desc += string.Format("- GUID: '{0}', Ngày khám: '{1}', Bệnh nhân: '{2}', Dịch vụ: '{3}', Lần đầu: '{4}'\n",
+                            string hopDongGUID = bnngk.HopDongGUID.HasValue ? bnngk.HopDongGUID.Value.ToString() : string.Empty;
+
+                            desc += string.Format("- GUID: '{0}', Ngày khám: '{1}', Bệnh nhân: '{2}', Dịch vụ: '{3}', Lần đầu: '{4}', Hợp đồng GUID: '{5}'\n",
                                 bnngk.BenhNhanNgoaiGoiKhamGUID.ToString(), bnngk.NgayKham.ToString("dd/MM/yyyy HH:mm:ss"),
-                                bnngk.Patient.Contact.FullName, bnngk.Service.Name, bnngk.LanDau == 0 ? "Lần đầu" : "Tái khám");
+                                bnngk.Patient.Contact.FullName, bnngk.Service.Name, bnngk.LanDau == 0 ? "Lần đầu" : "Tái khám", hopDongGUID);
                         }
                     }
 
@@ -129,6 +131,7 @@ namespace MM.Bussiness
                         bnngk.PatientGUID = benhNhanNgoaiGoiKham.PatientGUID;
                         bnngk.ServiceGUID = benhNhanNgoaiGoiKham.ServiceGUID;
                         bnngk.LanDau = benhNhanNgoaiGoiKham.LanDau;
+                        bnngk.HopDongGUID = benhNhanNgoaiGoiKham.HopDongGUID;
                         bnngk.CreatedDate = benhNhanNgoaiGoiKham.CreatedDate;
                         bnngk.CreatedBy = benhNhanNgoaiGoiKham.CreatedBy;
                         bnngk.UpdatedDate = benhNhanNgoaiGoiKham.UpdatedDate;
@@ -139,10 +142,12 @@ namespace MM.Bussiness
 
                         db.SubmitChanges();
 
+                        string hopDongGUID = bnngk.HopDongGUID.HasValue ? bnngk.HopDongGUID.Value.ToString() : string.Empty;
+
                         //Tracking
-                        desc += string.Format("- GUID: '{0}', Ngày khám: '{1}', Bệnh nhân: '{2}', Dịch vụ: '{3}', Lần đầu: '{4}'\n",
+                        desc += string.Format("- GUID: '{0}', Ngày khám: '{1}', Bệnh nhân: '{2}', Dịch vụ: '{3}', Lần đầu: '{4}', Hợp đồng GUI: '{5}'\n",
                                 bnngk.BenhNhanNgoaiGoiKhamGUID.ToString(), bnngk.NgayKham.ToString("dd/MM/yyyy HH:mm:ss"),
-                                bnngk.Patient.Contact.FullName, bnngk.Service.Name, bnngk.LanDau == 0 ? "Lần đầu" : "Tái khám");
+                                bnngk.Patient.Contact.FullName, bnngk.Service.Name, bnngk.LanDau == 0 ? "Lần đầu" : "Tái khám", hopDongGUID);
 
                         Tracking tk = new Tracking();
                         tk.TrackingGUID = Guid.NewGuid();
@@ -199,10 +204,12 @@ namespace MM.Bussiness
                         db.BenhNhanNgoaiGoiKhams.InsertOnSubmit(bnngk);
                         db.SubmitChanges();
 
+                        string hopDongGUID = bnngk.HopDongGUID.HasValue ? bnngk.HopDongGUID.Value.ToString() : string.Empty;
+
                         //Tracking
-                        desc += string.Format("- GUID: '{0}', Ngày khám: '{1}', Bệnh nhân: '{2}', Dịch vụ: '{3}', Lần đầu: '{4}'\n",
+                        desc += string.Format("- GUID: '{0}', Ngày khám: '{1}', Bệnh nhân: '{2}', Dịch vụ: '{3}', Lần đầu: '{4}', Hợp đồng GUID: '{5}'\n",
                                 bnngk.BenhNhanNgoaiGoiKhamGUID.ToString(), bnngk.NgayKham.ToString("dd/MM/yyyy HH:mm:ss"),
-                                bnngk.Patient.Contact.FullName, bnngk.Service.Name, bnngk.LanDau == 0 ? "Lần đầu" : "Tái khám");
+                                bnngk.Patient.Contact.FullName, bnngk.Service.Name, bnngk.LanDau == 0 ? "Lần đầu" : "Tái khám", hopDongGUID);
 
                         Tracking tk = new Tracking();
                         tk.TrackingGUID = Guid.NewGuid();

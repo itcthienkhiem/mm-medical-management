@@ -68,6 +68,7 @@
             this.fileNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ContractName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lanDauDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NguoiTao = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2.SuspendLayout();
@@ -305,6 +306,7 @@
             this.fileNumDataGridViewTextBoxColumn,
             this.fullNameDataGridViewTextBoxColumn,
             this.nameDataGridViewTextBoxColumn,
+            this.ContractName,
             this.lanDauDataGridViewTextBoxColumn,
             this.NguoiTao});
             this.dgBenhNhanNgoaiGoiKham.DataSource = this.benhNhanNgoaiGoiKhamViewBindingSource;
@@ -429,7 +431,7 @@
             this.fullNameDataGridViewTextBoxColumn.HeaderText = "Tên bệnh nhân";
             this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
             this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fullNameDataGridViewTextBoxColumn.Width = 250;
+            this.fullNameDataGridViewTextBoxColumn.Width = 200;
             // 
             // nameDataGridViewTextBoxColumn
             // 
@@ -437,7 +439,15 @@
             this.nameDataGridViewTextBoxColumn.HeaderText = "Tên dịch vụ";
             this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
             this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn.Width = 250;
+            this.nameDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // ContractName
+            // 
+            this.ContractName.DataPropertyName = "ContractName";
+            this.ContractName.HeaderText = "Tên hợp đồng";
+            this.ContractName.Name = "ContractName";
+            this.ContractName.ReadOnly = true;
+            this.ContractName.Width = 200;
             // 
             // lanDauDataGridViewTextBoxColumn
             // 
@@ -512,6 +522,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn fileNumDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ContractName;
         private System.Windows.Forms.DataGridViewTextBoxColumn lanDauDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn NguoiTao;
     }

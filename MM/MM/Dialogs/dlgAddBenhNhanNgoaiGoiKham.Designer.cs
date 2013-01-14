@@ -51,6 +51,7 @@
             this.PatientGUID = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.patientGUIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.serviceGUIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.HopDongGUID = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.lanDauStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -66,7 +67,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 445);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(820, 38);
+            this.panel1.Size = new System.Drawing.Size(922, 38);
             this.panel1.TabIndex = 20;
             // 
             // btnCancel
@@ -74,7 +75,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(398, 7);
+            this.btnCancel.Location = new System.Drawing.Point(463, 7);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 17;
@@ -85,7 +86,7 @@
             // 
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(319, 7);
+            this.btnOK.Location = new System.Drawing.Point(384, 7);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 16;
@@ -99,7 +100,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(820, 25);
+            this.panel2.Size = new System.Drawing.Size(922, 25);
             this.panel2.TabIndex = 13;
             // 
             // label1
@@ -132,6 +133,7 @@
             this.PatientGUID,
             this.patientGUIDDataGridViewTextBoxColumn,
             this.serviceGUIDDataGridViewTextBoxColumn,
+            this.HopDongGUID,
             this.lanDauStrDataGridViewTextBoxColumn});
             this.dgBenhNhanNgoaiGoiKham.DataSource = this.benhNhanNgoaiGoiKhamViewBindingSource;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -150,7 +152,7 @@
             this.dgBenhNhanNgoaiGoiKham.Name = "dgBenhNhanNgoaiGoiKham";
             this.dgBenhNhanNgoaiGoiKham.RowHeadersWidth = 30;
             this.dgBenhNhanNgoaiGoiKham.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgBenhNhanNgoaiGoiKham.Size = new System.Drawing.Size(820, 420);
+            this.dgBenhNhanNgoaiGoiKham.Size = new System.Drawing.Size(922, 420);
             this.dgBenhNhanNgoaiGoiKham.TabIndex = 5;
             this.dgBenhNhanNgoaiGoiKham.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgBenhNhanNgoaiGoiKham_CellDoubleClick);
             this.dgBenhNhanNgoaiGoiKham.CellParsing += new System.Windows.Forms.DataGridViewCellParsingEventHandler(this.dgBenhNhanNgoaiGoiKham_CellParsing);
@@ -194,7 +196,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 25);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(820, 420);
+            this.panel3.Size = new System.Drawing.Size(922, 420);
             this.panel3.TabIndex = 21;
             // 
             // colNo
@@ -235,7 +237,7 @@
             this.patientGUIDDataGridViewTextBoxColumn.ReadOnly = true;
             this.patientGUIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.patientGUIDDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.patientGUIDDataGridViewTextBoxColumn.Width = 250;
+            this.patientGUIDDataGridViewTextBoxColumn.Width = 200;
             // 
             // serviceGUIDDataGridViewTextBoxColumn
             // 
@@ -244,7 +246,15 @@
             this.serviceGUIDDataGridViewTextBoxColumn.HeaderText = "Dịch vụ";
             this.serviceGUIDDataGridViewTextBoxColumn.Name = "serviceGUIDDataGridViewTextBoxColumn";
             this.serviceGUIDDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.serviceGUIDDataGridViewTextBoxColumn.Width = 250;
+            this.serviceGUIDDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // HopDongGUID
+            // 
+            this.HopDongGUID.DataPropertyName = "HopDongGUID";
+            this.HopDongGUID.DisplayStyleForCurrentCellOnly = true;
+            this.HopDongGUID.HeaderText = "Hợp đồng";
+            this.HopDongGUID.Name = "HopDongGUID";
+            this.HopDongGUID.Width = 200;
             // 
             // lanDauStrDataGridViewTextBoxColumn
             // 
@@ -263,7 +273,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(820, 483);
+            this.ClientSize = new System.Drawing.Size(922, 483);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -304,6 +314,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn PatientGUID;
         private System.Windows.Forms.DataGridViewTextBoxColumn patientGUIDDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewComboBoxColumn serviceGUIDDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewComboBoxColumn HopDongGUID;
         private System.Windows.Forms.DataGridViewComboBoxColumn lanDauStrDataGridViewTextBoxColumn;
     }
 }

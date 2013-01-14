@@ -58,6 +58,26 @@ namespace MM.Dialogs
                 Utility.WriteToTraceLog(result.GetErrorAsString("ServicesBus.GetServicesList"));
                 this.Close();
             }
+
+            result = CompanyContractBus.GetContractList();
+            if (result.IsOK)
+            {
+                DataTable dtContract = result.QueryResult as DataTable;
+                DataRow row = dtContract.NewRow();
+                row["CompanyContractGUID"] = Guid.Empty.ToString();
+                row["ContractName"] = " ";
+                dtContract.Rows.InsertAt(row, 0);
+
+                HopDongGUID.DataSource = dtContract;
+                HopDongGUID.DisplayMember = "ContractName";
+                HopDongGUID.ValueMember = "CompanyContractGUID";
+            }
+            else
+            {
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyContractBus.GetContractList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.GetContractList"));
+                this.Close();
+            }
         }
 
         private bool CheckInfo()
@@ -135,6 +155,9 @@ namespace MM.Dialogs
                         bnngk.LanDau = lanDauStr == "Lần đầu" ? (byte)0 : (byte)1;
                         bnngk.CreatedBy = Guid.Parse(Global.UserGUID);
                         bnngk.CreatedDate = DateTime.Now;
+
+                        if (row["HopDongGUID"] != null && row["HopDongGUID"] != DBNull.Value && row["HopDongGUID"].ToString() != Guid.Empty.ToString())
+                            bnngk.HopDongGUID = Guid.Parse(row["HopDongGUID"].ToString());
 
                         benhNhanNgoaiGoiKhamList.Add(bnngk);
                     }
