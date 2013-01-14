@@ -91,6 +91,7 @@ namespace MM.Dialogs
                 cboCompany.SelectedValue = drContract["CompanyGUID"].ToString();
                 dtpkBeginDate.Value = Convert.ToDateTime(drContract["BeginDate"]);
                 chkCompleted.Checked = Convert.ToBoolean(drContract["Completed"]);
+                numSoTien.Value = (Decimal)Convert.ToDouble(drContract["SoTien"]);
 
                 if (chkCompleted.Checked)
                 {
@@ -130,6 +131,7 @@ namespace MM.Dialogs
                     dtpkBeginDate.Enabled = !_isLock;
                     chkCompleted.Enabled = !_isLock;
                     dtpkEndDate.Enabled = !_isLock;
+                    numSoTien.Enabled = !_isLock;
                     dgGiaDichVu.ReadOnly = true;
                     panel5.Enabled = !_isLock;
                     dgMembers.ReadOnly = true;
@@ -153,6 +155,7 @@ namespace MM.Dialogs
                     dtpkBeginDate.Enabled = _allowEdit;
                     chkCompleted.Enabled = _allowEdit;
                     dtpkEndDate.Enabled = _allowEdit;
+                    numSoTien.Enabled = _allowEdit;
                     panel5.Enabled = _allowEdit;
                     btnAddMember.Enabled = _allowEdit;
                     btnDeleteMember.Enabled = _allowEdit;
@@ -209,6 +212,13 @@ namespace MM.Dialogs
             else
             {
                 MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.CheckContractExistCode"), IconType.Error);
+                return false;
+            }
+
+            if (numSoTien.Value <= 0)
+            {
+                MsgBox.Show(this.Text, "Vui lòng nhập số tiền của hợp đồng.", IconType.Information);
+                numSoTien.Focus();
                 return false;
             }
 
@@ -270,6 +280,7 @@ namespace MM.Dialogs
                 MethodInvoker method = delegate
                 {
                     _contract.CompanyGUID = Guid.Parse(cboCompany.SelectedValue.ToString());
+                    _contract.SoTien = (double)numSoTien.Value;
 
                     Result result = CompanyContractBus.InsertContract(_contract, _selectedCompanyInfo);
                     if (!result.IsOK)
