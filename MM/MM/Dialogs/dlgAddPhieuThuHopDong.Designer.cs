@@ -63,6 +63,7 @@
             this.label22 = new System.Windows.Forms.Label();
             this.txtMaPhieuThu = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
+            this.chkDaXuatHD = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numThu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCongNo)).BeginInit();
@@ -107,6 +108,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chkDaXuatHD);
             this.groupBox1.Controls.Add(this.txtGhiChu);
             this.groupBox1.Controls.Add(this.label15);
             this.groupBox1.Controls.Add(this.chkDaThuTien);
@@ -433,6 +435,17 @@
             this.label6.TabIndex = 48;
             this.label6.Text = "Mã phiếu thu:";
             // 
+            // chkDaXuatHD
+            // 
+            this.chkDaXuatHD.AutoSize = true;
+            this.chkDaXuatHD.Enabled = false;
+            this.chkDaXuatHD.Location = new System.Drawing.Point(194, 262);
+            this.chkDaXuatHD.Name = "chkDaXuatHD";
+            this.chkDaXuatHD.Size = new System.Drawing.Size(106, 17);
+            this.chkDaXuatHD.TabIndex = 76;
+            this.chkDaXuatHD.Text = "Đã xuất hóa đơn";
+            this.chkDaXuatHD.UseVisualStyleBackColor = true;
+            // 
             // dlgAddPhieuThuHopDong
             // 
             this.AcceptButton = this.btnOK;
@@ -497,5 +510,6 @@
         private System.Windows.Forms.CheckBox chkDaThuTien;
         private System.Windows.Forms.TextBox txtGhiChu;
         private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.CheckBox chkDaXuatHD;
     }
 }

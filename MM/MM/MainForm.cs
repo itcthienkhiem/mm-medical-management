@@ -386,6 +386,8 @@ namespace MM
                 _uTinNhanMauList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uSendSMS))
                 _uSendSMS.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uBaoCaoCongNoHopDong))
+                _uBaoCaoCongNoHopDong.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -1513,6 +1515,20 @@ namespace MM
                             _uTinNhanMauList.AllowExportAll = isExportAll;
                             _uTinNhanMauList.AllowConfirm = isConfirm;
                         }
+                        else if (functionCode == Const.BaoCaoCongNoHopDong)
+                        {
+                            companyToolStripMenuItem.Enabled = isLogin;
+                            baoCaoCongNoTheoHopDongToolStripMenuItem.Enabled = isView && isLogin;
+                            _uBaoCaoCongNoHopDong.AllowAdd = isAdd;
+                            _uBaoCaoCongNoHopDong.AllowEdit = isEdit;
+                            _uBaoCaoCongNoHopDong.AllowDelete = isDelete;
+                            _uBaoCaoCongNoHopDong.AllowPrint = isPrint;
+                            _uBaoCaoCongNoHopDong.AllowExport = isExport;
+                            _uBaoCaoCongNoHopDong.AllowImport = isImport;
+                            _uBaoCaoCongNoHopDong.AllowLock = isLock;
+                            _uBaoCaoCongNoHopDong.AllowExportAll = isExportAll;
+                            _uBaoCaoCongNoHopDong.AllowConfirm = isConfirm;
+                        }
                     }
                 }
                 else
@@ -1737,6 +1753,7 @@ namespace MM
                 sMSToolStripMenuItem.Enabled = isLogin;
                 tinNhanMauToolStripMenuItem.Enabled = isLogin;
                 guiSMSToolStripMenuItem.Enabled = isLogin;
+                baoCaoCongNoTheoHopDongToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -2171,7 +2188,18 @@ namespace MM
                 case "CauHinhNoiSoiSieuAm":
                     OnHelpCauHinhNoiSoiSieuAm();
                     break;
+
+                case "BaoCaoCongNoHopDong":
+                    OnBaoCaoCongNoHopDong();
+                    break;
             }
+        }
+
+        private void OnBaoCaoCongNoHopDong()
+        {
+            this.Text = string.Format("{0} - Bao cao cong no hop dong", Application.ProductName);
+            ViewControl(_uBaoCaoCongNoHopDong);
+            _uBaoCaoCongNoHopDong.DisplayAsThread();
         }
 
         private void OnSendSMS()
@@ -3105,6 +3133,7 @@ namespace MM
             _uKhamHopDong.ClearData();
             _uTinNhanMauList.ClearData();
             _uSendSMS.ClearData();
+            _uBaoCaoCongNoHopDong.ClearData();
         }
         #endregion
 

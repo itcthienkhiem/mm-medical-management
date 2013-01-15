@@ -31,10 +31,10 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddBenhNhanNgoaiGoiKham));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnCancel = new System.Windows.Forms.Button();
@@ -42,10 +42,6 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.label1 = new System.Windows.Forms.Label();
             this.dgBenhNhanNgoaiGoiKham = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.benhNhanNgoaiGoiKhamViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.colNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ngayKhamDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.PatientGUID = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,6 +49,10 @@
             this.serviceGUIDDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.HopDongGUID = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.lanDauStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.benhNhanNgoaiGoiKhamViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgBenhNhanNgoaiGoiKham)).BeginInit();
@@ -161,44 +161,6 @@
             this.dgBenhNhanNgoaiGoiKham.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgBenhNhanNgoaiGoiKham_UserAddedRow);
             this.dgBenhNhanNgoaiGoiKham.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgBenhNhanNgoaiGoiKham_UserDeletedRow);
             // 
-            // benhNhanNgoaiGoiKhamViewBindingSource
-            // 
-            this.benhNhanNgoaiGoiKhamViewBindingSource.DataSource = typeof(MM.Databasae.BenhNhanNgoaiGoiKhamView);
-            // 
-            // dataGridViewTextBoxColumn1
-            // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "NgayKham";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.Format = "dd/MM/yyyy";
-            dataGridViewCellStyle5.NullValue = null;
-            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle5;
-            this.dataGridViewTextBoxColumn1.HeaderText = "NgayKham";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn1.Width = 110;
-            // 
-            // dataGridViewTextBoxColumn2
-            // 
-            this.dataGridViewTextBoxColumn2.DataPropertyName = "LanDauStr";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.Format = "dd/MM/yyyy";
-            dataGridViewCellStyle6.NullValue = null;
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle6;
-            this.dataGridViewTextBoxColumn2.HeaderText = "LanDauStr";
-            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.dataGridViewTextBoxColumn2.Width = 110;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.dgBenhNhanNgoaiGoiKham);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 25);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(922, 420);
-            this.panel3.TabIndex = 21;
-            // 
             // colNo
             // 
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -267,6 +229,44 @@
             this.lanDauStrDataGridViewTextBoxColumn.Name = "lanDauStrDataGridViewTextBoxColumn";
             this.lanDauStrDataGridViewTextBoxColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.lanDauStrDataGridViewTextBoxColumn.Width = 120;
+            // 
+            // benhNhanNgoaiGoiKhamViewBindingSource
+            // 
+            this.benhNhanNgoaiGoiKhamViewBindingSource.DataSource = typeof(MM.Databasae.BenhNhanNgoaiGoiKhamView);
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "NgayKham";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.Format = "dd/MM/yyyy";
+            dataGridViewCellStyle5.NullValue = null;
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle5;
+            this.dataGridViewTextBoxColumn1.HeaderText = "NgayKham";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn1.Width = 110;
+            // 
+            // dataGridViewTextBoxColumn2
+            // 
+            this.dataGridViewTextBoxColumn2.DataPropertyName = "LanDauStr";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.Format = "dd/MM/yyyy";
+            dataGridViewCellStyle6.NullValue = null;
+            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle6;
+            this.dataGridViewTextBoxColumn2.HeaderText = "LanDauStr";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn2.Width = 110;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.dgBenhNhanNgoaiGoiKham);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 25);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(922, 420);
+            this.panel3.TabIndex = 21;
             // 
             // dlgAddBenhNhanNgoaiGoiKham
             // 
