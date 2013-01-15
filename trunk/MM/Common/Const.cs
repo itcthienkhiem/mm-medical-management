@@ -113,6 +113,7 @@ namespace MM.Common
         public static string KhamHopDong = "KhamHopDong";
         public static string TinNhanMau = "TinNhanMau";
         public static string GuiSMS = "GuiSMS";
+        public static string BaoCaoCongNoHopDong = "BaoCaoCongNoTheoHopDong";
 
         public static string CheckListTemplate = "Theo dõi thực hiện";
         public static string ChiTietPhieuThuDichVuTemplate = "Chi tiết phiếu thu dịch vụ";
@@ -152,6 +153,7 @@ namespace MM.Common
         public static string LichKhamTemplate = "Lịch khám";
         public static string BaoCaoTonKhoCapCuuTemplate = "Báo cáo tồn kho cấp cứu";
         public static string BenhNhanNgoaiGoiKhamTemplate = "Bệnh nhân ngoài gói khám";
+        public static string BaoCaoCongNoHopDongTemplate = "Báo cáo công nợ hợp đồng";
 
         public static string TVHomeProcessName = "TVHome Media2";
     }

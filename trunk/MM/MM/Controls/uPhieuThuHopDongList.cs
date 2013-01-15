@@ -114,6 +114,8 @@ namespace MM.Controls
                 bool isExported = Convert.ToBoolean(dr["IsExported"]);
                 if (isExported)
                     row.DefaultCellStyle.BackColor = Color.LightSeaGreen;
+                else
+                    row.DefaultCellStyle.BackColor = Color.White;
             }
         }
 
@@ -285,6 +287,8 @@ namespace MM.Controls
                 if (dlg.IsExportedInvoice)
                     HighlightExportedInvoice();
             }
+            else
+                HighlightExportedInvoice();
         }
 
         private void OnExportInvoice()

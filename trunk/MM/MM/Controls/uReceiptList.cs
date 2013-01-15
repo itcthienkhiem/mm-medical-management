@@ -113,6 +113,8 @@ namespace MM.Controls
                 bool isExported = Convert.ToBoolean(dr["IsExportedInVoice"]);
                 if (isExported)
                     row.DefaultCellStyle.BackColor = Color.LightSeaGreen;
+                else
+                    row.DefaultCellStyle.BackColor = Color.White;
             }
         }
 

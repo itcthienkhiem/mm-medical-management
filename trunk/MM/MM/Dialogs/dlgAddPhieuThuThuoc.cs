@@ -41,9 +41,13 @@ namespace MM.Dialogs
             {
                 btnOK.Enabled = false;
                 chkDaThuTien.Enabled = false;
+                chkDaXuatHD.Enabled = false;
             }
             else
+            {
+                chkDaThuTien.Enabled = true;
                 chkDaXuatHD.Enabled = true;
+            }
 
             dgChiTiet.AllowUserToAddRows = false;
             dgChiTiet.AllowUserToDeleteRows = false;

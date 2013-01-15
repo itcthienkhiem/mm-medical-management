@@ -289,9 +289,9 @@ namespace MM.Bussiness
                         db.PhieuThuHopDongs.InsertOnSubmit(ptthd);
                         db.SubmitChanges();
 
-                        desc += string.Format("- Phiếu thu hợp đồng: GUID: '{0}', Mã hợp đồng: '{1}', Mã phiếu thu: '{2}', Ngày thu: '{3}', Tên khách hàng: '{4}', Công ty: '{5}', Địa chỉ: '{6}', Ghi chú: '{7}', Đã thu tiền: '{8}'\n",
+                        desc += string.Format("- Phiếu thu hợp đồng: GUID: '{0}', Mã hợp đồng: '{1}', Mã phiếu thu: '{2}', Ngày thu: '{3}', Tên khách hàng: '{4}', Công ty: '{5}', Địa chỉ: '{6}', Ghi chú: '{7}', Đã thu tiền: '{8}', Đã xuất HĐ: '{9}'\n",
                             ptthd.PhieuThuHopDongGUID.ToString(), ptthd.CompanyContract.CompanyContractGUID, ptthd.MaPhieuThuHopDong, ptthd.NgayThu.ToString("dd/MM/yyyy HH:mm:ss"),
-                            ptthd.TenNguoiNop, ptthd.TenCongTy, ptthd.DiaChi, ptthd.Notes, !ptthd.ChuaThuTien);
+                            ptthd.TenNguoiNop, ptthd.TenCongTy, ptthd.DiaChi, ptthd.Notes, !ptthd.ChuaThuTien, ptthd.IsExported);
 
                         desc += "- Chi tiết phiếu thu hợp đồng được thêm:\n";
 
@@ -344,6 +344,37 @@ namespace MM.Bussiness
                     db.Dispose();
                     db = null;
                 }
+            }
+
+            return result;
+        }
+
+        public static Result GetTongTienNgoaiGoiKham(string hopDongGUID)
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Format("SELECT SUM(S.Price) AS TongTien FROM dbo.BenhNhanNgoaiGoiKhamView AS B WITH(NOLOCK), dbo.Services AS S WITH(NOLOCK) WHERE B.Status = 0 AND B.HopDongGUID = '{0}' AND B.PatientGUID IN (SELECT PatientGUID FROM dbo.ContractMemberView WITH(NOLOCK) WHERE Status = 0 AND CompanyContractGUID = '{0}' AND Archived = 'False') AND B.ServiceGUID = S.ServiceGUID AND S.Status = 0 AND ((B.Completed = 'False' AND B.NgayKham > B.BeginDate) OR (B.Completed = 'True' AND B.NgayKham BETWEEN B.BeginDate AND B.EndDate))", hopDongGUID);
+                result = ExcuteQuery(query);
+
+                if (!result.IsOK) return result;
+
+                DataTable dt = result.QueryResult as DataTable;
+                if (dt != null && dt.Rows.Count > 0 && dt.Rows[0][0] != null && dt.Rows[0][0] != DBNull.Value)
+                    result.QueryResult = Convert.ToDouble(dt.Rows[0][0]);
+                else
+                    result.QueryResult = 0;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
             }
 
             return result;
@@ -417,7 +448,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT SUM(CT.ThanhTien) AS TongTien FROM PhieuThuHopDong PT WITH(NOLOCK), ChiTietPhieuThuHopDong CT WITH(NOLOCK) WHERE PT.PhieuThuHopDongGUID = CT.PhieuThuHopDongGUID AND PT.HopDongGUID = '{0}' AND PT.Status = 0 AND CT.Status = 0", hopDongGUID);
+                string query = string.Format("SELECT SUM(CT.ThanhTien) AS TongTien FROM PhieuThuHopDong PT WITH(NOLOCK), ChiTietPhieuThuHopDong CT WITH(NOLOCK) WHERE PT.PhieuThuHopDongGUID = CT.PhieuThuHopDongGUID AND PT.HopDongGUID = '{0}' AND PT.Status = 0 AND CT.Status = 0 AND PT.ChuaThuTien = 'False'", hopDongGUID);
                 result = ExcuteQuery(query);
 
                 if (!result.IsOK) return result;
@@ -460,6 +491,10 @@ namespace MM.Bussiness
                 if (!result.IsOK) return result;
                 tongTien += Convert.ToDouble(result.QueryResult);
 
+                result = GetTongTienNgoaiGoiKham(hopDongGUID);
+                if (!result.IsOK) return result;
+                tongTien += Convert.ToDouble(result.QueryResult);
+
                 result.QueryResult = tongTien - tongTienThu;
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -471,6 +506,70 @@ namespace MM.Bussiness
             {
                 result.Error.Code = ErrorCode.UNKNOWN_ERROR;
                 result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
+        public static Result CapNhatTrangThaiPhieuThu(string phieuThuHopDongGUID, bool daXuatHD, bool daThuTien)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+
+                using (TransactionScope tnx = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    PhieuThuHopDong pthd = db.PhieuThuHopDongs.SingleOrDefault<PhieuThuHopDong>(p => p.PhieuThuHopDongGUID.ToString() == phieuThuHopDongGUID);
+                    if (pthd != null)
+                    {
+                        pthd.UpdatedDate = DateTime.Now;
+                        pthd.UpdatedBy = Guid.Parse(Global.UserGUID);
+                        pthd.ChuaThuTien = !daThuTien;
+                        pthd.IsExported = daXuatHD;
+
+                        string desc = string.Format("Phiếu thu hợp đồng: GUID: '{0}', Mã hợp đồng: '{1}', Mã phiếu thu: '{2}', Ngày thu: '{3}', Tên khách hàng: '{4}', Công ty: '{5}', Địa chỉ: '{6}', Ghi chú: '{7}', Đã thu tiền: '{8}', Đã xuất HĐ: '{9}'\n",
+                            pthd.PhieuThuHopDongGUID.ToString(), pthd.CompanyContract.CompanyContractGUID, pthd.MaPhieuThuHopDong, pthd.NgayThu.ToString("dd/MM/yyyy HH:mm:ss"),
+                            pthd.TenNguoiNop, pthd.TenCongTy, pthd.DiaChi, pthd.Notes, !pthd.ChuaThuTien, pthd.IsExported);
+
+                        //Tracking
+                        desc = desc.Substring(0, desc.Length - 1);
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Edit;
+                        tk.Action = "Sửa trạng thái phiếu thu hợp đồng";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.Price;
+                        db.Trackings.InsertOnSubmit(tk);
+
+                        db.SubmitChanges();
+                    }
+
+                    tnx.Complete();
+                }
+
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
             }
 
             return result;

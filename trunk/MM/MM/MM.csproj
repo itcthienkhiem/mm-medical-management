@@ -95,6 +95,12 @@
     <Reference Include="TXTextControl, Version=15.1.800.500, Culture=neutral, PublicKeyToken=6b83fe9a75cfb638" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\uBaoCaoCongNoHopDong.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uBaoCaoCongNoHopDong.Designer.cs">
+      <DependentUpon>uBaoCaoCongNoHopDong.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgSelectTinNhanMau.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1583,6 +1589,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\uBaoCaoCongNoHopDong.resx">
+      <DependentUpon>uBaoCaoCongNoHopDong.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgSelectTinNhanMau.resx">
       <DependentUpon>dlgSelectTinNhanMau.cs</DependentUpon>
     </EmbeddedResource>

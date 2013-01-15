@@ -137,6 +137,7 @@ namespace MM.Dialogs
                 txtTenCongTy.Text = drPhieuThu["TenCongTy"] as string;
                 txtDiaChi.Text = drPhieuThu["DiaChi"] as string;
                 chkDaThuTien.Checked = Convert.ToBoolean(drPhieuThu["DaThuTien"]);
+                chkDaXuatHD.Checked = Convert.ToBoolean(drPhieuThu["IsExported"]);
 
                 _phieuThuHopDong.PhieuThuHopDongGUID = Guid.Parse(drPhieuThu["PhieuThuHopDongGUID"].ToString());
 
@@ -332,6 +333,18 @@ namespace MM.Dialogs
 
             if (!_isNew)
             {
+                if (Global.StaffType != StaffType.Admin)
+                {
+                    btnOK.Enabled = false;
+                    chkDaThuTien.Enabled = false;
+                    chkDaXuatHD.Enabled = false;
+                }
+                else
+                {
+                    chkDaThuTien.Enabled = true;
+                    chkDaXuatHD.Enabled = true;
+                }
+
                 DisplayInfo(_drPhieuThu);
                 txtMaPhieuThu.ReadOnly = true;
                 cboMaHopDong.Enabled = false;
@@ -342,9 +355,10 @@ namespace MM.Dialogs
                 txtDichVu.ReadOnly = true;
                 numCongNo.Enabled = false;
                 numThu.Enabled = false;
-                btnOK.Enabled = false;
+                //btnOK.Enabled = false;
                 dtpkNgayThu.Enabled = false;
-                chkDaThuTien.Enabled = false;
+                //chkDaThuTien.Enabled = false;
+                txtGhiChu.ReadOnly = true;
             }
 
             UpdateGUI();
@@ -385,10 +399,28 @@ namespace MM.Dialogs
         {
             if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
-                if (CheckInfo())
-                    SaveInfoAsThread();
-                else
-                    e.Cancel = true;
+                if (_isNew)
+                {
+                    if (CheckInfo())
+                        SaveInfoAsThread();
+                    else
+                        e.Cancel = true;
+                }
+                else if (Global.StaffType == StaffType.Admin)
+                {
+                    Result result = PhieuThuHopDongBus.CapNhatTrangThaiPhieuThu(_phieuThuHopDong.PhieuThuHopDongGUID.ToString(), chkDaXuatHD.Checked, chkDaThuTien.Checked);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("PhieuThuHopDongBus.CapNhatTrangThaiPhieuThu"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("PhieuThuHopDongBus.CapNhatTrangThaiPhieuThu"));
+                        e.Cancel = true;
+                    }
+                    else
+                    {
+                        _drPhieuThu["IsExported"] = chkDaXuatHD.Checked;
+                        _drPhieuThu["DaThuTien"] = chkDaThuTien.Checked;
+                    }
+                }
             }
             else
             {
