@@ -349,13 +349,13 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetTongTienNgoaiGoiKham(string hopDongGUID)
+        public static Result GetTongTienDichVuLamThem(string hopDongGUID)
         {
             Result result = new Result();
 
             try
             {
-                string query = string.Format("SELECT SUM(S.Price) AS TongTien FROM dbo.BenhNhanNgoaiGoiKhamView AS B WITH(NOLOCK), dbo.Services AS S WITH(NOLOCK) WHERE B.Status = 0 AND B.HopDongGUID = '{0}' AND B.PatientGUID IN (SELECT PatientGUID FROM dbo.ContractMemberView WITH(NOLOCK) WHERE Status = 0 AND CompanyContractGUID = '{0}' AND Archived = 'False') AND B.ServiceGUID = S.ServiceGUID AND S.Status = 0 AND ((B.Completed = 'False' AND B.NgayKham > B.BeginDate) OR (B.Completed = 'True' AND B.NgayKham BETWEEN B.BeginDate AND B.EndDate))", hopDongGUID);
+                string query = string.Format("SELECT SUM( CAST((V.FixedPrice - (V.FixedPrice * V.Discount)/100) AS float)) AS TongTien FROM dbo.CompanyContract C WITH(NOLOCK), dbo.ContractMember M WITH(NOLOCK), dbo.DichVuLamThemView V WITH(NOLOCK) WHERE C.CompanyContractGUID = M.CompanyContractGUID AND V.ContractMemberGUID = M.ContractMemberGUID AND M.Status = 0 AND V.Status = 0 AND V.ServiceStatus = 0 AND C.CompanyContractGUID = '{0}'", hopDongGUID);
                 result = ExcuteQuery(query);
 
                 if (!result.IsOK) return result;
@@ -491,7 +491,7 @@ namespace MM.Bussiness
                 if (!result.IsOK) return result;
                 tongTien += Convert.ToDouble(result.QueryResult);
 
-                result = GetTongTienNgoaiGoiKham(hopDongGUID);
+                result = GetTongTienDichVuLamThem(hopDongGUID);
                 if (!result.IsOK) return result;
                 tongTien += Convert.ToDouble(result.QueryResult);
 

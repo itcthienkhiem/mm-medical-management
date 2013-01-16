@@ -136,20 +136,27 @@ namespace MM.Controls
                 lbThongBao.Text = string.Empty;
                 dgService.ReadOnly = false;
                 chkChecked.Enabled = true;
-                //btnLuu.Enabled = AllowEdit && dgService.RowCount > 0;
+                chkChecked2.Enabled = true;
+                panelDichVuLamThem.Enabled = true;
+                dgDichVuLamThem.ReadOnly = false;
             }
             else if (dtNow > _endDate)
             {
                 lbThongBao.Text = string.Format("Hợp đồng đã kết thúc ngày {0}.", _endDate.ToString("dd/MM/yyyy"));
                 dgService.ReadOnly = true;
                 chkChecked.Enabled = false;
-                //btnLuu.Enabled = false;
+                chkChecked2.Enabled = false;
+                panelDichVuLamThem.Enabled = false;
+                dgDichVuLamThem.ReadOnly = true;
             }
             else
             {
                 lbThongBao.Text = string.Format("Hợp đồng này bắt đầu ngày {0}, chưa tới ngày khám.", _beginDate.ToString("dd/MM/yyyy"));
                 dgService.ReadOnly = true;
                 chkChecked.Enabled = false;
+                chkChecked2.Enabled = false;
+                panelDichVuLamThem.Enabled = false;
+                dgDichVuLamThem.ReadOnly = true;
             }
 
             return tenHopDong;
@@ -397,6 +404,26 @@ namespace MM.Controls
         private void btnLuu_Click(object sender, EventArgs e)
         {
             SaveCheckList();
+        }
+
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnEdit_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void chkChecked2_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
         #endregion
 
