@@ -71,23 +71,6 @@ namespace MM.Dialogs
                 MsgBox.Show(Application.ProductName, result.GetErrorAsString("ServicesBus.GetServicesList"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("ServicesBus.GetServicesList"));
             }
-
-            result = CompanyContractBus.GetContractList();
-            if (result.IsOK)
-            {
-                DataTable dtContract = result.QueryResult as DataTable;
-                DataRow row = dtContract.NewRow();
-                row["CompanyContractGUID"] = Guid.Empty.ToString();
-                row["ContractName"] = string.Empty;
-                dtContract.Rows.InsertAt(row, 0);
-
-                cboHopDong.DataSource = dtContract;
-            }
-            else
-            {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyContractBus.GetContractList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.GetContractList"));
-            }
         }
 
         private void DisplayInfo()
@@ -98,11 +81,6 @@ namespace MM.Dialogs
                 dtpkNgayKham.Value = Convert.ToDateTime(_drBenhNhanNgoaiGoiKham["NgayKham"]);
                 cboBenhNhan.SelectedValue = _drBenhNhanNgoaiGoiKham["PatientGUID"].ToString();
                 cboService.SelectedValue = _drBenhNhanNgoaiGoiKham["ServiceGUID"].ToString();
-
-                if (_drBenhNhanNgoaiGoiKham["HopDongGUID"] != null && 
-                    _drBenhNhanNgoaiGoiKham["HopDongGUID"] != DBNull.Value && 
-                    _drBenhNhanNgoaiGoiKham["HopDongGUID"].ToString() != Guid.Empty.ToString())
-                    cboHopDong.SelectedValue = Guid.Parse(_drBenhNhanNgoaiGoiKham["HopDongGUID"].ToString());
 
                 cboLanDauTaiKham.SelectedIndex = Convert.ToInt32(_drBenhNhanNgoaiGoiKham["LanDau"]);
 
@@ -186,11 +164,6 @@ namespace MM.Dialogs
                     _benhNhanNgoaiGoiKham.PatientGUID = Guid.Parse(cboBenhNhan.SelectedValue.ToString());
                     _benhNhanNgoaiGoiKham.ServiceGUID = Guid.Parse(cboService.SelectedValue.ToString());
                     _benhNhanNgoaiGoiKham.LanDau = (byte)cboLanDauTaiKham.SelectedIndex;
-
-                    if (cboHopDong.SelectedValue != null && cboHopDong.Text.Trim() != string.Empty)
-                        _benhNhanNgoaiGoiKham.HopDongGUID = Guid.Parse(cboHopDong.SelectedValue.ToString());
-                    else
-                        _benhNhanNgoaiGoiKham.HopDongGUID = null;
 
                     Result result = BenhNhanNgoaiGoiKhamBus.UpdateBenhNhanNgoaiGoiKham(_benhNhanNgoaiGoiKham);
                     if (!result.IsOK)
