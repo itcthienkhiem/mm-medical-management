@@ -66,6 +66,9 @@ namespace MM.Controls
             btnLuu.Enabled = AllowEdit;
             dgService.ReadOnly = !AllowEdit;
             chkChecked.Enabled = AllowEdit;
+
+            fixedPriceDataGridViewTextBoxColumn.Visible = Global.AllowShowServiePrice;
+            colThanhTien.Visible = Global.AllowShowServiePrice;
         }
 
         public void DisplayAsThread()

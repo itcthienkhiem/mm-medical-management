@@ -2314,6 +2314,7 @@
     <None Include="Properties\DataSources\MM.Databasae.CongTacNgoaiGioView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ContractMemberView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.DiaChiCongTy.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.DichVuLamThemView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.DocStaffView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.GiaCapCuuView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.GiaDichVuHopDongView.datasource" />
