@@ -89,7 +89,7 @@ namespace MM.Controls
 
         private void OnDisplayHopDongList()
         {
-            Result result = CompanyContractBus.GetNoCompletedContractList();
+            Result result = CompanyContractBus.GetContractList();
             if (result.IsOK)
             {
                 MethodInvoker method = delegate
@@ -109,8 +109,10 @@ namespace MM.Controls
 
         private string GetTenHopDong(string hopDongGUID)
         {
-            _beginDate = DateTime.Now;
+            _beginDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
             _endDate = Global.MaxDateTime;
+            string tenHopDong = string.Empty;
+
             DataTable dt = cboMaHopDong.DataSource as DataTable;
             if (dt != null && dt.Rows.Count > 0)
             {
@@ -118,13 +120,39 @@ namespace MM.Controls
                 if (rows == null || rows.Length <= 0) return string.Empty;
 
                 _beginDate = Convert.ToDateTime(rows[0]["BeginDate"]);
+                _beginDate = new DateTime(_beginDate.Year, _beginDate.Month, _beginDate.Day, 0, 0, 0);
                 if (rows[0]["EndDate"] != null && rows[0]["EndDate"] != DBNull.Value)
+                {
                     _endDate = Convert.ToDateTime(rows[0]["EndDate"]);
+                    _endDate = new DateTime(_endDate.Year, _endDate.Month, _endDate.Day, 23, 59, 59);
+                }
 
-                return rows[0]["ContractName"].ToString();
+                tenHopDong = rows[0]["ContractName"].ToString();
             }
 
-            return string.Empty;
+            DateTime dtNow = DateTime.Now;
+            if (dtNow >= _beginDate && dtNow <= _endDate)
+            {
+                lbThongBao.Text = string.Empty;
+                dgService.ReadOnly = false;
+                chkChecked.Enabled = true;
+                //btnLuu.Enabled = AllowEdit && dgService.RowCount > 0;
+            }
+            else if (dtNow > _endDate)
+            {
+                lbThongBao.Text = string.Format("Hợp đồng đã kết thúc ngày {0}.", _endDate.ToString("dd/MM/yyyy"));
+                dgService.ReadOnly = true;
+                chkChecked.Enabled = false;
+                //btnLuu.Enabled = false;
+            }
+            else
+            {
+                lbThongBao.Text = string.Format("Hợp đồng này bắt đầu ngày {0}, chưa tới ngày khám.", _beginDate.ToString("dd/MM/yyyy"));
+                dgService.ReadOnly = true;
+                chkChecked.Enabled = false;
+            }
+
+            return tenHopDong;
         }
 
         private void OnDisplayDanhSachNhanVien()
