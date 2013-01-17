@@ -123,7 +123,7 @@ namespace MM.Dialogs
 
             txtTenHopDong.Text = GetTenHopDong();
 
-            _uSearchPatient.DisplayAsThread();
+            _uSearchPatient.SearchAsThread();
         }
         #endregion
 
