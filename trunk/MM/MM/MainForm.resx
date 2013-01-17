@@ -1151,10 +1151,10 @@
     <value>False</value>
   </data>
   <data name="companyToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>61, 20</value>
+    <value>73, 20</value>
   </data>
   <data name="companyToolStripMenuItem.Text" xml:space="preserve">
-    <value>&amp;Công ty</value>
+    <value>&amp;Hợp đồng</value>
   </data>
   <data name="receiptListToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
