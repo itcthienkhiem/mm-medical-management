@@ -18,11 +18,12 @@ namespace MM.Controls
     public partial class uPhieuThuHopDongList : uBase
     {
         #region Members
-        private bool _isFromDateToDate = true;
+        private int _filterType = 0; //0: Từ ngày đến ngày; 1: Tên khách hàng; 2: Hợp đồng
         private string _tenNguoiNop = string.Empty;
         private DateTime _fromDate = DateTime.Now;
         private DateTime _toDate = DateTime.Now;
         private int _type = 1; //0: TatCa; 1: ChuaXoa; 2: DaXoa
+        private string _tenHopDong = string.Empty;
         #endregion
 
         #region Constructor
@@ -82,10 +83,15 @@ namespace MM.Controls
                 UpdateGUI();
 
                 lbKetQuaTimDuoc.Text = "Kết quả tìm được: 0";
-                _isFromDateToDate = raTuNgayToiNgay.Checked;
+
+                if (raTuNgayToiNgay.Checked) _filterType = 0;
+                else if (raTenBenhNhan.Checked) _filterType = 1;
+                else _filterType = 2;
+
                 _fromDate = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
                 _toDate = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
                 _tenNguoiNop = txtTenBenhNhan.Text;
+                _tenHopDong = txtHopDong.Text;
 
                 if (raTatCa.Checked) _type = 0;
                 else if (raChuaXoa.Checked) _type = 1;
@@ -121,7 +127,7 @@ namespace MM.Controls
 
         private void OnDisplayPhieuThuHopDongList()
         {
-            Result result = PhieuThuHopDongBus.GetPhieuThuHopDongList(_isFromDateToDate, _fromDate, _toDate, _tenNguoiNop, _type);
+            Result result = PhieuThuHopDongBus.GetPhieuThuHopDongList(_filterType, _fromDate, _toDate, _tenNguoiNop, _tenHopDong, _type);
             if (result.IsOK)
             {
                 MethodInvoker method = delegate
@@ -327,7 +333,36 @@ namespace MM.Controls
         {
             dtpkTuNgay.Enabled = raTuNgayToiNgay.Checked;
             dtpkDenNgay.Enabled = raTuNgayToiNgay.Checked;
-            txtTenBenhNhan.ReadOnly = raTuNgayToiNgay.Checked;
+
+            if (raTuNgayToiNgay.Checked)
+            {
+                txtTenBenhNhan.ReadOnly = true;
+                txtHopDong.ReadOnly = true;
+            }
+        }
+
+        private void raTenBenhNhan_CheckedChanged(object sender, EventArgs e)
+        {
+            txtTenBenhNhan.ReadOnly = !raTenBenhNhan.Checked;
+
+            if (raTenBenhNhan.Checked)
+            {
+                txtHopDong.ReadOnly = true;
+                dtpkDenNgay.Enabled = false;
+                dtpkTuNgay.Enabled = false;
+            }
+        }
+
+        private void raHopDong_CheckedChanged(object sender, EventArgs e)
+        {
+            txtHopDong.ReadOnly = !raHopDong.Checked;
+
+            if (raHopDong.Checked)
+            {
+                txtTenBenhNhan.ReadOnly = true;
+                dtpkDenNgay.Enabled = false;
+                dtpkTuNgay.Enabled = false;
+            }
         }
 
         private void btnView_Click(object sender, EventArgs e)
@@ -339,12 +374,12 @@ namespace MM.Controls
                 return;
             }
 
-            if (raTenBenhNhan.Checked && txtTenBenhNhan.Text.Trim() == string.Empty)
-            {
-                MsgBox.Show(Application.ProductName, "Vui lòng nhập tên bệnh nhân.", IconType.Information);
-                txtTenBenhNhan.Focus();
-                return;
-            }
+            //if (raTenBenhNhan.Checked && txtTenBenhNhan.Text.Trim() == string.Empty)
+            //{
+            //    MsgBox.Show(Application.ProductName, "Vui lòng nhập tên bệnh nhân.", IconType.Information);
+            //    txtTenBenhNhan.Focus();
+            //    return;
+            //}
 
             DisplayAsThread();
         }
@@ -420,6 +455,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
        
 

@@ -33,6 +33,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtHopDong = new System.Windows.Forms.TextBox();
+            this.raHopDong = new System.Windows.Forms.RadioButton();
             this.lbKetQuaTimDuoc = new System.Windows.Forms.Label();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.raDaXoa = new System.Windows.Forms.RadioButton();
@@ -59,6 +61,7 @@
             this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.maPhieuThuHopDongDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ngayThuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenHopDong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenNguoiNopDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenCongTyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.diaChiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,6 +79,8 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.txtHopDong);
+            this.panel2.Controls.Add(this.raHopDong);
             this.panel2.Controls.Add(this.lbKetQuaTimDuoc);
             this.panel2.Controls.Add(this.groupBox1);
             this.panel2.Controls.Add(this.btnView);
@@ -88,14 +93,33 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(813, 111);
+            this.panel2.Size = new System.Drawing.Size(813, 131);
             this.panel2.TabIndex = 9;
+            // 
+            // txtHopDong
+            // 
+            this.txtHopDong.Location = new System.Drawing.Point(120, 57);
+            this.txtHopDong.Name = "txtHopDong";
+            this.txtHopDong.ReadOnly = true;
+            this.txtHopDong.Size = new System.Drawing.Size(255, 20);
+            this.txtHopDong.TabIndex = 7;
+            // 
+            // raHopDong
+            // 
+            this.raHopDong.AutoSize = true;
+            this.raHopDong.Location = new System.Drawing.Point(16, 57);
+            this.raHopDong.Name = "raHopDong";
+            this.raHopDong.Size = new System.Drawing.Size(76, 17);
+            this.raHopDong.TabIndex = 6;
+            this.raHopDong.Text = "Hợp đồng:";
+            this.raHopDong.UseVisualStyleBackColor = true;
+            this.raHopDong.CheckedChanged += new System.EventHandler(this.raHopDong_CheckedChanged);
             // 
             // lbKetQuaTimDuoc
             // 
             this.lbKetQuaTimDuoc.AutoSize = true;
             this.lbKetQuaTimDuoc.ForeColor = System.Drawing.Color.Blue;
-            this.lbKetQuaTimDuoc.Location = new System.Drawing.Point(471, 82);
+            this.lbKetQuaTimDuoc.Location = new System.Drawing.Point(471, 104);
             this.lbKetQuaTimDuoc.Name = "lbKetQuaTimDuoc";
             this.lbKetQuaTimDuoc.Size = new System.Drawing.Size(100, 13);
             this.lbKetQuaTimDuoc.TabIndex = 16;
@@ -106,7 +130,7 @@
             this.groupBox1.Controls.Add(this.raDaXoa);
             this.groupBox1.Controls.Add(this.raChuaXoa);
             this.groupBox1.Controls.Add(this.raTatCa);
-            this.groupBox1.Location = new System.Drawing.Point(16, 57);
+            this.groupBox1.Location = new System.Drawing.Point(16, 79);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(359, 43);
             this.groupBox1.TabIndex = 15;
@@ -148,7 +172,7 @@
             // 
             this.btnView.Image = global::MM.Properties.Resources.views_icon;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(381, 77);
+            this.btnView.Location = new System.Drawing.Point(381, 99);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 23);
             this.btnView.TabIndex = 13;
@@ -160,6 +184,7 @@
             // 
             this.txtTenBenhNhan.Location = new System.Drawing.Point(120, 34);
             this.txtTenBenhNhan.Name = "txtTenBenhNhan";
+            this.txtTenBenhNhan.ReadOnly = true;
             this.txtTenBenhNhan.Size = new System.Drawing.Size(255, 20);
             this.txtTenBenhNhan.TabIndex = 5;
             // 
@@ -172,6 +197,7 @@
             this.raTenBenhNhan.TabIndex = 4;
             this.raTenBenhNhan.Text = "Tên khách hàng:";
             this.raTenBenhNhan.UseVisualStyleBackColor = true;
+            this.raTenBenhNhan.CheckedChanged += new System.EventHandler(this.raTenBenhNhan_CheckedChanged);
             // 
             // dtpkDenNgay
             // 
@@ -291,9 +317,9 @@
             this.panel3.Controls.Add(this.chkChecked);
             this.panel3.Controls.Add(this.dgPhieuThu);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 111);
+            this.panel3.Location = new System.Drawing.Point(0, 131);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(813, 305);
+            this.panel3.Size = new System.Drawing.Size(813, 285);
             this.panel3.TabIndex = 11;
             // 
             // chkChecked
@@ -325,6 +351,7 @@
             this.colChecked,
             this.maPhieuThuHopDongDataGridViewTextBoxColumn,
             this.ngayThuDataGridViewTextBoxColumn,
+            this.TenHopDong,
             this.tenNguoiNopDataGridViewTextBoxColumn,
             this.tenCongTyDataGridViewTextBoxColumn,
             this.diaChiDataGridViewTextBoxColumn,
@@ -350,7 +377,7 @@
             this.dgPhieuThu.Name = "dgPhieuThu";
             this.dgPhieuThu.RowHeadersWidth = 30;
             this.dgPhieuThu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgPhieuThu.Size = new System.Drawing.Size(813, 305);
+            this.dgPhieuThu.Size = new System.Drawing.Size(813, 285);
             this.dgPhieuThu.TabIndex = 8;
             this.dgPhieuThu.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPhieuThu_ColumnHeaderMouseClick);
             this.dgPhieuThu.DoubleClick += new System.EventHandler(this.dgPhieuThu_DoubleClick);
@@ -390,6 +417,14 @@
             this.ngayThuDataGridViewTextBoxColumn.HeaderText = "Ngày thu";
             this.ngayThuDataGridViewTextBoxColumn.Name = "ngayThuDataGridViewTextBoxColumn";
             this.ngayThuDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // TenHopDong
+            // 
+            this.TenHopDong.DataPropertyName = "ContractName";
+            this.TenHopDong.HeaderText = "Tên hợp đồng";
+            this.TenHopDong.Name = "TenHopDong";
+            this.TenHopDong.ReadOnly = true;
+            this.TenHopDong.Width = 200;
             // 
             // tenNguoiNopDataGridViewTextBoxColumn
             // 
@@ -495,9 +530,12 @@
         private System.Windows.Forms.BindingSource phieuThuHopDongBindingSource;
         private System.Windows.Forms.PrintDialog _printDialog;
         private System.Windows.Forms.Label lbKetQuaTimDuoc;
+        private System.Windows.Forms.TextBox txtHopDong;
+        private System.Windows.Forms.RadioButton raHopDong;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn maPhieuThuHopDongDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn ngayThuDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenHopDong;
         private System.Windows.Forms.DataGridViewTextBoxColumn tenNguoiNopDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tenCongTyDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn diaChiDataGridViewTextBoxColumn;
