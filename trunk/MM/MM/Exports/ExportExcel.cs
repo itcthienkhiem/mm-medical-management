@@ -7828,5 +7828,75 @@ namespace MM.Exports
 
             return true;
         }
+
+        public static bool ExportCongNoHopDongToExcel(string exportFileName, string hopDongGUID)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            string excelTemplateName = string.Format("{0}\\Templates\\BaoCaoCongNoHopDongTemplate.xls", Application.StartupPath);
+            IWorkbook workBook = null;
+
+            try
+            {
+                //workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                //IWorksheet workSheet = workBook.Worksheets[0];
+                //int rowIndex = 2;
+                //int stt = 1;
+
+                //foreach (DataRow row in checkedRows)
+                //{
+                //    string ngayKham = Convert.ToDateTime(row["NgayKham"]).ToString("dd/MM/yyyy");
+                //    string maBenhNhan = row["FileNum"].ToString();
+                //    string tenBenhNhan = row["FullName"].ToString();
+                //    string dichVu = row["Name"].ToString();
+                //    string lanDauTaiKham = row["LanDauStr"].ToString();
+
+                //    workSheet.Cells[rowIndex, 0].Value = stt;
+                //    workSheet.Cells[rowIndex, 1].Value = ngayKham;
+                //    workSheet.Cells[rowIndex, 2].Value = maBenhNhan;
+                //    workSheet.Cells[rowIndex, 3].Value = tenBenhNhan;
+                //    workSheet.Cells[rowIndex, 4].Value = dichVu;
+                //    workSheet.Cells[rowIndex, 5].Value = lanDauTaiKham;
+                //    rowIndex++;
+                //    stt++;
+                //}
+
+                //IRange range = workSheet.Cells[string.Format("A3:F{0}", checkedRows.Count + 2)];
+                //range.WrapText = false;
+                //range.HorizontalAlignment = HAlign.General;
+                //range.VerticalAlignment = VAlign.Top;
+                //range.Borders.Color = Color.Black;
+                //range.Borders.LineStyle = LineStyle.Continuous;
+                //range.Borders.Weight = BorderWeight.Thin;
+
+                //range = workSheet.Cells[string.Format("A3:A{0}", checkedRows.Count + 2)];
+                //range.HorizontalAlignment = HAlign.Center;
+                //range.VerticalAlignment = VAlign.Top;
+
+                //range = workSheet.Cells[string.Format("F3:F{0}", checkedRows.Count + 2)];
+                //range.HorizontalAlignment = HAlign.Center;
+                //range.VerticalAlignment = VAlign.Top;
+
+                //string path = string.Format("{0}\\Temp", Application.StartupPath);
+                //if (!Directory.Exists(path))
+                //    Directory.CreateDirectory(path);
+
+                //workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
     }
 }
