@@ -101,6 +101,12 @@
     <Compile Include="Controls\uBaoCaoCongNoHopDong.Designer.cs">
       <DependentUpon>uBaoCaoCongNoHopDong.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgAddDichVuLamThem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddDichVuLamThem.Designer.cs">
+      <DependentUpon>dlgAddDichVuLamThem.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgSelectTinNhanMau.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1591,6 +1597,9 @@
     </Compile>
     <EmbeddedResource Include="Controls\uBaoCaoCongNoHopDong.resx">
       <DependentUpon>uBaoCaoCongNoHopDong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddDichVuLamThem.resx">
+      <DependentUpon>dlgAddDichVuLamThem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgSelectTinNhanMau.resx">
       <DependentUpon>dlgSelectTinNhanMau.cs</DependentUpon>
