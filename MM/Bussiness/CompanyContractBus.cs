@@ -133,7 +133,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} ORDER BY FirstName, FullName",
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND Archived = 'False' ORDER BY FirstName, FullName",
                     contractGUID, (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
@@ -162,22 +162,22 @@ namespace MM.Bussiness
                 {
                     if (doiTuong == 0) //Tất cả
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} ORDER BY FirstName, FullName",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND Archived = 'False' ORDER BY FirstName, FullName",
                                 contractGUID, (byte)Status.Actived);
                     }
                     else if (doiTuong == 1)//Nam
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND GenderAsStr = N'Nam' ORDER BY FirstName, FullName",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND GenderAsStr = N'Nam' AND Archived = 'False' ORDER BY FirstName, FullName",
                                 contractGUID, (byte)Status.Actived);
                     }
                     else if (doiTuong == 2)//Nữ độc thân
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND GenderAsStr = N'Nữ' AND (Tinh_Trang_Gia_Dinh IS NULL OR Tinh_Trang_Gia_Dinh <> N'Có gia đình') ORDER BY FirstName, FullName",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND GenderAsStr = N'Nữ' AND (Tinh_Trang_Gia_Dinh IS NULL OR Tinh_Trang_Gia_Dinh <> N'Có gia đình') AND Archived = 'False' ORDER BY FirstName, FullName",
                                 contractGUID, (byte)Status.Actived);
                     }
                     else if (doiTuong == 3)//Nữ có gia đình
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND GenderAsStr = N'Nữ' AND Tinh_Trang_Gia_Dinh IS NOT NULL AND Tinh_Trang_Gia_Dinh = N'Có gia đình' ORDER BY FirstName, FullName",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND GenderAsStr = N'Nữ' AND Tinh_Trang_Gia_Dinh IS NOT NULL AND Tinh_Trang_Gia_Dinh = N'Có gia đình' AND Archived = 'False' ORDER BY FirstName, FullName",
                                 contractGUID, (byte)Status.Actived);
                     }
                 }
@@ -190,22 +190,22 @@ namespace MM.Bussiness
 
                     if (doiTuong == 0) //Tất cả
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND {2} LIKE N'%{3}%' ORDER BY FirstName, FullName",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND {2} LIKE N'%{3}%' AND Archived = 'False' ORDER BY FirstName, FullName",
                                 contractGUID, (byte)Status.Actived, fieldName, tenBenhNhan);
                     }
                     else if (doiTuong == 1)//Nam
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND {2} LIKE N'%{3}%' AND GenderAsStr = N'Nam' ORDER BY FirstName, FullName",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND {2} LIKE N'%{3}%' AND GenderAsStr = N'Nam' AND Archived = 'False' ORDER BY FirstName, FullName",
                                 contractGUID, (byte)Status.Actived, fieldName, tenBenhNhan);
                     }
                     else if (doiTuong == 2)//Nữ độc thân
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND {2} LIKE N'%{3}%' AND GenderAsStr = N'Nữ' AND (Tinh_Trang_Gia_Dinh IS NULL OR Tinh_Trang_Gia_Dinh <> N'Có gia đình') ORDER BY FirstName, FullName",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND {2} LIKE N'%{3}%' AND GenderAsStr = N'Nữ' AND (Tinh_Trang_Gia_Dinh IS NULL OR Tinh_Trang_Gia_Dinh <> N'Có gia đình') AND Archived = 'False' ORDER BY FirstName, FullName",
                                 contractGUID, (byte)Status.Actived, fieldName, tenBenhNhan);
                     }
                     else if (doiTuong == 3)//Nữ có gia đình
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND {2} LIKE N'%{3}%' AND GenderAsStr = N'Nữ' AND Tinh_Trang_Gia_Dinh IS NOT NULL AND Tinh_Trang_Gia_Dinh = N'Có gia đình' ORDER BY FirstName, FullName",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND {2} LIKE N'%{3}%' AND GenderAsStr = N'Nữ' AND Tinh_Trang_Gia_Dinh IS NOT NULL AND Tinh_Trang_Gia_Dinh = N'Có gia đình' AND Archived = 'False' ORDER BY FirstName, FullName",
                                 contractGUID, (byte)Status.Actived, fieldName, tenBenhNhan);
                     }
                 }

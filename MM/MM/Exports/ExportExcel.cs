@@ -7766,7 +7766,7 @@ namespace MM.Exports
                         range.Borders.LineStyle = LineStyle.Continuous;
                         range.Borders.Weight = BorderWeight.Thin;
                         range.Value = symptomName;
-
+                        
                         range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
                         range.ColumnWidth = mergeCellWidth;
                         range.Value = advice;
