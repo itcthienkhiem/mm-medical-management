@@ -33,8 +33,6 @@
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cboHopDong = new System.Windows.Forms.ComboBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.raTongHop = new System.Windows.Forms.RadioButton();
-            this.raChiTiet = new System.Windows.Forms.RadioButton();
             this.btnExportExcel = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnPrintPreview = new System.Windows.Forms.Button();
@@ -48,13 +46,11 @@
             // 
             // groupBox1
             // 
-            this.groupBox1.Controls.Add(this.raChiTiet);
-            this.groupBox1.Controls.Add(this.raTongHop);
             this.groupBox1.Controls.Add(this.cboHopDong);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Location = new System.Drawing.Point(6, 0);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(375, 73);
+            this.groupBox1.Size = new System.Drawing.Size(375, 55);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -80,33 +76,11 @@
             this.label5.TabIndex = 24;
             this.label5.Text = "Hợp đồng:";
             // 
-            // raTongHop
-            // 
-            this.raTongHop.AutoSize = true;
-            this.raTongHop.Checked = true;
-            this.raTongHop.Location = new System.Drawing.Point(70, 45);
-            this.raTongHop.Name = "raTongHop";
-            this.raTongHop.Size = new System.Drawing.Size(71, 17);
-            this.raTongHop.TabIndex = 26;
-            this.raTongHop.TabStop = true;
-            this.raTongHop.Text = "Tổng hợp";
-            this.raTongHop.UseVisualStyleBackColor = true;
-            // 
-            // raChiTiet
-            // 
-            this.raChiTiet.AutoSize = true;
-            this.raChiTiet.Location = new System.Drawing.Point(162, 45);
-            this.raChiTiet.Name = "raChiTiet";
-            this.raChiTiet.Size = new System.Drawing.Size(57, 17);
-            this.raChiTiet.TabIndex = 27;
-            this.raChiTiet.Text = "Chi tiết";
-            this.raChiTiet.UseVisualStyleBackColor = true;
-            // 
             // btnExportExcel
             // 
             this.btnExportExcel.Image = global::MM.Properties.Resources.page_excel_icon;
             this.btnExportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportExcel.Location = new System.Drawing.Point(173, 78);
+            this.btnExportExcel.Location = new System.Drawing.Point(171, 61);
             this.btnExportExcel.Name = "btnExportExcel";
             this.btnExportExcel.Size = new System.Drawing.Size(93, 25);
             this.btnExportExcel.TabIndex = 81;
@@ -118,7 +92,7 @@
             // 
             this.btnPrint.Image = global::MM.Properties.Resources.Printer_icon__1_;
             this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(104, 78);
+            this.btnPrint.Location = new System.Drawing.Point(102, 61);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(64, 25);
             this.btnPrint.TabIndex = 80;
@@ -130,7 +104,7 @@
             // 
             this.btnPrintPreview.Image = global::MM.Properties.Resources.Actions_print_preview_icon;
             this.btnPrintPreview.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrintPreview.Location = new System.Drawing.Point(7, 78);
+            this.btnPrintPreview.Location = new System.Drawing.Point(5, 61);
             this.btnPrintPreview.Name = "btnPrintPreview";
             this.btnPrintPreview.Size = new System.Drawing.Size(93, 25);
             this.btnPrintPreview.TabIndex = 79;
@@ -147,7 +121,7 @@
             this.Controls.Add(this.btnPrintPreview);
             this.Controls.Add(this.groupBox1);
             this.Name = "uBaoCaoCongNoHopDong";
-            this.Size = new System.Drawing.Size(392, 110);
+            this.Size = new System.Drawing.Size(392, 95);
             ((System.ComponentModel.ISupportInitialize)(this.companyContractViewBindingSource)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -159,8 +133,6 @@
 
         private System.Windows.Forms.BindingSource companyContractViewBindingSource;
         private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.RadioButton raChiTiet;
-        private System.Windows.Forms.RadioButton raTongHop;
         private System.Windows.Forms.ComboBox cboHopDong;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.Button btnExportExcel;

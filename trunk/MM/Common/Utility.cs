@@ -1100,14 +1100,9 @@ namespace MM.Common
                         fileName = string.Format("{0}\\Templates\\ChiTietPhieuThuCapCuuTemplate.xls", AppDomain.CurrentDomain.BaseDirectory);
                         break;
 
-                    case "Báo cáo công nợ hợp đồng tổng hợp":
-                        fileName = string.Format("{0}\\Templates\\BaoCaoCongNoHopDongTongHopTemplate.xls", AppDomain.CurrentDomain.BaseDirectory);
+                    case "Báo cáo công nợ hợp đồng":
+                        fileName = string.Format("{0}\\Templates\\BaoCaoCongNoHopDongTemplate.xls", AppDomain.CurrentDomain.BaseDirectory);
                         break;
-
-                    case "Báo cáo công nợ hợp đồng chi tiết":
-                        fileName = string.Format("{0}\\Templates\\BaoCaoCongNoHopDongChiTietTemplate.xls", AppDomain.CurrentDomain.BaseDirectory);
-                        break;
-
                 }
 
                 if (fileName != string.Empty && File.Exists(fileName))
