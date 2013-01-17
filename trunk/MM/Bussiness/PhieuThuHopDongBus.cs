@@ -12,14 +12,14 @@ namespace MM.Bussiness
 {
     public class PhieuThuHopDongBus : BusBase
     {
-        public static Result GetPhieuThuHopDongList(bool isFromDateToDate, DateTime fromDate, DateTime toDate, string tenKhacHang, int type)
+        public static Result GetPhieuThuHopDongList(int filterType, DateTime fromDate, DateTime toDate, string tenKhacHang, string tenHopDong, int type)
         {
             Result result = new Result();
 
             try
             {
                 string query = string.Empty;
-                if (isFromDateToDate)
+                if (filterType == 0)
                 {
                     if (type == 0) //Tất cả
                     {
@@ -38,7 +38,7 @@ namespace MM.Bussiness
                     }
 
                 }
-                else
+                else if (filterType == 1)
                 {
                     if (type == 0) //Tất cả
                     {
@@ -55,6 +55,23 @@ namespace MM.Bussiness
                         (byte)Status.Deactived, tenKhacHang);
                     }
 
+                }
+                else
+                {
+                    if (type == 0) //Tất cả
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuHopDongView WITH(NOLOCK) WHERE ContractName LIKE N'%{0}%' ORDER BY NgayThu DESC", tenHopDong);
+                    }
+                    else if (type == 1) //Chưa xóa
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuHopDongView WITH(NOLOCK) WHERE Status={0} AND ContractName LIKE N'%{1}%' ORDER BY NgayThu DESC",
+                        (byte)Status.Actived, tenHopDong);
+                    }
+                    else //Đã xóa
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuHopDongView WITH(NOLOCK) WHERE Status={0} AND ContractName LIKE N'%{1}%' ORDER BY NgayThu DESC",
+                        (byte)Status.Deactived, tenHopDong);
+                    }
                 }
 
                 return ExcuteQuery(query);
