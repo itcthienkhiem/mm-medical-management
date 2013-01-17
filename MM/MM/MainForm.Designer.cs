@@ -275,6 +275,7 @@
             this.dockSite3 = new DevComponents.DotNetBar.DockSite();
             this._timerShowAlert = new System.Windows.Forms.Timer(this.components);
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uBaoCaoCongNoHopDong = new MM.Controls.uBaoCaoCongNoHopDong();
             this._uSendSMS = new MM.Controls.uSendSMS();
             this._uTinNhanMauList = new MM.Controls.uTinNhanMauList();
             this._uKhamHopDong = new MM.Controls.uKhamHopDong();
@@ -348,7 +349,6 @@
             this._uServicesList = new MM.Controls.uServicesList();
             this._timerCheckAlert = new System.Windows.Forms.Timer(this.components);
             this._timerPatient = new System.Windows.Forms.Timer(this.components);
-            this._uBaoCaoCongNoHopDong = new MM.Controls.uBaoCaoCongNoHopDong();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -2285,6 +2285,11 @@
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
             // 
+            // _uBaoCaoCongNoHopDong
+            // 
+            resources.ApplyResources(this._uBaoCaoCongNoHopDong, "_uBaoCaoCongNoHopDong");
+            this._uBaoCaoCongNoHopDong.Name = "_uBaoCaoCongNoHopDong";
+            // 
             // _uSendSMS
             // 
             resources.ApplyResources(this._uSendSMS, "_uSendSMS");
@@ -2652,11 +2657,6 @@
             // _timerPatient
             // 
             this._timerPatient.Interval = 5000;
-            // 
-            // _uBaoCaoCongNoHopDong
-            // 
-            resources.ApplyResources(this._uBaoCaoCongNoHopDong, "_uBaoCaoCongNoHopDong");
-            this._uBaoCaoCongNoHopDong.Name = "_uBaoCaoCongNoHopDong";
             // 
             // MainForm
             // 
