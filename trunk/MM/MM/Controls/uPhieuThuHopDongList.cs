@@ -64,6 +64,26 @@ namespace MM.Controls
             btnExportInvoice.Enabled = Global.AllowExportHoaDonHopDong;
         }
 
+        public void DisplayComboHopDong()
+        {
+            Result result = CompanyContractBus.GetContractList();
+            if (result.IsOK)
+            {
+                DataTable dt = result.QueryResult as DataTable;
+                DataRow newRow = dt.NewRow();
+                newRow["CompanyContractGUID"] = Guid.Empty.ToString();
+                newRow["ContractName"] = string.Empty;
+                dt.Rows.InsertAt(newRow, 0);
+
+                cboMaHopDong.DataSource = dt;
+            }
+            else
+            {
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyContractBus.GetNoCompletedContractList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.GetNoCompletedContractList"));
+            }
+        }
+
         public void ClearData()
         {
             DataTable dt = dgPhieuThu.DataSource as DataTable;
@@ -90,8 +110,8 @@ namespace MM.Controls
 
                 _fromDate = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
                 _toDate = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
-                _tenNguoiNop = txtTenBenhNhan.Text;
-                _tenHopDong = txtHopDong.Text;
+                _tenNguoiNop = txtTenBenhNhan.Text.Trim();
+                _tenHopDong = cboMaHopDong.Text.Trim();
 
                 if (raTatCa.Checked) _type = 0;
                 else if (raChuaXoa.Checked) _type = 1;
@@ -337,7 +357,7 @@ namespace MM.Controls
             if (raTuNgayToiNgay.Checked)
             {
                 txtTenBenhNhan.ReadOnly = true;
-                txtHopDong.ReadOnly = true;
+                cboMaHopDong.Enabled = false;
             }
         }
 
@@ -347,7 +367,7 @@ namespace MM.Controls
 
             if (raTenBenhNhan.Checked)
             {
-                txtHopDong.ReadOnly = true;
+                cboMaHopDong.Enabled = false;
                 dtpkDenNgay.Enabled = false;
                 dtpkTuNgay.Enabled = false;
             }
@@ -355,7 +375,7 @@ namespace MM.Controls
 
         private void raHopDong_CheckedChanged(object sender, EventArgs e)
         {
-            txtHopDong.ReadOnly = !raHopDong.Checked;
+            cboMaHopDong.Enabled = raHopDong.Checked;
 
             if (raHopDong.Checked)
             {
