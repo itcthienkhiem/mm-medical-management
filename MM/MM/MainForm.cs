@@ -315,7 +315,10 @@ namespace MM
             else if (ctrl.GetType() == typeof(uPhucHoiBenhNhan))
                 _uPhucHoiBenhNhan.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uPhieuThuHopDongList))
+            {
+                _uPhieuThuHopDongList.DisplayComboHopDong();
                 _uPhieuThuHopDongList.DisplayAsThread();
+            }
             else if (ctrl.GetType() == typeof(uHoaDonHopDongList))
                 _uHoaDonHopDongList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uYKienKhachHangList))
@@ -2541,6 +2544,7 @@ namespace MM
         {
             this.Text = string.Format("{0} - Phieu thu hop dong.", Application.ProductName);
             ViewControl(_uPhieuThuHopDongList);
+            _uPhieuThuHopDongList.DisplayComboHopDong();
             _uPhieuThuHopDongList.DisplayAsThread();
         }
 

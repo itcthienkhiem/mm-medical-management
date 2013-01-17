@@ -33,15 +33,15 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbThongBao = new System.Windows.Forms.Label();
             this.txtTenHopDong = new System.Windows.Forms.TextBox();
@@ -63,6 +63,12 @@
             this.panel13 = new System.Windows.Forms.Panel();
             this.chkChecked2 = new System.Windows.Forms.CheckBox();
             this.dgDichVuLamThem = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.colChecked2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.activeDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fixedPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.discountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colThanhTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dichVuLamThemViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel10 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
@@ -91,12 +97,6 @@
             this.chkMaBenhNhan = new System.Windows.Forms.CheckBox();
             this.txtSearchPatient = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.colChecked2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.activeDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fixedPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.discountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colThanhTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.companyContractViewBindingSource)).BeginInit();
             this.panel2.SuspendLayout();
@@ -379,6 +379,67 @@
             this.dgDichVuLamThem.Size = new System.Drawing.Size(431, 201);
             this.dgDichVuLamThem.TabIndex = 17;
             this.dgDichVuLamThem.DoubleClick += new System.EventHandler(this.dgDichVuLamThem_DoubleClick);
+            // 
+            // colChecked2
+            // 
+            this.colChecked2.DataPropertyName = "Checked";
+            this.colChecked2.HeaderText = "";
+            this.colChecked2.Name = "colChecked2";
+            this.colChecked2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colChecked2.Width = 40;
+            // 
+            // activeDateDataGridViewTextBoxColumn
+            // 
+            this.activeDateDataGridViewTextBoxColumn.DataPropertyName = "ActiveDate";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.Format = "dd/MM/yyyy";
+            dataGridViewCellStyle4.NullValue = null;
+            this.activeDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            this.activeDateDataGridViewTextBoxColumn.HeaderText = "Ngày sử dụng";
+            this.activeDateDataGridViewTextBoxColumn.Name = "activeDateDataGridViewTextBoxColumn";
+            this.activeDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn1
+            // 
+            this.nameDataGridViewTextBoxColumn1.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn1.HeaderText = "Tên dịch vụ";
+            this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
+            this.nameDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn1.Width = 250;
+            // 
+            // fixedPriceDataGridViewTextBoxColumn
+            // 
+            this.fixedPriceDataGridViewTextBoxColumn.DataPropertyName = "FixedPrice";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "N0";
+            dataGridViewCellStyle5.NullValue = null;
+            this.fixedPriceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            this.fixedPriceDataGridViewTextBoxColumn.HeaderText = "Giá";
+            this.fixedPriceDataGridViewTextBoxColumn.Name = "fixedPriceDataGridViewTextBoxColumn";
+            this.fixedPriceDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fixedPriceDataGridViewTextBoxColumn.Width = 90;
+            // 
+            // discountDataGridViewTextBoxColumn
+            // 
+            this.discountDataGridViewTextBoxColumn.DataPropertyName = "Discount";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.NullValue = null;
+            this.discountDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            this.discountDataGridViewTextBoxColumn.HeaderText = "Giảm (%)";
+            this.discountDataGridViewTextBoxColumn.Name = "discountDataGridViewTextBoxColumn";
+            this.discountDataGridViewTextBoxColumn.ReadOnly = true;
+            this.discountDataGridViewTextBoxColumn.Width = 75;
+            // 
+            // colThanhTien
+            // 
+            this.colThanhTien.DataPropertyName = "Amount";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.Format = "N0";
+            dataGridViewCellStyle7.NullValue = null;
+            this.colThanhTien.DefaultCellStyle = dataGridViewCellStyle7;
+            this.colThanhTien.HeaderText = "Thành tiền";
+            this.colThanhTien.Name = "colThanhTien";
+            this.colThanhTien.ReadOnly = true;
             // 
             // dichVuLamThemViewBindingSource
             // 
@@ -702,67 +763,6 @@
             this.label2.Size = new System.Drawing.Size(77, 13);
             this.label2.TabIndex = 5;
             this.label2.Text = "Tìm nhân viên:";
-            // 
-            // colChecked2
-            // 
-            this.colChecked2.DataPropertyName = "Checked";
-            this.colChecked2.HeaderText = "";
-            this.colChecked2.Name = "colChecked2";
-            this.colChecked2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colChecked2.Width = 40;
-            // 
-            // activeDateDataGridViewTextBoxColumn
-            // 
-            this.activeDateDataGridViewTextBoxColumn.DataPropertyName = "ActiveDate";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.Format = "dd/MM/yyyy";
-            dataGridViewCellStyle4.NullValue = null;
-            this.activeDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.activeDateDataGridViewTextBoxColumn.HeaderText = "Ngày sử dụng";
-            this.activeDateDataGridViewTextBoxColumn.Name = "activeDateDataGridViewTextBoxColumn";
-            this.activeDateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // nameDataGridViewTextBoxColumn1
-            // 
-            this.nameDataGridViewTextBoxColumn1.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn1.HeaderText = "Tên dịch vụ";
-            this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
-            this.nameDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn1.Width = 250;
-            // 
-            // fixedPriceDataGridViewTextBoxColumn
-            // 
-            this.fixedPriceDataGridViewTextBoxColumn.DataPropertyName = "FixedPrice";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "N0";
-            dataGridViewCellStyle5.NullValue = null;
-            this.fixedPriceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
-            this.fixedPriceDataGridViewTextBoxColumn.HeaderText = "Giá";
-            this.fixedPriceDataGridViewTextBoxColumn.Name = "fixedPriceDataGridViewTextBoxColumn";
-            this.fixedPriceDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fixedPriceDataGridViewTextBoxColumn.Width = 90;
-            // 
-            // discountDataGridViewTextBoxColumn
-            // 
-            this.discountDataGridViewTextBoxColumn.DataPropertyName = "Discount";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.NullValue = null;
-            this.discountDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
-            this.discountDataGridViewTextBoxColumn.HeaderText = "Giảm (%)";
-            this.discountDataGridViewTextBoxColumn.Name = "discountDataGridViewTextBoxColumn";
-            this.discountDataGridViewTextBoxColumn.ReadOnly = true;
-            this.discountDataGridViewTextBoxColumn.Width = 75;
-            // 
-            // colThanhTien
-            // 
-            this.colThanhTien.DataPropertyName = "Amount";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.Format = "N0";
-            dataGridViewCellStyle7.NullValue = null;
-            this.colThanhTien.DefaultCellStyle = dataGridViewCellStyle7;
-            this.colThanhTien.HeaderText = "Thành tiền";
-            this.colThanhTien.Name = "colThanhTien";
-            this.colThanhTien.ReadOnly = true;
             // 
             // uKhamHopDong
             // 
