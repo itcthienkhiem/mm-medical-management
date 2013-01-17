@@ -7870,6 +7870,7 @@ namespace MM.Exports
                     range.Borders.Color = Color.Black;
                     range.Borders.LineStyle = LineStyle.Continuous;
                     range.Borders.Weight = BorderWeight.Thin;
+                    range.Font.Bold = false;
 
                     range = workSheet.Cells[rowIndex, 2];
                     range.Value = row["GenderAsStr"].ToString();
@@ -7877,6 +7878,7 @@ namespace MM.Exports
                     range.Borders.Color = Color.Black;
                     range.Borders.LineStyle = LineStyle.Continuous;
                     range.Borders.Weight = BorderWeight.Thin;
+                    range.Font.Bold = false;
 
                     range = workSheet.Cells[rowIndex, 3];
                     tongTienKhamTheoHopDong += Convert.ToDouble(row["TongTien"]);
@@ -7885,6 +7887,8 @@ namespace MM.Exports
                     range.Borders.Color = Color.Black;
                     range.Borders.LineStyle = LineStyle.Continuous;
                     range.Borders.Weight = BorderWeight.Thin;
+                    range.Font.Bold = false;
+                    range.NumberFormat = "#,###";
 
                     rowIndex++;
 
@@ -7897,6 +7901,7 @@ namespace MM.Exports
                     range.Value = tongTienKhamTheoHopDong;
                     range.HorizontalAlignment = HAlign.Right;
                     range.Font.Bold = true;
+                    range.NumberFormat = "#,###";
                 }
 
                 //Dịch vụ làm thêm
@@ -7976,6 +7981,7 @@ namespace MM.Exports
                         range.Borders.Color = Color.Black;
                         range.Borders.LineStyle = LineStyle.Continuous;
                         range.Borders.Weight = BorderWeight.Thin;
+                        range.NumberFormat = "#,###";
 
                         range = workSheet.Cells[rowIndex, 5];
                         range.Value = Convert.ToDouble(row["Discount"]);
@@ -7991,6 +7997,7 @@ namespace MM.Exports
                         range.Borders.Color = Color.Black;
                         range.Borders.LineStyle = LineStyle.Continuous;
                         range.Borders.Weight = BorderWeight.Thin;
+                        range.NumberFormat = "#,###";
 
                         rowIndex++;
                     }
@@ -8004,6 +8011,7 @@ namespace MM.Exports
                     range.Value = tongTienDichVuLamThem;
                     range.HorizontalAlignment = HAlign.Right;
                     range.Font.Bold = true;
+                    range.NumberFormat = "#,###";
                 }
 
                 //Dịch vụ chuyển nhượng
@@ -8079,6 +8087,7 @@ namespace MM.Exports
                         range.Borders.Color = Color.Black;
                         range.Borders.LineStyle = LineStyle.Continuous;
                         range.Borders.Weight = BorderWeight.Thin;
+                        range.NumberFormat = "#,###";
 
                         range = workSheet.Cells[rowIndex, 5];
                         range.Value = Convert.ToDouble(row["Discount"]);
@@ -8094,6 +8103,7 @@ namespace MM.Exports
                         range.Borders.Color = Color.Black;
                         range.Borders.LineStyle = LineStyle.Continuous;
                         range.Borders.Weight = BorderWeight.Thin;
+                        range.NumberFormat = "#,###";
 
                         rowIndex++;
                     }
@@ -8107,6 +8117,7 @@ namespace MM.Exports
                     range.Value = tongTienDichVuChuyenNhuong;
                     range.HorizontalAlignment = HAlign.Right;
                     range.Font.Bold = true;
+                    range.NumberFormat = "#,###";
                 }
 
                 if (rowIndex > 4)
@@ -8120,6 +8131,7 @@ namespace MM.Exports
                     range.Value = tongTienKhamTheoHopDong + tongTienDichVuLamThem + tongTienDichVuChuyenNhuong;
                     range.HorizontalAlignment = HAlign.Right;
                     range.Font.Bold = true;
+                    range.NumberFormat = "#,###";
 
                     rowIndex++;
                     double tongTienThu = 0;
@@ -8147,6 +8159,7 @@ namespace MM.Exports
                             range.Value = Convert.ToDouble(row["ThanhTien"]);
                             range.HorizontalAlignment = HAlign.Right;
                             range.Font.Bold = true;
+                            range.NumberFormat = "#,###";
 
                             count++;
                             rowIndex++;
@@ -8161,6 +8174,7 @@ namespace MM.Exports
                     range.Value = tongTienKhamTheoHopDong + tongTienDichVuLamThem + tongTienDichVuChuyenNhuong - tongTienThu;
                     range.HorizontalAlignment = HAlign.Right;
                     range.Font.Bold = true;
+                    range.NumberFormat = "#,###";
                 }
 
                 string path = string.Format("{0}\\Temp", Application.StartupPath);
