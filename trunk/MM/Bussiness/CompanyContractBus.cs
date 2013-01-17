@@ -1083,7 +1083,16 @@ namespace MM.Bussiness
                 result = ExcuteNonQuery(spName, sqlParams);
 
                 int count = Convert.ToInt32(param.Value);
-                if (count <= 0) result.Error.Code = ErrorCode.NOT_EXIST;
+                if (count <= 0)
+                {
+                    string query = string.Format("SELECT TOP 1 L.* FROM CompanyContract C WITH(NOLOCK), ContractMember M WITH(NOLOCK), CompanyCheckList L WITH(NOLOCK) WHERE C.CompanyContractGUID = M.CompanyContractGUID AND M.ContractMemberGUID = L.ContractMemberGUID AND L.Status = 0 AND C.CompanyContractGUID = '{0}' AND L.ServiceGUID = '{1}'",
+                        hopDongGUID, serviceGUID);
+                    result = ExcuteQuery(query);
+
+                    DataTable dt = result.QueryResult as DataTable;
+                    if (dt == null || dt.Rows.Count <= 0) result.Error.Code = ErrorCode.NOT_EXIST;
+                    else result.Error.Code = ErrorCode.EXIST;
+                }
                 else result.Error.Code = ErrorCode.EXIST;
             }
             catch (System.Data.SqlClient.SqlException se)
