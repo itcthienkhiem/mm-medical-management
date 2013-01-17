@@ -2402,6 +2402,7 @@
       <SubType>Designer</SubType>
     </None>
     <None Include="Service References\PlayCapService\PlayCap1.wsdl" />
+    <None Include="Templates\BaoCaoCongNoHopDong.xls" />
     <None Include="Templates\BaoCaoTonKhoCapCuuTemplate.xls" />
     <None Include="Templates\BenhNhanNgoaiGoiKhamTemplate.xls" />
     <None Include="Templates\CheckListTemplate.xls" />
