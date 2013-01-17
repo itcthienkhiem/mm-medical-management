@@ -38,7 +38,7 @@ namespace MM.Controls
                 dt.Rows.Clear();
                 dt.Clear();
                 dt = null;
-                cboHopDong.DataSource = null;
+                //cboHopDong.DataSource = null;
             }
         }
 
@@ -64,11 +64,12 @@ namespace MM.Controls
             if (cboHopDong.SelectedValue != null && cboHopDong.Text.Trim() != string.Empty)
             {
                 string hopDongGUID = cboHopDong.SelectedValue.ToString();
+                DataRow row = GetHopDongRow(hopDongGUID);
 
                 string exportFileName = string.Format("{0}\\Temp\\BaoCaoCongNoHopDong.xls", Application.StartupPath);
                 if (isPreview)
                 {
-                    if (!ExportExcel.ExportCongNoHopDongToExcel(exportFileName, hopDongGUID))
+                    if (!ExportExcel.ExportCongNoHopDongToExcel(exportFileName, hopDongGUID, row["ContractCode"].ToString(), cboHopDong.Text))
                         return;
                     else
                     {
@@ -87,7 +88,7 @@ namespace MM.Controls
                 {
                     if (_printDialog.ShowDialog() == DialogResult.OK)
                     {
-                        if (!ExportExcel.ExportCongNoHopDongToExcel(exportFileName, hopDongGUID))
+                        if (!ExportExcel.ExportCongNoHopDongToExcel(exportFileName, hopDongGUID, row["ContractCode"].ToString(), cboHopDong.Text))
                             return;
                         else
                         {
@@ -108,6 +109,17 @@ namespace MM.Controls
                 MsgBox.Show(Application.ProductName, "Vui lòng chọn hợp đồng cần xem.", IconType.Information);
         }
 
+        private DataRow GetHopDongRow(string hopDongGUID)
+        {
+            DataTable dt = cboHopDong.DataSource as DataTable;
+            if (dt == null || dt.Rows.Count <= 0) return null;
+
+            DataRow[] rows = dt.Select(string.Format("CompanyContractGUID='{0}'", hopDongGUID));
+            if (rows == null || rows.Length <= 0) return null;
+
+            return rows[0];
+        }
+
         private void OnExportExcell()
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -119,7 +131,9 @@ namespace MM.Controls
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
                     string hopDongGUID = cboHopDong.SelectedValue.ToString();
-                    if (!ExportExcel.ExportCongNoHopDongToExcel(dlg.FileName, hopDongGUID))
+                    DataRow row = GetHopDongRow(hopDongGUID);
+
+                    if (!ExportExcel.ExportCongNoHopDongToExcel(dlg.FileName, hopDongGUID, row["ContractCode"].ToString(), cboHopDong.Text))
                         return;
                 }
             }
