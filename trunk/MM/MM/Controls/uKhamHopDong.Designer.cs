@@ -71,9 +71,9 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.panel9 = new System.Windows.Forms.Panel();
+            this.btnLuu = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
-            this.btnLuu = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel8 = new System.Windows.Forms.Panel();
             this.dgPatient = new DevComponents.DotNetBar.Controls.DataGridViewX();
@@ -112,7 +112,6 @@
             this.panel10.SuspendLayout();
             this.panelDichVuLamThem.SuspendLayout();
             this.panel9.SuspendLayout();
-            this.panel5.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel8.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).BeginInit();
@@ -216,13 +215,13 @@
             this.panel12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel12.Location = new System.Drawing.Point(0, 32);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(435, 300);
+            this.panel12.Size = new System.Drawing.Size(435, 257);
             this.panel12.TabIndex = 20;
             // 
             // chkChecked
             // 
             this.chkChecked.AutoSize = true;
-            this.chkChecked.Location = new System.Drawing.Point(44, 4);
+            this.chkChecked.Location = new System.Drawing.Point(44, 5);
             this.chkChecked.Name = "chkChecked";
             this.chkChecked.Size = new System.Drawing.Size(15, 14);
             this.chkChecked.TabIndex = 17;
@@ -267,7 +266,7 @@
             this.dgService.Name = "dgService";
             this.dgService.RowHeadersWidth = 30;
             this.dgService.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgService.Size = new System.Drawing.Size(431, 296);
+            this.dgService.Size = new System.Drawing.Size(431, 253);
             this.dgService.TabIndex = 16;
             this.dgService.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgService_CellMouseUp);
             // 
@@ -312,9 +311,9 @@
             this.panel11.Controls.Add(this.panel13);
             this.panel11.Controls.Add(this.panel10);
             this.panel11.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel11.Location = new System.Drawing.Point(0, 332);
+            this.panel11.Location = new System.Drawing.Point(0, 289);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(435, 194);
+            this.panel11.Size = new System.Drawing.Size(435, 237);
             this.panel11.TabIndex = 19;
             // 
             // panel13
@@ -324,13 +323,13 @@
             this.panel13.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel13.Location = new System.Drawing.Point(0, 32);
             this.panel13.Name = "panel13";
-            this.panel13.Size = new System.Drawing.Size(431, 158);
+            this.panel13.Size = new System.Drawing.Size(431, 201);
             this.panel13.TabIndex = 1;
             // 
             // chkChecked2
             // 
             this.chkChecked2.AutoSize = true;
-            this.chkChecked2.Location = new System.Drawing.Point(44, 4);
+            this.chkChecked2.Location = new System.Drawing.Point(44, 5);
             this.chkChecked2.Name = "chkChecked2";
             this.chkChecked2.Size = new System.Drawing.Size(15, 14);
             this.chkChecked2.TabIndex = 18;
@@ -377,8 +376,9 @@
             this.dgDichVuLamThem.Name = "dgDichVuLamThem";
             this.dgDichVuLamThem.RowHeadersWidth = 30;
             this.dgDichVuLamThem.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgDichVuLamThem.Size = new System.Drawing.Size(431, 158);
+            this.dgDichVuLamThem.Size = new System.Drawing.Size(431, 201);
             this.dgDichVuLamThem.TabIndex = 17;
+            this.dgDichVuLamThem.DoubleClick += new System.EventHandler(this.dgDichVuLamThem_DoubleClick);
             // 
             // dichVuLamThemViewBindingSource
             // 
@@ -454,6 +454,7 @@
             // panel9
             // 
             this.panel9.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel9.Controls.Add(this.btnLuu);
             this.panel9.Controls.Add(this.label3);
             this.panel9.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel9.Location = new System.Drawing.Point(0, 0);
@@ -461,12 +462,24 @@
             this.panel9.Size = new System.Drawing.Size(435, 32);
             this.panel9.TabIndex = 17;
             // 
+            // btnLuu
+            // 
+            this.btnLuu.Image = global::MM.Properties.Resources.save;
+            this.btnLuu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnLuu.Location = new System.Drawing.Point(83, 3);
+            this.btnLuu.Name = "btnLuu";
+            this.btnLuu.Size = new System.Drawing.Size(75, 25);
+            this.btnLuu.TabIndex = 15;
+            this.btnLuu.Text = "   &Lưu";
+            this.btnLuu.UseVisualStyleBackColor = true;
+            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.Blue;
-            this.label3.Location = new System.Drawing.Point(4, 6);
+            this.label3.Location = new System.Drawing.Point(4, 7);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(71, 16);
             this.label3.TabIndex = 0;
@@ -475,24 +488,12 @@
             // panel5
             // 
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.panel5.Controls.Add(this.btnLuu);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel5.Location = new System.Drawing.Point(0, 526);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(435, 38);
             this.panel5.TabIndex = 0;
-            // 
-            // btnLuu
-            // 
-            this.btnLuu.Image = global::MM.Properties.Resources.save;
-            this.btnLuu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnLuu.Location = new System.Drawing.Point(6, 5);
-            this.btnLuu.Name = "btnLuu";
-            this.btnLuu.Size = new System.Drawing.Size(75, 25);
-            this.btnLuu.TabIndex = 15;
-            this.btnLuu.Text = "   &Lưu";
-            this.btnLuu.UseVisualStyleBackColor = true;
-            this.btnLuu.Click += new System.EventHandler(this.btnLuu_Click);
+            this.panel5.Visible = false;
             // 
             // panel3
             // 
@@ -704,7 +705,7 @@
             // 
             // colChecked2
             // 
-            this.colChecked2.DataPropertyName = "Using";
+            this.colChecked2.DataPropertyName = "Checked";
             this.colChecked2.HeaderText = "";
             this.colChecked2.Name = "colChecked2";
             this.colChecked2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
@@ -739,7 +740,7 @@
             this.fixedPriceDataGridViewTextBoxColumn.HeaderText = "Giá";
             this.fixedPriceDataGridViewTextBoxColumn.Name = "fixedPriceDataGridViewTextBoxColumn";
             this.fixedPriceDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fixedPriceDataGridViewTextBoxColumn.Width = 120;
+            this.fixedPriceDataGridViewTextBoxColumn.Width = 90;
             // 
             // discountDataGridViewTextBoxColumn
             // 
@@ -750,6 +751,7 @@
             this.discountDataGridViewTextBoxColumn.HeaderText = "Giảm (%)";
             this.discountDataGridViewTextBoxColumn.Name = "discountDataGridViewTextBoxColumn";
             this.discountDataGridViewTextBoxColumn.ReadOnly = true;
+            this.discountDataGridViewTextBoxColumn.Width = 75;
             // 
             // colThanhTien
             // 
@@ -761,7 +763,6 @@
             this.colThanhTien.HeaderText = "Thành tiền";
             this.colThanhTien.Name = "colThanhTien";
             this.colThanhTien.ReadOnly = true;
-            this.colThanhTien.Width = 120;
             // 
             // uKhamHopDong
             // 
@@ -791,7 +792,6 @@
             this.panelDichVuLamThem.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
-            this.panel5.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).EndInit();
