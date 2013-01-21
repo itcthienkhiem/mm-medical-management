@@ -41,6 +41,7 @@
             this.Mobile = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
+            this.lbKetQuaTimDuoc = new System.Windows.Forms.Label();
             this.chkTheoSoDienThoai = new System.Windows.Forms.CheckBox();
             this.chkMaBenhNhan = new System.Windows.Forms.CheckBox();
             this.txtSearchPatient = new System.Windows.Forms.TextBox();
@@ -48,7 +49,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnMerge = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.lbKetQuaTimDuoc = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dgDuplicatePatient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
@@ -164,6 +164,16 @@
             this.panel1.Size = new System.Drawing.Size(867, 37);
             this.panel1.TabIndex = 4;
             // 
+            // lbKetQuaTimDuoc
+            // 
+            this.lbKetQuaTimDuoc.AutoSize = true;
+            this.lbKetQuaTimDuoc.ForeColor = System.Drawing.Color.Blue;
+            this.lbKetQuaTimDuoc.Location = new System.Drawing.Point(643, 13);
+            this.lbKetQuaTimDuoc.Name = "lbKetQuaTimDuoc";
+            this.lbKetQuaTimDuoc.Size = new System.Drawing.Size(100, 13);
+            this.lbKetQuaTimDuoc.TabIndex = 18;
+            this.lbKetQuaTimDuoc.Text = "Kết quả tìm được: 0";
+            // 
             // chkTheoSoDienThoai
             // 
             this.chkTheoSoDienThoai.AutoSize = true;
@@ -178,6 +188,8 @@
             // chkMaBenhNhan
             // 
             this.chkMaBenhNhan.AutoSize = true;
+            this.chkMaBenhNhan.Checked = true;
+            this.chkMaBenhNhan.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkMaBenhNhan.Location = new System.Drawing.Point(384, 12);
             this.chkMaBenhNhan.Name = "chkMaBenhNhan";
             this.chkMaBenhNhan.Size = new System.Drawing.Size(122, 17);
@@ -232,16 +244,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(867, 399);
             this.panel2.TabIndex = 7;
-            // 
-            // lbKetQuaTimDuoc
-            // 
-            this.lbKetQuaTimDuoc.AutoSize = true;
-            this.lbKetQuaTimDuoc.ForeColor = System.Drawing.Color.Blue;
-            this.lbKetQuaTimDuoc.Location = new System.Drawing.Point(643, 13);
-            this.lbKetQuaTimDuoc.Name = "lbKetQuaTimDuoc";
-            this.lbKetQuaTimDuoc.Size = new System.Drawing.Size(100, 13);
-            this.lbKetQuaTimDuoc.TabIndex = 18;
-            this.lbKetQuaTimDuoc.Text = "Kết quả tìm được: 0";
             // 
             // uDuplicatePatient
             // 
