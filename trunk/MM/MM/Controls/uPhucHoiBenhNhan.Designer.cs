@@ -58,8 +58,8 @@
             this.chkMaBenhNhan = new System.Windows.Forms.CheckBox();
             this.txtSearchPatient = new System.Windows.Forms.TextBox();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
             this.lbKetQuaTimDuoc = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
@@ -267,6 +267,8 @@
             // chkMaBenhNhan
             // 
             this.chkMaBenhNhan.AutoSize = true;
+            this.chkMaBenhNhan.Checked = true;
+            this.chkMaBenhNhan.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkMaBenhNhan.Location = new System.Drawing.Point(393, 12);
             this.chkMaBenhNhan.Name = "chkMaBenhNhan";
             this.chkMaBenhNhan.Size = new System.Drawing.Size(122, 17);
@@ -296,15 +298,6 @@
             this.panel1.Size = new System.Drawing.Size(867, 39);
             this.panel1.TabIndex = 6;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(81, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Tìm bệnh nhân:";
-            // 
             // lbKetQuaTimDuoc
             // 
             this.lbKetQuaTimDuoc.AutoSize = true;
@@ -314,6 +307,15 @@
             this.lbKetQuaTimDuoc.Size = new System.Drawing.Size(100, 13);
             this.lbKetQuaTimDuoc.TabIndex = 17;
             this.lbKetQuaTimDuoc.Text = "Kết quả tìm được: 0";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(12, 12);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(81, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Tìm bệnh nhân:";
             // 
             // uPhucHoiBenhNhan
             // 

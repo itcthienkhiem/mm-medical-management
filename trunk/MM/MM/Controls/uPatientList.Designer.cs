@@ -31,6 +31,13 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uPatientList));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -39,17 +46,22 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgPatient = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.fileNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Fullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FullAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GenderAsStr = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dobDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.identityCardDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.homePhoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.workPhoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.mobileDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._uPrintKetQuaSieuAm = new MM.Controls.uPrintKetQuaSieuAm();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnTaoMatKhau = new System.Windows.Forms.Button();
             this.btnXemHoSo = new System.Windows.Forms.Button();
@@ -78,18 +90,6 @@
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.fileNumDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Fullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FullAddress = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GenderAsStr = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dobDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.identityCardDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.homePhoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.workPhoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.mobileDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this._uPrintKetQuaSieuAm = new MM.Controls.uPrintKetQuaSieuAm();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).BeginInit();
@@ -172,6 +172,117 @@
             this.dgPatient.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPatient_CellMouseUp);
             this.dgPatient.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPatient_ColumnHeaderMouseClick);
             this.dgPatient.DoubleClick += new System.EventHandler(this.dgDocStaff_DoubleClick);
+            // 
+            // colChecked
+            // 
+            this.colChecked.DataPropertyName = "Checked";
+            this.colChecked.Frozen = true;
+            this.colChecked.HeaderText = "";
+            this.colChecked.Name = "colChecked";
+            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colChecked.Width = 40;
+            // 
+            // fileNumDataGridViewTextBoxColumn
+            // 
+            this.fileNumDataGridViewTextBoxColumn.DataPropertyName = "FileNum";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.fileNumDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.fileNumDataGridViewTextBoxColumn.HeaderText = "Mã bệnh nhân";
+            this.fileNumDataGridViewTextBoxColumn.Name = "fileNumDataGridViewTextBoxColumn";
+            this.fileNumDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // Fullname
+            // 
+            this.Fullname.DataPropertyName = "FullName";
+            this.Fullname.HeaderText = "Họ Tên";
+            this.Fullname.Name = "Fullname";
+            this.Fullname.ReadOnly = true;
+            this.Fullname.Width = 150;
+            // 
+            // FullAddress
+            // 
+            this.FullAddress.DataPropertyName = "Address";
+            this.FullAddress.HeaderText = "Địa chỉ";
+            this.FullAddress.Name = "FullAddress";
+            this.FullAddress.ReadOnly = true;
+            this.FullAddress.Width = 250;
+            // 
+            // GenderAsStr
+            // 
+            this.GenderAsStr.DataPropertyName = "GenderAsStr";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.GenderAsStr.DefaultCellStyle = dataGridViewCellStyle3;
+            this.GenderAsStr.HeaderText = "Giới tính";
+            this.GenderAsStr.Name = "GenderAsStr";
+            this.GenderAsStr.ReadOnly = true;
+            // 
+            // dobDataGridViewTextBoxColumn
+            // 
+            this.dobDataGridViewTextBoxColumn.DataPropertyName = "DobStr";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.NullValue = null;
+            this.dobDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            this.dobDataGridViewTextBoxColumn.HeaderText = "Ngày sinh";
+            this.dobDataGridViewTextBoxColumn.Name = "dobDataGridViewTextBoxColumn";
+            this.dobDataGridViewTextBoxColumn.ReadOnly = true;
+            this.dobDataGridViewTextBoxColumn.Width = 80;
+            // 
+            // identityCardDataGridViewTextBoxColumn
+            // 
+            this.identityCardDataGridViewTextBoxColumn.DataPropertyName = "IdentityCard";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.identityCardDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            this.identityCardDataGridViewTextBoxColumn.HeaderText = "CMND";
+            this.identityCardDataGridViewTextBoxColumn.Name = "identityCardDataGridViewTextBoxColumn";
+            this.identityCardDataGridViewTextBoxColumn.ReadOnly = true;
+            this.identityCardDataGridViewTextBoxColumn.Width = 90;
+            // 
+            // homePhoneDataGridViewTextBoxColumn
+            // 
+            this.homePhoneDataGridViewTextBoxColumn.DataPropertyName = "HomePhone";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.homePhoneDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            this.homePhoneDataGridViewTextBoxColumn.HeaderText = "SĐT nhà";
+            this.homePhoneDataGridViewTextBoxColumn.Name = "homePhoneDataGridViewTextBoxColumn";
+            this.homePhoneDataGridViewTextBoxColumn.ReadOnly = true;
+            this.homePhoneDataGridViewTextBoxColumn.Width = 80;
+            // 
+            // workPhoneDataGridViewTextBoxColumn
+            // 
+            this.workPhoneDataGridViewTextBoxColumn.DataPropertyName = "WorkPhone";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.workPhoneDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
+            this.workPhoneDataGridViewTextBoxColumn.HeaderText = "SĐT làm việc";
+            this.workPhoneDataGridViewTextBoxColumn.Name = "workPhoneDataGridViewTextBoxColumn";
+            this.workPhoneDataGridViewTextBoxColumn.ReadOnly = true;
+            this.workPhoneDataGridViewTextBoxColumn.Width = 95;
+            // 
+            // mobileDataGridViewTextBoxColumn
+            // 
+            this.mobileDataGridViewTextBoxColumn.DataPropertyName = "Mobile";
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.mobileDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
+            this.mobileDataGridViewTextBoxColumn.HeaderText = "Số DTDĐ";
+            this.mobileDataGridViewTextBoxColumn.Name = "mobileDataGridViewTextBoxColumn";
+            this.mobileDataGridViewTextBoxColumn.ReadOnly = true;
+            this.mobileDataGridViewTextBoxColumn.Width = 80;
+            // 
+            // emailDataGridViewTextBoxColumn
+            // 
+            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
+            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
+            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
+            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
+            this.emailDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // _uPrintKetQuaSieuAm
+            // 
+            this._uPrintKetQuaSieuAm.Location = new System.Drawing.Point(656, 89);
+            this._uPrintKetQuaSieuAm.Name = "_uPrintKetQuaSieuAm";
+            this._uPrintKetQuaSieuAm.PatientRow = null;
+            this._uPrintKetQuaSieuAm.Size = new System.Drawing.Size(241, 184);
+            this._uPrintKetQuaSieuAm.TabIndex = 4;
             // 
             // panel2
             // 
@@ -348,6 +459,8 @@
             // chkMaBenhNhan
             // 
             this.chkMaBenhNhan.AutoSize = true;
+            this.chkMaBenhNhan.Checked = true;
+            this.chkMaBenhNhan.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkMaBenhNhan.Location = new System.Drawing.Point(393, 12);
             this.chkMaBenhNhan.Name = "chkMaBenhNhan";
             this.chkMaBenhNhan.Size = new System.Drawing.Size(122, 17);
@@ -476,117 +589,6 @@
             this.dataGridViewTextBoxColumn10.Name = "dataGridViewTextBoxColumn10";
             this.dataGridViewTextBoxColumn10.ReadOnly = true;
             this.dataGridViewTextBoxColumn10.Width = 150;
-            // 
-            // colChecked
-            // 
-            this.colChecked.DataPropertyName = "Checked";
-            this.colChecked.Frozen = true;
-            this.colChecked.HeaderText = "";
-            this.colChecked.Name = "colChecked";
-            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.colChecked.Width = 40;
-            // 
-            // fileNumDataGridViewTextBoxColumn
-            // 
-            this.fileNumDataGridViewTextBoxColumn.DataPropertyName = "FileNum";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.fileNumDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.fileNumDataGridViewTextBoxColumn.HeaderText = "Mã bệnh nhân";
-            this.fileNumDataGridViewTextBoxColumn.Name = "fileNumDataGridViewTextBoxColumn";
-            this.fileNumDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // Fullname
-            // 
-            this.Fullname.DataPropertyName = "FullName";
-            this.Fullname.HeaderText = "Họ Tên";
-            this.Fullname.Name = "Fullname";
-            this.Fullname.ReadOnly = true;
-            this.Fullname.Width = 150;
-            // 
-            // FullAddress
-            // 
-            this.FullAddress.DataPropertyName = "Address";
-            this.FullAddress.HeaderText = "Địa chỉ";
-            this.FullAddress.Name = "FullAddress";
-            this.FullAddress.ReadOnly = true;
-            this.FullAddress.Width = 250;
-            // 
-            // GenderAsStr
-            // 
-            this.GenderAsStr.DataPropertyName = "GenderAsStr";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.GenderAsStr.DefaultCellStyle = dataGridViewCellStyle3;
-            this.GenderAsStr.HeaderText = "Giới tính";
-            this.GenderAsStr.Name = "GenderAsStr";
-            this.GenderAsStr.ReadOnly = true;
-            // 
-            // dobDataGridViewTextBoxColumn
-            // 
-            this.dobDataGridViewTextBoxColumn.DataPropertyName = "DobStr";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.NullValue = null;
-            this.dobDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.dobDataGridViewTextBoxColumn.HeaderText = "Ngày sinh";
-            this.dobDataGridViewTextBoxColumn.Name = "dobDataGridViewTextBoxColumn";
-            this.dobDataGridViewTextBoxColumn.ReadOnly = true;
-            this.dobDataGridViewTextBoxColumn.Width = 80;
-            // 
-            // identityCardDataGridViewTextBoxColumn
-            // 
-            this.identityCardDataGridViewTextBoxColumn.DataPropertyName = "IdentityCard";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.identityCardDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
-            this.identityCardDataGridViewTextBoxColumn.HeaderText = "CMND";
-            this.identityCardDataGridViewTextBoxColumn.Name = "identityCardDataGridViewTextBoxColumn";
-            this.identityCardDataGridViewTextBoxColumn.ReadOnly = true;
-            this.identityCardDataGridViewTextBoxColumn.Width = 90;
-            // 
-            // homePhoneDataGridViewTextBoxColumn
-            // 
-            this.homePhoneDataGridViewTextBoxColumn.DataPropertyName = "HomePhone";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.homePhoneDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
-            this.homePhoneDataGridViewTextBoxColumn.HeaderText = "SĐT nhà";
-            this.homePhoneDataGridViewTextBoxColumn.Name = "homePhoneDataGridViewTextBoxColumn";
-            this.homePhoneDataGridViewTextBoxColumn.ReadOnly = true;
-            this.homePhoneDataGridViewTextBoxColumn.Width = 80;
-            // 
-            // workPhoneDataGridViewTextBoxColumn
-            // 
-            this.workPhoneDataGridViewTextBoxColumn.DataPropertyName = "WorkPhone";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.workPhoneDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
-            this.workPhoneDataGridViewTextBoxColumn.HeaderText = "SĐT làm việc";
-            this.workPhoneDataGridViewTextBoxColumn.Name = "workPhoneDataGridViewTextBoxColumn";
-            this.workPhoneDataGridViewTextBoxColumn.ReadOnly = true;
-            this.workPhoneDataGridViewTextBoxColumn.Width = 95;
-            // 
-            // mobileDataGridViewTextBoxColumn
-            // 
-            this.mobileDataGridViewTextBoxColumn.DataPropertyName = "Mobile";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.mobileDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
-            this.mobileDataGridViewTextBoxColumn.HeaderText = "Số DTDĐ";
-            this.mobileDataGridViewTextBoxColumn.Name = "mobileDataGridViewTextBoxColumn";
-            this.mobileDataGridViewTextBoxColumn.ReadOnly = true;
-            this.mobileDataGridViewTextBoxColumn.Width = 80;
-            // 
-            // emailDataGridViewTextBoxColumn
-            // 
-            this.emailDataGridViewTextBoxColumn.DataPropertyName = "Email";
-            this.emailDataGridViewTextBoxColumn.HeaderText = "Email";
-            this.emailDataGridViewTextBoxColumn.Name = "emailDataGridViewTextBoxColumn";
-            this.emailDataGridViewTextBoxColumn.ReadOnly = true;
-            this.emailDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // _uPrintKetQuaSieuAm
-            // 
-            this._uPrintKetQuaSieuAm.Location = new System.Drawing.Point(656, 89);
-            this._uPrintKetQuaSieuAm.Name = "_uPrintKetQuaSieuAm";
-            this._uPrintKetQuaSieuAm.PatientRow = null;
-            this._uPrintKetQuaSieuAm.Size = new System.Drawing.Size(241, 184);
-            this._uPrintKetQuaSieuAm.TabIndex = 4;
             // 
             // uPatientList
             // 

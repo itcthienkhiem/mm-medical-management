@@ -450,6 +450,8 @@
             // chkMaBenhNhan
             // 
             this.chkMaBenhNhan.AutoSize = true;
+            this.chkMaBenhNhan.Checked = true;
+            this.chkMaBenhNhan.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkMaBenhNhan.Location = new System.Drawing.Point(390, 12);
             this.chkMaBenhNhan.Name = "chkMaBenhNhan";
             this.chkMaBenhNhan.Size = new System.Drawing.Size(122, 17);
