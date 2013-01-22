@@ -55,8 +55,8 @@ namespace MM.Bussiness
                             s.DeletedBy = Guid.Parse(Global.UserGUID);
                             s.Status = (byte)Status.Deactived;
 
-                            desc += string.Format("- GUID: '{0}', Mã dịch vụ: '{1}', Tên dịch vụ: '{2}', Tên tiếng anh: '{3}', Giá: '{4}', Giảm: '{5}', Ngày sử dụng: '{6}'\n",
-                                s.DichVuLamThemGUID.ToString(), s.Service.Code, s.Service.Name, s.Service.EnglishName, s.Price, s.Discount, s.ActiveDate.ToString("dd/MM/yyyy HH:mm:ss"));
+                            desc += string.Format("- GUID: '{0}', Mã dịch vụ: '{1}', Tên dịch vụ: '{2}', Tên tiếng anh: '{3}', Giá: '{4}', Giảm: '{5}', Ngày sử dụng: '{6}', Đã thu tiền: '{7}'\n",
+                                s.DichVuLamThemGUID.ToString(), s.Service.Code, s.Service.Name, s.Service.EnglishName, s.Price, s.Discount, s.ActiveDate.ToString("dd/MM/yyyy HH:mm:ss"), s.DaThuTien);
                         }
                     }
 
@@ -118,10 +118,10 @@ namespace MM.Bussiness
                         db.SubmitChanges();
 
                         //Tracking
-                        desc += string.Format("- GUID: '{0}', Mã dịch vụ: '{1}', Tên dịch vụ: '{2}', Tên tiếng anh: '{3}', Giá: '{4}', Giảm: '{5}', Ngày sử dụng: '{6}'",
+                        desc += string.Format("- GUID: '{0}', Mã dịch vụ: '{1}', Tên dịch vụ: '{2}', Tên tiếng anh: '{3}', Giá: '{4}', Giảm: '{5}', Ngày sử dụng: '{6}', Đã thu tiền: '{7}'",
                                 dichVuLamThem.DichVuLamThemGUID.ToString(), dichVuLamThem.Service.Code, dichVuLamThem.Service.Name,
                                 dichVuLamThem.Service.EnglishName, dichVuLamThem.Price, dichVuLamThem.Discount,
-                                dichVuLamThem.ActiveDate.ToString("dd/MM/yyyy HH:mm:ss"));
+                                dichVuLamThem.ActiveDate.ToString("dd/MM/yyyy HH:mm:ss"), dichVuLamThem.DaThuTien);
 
                         Tracking tk = new Tracking();
                         tk.TrackingGUID = Guid.NewGuid();
@@ -144,6 +144,7 @@ namespace MM.Bussiness
                             dvlt.ActiveDate = dichVuLamThem.ActiveDate;
                             dvlt.Price = dichVuLamThem.Price;
                             dvlt.Discount = dichVuLamThem.Discount;
+                            dvlt.DaThuTien = dichVuLamThem.DaThuTien;
                             dvlt.Note = dichVuLamThem.Note;
                             dvlt.CreatedDate = dichVuLamThem.CreatedDate;
                             dvlt.CreatedBy = dichVuLamThem.CreatedBy;
@@ -156,9 +157,9 @@ namespace MM.Bussiness
                             db.SubmitChanges();
 
                             //Tracking
-                            desc += string.Format("- GUID: '{0}', Mã dịch vụ: '{1}', Tên dịch vụ: '{2}', Tên tiếng anh: '{3}', Giá: '{4}', Giảm: '{5}', Ngày sử dụng: '{6}', ContractMemberGUID: '{7}'",
+                            desc += string.Format("- GUID: '{0}', Mã dịch vụ: '{1}', Tên dịch vụ: '{2}', Tên tiếng anh: '{3}', Giá: '{4}', Giảm: '{5}', Ngày sử dụng: '{6}', ContractMemberGUID: '{7}', Đã thu tiền: '{8}'",
                                 dvlt.DichVuLamThemGUID.ToString(), dvlt.Service.Code, dvlt.Service.Name, dvlt.Service.EnglishName, dvlt.Price,
-                                dvlt.Discount, dvlt.ActiveDate.ToString("dd/MM/yyyy HH:mm:ss"), dvlt.ContractMemberGUID.ToString());
+                                dvlt.Discount, dvlt.ActiveDate.ToString("dd/MM/yyyy HH:mm:ss"), dvlt.ContractMemberGUID.ToString(), dvlt.DaThuTien);
 
                             Tracking tk = new Tracking();
                             tk.TrackingGUID = Guid.NewGuid();

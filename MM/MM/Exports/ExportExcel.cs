@@ -7918,7 +7918,7 @@ namespace MM.Exports
                 if (dtDichVuLamThem != null && dtDichVuLamThem.Rows.Count > 0)
                 {
                     rowIndex += 2;
-                    range = workSheet.Cells[string.Format("A{0}:G{0}", rowIndex + 1)];
+                    range = workSheet.Cells[string.Format("A{0}:H{0}", rowIndex + 1)];
                     range.Merge();
                     range.Value = "DỊCH VỤ LÀM THÊM";
                     range.Font.Bold = true;
@@ -7935,8 +7935,9 @@ namespace MM.Exports
                     workSheet.Cells[rowIndex, 4].Value = "Giá";
                     workSheet.Cells[rowIndex, 5].Value = "Giảm (%)";
                     workSheet.Cells[rowIndex, 6].Value = "Thành tiền";
+                    workSheet.Cells[rowIndex, 7].Value = "Đã thu tiền";
 
-                    range = workSheet.Cells[string.Format("A{0}:G{0}", rowIndex + 1)];
+                    range = workSheet.Cells[string.Format("A{0}:H{0}", rowIndex + 1)];
                     range.Font.Bold = true;
                     range.HorizontalAlignment = HAlign.Center;
                     range.Borders.Color = Color.Black;
@@ -7990,14 +7991,22 @@ namespace MM.Exports
                         range.Borders.LineStyle = LineStyle.Continuous;
                         range.Borders.Weight = BorderWeight.Thin;
 
+                        bool daThuTien = Convert.ToBoolean(row["DaThuTien"]);
                         range = workSheet.Cells[rowIndex, 6];
-                        tongTienDichVuLamThem += Convert.ToDouble(row["ThanhTien"]);
+                        if (!daThuTien) tongTienDichVuLamThem += Convert.ToDouble(row["ThanhTien"]);
                         range.Value = Convert.ToDouble(row["ThanhTien"]);
                         range.HorizontalAlignment = HAlign.Right;
                         range.Borders.Color = Color.Black;
                         range.Borders.LineStyle = LineStyle.Continuous;
                         range.Borders.Weight = BorderWeight.Thin;
                         range.NumberFormat = "#,###";
+
+                        range = workSheet.Cells[rowIndex, 7];
+                        range.Value = daThuTien ? "Đã thu tiền" : string.Empty;
+                        range.HorizontalAlignment = HAlign.Center;
+                        range.Borders.Color = Color.Black;
+                        range.Borders.LineStyle = LineStyle.Continuous;
+                        range.Borders.Weight = BorderWeight.Thin;
 
                         rowIndex++;
                     }
@@ -8133,6 +8142,27 @@ namespace MM.Exports
                     range.Font.Bold = true;
                     range.NumberFormat = "#,###";
 
+                    //Đặt cọc
+                    result = PhieuThuHopDongBus.GetTienDatCocTheoHopDong(hopDongGUID);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("PhieuThuHopDongBus.GetTienDatCocTheoHopDong"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("PhieuThuHopDongBus.GetTienDatCocTheoHopDong"));
+                        return false;
+                    }
+
+                    rowIndex++;
+                    double tienDatCoc = Convert.ToDouble(result.QueryResult);
+                    range = workSheet.Cells[rowIndex, 0];
+                    range.Value = "Tiền đặt cọc:";
+                    range.Font.Bold = true;
+
+                    range = workSheet.Cells[rowIndex, 1];
+                    range.Value = tienDatCoc;
+                    range.HorizontalAlignment = HAlign.Right;
+                    range.Font.Bold = true;
+                    range.NumberFormat = "#,###";
+
                     rowIndex++;
                     double tongTienThu = 0;
                     result = PhieuThuHopDongBus.GetPhieuThuTheoHopDong(hopDongGUID);
@@ -8171,7 +8201,7 @@ namespace MM.Exports
                     range.Font.Bold = true;
 
                     range = workSheet.Cells[rowIndex, 1];
-                    range.Value = tongTienKhamTheoHopDong + tongTienDichVuLamThem + tongTienDichVuChuyenNhuong - tongTienThu;
+                    range.Value = tongTienKhamTheoHopDong + tongTienDichVuLamThem + tongTienDichVuChuyenNhuong - tongTienThu - tienDatCoc;
                     range.HorizontalAlignment = HAlign.Right;
                     range.Font.Bold = true;
                     range.NumberFormat = "#,###";

@@ -92,6 +92,7 @@ namespace MM.Dialogs
                 dtpkBeginDate.Value = Convert.ToDateTime(drContract["BeginDate"]);
                 chkCompleted.Checked = Convert.ToBoolean(drContract["Completed"]);
                 numSoTien.Value = (Decimal)Convert.ToDouble(drContract["SoTien"]);
+                numDatCoc.Value = (Decimal)Convert.ToDouble(drContract["DatCoc"]);
 
                 if (chkCompleted.Checked)
                 {
@@ -132,6 +133,7 @@ namespace MM.Dialogs
                     chkCompleted.Enabled = !_isLock;
                     dtpkEndDate.Enabled = !_isLock;
                     numSoTien.Enabled = !_isLock;
+                    numDatCoc.Enabled = !_isLock;
                     dgGiaDichVu.ReadOnly = true;
                     panel5.Enabled = !_isLock;
                     dgMembers.ReadOnly = true;
@@ -156,6 +158,7 @@ namespace MM.Dialogs
                     chkCompleted.Enabled = _allowEdit;
                     dtpkEndDate.Enabled = _allowEdit;
                     numSoTien.Enabled = _allowEdit;
+                    numDatCoc.Enabled = _allowEdit;
                     panel5.Enabled = _allowEdit;
                     btnAddMember.Enabled = _allowEdit;
                     btnDeleteMember.Enabled = _allowEdit;
@@ -281,6 +284,7 @@ namespace MM.Dialogs
                 {
                     _contract.CompanyGUID = Guid.Parse(cboCompany.SelectedValue.ToString());
                     _contract.SoTien = (double)numSoTien.Value;
+                    _contract.DatCoc = (double)numDatCoc.Value;
 
                     Result result = CompanyContractBus.InsertContract(_contract, _selectedCompanyInfo);
                     if (!result.IsOK)
