@@ -86,6 +86,8 @@ namespace MM.Dialogs
                     dtpkActiveDate.Value = _dichVuLamThem.ActiveDate;
                 }
 
+                chkDaThuTien.Checked = Convert.ToBoolean(_drDichVuLamThem["DaThuTien"]);
+
                 if (_drDichVuLamThem["CreatedDate"] != null && _drDichVuLamThem["CreatedDate"] != DBNull.Value)
                     _dichVuLamThem.CreatedDate = Convert.ToDateTime(_drDichVuLamThem["CreatedDate"]);
 
@@ -165,6 +167,7 @@ namespace MM.Dialogs
                     _dichVuLamThem.ServiceGUID = Guid.Parse(cboService.SelectedValue.ToString());
                     _dichVuLamThem.Price = (double)numPrice.Value;
                     _dichVuLamThem.Discount = (double)numDiscount.Value;
+                    _dichVuLamThem.DaThuTien = chkDaThuTien.Checked;
 
                     Result result = DichVuLamThemBus.InsertDichVuLamThem(_dichVuLamThem);
                     if (!result.IsOK)

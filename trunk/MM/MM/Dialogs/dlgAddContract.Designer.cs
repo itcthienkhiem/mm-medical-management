@@ -115,6 +115,9 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.imgList = new System.Windows.Forms.ImageList(this.components);
             this._printDialog = new System.Windows.Forms.PrintDialog();
+            this.label8 = new System.Windows.Forms.Label();
+            this.numDatCoc = new System.Windows.Forms.NumericUpDown();
+            this.label9 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tabContract)).BeginInit();
             this.tabContract.SuspendLayout();
             this.tabControlPanel1.SuspendLayout();
@@ -137,6 +140,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgGiaDichVu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.giaDichVuHopDongViewBindingSource)).BeginInit();
             this.panel5.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numDatCoc)).BeginInit();
             this.SuspendLayout();
             // 
             // tabContract
@@ -163,6 +167,9 @@
             // 
             // tabControlPanel1
             // 
+            this.tabControlPanel1.Controls.Add(this.label8);
+            this.tabControlPanel1.Controls.Add(this.numDatCoc);
+            this.tabControlPanel1.Controls.Add(this.label9);
             this.tabControlPanel1.Controls.Add(this.label6);
             this.tabControlPanel1.Controls.Add(this.numSoTien);
             this.tabControlPanel1.Controls.Add(this.label5);
@@ -233,16 +240,16 @@
             // 
             this.dtpkEndDate.CustomFormat = "dd/MM/yyyy";
             this.dtpkEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkEndDate.Location = new System.Drawing.Point(114, 134);
+            this.dtpkEndDate.Location = new System.Drawing.Point(114, 158);
             this.dtpkEndDate.Name = "dtpkEndDate";
             this.dtpkEndDate.Size = new System.Drawing.Size(97, 20);
-            this.dtpkEndDate.TabIndex = 6;
+            this.dtpkEndDate.TabIndex = 7;
             this.dtpkEndDate.Visible = false;
             // 
             // btnDSNVKhamDu
             // 
             this.btnDSNVKhamDu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDSNVKhamDu.Location = new System.Drawing.Point(475, 176);
+            this.btnDSNVKhamDu.Location = new System.Drawing.Point(475, 200);
             this.btnDSNVKhamDu.Name = "btnDSNVKhamDu";
             this.btnDSNVKhamDu.Size = new System.Drawing.Size(127, 45);
             this.btnDSNVKhamDu.TabIndex = 56;
@@ -254,7 +261,7 @@
             // btnDSNVChuaKhamDu
             // 
             this.btnDSNVChuaKhamDu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDSNVChuaKhamDu.Location = new System.Drawing.Point(342, 176);
+            this.btnDSNVChuaKhamDu.Location = new System.Drawing.Point(342, 200);
             this.btnDSNVChuaKhamDu.Name = "btnDSNVChuaKhamDu";
             this.btnDSNVChuaKhamDu.Size = new System.Drawing.Size(127, 45);
             this.btnDSNVChuaKhamDu.TabIndex = 55;
@@ -266,7 +273,7 @@
             // btnDSNVChuaKham
             // 
             this.btnDSNVChuaKham.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDSNVChuaKham.Location = new System.Drawing.Point(209, 176);
+            this.btnDSNVChuaKham.Location = new System.Drawing.Point(209, 200);
             this.btnDSNVChuaKham.Name = "btnDSNVChuaKham";
             this.btnDSNVChuaKham.Size = new System.Drawing.Size(127, 45);
             this.btnDSNVChuaKham.TabIndex = 54;
@@ -307,10 +314,10 @@
             // 
             this.chkCompleted.AutoSize = true;
             this.chkCompleted.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.chkCompleted.Location = new System.Drawing.Point(21, 137);
+            this.chkCompleted.Location = new System.Drawing.Point(21, 161);
             this.chkCompleted.Name = "chkCompleted";
             this.chkCompleted.Size = new System.Drawing.Size(96, 17);
-            this.chkCompleted.TabIndex = 5;
+            this.chkCompleted.TabIndex = 6;
             this.chkCompleted.Text = "Ngày kết thúc:";
             this.chkCompleted.UseVisualStyleBackColor = false;
             this.chkCompleted.CheckedChanged += new System.EventHandler(this.chkCompleted_CheckedChanged);
@@ -319,16 +326,16 @@
             // 
             this.dtpkBeginDate.CustomFormat = "dd/MM/yyyy";
             this.dtpkBeginDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkBeginDate.Location = new System.Drawing.Point(114, 110);
+            this.dtpkBeginDate.Location = new System.Drawing.Point(114, 134);
             this.dtpkBeginDate.Name = "dtpkBeginDate";
             this.dtpkBeginDate.Size = new System.Drawing.Size(97, 20);
-            this.dtpkBeginDate.TabIndex = 4;
+            this.dtpkBeginDate.TabIndex = 5;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label3.Location = new System.Drawing.Point(18, 113);
+            this.label3.Location = new System.Drawing.Point(18, 137);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(75, 13);
             this.label3.TabIndex = 52;
@@ -1047,6 +1054,39 @@
             // 
             this._printDialog.UseEXDialog = true;
             // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label8.Location = new System.Drawing.Point(281, 114);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(36, 13);
+            this.label8.TabIndex = 62;
+            this.label8.Text = "(VNĐ)";
+            // 
+            // numDatCoc
+            // 
+            this.numDatCoc.Location = new System.Drawing.Point(114, 110);
+            this.numDatCoc.Maximum = new decimal(new int[] {
+            276447231,
+            23283,
+            0,
+            0});
+            this.numDatCoc.Name = "numDatCoc";
+            this.numDatCoc.Size = new System.Drawing.Size(163, 20);
+            this.numDatCoc.TabIndex = 4;
+            this.numDatCoc.ThousandsSeparator = true;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label9.Location = new System.Drawing.Point(18, 112);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(48, 13);
+            this.label9.TabIndex = 61;
+            this.label9.Text = "Đặt cọc:";
+            // 
             // dlgAddContract
             // 
             this.AcceptButton = this.btnOK;
@@ -1093,6 +1133,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgGiaDichVu)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.giaDichVuHopDongViewBindingSource)).EndInit();
             this.panel5.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numDatCoc)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1175,6 +1216,9 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.NumericUpDown numSoTien;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label8;
+        private System.Windows.Forms.NumericUpDown numDatCoc;
+        private System.Windows.Forms.Label label9;
 
     }
 }

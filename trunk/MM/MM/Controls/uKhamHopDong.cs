@@ -326,6 +326,8 @@ namespace MM.Controls
                 newRow["Discount"] = dlg.DichVuLamThem.Discount;
                 newRow["ActiveDate"] = dlg.DichVuLamThem.ActiveDate;
                 newRow["Amount"] = dlg.DichVuLamThem.Price - ((dlg.DichVuLamThem.Price * dlg.DichVuLamThem.Discount) / 100);
+                newRow["DaThuTien"] = dlg.DichVuLamThem.DaThuTien;
+
                 if (dlg.DichVuLamThem.CreatedDate.HasValue)
                     newRow["CreatedDate"] = dlg.DichVuLamThem.CreatedDate;
 
@@ -371,6 +373,8 @@ namespace MM.Controls
                 drDichVuLamThem["Discount"] = dlg.DichVuLamThem.Discount;
                 drDichVuLamThem["ActiveDate"] = dlg.DichVuLamThem.ActiveDate;
                 drDichVuLamThem["Amount"] = dlg.DichVuLamThem.Price - ((dlg.DichVuLamThem.Price * dlg.DichVuLamThem.Discount) / 100);
+                drDichVuLamThem["DaThuTien"] = dlg.DichVuLamThem.DaThuTien;
+
                 if (dlg.DichVuLamThem.CreatedDate.HasValue)
                     drDichVuLamThem["CreatedDate"] = dlg.DichVuLamThem.CreatedDate;
 

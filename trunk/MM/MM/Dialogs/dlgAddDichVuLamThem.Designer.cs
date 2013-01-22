@@ -44,6 +44,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
+            this.chkDaThuTien = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numDiscount)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).BeginInit();
@@ -52,6 +53,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chkDaThuTien);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.numDiscount);
             this.groupBox1.Controls.Add(this.label3);
@@ -64,7 +66,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(7, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(458, 128);
+            this.groupBox1.Size = new System.Drawing.Size(458, 145);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -186,7 +188,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(238, 138);
+            this.btnCancel.Location = new System.Drawing.Point(238, 155);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 13;
@@ -198,12 +200,22 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(159, 138);
+            this.btnOK.Location = new System.Drawing.Point(159, 155);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 12;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
+            // 
+            // chkDaThuTien
+            // 
+            this.chkDaThuTien.AutoSize = true;
+            this.chkDaThuTien.Location = new System.Drawing.Point(91, 118);
+            this.chkDaThuTien.Name = "chkDaThuTien";
+            this.chkDaThuTien.Size = new System.Drawing.Size(78, 17);
+            this.chkDaThuTien.TabIndex = 23;
+            this.chkDaThuTien.Text = "Đã thu tiền";
+            this.chkDaThuTien.UseVisualStyleBackColor = true;
             // 
             // dlgAddDichVuLamThem
             // 
@@ -211,7 +223,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(472, 168);
+            this.ClientSize = new System.Drawing.Size(472, 186);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupBox1);
@@ -250,5 +262,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
+        private System.Windows.Forms.CheckBox chkDaThuTien;
     }
 }

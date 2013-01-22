@@ -372,7 +372,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CM.FullName, CM.DobStr, CM.GenderAsStr, V.[Name], V.FixedPrice, V.Discount, CAST((V.FixedPrice - (V.FixedPrice * V.Discount)/100) AS float) AS ThanhTien FROM dbo.CompanyContract C WITH(NOLOCK), dbo.ContractMember M WITH(NOLOCK), dbo.DichVuLamThemView V WITH(NOLOCK),ContractMemberView CM WITH(NOLOCK) WHERE C.CompanyContractGUID = M.CompanyContractGUID AND V.ContractMemberGUID = M.ContractMemberGUID AND M.Status = 0 AND V.Status = 0 AND V.ServiceStatus = 0 AND C.CompanyContractGUID = '{0}' AND V.ContractMemberGUID = CM.ContractMemberGUID AND CM.Archived = 'False' ORDER BY CM.FullName, V.[Name]", hopDongGUID);
+                string query = string.Format("SELECT CM.FullName, CM.DobStr, CM.GenderAsStr, V.[Name], V.FixedPrice, V.Discount, CAST((V.FixedPrice - (V.FixedPrice * V.Discount)/100) AS float) AS ThanhTien, V.DaThuTien FROM dbo.CompanyContract C WITH(NOLOCK), dbo.ContractMember M WITH(NOLOCK), dbo.DichVuLamThemView V WITH(NOLOCK),ContractMemberView CM WITH(NOLOCK) WHERE C.CompanyContractGUID = M.CompanyContractGUID AND V.ContractMemberGUID = M.ContractMemberGUID AND M.Status = 0 AND V.Status = 0 AND V.ServiceStatus = 0 AND C.CompanyContractGUID = '{0}' AND V.ContractMemberGUID = CM.ContractMemberGUID AND CM.Archived = 'False' ORDER BY CM.FullName, V.[Name]", hopDongGUID);
                 result = ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -395,7 +395,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT SUM( CAST((V.FixedPrice - (V.FixedPrice * V.Discount)/100) AS float)) AS TongTien FROM dbo.CompanyContract C WITH(NOLOCK), dbo.ContractMember M WITH(NOLOCK), dbo.DichVuLamThemView V WITH(NOLOCK), ContractMemberView CM WITH(NOLOCK) WHERE C.CompanyContractGUID = M.CompanyContractGUID AND V.ContractMemberGUID = M.ContractMemberGUID AND M.Status = 0 AND V.Status = 0 AND V.ServiceStatus = 0 AND C.CompanyContractGUID = '{0}' AND V.ContractMemberGUID = CM.ContractMemberGUID AND CM.Archived = 'False'", hopDongGUID);
+                string query = string.Format("SELECT SUM( CAST((V.FixedPrice - (V.FixedPrice * V.Discount)/100) AS float)) AS TongTien FROM dbo.CompanyContract C WITH(NOLOCK), dbo.ContractMember M WITH(NOLOCK), dbo.DichVuLamThemView V WITH(NOLOCK), ContractMemberView CM WITH(NOLOCK) WHERE C.CompanyContractGUID = M.CompanyContractGUID AND V.ContractMemberGUID = M.ContractMemberGUID AND M.Status = 0 AND V.Status = 0 AND V.ServiceStatus = 0 AND C.CompanyContractGUID = '{0}' AND V.ContractMemberGUID = CM.ContractMemberGUID AND CM.Archived = 'False' AND V.DaThuTien = 'False'", hopDongGUID);
                 result = ExcuteQuery(query);
 
                 if (!result.IsOK) return result;
@@ -559,6 +559,37 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetTienDatCocTheoHopDong(string hopDongGUID)
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Format("SELECT DatCoc FROM CompanyContract WITH(NOLOCK) WHERE CompanyContractGUID = '{0}' AND Status = 0", hopDongGUID);
+                result = ExcuteQuery(query);
+
+                if (!result.IsOK) return result;
+
+                DataTable dt = result.QueryResult as DataTable;
+                if (dt != null && dt.Rows.Count > 0 && dt.Rows[0][0] != null && dt.Rows[0][0] != DBNull.Value)
+                    result.QueryResult = Convert.ToDouble(dt.Rows[0][0]);
+                else
+                    result.QueryResult = 0;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetPhieuThuTheoHopDong(string hopDongGUID)
         {
             Result result = new Result();
@@ -591,6 +622,10 @@ namespace MM.Bussiness
                 result = GetTongTienThuTheoHopDong(hopDongGUID);
                 if (!result.IsOK) return result;
                 double tongTienThu = Convert.ToDouble(result.QueryResult);
+
+                result = GetTienDatCocTheoHopDong(hopDongGUID);
+                if (!result.IsOK) return result;
+                tongTienThu += Convert.ToDouble(result.QueryResult);
 
                 result = GetTongTienDichVuKhamTheoHopDong(hopDongGUID);
                 if (!result.IsOK) return result;
