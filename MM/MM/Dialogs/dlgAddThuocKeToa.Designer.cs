@@ -68,15 +68,20 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
+            this.numSoLuongTon = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.gbToaSanKhoa.SuspendLayout();
             this.gbToaChung.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSoLuong)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thuocBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSoLuongTon)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.numSoLuongTon);
+            this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Controls.Add(this.btnChonThuoc);
             this.groupBox1.Controls.Add(this.btnThuocThayThe);
             this.groupBox1.Controls.Add(this.gbToaSanKhoa);
@@ -463,6 +468,7 @@
             this.cboThuoc.Size = new System.Drawing.Size(295, 21);
             this.cboThuoc.TabIndex = 1;
             this.cboThuoc.ValueMember = "ThuocGUID";
+            this.cboThuoc.SelectedIndexChanged += new System.EventHandler(this.cboThuoc_SelectedIndexChanged);
             // 
             // thuocBindingSource
             // 
@@ -501,6 +507,29 @@
             this.btnOK.Text = "    &Đồng ý";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
+            // numSoLuongTon
+            // 
+            this.numSoLuongTon.Enabled = false;
+            this.numSoLuongTon.Location = new System.Drawing.Point(289, 47);
+            this.numSoLuongTon.Maximum = new decimal(new int[] {
+            999999,
+            0,
+            0,
+            0});
+            this.numSoLuongTon.Name = "numSoLuongTon";
+            this.numSoLuongTon.Size = new System.Drawing.Size(86, 20);
+            this.numSoLuongTon.TabIndex = 9;
+            this.numSoLuongTon.ThousandsSeparator = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(214, 49);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(70, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Số lượng tồn:";
+            // 
             // dlgAddThuocKeToa
             // 
             this.AcceptButton = this.btnOK;
@@ -529,6 +558,7 @@
             this.gbToaChung.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSoLuong)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.thuocBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSoLuongTon)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -573,5 +603,7 @@
         private System.Windows.Forms.TextBox txtKhac_CachDungNote;
         private System.Windows.Forms.TextBox txtKhac_TruocSauAnNote;
         private System.Windows.Forms.Button btnChonThuoc;
+        private System.Windows.Forms.NumericUpDown numSoLuongTon;
+        private System.Windows.Forms.Label label5;
     }
 }

@@ -255,6 +255,26 @@ namespace MM.Dialogs
                 Utility.WriteToTraceLog(e.Message);
             }
         }
+
+        private void DisplayThuocTonKho(string thuocGUID)
+        {
+            Result result = LoThuocBus.GetThuocTonKho(thuocGUID);
+            if (result.IsOK)
+            {
+                if (result.QueryResult != null)
+                {
+                    int soLuongTon = Convert.ToInt32(result.QueryResult);
+                    numSoLuongTon.Value = soLuongTon;
+                }
+                else
+                    numSoLuongTon.Value = 0;
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("LoThuocBus.GetNgayHetHanCuaThuoc"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("LoThuocBus.GetNgayHetHanCuaThuoc"));
+            }
+        }
         #endregion
 
         #region Window Event Handlers
@@ -371,6 +391,16 @@ namespace MM.Dialogs
                 cboThuoc.SelectedValue = dlg.MaThuocGUID;
             }
         }
+
+        private void cboThuoc_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboThuoc.SelectedValue == null || cboThuoc.Text.Trim() == string.Empty) return;
+
+            string thuocGUID = cboThuoc.SelectedValue.ToString();
+            DisplayThuocTonKho(thuocGUID);
+        }
         #endregion
+
+        
     }
 }
