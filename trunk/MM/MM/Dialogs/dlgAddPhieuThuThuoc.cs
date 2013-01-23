@@ -1038,6 +1038,7 @@ namespace MM.Dialogs
         {
             if (_isNew)
             {
+                if (dgChiTiet.CurrentRow == null) return;
                 int rowIndex = dgChiTiet.CurrentRow.Index;
                 if (rowIndex < 0) return;
                 dgChiTiet.CurrentCell = dgChiTiet[0, rowIndex];
