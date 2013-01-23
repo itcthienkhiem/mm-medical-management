@@ -65,42 +65,55 @@ namespace MM.Controls
             {
                 string hopDongGUID = cboHopDong.SelectedValue.ToString();
                 DataRow row = GetHopDongRow(hopDongGUID);
+                string template = raTongHop.Checked ? Const.BaoCaoCongNoHopDongTongHopTemplate : Const.BaoCaoCongNoHopDongChiTietTemplate;
 
                 string exportFileName = string.Format("{0}\\Temp\\BaoCaoCongNoHopDong.xls", Application.StartupPath);
                 if (isPreview)
                 {
-                    if (!ExportExcel.ExportCongNoHopDongToExcel(exportFileName, hopDongGUID, row["ContractCode"].ToString(), cboHopDong.Text))
-                        return;
+                    if (raTongHop.Checked)
+                    {
+                        if (!ExportExcel.ExportCongNoHopDongTongHopToExcel(exportFileName, hopDongGUID, row["ContractCode"].ToString(), cboHopDong.Text))
+                            return;
+                    }
                     else
                     {
-                        try
-                        {
-                            ExcelPrintPreview.PrintPreview(exportFileName, Global.PageSetupConfig.GetPageSetup(Const.BaoCaoCongNoHopDongTemplate));
-                        }
-                        catch (Exception ex)
-                        {
-                            MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                        if (!ExportExcel.ExportCongNoHopDongChiTietToExcel(exportFileName, hopDongGUID, row["ContractCode"].ToString(), cboHopDong.Text))
                             return;
-                        }
+                    }
+
+                    try
+                    {
+                        ExcelPrintPreview.PrintPreview(exportFileName, Global.PageSetupConfig.GetPageSetup(template));
+                    }
+                    catch (Exception ex)
+                    {
+                        MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                        return;
                     }
                 }
                 else
                 {
                     if (_printDialog.ShowDialog() == DialogResult.OK)
                     {
-                        if (!ExportExcel.ExportCongNoHopDongToExcel(exportFileName, hopDongGUID, row["ContractCode"].ToString(), cboHopDong.Text))
+                        if (raTongHop.Checked)
+                        {
+                            if (!ExportExcel.ExportCongNoHopDongTongHopToExcel(exportFileName, hopDongGUID, row["ContractCode"].ToString(), cboHopDong.Text))
                             return;
+                        }
                         else
                         {
-                            try
-                            {
-                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.BaoCaoCongNoHopDongTemplate));
-                            }
-                            catch (Exception ex)
-                            {
-                                MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
-                                return;
-                            }
+                            if (!ExportExcel.ExportCongNoHopDongChiTietToExcel(exportFileName, hopDongGUID, row["ContractCode"].ToString(), cboHopDong.Text))
+                            return;
+                        }
+                        
+                        try
+                        {
+                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(template));
+                        }
+                        catch (Exception ex)
+                        {
+                            MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                            return;
                         }
                     }
                 }
@@ -133,8 +146,16 @@ namespace MM.Controls
                     string hopDongGUID = cboHopDong.SelectedValue.ToString();
                     DataRow row = GetHopDongRow(hopDongGUID);
 
-                    if (!ExportExcel.ExportCongNoHopDongToExcel(dlg.FileName, hopDongGUID, row["ContractCode"].ToString(), cboHopDong.Text))
-                        return;
+                    if (raTongHop.Checked)
+                    {
+                        if (!ExportExcel.ExportCongNoHopDongTongHopToExcel(dlg.FileName, hopDongGUID, row["ContractCode"].ToString(), cboHopDong.Text))
+                            return;
+                    }
+                    else
+                    {
+                        if (!ExportExcel.ExportCongNoHopDongChiTietToExcel(dlg.FileName, hopDongGUID, row["ContractCode"].ToString(), cboHopDong.Text))
+                            return;
+                    }
                 }
             }
             else

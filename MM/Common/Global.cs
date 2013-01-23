@@ -208,7 +208,8 @@ namespace MM.Common
             ExcelTemplates.Add(Const.BenhNhanNgoaiGoiKhamTemplate);
             ExcelTemplates.Add(Const.PhieuThuCapCuuTemplate);
             ExcelTemplates.Add(Const.ChiTietPhieuThuCapCuuTemplate);
-            ExcelTemplates.Add(Const.BaoCaoCongNoHopDongTemplate);
+            ExcelTemplates.Add(Const.BaoCaoCongNoHopDongTongHopTemplate);
+            ExcelTemplates.Add(Const.BaoCaoCongNoHopDongChiTietTemplate);
 
             ExcelTemplates.Sort();
         }
