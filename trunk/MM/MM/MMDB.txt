@@ -272,7 +272,7 @@ Da xong x
 Nguon
 ----------------------------------------------------------
 1. Add chu ky so (la mot picture) vao toa thuoc, tren cho chu ky bac si
-2. Hien so luong thuoc ton de bac si biet khi ke thuoc.
+2. Hien so luong thuoc ton de bac si biet khi ke thuoc (OK).
 3. Cho in danh sach benh nhan trong form danh sach benh nhan.
 4. Bac si thich dung right click >> them menu phai chuot cho cac su kien tren cac form. Cai nay khi nao ranh bo sung.
 5. Khi in toa thuoc: the hien ngay ke toa va ngay gio in. Li do: mot toa thuoc hien tai benh nhan xin nhieu lan (in nhieu lan) de tinh tien voi bao hiem nhieu lan 
@@ -285,7 +285,7 @@ Nguon
 
 *Phan Kham hop dong
 10. Dich vu lam them can ghi nhan da thu tien hay chua. Neu benh nhan da tra tien tai cho thi ko tinh vao cong no cua cty do nhung van liet ke luc bao cao (OK).
-11. Mot so cong ty muon chi tiet kham: tuc la phai liet ke dich vu kham, so tien cua dich vu do cua nhan vien tren report
+11. Mot so cong ty muon chi tiet kham: tuc la phai liet ke dich vu kham, so tien cua dich vu do cua nhan vien tren report (OK)
 12. Trong hop dong co phan dat coc hop dong, tru khoan nay trong cong no (OK)
 13, Suy nghi cach the hien goi kham dich vu: vi du Xet nghiem mau thi gom nhieu loai va nhan vien nao cung lam giong nhau : 
 cho cach add nhanh cac dich vu nay vao vi thuong xet nhiem mau gom ~10 dich vu chi tiet
