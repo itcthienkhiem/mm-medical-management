@@ -121,6 +121,7 @@ namespace MM.Common
         public static string ChiTietPhieuThuCapCuuTemplate = "Chi tiết phiếu thu cấp cứu";
         public static string DanhSachBenhNhanDenKhamTemplate = "Danh sách bệnh nhân đến khám";
         public static string DanhSachBenhNhanTemplate = "Danh sách bệnh nhân";
+        public static string DanhSachBenhNhan2Template = "Danh sách bệnh nhân";
         public static string DichVuHopDongTemplate = "Dịch vụ hợp đồng";
         public static string DichVuTuTucTemplate = "Dịch vụ tự túc";
         public static string DoanhThuTheoNgayTemplate = "Doanh thu theo ngày";

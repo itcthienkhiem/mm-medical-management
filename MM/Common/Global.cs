@@ -194,8 +194,8 @@ namespace MM.Common
             ExcelTemplates.Add(Const.TrieuChungTemplate);
             ExcelTemplates.Add(Const.ThuocTonKhoTheoKhoangThoiGianTemplate);
             ExcelTemplates.Add(Const.ToaThuocTemplate);
-            ExcelTemplates.Add(Const.ToaThuocChungTemplate);
-            ExcelTemplates.Add(Const.ToaThuocSanKhoaTemplate);
+            //ExcelTemplates.Add(Const.ToaThuocChungTemplate);
+            //ExcelTemplates.Add(Const.ToaThuocSanKhoaTemplate);
             ExcelTemplates.Add(Const.YKienKhachHangTemplate);
             ExcelTemplates.Add(Const.KetQuaXetNghiemCellDyn3200Template);
             ExcelTemplates.Add(Const.KetQuaXetNghiemSinhHoaTemplate);

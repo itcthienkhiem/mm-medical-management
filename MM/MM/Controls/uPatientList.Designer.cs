@@ -29,23 +29,23 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle49 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle57 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle50 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle51 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle52 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle53 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle54 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle55 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle56 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uPatientList));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle58 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle59 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle60 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle61 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle62 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle63 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle64 = new System.Windows.Forms.DataGridViewCellStyle();
             this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
@@ -63,6 +63,8 @@
             this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._uPrintKetQuaSieuAm = new MM.Controls.uPrintKetQuaSieuAm();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.btnExportExcel = new System.Windows.Forms.Button();
             this.btnTaoMatKhau = new System.Windows.Forms.Button();
             this.btnXemHoSo = new System.Windows.Forms.Button();
             this.btnUploadHoSo = new System.Windows.Forms.Button();
@@ -90,6 +92,7 @@
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._printDialog = new System.Windows.Forms.PrintDialog();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).BeginInit();
@@ -109,7 +112,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 36);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1039, 368);
+            this.panel3.Size = new System.Drawing.Size(1089, 365);
             this.panel3.TabIndex = 1;
             // 
             // chkChecked
@@ -128,14 +131,14 @@
             this.dgPatient.AllowUserToDeleteRows = false;
             this.dgPatient.AllowUserToOrderColumns = true;
             this.dgPatient.AutoGenerateColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgPatient.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle49.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle49.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle49.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle49.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle49.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle49.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle49.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgPatient.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle49;
             this.dgPatient.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgPatient.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colChecked,
@@ -150,14 +153,14 @@
             this.mobileDataGridViewTextBoxColumn,
             this.emailDataGridViewTextBoxColumn});
             this.dgPatient.DataSource = this.patientViewBindingSource;
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgPatient.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle57.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle57.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle57.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle57.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle57.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle57.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle57.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgPatient.DefaultCellStyle = dataGridViewCellStyle57;
             this.dgPatient.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgPatient.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgPatient.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -167,7 +170,7 @@
             this.dgPatient.Name = "dgPatient";
             this.dgPatient.RowHeadersWidth = 30;
             this.dgPatient.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgPatient.Size = new System.Drawing.Size(1039, 368);
+            this.dgPatient.Size = new System.Drawing.Size(1089, 365);
             this.dgPatient.TabIndex = 2;
             this.dgPatient.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPatient_CellMouseUp);
             this.dgPatient.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPatient_ColumnHeaderMouseClick);
@@ -186,8 +189,8 @@
             // fileNumDataGridViewTextBoxColumn
             // 
             this.fileNumDataGridViewTextBoxColumn.DataPropertyName = "FileNum";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.fileNumDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle50.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.fileNumDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle50;
             this.fileNumDataGridViewTextBoxColumn.HeaderText = "Mã bệnh nhân";
             this.fileNumDataGridViewTextBoxColumn.Name = "fileNumDataGridViewTextBoxColumn";
             this.fileNumDataGridViewTextBoxColumn.ReadOnly = true;
@@ -211,8 +214,8 @@
             // GenderAsStr
             // 
             this.GenderAsStr.DataPropertyName = "GenderAsStr";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.GenderAsStr.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle51.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.GenderAsStr.DefaultCellStyle = dataGridViewCellStyle51;
             this.GenderAsStr.HeaderText = "Giới tính";
             this.GenderAsStr.Name = "GenderAsStr";
             this.GenderAsStr.ReadOnly = true;
@@ -220,9 +223,9 @@
             // dobDataGridViewTextBoxColumn
             // 
             this.dobDataGridViewTextBoxColumn.DataPropertyName = "DobStr";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.NullValue = null;
-            this.dobDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle52.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle52.NullValue = null;
+            this.dobDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle52;
             this.dobDataGridViewTextBoxColumn.HeaderText = "Ngày sinh";
             this.dobDataGridViewTextBoxColumn.Name = "dobDataGridViewTextBoxColumn";
             this.dobDataGridViewTextBoxColumn.ReadOnly = true;
@@ -231,8 +234,8 @@
             // identityCardDataGridViewTextBoxColumn
             // 
             this.identityCardDataGridViewTextBoxColumn.DataPropertyName = "IdentityCard";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.identityCardDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle53.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.identityCardDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle53;
             this.identityCardDataGridViewTextBoxColumn.HeaderText = "CMND";
             this.identityCardDataGridViewTextBoxColumn.Name = "identityCardDataGridViewTextBoxColumn";
             this.identityCardDataGridViewTextBoxColumn.ReadOnly = true;
@@ -241,8 +244,8 @@
             // homePhoneDataGridViewTextBoxColumn
             // 
             this.homePhoneDataGridViewTextBoxColumn.DataPropertyName = "HomePhone";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.homePhoneDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle54.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.homePhoneDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle54;
             this.homePhoneDataGridViewTextBoxColumn.HeaderText = "SĐT nhà";
             this.homePhoneDataGridViewTextBoxColumn.Name = "homePhoneDataGridViewTextBoxColumn";
             this.homePhoneDataGridViewTextBoxColumn.ReadOnly = true;
@@ -251,8 +254,8 @@
             // workPhoneDataGridViewTextBoxColumn
             // 
             this.workPhoneDataGridViewTextBoxColumn.DataPropertyName = "WorkPhone";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.workPhoneDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle55.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.workPhoneDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle55;
             this.workPhoneDataGridViewTextBoxColumn.HeaderText = "SĐT làm việc";
             this.workPhoneDataGridViewTextBoxColumn.Name = "workPhoneDataGridViewTextBoxColumn";
             this.workPhoneDataGridViewTextBoxColumn.ReadOnly = true;
@@ -261,8 +264,8 @@
             // mobileDataGridViewTextBoxColumn
             // 
             this.mobileDataGridViewTextBoxColumn.DataPropertyName = "Mobile";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.mobileDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle56.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.mobileDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle56;
             this.mobileDataGridViewTextBoxColumn.HeaderText = "Số DTDĐ";
             this.mobileDataGridViewTextBoxColumn.Name = "mobileDataGridViewTextBoxColumn";
             this.mobileDataGridViewTextBoxColumn.ReadOnly = true;
@@ -286,6 +289,9 @@
             // 
             // panel2
             // 
+            this.panel2.AutoScroll = true;
+            this.panel2.Controls.Add(this.btnPrint);
+            this.panel2.Controls.Add(this.btnExportExcel);
             this.panel2.Controls.Add(this.btnTaoMatKhau);
             this.panel2.Controls.Add(this.btnXemHoSo);
             this.panel2.Controls.Add(this.btnUploadHoSo);
@@ -299,14 +305,38 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 404);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1039, 36);
+            this.panel2.Size = new System.Drawing.Size(1089, 36);
             this.panel2.TabIndex = 5;
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Image = global::MM.Properties.Resources.Printer_icon__1_;
+            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrint.Location = new System.Drawing.Point(418, 5);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(49, 25);
+            this.btnPrint.TabIndex = 78;
+            this.btnPrint.Text = "     &In";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // btnExportExcel
+            // 
+            this.btnExportExcel.Image = global::MM.Properties.Resources.page_excel_icon;
+            this.btnExportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportExcel.Location = new System.Drawing.Point(324, 5);
+            this.btnExportExcel.Name = "btnExportExcel";
+            this.btnExportExcel.Size = new System.Drawing.Size(91, 25);
+            this.btnExportExcel.TabIndex = 77;
+            this.btnExportExcel.Text = "      &Xuất Excel";
+            this.btnExportExcel.UseVisualStyleBackColor = true;
+            this.btnExportExcel.Click += new System.EventHandler(this.btnExportExcel_Click);
             // 
             // btnTaoMatKhau
             // 
             this.btnTaoMatKhau.Image = ((System.Drawing.Image)(resources.GetObject("btnTaoMatKhau.Image")));
             this.btnTaoMatKhau.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTaoMatKhau.Location = new System.Drawing.Point(855, 5);
+            this.btnTaoMatKhau.Location = new System.Drawing.Point(978, 5);
             this.btnTaoMatKhau.Name = "btnTaoMatKhau";
             this.btnTaoMatKhau.Size = new System.Drawing.Size(101, 25);
             this.btnTaoMatKhau.TabIndex = 15;
@@ -318,7 +348,7 @@
             // 
             this.btnXemHoSo.Image = ((System.Drawing.Image)(resources.GetObject("btnXemHoSo.Image")));
             this.btnXemHoSo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnXemHoSo.Location = new System.Drawing.Point(661, 5);
+            this.btnXemHoSo.Location = new System.Drawing.Point(786, 5);
             this.btnXemHoSo.Name = "btnXemHoSo";
             this.btnXemHoSo.Size = new System.Drawing.Size(86, 25);
             this.btnXemHoSo.TabIndex = 13;
@@ -330,7 +360,7 @@
             // 
             this.btnUploadHoSo.Image = ((System.Drawing.Image)(resources.GetObject("btnUploadHoSo.Image")));
             this.btnUploadHoSo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUploadHoSo.Location = new System.Drawing.Point(751, 5);
+            this.btnUploadHoSo.Location = new System.Drawing.Point(875, 5);
             this.btnUploadHoSo.Name = "btnUploadHoSo";
             this.btnUploadHoSo.Size = new System.Drawing.Size(100, 25);
             this.btnUploadHoSo.TabIndex = 14;
@@ -342,7 +372,7 @@
             // 
             this.btnTaoHoSo.Image = ((System.Drawing.Image)(resources.GetObject("btnTaoHoSo.Image")));
             this.btnTaoHoSo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTaoHoSo.Location = new System.Drawing.Point(571, 5);
+            this.btnTaoHoSo.Location = new System.Drawing.Point(697, 5);
             this.btnTaoHoSo.Name = "btnTaoHoSo";
             this.btnTaoHoSo.Size = new System.Drawing.Size(86, 25);
             this.btnTaoHoSo.TabIndex = 12;
@@ -354,9 +384,9 @@
             // 
             this.btnVaoPhongCho.Image = global::MM.Properties.Resources.conference_icon;
             this.btnVaoPhongCho.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVaoPhongCho.Location = new System.Drawing.Point(452, 5);
+            this.btnVaoPhongCho.Location = new System.Drawing.Point(581, 5);
             this.btnVaoPhongCho.Name = "btnVaoPhongCho";
-            this.btnVaoPhongCho.Size = new System.Drawing.Size(115, 25);
+            this.btnVaoPhongCho.Size = new System.Drawing.Size(113, 25);
             this.btnVaoPhongCho.TabIndex = 11;
             this.btnVaoPhongCho.Text = "      &Vào phòng chờ";
             this.btnVaoPhongCho.UseVisualStyleBackColor = true;
@@ -366,9 +396,9 @@
             // 
             this.btnImportExcel.Image = global::MM.Properties.Resources.Excel_icon;
             this.btnImportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnImportExcel.Location = new System.Drawing.Point(241, 5);
+            this.btnImportExcel.Location = new System.Drawing.Point(228, 5);
             this.btnImportExcel.Name = "btnImportExcel";
-            this.btnImportExcel.Size = new System.Drawing.Size(95, 25);
+            this.btnImportExcel.Size = new System.Drawing.Size(93, 25);
             this.btnImportExcel.TabIndex = 10;
             this.btnImportExcel.Text = "      &Nhập Excel";
             this.btnImportExcel.UseVisualStyleBackColor = true;
@@ -378,7 +408,7 @@
             // 
             this.btnOpenPatient.Image = global::MM.Properties.Resources.folder_customer_icon__1_;
             this.btnOpenPatient.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOpenPatient.Location = new System.Drawing.Point(340, 5);
+            this.btnOpenPatient.Location = new System.Drawing.Point(470, 5);
             this.btnOpenPatient.Name = "btnOpenPatient";
             this.btnOpenPatient.Size = new System.Drawing.Size(108, 25);
             this.btnOpenPatient.TabIndex = 9;
@@ -390,9 +420,9 @@
             // 
             this.btnDelete.Image = global::MM.Properties.Resources.del;
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDelete.Location = new System.Drawing.Point(162, 5);
+            this.btnDelete.Location = new System.Drawing.Point(154, 5);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 25);
+            this.btnDelete.Size = new System.Drawing.Size(71, 25);
             this.btnDelete.TabIndex = 8;
             this.btnDelete.Text = "    &Xóa";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -402,9 +432,9 @@
             // 
             this.btnEdit.Image = global::MM.Properties.Resources.edit;
             this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit.Location = new System.Drawing.Point(83, 5);
+            this.btnEdit.Location = new System.Drawing.Point(80, 5);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(75, 25);
+            this.btnEdit.Size = new System.Drawing.Size(71, 25);
             this.btnEdit.TabIndex = 7;
             this.btnEdit.Text = "    &Sửa";
             this.btnEdit.UseVisualStyleBackColor = true;
@@ -416,9 +446,9 @@
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAdd.Location = new System.Drawing.Point(6, 5);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(73, 25);
+            this.btnAdd.Size = new System.Drawing.Size(71, 25);
             this.btnAdd.TabIndex = 6;
-            this.btnAdd.Text = "    &Thêm";
+            this.btnAdd.Text = "     &Thêm";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
@@ -432,7 +462,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1039, 36);
+            this.panel1.Size = new System.Drawing.Size(1089, 36);
             this.panel1.TabIndex = 0;
             // 
             // lbKetQuaTimDuoc
@@ -500,8 +530,8 @@
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.DataPropertyName = "FileNum";
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle58.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle58;
             this.dataGridViewTextBoxColumn1.HeaderText = "Mã bệnh nhân";
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
@@ -525,8 +555,8 @@
             // dataGridViewTextBoxColumn4
             // 
             this.dataGridViewTextBoxColumn4.DataPropertyName = "GenderAsStr";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle59.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle59;
             this.dataGridViewTextBoxColumn4.HeaderText = "Giới tính";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             this.dataGridViewTextBoxColumn4.ReadOnly = true;
@@ -534,9 +564,9 @@
             // dataGridViewTextBoxColumn5
             // 
             this.dataGridViewTextBoxColumn5.DataPropertyName = "DobStr";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle12.NullValue = null;
-            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle60.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle60.NullValue = null;
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle60;
             this.dataGridViewTextBoxColumn5.HeaderText = "Ngày sinh";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.ReadOnly = true;
@@ -545,8 +575,8 @@
             // dataGridViewTextBoxColumn6
             // 
             this.dataGridViewTextBoxColumn6.DataPropertyName = "IdentityCard";
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle61.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle61;
             this.dataGridViewTextBoxColumn6.HeaderText = "CMND";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
@@ -555,8 +585,8 @@
             // dataGridViewTextBoxColumn7
             // 
             this.dataGridViewTextBoxColumn7.DataPropertyName = "HomePhone";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle62.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn7.DefaultCellStyle = dataGridViewCellStyle62;
             this.dataGridViewTextBoxColumn7.HeaderText = "SĐT nhà";
             this.dataGridViewTextBoxColumn7.Name = "dataGridViewTextBoxColumn7";
             this.dataGridViewTextBoxColumn7.ReadOnly = true;
@@ -565,8 +595,8 @@
             // dataGridViewTextBoxColumn8
             // 
             this.dataGridViewTextBoxColumn8.DataPropertyName = "WorkPhone";
-            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle15;
+            dataGridViewCellStyle63.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn8.DefaultCellStyle = dataGridViewCellStyle63;
             this.dataGridViewTextBoxColumn8.HeaderText = "SĐT làm việc";
             this.dataGridViewTextBoxColumn8.Name = "dataGridViewTextBoxColumn8";
             this.dataGridViewTextBoxColumn8.ReadOnly = true;
@@ -575,8 +605,8 @@
             // dataGridViewTextBoxColumn9
             // 
             this.dataGridViewTextBoxColumn9.DataPropertyName = "Mobile";
-            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn9.DefaultCellStyle = dataGridViewCellStyle16;
+            dataGridViewCellStyle64.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn9.DefaultCellStyle = dataGridViewCellStyle64;
             this.dataGridViewTextBoxColumn9.HeaderText = "Số DTDĐ";
             this.dataGridViewTextBoxColumn9.Name = "dataGridViewTextBoxColumn9";
             this.dataGridViewTextBoxColumn9.ReadOnly = true;
@@ -590,6 +620,14 @@
             this.dataGridViewTextBoxColumn10.ReadOnly = true;
             this.dataGridViewTextBoxColumn10.Width = 150;
             // 
+            // _printDialog
+            // 
+            this._printDialog.AllowCurrentPage = true;
+            this._printDialog.AllowSelection = true;
+            this._printDialog.AllowSomePages = true;
+            this._printDialog.ShowHelp = true;
+            this._printDialog.UseEXDialog = true;
+            // 
             // uPatientList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -598,7 +636,7 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "uPatientList";
-            this.Size = new System.Drawing.Size(1039, 440);
+            this.Size = new System.Drawing.Size(1089, 440);
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
@@ -656,5 +694,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn8;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
+        private System.Windows.Forms.Button btnExportExcel;
+        private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.PrintDialog _printDialog;
     }
 }

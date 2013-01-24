@@ -273,10 +273,10 @@ Nguon
 ----------------------------------------------------------
 1. Add chu ky so (la mot picture) vao toa thuoc, tren cho chu ky bac si.
 2. Hien so luong thuoc ton de bac si biet khi ke thuoc (OK).
-3. Cho in danh sach benh nhan trong form danh sach benh nhan.
+3. Cho in danh sach benh nhan trong form danh sach benh nhan (OK).
 4. Bac si thich dung right click >> them menu phai chuot cho cac su kien tren cac form. Cai nay khi nao ranh bo sung.
 5. Khi in toa thuoc: the hien ngay ke toa va ngay gio in. Li do: mot toa thuoc hien tai benh nhan xin nhieu lan (in nhieu lan) de tinh tien voi bao hiem nhieu lan 
->> cho nen phai the hien ke ngay nao va in ngay nao de bao hiem biet.
+>> cho nen phai the hien ke ngay nao va in ngay nao de bao hiem biet. (OK)
 6. Trong form cham soc khach hang, lam cach nao do de nhin nhanh biet duoc ai goi duoc may cuoc goi trong khoang thoi gian. (Multi select show số lượng select)
 7. Trong form cham soc khach hang neu la nhan dien thoai tu khach hang goi vao tong dai 19001856 thi ghi nhan do la cuoc goi vao (
 >> them cot In/out de biet thong tin nay. Cho search de tim kiem bao nhieu cuoc goi vao.

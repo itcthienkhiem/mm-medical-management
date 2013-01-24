@@ -58,6 +58,7 @@ namespace MM.Dialogs
                 btnPrint.Visible = true;
                 btnClose2.Visible = true;
                 cboTenNguoiMuaHang.Enabled = false;
+
                 cboTenDonVi.Enabled = false;
                 txtMaSoThue.ReadOnly = true;
                 txtAddress.ReadOnly = true;
