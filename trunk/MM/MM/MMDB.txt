@@ -289,7 +289,7 @@ Nguon
 12. Trong hop dong co phan dat coc hop dong, tru khoan nay trong cong no (OK)
 13. Suy nghi cach the hien goi kham dich vu: vi du Xet nghiem mau thi gom nhieu loai va nhan vien nao cung lam giong nhau : 
 cho cach add nhanh cac dich vu nay vao vi thuong xet nhiem mau gom ~10 dich vu chi tiet
-14. Xem lai khong the copy thong tin tu hoa don cu.
+14. Xem lai khong the copy thong tin tu hoa don cu. (OK)
 
 
 

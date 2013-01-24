@@ -51,17 +51,21 @@ namespace MM.Dialogs
 
             if (_isView)
             {
+                cboHinhThucThanhToan.Visible = false;
+                cboTenDonVi.Visible = false;
+                cboHinhThucThanhToan.Visible = false;
+                txtTenNguoiMuaHang.Visible = true;
+                txtTenDonVi.Visible = true;
+                txtHinhThucThanhToan.Visible = true;
+
                 btnExportInvoice.Visible = false;
                 btnExportAndPrint.Visible = false;
                 btnCancel.Visible = false;
                 btnPrint.Visible = true;
                 btnClose2.Visible = true;
-                cboHinhThucThanhToan.Enabled = false;
-                cboTenDonVi.Enabled = false;
                 txtMaSoThue.ReadOnly = true;
                 txtAddress.ReadOnly = true;
                 txtSoTaiKhoan.ReadOnly = true;
-                cboHinhThucThanhToan.Enabled = false;
                 numVAT.Enabled = false;
                 dtpkNgay.Enabled = false;
 
@@ -208,17 +212,22 @@ namespace MM.Dialogs
                 lbInvoiceCode.Text = string.Format("Số: {0}", _drInvoice["SoHoaDon"].ToString());
                 dtpkNgay.Value = Convert.ToDateTime(_drInvoice["NgayXuatHoaDon"]);
                 cboTenDonVi.Text = _drInvoice["TenDonVi"].ToString();
+                txtTenDonVi.Text = cboTenDonVi.Text;
 
                 if (_drInvoice["MaSoThue"] != null && _drInvoice["MaSoThue"] != DBNull.Value)
                     txtMaSoThue.Text = _drInvoice["MaSoThue"].ToString();
 
                 txtSoTaiKhoan.Text = _drInvoice["SoTaiKhoan"].ToString();
                 cboHinhThucThanhToan.SelectedIndex = Convert.ToInt32(_drInvoice["HinhThucThanhToan"]);
+                txtHinhThucThanhToan.Text = cboHinhThucThanhToan.Text;
                 numVAT.Value = (Decimal)Convert.ToDouble(_drInvoice["VAT"]);
 
-                if (_drInvoice["TenNguoiMuaHang"] != null && _drInvoice["TenNguoiMuaHang"] != DBNull.Value && 
+                if (_drInvoice["TenNguoiMuaHang"] != null && _drInvoice["TenNguoiMuaHang"] != DBNull.Value &&
                     _drInvoice["TenNguoiMuaHang"].ToString().Trim() != string.Empty)
+                {
                     cboTenNguoiMuaHang.Text = _drInvoice["TenNguoiMuaHang"].ToString();
+                    txtTenNguoiMuaHang.Text = cboTenNguoiMuaHang.Text;
+                }
                 
                 if (_drInvoice["DiaChi"] != null && _drInvoice["DiaChi"] != DBNull.Value)
                     txtAddress.Text = _drInvoice["DiaChi"].ToString();
