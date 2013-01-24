@@ -14,6 +14,7 @@ using MM.Common;
 using MM.Databasae;
 using SpreadsheetGear;
 using SpreadsheetGear.Advanced.Cells;
+using MM.Exports;
 
 namespace MM.Controls
 {
@@ -46,6 +47,8 @@ namespace MM.Controls
             btnTaoHoSo.Enabled = Global.AllowTaoHoSo;
             btnUploadHoSo.Enabled = Global.AllowUploadHoSo;
             btnTaoMatKhau.Enabled = Global.AllowAddMatKhauHoSo;
+            btnExportExcel.Enabled = AllowExport;
+            btnPrint.Enabled = AllowPrint;
         }
 
         public void ClearData()
@@ -1021,6 +1024,53 @@ namespace MM.Controls
                 base.HideWaiting();
             }
         }
+
+        private void OnPrint()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            List<DataRow> checkedRows = _dictPatient.Values.ToList();
+            
+            if (checkedRows.Count > 0)
+            {
+                string exportFileName = string.Format("{0}\\Temp\\DanhSachBenhNhan2.xls", Application.StartupPath);
+                if (_printDialog.ShowDialog() == DialogResult.OK)
+                {
+                    if (ExportExcel.ExportDanhSachBenhNhan2ToExcel(exportFileName, checkedRows))
+                    {
+                        try
+                        {
+                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.DanhSachBenhNhan2Template));
+                        }
+                        catch (Exception ex)
+                        {
+                            MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                            return;
+                        }
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân cần in.", IconType.Information);
+        }
+
+        private void OnExportToExcel()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            List<DataRow> checkedRows = _dictPatient.Values.ToList();
+            if (checkedRows.Count > 0)
+            {
+                SaveFileDialog dlg = new SaveFileDialog();
+                dlg.Title = "Export Excel";
+                dlg.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    if (!ExportExcel.ExportDanhSachBenhNhan2ToExcel(dlg.FileName, checkedRows))
+                        return;
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân cần xuất Excel.", IconType.Information);
+        }
         #endregion
 
         #region Window Event Handlers
@@ -1260,6 +1310,16 @@ namespace MM.Controls
         {
             SearchAsThread();
         }
+
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            OnExportToExcel();
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            OnPrint();
+        }
         #endregion
 
         #region Working Thread
@@ -1352,9 +1412,5 @@ namespace MM.Controls
             }
         }
         #endregion
-
-        
-
-        
     }
 }

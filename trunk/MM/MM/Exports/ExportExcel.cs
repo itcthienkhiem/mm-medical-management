@@ -1224,8 +1224,6 @@ namespace MM.Exports
                     return false;
                 }
 
-                
-
                 if (toaThuoc.Loai == (byte)LoaiToaThuoc.SanKhoa)
                 {
                     excelTemplateName = string.Format("{0}\\Templates\\ToaThuocSanKhoaTemplate.xls", Application.StartupPath);
@@ -1302,18 +1300,23 @@ namespace MM.Exports
                     range.Borders.Weight = BorderWeight.Thin;
 
                     range = workSheet.Cells[string.Format("D{0}", dt.Rows.Count + 11)];
+                    range.Value = string.Format("                    Printed Date: {0}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
+                    range.HorizontalAlignment = HAlign.Center;
+                    range.VerticalAlignment = VAlign.Top;
+
+                    range = workSheet.Cells[string.Format("D{0}", dt.Rows.Count + 12)];
                     range.Value = "                    Doctor's signature";
                     range.Font.Bold = true;
                     range.HorizontalAlignment = HAlign.Center;
                     range.VerticalAlignment = VAlign.Top;
 
-                    range = workSheet.Cells[string.Format("D{0}", dt.Rows.Count + 12)];
+                    range = workSheet.Cells[string.Format("D{0}", dt.Rows.Count + 13)];
                     range.Value = "                    (BS điều trị)";
                     range.HorizontalAlignment = HAlign.Center;
                     range.VerticalAlignment = VAlign.Top;
 
 
-                    range = workSheet.Cells[string.Format("D{0}", dt.Rows.Count + 15)];
+                    range = workSheet.Cells[string.Format("D{0}", dt.Rows.Count + 16)];
                     range.Value = string.Format("                    {0}", toaThuoc.TenBacSi);
                     range.HorizontalAlignment = HAlign.Center;
                     range.VerticalAlignment = VAlign.Top;
@@ -1615,6 +1618,12 @@ namespace MM.Exports
                     range.HorizontalAlignment = HAlign.Left;
                     range.VerticalAlignment = VAlign.Top;
                     range.Value = string.Format("Date: {0}", toaThuoc.NgayKham.Value.ToString("dd/MM/yyyy"));
+                    rowIndex++;
+
+                    range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
+                    range.HorizontalAlignment = HAlign.Left;
+                    range.VerticalAlignment = VAlign.Top;
+                    range.Value = string.Format("Printed Date: {0}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
                     rowIndex++;
 
                     range = workSheet.Cells[string.Format("F{0}:G{0}", rowIndex + 1)];
@@ -8630,6 +8639,91 @@ namespace MM.Exports
                     range.Font.Bold = true;
                     if ((tongTienKhamTheoHopDong + tongTienDichVuLamThem + tongTienDichVuChuyenNhuong - tongTienThu - tienDatCoc) != 0) range.NumberFormat = "#,###";
                 }
+
+                string path = string.Format("{0}\\Temp", Application.StartupPath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
+
+        public static bool ExportDanhSachBenhNhan2ToExcel(string exportFileName, List<DataRow> rows)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            IWorkbook workBook = null;
+
+            try
+            {
+                string excelTemplateName = string.Format("{0}\\Templates\\DanhSachBenhNhan2Template.xls", Application.StartupPath);
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+                int rowIndex = 2;
+                IRange range;
+                int stt = 1;
+
+                foreach (DataRow row in rows)
+                {
+                    string maBenhNhan = row["FileNum"].ToString();
+                    string tenBenhNhan = row["FullName"].ToString();
+                    string ngaySinh = string.Empty;
+                    if (row["DobStr"] != null && row["DobStr"] != DBNull.Value)
+                        ngaySinh = row["DobStr"].ToString();
+
+                    string gioiTinh = string.Empty;
+                    if (row["GenderAsStr"] != null && row["GenderAsStr"] != DBNull.Value)
+                        gioiTinh = row["GenderAsStr"].ToString();
+
+                    string mobile = row["Mobile"] as string;
+
+                    string diaChi = string.Empty;
+                    if (row["Address"] != null && row["Address"] != DBNull.Value)
+                        diaChi = row["Address"].ToString();
+
+                    range = workSheet.Cells[rowIndex, 0];
+                    range.Value = stt;
+
+                    range = workSheet.Cells[rowIndex, 1];
+                    range.Value = maBenhNhan;
+
+                    range = workSheet.Cells[rowIndex, 2];
+                    range.Value = tenBenhNhan;
+
+                    range = workSheet.Cells[rowIndex, 3];
+                    range.Value = ngaySinh;
+
+                    range = workSheet.Cells[rowIndex, 4];
+                    range.Value = gioiTinh;
+
+                    range = workSheet.Cells[rowIndex, 5];
+                    range.Value = mobile;
+
+                    range = workSheet.Cells[rowIndex, 6];
+                    range.Value = diaChi;
+
+                    rowIndex++;
+                    stt++;
+                }
+
+                range = workSheet.Cells[string.Format("A3:G{0}", rowIndex)];
+                range.Borders.Color = Color.Black;
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Weight = BorderWeight.Thin;
 
                 string path = string.Format("{0}\\Temp", Application.StartupPath);
                 if (!Directory.Exists(path))
