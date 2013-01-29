@@ -45,9 +45,6 @@ namespace MM.Databasae
     partial void InsertContractMember(ContractMember instance);
     partial void UpdateContractMember(ContractMember instance);
     partial void DeleteContractMember(ContractMember instance);
-    partial void InsertDocStaff(DocStaff instance);
-    partial void UpdateDocStaff(DocStaff instance);
-    partial void DeleteDocStaff(DocStaff instance);
     partial void InsertFunction(Function instance);
     partial void UpdateFunction(Function instance);
     partial void DeleteFunction(Function instance);
@@ -321,6 +318,9 @@ namespace MM.Databasae
     partial void InsertCompanyContract(CompanyContract instance);
     partial void UpdateCompanyContract(CompanyContract instance);
     partial void DeleteCompanyContract(CompanyContract instance);
+    partial void InsertDocStaff(DocStaff instance);
+    partial void UpdateDocStaff(DocStaff instance);
+    partial void DeleteDocStaff(DocStaff instance);
     #endregion
 		
 		public MMDataContext() : 
@@ -390,14 +390,6 @@ namespace MM.Databasae
 			get
 			{
 				return this.GetTable<ContractMember>();
-			}
-		}
-		
-		public System.Data.Linq.Table<DocStaff> DocStaffs
-		{
-			get
-			{
-				return this.GetTable<DocStaff>();
 			}
 		}
 		
@@ -1646,6 +1638,14 @@ namespace MM.Databasae
 			get
 			{
 				return this.GetTable<CompanyContractView>();
+			}
+		}
+		
+		public System.Data.Linq.Table<DocStaff> DocStaffs
+		{
+			get
+			{
+				return this.GetTable<DocStaff>();
 			}
 		}
 		
@@ -3544,738 +3544,6 @@ namespace MM.Databasae
 		{
 			this.SendPropertyChanging();
 			entity.ContractMember = null;
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DocStaff")]
-	public partial class DocStaff : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _DocStaffGUID;
-		
-		private System.Guid _ContactGUID;
-		
-		private System.Guid _SpecialityGUID;
-		
-		private string _PrescriberNum;
-		
-		private string _Qualifications;
-		
-		private System.Nullable<bool> _AvailableToWork;
-		
-		private System.Nullable<byte> _WorkType;
-		
-		private System.Nullable<byte> _StaffType;
-		
-		private EntitySet<Logon> _Logons;
-		
-		private EntitySet<ToaThuoc> _ToaThuocs;
-		
-		private EntitySet<ChiDinh> _ChiDinhs;
-		
-		private EntitySet<CanDo> _CanDos;
-		
-		private EntitySet<LoiKhuyen> _LoiKhuyens;
-		
-		private EntitySet<KetLuan> _KetLuans;
-		
-		private EntitySet<KetQuaLamSang> _KetQuaLamSangs;
-		
-		private EntitySet<KetQuaNoiSoi> _KetQuaNoiSois;
-		
-		private EntitySet<ServiceHistory> _ServiceHistories;
-		
-		private EntitySet<KetQuaSoiCTC> _KetQuaSoiCTCs;
-		
-		private EntitySet<NhatKyLienHeCongTy> _NhatKyLienHeCongTies;
-		
-		private EntitySet<KetQuaSieuAm> _KetQuaSieuAms;
-		
-		private EntitySet<CongTacNgoaiGio> _CongTacNgoaiGios;
-		
-		private EntitySet<KetQuaCanLamSang> _KetQuaCanLamSangs;
-		
-		private EntitySet<ToaCapCuu> _ToaCapCuus;
-		
-		private EntityRef<Speciality> _Speciality;
-		
-		private EntityRef<Contact> _Contact;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnDocStaffGUIDChanging(System.Guid value);
-    partial void OnDocStaffGUIDChanged();
-    partial void OnContactGUIDChanging(System.Guid value);
-    partial void OnContactGUIDChanged();
-    partial void OnSpecialityGUIDChanging(System.Guid value);
-    partial void OnSpecialityGUIDChanged();
-    partial void OnPrescriberNumChanging(string value);
-    partial void OnPrescriberNumChanged();
-    partial void OnQualificationsChanging(string value);
-    partial void OnQualificationsChanged();
-    partial void OnAvailableToWorkChanging(System.Nullable<bool> value);
-    partial void OnAvailableToWorkChanged();
-    partial void OnWorkTypeChanging(System.Nullable<byte> value);
-    partial void OnWorkTypeChanged();
-    partial void OnStaffTypeChanging(System.Nullable<byte> value);
-    partial void OnStaffTypeChanged();
-    #endregion
-		
-		public DocStaff()
-		{
-			this._Logons = new EntitySet<Logon>(new Action<Logon>(this.attach_Logons), new Action<Logon>(this.detach_Logons));
-			this._ToaThuocs = new EntitySet<ToaThuoc>(new Action<ToaThuoc>(this.attach_ToaThuocs), new Action<ToaThuoc>(this.detach_ToaThuocs));
-			this._ChiDinhs = new EntitySet<ChiDinh>(new Action<ChiDinh>(this.attach_ChiDinhs), new Action<ChiDinh>(this.detach_ChiDinhs));
-			this._CanDos = new EntitySet<CanDo>(new Action<CanDo>(this.attach_CanDos), new Action<CanDo>(this.detach_CanDos));
-			this._LoiKhuyens = new EntitySet<LoiKhuyen>(new Action<LoiKhuyen>(this.attach_LoiKhuyens), new Action<LoiKhuyen>(this.detach_LoiKhuyens));
-			this._KetLuans = new EntitySet<KetLuan>(new Action<KetLuan>(this.attach_KetLuans), new Action<KetLuan>(this.detach_KetLuans));
-			this._KetQuaLamSangs = new EntitySet<KetQuaLamSang>(new Action<KetQuaLamSang>(this.attach_KetQuaLamSangs), new Action<KetQuaLamSang>(this.detach_KetQuaLamSangs));
-			this._KetQuaNoiSois = new EntitySet<KetQuaNoiSoi>(new Action<KetQuaNoiSoi>(this.attach_KetQuaNoiSois), new Action<KetQuaNoiSoi>(this.detach_KetQuaNoiSois));
-			this._ServiceHistories = new EntitySet<ServiceHistory>(new Action<ServiceHistory>(this.attach_ServiceHistories), new Action<ServiceHistory>(this.detach_ServiceHistories));
-			this._KetQuaSoiCTCs = new EntitySet<KetQuaSoiCTC>(new Action<KetQuaSoiCTC>(this.attach_KetQuaSoiCTCs), new Action<KetQuaSoiCTC>(this.detach_KetQuaSoiCTCs));
-			this._NhatKyLienHeCongTies = new EntitySet<NhatKyLienHeCongTy>(new Action<NhatKyLienHeCongTy>(this.attach_NhatKyLienHeCongTies), new Action<NhatKyLienHeCongTy>(this.detach_NhatKyLienHeCongTies));
-			this._KetQuaSieuAms = new EntitySet<KetQuaSieuAm>(new Action<KetQuaSieuAm>(this.attach_KetQuaSieuAms), new Action<KetQuaSieuAm>(this.detach_KetQuaSieuAms));
-			this._CongTacNgoaiGios = new EntitySet<CongTacNgoaiGio>(new Action<CongTacNgoaiGio>(this.attach_CongTacNgoaiGios), new Action<CongTacNgoaiGio>(this.detach_CongTacNgoaiGios));
-			this._KetQuaCanLamSangs = new EntitySet<KetQuaCanLamSang>(new Action<KetQuaCanLamSang>(this.attach_KetQuaCanLamSangs), new Action<KetQuaCanLamSang>(this.detach_KetQuaCanLamSangs));
-			this._ToaCapCuus = new EntitySet<ToaCapCuu>(new Action<ToaCapCuu>(this.attach_ToaCapCuus), new Action<ToaCapCuu>(this.detach_ToaCapCuus));
-			this._Speciality = default(EntityRef<Speciality>);
-			this._Contact = default(EntityRef<Contact>);
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DocStaffGUID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid DocStaffGUID
-		{
-			get
-			{
-				return this._DocStaffGUID;
-			}
-			set
-			{
-				if ((this._DocStaffGUID != value))
-				{
-					this.OnDocStaffGUIDChanging(value);
-					this.SendPropertyChanging();
-					this._DocStaffGUID = value;
-					this.SendPropertyChanged("DocStaffGUID");
-					this.OnDocStaffGUIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactGUID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid ContactGUID
-		{
-			get
-			{
-				return this._ContactGUID;
-			}
-			set
-			{
-				if ((this._ContactGUID != value))
-				{
-					if (this._Contact.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnContactGUIDChanging(value);
-					this.SendPropertyChanging();
-					this._ContactGUID = value;
-					this.SendPropertyChanged("ContactGUID");
-					this.OnContactGUIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SpecialityGUID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid SpecialityGUID
-		{
-			get
-			{
-				return this._SpecialityGUID;
-			}
-			set
-			{
-				if ((this._SpecialityGUID != value))
-				{
-					if (this._Speciality.HasLoadedOrAssignedValue)
-					{
-						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
-					}
-					this.OnSpecialityGUIDChanging(value);
-					this.SendPropertyChanging();
-					this._SpecialityGUID = value;
-					this.SendPropertyChanged("SpecialityGUID");
-					this.OnSpecialityGUIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrescriberNum", DbType="NVarChar(255)")]
-		public string PrescriberNum
-		{
-			get
-			{
-				return this._PrescriberNum;
-			}
-			set
-			{
-				if ((this._PrescriberNum != value))
-				{
-					this.OnPrescriberNumChanging(value);
-					this.SendPropertyChanging();
-					this._PrescriberNum = value;
-					this.SendPropertyChanged("PrescriberNum");
-					this.OnPrescriberNumChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Qualifications", DbType="NVarChar(255)")]
-		public string Qualifications
-		{
-			get
-			{
-				return this._Qualifications;
-			}
-			set
-			{
-				if ((this._Qualifications != value))
-				{
-					this.OnQualificationsChanging(value);
-					this.SendPropertyChanging();
-					this._Qualifications = value;
-					this.SendPropertyChanged("Qualifications");
-					this.OnQualificationsChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AvailableToWork", DbType="Bit")]
-		public System.Nullable<bool> AvailableToWork
-		{
-			get
-			{
-				return this._AvailableToWork;
-			}
-			set
-			{
-				if ((this._AvailableToWork != value))
-				{
-					this.OnAvailableToWorkChanging(value);
-					this.SendPropertyChanging();
-					this._AvailableToWork = value;
-					this.SendPropertyChanged("AvailableToWork");
-					this.OnAvailableToWorkChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WorkType", DbType="TinyInt")]
-		public System.Nullable<byte> WorkType
-		{
-			get
-			{
-				return this._WorkType;
-			}
-			set
-			{
-				if ((this._WorkType != value))
-				{
-					this.OnWorkTypeChanging(value);
-					this.SendPropertyChanging();
-					this._WorkType = value;
-					this.SendPropertyChanged("WorkType");
-					this.OnWorkTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StaffType", DbType="TinyInt")]
-		public System.Nullable<byte> StaffType
-		{
-			get
-			{
-				return this._StaffType;
-			}
-			set
-			{
-				if ((this._StaffType != value))
-				{
-					this.OnStaffTypeChanging(value);
-					this.SendPropertyChanging();
-					this._StaffType = value;
-					this.SendPropertyChanged("StaffType");
-					this.OnStaffTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_Logon", Storage="_Logons", ThisKey="DocStaffGUID", OtherKey="DocStaffGUID")]
-		public EntitySet<Logon> Logons
-		{
-			get
-			{
-				return this._Logons;
-			}
-			set
-			{
-				this._Logons.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_ToaThuoc", Storage="_ToaThuocs", ThisKey="DocStaffGUID", OtherKey="BacSiKeToa")]
-		public EntitySet<ToaThuoc> ToaThuocs
-		{
-			get
-			{
-				return this._ToaThuocs;
-			}
-			set
-			{
-				this._ToaThuocs.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_ChiDinh", Storage="_ChiDinhs", ThisKey="DocStaffGUID", OtherKey="BacSiChiDinhGUID")]
-		public EntitySet<ChiDinh> ChiDinhs
-		{
-			get
-			{
-				return this._ChiDinhs;
-			}
-			set
-			{
-				this._ChiDinhs.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_CanDo", Storage="_CanDos", ThisKey="DocStaffGUID", OtherKey="DocStaffGUID")]
-		public EntitySet<CanDo> CanDos
-		{
-			get
-			{
-				return this._CanDos;
-			}
-			set
-			{
-				this._CanDos.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_LoiKhuyen", Storage="_LoiKhuyens", ThisKey="DocStaffGUID", OtherKey="DocStaffGUID")]
-		public EntitySet<LoiKhuyen> LoiKhuyens
-		{
-			get
-			{
-				return this._LoiKhuyens;
-			}
-			set
-			{
-				this._LoiKhuyens.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_KetLuan", Storage="_KetLuans", ThisKey="DocStaffGUID", OtherKey="DocStaffGUID")]
-		public EntitySet<KetLuan> KetLuans
-		{
-			get
-			{
-				return this._KetLuans;
-			}
-			set
-			{
-				this._KetLuans.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_KetQuaLamSang", Storage="_KetQuaLamSangs", ThisKey="DocStaffGUID", OtherKey="DocStaffGUID")]
-		public EntitySet<KetQuaLamSang> KetQuaLamSangs
-		{
-			get
-			{
-				return this._KetQuaLamSangs;
-			}
-			set
-			{
-				this._KetQuaLamSangs.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_KetQuaNoiSoi", Storage="_KetQuaNoiSois", ThisKey="DocStaffGUID", OtherKey="BacSiSoi")]
-		public EntitySet<KetQuaNoiSoi> KetQuaNoiSois
-		{
-			get
-			{
-				return this._KetQuaNoiSois;
-			}
-			set
-			{
-				this._KetQuaNoiSois.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_ServiceHistory", Storage="_ServiceHistories", ThisKey="DocStaffGUID", OtherKey="DocStaffGUID")]
-		public EntitySet<ServiceHistory> ServiceHistories
-		{
-			get
-			{
-				return this._ServiceHistories;
-			}
-			set
-			{
-				this._ServiceHistories.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_KetQuaSoiCTC", Storage="_KetQuaSoiCTCs", ThisKey="DocStaffGUID", OtherKey="BacSiSoi")]
-		public EntitySet<KetQuaSoiCTC> KetQuaSoiCTCs
-		{
-			get
-			{
-				return this._KetQuaSoiCTCs;
-			}
-			set
-			{
-				this._KetQuaSoiCTCs.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_NhatKyLienHeCongTy", Storage="_NhatKyLienHeCongTies", ThisKey="DocStaffGUID", OtherKey="DocStaffGUID")]
-		public EntitySet<NhatKyLienHeCongTy> NhatKyLienHeCongTies
-		{
-			get
-			{
-				return this._NhatKyLienHeCongTies;
-			}
-			set
-			{
-				this._NhatKyLienHeCongTies.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_KetQuaSieuAm", Storage="_KetQuaSieuAms", ThisKey="DocStaffGUID", OtherKey="BacSiSieuAmGUID")]
-		public EntitySet<KetQuaSieuAm> KetQuaSieuAms
-		{
-			get
-			{
-				return this._KetQuaSieuAms;
-			}
-			set
-			{
-				this._KetQuaSieuAms.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_CongTacNgoaiGio", Storage="_CongTacNgoaiGios", ThisKey="DocStaffGUID", OtherKey="NguoiDeXuatGUID")]
-		public EntitySet<CongTacNgoaiGio> CongTacNgoaiGios
-		{
-			get
-			{
-				return this._CongTacNgoaiGios;
-			}
-			set
-			{
-				this._CongTacNgoaiGios.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_KetQuaCanLamSang", Storage="_KetQuaCanLamSangs", ThisKey="DocStaffGUID", OtherKey="BacSiThucHienGUID")]
-		public EntitySet<KetQuaCanLamSang> KetQuaCanLamSangs
-		{
-			get
-			{
-				return this._KetQuaCanLamSangs;
-			}
-			set
-			{
-				this._KetQuaCanLamSangs.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_ToaCapCuu", Storage="_ToaCapCuus", ThisKey="DocStaffGUID", OtherKey="BacSiKeToaGUID")]
-		public EntitySet<ToaCapCuu> ToaCapCuus
-		{
-			get
-			{
-				return this._ToaCapCuus;
-			}
-			set
-			{
-				this._ToaCapCuus.Assign(value);
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Speciality_DocStaff", Storage="_Speciality", ThisKey="SpecialityGUID", OtherKey="SpecialityGUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public Speciality Speciality
-		{
-			get
-			{
-				return this._Speciality.Entity;
-			}
-			set
-			{
-				Speciality previousValue = this._Speciality.Entity;
-				if (((previousValue != value) 
-							|| (this._Speciality.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Speciality.Entity = null;
-						previousValue.DocStaffs.Remove(this);
-					}
-					this._Speciality.Entity = value;
-					if ((value != null))
-					{
-						value.DocStaffs.Add(this);
-						this._SpecialityGUID = value.SpecialityGUID;
-					}
-					else
-					{
-						this._SpecialityGUID = default(System.Guid);
-					}
-					this.SendPropertyChanged("Speciality");
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Contact_DocStaff", Storage="_Contact", ThisKey="ContactGUID", OtherKey="ContactGUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public Contact Contact
-		{
-			get
-			{
-				return this._Contact.Entity;
-			}
-			set
-			{
-				Contact previousValue = this._Contact.Entity;
-				if (((previousValue != value) 
-							|| (this._Contact.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._Contact.Entity = null;
-						previousValue.DocStaffs.Remove(this);
-					}
-					this._Contact.Entity = value;
-					if ((value != null))
-					{
-						value.DocStaffs.Add(this);
-						this._ContactGUID = value.ContactGUID;
-					}
-					else
-					{
-						this._ContactGUID = default(System.Guid);
-					}
-					this.SendPropertyChanged("Contact");
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_Logons(Logon entity)
-		{
-			this.SendPropertyChanging();
-			entity.DocStaff = this;
-		}
-		
-		private void detach_Logons(Logon entity)
-		{
-			this.SendPropertyChanging();
-			entity.DocStaff = null;
-		}
-		
-		private void attach_ToaThuocs(ToaThuoc entity)
-		{
-			this.SendPropertyChanging();
-			entity.DocStaff = this;
-		}
-		
-		private void detach_ToaThuocs(ToaThuoc entity)
-		{
-			this.SendPropertyChanging();
-			entity.DocStaff = null;
-		}
-		
-		private void attach_ChiDinhs(ChiDinh entity)
-		{
-			this.SendPropertyChanging();
-			entity.DocStaff = this;
-		}
-		
-		private void detach_ChiDinhs(ChiDinh entity)
-		{
-			this.SendPropertyChanging();
-			entity.DocStaff = null;
-		}
-		
-		private void attach_CanDos(CanDo entity)
-		{
-			this.SendPropertyChanging();
-			entity.DocStaff = this;
-		}
-		
-		private void detach_CanDos(CanDo entity)
-		{
-			this.SendPropertyChanging();
-			entity.DocStaff = null;
-		}
-		
-		private void attach_LoiKhuyens(LoiKhuyen entity)
-		{
-			this.SendPropertyChanging();
-			entity.DocStaff = this;
-		}
-		
-		private void detach_LoiKhuyens(LoiKhuyen entity)
-		{
-			this.SendPropertyChanging();
-			entity.DocStaff = null;
-		}
-		
-		private void attach_KetLuans(KetLuan entity)
-		{
-			this.SendPropertyChanging();
-			entity.DocStaff = this;
-		}
-		
-		private void detach_KetLuans(KetLuan entity)
-		{
-			this.SendPropertyChanging();
-			entity.DocStaff = null;
-		}
-		
-		private void attach_KetQuaLamSangs(KetQuaLamSang entity)
-		{
-			this.SendPropertyChanging();
-			entity.DocStaff = this;
-		}
-		
-		private void detach_KetQuaLamSangs(KetQuaLamSang entity)
-		{
-			this.SendPropertyChanging();
-			entity.DocStaff = null;
-		}
-		
-		private void attach_KetQuaNoiSois(KetQuaNoiSoi entity)
-		{
-			this.SendPropertyChanging();
-			entity.DocStaff = this;
-		}
-		
-		private void detach_KetQuaNoiSois(KetQuaNoiSoi entity)
-		{
-			this.SendPropertyChanging();
-			entity.DocStaff = null;
-		}
-		
-		private void attach_ServiceHistories(ServiceHistory entity)
-		{
-			this.SendPropertyChanging();
-			entity.DocStaff = this;
-		}
-		
-		private void detach_ServiceHistories(ServiceHistory entity)
-		{
-			this.SendPropertyChanging();
-			entity.DocStaff = null;
-		}
-		
-		private void attach_KetQuaSoiCTCs(KetQuaSoiCTC entity)
-		{
-			this.SendPropertyChanging();
-			entity.DocStaff = this;
-		}
-		
-		private void detach_KetQuaSoiCTCs(KetQuaSoiCTC entity)
-		{
-			this.SendPropertyChanging();
-			entity.DocStaff = null;
-		}
-		
-		private void attach_NhatKyLienHeCongTies(NhatKyLienHeCongTy entity)
-		{
-			this.SendPropertyChanging();
-			entity.DocStaff = this;
-		}
-		
-		private void detach_NhatKyLienHeCongTies(NhatKyLienHeCongTy entity)
-		{
-			this.SendPropertyChanging();
-			entity.DocStaff = null;
-		}
-		
-		private void attach_KetQuaSieuAms(KetQuaSieuAm entity)
-		{
-			this.SendPropertyChanging();
-			entity.DocStaff = this;
-		}
-		
-		private void detach_KetQuaSieuAms(KetQuaSieuAm entity)
-		{
-			this.SendPropertyChanging();
-			entity.DocStaff = null;
-		}
-		
-		private void attach_CongTacNgoaiGios(CongTacNgoaiGio entity)
-		{
-			this.SendPropertyChanging();
-			entity.DocStaff = this;
-		}
-		
-		private void detach_CongTacNgoaiGios(CongTacNgoaiGio entity)
-		{
-			this.SendPropertyChanging();
-			entity.DocStaff = null;
-		}
-		
-		private void attach_KetQuaCanLamSangs(KetQuaCanLamSang entity)
-		{
-			this.SendPropertyChanging();
-			entity.DocStaff = this;
-		}
-		
-		private void detach_KetQuaCanLamSangs(KetQuaCanLamSang entity)
-		{
-			this.SendPropertyChanging();
-			entity.DocStaff = null;
-		}
-		
-		private void attach_ToaCapCuus(ToaCapCuu entity)
-		{
-			this.SendPropertyChanging();
-			entity.DocStaff = this;
-		}
-		
-		private void detach_ToaCapCuus(ToaCapCuu entity)
-		{
-			this.SendPropertyChanging();
-			entity.DocStaff = null;
 		}
 	}
 	
@@ -11686,9 +10954,9 @@ namespace MM.Databasae
 		
 		private string _Source;
 		
-		private EntitySet<DocStaff> _DocStaffs;
-		
 		private EntitySet<Patient> _Patients;
+		
+		private EntitySet<DocStaff> _DocStaffs;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -11768,8 +11036,8 @@ namespace MM.Databasae
 		
 		public Contact()
 		{
-			this._DocStaffs = new EntitySet<DocStaff>(new Action<DocStaff>(this.attach_DocStaffs), new Action<DocStaff>(this.detach_DocStaffs));
 			this._Patients = new EntitySet<Patient>(new Action<Patient>(this.attach_Patients), new Action<Patient>(this.detach_Patients));
+			this._DocStaffs = new EntitySet<DocStaff>(new Action<DocStaff>(this.attach_DocStaffs), new Action<DocStaff>(this.detach_DocStaffs));
 			OnCreated();
 		}
 		
@@ -12473,19 +11741,6 @@ namespace MM.Databasae
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Contact_DocStaff", Storage="_DocStaffs", ThisKey="ContactGUID", OtherKey="ContactGUID")]
-		public EntitySet<DocStaff> DocStaffs
-		{
-			get
-			{
-				return this._DocStaffs;
-			}
-			set
-			{
-				this._DocStaffs.Assign(value);
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Contact_Patient", Storage="_Patients", ThisKey="ContactGUID", OtherKey="ContactGUID")]
 		public EntitySet<Patient> Patients
 		{
@@ -12496,6 +11751,19 @@ namespace MM.Databasae
 			set
 			{
 				this._Patients.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Contact_DocStaff", Storage="_DocStaffs", ThisKey="ContactGUID", OtherKey="ContactGUID")]
+		public EntitySet<DocStaff> DocStaffs
+		{
+			get
+			{
+				return this._DocStaffs;
+			}
+			set
+			{
+				this._DocStaffs.Assign(value);
 			}
 		}
 		
@@ -12519,18 +11787,6 @@ namespace MM.Databasae
 			}
 		}
 		
-		private void attach_DocStaffs(DocStaff entity)
-		{
-			this.SendPropertyChanging();
-			entity.Contact = this;
-		}
-		
-		private void detach_DocStaffs(DocStaff entity)
-		{
-			this.SendPropertyChanging();
-			entity.Contact = null;
-		}
-		
 		private void attach_Patients(Patient entity)
 		{
 			this.SendPropertyChanging();
@@ -12538,6 +11794,18 @@ namespace MM.Databasae
 		}
 		
 		private void detach_Patients(Patient entity)
+		{
+			this.SendPropertyChanging();
+			entity.Contact = null;
+		}
+		
+		private void attach_DocStaffs(DocStaff entity)
+		{
+			this.SendPropertyChanging();
+			entity.Contact = this;
+		}
+		
+		private void detach_DocStaffs(DocStaff entity)
 		{
 			this.SendPropertyChanging();
 			entity.Contact = null;
@@ -13546,9 +12814,9 @@ namespace MM.Databasae
 		
 		private EntitySet<ChiTietToaThuoc> _ChiTietToaThuocs;
 		
-		private EntityRef<DocStaff> _DocStaff;
-		
 		private EntityRef<Patient> _Patient;
+		
+		private EntityRef<DocStaff> _DocStaff;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -13593,8 +12861,8 @@ namespace MM.Databasae
 		public ToaThuoc()
 		{
 			this._ChiTietToaThuocs = new EntitySet<ChiTietToaThuoc>(new Action<ChiTietToaThuoc>(this.attach_ChiTietToaThuocs), new Action<ChiTietToaThuoc>(this.detach_ChiTietToaThuocs));
-			this._DocStaff = default(EntityRef<DocStaff>);
 			this._Patient = default(EntityRef<Patient>);
+			this._DocStaff = default(EntityRef<DocStaff>);
 			OnCreated();
 		}
 		
@@ -13959,40 +13227,6 @@ namespace MM.Databasae
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_ToaThuoc", Storage="_DocStaff", ThisKey="BacSiKeToa", OtherKey="DocStaffGUID", IsForeignKey=true)]
-		public DocStaff DocStaff
-		{
-			get
-			{
-				return this._DocStaff.Entity;
-			}
-			set
-			{
-				DocStaff previousValue = this._DocStaff.Entity;
-				if (((previousValue != value) 
-							|| (this._DocStaff.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._DocStaff.Entity = null;
-						previousValue.ToaThuocs.Remove(this);
-					}
-					this._DocStaff.Entity = value;
-					if ((value != null))
-					{
-						value.ToaThuocs.Add(this);
-						this._BacSiKeToa = value.DocStaffGUID;
-					}
-					else
-					{
-						this._BacSiKeToa = default(System.Guid);
-					}
-					this.SendPropertyChanged("DocStaff");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Patient_ToaThuoc", Storage="_Patient", ThisKey="BenhNhan", OtherKey="PatientGUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public Patient Patient
 		{
@@ -14023,6 +13257,40 @@ namespace MM.Databasae
 						this._BenhNhan = default(System.Guid);
 					}
 					this.SendPropertyChanged("Patient");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_ToaThuoc", Storage="_DocStaff", ThisKey="BacSiKeToa", OtherKey="DocStaffGUID", IsForeignKey=true)]
+		public DocStaff DocStaff
+		{
+			get
+			{
+				return this._DocStaff.Entity;
+			}
+			set
+			{
+				DocStaff previousValue = this._DocStaff.Entity;
+				if (((previousValue != value) 
+							|| (this._DocStaff.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._DocStaff.Entity = null;
+						previousValue.ToaThuocs.Remove(this);
+					}
+					this._DocStaff.Entity = value;
+					if ((value != null))
+					{
+						value.ToaThuocs.Add(this);
+						this._BacSiKeToa = value.DocStaffGUID;
+					}
+					else
+					{
+						this._BacSiKeToa = default(System.Guid);
+					}
+					this.SendPropertyChanged("DocStaff");
 				}
 			}
 		}
@@ -15551,9 +14819,9 @@ namespace MM.Databasae
 		
 		private EntitySet<ChiTietChiDinh> _ChiTietChiDinhs;
 		
-		private EntityRef<DocStaff> _DocStaff;
-		
 		private EntityRef<Patient> _Patient;
+		
+		private EntityRef<DocStaff> _DocStaff;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -15588,8 +14856,8 @@ namespace MM.Databasae
 		public ChiDinh()
 		{
 			this._ChiTietChiDinhs = new EntitySet<ChiTietChiDinh>(new Action<ChiTietChiDinh>(this.attach_ChiTietChiDinhs), new Action<ChiTietChiDinh>(this.detach_ChiTietChiDinhs));
-			this._DocStaff = default(EntityRef<DocStaff>);
 			this._Patient = default(EntityRef<Patient>);
+			this._DocStaff = default(EntityRef<DocStaff>);
 			OnCreated();
 		}
 		
@@ -15854,40 +15122,6 @@ namespace MM.Databasae
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_ChiDinh", Storage="_DocStaff", ThisKey="BacSiChiDinhGUID", OtherKey="DocStaffGUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
-		public DocStaff DocStaff
-		{
-			get
-			{
-				return this._DocStaff.Entity;
-			}
-			set
-			{
-				DocStaff previousValue = this._DocStaff.Entity;
-				if (((previousValue != value) 
-							|| (this._DocStaff.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._DocStaff.Entity = null;
-						previousValue.ChiDinhs.Remove(this);
-					}
-					this._DocStaff.Entity = value;
-					if ((value != null))
-					{
-						value.ChiDinhs.Add(this);
-						this._BacSiChiDinhGUID = value.DocStaffGUID;
-					}
-					else
-					{
-						this._BacSiChiDinhGUID = default(System.Guid);
-					}
-					this.SendPropertyChanged("DocStaff");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Patient_ChiDinh", Storage="_Patient", ThisKey="BenhNhanGUID", OtherKey="PatientGUID", IsForeignKey=true)]
 		public Patient Patient
 		{
@@ -15918,6 +15152,40 @@ namespace MM.Databasae
 						this._BenhNhanGUID = default(System.Guid);
 					}
 					this.SendPropertyChanged("Patient");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_ChiDinh", Storage="_DocStaff", ThisKey="BacSiChiDinhGUID", OtherKey="DocStaffGUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public DocStaff DocStaff
+		{
+			get
+			{
+				return this._DocStaff.Entity;
+			}
+			set
+			{
+				DocStaff previousValue = this._DocStaff.Entity;
+				if (((previousValue != value) 
+							|| (this._DocStaff.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._DocStaff.Entity = null;
+						previousValue.ChiDinhs.Remove(this);
+					}
+					this._DocStaff.Entity = value;
+					if ((value != null))
+					{
+						value.ChiDinhs.Add(this);
+						this._BacSiChiDinhGUID = value.DocStaffGUID;
+					}
+					else
+					{
+						this._BacSiChiDinhGUID = default(System.Guid);
+					}
+					this.SendPropertyChanged("DocStaff");
 				}
 			}
 		}
@@ -16823,9 +16091,9 @@ namespace MM.Databasae
 		
 		private bool _HieuChinh;
 		
-		private EntityRef<DocStaff> _DocStaff;
-		
 		private EntityRef<Patient> _Patient;
+		
+		private EntityRef<DocStaff> _DocStaff;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -16879,8 +16147,8 @@ namespace MM.Databasae
 		
 		public CanDo()
 		{
-			this._DocStaff = default(EntityRef<DocStaff>);
 			this._Patient = default(EntityRef<Patient>);
+			this._DocStaff = default(EntityRef<DocStaff>);
 			OnCreated();
 		}
 		
@@ -17332,40 +16600,6 @@ namespace MM.Databasae
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_CanDo", Storage="_DocStaff", ThisKey="DocStaffGUID", OtherKey="DocStaffGUID", IsForeignKey=true)]
-		public DocStaff DocStaff
-		{
-			get
-			{
-				return this._DocStaff.Entity;
-			}
-			set
-			{
-				DocStaff previousValue = this._DocStaff.Entity;
-				if (((previousValue != value) 
-							|| (this._DocStaff.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._DocStaff.Entity = null;
-						previousValue.CanDos.Remove(this);
-					}
-					this._DocStaff.Entity = value;
-					if ((value != null))
-					{
-						value.CanDos.Add(this);
-						this._DocStaffGUID = value.DocStaffGUID;
-					}
-					else
-					{
-						this._DocStaffGUID = default(Nullable<System.Guid>);
-					}
-					this.SendPropertyChanged("DocStaff");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Patient_CanDo", Storage="_Patient", ThisKey="PatientGUID", OtherKey="PatientGUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public Patient Patient
 		{
@@ -17396,6 +16630,40 @@ namespace MM.Databasae
 						this._PatientGUID = default(System.Guid);
 					}
 					this.SendPropertyChanged("Patient");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_CanDo", Storage="_DocStaff", ThisKey="DocStaffGUID", OtherKey="DocStaffGUID", IsForeignKey=true)]
+		public DocStaff DocStaff
+		{
+			get
+			{
+				return this._DocStaff.Entity;
+			}
+			set
+			{
+				DocStaff previousValue = this._DocStaff.Entity;
+				if (((previousValue != value) 
+							|| (this._DocStaff.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._DocStaff.Entity = null;
+						previousValue.CanDos.Remove(this);
+					}
+					this._DocStaff.Entity = value;
+					if ((value != null))
+					{
+						value.CanDos.Add(this);
+						this._DocStaffGUID = value.DocStaffGUID;
+					}
+					else
+					{
+						this._DocStaffGUID = default(Nullable<System.Guid>);
+					}
+					this.SendPropertyChanged("DocStaff");
 				}
 			}
 		}
@@ -19904,11 +19172,11 @@ namespace MM.Databasae
 		
 		private byte _Status;
 		
-		private EntityRef<DocStaff> _DocStaff;
-		
 		private EntityRef<Symptom> _Symptom;
 		
 		private EntityRef<Patient> _Patient;
+		
+		private EntityRef<DocStaff> _DocStaff;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -19944,9 +19212,9 @@ namespace MM.Databasae
 		
 		public LoiKhuyen()
 		{
-			this._DocStaff = default(EntityRef<DocStaff>);
 			this._Symptom = default(EntityRef<Symptom>);
 			this._Patient = default(EntityRef<Patient>);
+			this._DocStaff = default(EntityRef<DocStaff>);
 			OnCreated();
 		}
 		
@@ -20222,40 +19490,6 @@ namespace MM.Databasae
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_LoiKhuyen", Storage="_DocStaff", ThisKey="DocStaffGUID", OtherKey="DocStaffGUID", IsForeignKey=true)]
-		public DocStaff DocStaff
-		{
-			get
-			{
-				return this._DocStaff.Entity;
-			}
-			set
-			{
-				DocStaff previousValue = this._DocStaff.Entity;
-				if (((previousValue != value) 
-							|| (this._DocStaff.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._DocStaff.Entity = null;
-						previousValue.LoiKhuyens.Remove(this);
-					}
-					this._DocStaff.Entity = value;
-					if ((value != null))
-					{
-						value.LoiKhuyens.Add(this);
-						this._DocStaffGUID = value.DocStaffGUID;
-					}
-					else
-					{
-						this._DocStaffGUID = default(System.Guid);
-					}
-					this.SendPropertyChanged("DocStaff");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Symptom_LoiKhuyen", Storage="_Symptom", ThisKey="SymptomGUID", OtherKey="SymptomGUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public Symptom Symptom
 		{
@@ -20320,6 +19554,40 @@ namespace MM.Databasae
 						this._PatientGUID = default(System.Guid);
 					}
 					this.SendPropertyChanged("Patient");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_LoiKhuyen", Storage="_DocStaff", ThisKey="DocStaffGUID", OtherKey="DocStaffGUID", IsForeignKey=true)]
+		public DocStaff DocStaff
+		{
+			get
+			{
+				return this._DocStaff.Entity;
+			}
+			set
+			{
+				DocStaff previousValue = this._DocStaff.Entity;
+				if (((previousValue != value) 
+							|| (this._DocStaff.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._DocStaff.Entity = null;
+						previousValue.LoiKhuyens.Remove(this);
+					}
+					this._DocStaff.Entity = value;
+					if ((value != null))
+					{
+						value.LoiKhuyens.Add(this);
+						this._DocStaffGUID = value.DocStaffGUID;
+					}
+					else
+					{
+						this._DocStaffGUID = default(System.Guid);
+					}
+					this.SendPropertyChanged("DocStaff");
 				}
 			}
 		}
@@ -21949,9 +21217,9 @@ namespace MM.Databasae
 		
 		private byte _Status;
 		
-		private EntityRef<DocStaff> _DocStaff;
-		
 		private EntityRef<Patient> _Patient;
+		
+		private EntityRef<DocStaff> _DocStaff;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -21995,8 +21263,8 @@ namespace MM.Databasae
 		
 		public KetLuan()
 		{
-			this._DocStaff = default(EntityRef<DocStaff>);
 			this._Patient = default(EntityRef<Patient>);
+			this._DocStaff = default(EntityRef<DocStaff>);
 			OnCreated();
 		}
 		
@@ -22348,40 +21616,6 @@ namespace MM.Databasae
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_KetLuan", Storage="_DocStaff", ThisKey="DocStaffGUID", OtherKey="DocStaffGUID", IsForeignKey=true)]
-		public DocStaff DocStaff
-		{
-			get
-			{
-				return this._DocStaff.Entity;
-			}
-			set
-			{
-				DocStaff previousValue = this._DocStaff.Entity;
-				if (((previousValue != value) 
-							|| (this._DocStaff.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._DocStaff.Entity = null;
-						previousValue.KetLuans.Remove(this);
-					}
-					this._DocStaff.Entity = value;
-					if ((value != null))
-					{
-						value.KetLuans.Add(this);
-						this._DocStaffGUID = value.DocStaffGUID;
-					}
-					else
-					{
-						this._DocStaffGUID = default(System.Guid);
-					}
-					this.SendPropertyChanged("DocStaff");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Patient_KetLuan", Storage="_Patient", ThisKey="PatientGUID", OtherKey="PatientGUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public Patient Patient
 		{
@@ -22412,6 +21646,40 @@ namespace MM.Databasae
 						this._PatientGUID = default(System.Guid);
 					}
 					this.SendPropertyChanged("Patient");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_KetLuan", Storage="_DocStaff", ThisKey="DocStaffGUID", OtherKey="DocStaffGUID", IsForeignKey=true)]
+		public DocStaff DocStaff
+		{
+			get
+			{
+				return this._DocStaff.Entity;
+			}
+			set
+			{
+				DocStaff previousValue = this._DocStaff.Entity;
+				if (((previousValue != value) 
+							|| (this._DocStaff.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._DocStaff.Entity = null;
+						previousValue.KetLuans.Remove(this);
+					}
+					this._DocStaff.Entity = value;
+					if ((value != null))
+					{
+						value.KetLuans.Add(this);
+						this._DocStaffGUID = value.DocStaffGUID;
+					}
+					else
+					{
+						this._DocStaffGUID = default(System.Guid);
+					}
+					this.SendPropertyChanged("DocStaff");
 				}
 			}
 		}
@@ -23869,9 +23137,9 @@ namespace MM.Databasae
 		
 		private byte _Status;
 		
-		private EntityRef<DocStaff> _DocStaff;
-		
 		private EntityRef<Patient> _Patient;
+		
+		private EntityRef<DocStaff> _DocStaff;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -23919,8 +23187,8 @@ namespace MM.Databasae
 		
 		public KetQuaLamSang()
 		{
-			this._DocStaff = default(EntityRef<DocStaff>);
 			this._Patient = default(EntityRef<Patient>);
+			this._DocStaff = default(EntityRef<DocStaff>);
 			OnCreated();
 		}
 		
@@ -24312,40 +23580,6 @@ namespace MM.Databasae
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_KetQuaLamSang", Storage="_DocStaff", ThisKey="DocStaffGUID", OtherKey="DocStaffGUID", IsForeignKey=true)]
-		public DocStaff DocStaff
-		{
-			get
-			{
-				return this._DocStaff.Entity;
-			}
-			set
-			{
-				DocStaff previousValue = this._DocStaff.Entity;
-				if (((previousValue != value) 
-							|| (this._DocStaff.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._DocStaff.Entity = null;
-						previousValue.KetQuaLamSangs.Remove(this);
-					}
-					this._DocStaff.Entity = value;
-					if ((value != null))
-					{
-						value.KetQuaLamSangs.Add(this);
-						this._DocStaffGUID = value.DocStaffGUID;
-					}
-					else
-					{
-						this._DocStaffGUID = default(System.Guid);
-					}
-					this.SendPropertyChanged("DocStaff");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Patient_KetQuaLamSang", Storage="_Patient", ThisKey="PatientGUID", OtherKey="PatientGUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public Patient Patient
 		{
@@ -24376,6 +23610,40 @@ namespace MM.Databasae
 						this._PatientGUID = default(System.Guid);
 					}
 					this.SendPropertyChanged("Patient");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_KetQuaLamSang", Storage="_DocStaff", ThisKey="DocStaffGUID", OtherKey="DocStaffGUID", IsForeignKey=true)]
+		public DocStaff DocStaff
+		{
+			get
+			{
+				return this._DocStaff.Entity;
+			}
+			set
+			{
+				DocStaff previousValue = this._DocStaff.Entity;
+				if (((previousValue != value) 
+							|| (this._DocStaff.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._DocStaff.Entity = null;
+						previousValue.KetQuaLamSangs.Remove(this);
+					}
+					this._DocStaff.Entity = value;
+					if ((value != null))
+					{
+						value.KetQuaLamSangs.Add(this);
+						this._DocStaffGUID = value.DocStaffGUID;
+					}
+					else
+					{
+						this._DocStaffGUID = default(System.Guid);
+					}
+					this.SendPropertyChanged("DocStaff");
 				}
 			}
 		}
@@ -26650,9 +25918,9 @@ namespace MM.Databasae
 		
 		private byte _Status;
 		
-		private EntityRef<DocStaff> _DocStaff;
-		
 		private EntityRef<Patient> _Patient;
+		
+		private EntityRef<DocStaff> _DocStaff;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -26790,8 +26058,8 @@ namespace MM.Databasae
 		
 		public KetQuaNoiSoi()
 		{
-			this._DocStaff = default(EntityRef<DocStaff>);
 			this._Patient = default(EntityRef<Patient>);
+			this._DocStaff = default(EntityRef<DocStaff>);
 			OnCreated();
 		}
 		
@@ -28083,40 +27351,6 @@ namespace MM.Databasae
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_KetQuaNoiSoi", Storage="_DocStaff", ThisKey="BacSiSoi", OtherKey="DocStaffGUID", IsForeignKey=true)]
-		public DocStaff DocStaff
-		{
-			get
-			{
-				return this._DocStaff.Entity;
-			}
-			set
-			{
-				DocStaff previousValue = this._DocStaff.Entity;
-				if (((previousValue != value) 
-							|| (this._DocStaff.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._DocStaff.Entity = null;
-						previousValue.KetQuaNoiSois.Remove(this);
-					}
-					this._DocStaff.Entity = value;
-					if ((value != null))
-					{
-						value.KetQuaNoiSois.Add(this);
-						this._BacSiSoi = value.DocStaffGUID;
-					}
-					else
-					{
-						this._BacSiSoi = default(System.Guid);
-					}
-					this.SendPropertyChanged("DocStaff");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Patient_KetQuaNoiSoi", Storage="_Patient", ThisKey="PatientGUID", OtherKey="PatientGUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public Patient Patient
 		{
@@ -28147,6 +27381,40 @@ namespace MM.Databasae
 						this._PatientGUID = default(System.Guid);
 					}
 					this.SendPropertyChanged("Patient");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_KetQuaNoiSoi", Storage="_DocStaff", ThisKey="BacSiSoi", OtherKey="DocStaffGUID", IsForeignKey=true)]
+		public DocStaff DocStaff
+		{
+			get
+			{
+				return this._DocStaff.Entity;
+			}
+			set
+			{
+				DocStaff previousValue = this._DocStaff.Entity;
+				if (((previousValue != value) 
+							|| (this._DocStaff.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._DocStaff.Entity = null;
+						previousValue.KetQuaNoiSois.Remove(this);
+					}
+					this._DocStaff.Entity = value;
+					if ((value != null))
+					{
+						value.KetQuaNoiSois.Add(this);
+						this._BacSiSoi = value.DocStaffGUID;
+					}
+					else
+					{
+						this._BacSiSoi = default(System.Guid);
+					}
+					this.SendPropertyChanged("DocStaff");
 				}
 			}
 		}
@@ -35166,11 +34434,11 @@ namespace MM.Databasae
 		
 		private EntitySet<DichVuChiDinh> _DichVuChiDinhs;
 		
-		private EntityRef<DocStaff> _DocStaff;
-		
 		private EntityRef<Service> _Service;
 		
 		private EntityRef<Patient> _Patient;
+		
+		private EntityRef<DocStaff> _DocStaff;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -35230,9 +34498,9 @@ namespace MM.Databasae
 		{
 			this._ReceiptDetails = new EntitySet<ReceiptDetail>(new Action<ReceiptDetail>(this.attach_ReceiptDetails), new Action<ReceiptDetail>(this.detach_ReceiptDetails));
 			this._DichVuChiDinhs = new EntitySet<DichVuChiDinh>(new Action<DichVuChiDinh>(this.attach_DichVuChiDinhs), new Action<DichVuChiDinh>(this.detach_DichVuChiDinhs));
-			this._DocStaff = default(EntityRef<DocStaff>);
 			this._Service = default(EntityRef<Service>);
 			this._Patient = default(EntityRef<Patient>);
+			this._DocStaff = default(EntityRef<DocStaff>);
 			OnCreated();
 		}
 		
@@ -35754,40 +35022,6 @@ namespace MM.Databasae
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_ServiceHistory", Storage="_DocStaff", ThisKey="DocStaffGUID", OtherKey="DocStaffGUID", IsForeignKey=true)]
-		public DocStaff DocStaff
-		{
-			get
-			{
-				return this._DocStaff.Entity;
-			}
-			set
-			{
-				DocStaff previousValue = this._DocStaff.Entity;
-				if (((previousValue != value) 
-							|| (this._DocStaff.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._DocStaff.Entity = null;
-						previousValue.ServiceHistories.Remove(this);
-					}
-					this._DocStaff.Entity = value;
-					if ((value != null))
-					{
-						value.ServiceHistories.Add(this);
-						this._DocStaffGUID = value.DocStaffGUID;
-					}
-					else
-					{
-						this._DocStaffGUID = default(Nullable<System.Guid>);
-					}
-					this.SendPropertyChanged("DocStaff");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Service_ServiceHistory", Storage="_Service", ThisKey="ServiceGUID", OtherKey="ServiceGUID", IsForeignKey=true, DeleteRule="CASCADE")]
 		public Service Service
 		{
@@ -35852,6 +35086,40 @@ namespace MM.Databasae
 						this._PatientGUID = default(Nullable<System.Guid>);
 					}
 					this.SendPropertyChanged("Patient");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_ServiceHistory", Storage="_DocStaff", ThisKey="DocStaffGUID", OtherKey="DocStaffGUID", IsForeignKey=true)]
+		public DocStaff DocStaff
+		{
+			get
+			{
+				return this._DocStaff.Entity;
+			}
+			set
+			{
+				DocStaff previousValue = this._DocStaff.Entity;
+				if (((previousValue != value) 
+							|| (this._DocStaff.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._DocStaff.Entity = null;
+						previousValue.ServiceHistories.Remove(this);
+					}
+					this._DocStaff.Entity = value;
+					if ((value != null))
+					{
+						value.ServiceHistories.Add(this);
+						this._DocStaffGUID = value.DocStaffGUID;
+					}
+					else
+					{
+						this._DocStaffGUID = default(Nullable<System.Guid>);
+					}
+					this.SendPropertyChanged("DocStaff");
 				}
 			}
 		}
@@ -36448,9 +35716,9 @@ namespace MM.Databasae
 		
 		private byte _Status;
 		
-		private EntityRef<DocStaff> _DocStaff;
-		
 		private EntityRef<Patient> _Patient;
+		
+		private EntityRef<DocStaff> _DocStaff;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -36506,8 +35774,8 @@ namespace MM.Databasae
 		
 		public KetQuaSoiCTC()
 		{
-			this._DocStaff = default(EntityRef<DocStaff>);
 			this._Patient = default(EntityRef<Patient>);
+			this._DocStaff = default(EntityRef<DocStaff>);
 			OnCreated();
 		}
 		
@@ -36979,40 +36247,6 @@ namespace MM.Databasae
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_KetQuaSoiCTC", Storage="_DocStaff", ThisKey="BacSiSoi", OtherKey="DocStaffGUID", IsForeignKey=true)]
-		public DocStaff DocStaff
-		{
-			get
-			{
-				return this._DocStaff.Entity;
-			}
-			set
-			{
-				DocStaff previousValue = this._DocStaff.Entity;
-				if (((previousValue != value) 
-							|| (this._DocStaff.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._DocStaff.Entity = null;
-						previousValue.KetQuaSoiCTCs.Remove(this);
-					}
-					this._DocStaff.Entity = value;
-					if ((value != null))
-					{
-						value.KetQuaSoiCTCs.Add(this);
-						this._BacSiSoi = value.DocStaffGUID;
-					}
-					else
-					{
-						this._BacSiSoi = default(System.Guid);
-					}
-					this.SendPropertyChanged("DocStaff");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Patient_KetQuaSoiCTC", Storage="_Patient", ThisKey="PatientGUID", OtherKey="PatientGUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public Patient Patient
 		{
@@ -37043,6 +36277,40 @@ namespace MM.Databasae
 						this._PatientGUID = default(System.Guid);
 					}
 					this.SendPropertyChanged("Patient");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_KetQuaSoiCTC", Storage="_DocStaff", ThisKey="BacSiSoi", OtherKey="DocStaffGUID", IsForeignKey=true)]
+		public DocStaff DocStaff
+		{
+			get
+			{
+				return this._DocStaff.Entity;
+			}
+			set
+			{
+				DocStaff previousValue = this._DocStaff.Entity;
+				if (((previousValue != value) 
+							|| (this._DocStaff.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._DocStaff.Entity = null;
+						previousValue.KetQuaSoiCTCs.Remove(this);
+					}
+					this._DocStaff.Entity = value;
+					if ((value != null))
+					{
+						value.KetQuaSoiCTCs.Add(this);
+						this._BacSiSoi = value.DocStaffGUID;
+					}
+					else
+					{
+						this._BacSiSoi = default(System.Guid);
+					}
+					this.SendPropertyChanged("DocStaff");
 				}
 			}
 		}
@@ -54896,11 +54164,11 @@ namespace MM.Databasae
 		
 		private byte _Status;
 		
-		private EntityRef<DocStaff> _DocStaff;
-		
 		private EntityRef<LoaiSieuAm> _LoaiSieuAm;
 		
 		private EntityRef<Patient> _Patient;
+		
+		private EntityRef<DocStaff> _DocStaff;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -54944,9 +54212,9 @@ namespace MM.Databasae
 		
 		public KetQuaSieuAm()
 		{
-			this._DocStaff = default(EntityRef<DocStaff>);
 			this._LoaiSieuAm = default(EntityRef<LoaiSieuAm>);
 			this._Patient = default(EntityRef<Patient>);
+			this._DocStaff = default(EntityRef<DocStaff>);
 			OnCreated();
 		}
 		
@@ -55302,40 +54570,6 @@ namespace MM.Databasae
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_KetQuaSieuAm", Storage="_DocStaff", ThisKey="BacSiSieuAmGUID", OtherKey="DocStaffGUID", IsForeignKey=true)]
-		public DocStaff DocStaff
-		{
-			get
-			{
-				return this._DocStaff.Entity;
-			}
-			set
-			{
-				DocStaff previousValue = this._DocStaff.Entity;
-				if (((previousValue != value) 
-							|| (this._DocStaff.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._DocStaff.Entity = null;
-						previousValue.KetQuaSieuAms.Remove(this);
-					}
-					this._DocStaff.Entity = value;
-					if ((value != null))
-					{
-						value.KetQuaSieuAms.Add(this);
-						this._BacSiSieuAmGUID = value.DocStaffGUID;
-					}
-					else
-					{
-						this._BacSiSieuAmGUID = default(System.Guid);
-					}
-					this.SendPropertyChanged("DocStaff");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="LoaiSieuAm_KetQuaSieuAm", Storage="_LoaiSieuAm", ThisKey="LoaiSieuAmGUID", OtherKey="LoaiSieuAmGUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public LoaiSieuAm LoaiSieuAm
 		{
@@ -55400,6 +54634,40 @@ namespace MM.Databasae
 						this._PatientGUID = default(Nullable<System.Guid>);
 					}
 					this.SendPropertyChanged("Patient");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_KetQuaSieuAm", Storage="_DocStaff", ThisKey="BacSiSieuAmGUID", OtherKey="DocStaffGUID", IsForeignKey=true)]
+		public DocStaff DocStaff
+		{
+			get
+			{
+				return this._DocStaff.Entity;
+			}
+			set
+			{
+				DocStaff previousValue = this._DocStaff.Entity;
+				if (((previousValue != value) 
+							|| (this._DocStaff.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._DocStaff.Entity = null;
+						previousValue.KetQuaSieuAms.Remove(this);
+					}
+					this._DocStaff.Entity = value;
+					if ((value != null))
+					{
+						value.KetQuaSieuAms.Add(this);
+						this._BacSiSieuAmGUID = value.DocStaffGUID;
+					}
+					else
+					{
+						this._BacSiSieuAmGUID = default(System.Guid);
+					}
+					this.SendPropertyChanged("DocStaff");
 				}
 			}
 		}
@@ -68779,11 +68047,11 @@ namespace MM.Databasae
 		
 		private byte _Status;
 		
-		private EntityRef<DocStaff> _DocStaff;
-		
 		private EntityRef<Patient> _Patient;
 		
 		private EntityRef<Service> _Service;
+		
+		private EntityRef<DocStaff> _DocStaff;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
@@ -68829,9 +68097,9 @@ namespace MM.Databasae
 		
 		public KetQuaCanLamSang()
 		{
-			this._DocStaff = default(EntityRef<DocStaff>);
 			this._Patient = default(EntityRef<Patient>);
 			this._Service = default(EntityRef<Service>);
+			this._DocStaff = default(EntityRef<DocStaff>);
 			OnCreated();
 		}
 		
@@ -69207,40 +68475,6 @@ namespace MM.Databasae
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_KetQuaCanLamSang", Storage="_DocStaff", ThisKey="BacSiThucHienGUID", OtherKey="DocStaffGUID", IsForeignKey=true)]
-		public DocStaff DocStaff
-		{
-			get
-			{
-				return this._DocStaff.Entity;
-			}
-			set
-			{
-				DocStaff previousValue = this._DocStaff.Entity;
-				if (((previousValue != value) 
-							|| (this._DocStaff.HasLoadedOrAssignedValue == false)))
-				{
-					this.SendPropertyChanging();
-					if ((previousValue != null))
-					{
-						this._DocStaff.Entity = null;
-						previousValue.KetQuaCanLamSangs.Remove(this);
-					}
-					this._DocStaff.Entity = value;
-					if ((value != null))
-					{
-						value.KetQuaCanLamSangs.Add(this);
-						this._BacSiThucHienGUID = value.DocStaffGUID;
-					}
-					else
-					{
-						this._BacSiThucHienGUID = default(Nullable<System.Guid>);
-					}
-					this.SendPropertyChanged("DocStaff");
-				}
-			}
-		}
-		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Patient_KetQuaCanLamSang", Storage="_Patient", ThisKey="PatientGUID", OtherKey="PatientGUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public Patient Patient
 		{
@@ -69305,6 +68539,40 @@ namespace MM.Databasae
 						this._ServiceGUID = default(System.Guid);
 					}
 					this.SendPropertyChanged("Service");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_KetQuaCanLamSang", Storage="_DocStaff", ThisKey="BacSiThucHienGUID", OtherKey="DocStaffGUID", IsForeignKey=true)]
+		public DocStaff DocStaff
+		{
+			get
+			{
+				return this._DocStaff.Entity;
+			}
+			set
+			{
+				DocStaff previousValue = this._DocStaff.Entity;
+				if (((previousValue != value) 
+							|| (this._DocStaff.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._DocStaff.Entity = null;
+						previousValue.KetQuaCanLamSangs.Remove(this);
+					}
+					this._DocStaff.Entity = value;
+					if ((value != null))
+					{
+						value.KetQuaCanLamSangs.Add(this);
+						this._BacSiThucHienGUID = value.DocStaffGUID;
+					}
+					else
+					{
+						this._BacSiThucHienGUID = default(Nullable<System.Guid>);
+					}
+					this.SendPropertyChanged("DocStaff");
 				}
 			}
 		}
@@ -76751,6 +76019,762 @@ namespace MM.Databasae
 					this._DatCoc = value;
 				}
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DocStaff")]
+	public partial class DocStaff : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _DocStaffGUID;
+		
+		private System.Guid _ContactGUID;
+		
+		private System.Guid _SpecialityGUID;
+		
+		private string _PrescriberNum;
+		
+		private string _Qualifications;
+		
+		private System.Nullable<bool> _AvailableToWork;
+		
+		private System.Nullable<byte> _WorkType;
+		
+		private System.Nullable<byte> _StaffType;
+		
+		private System.Data.Linq.Binary _ChuKy;
+		
+		private EntitySet<Logon> _Logons;
+		
+		private EntitySet<ToaThuoc> _ToaThuocs;
+		
+		private EntitySet<ChiDinh> _ChiDinhs;
+		
+		private EntitySet<CanDo> _CanDos;
+		
+		private EntitySet<LoiKhuyen> _LoiKhuyens;
+		
+		private EntitySet<KetLuan> _KetLuans;
+		
+		private EntitySet<KetQuaLamSang> _KetQuaLamSangs;
+		
+		private EntitySet<KetQuaNoiSoi> _KetQuaNoiSois;
+		
+		private EntitySet<ServiceHistory> _ServiceHistories;
+		
+		private EntitySet<KetQuaSoiCTC> _KetQuaSoiCTCs;
+		
+		private EntitySet<NhatKyLienHeCongTy> _NhatKyLienHeCongTies;
+		
+		private EntitySet<KetQuaSieuAm> _KetQuaSieuAms;
+		
+		private EntitySet<CongTacNgoaiGio> _CongTacNgoaiGios;
+		
+		private EntitySet<KetQuaCanLamSang> _KetQuaCanLamSangs;
+		
+		private EntitySet<ToaCapCuu> _ToaCapCuus;
+		
+		private EntityRef<Contact> _Contact;
+		
+		private EntityRef<Speciality> _Speciality;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnDocStaffGUIDChanging(System.Guid value);
+    partial void OnDocStaffGUIDChanged();
+    partial void OnContactGUIDChanging(System.Guid value);
+    partial void OnContactGUIDChanged();
+    partial void OnSpecialityGUIDChanging(System.Guid value);
+    partial void OnSpecialityGUIDChanged();
+    partial void OnPrescriberNumChanging(string value);
+    partial void OnPrescriberNumChanged();
+    partial void OnQualificationsChanging(string value);
+    partial void OnQualificationsChanged();
+    partial void OnAvailableToWorkChanging(System.Nullable<bool> value);
+    partial void OnAvailableToWorkChanged();
+    partial void OnWorkTypeChanging(System.Nullable<byte> value);
+    partial void OnWorkTypeChanged();
+    partial void OnStaffTypeChanging(System.Nullable<byte> value);
+    partial void OnStaffTypeChanged();
+    partial void OnChuKyChanging(System.Data.Linq.Binary value);
+    partial void OnChuKyChanged();
+    #endregion
+		
+		public DocStaff()
+		{
+			this._Logons = new EntitySet<Logon>(new Action<Logon>(this.attach_Logons), new Action<Logon>(this.detach_Logons));
+			this._ToaThuocs = new EntitySet<ToaThuoc>(new Action<ToaThuoc>(this.attach_ToaThuocs), new Action<ToaThuoc>(this.detach_ToaThuocs));
+			this._ChiDinhs = new EntitySet<ChiDinh>(new Action<ChiDinh>(this.attach_ChiDinhs), new Action<ChiDinh>(this.detach_ChiDinhs));
+			this._CanDos = new EntitySet<CanDo>(new Action<CanDo>(this.attach_CanDos), new Action<CanDo>(this.detach_CanDos));
+			this._LoiKhuyens = new EntitySet<LoiKhuyen>(new Action<LoiKhuyen>(this.attach_LoiKhuyens), new Action<LoiKhuyen>(this.detach_LoiKhuyens));
+			this._KetLuans = new EntitySet<KetLuan>(new Action<KetLuan>(this.attach_KetLuans), new Action<KetLuan>(this.detach_KetLuans));
+			this._KetQuaLamSangs = new EntitySet<KetQuaLamSang>(new Action<KetQuaLamSang>(this.attach_KetQuaLamSangs), new Action<KetQuaLamSang>(this.detach_KetQuaLamSangs));
+			this._KetQuaNoiSois = new EntitySet<KetQuaNoiSoi>(new Action<KetQuaNoiSoi>(this.attach_KetQuaNoiSois), new Action<KetQuaNoiSoi>(this.detach_KetQuaNoiSois));
+			this._ServiceHistories = new EntitySet<ServiceHistory>(new Action<ServiceHistory>(this.attach_ServiceHistories), new Action<ServiceHistory>(this.detach_ServiceHistories));
+			this._KetQuaSoiCTCs = new EntitySet<KetQuaSoiCTC>(new Action<KetQuaSoiCTC>(this.attach_KetQuaSoiCTCs), new Action<KetQuaSoiCTC>(this.detach_KetQuaSoiCTCs));
+			this._NhatKyLienHeCongTies = new EntitySet<NhatKyLienHeCongTy>(new Action<NhatKyLienHeCongTy>(this.attach_NhatKyLienHeCongTies), new Action<NhatKyLienHeCongTy>(this.detach_NhatKyLienHeCongTies));
+			this._KetQuaSieuAms = new EntitySet<KetQuaSieuAm>(new Action<KetQuaSieuAm>(this.attach_KetQuaSieuAms), new Action<KetQuaSieuAm>(this.detach_KetQuaSieuAms));
+			this._CongTacNgoaiGios = new EntitySet<CongTacNgoaiGio>(new Action<CongTacNgoaiGio>(this.attach_CongTacNgoaiGios), new Action<CongTacNgoaiGio>(this.detach_CongTacNgoaiGios));
+			this._KetQuaCanLamSangs = new EntitySet<KetQuaCanLamSang>(new Action<KetQuaCanLamSang>(this.attach_KetQuaCanLamSangs), new Action<KetQuaCanLamSang>(this.detach_KetQuaCanLamSangs));
+			this._ToaCapCuus = new EntitySet<ToaCapCuu>(new Action<ToaCapCuu>(this.attach_ToaCapCuus), new Action<ToaCapCuu>(this.detach_ToaCapCuus));
+			this._Contact = default(EntityRef<Contact>);
+			this._Speciality = default(EntityRef<Speciality>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DocStaffGUID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid DocStaffGUID
+		{
+			get
+			{
+				return this._DocStaffGUID;
+			}
+			set
+			{
+				if ((this._DocStaffGUID != value))
+				{
+					this.OnDocStaffGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._DocStaffGUID = value;
+					this.SendPropertyChanged("DocStaffGUID");
+					this.OnDocStaffGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ContactGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid ContactGUID
+		{
+			get
+			{
+				return this._ContactGUID;
+			}
+			set
+			{
+				if ((this._ContactGUID != value))
+				{
+					if (this._Contact.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnContactGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._ContactGUID = value;
+					this.SendPropertyChanged("ContactGUID");
+					this.OnContactGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SpecialityGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid SpecialityGUID
+		{
+			get
+			{
+				return this._SpecialityGUID;
+			}
+			set
+			{
+				if ((this._SpecialityGUID != value))
+				{
+					if (this._Speciality.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnSpecialityGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._SpecialityGUID = value;
+					this.SendPropertyChanged("SpecialityGUID");
+					this.OnSpecialityGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PrescriberNum", DbType="NVarChar(255)")]
+		public string PrescriberNum
+		{
+			get
+			{
+				return this._PrescriberNum;
+			}
+			set
+			{
+				if ((this._PrescriberNum != value))
+				{
+					this.OnPrescriberNumChanging(value);
+					this.SendPropertyChanging();
+					this._PrescriberNum = value;
+					this.SendPropertyChanged("PrescriberNum");
+					this.OnPrescriberNumChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Qualifications", DbType="NVarChar(255)")]
+		public string Qualifications
+		{
+			get
+			{
+				return this._Qualifications;
+			}
+			set
+			{
+				if ((this._Qualifications != value))
+				{
+					this.OnQualificationsChanging(value);
+					this.SendPropertyChanging();
+					this._Qualifications = value;
+					this.SendPropertyChanged("Qualifications");
+					this.OnQualificationsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AvailableToWork", DbType="Bit")]
+		public System.Nullable<bool> AvailableToWork
+		{
+			get
+			{
+				return this._AvailableToWork;
+			}
+			set
+			{
+				if ((this._AvailableToWork != value))
+				{
+					this.OnAvailableToWorkChanging(value);
+					this.SendPropertyChanging();
+					this._AvailableToWork = value;
+					this.SendPropertyChanged("AvailableToWork");
+					this.OnAvailableToWorkChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_WorkType", DbType="TinyInt")]
+		public System.Nullable<byte> WorkType
+		{
+			get
+			{
+				return this._WorkType;
+			}
+			set
+			{
+				if ((this._WorkType != value))
+				{
+					this.OnWorkTypeChanging(value);
+					this.SendPropertyChanging();
+					this._WorkType = value;
+					this.SendPropertyChanged("WorkType");
+					this.OnWorkTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_StaffType", DbType="TinyInt")]
+		public System.Nullable<byte> StaffType
+		{
+			get
+			{
+				return this._StaffType;
+			}
+			set
+			{
+				if ((this._StaffType != value))
+				{
+					this.OnStaffTypeChanging(value);
+					this.SendPropertyChanging();
+					this._StaffType = value;
+					this.SendPropertyChanged("StaffType");
+					this.OnStaffTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChuKy", DbType="Image", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary ChuKy
+		{
+			get
+			{
+				return this._ChuKy;
+			}
+			set
+			{
+				if ((this._ChuKy != value))
+				{
+					this.OnChuKyChanging(value);
+					this.SendPropertyChanging();
+					this._ChuKy = value;
+					this.SendPropertyChanged("ChuKy");
+					this.OnChuKyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_Logon", Storage="_Logons", ThisKey="DocStaffGUID", OtherKey="DocStaffGUID")]
+		public EntitySet<Logon> Logons
+		{
+			get
+			{
+				return this._Logons;
+			}
+			set
+			{
+				this._Logons.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_ToaThuoc", Storage="_ToaThuocs", ThisKey="DocStaffGUID", OtherKey="BacSiKeToa")]
+		public EntitySet<ToaThuoc> ToaThuocs
+		{
+			get
+			{
+				return this._ToaThuocs;
+			}
+			set
+			{
+				this._ToaThuocs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_ChiDinh", Storage="_ChiDinhs", ThisKey="DocStaffGUID", OtherKey="BacSiChiDinhGUID")]
+		public EntitySet<ChiDinh> ChiDinhs
+		{
+			get
+			{
+				return this._ChiDinhs;
+			}
+			set
+			{
+				this._ChiDinhs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_CanDo", Storage="_CanDos", ThisKey="DocStaffGUID", OtherKey="DocStaffGUID")]
+		public EntitySet<CanDo> CanDos
+		{
+			get
+			{
+				return this._CanDos;
+			}
+			set
+			{
+				this._CanDos.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_LoiKhuyen", Storage="_LoiKhuyens", ThisKey="DocStaffGUID", OtherKey="DocStaffGUID")]
+		public EntitySet<LoiKhuyen> LoiKhuyens
+		{
+			get
+			{
+				return this._LoiKhuyens;
+			}
+			set
+			{
+				this._LoiKhuyens.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_KetLuan", Storage="_KetLuans", ThisKey="DocStaffGUID", OtherKey="DocStaffGUID")]
+		public EntitySet<KetLuan> KetLuans
+		{
+			get
+			{
+				return this._KetLuans;
+			}
+			set
+			{
+				this._KetLuans.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_KetQuaLamSang", Storage="_KetQuaLamSangs", ThisKey="DocStaffGUID", OtherKey="DocStaffGUID")]
+		public EntitySet<KetQuaLamSang> KetQuaLamSangs
+		{
+			get
+			{
+				return this._KetQuaLamSangs;
+			}
+			set
+			{
+				this._KetQuaLamSangs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_KetQuaNoiSoi", Storage="_KetQuaNoiSois", ThisKey="DocStaffGUID", OtherKey="BacSiSoi")]
+		public EntitySet<KetQuaNoiSoi> KetQuaNoiSois
+		{
+			get
+			{
+				return this._KetQuaNoiSois;
+			}
+			set
+			{
+				this._KetQuaNoiSois.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_ServiceHistory", Storage="_ServiceHistories", ThisKey="DocStaffGUID", OtherKey="DocStaffGUID")]
+		public EntitySet<ServiceHistory> ServiceHistories
+		{
+			get
+			{
+				return this._ServiceHistories;
+			}
+			set
+			{
+				this._ServiceHistories.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_KetQuaSoiCTC", Storage="_KetQuaSoiCTCs", ThisKey="DocStaffGUID", OtherKey="BacSiSoi")]
+		public EntitySet<KetQuaSoiCTC> KetQuaSoiCTCs
+		{
+			get
+			{
+				return this._KetQuaSoiCTCs;
+			}
+			set
+			{
+				this._KetQuaSoiCTCs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_NhatKyLienHeCongTy", Storage="_NhatKyLienHeCongTies", ThisKey="DocStaffGUID", OtherKey="DocStaffGUID")]
+		public EntitySet<NhatKyLienHeCongTy> NhatKyLienHeCongTies
+		{
+			get
+			{
+				return this._NhatKyLienHeCongTies;
+			}
+			set
+			{
+				this._NhatKyLienHeCongTies.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_KetQuaSieuAm", Storage="_KetQuaSieuAms", ThisKey="DocStaffGUID", OtherKey="BacSiSieuAmGUID")]
+		public EntitySet<KetQuaSieuAm> KetQuaSieuAms
+		{
+			get
+			{
+				return this._KetQuaSieuAms;
+			}
+			set
+			{
+				this._KetQuaSieuAms.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_CongTacNgoaiGio", Storage="_CongTacNgoaiGios", ThisKey="DocStaffGUID", OtherKey="NguoiDeXuatGUID")]
+		public EntitySet<CongTacNgoaiGio> CongTacNgoaiGios
+		{
+			get
+			{
+				return this._CongTacNgoaiGios;
+			}
+			set
+			{
+				this._CongTacNgoaiGios.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_KetQuaCanLamSang", Storage="_KetQuaCanLamSangs", ThisKey="DocStaffGUID", OtherKey="BacSiThucHienGUID")]
+		public EntitySet<KetQuaCanLamSang> KetQuaCanLamSangs
+		{
+			get
+			{
+				return this._KetQuaCanLamSangs;
+			}
+			set
+			{
+				this._KetQuaCanLamSangs.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="DocStaff_ToaCapCuu", Storage="_ToaCapCuus", ThisKey="DocStaffGUID", OtherKey="BacSiKeToaGUID")]
+		public EntitySet<ToaCapCuu> ToaCapCuus
+		{
+			get
+			{
+				return this._ToaCapCuus;
+			}
+			set
+			{
+				this._ToaCapCuus.Assign(value);
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Contact_DocStaff", Storage="_Contact", ThisKey="ContactGUID", OtherKey="ContactGUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public Contact Contact
+		{
+			get
+			{
+				return this._Contact.Entity;
+			}
+			set
+			{
+				Contact previousValue = this._Contact.Entity;
+				if (((previousValue != value) 
+							|| (this._Contact.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Contact.Entity = null;
+						previousValue.DocStaffs.Remove(this);
+					}
+					this._Contact.Entity = value;
+					if ((value != null))
+					{
+						value.DocStaffs.Add(this);
+						this._ContactGUID = value.ContactGUID;
+					}
+					else
+					{
+						this._ContactGUID = default(System.Guid);
+					}
+					this.SendPropertyChanged("Contact");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Speciality_DocStaff", Storage="_Speciality", ThisKey="SpecialityGUID", OtherKey="SpecialityGUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public Speciality Speciality
+		{
+			get
+			{
+				return this._Speciality.Entity;
+			}
+			set
+			{
+				Speciality previousValue = this._Speciality.Entity;
+				if (((previousValue != value) 
+							|| (this._Speciality.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Speciality.Entity = null;
+						previousValue.DocStaffs.Remove(this);
+					}
+					this._Speciality.Entity = value;
+					if ((value != null))
+					{
+						value.DocStaffs.Add(this);
+						this._SpecialityGUID = value.SpecialityGUID;
+					}
+					else
+					{
+						this._SpecialityGUID = default(System.Guid);
+					}
+					this.SendPropertyChanged("Speciality");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_Logons(Logon entity)
+		{
+			this.SendPropertyChanging();
+			entity.DocStaff = this;
+		}
+		
+		private void detach_Logons(Logon entity)
+		{
+			this.SendPropertyChanging();
+			entity.DocStaff = null;
+		}
+		
+		private void attach_ToaThuocs(ToaThuoc entity)
+		{
+			this.SendPropertyChanging();
+			entity.DocStaff = this;
+		}
+		
+		private void detach_ToaThuocs(ToaThuoc entity)
+		{
+			this.SendPropertyChanging();
+			entity.DocStaff = null;
+		}
+		
+		private void attach_ChiDinhs(ChiDinh entity)
+		{
+			this.SendPropertyChanging();
+			entity.DocStaff = this;
+		}
+		
+		private void detach_ChiDinhs(ChiDinh entity)
+		{
+			this.SendPropertyChanging();
+			entity.DocStaff = null;
+		}
+		
+		private void attach_CanDos(CanDo entity)
+		{
+			this.SendPropertyChanging();
+			entity.DocStaff = this;
+		}
+		
+		private void detach_CanDos(CanDo entity)
+		{
+			this.SendPropertyChanging();
+			entity.DocStaff = null;
+		}
+		
+		private void attach_LoiKhuyens(LoiKhuyen entity)
+		{
+			this.SendPropertyChanging();
+			entity.DocStaff = this;
+		}
+		
+		private void detach_LoiKhuyens(LoiKhuyen entity)
+		{
+			this.SendPropertyChanging();
+			entity.DocStaff = null;
+		}
+		
+		private void attach_KetLuans(KetLuan entity)
+		{
+			this.SendPropertyChanging();
+			entity.DocStaff = this;
+		}
+		
+		private void detach_KetLuans(KetLuan entity)
+		{
+			this.SendPropertyChanging();
+			entity.DocStaff = null;
+		}
+		
+		private void attach_KetQuaLamSangs(KetQuaLamSang entity)
+		{
+			this.SendPropertyChanging();
+			entity.DocStaff = this;
+		}
+		
+		private void detach_KetQuaLamSangs(KetQuaLamSang entity)
+		{
+			this.SendPropertyChanging();
+			entity.DocStaff = null;
+		}
+		
+		private void attach_KetQuaNoiSois(KetQuaNoiSoi entity)
+		{
+			this.SendPropertyChanging();
+			entity.DocStaff = this;
+		}
+		
+		private void detach_KetQuaNoiSois(KetQuaNoiSoi entity)
+		{
+			this.SendPropertyChanging();
+			entity.DocStaff = null;
+		}
+		
+		private void attach_ServiceHistories(ServiceHistory entity)
+		{
+			this.SendPropertyChanging();
+			entity.DocStaff = this;
+		}
+		
+		private void detach_ServiceHistories(ServiceHistory entity)
+		{
+			this.SendPropertyChanging();
+			entity.DocStaff = null;
+		}
+		
+		private void attach_KetQuaSoiCTCs(KetQuaSoiCTC entity)
+		{
+			this.SendPropertyChanging();
+			entity.DocStaff = this;
+		}
+		
+		private void detach_KetQuaSoiCTCs(KetQuaSoiCTC entity)
+		{
+			this.SendPropertyChanging();
+			entity.DocStaff = null;
+		}
+		
+		private void attach_NhatKyLienHeCongTies(NhatKyLienHeCongTy entity)
+		{
+			this.SendPropertyChanging();
+			entity.DocStaff = this;
+		}
+		
+		private void detach_NhatKyLienHeCongTies(NhatKyLienHeCongTy entity)
+		{
+			this.SendPropertyChanging();
+			entity.DocStaff = null;
+		}
+		
+		private void attach_KetQuaSieuAms(KetQuaSieuAm entity)
+		{
+			this.SendPropertyChanging();
+			entity.DocStaff = this;
+		}
+		
+		private void detach_KetQuaSieuAms(KetQuaSieuAm entity)
+		{
+			this.SendPropertyChanging();
+			entity.DocStaff = null;
+		}
+		
+		private void attach_CongTacNgoaiGios(CongTacNgoaiGio entity)
+		{
+			this.SendPropertyChanging();
+			entity.DocStaff = this;
+		}
+		
+		private void detach_CongTacNgoaiGios(CongTacNgoaiGio entity)
+		{
+			this.SendPropertyChanging();
+			entity.DocStaff = null;
+		}
+		
+		private void attach_KetQuaCanLamSangs(KetQuaCanLamSang entity)
+		{
+			this.SendPropertyChanging();
+			entity.DocStaff = this;
+		}
+		
+		private void detach_KetQuaCanLamSangs(KetQuaCanLamSang entity)
+		{
+			this.SendPropertyChanging();
+			entity.DocStaff = null;
+		}
+		
+		private void attach_ToaCapCuus(ToaCapCuu entity)
+		{
+			this.SendPropertyChanging();
+			entity.DocStaff = this;
+		}
+		
+		private void detach_ToaCapCuus(ToaCapCuu entity)
+		{
+			this.SendPropertyChanging();
+			entity.DocStaff = null;
 		}
 	}
 	

@@ -85,35 +85,6 @@
       <Association Name="CompanyContract_ContractMember" Member="CompanyContract" ThisKey="CompanyContractGUID" OtherKey="CompanyContractGUID" Type="CompanyContract" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
-  <Table Name="dbo.DocStaff" Member="DocStaffs">
-    <Type Name="DocStaff">
-      <Column Name="DocStaffGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="ContactGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="SpecialityGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="PrescriberNum" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Qualifications" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="AvailableToWork" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
-      <Column Name="WorkType" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
-      <Column Name="StaffType" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
-      <Association Name="DocStaff_Logon" Member="Logons" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="Logon" />
-      <Association Name="DocStaff_ToaThuoc" Member="ToaThuocs" ThisKey="DocStaffGUID" OtherKey="BacSiKeToa" Type="ToaThuoc" />
-      <Association Name="DocStaff_ChiDinh" Member="ChiDinhs" ThisKey="DocStaffGUID" OtherKey="BacSiChiDinhGUID" Type="ChiDinh" />
-      <Association Name="DocStaff_CanDo" Member="CanDos" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="CanDo" />
-      <Association Name="DocStaff_LoiKhuyen" Member="LoiKhuyens" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="LoiKhuyen" />
-      <Association Name="DocStaff_KetLuan" Member="KetLuans" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="KetLuan" />
-      <Association Name="DocStaff_KetQuaLamSang" Member="KetQuaLamSangs" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="KetQuaLamSang" />
-      <Association Name="DocStaff_KetQuaNoiSoi" Member="KetQuaNoiSois" ThisKey="DocStaffGUID" OtherKey="BacSiSoi" Type="KetQuaNoiSoi" />
-      <Association Name="DocStaff_ServiceHistory" Member="ServiceHistories" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="ServiceHistory" />
-      <Association Name="DocStaff_KetQuaSoiCTC" Member="KetQuaSoiCTCs" ThisKey="DocStaffGUID" OtherKey="BacSiSoi" Type="KetQuaSoiCTC" />
-      <Association Name="DocStaff_NhatKyLienHeCongTy" Member="NhatKyLienHeCongTies" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="NhatKyLienHeCongTy" />
-      <Association Name="DocStaff_KetQuaSieuAm" Member="KetQuaSieuAms" ThisKey="DocStaffGUID" OtherKey="BacSiSieuAmGUID" Type="KetQuaSieuAm" />
-      <Association Name="DocStaff_CongTacNgoaiGio" Member="CongTacNgoaiGios" ThisKey="DocStaffGUID" OtherKey="NguoiDeXuatGUID" Type="CongTacNgoaiGio" />
-      <Association Name="DocStaff_KetQuaCanLamSang" Member="KetQuaCanLamSangs" ThisKey="DocStaffGUID" OtherKey="BacSiThucHienGUID" Type="KetQuaCanLamSang" />
-      <Association Name="DocStaff_ToaCapCuu" Member="ToaCapCuus" ThisKey="DocStaffGUID" OtherKey="BacSiKeToaGUID" Type="ToaCapCuu" />
-      <Association Name="Speciality_DocStaff" Member="Speciality" ThisKey="SpecialityGUID" OtherKey="SpecialityGUID" Type="Speciality" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-      <Association Name="Contact_DocStaff" Member="Contact" ThisKey="ContactGUID" OtherKey="ContactGUID" Type="Contact" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.[Function]" Member="Functions">
     <Type Name="Function">
       <Column Name="FunctionGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -541,8 +512,8 @@
       <Column Name="District" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="City" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="Source" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Association Name="Contact_DocStaff" Member="DocStaffs" ThisKey="ContactGUID" OtherKey="ContactGUID" Type="DocStaff" />
       <Association Name="Contact_Patient" Member="Patients" ThisKey="ContactGUID" OtherKey="ContactGUID" Type="Patient" />
+      <Association Name="Contact_DocStaff" Member="DocStaffs" ThisKey="ContactGUID" OtherKey="ContactGUID" Type="DocStaff" />
     </Type>
   </Table>
   <Table Name="dbo.ChiTietToaThuoc" Member="ChiTietToaThuocs">
@@ -606,8 +577,8 @@
       <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Association Name="ToaThuoc_ChiTietToaThuoc" Member="ChiTietToaThuocs" ThisKey="ToaThuocGUID" OtherKey="ToaThuocGUID" Type="ChiTietToaThuoc" />
-      <Association Name="DocStaff_ToaThuoc" Member="DocStaff" ThisKey="BacSiKeToa" OtherKey="DocStaffGUID" Type="DocStaff" IsForeignKey="true" />
       <Association Name="Patient_ToaThuoc" Member="Patient" ThisKey="BenhNhan" OtherKey="PatientGUID" Type="Patient" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="DocStaff_ToaThuoc" Member="DocStaff" ThisKey="BacSiKeToa" OtherKey="DocStaffGUID" Type="DocStaff" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.ChiTietToaThuocView" Member="ChiTietToaThuocViews">
@@ -701,8 +672,8 @@
       <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Association Name="ChiDinh_ChiTietChiDinh" Member="ChiTietChiDinhs" ThisKey="ChiDinhGUID" OtherKey="ChiDinhGUID" Type="ChiTietChiDinh" />
-      <Association Name="DocStaff_ChiDinh" Member="DocStaff" ThisKey="BacSiChiDinhGUID" OtherKey="DocStaffGUID" Type="DocStaff" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="Patient_ChiDinh" Member="Patient" ThisKey="BenhNhanGUID" OtherKey="PatientGUID" Type="Patient" IsForeignKey="true" />
+      <Association Name="DocStaff_ChiDinh" Member="DocStaff" ThisKey="BacSiChiDinhGUID" OtherKey="DocStaffGUID" Type="DocStaff" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Table Name="dbo.ChiDinhView" Member="ChiDinhViews">
@@ -781,8 +752,8 @@
       <Column Name="MatTrai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="MatPhai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="HieuChinh" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Association Name="DocStaff_CanDo" Member="DocStaff" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="DocStaff" IsForeignKey="true" />
       <Association Name="Patient_CanDo" Member="Patient" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="Patient" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="DocStaff_CanDo" Member="DocStaff" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="DocStaff" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.CanDoView" Member="CanDoViews">
@@ -947,9 +918,9 @@
       <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Association Name="DocStaff_LoiKhuyen" Member="DocStaff" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="DocStaff" IsForeignKey="true" />
       <Association Name="Symptom_LoiKhuyen" Member="Symptom" ThisKey="SymptomGUID" OtherKey="SymptomGUID" Type="Symptom" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="Patient_LoiKhuyen" Member="Patient" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="Patient" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="DocStaff_LoiKhuyen" Member="DocStaff" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="DocStaff" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.LoiKhuyenView" Member="LoiKhuyenViews">
@@ -1065,8 +1036,8 @@
       <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Association Name="DocStaff_KetLuan" Member="DocStaff" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="DocStaff" IsForeignKey="true" />
       <Association Name="Patient_KetLuan" Member="Patient" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="Patient" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="DocStaff_KetLuan" Member="DocStaff" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="DocStaff" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.KetLuanView" Member="KetLuanViews">
@@ -1166,8 +1137,8 @@
       <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Association Name="DocStaff_KetQuaLamSang" Member="DocStaff" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="DocStaff" IsForeignKey="true" />
       <Association Name="Patient_KetQuaLamSang" Member="Patient" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="Patient" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="DocStaff_KetQuaLamSang" Member="DocStaff" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="DocStaff" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.KetQuaLamSangView" Member="KetQuaLamSangViews">
@@ -1364,8 +1335,8 @@
       <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Association Name="DocStaff_KetQuaNoiSoi" Member="DocStaff" ThisKey="BacSiSoi" OtherKey="DocStaffGUID" Type="DocStaff" IsForeignKey="true" />
       <Association Name="Patient_KetQuaNoiSoi" Member="Patient" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="Patient" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="DocStaff_KetQuaNoiSoi" Member="DocStaff" ThisKey="BacSiSoi" OtherKey="DocStaffGUID" Type="DocStaff" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.KetQuaNoiSoiView" Member="KetQuaNoiSoiViews">
@@ -1762,9 +1733,9 @@
       <Column Name="KhamTuTuc" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Association Name="ServiceHistory_ReceiptDetail" Member="ReceiptDetails" ThisKey="ServiceHistoryGUID" OtherKey="ServiceHistoryGUID" Type="ReceiptDetail" />
       <Association Name="ServiceHistory_DichVuChiDinh" Member="DichVuChiDinhs" ThisKey="ServiceHistoryGUID" OtherKey="ServiceHistoryGUID" Type="DichVuChiDinh" />
-      <Association Name="DocStaff_ServiceHistory" Member="DocStaff" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="DocStaff" IsForeignKey="true" />
       <Association Name="Service_ServiceHistory" Member="Service" ThisKey="ServiceGUID" OtherKey="ServiceGUID" Type="Service" IsForeignKey="true" DeleteRule="CASCADE" />
       <Association Name="Patient_ServiceHistory" Member="Patient" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="Patient" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="DocStaff_ServiceHistory" Member="DocStaff" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="DocStaff" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.KetQuaSoiCTCView" Member="KetQuaSoiCTCViews">
@@ -1823,8 +1794,8 @@
       <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Association Name="DocStaff_KetQuaSoiCTC" Member="DocStaff" ThisKey="BacSiSoi" OtherKey="DocStaffGUID" Type="DocStaff" IsForeignKey="true" />
       <Association Name="Patient_KetQuaSoiCTC" Member="Patient" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="Patient" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="DocStaff_KetQuaSoiCTC" Member="DocStaff" ThisKey="BacSiSoi" OtherKey="DocStaffGUID" Type="DocStaff" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.Permission" Member="Permissions">
@@ -2785,9 +2756,9 @@
       <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Association Name="DocStaff_KetQuaSieuAm" Member="DocStaff" ThisKey="BacSiSieuAmGUID" OtherKey="DocStaffGUID" Type="DocStaff" IsForeignKey="true" />
       <Association Name="LoaiSieuAm_KetQuaSieuAm" Member="LoaiSieuAm" ThisKey="LoaiSieuAmGUID" OtherKey="LoaiSieuAmGUID" Type="LoaiSieuAm" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="Patient_KetQuaSieuAm" Member="Patient" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="Patient" IsForeignKey="true" DeleteRule="CASCADE" />
+      <Association Name="DocStaff_KetQuaSieuAm" Member="DocStaff" ThisKey="BacSiSieuAmGUID" OtherKey="DocStaffGUID" Type="DocStaff" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.LoaiSieuAm" Member="LoaiSieuAms">
@@ -3514,9 +3485,9 @@
       <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Association Name="DocStaff_KetQuaCanLamSang" Member="DocStaff" ThisKey="BacSiThucHienGUID" OtherKey="DocStaffGUID" Type="DocStaff" IsForeignKey="true" />
       <Association Name="Patient_KetQuaCanLamSang" Member="Patient" ThisKey="PatientGUID" OtherKey="PatientGUID" Type="Patient" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="Service_KetQuaCanLamSang" Member="Service" ThisKey="ServiceGUID" OtherKey="ServiceGUID" Type="Service" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="DocStaff_KetQuaCanLamSang" Member="DocStaff" ThisKey="BacSiThucHienGUID" OtherKey="DocStaffGUID" Type="DocStaff" IsForeignKey="true" />
     </Type>
   </Table>
   <Table Name="dbo.KetQuaCanLamSangView" Member="KetQuaCanLamSangViews">
@@ -3918,6 +3889,36 @@
       <Column Name="Lock" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Column Name="SoTien" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
       <Column Name="DatCoc" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DocStaff" Member="DocStaffs">
+    <Type Name="DocStaff">
+      <Column Name="DocStaffGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ContactGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="SpecialityGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="PrescriberNum" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Qualifications" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="AvailableToWork" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="WorkType" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="StaffType" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="ChuKy" Type="System.Data.Linq.Binary" DbType="Image" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="DocStaff_Logon" Member="Logons" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="Logon" />
+      <Association Name="DocStaff_ToaThuoc" Member="ToaThuocs" ThisKey="DocStaffGUID" OtherKey="BacSiKeToa" Type="ToaThuoc" />
+      <Association Name="DocStaff_ChiDinh" Member="ChiDinhs" ThisKey="DocStaffGUID" OtherKey="BacSiChiDinhGUID" Type="ChiDinh" />
+      <Association Name="DocStaff_CanDo" Member="CanDos" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="CanDo" />
+      <Association Name="DocStaff_LoiKhuyen" Member="LoiKhuyens" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="LoiKhuyen" />
+      <Association Name="DocStaff_KetLuan" Member="KetLuans" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="KetLuan" />
+      <Association Name="DocStaff_KetQuaLamSang" Member="KetQuaLamSangs" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="KetQuaLamSang" />
+      <Association Name="DocStaff_KetQuaNoiSoi" Member="KetQuaNoiSois" ThisKey="DocStaffGUID" OtherKey="BacSiSoi" Type="KetQuaNoiSoi" />
+      <Association Name="DocStaff_ServiceHistory" Member="ServiceHistories" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="ServiceHistory" />
+      <Association Name="DocStaff_KetQuaSoiCTC" Member="KetQuaSoiCTCs" ThisKey="DocStaffGUID" OtherKey="BacSiSoi" Type="KetQuaSoiCTC" />
+      <Association Name="DocStaff_NhatKyLienHeCongTy" Member="NhatKyLienHeCongTies" ThisKey="DocStaffGUID" OtherKey="DocStaffGUID" Type="NhatKyLienHeCongTy" />
+      <Association Name="DocStaff_KetQuaSieuAm" Member="KetQuaSieuAms" ThisKey="DocStaffGUID" OtherKey="BacSiSieuAmGUID" Type="KetQuaSieuAm" />
+      <Association Name="DocStaff_CongTacNgoaiGio" Member="CongTacNgoaiGios" ThisKey="DocStaffGUID" OtherKey="NguoiDeXuatGUID" Type="CongTacNgoaiGio" />
+      <Association Name="DocStaff_KetQuaCanLamSang" Member="KetQuaCanLamSangs" ThisKey="DocStaffGUID" OtherKey="BacSiThucHienGUID" Type="KetQuaCanLamSang" />
+      <Association Name="DocStaff_ToaCapCuu" Member="ToaCapCuus" ThisKey="DocStaffGUID" OtherKey="BacSiKeToaGUID" Type="ToaCapCuu" />
+      <Association Name="Contact_DocStaff" Member="Contact" ThisKey="ContactGUID" OtherKey="ContactGUID" Type="Contact" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Speciality_DocStaff" Member="Speciality" ThisKey="SpecialityGUID" OtherKey="SpecialityGUID" Type="Speciality" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.spDoanhThuNhanVienTongHop" Method="spDoanhThuNhanVienTongHop">

@@ -1315,8 +1315,10 @@ namespace MM.Exports
                     range.HorizontalAlignment = HAlign.Center;
                     range.VerticalAlignment = VAlign.Top;
 
+                    range = workSheet.Cells[string.Format("D{0}", dt.Rows.Count + 14)];
+                    range.RowHeight = 15.75 * 3;
 
-                    range = workSheet.Cells[string.Format("D{0}", dt.Rows.Count + 16)];
+                    range = workSheet.Cells[string.Format("D{0}", dt.Rows.Count + 15)];
                     range.Value = string.Format("                    {0}", toaThuoc.TenBacSi);
                     range.HorizontalAlignment = HAlign.Center;
                     range.VerticalAlignment = VAlign.Top;
@@ -1640,7 +1642,12 @@ namespace MM.Exports
                     range.VerticalAlignment = VAlign.Top;
                     range.Value = "(BS điều trị)";
 
-                    range = workSheet.Cells[string.Format("F{0}:G{0}", rowIndex + 4)];
+                    rowIndex++;
+                    range = workSheet.Cells[string.Format("F{0}:G{0}", rowIndex + 1)];
+                    range.RowHeight = 15.75 * 3;
+                    
+                    rowIndex++;
+                    range = workSheet.Cells[string.Format("F{0}:G{0}", rowIndex + 1)];
                     range.Merge();
                     range.HorizontalAlignment = HAlign.Center;
                     range.VerticalAlignment = VAlign.Top;
