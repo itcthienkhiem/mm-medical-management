@@ -257,6 +257,7 @@ namespace MM.Bussiness
                                 doc.SpecialityGUID = docStaff.SpecialityGUID;
                                 doc.StaffType = docStaff.StaffType;
                                 doc.WorkType = docStaff.WorkType;
+                                doc.ChuKy = docStaff.ChuKy;
                             }
 
                             string genderStr = string.Empty;
