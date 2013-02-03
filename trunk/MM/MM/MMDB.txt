@@ -271,7 +271,7 @@ Da xong x
 --Nguoi giai quyet = Nguoi ket luan
 Nguon
 ----------------------------------------------------------
-1. Add chu ky so (la mot picture) vao toa thuoc, tren cho chu ky bac si.
+1. Add chu ky so (la mot picture) vao toa thuoc, tren cho chu ky bac si (OK).
 2. Hien so luong thuoc ton de bac si biet khi ke thuoc (OK).
 3. Cho in danh sach benh nhan trong form danh sach benh nhan (OK).
 4. Bac si thich dung right click >> them menu phai chuot cho cac su kien tren cac form. Cai nay khi nao ranh bo sung.
