@@ -1318,10 +1318,30 @@ namespace MM.Exports
                     range = workSheet.Cells[string.Format("D{0}", dt.Rows.Count + 14)];
                     range.RowHeight = 15.75 * 3;
 
+                    result = DocStaffBus.GetChuKy(toaThuoc.BacSiKeToa.ToString());
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("DocStaffBus.GetChuKy"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("DocStaffBus.GetChuKy"));
+                        return false;
+                    }
+
+                    if (result.QueryResult != null)
+                    {
+                        double left = workSheet.WindowInfo.ColumnToPoints(3);
+                        double top = workSheet.WindowInfo.RowToPoints(dt.Rows.Count + 13);
+                        double width = 170;
+                        double height = 47.25;
+                        byte[] buff = (byte[])result.QueryResult;
+
+                        workSheet.Shapes.AddPicture(buff, left, top, width, height);
+                    }
+
                     range = workSheet.Cells[string.Format("D{0}", dt.Rows.Count + 15)];
                     range.Value = string.Format("                    {0}", toaThuoc.TenBacSi);
                     range.HorizontalAlignment = HAlign.Center;
                     range.VerticalAlignment = VAlign.Top;
+
                 }
                 else
                 {
@@ -1645,6 +1665,25 @@ namespace MM.Exports
                     rowIndex++;
                     range = workSheet.Cells[string.Format("F{0}:G{0}", rowIndex + 1)];
                     range.RowHeight = 15.75 * 3;
+
+                    result = DocStaffBus.GetChuKy(toaThuoc.BacSiKeToa.ToString());
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("DocStaffBus.GetChuKy"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("DocStaffBus.GetChuKy"));
+                        return false;
+                    }
+
+                    if (result.QueryResult != null)
+                    {
+                        double left = workSheet.WindowInfo.ColumnToPoints(5) - 20;
+                        double top = workSheet.WindowInfo.RowToPoints(rowIndex);
+                        double width = 170;
+                        double height = 47.25;
+                        byte[] buff = (byte[])result.QueryResult;
+
+                        workSheet.Shapes.AddPicture(buff, left, top, width, height);
+                    }
                     
                     rowIndex++;
                     range = workSheet.Cells[string.Format("F{0}:G{0}", rowIndex + 1)];
