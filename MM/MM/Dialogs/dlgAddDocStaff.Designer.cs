@@ -17,6 +17,13 @@
             {
                 components.Dispose();
             }
+
+            if (picChuKy.Image != null)
+            {
+                picChuKy.Image.Dispose();
+                picChuKy.Image = null;
+            }
+
             base.Dispose(disposing);
         }
 
@@ -31,6 +38,9 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddDocStaff));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnChonHinh = new System.Windows.Forms.Button();
+            this.picChuKy = new System.Windows.Forms.PictureBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.txtDOB = new System.Windows.Forms.TextBox();
             this.label22 = new System.Windows.Forms.Label();
@@ -69,11 +79,15 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picChuKy)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.specialityBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnChonHinh);
+            this.groupBox1.Controls.Add(this.picChuKy);
+            this.groupBox1.Controls.Add(this.label3);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Controls.Add(this.txtDOB);
             this.groupBox1.Controls.Add(this.label22);
@@ -110,10 +124,39 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(7, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(417, 422);
+            this.groupBox1.Size = new System.Drawing.Size(417, 479);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin nhân viên";
+            // 
+            // btnChonHinh
+            // 
+            this.btnChonHinh.Location = new System.Drawing.Point(281, 409);
+            this.btnChonHinh.Name = "btnChonHinh";
+            this.btnChonHinh.Size = new System.Drawing.Size(75, 23);
+            this.btnChonHinh.TabIndex = 46;
+            this.btnChonHinh.Text = "Chọn hình";
+            this.btnChonHinh.UseVisualStyleBackColor = true;
+            this.btnChonHinh.Click += new System.EventHandler(this.btnChonHinh_Click);
+            // 
+            // picChuKy
+            // 
+            this.picChuKy.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.picChuKy.Location = new System.Drawing.Point(106, 409);
+            this.picChuKy.Name = "picChuKy";
+            this.picChuKy.Size = new System.Drawing.Size(170, 60);
+            this.picChuKy.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picChuKy.TabIndex = 45;
+            this.picChuKy.TabStop = false;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(53, 409);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(43, 13);
+            this.label3.TabIndex = 44;
+            this.label3.Text = "Chữ ký:";
             // 
             // label2
             // 
@@ -454,7 +497,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(218, 432);
+            this.btnCancel.Location = new System.Drawing.Point(218, 489);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 23;
@@ -466,7 +509,7 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(139, 432);
+            this.btnOK.Location = new System.Drawing.Point(139, 489);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 22;
@@ -479,7 +522,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(432, 463);
+            this.ClientSize = new System.Drawing.Size(432, 518);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupBox1);
@@ -494,6 +537,7 @@
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.dlgAddDocStaff_FormClosing);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.picChuKy)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.specialityBindingSource)).EndInit();
             this.ResumeLayout(false);
 
@@ -539,5 +583,8 @@
         private System.Windows.Forms.BindingSource specialityBindingSource;
         private System.Windows.Forms.TextBox txtDOB;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.PictureBox picChuKy;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.Button btnChonHinh;
     }
 }
