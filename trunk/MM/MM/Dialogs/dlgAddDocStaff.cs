@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using System.Threading;
+using System.IO;
 using MM.Common;
 using MM.Bussiness;
 using MM.Databasae;
@@ -176,6 +177,10 @@ namespace MM.Dialogs
         {
             try
             {
+                _contact.ContactGUID = Guid.Parse(drDocStaff["ContactGUID"].ToString());
+                _docStaff.DocStaffGUID = Guid.Parse(drDocStaff["DocStaffGUID"].ToString());
+                _docStaff.ContactGUID = _contact.ContactGUID;
+
                 txtFullName.Text = drDocStaff["FullName"] as string;
                 txtKnownAs.Text = drDocStaff["KnownAs"] as string;
                 txtPreferredName.Text = drDocStaff["PreferredName"] as string;
@@ -193,9 +198,22 @@ namespace MM.Dialogs
                 txtFax.Text = drDocStaff["Fax"] as string;
                 txtAddress.Text = drDocStaff["Address"] as string;
 
-                _contact.ContactGUID = Guid.Parse(drDocStaff["ContactGUID"].ToString());
-                _docStaff.DocStaffGUID = Guid.Parse(drDocStaff["DocStaffGUID"].ToString());
-                _docStaff.ContactGUID = _contact.ContactGUID;
+                Result result = DocStaffBus.GetChuKy(_docStaff.DocStaffGUID.ToString());
+                if (result.IsOK)
+                {
+                    if (result.QueryResult != null)
+                    {
+                        Byte[] buff = (byte[])result.QueryResult;
+                        MemoryStream mem = new MemoryStream(buff);
+                        Image img = Image.FromStream(mem);
+                        picChuKy.Image = img;
+                    }
+                }
+                else
+                {
+                    MsgBox.Show(this.Text, result.GetErrorAsString("DocStaffBus.GetChuKy"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("DocStaffBus.GetChuKy"));
+                }
 
                 if (drDocStaff["CreatedDate"] != null && drDocStaff["CreatedDate"] != DBNull.Value)
                     _contact.CreatedDate = Convert.ToDateTime(drDocStaff["CreatedDate"]);
@@ -289,6 +307,17 @@ namespace MM.Dialogs
                     _docStaff.SpecialityGUID = Guid.Parse(cboSpeciality.SelectedValue.ToString());
                     _docStaff.WorkType = (byte)cboWorkType.SelectedIndex;
                     _docStaff.StaffType = (byte)GetStaffType(cboStaffType.SelectedIndex);
+
+                    if (picChuKy.Image != null)
+                    {
+                        MemoryStream mem = new MemoryStream();
+                        Image pic = picChuKy.Image;
+                        pic.Save(mem, System.Drawing.Imaging.ImageFormat.Png);
+                        byte[] buff = mem.ToArray();
+                        _docStaff.ChuKy = new System.Data.Linq.Binary(buff);
+                        mem.Close();
+                        mem = null;
+                    }
 
                     switch (cboStaffType.SelectedIndex)
                     {
@@ -388,6 +417,23 @@ namespace MM.Dialogs
                 e.KeyChar != '5' && e.KeyChar != '6' && e.KeyChar != '7' && e.KeyChar != '8' && e.KeyChar != '9' &&
                 e.KeyChar != '\b')
                 e.Handled = true;
+        }
+
+        private void btnChonHinh_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png"; 
+            if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                if (picChuKy.Image != null)
+                {
+                    picChuKy.Image.Dispose();
+                    picChuKy.Image = null;
+                }
+
+                Bitmap bmp = new Bitmap(dlg.FileName);
+                picChuKy.Image = bmp;
+            }
         }
         #endregion
 
