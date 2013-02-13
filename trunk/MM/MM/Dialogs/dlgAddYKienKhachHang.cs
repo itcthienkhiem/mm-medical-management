@@ -86,6 +86,12 @@ namespace MM.Dialogs
                 txtYeuCau.Text = drYKienKhachHang["YeuCau"] as string;
                 cboNguon.Text = drYKienKhachHang["Nguon"] as string;
 
+                bool isIN = Convert.ToBoolean(drYKienKhachHang["IsIN"]);
+                raIN.Checked = isIN;
+                raOUT.Checked = !isIN;
+
+                txtSoTongDai.Text = drYKienKhachHang["SoTongDai"] as string;
+
                 if (drYKienKhachHang["KetLuan"] != null && drYKienKhachHang["KetLuan"] != DBNull.Value)
                     txtHuongGiaiQuyet.Text = drYKienKhachHang["KetLuan"].ToString();
 
@@ -218,6 +224,8 @@ namespace MM.Dialogs
                     _yKienKhachHang.YeuCau = txtYeuCau.Text;
                     _yKienKhachHang.Nguon = cboNguon.Text;
                     _yKienKhachHang.Note = string.Empty;
+                    _yKienKhachHang.IsIN = raIN.Checked;
+                    _yKienKhachHang.SoTongDai = txtSoTongDai.Text;
 
                     if (cboDocStaff.SelectedValue != null && cboDocStaff.Text.Trim() != string.Empty)
                         _yKienKhachHang.BacSiPhuTrachGUID = Guid.Parse(cboDocStaff.SelectedValue.ToString());
@@ -322,6 +330,14 @@ namespace MM.Dialogs
                 }
             }
         }
+
+        private void raIN_CheckedChanged(object sender, EventArgs e)
+        {
+            if (raIN.Checked)
+                txtSoTongDai.Text = "19001856";
+            else
+                txtSoTongDai.Text = string.Empty;
+        }
         #endregion
 
         #region Working Thread
@@ -342,5 +358,7 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
     }
 }

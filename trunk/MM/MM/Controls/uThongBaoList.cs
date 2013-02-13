@@ -19,7 +19,8 @@ namespace MM.Controls
         private DateTime _tuNgay = DateTime.Now;
         private DateTime _denNgay = DateTime.Now;
         private string _tenNguoiTao = string.Empty;
-        private int _type = 0; //0: Tất cả; 1: Đã duyệt; 2: Đang chờ duyệt
+        private string _tenThongBao = string.Empty;
+        private int _type = 0; //0: Tất cả; 1: Đã duyệt; 2: Đang chờ duyệt; 3: Đã xóa
         #endregion
 
         #region Constructor
@@ -37,7 +38,18 @@ namespace MM.Controls
         {
             btnAdd.Enabled = AllowConfirm ? true : AllowAdd;
             btnEdit.Enabled = AllowConfirm ? true : AllowEdit;
-            btnDelete.Enabled = AllowConfirm ? true : AllowDelete;
+            
+            if (raDaXoa.Checked)
+            {
+                btnPhucHoi.Enabled = AllowConfirm ? true : AllowEdit;
+                btnDelete.Enabled = false;
+            }
+            else
+            {
+                btnPhucHoi.Enabled = false;
+                btnDelete.Enabled = AllowConfirm ? true : AllowDelete;
+            }
+            
             btnXemQuaTrinhDuyet.Enabled = AllowConfirm;
 
             if (!AllowConfirm && !AllowAdd && !AllowEdit && !AllowDelete)
@@ -47,11 +59,14 @@ namespace MM.Controls
                 raDangChoDuyet.Enabled = false;
                 raTatCa.Checked = false;
                 raTatCa.Enabled = false;
+                raDaXoa.Enabled = false;
+                raDaXoa.Checked = false;
             }
             else
             {
                 raDangChoDuyet.Enabled = true;
                 raTatCa.Enabled = true;
+                raDaXoa.Enabled = true;
             }
         }
 
@@ -65,9 +80,11 @@ namespace MM.Controls
                 _tuNgay = dtpkTuNgay.Value;
                 _denNgay = dtpkDenNgay.Value;
                 _tenNguoiTao = txtTenNguoiTao.Text.Trim();
+                _tenThongBao = txtTenThongBao.Text.Trim();
                 if (raTatCa.Checked) _type = 0;
                 else if (raDaDuyet.Checked) _type = 1;
                 else if (raDangChoDuyet.Checked) _type = 2;
+                else if (raDaXoa.Checked) _type = 3;
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayThongBaoListProc));
                 base.ShowWaiting();
             }
@@ -96,7 +113,7 @@ namespace MM.Controls
 
         private void OnDisplayThongBaoList()
         {
-            Result result = ThongBaoBus.GetThongBaoList(_tuNgay, _denNgay, _tenNguoiTao, _type);
+            Result result = ThongBaoBus.GetThongBaoList(_tuNgay, _denNgay, _tenNguoiTao, _tenThongBao, _type);
             if (result.IsOK)
             {
                 MethodInvoker method = delegate
@@ -288,6 +305,53 @@ namespace MM.Controls
             dlgQuaTrinhDuyetThongBao dlg = new dlgQuaTrinhDuyetThongBao(drThongBao);
             dlg.ShowDialog();
         }
+
+        private void OnPhucHoiThongBao()
+        {
+            List<string> deletedKeysList = new List<string>();
+            List<DataRow> deletedRows = new List<DataRow>();
+            DataTable dt = dgThongBao.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                {
+                    deletedKeysList.Add(row["ThongBaoGUID"].ToString());
+                    deletedRows.Add(row);
+                }
+            }
+
+            if (deletedKeysList.Count > 0)
+            {
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn phục hồi những thông báo mà bạn đã đánh dấu ?") == DialogResult.Yes)
+                {
+                    foreach (DataRow row in deletedRows)
+                    {
+                        string nguoiTaoGUID = row["CreatedBy"].ToString();
+                        if (nguoiTaoGUID != Global.UserGUID && !AllowConfirm)
+                        {
+                            MsgBox.Show(Application.ProductName, "Bạn không thể phục hồi thông báo do người khác tạo. Vui lòng kiểm tra lại.", IconType.Information);
+                            return;
+                        }
+                    }
+
+                    Result result = ThongBaoBus.PhucHoiThongBao(deletedKeysList);
+                    if (result.IsOK)
+                    {
+                        foreach (DataRow row in deletedRows)
+                        {
+                            dt.Rows.Remove(row);
+                        }
+                    }
+                    else
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("ThongBaoBus.PhucHoiThongBao"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("ThongBaoBus.PhucHoiThongBao"));
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những thông báo cần phục hồi.", IconType.Information);
+        }
         #endregion
         
         #region Window Event Handlers
@@ -383,6 +447,16 @@ namespace MM.Controls
             else
                 MsgBox.Show(Application.ProductName, "Bạn không thể xem thông báo do người khác tạo. Vui lòng kiểm tra lại.", IconType.Information);
         }
+
+        private void raDaXoa_CheckedChanged(object sender, EventArgs e)
+        {
+            DisplayAsThread();
+        }
+
+        private void btnPhucHoi_Click(object sender, EventArgs e)
+        {
+            OnPhucHoiThongBao();
+        }
         #endregion
 
         #region Working Thread
@@ -404,5 +478,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+       
+        
     }
 }

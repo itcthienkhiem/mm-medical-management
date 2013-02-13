@@ -35,41 +35,23 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetYKienKhachHangList(int type, DateTime fromDate, DateTime toDate, string tenBenhNhan)
+        public static Result GetYKienKhachHangList(DateTime fromDate, DateTime toDate, string tenBenhNhan, string tenNguoiTao, string bacSiPhuTrach, int inOut)
         {
             Result result = null;
 
             try
             {
                 string query = string.Empty;
-                //if (type == 0)
-                //{
-                //    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM YKienKhachHangView WITH(NOLOCK) WHERE Status={0} AND ContactDate BETWEEN '{1}' AND '{2}' ORDER BY ContactDate DESC",
-                //        (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
-                //}
 
-                if (type == 1)
+                if (inOut == 0)
                 {
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM YKienKhachHangView WITH(NOLOCK) WHERE Status={0} AND TenKhachHang LIKE N'%{1}%' AND ContactDate BETWEEN '{2}' AND '{3}' ORDER BY ContactDate DESC",
-                            (byte)Status.Actived, tenBenhNhan, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
-                }
-                else if (type == 2)
-                {
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM YKienKhachHangView WITH(NOLOCK) WHERE Status={0} AND NguoiTao LIKE N'%{1}%' AND ContactDate BETWEEN '{2}' AND '{3}' ORDER BY ContactDate DESC",
-                            (byte)Status.Actived, tenBenhNhan, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM YKienKhachHangView WITH(NOLOCK) WHERE Status={0} AND TenKhachHang LIKE N'%{1}%' AND ContactDate BETWEEN '{2}' AND '{3}' AND NguoiTao LIKE N'%{4}%' AND BacSiPhuTrach LIKE N'%{5}%' ORDER BY ContactDate DESC",
+                            (byte)Status.Actived, tenBenhNhan, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), tenNguoiTao, bacSiPhuTrach);
                 }
                 else
                 {
-                    if (tenBenhNhan.Trim() != string.Empty)
-                    {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM YKienKhachHangView WITH(NOLOCK) WHERE Status={0} AND BacSiPhuTrach LIKE N'%{1}%' AND ContactDate BETWEEN '{2}' AND '{3}' ORDER BY ContactDate DESC",
-                                (byte)Status.Actived, tenBenhNhan, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
-                    }
-                    else
-                    {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM YKienKhachHangView WITH(NOLOCK) WHERE Status={0} AND ContactDate BETWEEN '{1}' AND '{2}' ORDER BY ContactDate DESC",
-                                (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
-                    }
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM YKienKhachHangView WITH(NOLOCK) WHERE Status={0} AND TenKhachHang LIKE N'%{1}%' AND ContactDate BETWEEN '{2}' AND '{3}' AND NguoiTao LIKE N'%{4}%' AND BacSiPhuTrach LIKE N'%{5}%' AND isIN = '{6}' ORDER BY ContactDate DESC",
+                        (byte)Status.Actived, tenBenhNhan, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), tenNguoiTao, bacSiPhuTrach, inOut == 1 ? true : false);
                 }
                 
                 return ExcuteQuery(query);
@@ -108,8 +90,8 @@ namespace MM.Bussiness
                             s.DeletedDate = DateTime.Now;
                             s.DeletedBy = Guid.Parse(Global.UserGUID);
                             s.Status = (byte)Status.Deactived;
-                            desc += string.Format("- GUID: '{0}', Tên khách hàng: '{1}', Số điện thoại: '{2}', Địa chỉ: '{3}', Yêu cầu: '{4}', Nguồn: '{5}', Ghi chú: '{6}', Người kết luận: '{7}', Kết luận: '{8}', Bác sĩ phụ trách: '{9}', Đã xong: '{10}'\n",
-                                s.YKienKhachHangGUID.ToString(), s.TenKhachHang, s.SoDienThoai, s.DiaChi, s.YeuCau, s.Nguon, s.Note, s.NguoiKetLuan, s.KetLuan, s.BacSiPhuTrachGUID, s.DaXong);
+                            desc += string.Format("- GUID: '{0}', Tên khách hàng: '{1}', Số điện thoại: '{2}', Địa chỉ: '{3}', Yêu cầu: '{4}', Nguồn: '{5}', Ghi chú: '{6}', Người kết luận: '{7}', Kết luận: '{8}', Bác sĩ phụ trách: '{9}', Đã xong: '{10}', IN: '{11}', Số tổng đài: '{12}'\n",
+                                s.YKienKhachHangGUID.ToString(), s.TenKhachHang, s.SoDienThoai, s.DiaChi, s.YeuCau, s.Nguon, s.Note, s.NguoiKetLuan, s.KetLuan, s.BacSiPhuTrachGUID, s.DaXong, s.IsIN, s.SoTongDai);
                         }
 
                         index++;
@@ -172,9 +154,9 @@ namespace MM.Bussiness
                         db.SubmitChanges();
 
                         //Tracking
-                        desc += string.Format("- GUID: '{0}', Tên khách hàng: '{1}', Số điện thoại: '{2}', Địa chỉ: '{3}', Yêu cầu: '{4}', Nguồn: '{5}', Ghi chú: '{6}', Người kết luận: '{7}', Kết luận: '{8}', Bác sĩ phụ trách: '{9}', Đã xong: '{10}'",
+                        desc += string.Format("- GUID: '{0}', Tên khách hàng: '{1}', Số điện thoại: '{2}', Địa chỉ: '{3}', Yêu cầu: '{4}', Nguồn: '{5}', Ghi chú: '{6}', Người kết luận: '{7}', Kết luận: '{8}', Bác sĩ phụ trách: '{9}', Đã xong: '{10}', IN: '{11}', Số tổng đài: '{12}'",
                                yKienKhachHang.YKienKhachHangGUID.ToString(), yKienKhachHang.TenKhachHang, yKienKhachHang.SoDienThoai, yKienKhachHang.DiaChi,
-                               yKienKhachHang.YeuCau, yKienKhachHang.Nguon, yKienKhachHang.Note, yKienKhachHang.NguoiKetLuan, yKienKhachHang.KetLuan, yKienKhachHang.BacSiPhuTrachGUID, yKienKhachHang.DaXong);
+                               yKienKhachHang.YeuCau, yKienKhachHang.Nguon, yKienKhachHang.Note, yKienKhachHang.NguoiKetLuan, yKienKhachHang.KetLuan, yKienKhachHang.BacSiPhuTrachGUID, yKienKhachHang.DaXong, yKienKhachHang.IsIN, yKienKhachHang.SoTongDai);
 
                         Tracking tk = new Tracking();
                         tk.TrackingGUID = Guid.NewGuid();
@@ -211,10 +193,12 @@ namespace MM.Bussiness
                             ykkh.KetLuan = yKienKhachHang.KetLuan;
                             ykkh.BacSiPhuTrachGUID = yKienKhachHang.BacSiPhuTrachGUID;
                             ykkh.DaXong = yKienKhachHang.DaXong;
+                            ykkh.IsIN = yKienKhachHang.IsIN;
+                            ykkh.SoTongDai = yKienKhachHang.SoTongDai;
 
                             //Tracking
-                            desc += string.Format("- GUID: '{0}', Tên khách hàng: '{1}', Số điện thoại: '{2}', Địa chỉ: '{3}', Yêu cầu: '{4}', Nguồn: '{5}', Ghi chú: '{6}', Người kết luận: '{7}', Kết luận: '{8}', Bác sĩ phụ trách: '{9}', Đã xong: '{10}'",
-                               ykkh.YKienKhachHangGUID.ToString(), ykkh.TenKhachHang, ykkh.SoDienThoai, ykkh.DiaChi, ykkh.YeuCau, ykkh.Nguon, ykkh.Note, ykkh.NguoiKetLuan, ykkh.KetLuan, ykkh.BacSiPhuTrachGUID, ykkh.DaXong);
+                            desc += string.Format("- GUID: '{0}', Tên khách hàng: '{1}', Số điện thoại: '{2}', Địa chỉ: '{3}', Yêu cầu: '{4}', Nguồn: '{5}', Ghi chú: '{6}', Người kết luận: '{7}', Kết luận: '{8}', Bác sĩ phụ trách: '{9}', Đã xong: '{10}', IN: '{11}', Số tổng đài: '{12}'",
+                               ykkh.YKienKhachHangGUID.ToString(), ykkh.TenKhachHang, ykkh.SoDienThoai, ykkh.DiaChi, ykkh.YeuCau, ykkh.Nguon, ykkh.Note, ykkh.NguoiKetLuan, ykkh.KetLuan, ykkh.BacSiPhuTrachGUID, ykkh.DaXong, ykkh.IsIN, ykkh.SoTongDai);
 
                             Tracking tk = new Tracking();
                             tk.TrackingGUID = Guid.NewGuid();

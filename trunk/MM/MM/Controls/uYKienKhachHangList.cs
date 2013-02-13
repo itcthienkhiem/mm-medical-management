@@ -19,9 +19,11 @@ namespace MM.Controls
     {
         #region Members
         private string _tenBenhNhan = string.Empty;
+        private string _tenNguoiTao = string.Empty;
+        private string _bacSiPhuTrach = string.Empty;
         private DateTime _fromDate = Global.MinDateTime;
         private DateTime _toDate = Global.MaxDateTime;
-        private int _type = 0; //0: From date to date; 1: Tên bệnh nhân; 2: Tên người tạo
+        private int _inOut = 0; //0: All; 1: IN; 2: OUT
         private string _docStaffGUID = string.Empty;
         #endregion
 
@@ -106,21 +108,9 @@ namespace MM.Controls
             try
             {
                 UpdateGUI();
+
+                lbKetQuaTimDuoc.Text = "Kết quả tìm được: 0";
                 chkChecked.Checked = false;
-
-                //if (raTenBenhNhan.Checked && txtTenBenhNhan.Text.Trim() == string.Empty)
-                //{
-                //    MsgBox.Show(Application.ProductName, "Vui lòng nhập tên khách hàng cần tìm.", IconType.Information);
-                //    txtTenBenhNhan.Focus();
-                //    return;
-                //}
-
-                //if (raTenNguoiTao.Checked && txtTenNguoiTao.Text.Trim() == string.Empty)
-                //{
-                //    MsgBox.Show(Application.ProductName, "Vui lòng nhập tên người tạo cần tìm.", IconType.Information);
-                //    txtTenNguoiTao.Focus();
-                //    return;
-                //}
 
                 _fromDate = Global.MinDateTime;
                 _toDate = Global.MaxDateTime;
@@ -131,21 +121,16 @@ namespace MM.Controls
                 if (chkDenNgay.Checked && chkTuNgay.Checked)
                     _toDate = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
 
-                if (raTenBenhNhan.Checked)
-                {
-                    _type = 1;
-                    _tenBenhNhan = txtTenBenhNhan.Text;
-                }
-                else if (raTenNguoiTao.Checked)
-                {
-                    _type = 2;
-                    _tenBenhNhan = txtTenNguoiTao.Text;
-                }
-                else if (raBacSiPhuTrach.Checked)
-                {
-                    _type = 3;
-                    _tenBenhNhan = cboDocStaff.Text;
-                }
+                _tenBenhNhan = txtTenBenhNhan.Text.Trim();
+                _tenNguoiTao = txtTenNguoiTao.Text.Trim();
+                _bacSiPhuTrach = cboDocStaff.Text.Trim();
+
+                if (cboINOUT.Text == string.Empty)
+                    _inOut = 0;
+                else if (cboINOUT.Text == "IN")
+                    _inOut = 1;
+                else
+                    _inOut = 2;
 
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayYKienKhachHangListProc));
                 base.ShowWaiting();
@@ -163,13 +148,14 @@ namespace MM.Controls
 
         private void OnDisplayYKienKhachHangList()
         {
-            Result result = YKienKhachHangBus.GetYKienKhachHangList(_type, _fromDate, _toDate, _tenBenhNhan);
+            Result result = YKienKhachHangBus.GetYKienKhachHangList(_fromDate, _toDate, _tenBenhNhan, _tenNguoiTao, _bacSiPhuTrach, _inOut);
             if (result.IsOK)
             {
                 MethodInvoker method = delegate
                 {
                     ClearData();
                     dgYKienKhachHang.DataSource = result.QueryResult;
+                    lbKetQuaTimDuoc.Text = string.Format("Kết quả tìm được: {0}", (result.QueryResult as DataTable).Rows.Count);
                     //RefreshNo();
                 };
 
@@ -414,21 +400,6 @@ namespace MM.Controls
             }
         }
 
-        private void raTenBenhNhan_CheckedChanged(object sender, EventArgs e)
-        {
-            txtTenBenhNhan.ReadOnly = !raTenBenhNhan.Checked;
-        }
-
-        private void raTenNguoiTao_CheckedChanged(object sender, EventArgs e)
-        {
-            txtTenNguoiTao.ReadOnly = !raTenNguoiTao.Checked;
-        }
-
-        private void raBacSiPhuTrach_CheckedChanged(object sender, EventArgs e)
-        {
-            cboDocStaff.Enabled = raBacSiPhuTrach.Checked;
-        }
-
         private void chkTuNgay_CheckedChanged(object sender, EventArgs e)
         {
             if (chkTuNgay.Checked)
@@ -458,13 +429,6 @@ namespace MM.Controls
                 dtpkTuNgay.Focus();
                 return;
             }
-
-            //if (raTenBenhNhan.Checked && txtTenBenhNhan.Text.Trim() == string.Empty)
-            //{
-            //    MsgBox.Show(Application.ProductName, "Vui lòng nhập tên khách hàng.", IconType.Information);
-            //    txtTenBenhNhan.Focus();
-            //    return;
-            //}
 
             DisplayAsThread();
         }
@@ -537,6 +501,14 @@ namespace MM.Controls
                 DisplayAsThread();
         }
 
+        private void dgYKienKhachHang_SelectionChanged(object sender, EventArgs e)
+        {
+            int count = 0;
+            if (dgYKienKhachHang.SelectedRows != null)
+                count = dgYKienKhachHang.SelectedRows.Count;
+
+            lbSoDongChon.Text = string.Format("Số dòng chọn: {0}", count);
+        }
         #endregion
 
         #region Working Thread
@@ -558,6 +530,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
         
         

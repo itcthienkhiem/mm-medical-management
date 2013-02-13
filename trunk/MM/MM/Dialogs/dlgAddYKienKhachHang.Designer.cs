@@ -50,12 +50,22 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
+            this.label8 = new System.Windows.Forms.Label();
+            this.raIN = new System.Windows.Forms.RadioButton();
+            this.raOUT = new System.Windows.Forms.RadioButton();
+            this.label9 = new System.Windows.Forms.Label();
+            this.txtSoTongDai = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtSoTongDai);
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.raOUT);
+            this.groupBox1.Controls.Add(this.raIN);
+            this.groupBox1.Controls.Add(this.label8);
             this.groupBox1.Controls.Add(this.txtHuongGiaiQuyet);
             this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.chkDaXong);
@@ -74,7 +84,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(4, -1);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(497, 308);
+            this.groupBox1.Size = new System.Drawing.Size(497, 332);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -98,7 +108,7 @@
             // chkDaXong
             // 
             this.chkDaXong.AutoSize = true;
-            this.chkDaXong.Location = new System.Drawing.Point(138, 284);
+            this.chkDaXong.Location = new System.Drawing.Point(138, 308);
             this.chkDaXong.Name = "chkDaXong";
             this.chkDaXong.Size = new System.Drawing.Size(66, 17);
             this.chkDaXong.TabIndex = 13;
@@ -114,7 +124,7 @@
             this.cboDocStaff.FormattingEnabled = true;
             this.cboDocStaff.Location = new System.Drawing.Point(138, 256);
             this.cboDocStaff.Name = "cboDocStaff";
-            this.cboDocStaff.Size = new System.Drawing.Size(269, 21);
+            this.cboDocStaff.Size = new System.Drawing.Size(347, 21);
             this.cboDocStaff.TabIndex = 12;
             this.cboDocStaff.ValueMember = "DocStaffGUID";
             // 
@@ -233,7 +243,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(254, 313);
+            this.btnCancel.Location = new System.Drawing.Point(254, 337);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 8;
@@ -245,12 +255,62 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(175, 313);
+            this.btnOK.Location = new System.Drawing.Point(175, 337);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 7;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.Location = new System.Drawing.Point(83, 283);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(49, 13);
+            this.label8.TabIndex = 15;
+            this.label8.Text = "IN/OUT:";
+            // 
+            // raIN
+            // 
+            this.raIN.AutoSize = true;
+            this.raIN.Checked = true;
+            this.raIN.Location = new System.Drawing.Point(139, 281);
+            this.raIN.Name = "raIN";
+            this.raIN.Size = new System.Drawing.Size(36, 17);
+            this.raIN.TabIndex = 16;
+            this.raIN.TabStop = true;
+            this.raIN.Text = "IN";
+            this.raIN.UseVisualStyleBackColor = true;
+            this.raIN.CheckedChanged += new System.EventHandler(this.raIN_CheckedChanged);
+            // 
+            // raOUT
+            // 
+            this.raOUT.AutoSize = true;
+            this.raOUT.Location = new System.Drawing.Point(188, 281);
+            this.raOUT.Name = "raOUT";
+            this.raOUT.Size = new System.Drawing.Size(48, 17);
+            this.raOUT.TabIndex = 17;
+            this.raOUT.Text = "OUT";
+            this.raOUT.UseVisualStyleBackColor = true;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(245, 283);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(65, 13);
+            this.label9.TabIndex = 18;
+            this.label9.Text = "Số tổng đài:";
+            // 
+            // txtSoTongDai
+            // 
+            this.txtSoTongDai.Location = new System.Drawing.Point(316, 280);
+            this.txtSoTongDai.MaxLength = 50;
+            this.txtSoTongDai.Name = "txtSoTongDai";
+            this.txtSoTongDai.Size = new System.Drawing.Size(169, 20);
+            this.txtSoTongDai.TabIndex = 19;
+            this.txtSoTongDai.Text = "19001856";
             // 
             // dlgAddYKienKhachHang
             // 
@@ -258,7 +318,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(505, 342);
+            this.ClientSize = new System.Drawing.Size(505, 366);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupBox1);
@@ -301,5 +361,10 @@
         private System.Windows.Forms.BindingSource docStaffViewBindingSource;
         private System.Windows.Forms.TextBox txtHuongGiaiQuyet;
         private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.TextBox txtSoTongDai;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.RadioButton raOUT;
+        private System.Windows.Forms.RadioButton raIN;
+        private System.Windows.Forms.Label label8;
     }
 }

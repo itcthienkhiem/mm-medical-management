@@ -37,6 +37,9 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.raDaXoa = new System.Windows.Forms.RadioButton();
+            this.label4 = new System.Windows.Forms.Label();
+            this.txtTenThongBao = new System.Windows.Forms.TextBox();
             this.raDangChoDuyet = new System.Windows.Forms.RadioButton();
             this.raDaDuyet = new System.Windows.Forms.RadioButton();
             this.raTatCa = new System.Windows.Forms.RadioButton();
@@ -49,6 +52,7 @@
             this.label1 = new System.Windows.Forms.Label();
             this.dtpkTuNgay = new System.Windows.Forms.DateTimePicker();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnPhucHoi = new System.Windows.Forms.Button();
             this.btnXemSuaDoi = new System.Windows.Forms.Button();
             this.btnXemQuaTrinhDuyet = new System.Windows.Forms.Button();
             this.btnXemThongBao = new System.Windows.Forms.Button();
@@ -58,7 +62,6 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgThongBao = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.thongBaoViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.tenThongBaoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ngayDuyet1DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -66,6 +69,7 @@
             this.ngayDuyet3DataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.createdDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.thongBaoViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -75,6 +79,9 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.raDaXoa);
+            this.panel2.Controls.Add(this.label4);
+            this.panel2.Controls.Add(this.txtTenThongBao);
             this.panel2.Controls.Add(this.raDangChoDuyet);
             this.panel2.Controls.Add(this.raDaDuyet);
             this.panel2.Controls.Add(this.raTatCa);
@@ -89,16 +96,43 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(974, 87);
+            this.panel2.Size = new System.Drawing.Size(974, 111);
             this.panel2.TabIndex = 9;
+            // 
+            // raDaXoa
+            // 
+            this.raDaXoa.AutoSize = true;
+            this.raDaXoa.Location = new System.Drawing.Point(353, 85);
+            this.raDaXoa.Name = "raDaXoa";
+            this.raDaXoa.Size = new System.Drawing.Size(59, 17);
+            this.raDaXoa.TabIndex = 10;
+            this.raDaXoa.Text = "Đã xóa";
+            this.raDaXoa.UseVisualStyleBackColor = true;
+            this.raDaXoa.CheckedChanged += new System.EventHandler(this.raDaXoa_CheckedChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(9, 60);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(80, 13);
+            this.label4.TabIndex = 20;
+            this.label4.Text = "Tên thông báo:";
+            // 
+            // txtTenThongBao
+            // 
+            this.txtTenThongBao.Location = new System.Drawing.Point(98, 57);
+            this.txtTenThongBao.Name = "txtTenThongBao";
+            this.txtTenThongBao.Size = new System.Drawing.Size(291, 20);
+            this.txtTenThongBao.TabIndex = 6;
             // 
             // raDangChoDuyet
             // 
             this.raDangChoDuyet.AutoSize = true;
-            this.raDangChoDuyet.Location = new System.Drawing.Point(287, 60);
+            this.raDangChoDuyet.Location = new System.Drawing.Point(257, 85);
             this.raDangChoDuyet.Name = "raDangChoDuyet";
             this.raDangChoDuyet.Size = new System.Drawing.Size(79, 17);
-            this.raDangChoDuyet.TabIndex = 8;
+            this.raDangChoDuyet.TabIndex = 9;
             this.raDangChoDuyet.Text = "Chưa duyệt";
             this.raDangChoDuyet.UseVisualStyleBackColor = true;
             this.raDangChoDuyet.CheckedChanged += new System.EventHandler(this.raDangChoDuyet_CheckedChanged);
@@ -106,10 +140,10 @@
             // raDaDuyet
             // 
             this.raDaDuyet.AutoSize = true;
-            this.raDaDuyet.Location = new System.Drawing.Point(189, 60);
+            this.raDaDuyet.Location = new System.Drawing.Point(172, 85);
             this.raDaDuyet.Name = "raDaDuyet";
             this.raDaDuyet.Size = new System.Drawing.Size(68, 17);
-            this.raDaDuyet.TabIndex = 7;
+            this.raDaDuyet.TabIndex = 8;
             this.raDaDuyet.Text = "Đã duyệt";
             this.raDaDuyet.UseVisualStyleBackColor = true;
             this.raDaDuyet.CheckedChanged += new System.EventHandler(this.raDaDuyet_CheckedChanged);
@@ -118,10 +152,10 @@
             // 
             this.raTatCa.AutoSize = true;
             this.raTatCa.Checked = true;
-            this.raTatCa.Location = new System.Drawing.Point(98, 60);
+            this.raTatCa.Location = new System.Drawing.Point(98, 85);
             this.raTatCa.Name = "raTatCa";
             this.raTatCa.Size = new System.Drawing.Size(56, 17);
-            this.raTatCa.TabIndex = 6;
+            this.raTatCa.TabIndex = 7;
             this.raTatCa.TabStop = true;
             this.raTatCa.Text = "Tất cả";
             this.raTatCa.UseVisualStyleBackColor = true;
@@ -149,7 +183,7 @@
             // 
             this.lbKetQuaTimDuoc.AutoSize = true;
             this.lbKetQuaTimDuoc.ForeColor = System.Drawing.Color.Blue;
-            this.lbKetQuaTimDuoc.Location = new System.Drawing.Point(476, 59);
+            this.lbKetQuaTimDuoc.Location = new System.Drawing.Point(504, 85);
             this.lbKetQuaTimDuoc.Name = "lbKetQuaTimDuoc";
             this.lbKetQuaTimDuoc.Size = new System.Drawing.Size(100, 13);
             this.lbKetQuaTimDuoc.TabIndex = 16;
@@ -159,10 +193,10 @@
             // 
             this.btnView.Image = global::MM.Properties.Resources.views_icon;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(395, 54);
+            this.btnView.Location = new System.Drawing.Point(423, 80);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 23);
-            this.btnView.TabIndex = 9;
+            this.btnView.TabIndex = 11;
             this.btnView.Text = "   &Tìm";
             this.btnView.UseVisualStyleBackColor = true;
             this.btnView.Click += new System.EventHandler(this.btnView_Click);
@@ -203,6 +237,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnPhucHoi);
             this.panel1.Controls.Add(this.btnXemSuaDoi);
             this.panel1.Controls.Add(this.btnXemQuaTrinhDuyet);
             this.panel1.Controls.Add(this.btnXemThongBao);
@@ -215,12 +250,24 @@
             this.panel1.Size = new System.Drawing.Size(974, 38);
             this.panel1.TabIndex = 10;
             // 
+            // btnPhucHoi
+            // 
+            this.btnPhucHoi.Image = global::MM.Properties.Resources.backup_restore_icon__1_;
+            this.btnPhucHoi.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPhucHoi.Location = new System.Drawing.Point(244, 6);
+            this.btnPhucHoi.Name = "btnPhucHoi";
+            this.btnPhucHoi.Size = new System.Drawing.Size(87, 25);
+            this.btnPhucHoi.TabIndex = 7;
+            this.btnPhucHoi.Text = "     &Phục hồi";
+            this.btnPhucHoi.UseVisualStyleBackColor = true;
+            this.btnPhucHoi.Click += new System.EventHandler(this.btnPhucHoi_Click);
+            // 
             // btnXemSuaDoi
             // 
             this.btnXemSuaDoi.ForeColor = System.Drawing.Color.Red;
             this.btnXemSuaDoi.Image = ((System.Drawing.Image)(resources.GetObject("btnXemSuaDoi.Image")));
             this.btnXemSuaDoi.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnXemSuaDoi.Location = new System.Drawing.Point(518, 6);
+            this.btnXemSuaDoi.Location = new System.Drawing.Point(610, 6);
             this.btnXemSuaDoi.Name = "btnXemSuaDoi";
             this.btnXemSuaDoi.Size = new System.Drawing.Size(153, 25);
             this.btnXemSuaDoi.TabIndex = 5;
@@ -232,7 +279,7 @@
             // 
             this.btnXemQuaTrinhDuyet.Image = ((System.Drawing.Image)(resources.GetObject("btnXemQuaTrinhDuyet.Image")));
             this.btnXemQuaTrinhDuyet.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnXemQuaTrinhDuyet.Location = new System.Drawing.Point(368, 6);
+            this.btnXemQuaTrinhDuyet.Location = new System.Drawing.Point(460, 6);
             this.btnXemQuaTrinhDuyet.Name = "btnXemQuaTrinhDuyet";
             this.btnXemQuaTrinhDuyet.Size = new System.Drawing.Size(146, 25);
             this.btnXemQuaTrinhDuyet.TabIndex = 4;
@@ -244,7 +291,7 @@
             // 
             this.btnXemThongBao.Image = ((System.Drawing.Image)(resources.GetObject("btnXemThongBao.Image")));
             this.btnXemThongBao.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnXemThongBao.Location = new System.Drawing.Point(244, 6);
+            this.btnXemThongBao.Location = new System.Drawing.Point(336, 6);
             this.btnXemThongBao.Name = "btnXemThongBao";
             this.btnXemThongBao.Size = new System.Drawing.Size(119, 25);
             this.btnXemThongBao.TabIndex = 3;
@@ -293,9 +340,9 @@
             this.panel3.Controls.Add(this.chkChecked);
             this.panel3.Controls.Add(this.dgThongBao);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 87);
+            this.panel3.Location = new System.Drawing.Point(0, 111);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(974, 304);
+            this.panel3.Size = new System.Drawing.Size(974, 280);
             this.panel3.TabIndex = 11;
             // 
             // chkChecked
@@ -349,13 +396,9 @@
             this.dgThongBao.Name = "dgThongBao";
             this.dgThongBao.RowHeadersWidth = 30;
             this.dgThongBao.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgThongBao.Size = new System.Drawing.Size(974, 304);
+            this.dgThongBao.Size = new System.Drawing.Size(974, 280);
             this.dgThongBao.TabIndex = 2;
             this.dgThongBao.DoubleClick += new System.EventHandler(this.dgThongBao_DoubleClick);
-            // 
-            // thongBaoViewBindingSource
-            // 
-            this.thongBaoViewBindingSource.DataSource = typeof(MM.Databasae.ThongBaoView);
             // 
             // colChecked
             // 
@@ -431,6 +474,10 @@
             this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
             this.fullNameDataGridViewTextBoxColumn.Width = 200;
             // 
+            // thongBaoViewBindingSource
+            // 
+            this.thongBaoViewBindingSource.DataSource = typeof(MM.Databasae.ThongBaoView);
+            // 
             // uThongBaoList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -483,5 +530,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn ngayDuyet3DataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn createdDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox txtTenThongBao;
+        private System.Windows.Forms.RadioButton raDaXoa;
+        private System.Windows.Forms.Button btnPhucHoi;
     }
 }
