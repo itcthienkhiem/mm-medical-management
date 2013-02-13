@@ -11,7 +11,7 @@ namespace MM.Bussiness
 {
     public class ThongBaoBus : BusBase
     {
-        public static Result GetThongBaoList(DateTime tuNgay, DateTime denNgay, string tenNguoiTao, int type)
+        public static Result GetThongBaoList(DateTime tuNgay, DateTime denNgay, string tenNguoiTao, string tenThongBao, int type)
         {
             Result result = null;
 
@@ -20,18 +20,23 @@ namespace MM.Bussiness
                 string query = string.Empty;
                 if (type == 0)
                 {
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ThongBaoView WITH(NOLOCK) WHERE ((CreatedDate IS NOT NULL AND CreatedDate BETWEEN '{0}' AND '{1}') OR (NgayDuyet1 IS NOT NULL AND NgayDuyet1 BETWEEN '{0}' AND '{1}') OR (NgayDuyet2 IS NOT NULL AND NgayDuyet2 BETWEEN '{0}' AND '{1}') OR (NgayDuyet3 IS NOT NULL AND NgayDuyet3 BETWEEN '{0}' AND '{1}')) AND FullName LIKE N'%{2}%' AND Status = {3} ORDER BY CreatedDate DESC",
-                        tuNgay.ToString("yyyy-MM-dd 00:00:00"), denNgay.ToString("yyyy-MM-dd 23:59:59"), tenNguoiTao, (byte)Status.Actived);
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ThongBaoView WITH(NOLOCK) WHERE ((CreatedDate IS NOT NULL AND CreatedDate BETWEEN '{0}' AND '{1}') OR (NgayDuyet1 IS NOT NULL AND NgayDuyet1 BETWEEN '{0}' AND '{1}') OR (NgayDuyet2 IS NOT NULL AND NgayDuyet2 BETWEEN '{0}' AND '{1}') OR (NgayDuyet3 IS NOT NULL AND NgayDuyet3 BETWEEN '{0}' AND '{1}')) AND FullName LIKE N'%{2}%' AND Status = {3} AND TenThongBao LIKE N'%{4}%' ORDER BY CreatedDate DESC",
+                        tuNgay.ToString("yyyy-MM-dd 00:00:00"), denNgay.ToString("yyyy-MM-dd 23:59:59"), tenNguoiTao, (byte)Status.Actived, tenThongBao);
                 }
                 else if (type == 1)
                 {
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ThongBaoView WITH(NOLOCK) WHERE ((NgayDuyet1 IS NOT NULL AND NgayDuyet1 BETWEEN '{0}' AND '{1}') OR (NgayDuyet2 IS NOT NULL AND NgayDuyet2 BETWEEN '{0}' AND '{1}') OR (NgayDuyet3 IS NOT NULL AND NgayDuyet3 BETWEEN '{0}' AND '{1}')) AND FullName LIKE N'%{2}%' AND Status = {3} ORDER BY CreatedDate DESC",
-                        tuNgay.ToString("yyyy-MM-dd 00:00:00"), denNgay.ToString("yyyy-MM-dd 23:59:59"), tenNguoiTao, (byte)Status.Actived);
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ThongBaoView WITH(NOLOCK) WHERE ((NgayDuyet1 IS NOT NULL AND NgayDuyet1 BETWEEN '{0}' AND '{1}') OR (NgayDuyet2 IS NOT NULL AND NgayDuyet2 BETWEEN '{0}' AND '{1}') OR (NgayDuyet3 IS NOT NULL AND NgayDuyet3 BETWEEN '{0}' AND '{1}')) AND FullName LIKE N'%{2}%' AND Status = {3} AND TenThongBao LIKE N'%{4}%' ORDER BY CreatedDate DESC",
+                        tuNgay.ToString("yyyy-MM-dd 00:00:00"), denNgay.ToString("yyyy-MM-dd 23:59:59"), tenNguoiTao, (byte)Status.Actived, tenThongBao);
                 }
                 else if (type == 2)
                 {
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ThongBaoView WITH(NOLOCK) WHERE CreatedDate IS NOT NULL AND CreatedDate BETWEEN '{0}' AND '{1}' AND NgayDuyet1 IS NULL AND NgayDuyet2 IS NULL AND NgayDuyet3 IS NULL AND FullName LIKE N'%{2}%' AND Status = {3} ORDER BY CreatedDate DESC",
-                        tuNgay.ToString("yyyy-MM-dd 00:00:00"), denNgay.ToString("yyyy-MM-dd 23:59:59"), tenNguoiTao, (byte)Status.Actived);
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ThongBaoView WITH(NOLOCK) WHERE CreatedDate IS NOT NULL AND CreatedDate BETWEEN '{0}' AND '{1}' AND NgayDuyet1 IS NULL AND NgayDuyet2 IS NULL AND NgayDuyet3 IS NULL AND FullName LIKE N'%{2}%' AND Status = {3} AND TenThongBao LIKE N'%{4}%' ORDER BY CreatedDate DESC",
+                        tuNgay.ToString("yyyy-MM-dd 00:00:00"), denNgay.ToString("yyyy-MM-dd 23:59:59"), tenNguoiTao, (byte)Status.Actived, tenThongBao);
+                }
+                else if (type == 3)
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ThongBaoView WITH(NOLOCK) WHERE ((CreatedDate IS NOT NULL AND CreatedDate BETWEEN '{0}' AND '{1}') OR (NgayDuyet1 IS NOT NULL AND NgayDuyet1 BETWEEN '{0}' AND '{1}') OR (NgayDuyet2 IS NOT NULL AND NgayDuyet2 BETWEEN '{0}' AND '{1}') OR (NgayDuyet3 IS NOT NULL AND NgayDuyet3 BETWEEN '{0}' AND '{1}')) AND FullName LIKE N'%{2}%' AND Status = {3} AND TenThongBao LIKE N'%{4}%' ORDER BY CreatedDate DESC",
+                        tuNgay.ToString("yyyy-MM-dd 00:00:00"), denNgay.ToString("yyyy-MM-dd 23:59:59"), tenNguoiTao, (byte)Status.Deactived, tenThongBao);
                 }
 
                 return ExcuteQuery(query);
@@ -86,6 +91,72 @@ namespace MM.Bussiness
                     tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
                     tk.ActionType = (byte)ActionType.Delete;
                     tk.Action = "Xóa thông báo";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.None;
+                    db.Trackings.InsertOnSubmit(tk);
+
+                    db.SubmitChanges();
+                    t.Complete();
+                }
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result PhucHoiThongBao(List<string> keys)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    string desc = string.Empty;
+                    foreach (string key in keys)
+                    {
+                        ThongBao tb = db.ThongBaos.SingleOrDefault<ThongBao>(b => b.ThongBaoGUID.ToString() == key);
+                        if (tb != null)
+                        {
+                            tb.UpdatedDate = DateTime.Now;
+                            tb.UpdatedBy = Guid.Parse(Global.UserGUID);
+                            tb.Status = (byte)Status.Actived;
+
+                            desc += string.Format("- GUID: '{0}', Tên thông báo: '{1}', Ngày tạo: '{2}', Ngày duyệt 1: '{3}', Ngày duyệt 2: '{4}', Ngày duyệt 3: '{5}'\n",
+                                tb.ThongBaoGUID.ToString(), tb.TenThongBao, tb.CreatedDate.Value.ToString("dd/MM/yyyy HH:mm:ss"),
+                                tb.NgayDuyet1.HasValue ? tb.NgayDuyet1.Value.ToString("dd/MM/yyyy HH:mm:ss") : string.Empty,
+                                tb.NgayDuyet2.HasValue ? tb.NgayDuyet2.Value.ToString("dd/MM/yyyy HH:mm:ss") : string.Empty,
+                                tb.NgayDuyet3.HasValue ? tb.NgayDuyet3.Value.ToString("dd/MM/yyyy HH:mm:ss") : string.Empty);
+                        }
+                    }
+
+                    //Tracking
+                    desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Edit;
+                    tk.Action = "Phục hồi thông báo";
                     tk.Description = desc;
                     tk.TrackingType = (byte)TrackingType.None;
                     db.Trackings.InsertOnSubmit(tk);
