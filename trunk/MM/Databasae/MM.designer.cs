@@ -321,6 +321,9 @@ namespace MM.Databasae
     partial void InsertYKienKhachHang(YKienKhachHang instance);
     partial void UpdateYKienKhachHang(YKienKhachHang instance);
     partial void DeleteYKienKhachHang(YKienKhachHang instance);
+    partial void InsertDichVuCon(DichVuCon instance);
+    partial void UpdateDichVuCon(DichVuCon instance);
+    partial void DeleteDichVuCon(DichVuCon instance);
     #endregion
 		
 		public MMDataContext() : 
@@ -1646,6 +1649,22 @@ namespace MM.Databasae
 			get
 			{
 				return this.GetTable<YKienKhachHangView>();
+			}
+		}
+		
+		public System.Data.Linq.Table<DichVuCon> DichVuCons
+		{
+			get
+			{
+				return this.GetTable<DichVuCon>();
+			}
+		}
+		
+		public System.Data.Linq.Table<DichVuConView> DichVuConViews
+		{
+			get
+			{
+				return this.GetTable<DichVuConView>();
 			}
 		}
 		
@@ -22200,6 +22219,8 @@ namespace MM.Databasae
 		
 		private EntitySet<DichVuLamThem> _DichVuLamThems;
 		
+		private EntitySet<DichVuCon> _DichVuCons;
+		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
@@ -22247,6 +22268,7 @@ namespace MM.Databasae
 			this._KetQuaCanLamSangs = new EntitySet<KetQuaCanLamSang>(new Action<KetQuaCanLamSang>(this.attach_KetQuaCanLamSangs), new Action<KetQuaCanLamSang>(this.detach_KetQuaCanLamSangs));
 			this._BenhNhanNgoaiGoiKhams = new EntitySet<BenhNhanNgoaiGoiKham>(new Action<BenhNhanNgoaiGoiKham>(this.attach_BenhNhanNgoaiGoiKhams), new Action<BenhNhanNgoaiGoiKham>(this.detach_BenhNhanNgoaiGoiKhams));
 			this._DichVuLamThems = new EntitySet<DichVuLamThem>(new Action<DichVuLamThem>(this.attach_DichVuLamThems), new Action<DichVuLamThem>(this.detach_DichVuLamThems));
+			this._DichVuCons = new EntitySet<DichVuCon>(new Action<DichVuCon>(this.attach_DichVuCons), new Action<DichVuCon>(this.detach_DichVuCons));
 			OnCreated();
 		}
 		
@@ -22667,6 +22689,19 @@ namespace MM.Databasae
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Service_DichVuCon", Storage="_DichVuCons", ThisKey="ServiceGUID", OtherKey="ServiceGUID")]
+		public EntitySet<DichVuCon> DichVuCons
+		{
+			get
+			{
+				return this._DichVuCons;
+			}
+			set
+			{
+				this._DichVuCons.Assign(value);
+			}
+		}
+		
 		public event PropertyChangingEventHandler PropertyChanging;
 		
 		public event PropertyChangedEventHandler PropertyChanged;
@@ -22790,6 +22825,18 @@ namespace MM.Databasae
 		}
 		
 		private void detach_DichVuLamThems(DichVuLamThem entity)
+		{
+			this.SendPropertyChanging();
+			entity.Service = null;
+		}
+		
+		private void attach_DichVuCons(DichVuCon entity)
+		{
+			this.SendPropertyChanging();
+			entity.Service = this;
+		}
+		
+		private void detach_DichVuCons(DichVuCon entity)
 		{
 			this.SendPropertyChanging();
 			entity.Service = null;
@@ -32237,6 +32284,8 @@ namespace MM.Databasae
 		
 		private byte _Status;
 		
+		private EntitySet<DichVuCon> _DichVuCons;
+		
 		private EntityRef<Service> _Service;
 		
 		private EntityRef<CompanyContract> _CompanyContract;
@@ -32271,6 +32320,7 @@ namespace MM.Databasae
 		
 		public GiaDichVuHopDong()
 		{
+			this._DichVuCons = new EntitySet<DichVuCon>(new Action<DichVuCon>(this.attach_DichVuCons), new Action<DichVuCon>(this.detach_DichVuCons));
 			this._Service = default(EntityRef<Service>);
 			this._CompanyContract = default(EntityRef<CompanyContract>);
 			OnCreated();
@@ -32504,6 +32554,19 @@ namespace MM.Databasae
 			}
 		}
 		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GiaDichVuHopDong_DichVuCon", Storage="_DichVuCons", ThisKey="GiaDichVuHopDongGUID", OtherKey="GiaDichVuHopDongGUID")]
+		public EntitySet<DichVuCon> DichVuCons
+		{
+			get
+			{
+				return this._DichVuCons;
+			}
+			set
+			{
+				this._DichVuCons.Assign(value);
+			}
+		}
+		
 		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Service_GiaDichVuHopDong", Storage="_Service", ThisKey="ServiceGUID", OtherKey="ServiceGUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
 		public Service Service
 		{
@@ -32590,6 +32653,18 @@ namespace MM.Databasae
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+		
+		private void attach_DichVuCons(DichVuCon entity)
+		{
+			this.SendPropertyChanging();
+			entity.GiaDichVuHopDong = this;
+		}
+		
+		private void detach_DichVuCons(DichVuCon entity)
+		{
+			this.SendPropertyChanging();
+			entity.GiaDichVuHopDong = null;
 		}
 	}
 	
@@ -76875,6 +76950,645 @@ namespace MM.Databasae
 				if ((this._InOut != value))
 				{
 					this._InOut = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DichVuCon")]
+	public partial class DichVuCon : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _DichVuConGUID;
+		
+		private System.Guid _GiaDichVuHopDongGUID;
+		
+		private System.Guid _ServiceGUID;
+		
+		private System.Nullable<System.DateTime> _CreatedDate;
+		
+		private System.Nullable<System.Guid> _CreatedBy;
+		
+		private System.Nullable<System.DateTime> _UpdatedDate;
+		
+		private System.Nullable<System.Guid> _UpdatedBy;
+		
+		private System.Nullable<System.DateTime> _DeletedDate;
+		
+		private System.Nullable<System.Guid> _DeletedBy;
+		
+		private byte _Status;
+		
+		private EntityRef<GiaDichVuHopDong> _GiaDichVuHopDong;
+		
+		private EntityRef<Service> _Service;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnDichVuConGUIDChanging(System.Guid value);
+    partial void OnDichVuConGUIDChanged();
+    partial void OnGiaDichVuHopDongGUIDChanging(System.Guid value);
+    partial void OnGiaDichVuHopDongGUIDChanged();
+    partial void OnServiceGUIDChanging(System.Guid value);
+    partial void OnServiceGUIDChanged();
+    partial void OnCreatedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnCreatedDateChanged();
+    partial void OnCreatedByChanging(System.Nullable<System.Guid> value);
+    partial void OnCreatedByChanged();
+    partial void OnUpdatedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnUpdatedDateChanged();
+    partial void OnUpdatedByChanging(System.Nullable<System.Guid> value);
+    partial void OnUpdatedByChanged();
+    partial void OnDeletedDateChanging(System.Nullable<System.DateTime> value);
+    partial void OnDeletedDateChanged();
+    partial void OnDeletedByChanging(System.Nullable<System.Guid> value);
+    partial void OnDeletedByChanged();
+    partial void OnStatusChanging(byte value);
+    partial void OnStatusChanged();
+    #endregion
+		
+		public DichVuCon()
+		{
+			this._GiaDichVuHopDong = default(EntityRef<GiaDichVuHopDong>);
+			this._Service = default(EntityRef<Service>);
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DichVuConGUID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid DichVuConGUID
+		{
+			get
+			{
+				return this._DichVuConGUID;
+			}
+			set
+			{
+				if ((this._DichVuConGUID != value))
+				{
+					this.OnDichVuConGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._DichVuConGUID = value;
+					this.SendPropertyChanged("DichVuConGUID");
+					this.OnDichVuConGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GiaDichVuHopDongGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid GiaDichVuHopDongGUID
+		{
+			get
+			{
+				return this._GiaDichVuHopDongGUID;
+			}
+			set
+			{
+				if ((this._GiaDichVuHopDongGUID != value))
+				{
+					if (this._GiaDichVuHopDong.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnGiaDichVuHopDongGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._GiaDichVuHopDongGUID = value;
+					this.SendPropertyChanged("GiaDichVuHopDongGUID");
+					this.OnGiaDichVuHopDongGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid ServiceGUID
+		{
+			get
+			{
+				return this._ServiceGUID;
+			}
+			set
+			{
+				if ((this._ServiceGUID != value))
+				{
+					if (this._Service.HasLoadedOrAssignedValue)
+					{
+						throw new System.Data.Linq.ForeignKeyReferenceAlreadyHasValueException();
+					}
+					this.OnServiceGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._ServiceGUID = value;
+					this.SendPropertyChanged("ServiceGUID");
+					this.OnServiceGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this.OnCreatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedDate = value;
+					this.SendPropertyChanged("CreatedDate");
+					this.OnCreatedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this.OnCreatedByChanging(value);
+					this.SendPropertyChanging();
+					this._CreatedBy = value;
+					this.SendPropertyChanged("CreatedBy");
+					this.OnCreatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> UpdatedDate
+		{
+			get
+			{
+				return this._UpdatedDate;
+			}
+			set
+			{
+				if ((this._UpdatedDate != value))
+				{
+					this.OnUpdatedDateChanging(value);
+					this.SendPropertyChanging();
+					this._UpdatedDate = value;
+					this.SendPropertyChanged("UpdatedDate");
+					this.OnUpdatedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> UpdatedBy
+		{
+			get
+			{
+				return this._UpdatedBy;
+			}
+			set
+			{
+				if ((this._UpdatedBy != value))
+				{
+					this.OnUpdatedByChanging(value);
+					this.SendPropertyChanging();
+					this._UpdatedBy = value;
+					this.SendPropertyChanged("UpdatedBy");
+					this.OnUpdatedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DeletedDate
+		{
+			get
+			{
+				return this._DeletedDate;
+			}
+			set
+			{
+				if ((this._DeletedDate != value))
+				{
+					this.OnDeletedDateChanging(value);
+					this.SendPropertyChanging();
+					this._DeletedDate = value;
+					this.SendPropertyChanged("DeletedDate");
+					this.OnDeletedDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> DeletedBy
+		{
+			get
+			{
+				return this._DeletedBy;
+			}
+			set
+			{
+				if ((this._DeletedBy != value))
+				{
+					this.OnDeletedByChanging(value);
+					this.SendPropertyChanging();
+					this._DeletedBy = value;
+					this.SendPropertyChanged("DeletedBy");
+					this.OnDeletedByChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="TinyInt NOT NULL")]
+		public byte Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this.OnStatusChanging(value);
+					this.SendPropertyChanging();
+					this._Status = value;
+					this.SendPropertyChanged("Status");
+					this.OnStatusChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="GiaDichVuHopDong_DichVuCon", Storage="_GiaDichVuHopDong", ThisKey="GiaDichVuHopDongGUID", OtherKey="GiaDichVuHopDongGUID", IsForeignKey=true, DeleteOnNull=true, DeleteRule="CASCADE")]
+		public GiaDichVuHopDong GiaDichVuHopDong
+		{
+			get
+			{
+				return this._GiaDichVuHopDong.Entity;
+			}
+			set
+			{
+				GiaDichVuHopDong previousValue = this._GiaDichVuHopDong.Entity;
+				if (((previousValue != value) 
+							|| (this._GiaDichVuHopDong.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._GiaDichVuHopDong.Entity = null;
+						previousValue.DichVuCons.Remove(this);
+					}
+					this._GiaDichVuHopDong.Entity = value;
+					if ((value != null))
+					{
+						value.DichVuCons.Add(this);
+						this._GiaDichVuHopDongGUID = value.GiaDichVuHopDongGUID;
+					}
+					else
+					{
+						this._GiaDichVuHopDongGUID = default(System.Guid);
+					}
+					this.SendPropertyChanged("GiaDichVuHopDong");
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Service_DichVuCon", Storage="_Service", ThisKey="ServiceGUID", OtherKey="ServiceGUID", IsForeignKey=true)]
+		public Service Service
+		{
+			get
+			{
+				return this._Service.Entity;
+			}
+			set
+			{
+				Service previousValue = this._Service.Entity;
+				if (((previousValue != value) 
+							|| (this._Service.HasLoadedOrAssignedValue == false)))
+				{
+					this.SendPropertyChanging();
+					if ((previousValue != null))
+					{
+						this._Service.Entity = null;
+						previousValue.DichVuCons.Remove(this);
+					}
+					this._Service.Entity = value;
+					if ((value != null))
+					{
+						value.DichVuCons.Add(this);
+						this._ServiceGUID = value.ServiceGUID;
+					}
+					else
+					{
+						this._ServiceGUID = default(System.Guid);
+					}
+					this.SendPropertyChanged("Service");
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.DichVuConView")]
+	public partial class DichVuConView
+	{
+		
+		private System.Guid _DichVuConGUID;
+		
+		private System.Guid _ServiceGUID;
+		
+		private System.Nullable<System.DateTime> _CreatedDate;
+		
+		private System.Nullable<System.Guid> _CreatedBy;
+		
+		private System.Nullable<System.DateTime> _UpdatedDate;
+		
+		private System.Nullable<System.Guid> _UpdatedBy;
+		
+		private System.Nullable<System.DateTime> _DeletedDate;
+		
+		private System.Nullable<System.Guid> _DeletedBy;
+		
+		private byte _Status;
+		
+		private string _Code;
+		
+		private string _Name;
+		
+		private string _EnglishName;
+		
+		private double _Price;
+		
+		private byte _ServiceStatus;
+		
+		private System.Guid _GiaDichVuHopDongGUID;
+		
+		public DichVuConView()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DichVuConGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid DichVuConGUID
+		{
+			get
+			{
+				return this._DichVuConGUID;
+			}
+			set
+			{
+				if ((this._DichVuConGUID != value))
+				{
+					this._DichVuConGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid ServiceGUID
+		{
+			get
+			{
+				return this._ServiceGUID;
+			}
+			set
+			{
+				if ((this._ServiceGUID != value))
+				{
+					this._ServiceGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> CreatedDate
+		{
+			get
+			{
+				return this._CreatedDate;
+			}
+			set
+			{
+				if ((this._CreatedDate != value))
+				{
+					this._CreatedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CreatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> CreatedBy
+		{
+			get
+			{
+				return this._CreatedBy;
+			}
+			set
+			{
+				if ((this._CreatedBy != value))
+				{
+					this._CreatedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> UpdatedDate
+		{
+			get
+			{
+				return this._UpdatedDate;
+			}
+			set
+			{
+				if ((this._UpdatedDate != value))
+				{
+					this._UpdatedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_UpdatedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> UpdatedBy
+		{
+			get
+			{
+				return this._UpdatedBy;
+			}
+			set
+			{
+				if ((this._UpdatedBy != value))
+				{
+					this._UpdatedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedDate", DbType="DateTime")]
+		public System.Nullable<System.DateTime> DeletedDate
+		{
+			get
+			{
+				return this._DeletedDate;
+			}
+			set
+			{
+				if ((this._DeletedDate != value))
+				{
+					this._DeletedDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DeletedBy", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> DeletedBy
+		{
+			get
+			{
+				return this._DeletedBy;
+			}
+			set
+			{
+				if ((this._DeletedBy != value))
+				{
+					this._DeletedBy = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="TinyInt NOT NULL")]
+		public byte Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this._Status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Code", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Code
+		{
+			get
+			{
+				return this._Code;
+			}
+			set
+			{
+				if ((this._Code != value))
+				{
+					this._Code = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EnglishName", DbType="NVarChar(200)")]
+		public string EnglishName
+		{
+			get
+			{
+				return this._EnglishName;
+			}
+			set
+			{
+				if ((this._EnglishName != value))
+				{
+					this._EnglishName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Price", DbType="Float NOT NULL")]
+		public double Price
+		{
+			get
+			{
+				return this._Price;
+			}
+			set
+			{
+				if ((this._Price != value))
+				{
+					this._Price = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceStatus", DbType="TinyInt NOT NULL")]
+		public byte ServiceStatus
+		{
+			get
+			{
+				return this._ServiceStatus;
+			}
+			set
+			{
+				if ((this._ServiceStatus != value))
+				{
+					this._ServiceStatus = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GiaDichVuHopDongGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid GiaDichVuHopDongGUID
+		{
+			get
+			{
+				return this._GiaDichVuHopDongGUID;
+			}
+			set
+			{
+				if ((this._GiaDichVuHopDongGUID != value))
+				{
+					this._GiaDichVuHopDongGUID = value;
 				}
 			}
 		}

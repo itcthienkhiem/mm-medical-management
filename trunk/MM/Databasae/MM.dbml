@@ -1094,6 +1094,7 @@
       <Association Name="Service_KetQuaCanLamSang" Member="KetQuaCanLamSangs" ThisKey="ServiceGUID" OtherKey="ServiceGUID" Type="KetQuaCanLamSang" />
       <Association Name="Service_BenhNhanNgoaiGoiKham" Member="BenhNhanNgoaiGoiKhams" ThisKey="ServiceGUID" OtherKey="ServiceGUID" Type="BenhNhanNgoaiGoiKham" />
       <Association Name="Service_DichVuLamThem" Member="DichVuLamThems" ThisKey="ServiceGUID" OtherKey="ServiceGUID" Type="DichVuLamThem" />
+      <Association Name="Service_DichVuCon" Member="DichVuCons" ThisKey="ServiceGUID" OtherKey="ServiceGUID" Type="DichVuCon" />
     </Type>
   </Table>
   <Table Name="dbo.ServiceView" Member="ServiceViews">
@@ -1602,6 +1603,7 @@
       <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Association Name="GiaDichVuHopDong_DichVuCon" Member="DichVuCons" ThisKey="GiaDichVuHopDongGUID" OtherKey="GiaDichVuHopDongGUID" Type="DichVuCon" />
       <Association Name="Service_GiaDichVuHopDong" Member="Service" ThisKey="ServiceGUID" OtherKey="ServiceGUID" Type="Service" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
       <Association Name="CompanyContract_GiaDichVuHopDong" Member="CompanyContract" ThisKey="HopDongGUID" OtherKey="CompanyContractGUID" Type="CompanyContract" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
@@ -3924,6 +3926,41 @@
       <Column Name="IsIN" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
       <Column Name="SoTongDai" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="InOut" Type="System.String" DbType="VarChar(3) NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DichVuCon" Member="DichVuCons">
+    <Type Name="DichVuCon">
+      <Column Name="DichVuConGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="GiaDichVuHopDongGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ServiceGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Association Name="GiaDichVuHopDong_DichVuCon" Member="GiaDichVuHopDong" ThisKey="GiaDichVuHopDongGUID" OtherKey="GiaDichVuHopDongGUID" Type="GiaDichVuHopDong" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+      <Association Name="Service_DichVuCon" Member="Service" ThisKey="ServiceGUID" OtherKey="ServiceGUID" Type="Service" IsForeignKey="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.DichVuConView" Member="DichVuConViews">
+    <Type Name="DichVuConView">
+      <Column Name="DichVuConGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ServiceGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="Code" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="NVarChar(200) NOT NULL" CanBeNull="false" />
+      <Column Name="EnglishName" Type="System.String" DbType="NVarChar(200)" CanBeNull="true" />
+      <Column Name="Price" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
+      <Column Name="ServiceStatus" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="GiaDichVuHopDongGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Function Name="dbo.spDoanhThuNhanVienTongHop" Method="spDoanhThuNhanVienTongHop">

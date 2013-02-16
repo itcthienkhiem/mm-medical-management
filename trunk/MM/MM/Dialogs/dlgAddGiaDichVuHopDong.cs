@@ -19,19 +19,23 @@ namespace MM.Dialogs
         private DataTable _dataSource = null;
         private bool _isNew = true;
         private DataRow _drGiaDichVu = null;
+        private CompanyInfo _companyInfo = null;
+        private List<string> _deletedDichVuCons = new List<string>();
         #endregion
 
         #region Constructor
-        public dlgAddGiaDichVuHopDong(DataTable dataSource)
+        public dlgAddGiaDichVuHopDong(CompanyInfo companyInfo)
         {
             InitializeComponent();
-            _dataSource = dataSource;
+            _companyInfo = companyInfo;
+            _dataSource = companyInfo.GiaDichVuDataSource;
         }
 
-        public dlgAddGiaDichVuHopDong(DataTable dataSource, DataRow drGiaDichVu)
+        public dlgAddGiaDichVuHopDong(CompanyInfo companyInfo, DataRow drGiaDichVu)
         {
             InitializeComponent();
-            _dataSource = dataSource;
+            _companyInfo = companyInfo;
+            _dataSource = companyInfo.GiaDichVuDataSource;
             _drGiaDichVu = drGiaDichVu;
             _isNew = false;
             this.Text = "Sua dich vu hop dong";
@@ -88,17 +92,40 @@ namespace MM.Dialogs
                 return;
             }
             else
-            {
                 cboService.DataSource = result.QueryResult;
+
+            //Dich Vụ Con
+            result = CompanyContractBus.GetDichVuCon(Guid.Empty.ToString());
+            if (!result.IsOK)
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.GetDichVuCon"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.GetDichVuCon"));
+                return;
             }
+            else
+                dgDichVuCon.DataSource = result.QueryResult;
         }
 
         private void DisplayInfo(DataRow drGiaDichVu)
         {
             try
             {
-                cboService.SelectedValue = drGiaDichVu["ServiceGUID"].ToString();
+                string serviceGUID = drGiaDichVu["ServiceGUID"].ToString();
+                cboService.SelectedValue = serviceGUID;
                 numPrice.Value = (Decimal)Convert.ToDouble(drGiaDichVu["Gia"]);
+
+                if (_companyInfo.DictDichVuCon == null) return;
+
+                if (_companyInfo.DictDichVuCon.ContainsKey(serviceGUID))
+                {
+                    DataTable dt = _companyInfo.DictDichVuCon[serviceGUID].Copy();
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        row["Checked"] = false;
+                    }
+
+                    dgDichVuCon.DataSource = dt;
+                }
             }
             catch (Exception e)
             {
@@ -154,7 +181,72 @@ namespace MM.Dialogs
                 }
             }
 
+            string serviceGUID = cboService.SelectedValue.ToString();
+            DataTable dt = dgDichVuCon.DataSource as DataTable;
+            DataRow[] rs = dt.Select(string.Format("ServiceGUID='{0}'", serviceGUID));
+            if (rs != null && rs.Length > 0)
+            {
+                MsgBox.Show(this.Text, string.Format("Dịch vụ: '{0}' không được trùng với dịch vụ con.", cboService.Text), IconType.Information);
+                cboService.Focus();
+                return false;
+            }
+
             return true;
+        }
+
+        private void OnAdd()
+        {
+            if (cboService.SelectedValue == null || cboService.Text.Trim() == string.Empty) return;
+            string serviceGUID = cboService.SelectedValue.ToString();
+            
+            DataTable dt = dgDichVuCon.DataSource as DataTable;
+            dlgServices dlg = new dlgServices(serviceGUID, dt);
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                List<DataRow> serviceList = dlg.Services;
+
+                foreach (DataRow row in serviceList)
+                {
+                    DataRow newRow = dt.NewRow();
+                    newRow["Checked"] = false;
+                    newRow["ServiceGUID"] = row["ServiceGUID"];
+                    newRow["Code"] = row["Code"];
+                    newRow["Name"] = row["Name"];
+                    newRow["EnglishName"] = row["EnglishName"];
+
+                    dt.Rows.Add(newRow);
+                }
+            }
+        }
+
+        private void OnDelete()
+        {
+            DataTable dt = dgDichVuCon.DataSource as DataTable;
+            if (dt == null || dt.Rows.Count <= 0) return;
+            List<DataRow> deletedRows = new List<DataRow>();
+
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                    deletedRows.Add(row);
+            }
+
+            if (deletedRows.Count > 0)
+            {
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa dịch vụ mà bạn đã đánh dấu ?") == DialogResult.Yes)
+                {
+                    foreach (DataRow row in deletedRows)
+                    {
+                        string serviceGUID = row["ServiceGUID"].ToString();
+                        if (!_deletedDichVuCons.Contains(serviceGUID))
+                            _deletedDichVuCons.Add(serviceGUID);
+
+                        dt.Rows.Remove(row);
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những dịch vụ cần xóa.", IconType.Information);
         }
         #endregion
 
@@ -170,6 +262,21 @@ namespace MM.Dialogs
             if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
                 if (!CheckInfo()) e.Cancel = true;
+                else
+                {
+                    string serviceGUID = cboService.SelectedValue.ToString();
+                    if (_companyInfo.DictDichVuCon.ContainsKey(serviceGUID))
+                        _companyInfo.DictDichVuCon[serviceGUID] = dgDichVuCon.DataSource as DataTable;
+                    else
+                        _companyInfo.DictDichVuCon.Add(serviceGUID, dgDichVuCon.DataSource as DataTable);
+
+                    if (_companyInfo.DictDeletedDichVuCons == null) _companyInfo.DictDeletedDichVuCons = new Dictionary<string, List<string>>();
+
+                    if (_companyInfo.DictDeletedDichVuCons.ContainsKey(serviceGUID))
+                        _companyInfo.DictDeletedDichVuCons[serviceGUID] = _deletedDichVuCons;
+                    else
+                        _companyInfo.DictDeletedDichVuCons.Add(serviceGUID, _deletedDichVuCons);
+                }
             }
         }
 
@@ -194,8 +301,26 @@ namespace MM.Dialogs
             //if (rows != null && rows.Length > 0)
             //    numPrice.Value = (decimal)Double.Parse(rows[0]["Price"].ToString());
         }
-        #endregion
 
-       
+        private void btnAdd_Click(object sender, EventArgs e)
+        {
+            OnAdd();
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            OnDelete();
+        }
+
+        private void chkChecked_CheckedChanged(object sender, EventArgs e)
+        {
+            DataTable dt = dgDichVuCon.DataSource as DataTable;
+            if (dt == null || dt.Rows.Count <= 0) return;
+            foreach (DataRow row in dt.Rows)
+            {
+                row["Checked"] = chkChecked.Checked;
+            }
+        }
+        #endregion
     }
 }

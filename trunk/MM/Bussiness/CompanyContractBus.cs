@@ -250,6 +250,54 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetDichVuCon(string giaDichVuHopDongGUID)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM DichVuConView WITH(NOLOCK) WHERE GiaDichVuHopDongGUID='{0}' AND Status={1} AND ServiceStatus = {1} ORDER BY Name",
+                    giaDichVuHopDongGUID, (byte)Status.Actived);
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
+        public static Result GetDichVuCon(string hopDongGUID, string serviceGUID)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Format("SELECT D.* FROM DichVuConView D WITH(NOLOCK), GiaDichVuHopDong G WITH(NOLOCK) WHERE D.GiaDichVuHopDongGUID=G.GiaDichVuHopDongGUID AND G.HopDongGUID='{0}' AND G.ServiceGUID='{1}' AND D.Status={2} AND D.ServiceStatus = {2} AND G.Status = {2} ORDER BY D.Name",
+                    hopDongGUID, serviceGUID, (byte)Status.Actived);
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetContractMemberList(string contractGUID, string serviceGUID)
         {
             Result result = null;
@@ -593,6 +641,23 @@ namespace MM.Bussiness
                                 giaDichVuHopDong.CreatedBy = Guid.Parse(Global.UserGUID);
                                 giaDichVuHopDong.CreatedDate = DateTime.Now;
                                 db.GiaDichVuHopDongs.InsertOnSubmit(giaDichVuHopDong);
+                                db.SubmitChanges();
+
+                                //Dịch vụ con
+                                if (!companyInfo.DictDichVuCon.ContainsKey(giaDichVuHopDong.ServiceGUID.ToString())) continue;
+                                DataTable dtDichVuCon = companyInfo.DictDichVuCon[giaDichVuHopDong.ServiceGUID.ToString()];
+                                if (dtDichVuCon == null || dtDichVuCon.Rows.Count <= 0) continue;
+                                foreach (DataRow drDichVuCon in dtDichVuCon.Rows)
+	                            {
+                                    DichVuCon dvc = new DichVuCon();
+                                    dvc.DichVuConGUID = Guid.NewGuid();
+                                    dvc.GiaDichVuHopDongGUID = giaDichVuHopDong.GiaDichVuHopDongGUID;
+                                    dvc.ServiceGUID = Guid.Parse(drDichVuCon["ServiceGUID"].ToString());
+                                    dvc.CreatedDate = DateTime.Now;
+                                    dvc.CreatedBy = Guid.Parse(Global.UserGUID);
+                                    dvc.Status = (byte)Status.Actived;
+                                    db.DichVuCons.InsertOnSubmit(dvc);
+	                            }
                             }
                         }
 
@@ -861,21 +926,23 @@ namespace MM.Bussiness
                             {
                                 foreach (DataRow row in companyInfo.GiaDichVuDataSource.Rows)
                                 {
+                                    GiaDichVuHopDong gdvhd = null;
                                     if (row["GiaDichVuHopDongGUID"] == null || row["GiaDichVuHopDongGUID"] == DBNull.Value)
                                     {
-                                        GiaDichVuHopDong giaDichVuHopDong = new GiaDichVuHopDong();
-                                        giaDichVuHopDong.GiaDichVuHopDongGUID = Guid.NewGuid();
-                                        giaDichVuHopDong.HopDongGUID = contract.CompanyContractGUID;
-                                        giaDichVuHopDong.ServiceGUID = Guid.Parse(row["ServiceGUID"].ToString());
-                                        giaDichVuHopDong.Gia = Convert.ToDouble(row["Gia"]);
-                                        giaDichVuHopDong.CreatedBy = Guid.Parse(Global.UserGUID);
-                                        giaDichVuHopDong.CreatedDate = DateTime.Now;
-                                        db.GiaDichVuHopDongs.InsertOnSubmit(giaDichVuHopDong);
+                                        gdvhd = new GiaDichVuHopDong();
+                                        gdvhd.GiaDichVuHopDongGUID = Guid.NewGuid();
+                                        gdvhd.HopDongGUID = contract.CompanyContractGUID;
+                                        gdvhd.ServiceGUID = Guid.Parse(row["ServiceGUID"].ToString());
+                                        gdvhd.Gia = Convert.ToDouble(row["Gia"]);
+                                        gdvhd.CreatedBy = Guid.Parse(Global.UserGUID);
+                                        gdvhd.CreatedDate = DateTime.Now;
+                                        db.GiaDichVuHopDongs.InsertOnSubmit(gdvhd);
+                                        db.SubmitChanges();
                                     }
                                     else
                                     {
                                         string giaDichVuHopDongGUID = row["GiaDichVuHopDongGUID"].ToString();
-                                        GiaDichVuHopDong gdvhd = db.GiaDichVuHopDongs.SingleOrDefault(g => g.GiaDichVuHopDongGUID.ToString() == giaDichVuHopDongGUID);
+                                        gdvhd = db.GiaDichVuHopDongs.SingleOrDefault(g => g.GiaDichVuHopDongGUID.ToString() == giaDichVuHopDongGUID);
                                         if (gdvhd != null)
                                         {
                                             gdvhd.Gia = Convert.ToDouble(row["Gia"]);
@@ -883,6 +950,61 @@ namespace MM.Bussiness
                                             gdvhd.UpdatedBy = Guid.Parse(Global.UserGUID);
                                             gdvhd.UpdatedDate = DateTime.Now;
                                             gdvhd.Status = (byte)Status.Actived;
+                                        }
+                                    }
+
+                                    //Delete Dịch vụ con
+                                    if (companyInfo.DictDeletedDichVuCons != null &&
+                                        companyInfo.DictDeletedDichVuCons.ContainsKey(gdvhd.ServiceGUID.ToString()))
+                                    {
+                                        List<string> deletedDichVuConList = companyInfo.DictDeletedDichVuCons[gdvhd.ServiceGUID.ToString()];
+                                        foreach (string servicecGUID in deletedDichVuConList)
+                                        {
+                                            DichVuCon dvc = (from d in db.DichVuCons
+                                                            where d.GiaDichVuHopDongGUID == gdvhd.GiaDichVuHopDongGUID &&
+                                                            d.ServiceGUID.ToString() == servicecGUID
+                                                            select d).FirstOrDefault();
+
+                                            if (dvc != null)
+                                            {
+                                                dvc.DeletedDate = DateTime.Now;
+                                                dvc.DeletedBy = Guid.Parse(Global.UserGUID);
+                                                dvc.Status = (byte)Status.Deactived;
+                                            }
+                                        }
+                                    }
+
+                                    //Add dịch vụ con
+                                    if (companyInfo.DictDichVuCon.ContainsKey(gdvhd.ServiceGUID.ToString()))
+                                    {
+                                        DataTable dtDichVuCon = companyInfo.DictDichVuCon[gdvhd.ServiceGUID.ToString()];
+                                        if (dtDichVuCon != null && dtDichVuCon.Rows.Count > 0)
+                                        {
+                                            foreach (DataRow drDichVuCon in dtDichVuCon.Rows)
+                                            {
+                                                string serviceGUID = drDichVuCon["ServiceGUID"].ToString();
+                                                DichVuCon dvc = (from d in db.DichVuCons
+                                                                 where d.GiaDichVuHopDongGUID == gdvhd.GiaDichVuHopDongGUID &&
+                                                                 d.ServiceGUID.ToString() == serviceGUID
+                                                                 select d).FirstOrDefault();
+                                                if (dvc == null)
+                                                {
+                                                    dvc = new DichVuCon();
+                                                    dvc.DichVuConGUID = Guid.NewGuid();
+                                                    dvc.GiaDichVuHopDongGUID = gdvhd.GiaDichVuHopDongGUID;
+                                                    dvc.ServiceGUID = Guid.Parse(serviceGUID);
+                                                    dvc.CreatedDate = DateTime.Now;
+                                                    dvc.CreatedBy = Guid.Parse(Global.UserGUID);
+                                                    dvc.Status = (byte)Status.Actived;
+                                                    db.DichVuCons.InsertOnSubmit(dvc);
+                                                }
+                                                else
+                                                {
+                                                    dvc.UpdatedDate = DateTime.Now;
+                                                    dvc.UpdatedBy = Guid.Parse(Global.UserGUID);
+                                                    dvc.Status = (byte)Status.Actived;
+                                                }
+                                            }
                                         }
                                     }
                                 }
