@@ -404,7 +404,9 @@ namespace MM.Dialogs
             {
                 MethodInvoker method = delegate
                 {
-                    dgGiaDichVu.DataSource = result.QueryResult;
+
+                    DataTable dtGiaDichVu = result.QueryResult as DataTable;
+                    dgGiaDichVu.DataSource = dtGiaDichVu;
 
                     if (cboCompany.SelectedValue == null || cboCompany.Text == string.Empty) return;
                     string companyGUID = cboCompany.SelectedValue.ToString();
@@ -412,12 +414,35 @@ namespace MM.Dialogs
                     {
                         _selectedCompanyInfo = new CompanyInfo();
                         _selectedCompanyInfo.CompanyGUID = companyGUID;
-                        _selectedCompanyInfo.GiaDichVuDataSource = result.QueryResult as DataTable;
+                        _selectedCompanyInfo.GiaDichVuDataSource = dtGiaDichVu;
                         _htCompany.Add(companyGUID, _selectedCompanyInfo);
                     }
                     else if ((_htCompany[companyGUID] as CompanyInfo).GiaDichVuDataSource == null)
                     {
-                        (_htCompany[companyGUID] as CompanyInfo).GiaDichVuDataSource = result.QueryResult as DataTable;
+                        (_htCompany[companyGUID] as CompanyInfo).GiaDichVuDataSource = dtGiaDichVu;
+                    }
+
+                    if (dtGiaDichVu != null && dtGiaDichVu.Rows.Count > 0)
+                    {
+                        foreach (DataRow row in dtGiaDichVu.Rows)
+                        {
+                            string giaDichVuHopDongGUID = row["GiaDichVuHopDongGUID"].ToString();
+                            string serviceGUID = row["ServiceGUID"].ToString();
+
+                            Result rs = CompanyContractBus.GetDichVuCon(giaDichVuHopDongGUID);
+                            if (!rs.IsOK)
+                            {
+                                MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.GetDichVuCon"), IconType.Error);
+                                Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.GetDichVuCon"));
+                                return;
+                            }
+
+                            if (_selectedCompanyInfo.DictDichVuCon == null) _selectedCompanyInfo.DictDichVuCon = new Dictionary<string, DataTable>();
+                            if (!_selectedCompanyInfo.DictDichVuCon.ContainsKey(serviceGUID))
+                                _selectedCompanyInfo.DictDichVuCon.Add(serviceGUID, rs.QueryResult as DataTable);
+                            else
+                                _selectedCompanyInfo.DictDichVuCon[serviceGUID] = rs.QueryResult as DataTable;
+                        }
                     }
                 };
 
@@ -913,7 +938,7 @@ namespace MM.Dialogs
             if (_selectedCompanyInfo.GiaDichVuDataSource == null)
                 _selectedCompanyInfo.GiaDichVuDataSource = dgGiaDichVu.DataSource as DataTable;
 
-            dlgAddGiaDichVuHopDong dlg = new dlgAddGiaDichVuHopDong(_selectedCompanyInfo.GiaDichVuDataSource);
+            dlgAddGiaDichVuHopDong dlg = new dlgAddGiaDichVuHopDong(_selectedCompanyInfo);
             if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
                 DataRow newRow = _selectedCompanyInfo.GiaDichVuDataSource.NewRow();
@@ -961,13 +986,15 @@ namespace MM.Dialogs
             }
 
            
-            dlgAddGiaDichVuHopDong dlg = new dlgAddGiaDichVuHopDong(_selectedCompanyInfo.GiaDichVuDataSource, drGiaDichVu);
+            dlgAddGiaDichVuHopDong dlg = new dlgAddGiaDichVuHopDong(_selectedCompanyInfo, drGiaDichVu);
             if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
                 drGiaDichVu["ServiceGUID"] = dlg.ServiceGUID;
                 drGiaDichVu["Code"] = dlg.MaDichVu;
                 drGiaDichVu["Name"] = dlg.TenDichVu;
                 drGiaDichVu["Gia"] = dlg.Gia;
+
+                DisplayDichVuCon();
             }
         }
 
@@ -1016,8 +1043,11 @@ namespace MM.Dialogs
                         if (row["GiaDichVuHopDongGUID"] != null && row["GiaDichVuHopDongGUID"] != DBNull.Value)
                         {
                             string giaDichVuHopDongGUID = row["GiaDichVuHopDongGUID"].ToString();
+                            string serviceGUID = row["ServiceGUID"].ToString();
                             if (!_selectedCompanyInfo.DeletedGiaDichVus.Contains(giaDichVuHopDongGUID))
                                 _selectedCompanyInfo.DeletedGiaDichVus.Add(giaDichVuHopDongGUID);
+
+                            
                         }
 
                         dt.Rows.Remove(row);
@@ -1027,6 +1057,7 @@ namespace MM.Dialogs
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những dịch vụ cần xóa.", IconType.Information);
         }
+
         private string ReFormatDate(string type, string value)
         {
             string sRet = value;
@@ -1045,6 +1076,7 @@ namespace MM.Dialogs
             }
             return sRet;
         }
+
         private string GetCellText(IRange cell)
         {
             try
@@ -1070,6 +1102,7 @@ namespace MM.Dialogs
                 return "";
             }
         }
+
         private void OnImportDVHD()
         {
             if (cboCompany.SelectedValue == null || cboCompany.Text == string.Empty)
@@ -1205,6 +1238,22 @@ namespace MM.Dialogs
                     }
                 }
             }
+        }
+
+        private void DisplayDichVuCon()
+        {
+            if (_selectedCompanyInfo == null || dgGiaDichVu.SelectedRows == null || dgGiaDichVu.SelectedRows.Count <= 0 ||
+                _selectedCompanyInfo.DictDichVuCon == null)
+            {
+                dgDichVuCon.DataSource = null;
+                return;
+            }
+
+            DataRow drGiaDichVu = (dgGiaDichVu.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            string serviceGUID = drGiaDichVu["ServiceGUID"].ToString();
+
+            DataTable dtDichVuCon = _selectedCompanyInfo.DictDichVuCon[serviceGUID];
+            dgDichVuCon.DataSource = dtDichVuCon;
         }
         #endregion
 
@@ -1575,6 +1624,11 @@ namespace MM.Dialogs
         {
             OnImportDVHD();
         }
+
+        private void dgGiaDichVu_SelectionChanged(object sender, EventArgs e)
+        {
+            DisplayDichVuCon();
+        }
         #endregion
 
         #region Working Thread
@@ -1614,7 +1668,5 @@ namespace MM.Dialogs
             }
         }
         #endregion
-
-       
     }
 }

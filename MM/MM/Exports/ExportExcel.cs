@@ -8351,6 +8351,27 @@ namespace MM.Exports
                     range.Borders.Weight = BorderWeight.Thin;
                     range.Font.Bold = false;
 
+                    string serviceGUID = row["ServiceGUID"].ToString();
+                    Result rs = CompanyContractBus.GetDichVuCon(hopDongGUID, serviceGUID);
+                    if (!rs.IsOK)
+                    {
+                        MsgBox.Show(Application.ProductName, rs.GetErrorAsString("CompanyContractBus.GetDichVuCon"), IconType.Error);
+                        Utility.WriteToTraceLog(rs.GetErrorAsString("CompanyContractBus.GetDichVuCon"));
+                        return false;
+                    }
+
+                    DataTable dt = rs.QueryResult as DataTable;
+                    if (dt != null && dt.Rows.Count > 0)
+                    {
+                        string s = string.Empty;
+                        foreach (DataRow drDichVuCon in dt.Rows)
+                        {
+                            s += string.Format("\n\r  + {0}", drDichVuCon["Name"].ToString());
+                        }
+
+                        range.Value += s;
+                    }
+
                     range = workSheet.Cells[string.Format("E{0}:F{0}", rowIndex + 1)];
                     range.Merge();
                     tongTienKhamTheoHopDong += Convert.ToDouble(row["Price"]);

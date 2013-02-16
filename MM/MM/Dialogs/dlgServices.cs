@@ -25,6 +25,9 @@ namespace MM.Dialogs
         private DataTable _dtTemp = null;
         private string _name = string.Empty;
         private Dictionary<string, DataRow> _dictServices = new Dictionary<string, DataRow>();
+        private bool _isDichVuCon = false;
+        private string _serviceGUID = string.Empty;
+        private DataTable _dtDichVuCon = null;
         #endregion
 
         #region Constructor
@@ -37,6 +40,7 @@ namespace MM.Dialogs
             _addedServices = addedServices;
             _deletedServiceRows = deletedServiceRows;
             _giaDichVuDataSource = giaDichVuDataSource;
+            _isDichVuCon = false;
         }
 
         public dlgServices(List<string> addedServices, List<DataRow> deletedServiceRows)
@@ -45,6 +49,15 @@ namespace MM.Dialogs
             _addedServices = addedServices;
             _deletedServiceRows = deletedServiceRows;
             _isServiceGroup = true;
+            _isDichVuCon = false;
+        }
+
+        public dlgServices(string serviceGUID, DataTable dtDichVuCon)
+        {
+            InitializeComponent();
+            _serviceGUID = serviceGUID;
+            _dtDichVuCon = dtDichVuCon;
+            _isDichVuCon = true;
         }
         #endregion
 
@@ -97,12 +110,22 @@ namespace MM.Dialogs
 
             //Delete
             List<DataRow> deletedRows = new List<DataRow>();
-            foreach (string key in _addedServices)
+            if (_addedServices != null)
             {
-                DataRow[] rows = dt.Select(string.Format("{0}='{1}'", fieldName, key));
-                if (rows == null || rows.Length <= 0) continue;
+                foreach (string key in _addedServices)
+                {
+                    DataRow[] rows = dt.Select(string.Format("{0}='{1}'", fieldName, key));
+                    if (rows == null || rows.Length <= 0) continue;
 
-                deletedRows.AddRange(rows);
+                    deletedRows.AddRange(rows);
+                }
+            }
+
+            if (_serviceGUID != string.Empty)
+            {
+                DataRow[] rows = dt.Select(string.Format("{0}='{1}'", fieldName, _serviceGUID));
+                if (rows != null || rows.Length > 0)
+                    deletedRows.AddRange(rows);
             }
 
             foreach (DataRow row in deletedRows)
@@ -111,18 +134,21 @@ namespace MM.Dialogs
             }
 
             //Add
-            foreach (DataRow row in _deletedServiceRows)
+            if (_deletedServiceRows != null)
             {
-                string key = row[fieldName].ToString();
-                DataRow[] rows = dt.Select(string.Format("{0}='{1}'", fieldName, key));
-                if (rows != null && rows.Length > 0) continue;
+                foreach (DataRow row in _deletedServiceRows)
+                {
+                    string key = row[fieldName].ToString();
+                    DataRow[] rows = dt.Select(string.Format("{0}='{1}'", fieldName, key));
+                    if (rows != null && rows.Length > 0) continue;
 
-                DataRow newRow = dt.NewRow();
-                newRow["Checked"] = false;
-                newRow["ServiceGUID"] = key;
-                newRow["Code"] = row["Code"];
-                newRow["Name"] = row["Name"];
-                dt.Rows.Add(newRow);
+                    DataRow newRow = dt.NewRow();
+                    newRow["Checked"] = false;
+                    newRow["ServiceGUID"] = key;
+                    newRow["Code"] = row["Code"];
+                    newRow["Name"] = row["Name"];
+                    dt.Rows.Add(newRow);
+                }
             }
 
             if (_giaDichVuDataSource != null)
@@ -138,6 +164,16 @@ namespace MM.Dialogs
                 foreach (DataRow row in deletedRows)
                 {
                     dt.Rows.Remove(row);
+                }
+            }
+
+            if (_dtDichVuCon != null)
+            {
+                foreach (DataRow row in _dtDichVuCon.Rows)
+                {
+                    DataRow[] rows = dt.Select(string.Format("ServiceGUID='{0}'", row["ServiceGUID"].ToString()));
+                    if (rows != null && rows.Length > 0)
+                        dt.Rows.Remove(rows[0]);
                 }
             }
 
@@ -163,10 +199,15 @@ namespace MM.Dialogs
             {
                 Result result = null;
 
-                if (!_isServiceGroup)
-                    result = ServicesBus.GetServicesListNotInCheckList(_contractGUID, _companyMemberGUID, _name);
+                if (!_isDichVuCon)
+                {
+                    if (!_isServiceGroup)
+                        result = ServicesBus.GetServicesListNotInCheckList(_contractGUID, _companyMemberGUID, _name);
+                    else
+                        result = ServiceGroupBus.GetServiceListNotInGroup(_name);
+                }
                 else
-                    result = ServiceGroupBus.GetServiceListNotInGroup(_name);
+                    result = ServicesBus.GetServicesList(_name);
 
                 if (result.IsOK)
                 {
