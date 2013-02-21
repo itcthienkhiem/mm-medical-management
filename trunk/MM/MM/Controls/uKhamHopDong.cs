@@ -78,8 +78,17 @@ namespace MM.Controls
         private void UpdateGUI()
         {
             btnLuu.Enabled = AllowEdit;
+            btnAdd.Enabled = AllowAdd;
+            btnEdit.Enabled = AllowEdit;
+            btnDelete.Enabled = AllowDelete;
+
             dgService.ReadOnly = !AllowEdit;
             chkChecked.Enabled = AllowEdit;
+
+            saveToolStripMenuItem.Enabled = AllowEdit;
+            addToolStripMenuItem.Enabled = AllowAdd;
+            editToolStripMenuItem.Enabled = AllowEdit;
+            deleteToolStripMenuItem.Enabled = AllowDelete;
 
             fixedPriceDataGridViewTextBoxColumn.Visible = Global.AllowShowServiePrice;
             colThanhTien.Visible = Global.AllowShowServiePrice;
@@ -597,6 +606,26 @@ namespace MM.Controls
                 row["Checked"] = chkChecked2.Checked;
             }
         }
+
+        private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+
+        }
         #endregion
 
         #region Working Thread
@@ -630,7 +659,5 @@ namespace MM.Controls
             }
         }
         #endregion
-
-        
     }
 }
