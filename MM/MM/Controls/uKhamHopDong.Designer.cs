@@ -33,15 +33,15 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbThongBao = new System.Windows.Forms.Label();
             this.txtTenHopDong = new System.Windows.Forms.TextBox();
@@ -63,6 +63,13 @@
             this.panel13 = new System.Windows.Forms.Panel();
             this.chkChecked2 = new System.Windows.Forms.CheckBox();
             this.dgDichVuLamThem = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.colChecked2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.activeDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fixedPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.discountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.colThanhTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DaThuTien = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.dichVuLamThemViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel10 = new System.Windows.Forms.Panel();
             this.label4 = new System.Windows.Forms.Label();
@@ -91,13 +98,14 @@
             this.chkMaBenhNhan = new System.Windows.Forms.CheckBox();
             this.txtSearchPatient = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.colChecked2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.activeDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fixedPriceDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.discountDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colThanhTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DaThuTien = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.saveToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctmAction2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.companyContractViewBindingSource)).BeginInit();
             this.panel2.SuspendLayout();
@@ -118,6 +126,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
             this.panel7.SuspendLayout();
+            this.ctmAction.SuspendLayout();
+            this.ctmAction2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -249,6 +259,7 @@
             this.codeDataGridViewTextBoxColumn,
             this.nameDataGridViewTextBoxColumn,
             this.NguoiChuyenNhuong});
+            this.dgService.ContextMenuStrip = this.ctmAction;
             this.dgService.DataSource = this.companyCheckListViewBindingSource;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -360,6 +371,7 @@
             this.discountDataGridViewTextBoxColumn,
             this.colThanhTien,
             this.DaThuTien});
+            this.dgDichVuLamThem.ContextMenuStrip = this.ctmAction2;
             this.dgDichVuLamThem.DataSource = this.dichVuLamThemViewBindingSource;
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Window;
@@ -381,6 +393,75 @@
             this.dgDichVuLamThem.Size = new System.Drawing.Size(552, 201);
             this.dgDichVuLamThem.TabIndex = 17;
             this.dgDichVuLamThem.DoubleClick += new System.EventHandler(this.dgDichVuLamThem_DoubleClick);
+            // 
+            // colChecked2
+            // 
+            this.colChecked2.DataPropertyName = "Checked";
+            this.colChecked2.HeaderText = "";
+            this.colChecked2.Name = "colChecked2";
+            this.colChecked2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colChecked2.Width = 40;
+            // 
+            // activeDateDataGridViewTextBoxColumn
+            // 
+            this.activeDateDataGridViewTextBoxColumn.DataPropertyName = "ActiveDate";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.Format = "dd/MM/yyyy";
+            dataGridViewCellStyle4.NullValue = null;
+            this.activeDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            this.activeDateDataGridViewTextBoxColumn.HeaderText = "Ngày sử dụng";
+            this.activeDateDataGridViewTextBoxColumn.Name = "activeDateDataGridViewTextBoxColumn";
+            this.activeDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // nameDataGridViewTextBoxColumn1
+            // 
+            this.nameDataGridViewTextBoxColumn1.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn1.HeaderText = "Tên dịch vụ";
+            this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
+            this.nameDataGridViewTextBoxColumn1.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn1.Width = 250;
+            // 
+            // fixedPriceDataGridViewTextBoxColumn
+            // 
+            this.fixedPriceDataGridViewTextBoxColumn.DataPropertyName = "FixedPrice";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle5.Format = "N0";
+            dataGridViewCellStyle5.NullValue = null;
+            this.fixedPriceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            this.fixedPriceDataGridViewTextBoxColumn.HeaderText = "Giá";
+            this.fixedPriceDataGridViewTextBoxColumn.Name = "fixedPriceDataGridViewTextBoxColumn";
+            this.fixedPriceDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fixedPriceDataGridViewTextBoxColumn.Width = 90;
+            // 
+            // discountDataGridViewTextBoxColumn
+            // 
+            this.discountDataGridViewTextBoxColumn.DataPropertyName = "Discount";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle6.NullValue = null;
+            this.discountDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            this.discountDataGridViewTextBoxColumn.HeaderText = "Giảm (%)";
+            this.discountDataGridViewTextBoxColumn.Name = "discountDataGridViewTextBoxColumn";
+            this.discountDataGridViewTextBoxColumn.ReadOnly = true;
+            this.discountDataGridViewTextBoxColumn.Width = 75;
+            // 
+            // colThanhTien
+            // 
+            this.colThanhTien.DataPropertyName = "Amount";
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle7.Format = "N0";
+            dataGridViewCellStyle7.NullValue = null;
+            this.colThanhTien.DefaultCellStyle = dataGridViewCellStyle7;
+            this.colThanhTien.HeaderText = "Thành tiền";
+            this.colThanhTien.Name = "colThanhTien";
+            this.colThanhTien.ReadOnly = true;
+            // 
+            // DaThuTien
+            // 
+            this.DaThuTien.DataPropertyName = "DaThuTien";
+            this.DaThuTien.HeaderText = "Đã thu tiền";
+            this.DaThuTien.Name = "DaThuTien";
+            this.DaThuTien.ReadOnly = true;
+            this.DaThuTien.Width = 70;
             // 
             // dichVuLamThemViewBindingSource
             // 
@@ -707,74 +788,65 @@
             this.label2.TabIndex = 5;
             this.label2.Text = "Tìm nhân viên:";
             // 
-            // colChecked2
+            // ctmAction
             // 
-            this.colChecked2.DataPropertyName = "Checked";
-            this.colChecked2.HeaderText = "";
-            this.colChecked2.Name = "colChecked2";
-            this.colChecked2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colChecked2.Width = 40;
+            this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.saveToolStripMenuItem});
+            this.ctmAction.Name = "ctmAction";
+            this.ctmAction.Size = new System.Drawing.Size(104, 26);
             // 
-            // activeDateDataGridViewTextBoxColumn
+            // saveToolStripMenuItem
             // 
-            this.activeDateDataGridViewTextBoxColumn.DataPropertyName = "ActiveDate";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.Format = "dd/MM/yyyy";
-            dataGridViewCellStyle4.NullValue = null;
-            this.activeDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.activeDateDataGridViewTextBoxColumn.HeaderText = "Ngày sử dụng";
-            this.activeDateDataGridViewTextBoxColumn.Name = "activeDateDataGridViewTextBoxColumn";
-            this.activeDateDataGridViewTextBoxColumn.ReadOnly = true;
+            this.saveToolStripMenuItem.Image = global::MM.Properties.Resources.save;
+            this.saveToolStripMenuItem.Name = "saveToolStripMenuItem";
+            this.saveToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.saveToolStripMenuItem.Text = "Lưu";
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
             // 
-            // nameDataGridViewTextBoxColumn1
+            // ctmAction2
             // 
-            this.nameDataGridViewTextBoxColumn1.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn1.HeaderText = "Tên dịch vụ";
-            this.nameDataGridViewTextBoxColumn1.Name = "nameDataGridViewTextBoxColumn1";
-            this.nameDataGridViewTextBoxColumn1.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn1.Width = 250;
+            this.ctmAction2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.editToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.deleteToolStripMenuItem});
+            this.ctmAction2.Name = "cmtAction";
+            this.ctmAction2.Size = new System.Drawing.Size(153, 104);
             // 
-            // fixedPriceDataGridViewTextBoxColumn
+            // addToolStripMenuItem
             // 
-            this.fixedPriceDataGridViewTextBoxColumn.DataPropertyName = "FixedPrice";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "N0";
-            dataGridViewCellStyle5.NullValue = null;
-            this.fixedPriceDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
-            this.fixedPriceDataGridViewTextBoxColumn.HeaderText = "Giá";
-            this.fixedPriceDataGridViewTextBoxColumn.Name = "fixedPriceDataGridViewTextBoxColumn";
-            this.fixedPriceDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fixedPriceDataGridViewTextBoxColumn.Width = 90;
+            this.addToolStripMenuItem.Image = global::MM.Properties.Resources.add;
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addToolStripMenuItem.Text = "Thêm";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
-            // discountDataGridViewTextBoxColumn
+            // toolStripSeparator1
             // 
-            this.discountDataGridViewTextBoxColumn.DataPropertyName = "Discount";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.NullValue = null;
-            this.discountDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
-            this.discountDataGridViewTextBoxColumn.HeaderText = "Giảm (%)";
-            this.discountDataGridViewTextBoxColumn.Name = "discountDataGridViewTextBoxColumn";
-            this.discountDataGridViewTextBoxColumn.ReadOnly = true;
-            this.discountDataGridViewTextBoxColumn.Width = 75;
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
-            // colThanhTien
+            // editToolStripMenuItem
             // 
-            this.colThanhTien.DataPropertyName = "Amount";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.Format = "N0";
-            dataGridViewCellStyle7.NullValue = null;
-            this.colThanhTien.DefaultCellStyle = dataGridViewCellStyle7;
-            this.colThanhTien.HeaderText = "Thành tiền";
-            this.colThanhTien.Name = "colThanhTien";
-            this.colThanhTien.ReadOnly = true;
+            this.editToolStripMenuItem.Image = global::MM.Properties.Resources.edit;
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.editToolStripMenuItem.Text = "Sửa";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
-            // DaThuTien
+            // toolStripSeparator2
             // 
-            this.DaThuTien.DataPropertyName = "DaThuTien";
-            this.DaThuTien.HeaderText = "Đã thu tiền";
-            this.DaThuTien.Name = "DaThuTien";
-            this.DaThuTien.ReadOnly = true;
-            this.DaThuTien.Width = 70;
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Image = global::MM.Properties.Resources.del;
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Text = "Xóa";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // uKhamHopDong
             // 
@@ -810,6 +882,8 @@
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).EndInit();
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
+            this.ctmAction.ResumeLayout(false);
+            this.ctmAction2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -872,5 +946,13 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn discountDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn colThanhTien;
         private System.Windows.Forms.DataGridViewCheckBoxColumn DaThuTien;
+        private System.Windows.Forms.ContextMenuStrip ctmAction;
+        private System.Windows.Forms.ToolStripMenuItem saveToolStripMenuItem;
+        protected System.Windows.Forms.ContextMenuStrip ctmAction2;
+        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
     }
 }
