@@ -78,10 +78,13 @@
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.raPhongChoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
+            this.ctmAction.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -155,6 +158,7 @@
             this.workPhoneDataGridViewTextBoxColumn,
             this.mobileDataGridViewTextBoxColumn,
             this.emailDataGridViewTextBoxColumn});
+            this.dgPatient.ContextMenuStrip = this.ctmAction;
             this.dgPatient.DataSource = this.patientViewBindingSource;
             dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
@@ -429,6 +433,21 @@
             this.dataGridViewTextBoxColumn11.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.dataGridViewTextBoxColumn11.Width = 150;
             // 
+            // ctmAction
+            // 
+            this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.raPhongChoToolStripMenuItem});
+            this.ctmAction.Name = "ctmAction";
+            this.ctmAction.Size = new System.Drawing.Size(153, 48);
+            // 
+            // raPhongChoToolStripMenuItem
+            // 
+            this.raPhongChoToolStripMenuItem.Image = global::MM.Properties.Resources.del;
+            this.raPhongChoToolStripMenuItem.Name = "raPhongChoToolStripMenuItem";
+            this.raPhongChoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.raPhongChoToolStripMenuItem.Text = "Ra phòng chờ";
+            this.raPhongChoToolStripMenuItem.Click += new System.EventHandler(this.raPhongChoToolStripMenuItem_Click);
+            // 
             // uPhongChoList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -442,6 +461,7 @@
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).EndInit();
+            this.ctmAction.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -478,5 +498,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn workPhoneDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn mobileDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
+        private System.Windows.Forms.ContextMenuStrip ctmAction;
+        private System.Windows.Forms.ToolStripMenuItem raPhongChoToolStripMenuItem;
     }
 }

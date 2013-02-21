@@ -43,6 +43,9 @@ namespace MM.Controls
         {
             btnAdd.Enabled = Global.AllowAddKhamLamSang;
             btnDelete.Enabled = Global.AllowDeleteKhamLamSang;
+
+            addToolStripMenuItem.Enabled = Global.AllowAddKhamLamSang;
+            deleteToolStripMenuItem.Enabled = Global.AllowDeleteKhamLamSang;
         }
 
         public void DisplayAsThread()
@@ -239,6 +242,21 @@ namespace MM.Controls
 
             DisplayAsThread();
         }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnAdd();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnEdit();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnDelete();
+        }
         #endregion
 
         #region Working Thread
@@ -260,6 +278,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
        
     }

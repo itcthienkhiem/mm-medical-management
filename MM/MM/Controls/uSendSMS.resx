@@ -132,23 +132,42 @@
   <metadata name="GenderAsStr.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
+  <metadata name="ctmAction.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>212, 17</value>
+  </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="guiSMSToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAKESURBVDhPjZPdS9NRHMbPnX9FmrUy09Rs1aZTNAjdlDl1UARBE9M0Ff01E/GimxJzJkITbwIL
+        hS7UpLWfztSthSDqrGSWs5nvkbE5TZep6J7O2UvsItEDH74v53m+nHPgEEKXyTaQbFke6f+0Mj5xFCzL
+        o2/NdqOEeUlTx5Mwwwzv7vvGIxjDYfWMfqNFrz1GyutKi9onnyNAmz9nsW2y1Y9v31ez6KtLHt65TW6o
+        r99rHKtHMN22LtgcU3C4HXD9dmF+bR7mBROejjdRncZPPXJLFBUku0Khrh6qAqNmqBoTPydw0FrdWoVm
+        7LFXy5AWpXEkvSxNnT+YD0anvQuzm8sw/RjD5q4b9o1FLLpX4Nxew6hjElaXHTaXzatlpBQkcyS6OEkt
+        5hWQ9mZjZn0WMqMaLfQKHfMDUL6vQfGIBnXWFxAZCsEvDcHj8UDZfxMi6hGohBw5WyRRh+oyEKqTwf5r
+        DhbHZ8hNVcgbfoTC4VqUjjag3NIE3YIZ0kEOe/t7iO5RUn0GwlUXOBJDT3CamhmvFvqgsbbjvkWLVrsO
+        484vMK98wLPpbpSNNKJ5qhP6JaNXyxCwAfF3kypj38jAyBxUwbW9fuAjfnRaIelVIs6vj2QDLpUkVYr1
+        UjBElFw6hN1z37OP3b0d7FCm176iwaqFhM/0agL6c3nxHEmgA1J4KQI8sNTC+P0dVOZCpNJ+Ki/7txes
+        Y3kcGyAuEFWk9aQjQHqPjOZSf81icB7Q+foXbwnLSExi1GWFTv4n25CF/yP391kM5FlQvJZvUa+QREQK
+        QoRXz3M5zfK5ay9zNo5CjlY+F38ltvxM1KkQ748UnAgPORl2PIKSQEk8BKaJYB7m/Qs2dYcjiRY+BwAA
+        AABJRU5ErkJggg==
+</value>
+  </data>
   <data name="btnSendSMS.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAo5JREFUOE+Nk11I
-        k2EUx99A8CZvu0uzZmaamq2an6kQuilz6qAIgiamaSr6NhORCKLEnInQxJvAQqELNWnt1UnqWgxEnYXM
-        cjbzs0iZTtP5ybZ/z7OP2EViB36c/znP/xye54X3CENCa+pPCjga8MDPz+8YrQ8Lu92xvLVje3QlJFXP
-        NHU8C9JMc7a+7xx80RxWT6s3WtTK40x5XWlR+8RLeGnzaJrbJlo9uM/dNc3uuuTxndvMDfn1e42j9fCl
-        29QFk2USFpsF1i0r5tbmoJvX4vlYE/EpPNQjt0RSwWRXSOTV+ipQavTVGF8ex0Gxur0KxehTl5ciLEpj
-        mfSyNHn+QD4oneYuzGz+gPbXKDb3bTBvLGDBtoSV3TWMWCZgtJphsppcXkpyQRLLRBQnymM5CYS92Zhe
-        n4FoUI4W8oSOuX5IP9ageFiBOuMrCDSF4Bb1cDqdkL6/CQGZ4cn4LHO2KEEeqMpAoEoE8+9ZGCxfINZW
-        IW/oCQqHalE60oByQxNU8zoIB1jYHXZE9EiJPwPBsgssE0lucJoMU97M90FhbMd9gxKtZhXGVr5Ct/QJ
-        L6a6UTbciObJTqgXB11eCo8uiLmbWBn1TgRK5oAM1t31Az/i5xUjEnqliPb4w+iCSyWJlbFqISgCQi5Z
-        Qt/pcDqwb9/DHmFq7RsajEokcJkuj9d/Li+GZeLIgmROCC8PDbUY/PkBMl0hUkg/hRP9PfP1UR1NF8QW
-        CCrSetLhJb1HRLTQU9Psq70+d//iLX4ZExkfflmiEu9ka7Lwb8SePs1enQXJW/E2meUzoWE8f/7V82xO
-        s3j22uucjf8hRymejUmNKj8THuLv+nN5J4P9TwWdCCXEEeIPgXpC6Qyd/QMfzmY5D+YXcAAAAABJRU5E
-        rkJggg==
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAoRJREFUOE+Nk91L
+        01Ecxs+df0WatTLT1GzVplM0CN2UOXVQBEET0zQV/TUT8aKbEnMmQhNvAguFLtSktZ/O1K2FIOqsZJaz
+        me+RsTlNl6nons7ZS+wi0QMfvi/neb6cc+AQQpfJNpBsWR7p/7QyPnEULMujb812o4R5SVPHkzDDDO/u
+        +8YjGMNh9Yx+o0WvPUbK60qL2iefI0CbP2exbbLVj2/fV7Poq0se3rlNbqiv32scq0cw3bYu2BxTcLgd
+        cP12YX5tHuYFE56ON1Gdxk89cksUFSS7QqGuHqoCo2aoGhM/J3DQWt1ahWbssVfLkBalcSS9LE2dP5gP
+        Rqe9C7ObyzD9GMPmrhv2jUUsulfg3F7DqGMSVpcdNpfNq2WkFCRzJLo4SS3mFZD2ZmNmfRYyoxot9Aod
+        8wNQvq9B8YgGddYXEBkKwS8NwePxQNl/EyLqEaiEHDlbJFGH6jIQqpPB/msOFsdnyE1VyBt+hMLhWpSO
+        NqDc0gTdghnSQQ57+3uI7lFSfQbCVRc4EkNPcJqaGa8W+qCxtuO+RYtWuw7jzi8wr3zAs+lulI00onmq
+        E/olo1fLELAB8XeTKmPfyMDIHFTBtb1+4CN+dFoh6VUizq+PZAMulSRVivVSMESUXDqE3XPfs4/dvR3s
+        UKbXvqLBqoWEz/RqAvpzefEcSaADUngpAjyw1ML4/R1U5kKk0n4qL/u3F6xjeRwbIC4QVaT1pCNAeo+M
+        5lJ/zWJwHtD5+hdvCctITGLUZYVO/ifbkIX/I/f3WQzkWVC8lm9Rr5BERApChFfPcznN8rlrL3M2jkKO
+        Vj4XfyW2/EzUqRDvjxScCA85GXY8gpJASTwEpolgHub9CzZ1hyOJFj4HAAAAAElFTkSuQmCC
 </value>
   </data>
 </root>

@@ -59,6 +59,11 @@ namespace MM.Controls
             btnEdit.Enabled = AllowEdit;
             btnDelete.Enabled = AllowDelete;
             btnExportExcel.Enabled = AllowExport;
+
+            addToolStripMenuItem.Enabled = AllowAdd;
+            editToolStripMenuItem.Enabled = AllowEdit;
+            deleteToolStripMenuItem.Enabled = AllowDelete;
+            exportExcelToolStripMenuItem.Enabled = AllowExport;
         }
 
         public void ClearData()
@@ -359,6 +364,26 @@ namespace MM.Controls
         {
             OnExportExcel();
         }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnAdd();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnEdit();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnDelete();
+        }
+
+        private void exportExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnExportExcel();
+        }
         #endregion
 
         #region Working Thread
@@ -392,5 +417,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }

@@ -722,6 +722,16 @@ namespace MM.Controls
         {
             SearchAsThread();
         }
+
+        private void printPreviewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnPrint(true);
+        }
+
+        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnPrint(false);
+        }
         #endregion
 
         #region Working Thread
@@ -755,6 +765,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+       
     }
 
     public class LabelInfo

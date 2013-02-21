@@ -42,6 +42,11 @@ namespace MM.Controls
             btnDelete.Enabled = AllowDelete;
             priceDataGridViewTextBoxColumn.Visible = Global.AllowShowServiePrice;
             btnExportExcel.Enabled = AllowExport;
+
+            addToolStripMenuItem.Enabled = AllowAdd;
+            editToolStripMenuItem.Enabled = AllowEdit;
+            deleteToolStripMenuItem.Enabled = AllowDelete;
+            exportExcelToolStripMenuItem.Enabled = AllowExport;
         }
 
         public void ClearData()
@@ -356,6 +361,26 @@ namespace MM.Controls
         {
             OnExportExcel();
         }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnAddService();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnEditService();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnDeleteService();
+        }
+
+        private void exportExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnExportExcel();
+        }
         #endregion
 
         #region Working Thread
@@ -389,5 +414,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+       
     }
 }

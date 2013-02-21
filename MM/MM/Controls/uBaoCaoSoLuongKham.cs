@@ -29,6 +29,17 @@ namespace MM.Controls
         #endregion
 
         #region UI Command
+        public void UpdateGUI()
+        {
+            btnPrintPreview.Enabled = AllowPrint;
+            btnPrint.Enabled = AllowPrint;
+            btnExportExcel.Enabled = AllowExport;
+
+            printPreviewToolStripMenuItem.Enabled = AllowPrint;
+            printToolStripMenuItem.Enabled = AllowPrint;
+            exportExcelToolStripMenuItem.Enabled = AllowExport;
+        }
+
         private void ClearData()
         {
             DataTable dt = dgBenhNhan.DataSource as DataTable;
@@ -111,6 +122,20 @@ namespace MM.Controls
                 }
             }
         }
+
+        private void OnExportExcel()
+        {
+            if (dgBenhNhan.RowCount <= 0) return;
+            DataTable dt = dgBenhNhan.DataSource as DataTable;
+            if (dt == null || dt.Rows.Count <= 0) return;
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Title = "Export Excel";
+            dlg.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
+            if (dlg.ShowDialog(this) == DialogResult.OK)
+            {
+                ExportExcel.ExportDanhSachBenhNhanDenKhamToExcel(dlg.FileName, dt, raDenKham.Checked);
+            }
+        }
         #endregion
 
         #region Window Event Handlers
@@ -131,17 +156,25 @@ namespace MM.Controls
 
         private void btnExportExcel_Click(object sender, EventArgs e)
         {
-            if (dgBenhNhan.RowCount <= 0) return;
-            DataTable dt = dgBenhNhan.DataSource as DataTable;
-            if (dt == null || dt.Rows.Count <= 0) return;
-            SaveFileDialog dlg = new SaveFileDialog();
-            dlg.Title = "Export Excel";
-            dlg.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
-            if (dlg.ShowDialog(this) == DialogResult.OK)
-            {
-                ExportExcel.ExportDanhSachBenhNhanDenKhamToExcel(dlg.FileName, dt, raDenKham.Checked);
-            }
+            OnExportExcel();
+        }
+
+        private void printPreviewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnPrint(true);
+        }
+
+        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnPrint(false);
+        }
+
+        private void exportExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnExportExcel();
         }
         #endregion
+
+        
     }
 }

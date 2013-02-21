@@ -55,6 +55,18 @@
             this.panel10 = new System.Windows.Forms.Panel();
             this.chkChecked_HoaDon = new System.Windows.Forms.CheckBox();
             this.dgInvoice = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.dataGridViewCheckBoxXColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ngayXuatHoaDonDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tenNguoiMuaHangDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tenDonViDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DaThuTien = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.maSoThueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.diaChiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.soTaiKhoanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.hinhThucThanhToanStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.vATDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Notes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.hoaDonThuocViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel5 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
@@ -75,18 +87,16 @@
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnDeleteHoaDon = new System.Windows.Forms.Button();
             this._printDialog = new System.Windows.Forms.PrintDialog();
-            this.dataGridViewCheckBoxXColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ngayXuatHoaDonDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tenNguoiMuaHangDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tenDonViDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DaThuTien = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.maSoThueDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.diaChiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.soTaiKhoanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.hinhThucThanhToanStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.vATDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Notes = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.xuatHoaDonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctmAction2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.deleteDangKySoHDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel12.SuspendLayout();
@@ -103,6 +113,8 @@
             this.groupBox1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel6.SuspendLayout();
+            this.ctmAction.SuspendLayout();
+            this.ctmAction2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -164,6 +176,7 @@
             this.colChecked,
             this.soHoaDonDataGridViewTextBoxColumn,
             this.DaXuat});
+            this.dgSoHoaDon.ContextMenuStrip = this.ctmAction2;
             this.dgSoHoaDon.DataSource = this.quanLySoHoaDonBindingSource;
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle2.BackColor = System.Drawing.SystemColors.Window;
@@ -341,6 +354,7 @@
             this.hinhThucThanhToanStrDataGridViewTextBoxColumn,
             this.vATDataGridViewTextBoxColumn,
             this.Notes});
+            this.dgInvoice.ContextMenuStrip = this.ctmAction;
             this.dgInvoice.DataSource = this.hoaDonThuocViewBindingSource;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
@@ -362,6 +376,109 @@
             this.dgInvoice.Size = new System.Drawing.Size(642, 245);
             this.dgInvoice.TabIndex = 6;
             this.dgInvoice.DoubleClick += new System.EventHandler(this.dgInvoice_DoubleClick);
+            // 
+            // dataGridViewCheckBoxXColumn1
+            // 
+            this.dataGridViewCheckBoxXColumn1.DataPropertyName = "Checked";
+            this.dataGridViewCheckBoxXColumn1.Frozen = true;
+            this.dataGridViewCheckBoxXColumn1.HeaderText = "";
+            this.dataGridViewCheckBoxXColumn1.Name = "dataGridViewCheckBoxXColumn1";
+            this.dataGridViewCheckBoxXColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.dataGridViewCheckBoxXColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.dataGridViewCheckBoxXColumn1.Width = 40;
+            // 
+            // dataGridViewTextBoxColumn1
+            // 
+            this.dataGridViewTextBoxColumn1.DataPropertyName = "SoHoaDon";
+            this.dataGridViewTextBoxColumn1.HeaderText = "Mã hóa đơn";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            // 
+            // ngayXuatHoaDonDataGridViewTextBoxColumn
+            // 
+            this.ngayXuatHoaDonDataGridViewTextBoxColumn.DataPropertyName = "NgayXuatHoaDon";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.Format = "dd/MM/yyyy";
+            dataGridViewCellStyle4.NullValue = null;
+            this.ngayXuatHoaDonDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
+            this.ngayXuatHoaDonDataGridViewTextBoxColumn.HeaderText = "Ngày xuất";
+            this.ngayXuatHoaDonDataGridViewTextBoxColumn.Name = "ngayXuatHoaDonDataGridViewTextBoxColumn";
+            this.ngayXuatHoaDonDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // tenNguoiMuaHangDataGridViewTextBoxColumn
+            // 
+            this.tenNguoiMuaHangDataGridViewTextBoxColumn.DataPropertyName = "TenNguoiMuaHang";
+            this.tenNguoiMuaHangDataGridViewTextBoxColumn.HeaderText = "Người mua hàng";
+            this.tenNguoiMuaHangDataGridViewTextBoxColumn.Name = "tenNguoiMuaHangDataGridViewTextBoxColumn";
+            this.tenNguoiMuaHangDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tenNguoiMuaHangDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // tenDonViDataGridViewTextBoxColumn
+            // 
+            this.tenDonViDataGridViewTextBoxColumn.DataPropertyName = "TenDonVi";
+            this.tenDonViDataGridViewTextBoxColumn.HeaderText = "Tên đơn vị";
+            this.tenDonViDataGridViewTextBoxColumn.Name = "tenDonViDataGridViewTextBoxColumn";
+            this.tenDonViDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tenDonViDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // DaThuTien
+            // 
+            this.DaThuTien.DataPropertyName = "DaThuTien";
+            this.DaThuTien.HeaderText = "Đã thu tiền";
+            this.DaThuTien.Name = "DaThuTien";
+            this.DaThuTien.ReadOnly = true;
+            this.DaThuTien.Width = 80;
+            // 
+            // maSoThueDataGridViewTextBoxColumn
+            // 
+            this.maSoThueDataGridViewTextBoxColumn.DataPropertyName = "MaSoThue";
+            this.maSoThueDataGridViewTextBoxColumn.HeaderText = "Mã số thuế";
+            this.maSoThueDataGridViewTextBoxColumn.Name = "maSoThueDataGridViewTextBoxColumn";
+            this.maSoThueDataGridViewTextBoxColumn.ReadOnly = true;
+            this.maSoThueDataGridViewTextBoxColumn.Width = 120;
+            // 
+            // diaChiDataGridViewTextBoxColumn
+            // 
+            this.diaChiDataGridViewTextBoxColumn.DataPropertyName = "DiaChi";
+            this.diaChiDataGridViewTextBoxColumn.HeaderText = "Địa chỉ";
+            this.diaChiDataGridViewTextBoxColumn.Name = "diaChiDataGridViewTextBoxColumn";
+            this.diaChiDataGridViewTextBoxColumn.ReadOnly = true;
+            this.diaChiDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // soTaiKhoanDataGridViewTextBoxColumn
+            // 
+            this.soTaiKhoanDataGridViewTextBoxColumn.DataPropertyName = "SoTaiKhoan";
+            this.soTaiKhoanDataGridViewTextBoxColumn.HeaderText = "Số tài khoản";
+            this.soTaiKhoanDataGridViewTextBoxColumn.Name = "soTaiKhoanDataGridViewTextBoxColumn";
+            this.soTaiKhoanDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // hinhThucThanhToanStrDataGridViewTextBoxColumn
+            // 
+            this.hinhThucThanhToanStrDataGridViewTextBoxColumn.DataPropertyName = "HinhThucThanhToanStr";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.hinhThucThanhToanStrDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            this.hinhThucThanhToanStrDataGridViewTextBoxColumn.HeaderText = "Hình thức thanh toán";
+            this.hinhThucThanhToanStrDataGridViewTextBoxColumn.Name = "hinhThucThanhToanStrDataGridViewTextBoxColumn";
+            this.hinhThucThanhToanStrDataGridViewTextBoxColumn.ReadOnly = true;
+            this.hinhThucThanhToanStrDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // vATDataGridViewTextBoxColumn
+            // 
+            this.vATDataGridViewTextBoxColumn.DataPropertyName = "VAT";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.vATDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
+            this.vATDataGridViewTextBoxColumn.HeaderText = "GTGT (%)";
+            this.vATDataGridViewTextBoxColumn.Name = "vATDataGridViewTextBoxColumn";
+            this.vATDataGridViewTextBoxColumn.ReadOnly = true;
+            this.vATDataGridViewTextBoxColumn.Width = 80;
+            // 
+            // Notes
+            // 
+            this.Notes.DataPropertyName = "Notes";
+            this.Notes.HeaderText = "Ghi chú";
+            this.Notes.Name = "Notes";
+            this.Notes.ReadOnly = true;
+            this.Notes.Width = 250;
             // 
             // hoaDonThuocViewBindingSource
             // 
@@ -567,108 +684,80 @@
             // 
             this._printDialog.UseEXDialog = true;
             // 
-            // dataGridViewCheckBoxXColumn1
+            // ctmAction
             // 
-            this.dataGridViewCheckBoxXColumn1.DataPropertyName = "Checked";
-            this.dataGridViewCheckBoxXColumn1.Frozen = true;
-            this.dataGridViewCheckBoxXColumn1.HeaderText = "";
-            this.dataGridViewCheckBoxXColumn1.Name = "dataGridViewCheckBoxXColumn1";
-            this.dataGridViewCheckBoxXColumn1.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewCheckBoxXColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.dataGridViewCheckBoxXColumn1.Width = 40;
+            this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.xuatHoaDonToolStripMenuItem,
+            this.toolStripSeparator5,
+            this.deleteToolStripMenuItem,
+            this.toolStripSeparator4,
+            this.printToolStripMenuItem});
+            this.ctmAction.Name = "cmtAction";
+            this.ctmAction.Size = new System.Drawing.Size(146, 82);
             // 
-            // dataGridViewTextBoxColumn1
+            // xuatHoaDonToolStripMenuItem
             // 
-            this.dataGridViewTextBoxColumn1.DataPropertyName = "SoHoaDon";
-            this.dataGridViewTextBoxColumn1.HeaderText = "Mã hóa đơn";
-            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
-            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.xuatHoaDonToolStripMenuItem.Image = global::MM.Properties.Resources.invoice_icon;
+            this.xuatHoaDonToolStripMenuItem.Name = "xuatHoaDonToolStripMenuItem";
+            this.xuatHoaDonToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.xuatHoaDonToolStripMenuItem.Text = "Xuất hóa đơn";
+            this.xuatHoaDonToolStripMenuItem.Click += new System.EventHandler(this.xuatHoaDonToolStripMenuItem_Click);
             // 
-            // ngayXuatHoaDonDataGridViewTextBoxColumn
+            // toolStripSeparator5
             // 
-            this.ngayXuatHoaDonDataGridViewTextBoxColumn.DataPropertyName = "NgayXuatHoaDon";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.Format = "dd/MM/yyyy";
-            dataGridViewCellStyle4.NullValue = null;
-            this.ngayXuatHoaDonDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.ngayXuatHoaDonDataGridViewTextBoxColumn.HeaderText = "Ngày xuất";
-            this.ngayXuatHoaDonDataGridViewTextBoxColumn.Name = "ngayXuatHoaDonDataGridViewTextBoxColumn";
-            this.ngayXuatHoaDonDataGridViewTextBoxColumn.ReadOnly = true;
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(142, 6);
             // 
-            // tenNguoiMuaHangDataGridViewTextBoxColumn
+            // deleteToolStripMenuItem
             // 
-            this.tenNguoiMuaHangDataGridViewTextBoxColumn.DataPropertyName = "TenNguoiMuaHang";
-            this.tenNguoiMuaHangDataGridViewTextBoxColumn.HeaderText = "Người mua hàng";
-            this.tenNguoiMuaHangDataGridViewTextBoxColumn.Name = "tenNguoiMuaHangDataGridViewTextBoxColumn";
-            this.tenNguoiMuaHangDataGridViewTextBoxColumn.ReadOnly = true;
-            this.tenNguoiMuaHangDataGridViewTextBoxColumn.Width = 200;
+            this.deleteToolStripMenuItem.Image = global::MM.Properties.Resources.del;
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.deleteToolStripMenuItem.Text = "Xóa hóa đơn";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
-            // tenDonViDataGridViewTextBoxColumn
+            // toolStripSeparator4
             // 
-            this.tenDonViDataGridViewTextBoxColumn.DataPropertyName = "TenDonVi";
-            this.tenDonViDataGridViewTextBoxColumn.HeaderText = "Tên đơn vị";
-            this.tenDonViDataGridViewTextBoxColumn.Name = "tenDonViDataGridViewTextBoxColumn";
-            this.tenDonViDataGridViewTextBoxColumn.ReadOnly = true;
-            this.tenDonViDataGridViewTextBoxColumn.Width = 200;
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(142, 6);
             // 
-            // DaThuTien
+            // printToolStripMenuItem
             // 
-            this.DaThuTien.DataPropertyName = "DaThuTien";
-            this.DaThuTien.HeaderText = "Đã thu tiền";
-            this.DaThuTien.Name = "DaThuTien";
-            this.DaThuTien.ReadOnly = true;
-            this.DaThuTien.Width = 80;
+            this.printToolStripMenuItem.Image = global::MM.Properties.Resources.Printer_icon__1_;
+            this.printToolStripMenuItem.Name = "printToolStripMenuItem";
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.printToolStripMenuItem.Text = "In hóa đơn";
+            this.printToolStripMenuItem.Click += new System.EventHandler(this.printToolStripMenuItem_Click);
             // 
-            // maSoThueDataGridViewTextBoxColumn
+            // ctmAction2
             // 
-            this.maSoThueDataGridViewTextBoxColumn.DataPropertyName = "MaSoThue";
-            this.maSoThueDataGridViewTextBoxColumn.HeaderText = "Mã số thuế";
-            this.maSoThueDataGridViewTextBoxColumn.Name = "maSoThueDataGridViewTextBoxColumn";
-            this.maSoThueDataGridViewTextBoxColumn.ReadOnly = true;
-            this.maSoThueDataGridViewTextBoxColumn.Width = 120;
+            this.ctmAction2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.deleteDangKySoHDToolStripMenuItem});
+            this.ctmAction2.Name = "cmtAction";
+            this.ctmAction2.Size = new System.Drawing.Size(153, 76);
             // 
-            // diaChiDataGridViewTextBoxColumn
+            // addToolStripMenuItem
             // 
-            this.diaChiDataGridViewTextBoxColumn.DataPropertyName = "DiaChi";
-            this.diaChiDataGridViewTextBoxColumn.HeaderText = "Địa chỉ";
-            this.diaChiDataGridViewTextBoxColumn.Name = "diaChiDataGridViewTextBoxColumn";
-            this.diaChiDataGridViewTextBoxColumn.ReadOnly = true;
-            this.diaChiDataGridViewTextBoxColumn.Width = 200;
+            this.addToolStripMenuItem.Image = global::MM.Properties.Resources.add;
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addToolStripMenuItem.Text = "Thêm";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
-            // soTaiKhoanDataGridViewTextBoxColumn
+            // toolStripSeparator1
             // 
-            this.soTaiKhoanDataGridViewTextBoxColumn.DataPropertyName = "SoTaiKhoan";
-            this.soTaiKhoanDataGridViewTextBoxColumn.HeaderText = "Số tài khoản";
-            this.soTaiKhoanDataGridViewTextBoxColumn.Name = "soTaiKhoanDataGridViewTextBoxColumn";
-            this.soTaiKhoanDataGridViewTextBoxColumn.ReadOnly = true;
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
-            // hinhThucThanhToanStrDataGridViewTextBoxColumn
+            // deleteDangKySoHDToolStripMenuItem
             // 
-            this.hinhThucThanhToanStrDataGridViewTextBoxColumn.DataPropertyName = "HinhThucThanhToanStr";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.hinhThucThanhToanStrDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
-            this.hinhThucThanhToanStrDataGridViewTextBoxColumn.HeaderText = "Hình thức thanh toán";
-            this.hinhThucThanhToanStrDataGridViewTextBoxColumn.Name = "hinhThucThanhToanStrDataGridViewTextBoxColumn";
-            this.hinhThucThanhToanStrDataGridViewTextBoxColumn.ReadOnly = true;
-            this.hinhThucThanhToanStrDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // vATDataGridViewTextBoxColumn
-            // 
-            this.vATDataGridViewTextBoxColumn.DataPropertyName = "VAT";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.vATDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
-            this.vATDataGridViewTextBoxColumn.HeaderText = "GTGT (%)";
-            this.vATDataGridViewTextBoxColumn.Name = "vATDataGridViewTextBoxColumn";
-            this.vATDataGridViewTextBoxColumn.ReadOnly = true;
-            this.vATDataGridViewTextBoxColumn.Width = 80;
-            // 
-            // Notes
-            // 
-            this.Notes.DataPropertyName = "Notes";
-            this.Notes.HeaderText = "Ghi chú";
-            this.Notes.Name = "Notes";
-            this.Notes.ReadOnly = true;
-            this.Notes.Width = 250;
+            this.deleteDangKySoHDToolStripMenuItem.Image = global::MM.Properties.Resources.del;
+            this.deleteDangKySoHDToolStripMenuItem.Name = "deleteDangKySoHDToolStripMenuItem";
+            this.deleteDangKySoHDToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteDangKySoHDToolStripMenuItem.Text = "Xóa";
+            this.deleteDangKySoHDToolStripMenuItem.Click += new System.EventHandler(this.deleteDangKySoHDToolStripMenuItem_Click);
             // 
             // uHoaDonXuatTruoc
             // 
@@ -698,6 +787,8 @@
             this.groupBox1.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
+            this.ctmAction.ResumeLayout(false);
+            this.ctmAction2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -755,6 +846,16 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn hinhThucThanhToanStrDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn vATDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn Notes;
+        protected System.Windows.Forms.ContextMenuStrip ctmAction;
+        private System.Windows.Forms.ToolStripMenuItem xuatHoaDonToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem printToolStripMenuItem;
+        protected System.Windows.Forms.ContextMenuStrip ctmAction2;
+        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem deleteDangKySoHDToolStripMenuItem;
 
     }
 }

@@ -45,6 +45,10 @@ namespace MM.Controls
             btnDelete.Enabled = AllowDelete;
             btnPrint.Enabled = AllowPrint;
             btnExportInvoice.Enabled = AllowExport;
+
+            deleteToolStripMenuItem.Enabled = AllowDelete;
+            printToolStripMenuItem.Enabled = AllowPrint;
+            xuatHoaDonToolStripMenuItem.Enabled = AllowExport;
         }
 
         public void ClearData()
@@ -261,6 +265,15 @@ namespace MM.Controls
             dlgHoaDonHopDong dlg = new dlgHoaDonHopDong(drInvoice, true);
             dlg.ShowDialog();
         }
+
+        private void OnXuatHoaDon()
+        {
+            dlgHoaDonHopDong dlg = new dlgHoaDonHopDong(null);
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                DisplayAsThread();
+            }
+        }
         #endregion
 
         #region Window Event Handlers
@@ -307,11 +320,7 @@ namespace MM.Controls
 
         private void btnExportInvoice_Click(object sender, EventArgs e)
         {
-            dlgHoaDonHopDong dlg = new dlgHoaDonHopDong(null);
-            if (dlg.ShowDialog() == DialogResult.OK)
-            {
-                DisplayAsThread();
-            }
+            OnXuatHoaDon();
         }
 
         private void btnDelete_Click(object sender, EventArgs e)
@@ -320,6 +329,26 @@ namespace MM.Controls
         }
 
         private void btnPrint_Click(object sender, EventArgs e)
+        {
+            OnPrint();
+        }
+
+        private void dgInvoice_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            
+        }
+
+        private void xuatHoaDonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnXuatHoaDon();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnDeleteInvoice();
+        }
+
+        private void printToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OnPrint();
         }
@@ -345,9 +374,6 @@ namespace MM.Controls
         }
         #endregion
 
-        private void dgInvoice_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
+        
     }
 }

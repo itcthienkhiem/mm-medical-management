@@ -45,6 +45,11 @@ namespace MM.Controls
             btnEdit.Enabled = Global.AllowEditChiDinh;
             btnDelete.Enabled = Global.AllowDeleteChiDinh;
             btnConfirm.Enabled = Global.AllowConfirmChiDinh;
+
+            addToolStripMenuItem.Enabled = Global.AllowAddChiDinh;
+            editToolStripMenuItem.Enabled = Global.AllowEditChiDinh;
+            deleteToolStripMenuItem.Enabled = Global.AllowDeleteChiDinh;
+            xacNhanDVChiDinhToolStripMenuItem.Enabled = Global.AllowConfirmChiDinh;
         }
 
         public void DisplayAsThread()
@@ -471,6 +476,26 @@ namespace MM.Controls
         {
             UpdateDichVuChiDinh();
         }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnAddChiDinh();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnEditChiDinh();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnDeleteChiDinh();
+        }
+
+        private void xacNhanDVChiDinhToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnConfirmDichVuChiDinh();
+        }
         #endregion
 
         #region Working Thread
@@ -492,6 +517,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
        
     }

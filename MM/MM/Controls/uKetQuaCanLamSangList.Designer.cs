@@ -35,6 +35,15 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgKetQuaCanLamSang = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ngayKhamDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.normalDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.abnormalDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.negativeDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.positiveDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ketQuaCanLamSangViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -48,20 +57,18 @@
             this.raFromDateToDate = new System.Windows.Forms.RadioButton();
             this.raAll = new System.Windows.Forms.RadioButton();
             this._printDialog = new System.Windows.Forms.PrintDialog();
-            this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ngayKhamDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.normalDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.abnormalDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.negativeDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.positiveDataGridViewCheckBoxColumn = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgKetQuaCanLamSang)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.ketQuaCanLamSangViewBindingSource)).BeginInit();
             this.panel2.SuspendLayout();
             this.pFilter.SuspendLayout();
+            this.ctmAction.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel3
@@ -110,6 +117,7 @@
             this.negativeDataGridViewCheckBoxColumn,
             this.positiveDataGridViewCheckBoxColumn,
             this.noteDataGridViewTextBoxColumn});
+            this.dgKetQuaCanLamSang.ContextMenuStrip = this.ctmAction;
             this.dgKetQuaCanLamSang.DataSource = this.ketQuaCanLamSangViewBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
@@ -131,6 +139,83 @@
             this.dgKetQuaCanLamSang.Size = new System.Drawing.Size(1016, 479);
             this.dgKetQuaCanLamSang.TabIndex = 1;
             this.dgKetQuaCanLamSang.DoubleClick += new System.EventHandler(this.dgServiceHistory_DoubleClick);
+            // 
+            // colChecked
+            // 
+            this.colChecked.DataPropertyName = "Checked";
+            this.colChecked.Frozen = true;
+            this.colChecked.HeaderText = "";
+            this.colChecked.Name = "colChecked";
+            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colChecked.Width = 40;
+            // 
+            // ngayKhamDataGridViewTextBoxColumn
+            // 
+            this.ngayKhamDataGridViewTextBoxColumn.DataPropertyName = "NgayKham";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Format = "dd/MM/yyyy";
+            dataGridViewCellStyle2.NullValue = null;
+            this.ngayKhamDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ngayKhamDataGridViewTextBoxColumn.HeaderText = "Ngày khám";
+            this.ngayKhamDataGridViewTextBoxColumn.Name = "ngayKhamDataGridViewTextBoxColumn";
+            this.ngayKhamDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // codeDataGridViewTextBoxColumn
+            // 
+            this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
+            this.codeDataGridViewTextBoxColumn.HeaderText = "Mã DV";
+            this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
+            this.codeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.codeDataGridViewTextBoxColumn.Width = 120;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Tên DV";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn.Width = 250;
+            // 
+            // normalDataGridViewCheckBoxColumn
+            // 
+            this.normalDataGridViewCheckBoxColumn.DataPropertyName = "Normal";
+            this.normalDataGridViewCheckBoxColumn.HeaderText = "Bình thường";
+            this.normalDataGridViewCheckBoxColumn.Name = "normalDataGridViewCheckBoxColumn";
+            this.normalDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.normalDataGridViewCheckBoxColumn.Width = 80;
+            // 
+            // abnormalDataGridViewCheckBoxColumn
+            // 
+            this.abnormalDataGridViewCheckBoxColumn.DataPropertyName = "Abnormal";
+            this.abnormalDataGridViewCheckBoxColumn.HeaderText = "Bất thường";
+            this.abnormalDataGridViewCheckBoxColumn.Name = "abnormalDataGridViewCheckBoxColumn";
+            this.abnormalDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.abnormalDataGridViewCheckBoxColumn.Width = 80;
+            // 
+            // negativeDataGridViewCheckBoxColumn
+            // 
+            this.negativeDataGridViewCheckBoxColumn.DataPropertyName = "Negative";
+            this.negativeDataGridViewCheckBoxColumn.HeaderText = "Âm tính";
+            this.negativeDataGridViewCheckBoxColumn.Name = "negativeDataGridViewCheckBoxColumn";
+            this.negativeDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.negativeDataGridViewCheckBoxColumn.Width = 80;
+            // 
+            // positiveDataGridViewCheckBoxColumn
+            // 
+            this.positiveDataGridViewCheckBoxColumn.DataPropertyName = "Positive";
+            this.positiveDataGridViewCheckBoxColumn.HeaderText = "Dương tính";
+            this.positiveDataGridViewCheckBoxColumn.Name = "positiveDataGridViewCheckBoxColumn";
+            this.positiveDataGridViewCheckBoxColumn.ReadOnly = true;
+            this.positiveDataGridViewCheckBoxColumn.Width = 80;
+            // 
+            // noteDataGridViewTextBoxColumn
+            // 
+            this.noteDataGridViewTextBoxColumn.DataPropertyName = "Note";
+            this.noteDataGridViewTextBoxColumn.HeaderText = "Nhận xét";
+            this.noteDataGridViewTextBoxColumn.Name = "noteDataGridViewTextBoxColumn";
+            this.noteDataGridViewTextBoxColumn.ReadOnly = true;
+            this.noteDataGridViewTextBoxColumn.Width = 250;
             // 
             // ketQuaCanLamSangViewBindingSource
             // 
@@ -265,82 +350,50 @@
             // 
             this._printDialog.UseEXDialog = true;
             // 
-            // colChecked
+            // ctmAction
             // 
-            this.colChecked.DataPropertyName = "Checked";
-            this.colChecked.Frozen = true;
-            this.colChecked.HeaderText = "";
-            this.colChecked.Name = "colChecked";
-            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.colChecked.Width = 40;
+            this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.editToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.deleteToolStripMenuItem});
+            this.ctmAction.Name = "cmtAction";
+            this.ctmAction.Size = new System.Drawing.Size(153, 104);
             // 
-            // ngayKhamDataGridViewTextBoxColumn
+            // addToolStripMenuItem
             // 
-            this.ngayKhamDataGridViewTextBoxColumn.DataPropertyName = "NgayKham";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.Format = "dd/MM/yyyy";
-            dataGridViewCellStyle2.NullValue = null;
-            this.ngayKhamDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.ngayKhamDataGridViewTextBoxColumn.HeaderText = "Ngày khám";
-            this.ngayKhamDataGridViewTextBoxColumn.Name = "ngayKhamDataGridViewTextBoxColumn";
-            this.ngayKhamDataGridViewTextBoxColumn.ReadOnly = true;
+            this.addToolStripMenuItem.Image = global::MM.Properties.Resources.add;
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addToolStripMenuItem.Text = "Thêm";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
-            // codeDataGridViewTextBoxColumn
+            // toolStripSeparator1
             // 
-            this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
-            this.codeDataGridViewTextBoxColumn.HeaderText = "Mã DV";
-            this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
-            this.codeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.codeDataGridViewTextBoxColumn.Width = 120;
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
-            // nameDataGridViewTextBoxColumn
+            // editToolStripMenuItem
             // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Tên DV";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn.Width = 250;
+            this.editToolStripMenuItem.Image = global::MM.Properties.Resources.edit;
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.editToolStripMenuItem.Text = "Sửa";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
-            // normalDataGridViewCheckBoxColumn
+            // toolStripSeparator2
             // 
-            this.normalDataGridViewCheckBoxColumn.DataPropertyName = "Normal";
-            this.normalDataGridViewCheckBoxColumn.HeaderText = "Bình thường";
-            this.normalDataGridViewCheckBoxColumn.Name = "normalDataGridViewCheckBoxColumn";
-            this.normalDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.normalDataGridViewCheckBoxColumn.Width = 80;
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
             // 
-            // abnormalDataGridViewCheckBoxColumn
+            // deleteToolStripMenuItem
             // 
-            this.abnormalDataGridViewCheckBoxColumn.DataPropertyName = "Abnormal";
-            this.abnormalDataGridViewCheckBoxColumn.HeaderText = "Bất thường";
-            this.abnormalDataGridViewCheckBoxColumn.Name = "abnormalDataGridViewCheckBoxColumn";
-            this.abnormalDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.abnormalDataGridViewCheckBoxColumn.Width = 80;
-            // 
-            // negativeDataGridViewCheckBoxColumn
-            // 
-            this.negativeDataGridViewCheckBoxColumn.DataPropertyName = "Negative";
-            this.negativeDataGridViewCheckBoxColumn.HeaderText = "Âm tính";
-            this.negativeDataGridViewCheckBoxColumn.Name = "negativeDataGridViewCheckBoxColumn";
-            this.negativeDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.negativeDataGridViewCheckBoxColumn.Width = 80;
-            // 
-            // positiveDataGridViewCheckBoxColumn
-            // 
-            this.positiveDataGridViewCheckBoxColumn.DataPropertyName = "Positive";
-            this.positiveDataGridViewCheckBoxColumn.HeaderText = "Dương tính";
-            this.positiveDataGridViewCheckBoxColumn.Name = "positiveDataGridViewCheckBoxColumn";
-            this.positiveDataGridViewCheckBoxColumn.ReadOnly = true;
-            this.positiveDataGridViewCheckBoxColumn.Width = 80;
-            // 
-            // noteDataGridViewTextBoxColumn
-            // 
-            this.noteDataGridViewTextBoxColumn.DataPropertyName = "Note";
-            this.noteDataGridViewTextBoxColumn.HeaderText = "Nhận xét";
-            this.noteDataGridViewTextBoxColumn.Name = "noteDataGridViewTextBoxColumn";
-            this.noteDataGridViewTextBoxColumn.ReadOnly = true;
-            this.noteDataGridViewTextBoxColumn.Width = 250;
+            this.deleteToolStripMenuItem.Image = global::MM.Properties.Resources.del;
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Text = "Xóa";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // uKetQuaCanLamSangList
             // 
@@ -358,6 +411,7 @@
             this.panel2.ResumeLayout(false);
             this.pFilter.ResumeLayout(false);
             this.pFilter.PerformLayout();
+            this.ctmAction.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -391,5 +445,11 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn negativeDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn positiveDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
+        protected System.Windows.Forms.ContextMenuStrip ctmAction;
+        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
     }
 }

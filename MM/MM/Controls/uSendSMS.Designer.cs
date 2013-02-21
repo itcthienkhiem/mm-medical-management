@@ -63,6 +63,7 @@
             this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._uPrintKetQuaSieuAm = new MM.Controls.uPrintKetQuaSieuAm();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnSendSMS = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbKetQuaTimDuoc = new System.Windows.Forms.Label();
             this.chkTheoSoDienThoai = new System.Windows.Forms.CheckBox();
@@ -80,12 +81,14 @@
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnSendSMS = new System.Windows.Forms.Button();
+            this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.guiSMSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.ctmAction.SuspendLayout();
             this.SuspendLayout();
             // 
             // patientViewBindingSource
@@ -140,6 +143,7 @@
             this.workPhoneDataGridViewTextBoxColumn,
             this.mobileDataGridViewTextBoxColumn,
             this.emailDataGridViewTextBoxColumn});
+            this.dgPatient.ContextMenuStrip = this.ctmAction;
             this.dgPatient.DataSource = this.patientViewBindingSource;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
@@ -282,6 +286,18 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(1039, 36);
             this.panel2.TabIndex = 5;
+            // 
+            // btnSendSMS
+            // 
+            this.btnSendSMS.Image = ((System.Drawing.Image)(resources.GetObject("btnSendSMS.Image")));
+            this.btnSendSMS.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnSendSMS.Location = new System.Drawing.Point(6, 5);
+            this.btnSendSMS.Name = "btnSendSMS";
+            this.btnSendSMS.Size = new System.Drawing.Size(88, 25);
+            this.btnSendSMS.TabIndex = 7;
+            this.btnSendSMS.Text = "     &Gửi SMS";
+            this.btnSendSMS.UseVisualStyleBackColor = true;
+            this.btnSendSMS.Click += new System.EventHandler(this.btnSendSMS_Click);
             // 
             // panel1
             // 
@@ -449,17 +465,20 @@
             this.dataGridViewTextBoxColumn10.ReadOnly = true;
             this.dataGridViewTextBoxColumn10.Width = 150;
             // 
-            // btnSendSMS
+            // ctmAction
             // 
-            this.btnSendSMS.Image = ((System.Drawing.Image)(resources.GetObject("btnSendSMS.Image")));
-            this.btnSendSMS.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnSendSMS.Location = new System.Drawing.Point(6, 5);
-            this.btnSendSMS.Name = "btnSendSMS";
-            this.btnSendSMS.Size = new System.Drawing.Size(88, 25);
-            this.btnSendSMS.TabIndex = 7;
-            this.btnSendSMS.Text = "     &Gửi SMS";
-            this.btnSendSMS.UseVisualStyleBackColor = true;
-            this.btnSendSMS.Click += new System.EventHandler(this.btnSendSMS_Click);
+            this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.guiSMSToolStripMenuItem});
+            this.ctmAction.Name = "ctmAction";
+            this.ctmAction.Size = new System.Drawing.Size(153, 48);
+            // 
+            // guiSMSToolStripMenuItem
+            // 
+            this.guiSMSToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("guiSMSToolStripMenuItem.Image")));
+            this.guiSMSToolStripMenuItem.Name = "guiSMSToolStripMenuItem";
+            this.guiSMSToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.guiSMSToolStripMenuItem.Text = "Gửi SMS";
+            this.guiSMSToolStripMenuItem.Click += new System.EventHandler(this.guiSMSToolStripMenuItem_Click);
             // 
             // uSendSMS
             // 
@@ -477,6 +496,7 @@
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.ctmAction.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -518,5 +538,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn9;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn10;
         private System.Windows.Forms.Button btnSendSMS;
+        private System.Windows.Forms.ContextMenuStrip ctmAction;
+        private System.Windows.Forms.ToolStripMenuItem guiSMSToolStripMenuItem;
     }
 }

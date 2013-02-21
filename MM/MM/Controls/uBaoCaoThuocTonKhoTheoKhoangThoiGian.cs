@@ -46,6 +46,8 @@ namespace MM.Controls
         private void UpdateGUI()
         {
             btnExportExcel.Enabled = AllowExport;
+
+            exportExcelToolStripMenuItem.Enabled = AllowExport;
         }
 
         public void DisplayAsThread()
@@ -178,6 +180,16 @@ namespace MM.Controls
         {
             OnExportToExcel();
         }
+
+        private void xemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ViewAsThread();
+        }
+
+        private void exportExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnExportToExcel();
+        }
         #endregion
 
         #region Working Thread
@@ -199,6 +211,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
         
     }
