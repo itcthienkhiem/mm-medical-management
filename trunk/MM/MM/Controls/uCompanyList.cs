@@ -36,6 +36,9 @@ namespace MM.Controls
         {
             btnAdd.Enabled = AllowAdd;
             btnDelete.Enabled = AllowDelete;
+
+            addToolStripMenuItem.Enabled = AllowAdd;
+            deleteToolStripMenuItem.Enabled = AllowDelete;
         }
 
         public void DisplayAsThread()
@@ -246,6 +249,21 @@ namespace MM.Controls
         {
             base.RaiseOpentPatient(patientRow);
         }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnAddCompany();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnEditCompany();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnDeleteCompany();
+        }
         #endregion
 
         #region Working Thread
@@ -266,5 +284,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }
