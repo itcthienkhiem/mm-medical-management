@@ -41,6 +41,11 @@ namespace MM.Controls
             btnDelete.Enabled = AllowDelete;
             btnKhoa.Enabled = AllowLock;
             btnMoKhoa.Enabled = AllowLock;
+
+            addToolStripMenuItem.Enabled = AllowAdd;
+            deleteToolStripMenuItem.Enabled = AllowDelete;
+            khoaToolStripMenuItem.Enabled = AllowLock;
+            moKhoaToolStripMenuItem.Enabled = AllowLock;
         }
 
         public void DisplayAsThread()
@@ -200,6 +205,84 @@ namespace MM.Controls
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những hợp đồng cần xóa.", IconType.Information);
         }
+
+        private void OnLock()
+        {
+            if (_dictContract == null) return;
+            List<string> deletedConList = new List<string>();
+            List<DataRow> deletedRows = _dictContract.Values.ToList();
+
+            foreach (DataRow row in deletedRows)
+            {
+                deletedConList.Add(row["CompanyContractGUID"].ToString());
+            }
+
+            if (deletedConList.Count > 0)
+            {
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn khóa những hợp đồng mà bạn đã đánh dấu ?") == DialogResult.Yes)
+                {
+                    Result result = CompanyContractBus.LockHopDong(deletedConList);
+                    if (result.IsOK)
+                    {
+                        DataTable dt = dgContract.DataSource as DataTable;
+                        if (dt == null || dt.Rows.Count <= 0) return;
+
+                        foreach (string key in deletedConList)
+                        {
+                            DataRow[] rows = dt.Select(string.Format("CompanyContractGUID='{0}'", key));
+                            if (rows == null || rows.Length <= 0) continue;
+                            rows[0]["Lock"] = 1;
+                        }
+                    }
+                    else
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyContractBus.LockHopDong"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.LockHopDong"));
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những hợp đồng cần khóa.", IconType.Information);
+        }
+
+        private void OnUnlock()
+        {
+            if (_dictContract == null) return;
+            List<string> deletedConList = new List<string>();
+            List<DataRow> deletedRows = _dictContract.Values.ToList();
+
+            foreach (DataRow row in deletedRows)
+            {
+                deletedConList.Add(row["CompanyContractGUID"].ToString());
+            }
+
+            if (deletedConList.Count > 0)
+            {
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn mở khóa những hợp đồng mà bạn đã đánh dấu ?") == DialogResult.Yes)
+                {
+                    Result result = CompanyContractBus.UnlockHopDong(deletedConList);
+                    if (result.IsOK)
+                    {
+                        DataTable dt = dgContract.DataSource as DataTable;
+                        if (dt == null || dt.Rows.Count <= 0) return;
+
+                        foreach (string key in deletedConList)
+                        {
+                            DataRow[] rows = dt.Select(string.Format("CompanyContractGUID='{0}'", key));
+                            if (rows == null || rows.Length <= 0) continue;
+                            rows[0]["Lock"] = 0;
+                        }
+                    }
+                    else
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyContractBus.UnlockHopDong"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.UnlockHopDong"));
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những hợp đồng cần mở khóa.", IconType.Information);
+        }
         #endregion
 
         #region Window Event Handlers
@@ -336,80 +419,37 @@ namespace MM.Controls
 
         private void btnKhoa_Click(object sender, EventArgs e)
         {
-            if (_dictContract == null) return;
-            List<string> deletedConList = new List<string>();
-            List<DataRow> deletedRows = _dictContract.Values.ToList();
-
-            foreach (DataRow row in deletedRows)
-            {
-                deletedConList.Add(row["CompanyContractGUID"].ToString());
-            }
-
-            if (deletedConList.Count > 0)
-            {
-                if (MsgBox.Question(Application.ProductName, "Bạn có muốn khóa những hợp đồng mà bạn đã đánh dấu ?") == DialogResult.Yes)
-                {
-                    Result result = CompanyContractBus.LockHopDong(deletedConList);
-                    if (result.IsOK)
-                    {
-                        DataTable dt = dgContract.DataSource as DataTable;
-                        if (dt == null || dt.Rows.Count <= 0) return;
-
-                        foreach (string key in deletedConList)
-                        {
-                            DataRow[] rows = dt.Select(string.Format("CompanyContractGUID='{0}'", key));
-                            if (rows == null || rows.Length <= 0) continue;
-                            rows[0]["Lock"] = 1;
-                        }
-                    }
-                    else
-                    {
-                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyContractBus.LockHopDong"), IconType.Error);
-                        Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.LockHopDong"));
-                    }
-                }
-            }
-            else
-                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những hợp đồng cần khóa.", IconType.Information);
+            OnLock();
         }
 
         private void btnMoKhoa_Click(object sender, EventArgs e)
         {
-            if (_dictContract == null) return;
-            List<string> deletedConList = new List<string>();
-            List<DataRow> deletedRows = _dictContract.Values.ToList();
+            OnUnlock();
+        }
 
-            foreach (DataRow row in deletedRows)
-            {
-                deletedConList.Add(row["CompanyContractGUID"].ToString());
-            }
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnAddContract();
+        }
 
-            if (deletedConList.Count > 0)
-            {
-                if (MsgBox.Question(Application.ProductName, "Bạn có muốn mở khóa những hợp đồng mà bạn đã đánh dấu ?") == DialogResult.Yes)
-                {
-                    Result result = CompanyContractBus.UnlockHopDong(deletedConList);
-                    if (result.IsOK)
-                    {
-                        DataTable dt = dgContract.DataSource as DataTable;
-                        if (dt == null || dt.Rows.Count <= 0) return;
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnEditContract();
+        }
 
-                        foreach (string key in deletedConList)
-                        {
-                            DataRow[] rows = dt.Select(string.Format("CompanyContractGUID='{0}'", key));
-                            if (rows == null || rows.Length <= 0) continue;
-                            rows[0]["Lock"] = 0;
-                        }
-                    }
-                    else
-                    {
-                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyContractBus.UnlockHopDong"), IconType.Error);
-                        Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.UnlockHopDong"));
-                    }
-                }
-            }
-            else
-                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những hợp đồng cần mở khóa.", IconType.Information);
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnDeleteContract();
+        }
+
+        private void khoaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnLock();
+        }
+
+        private void moKhoaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnUnlock();
         }
         #endregion
 
@@ -444,6 +484,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
         
     }

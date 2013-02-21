@@ -47,8 +47,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgContract = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.companyContractViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panel3 = new System.Windows.Forms.Panel();
             this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.contractCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.contractNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,11 +56,24 @@
             this.beginDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.EndDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Lock = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.companyContractViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.khoaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.moKhoaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgContract)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.companyContractViewBindingSource)).BeginInit();
             this.panel3.SuspendLayout();
+            this.ctmAction.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -213,6 +224,7 @@
             this.beginDateDataGridViewTextBoxColumn,
             this.EndDate,
             this.Lock});
+            this.dgContract.ContextMenuStrip = this.ctmAction;
             this.dgContract.DataSource = this.companyContractViewBindingSource;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
@@ -235,20 +247,6 @@
             this.dgContract.TabIndex = 6;
             this.dgContract.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgContract_CellMouseUp);
             this.dgContract.DoubleClick += new System.EventHandler(this.dgContract_DoubleClick);
-            // 
-            // companyContractViewBindingSource
-            // 
-            this.companyContractViewBindingSource.DataSource = typeof(MM.Databasae.CompanyContractView);
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.chkChecked);
-            this.panel3.Controls.Add(this.dgContract);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 39);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(879, 358);
-            this.panel3.TabIndex = 1;
             // 
             // colChecked
             // 
@@ -339,6 +337,95 @@
             this.Lock.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
             this.Lock.Width = 70;
             // 
+            // companyContractViewBindingSource
+            // 
+            this.companyContractViewBindingSource.DataSource = typeof(MM.Databasae.CompanyContractView);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.chkChecked);
+            this.panel3.Controls.Add(this.dgContract);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 39);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(879, 358);
+            this.panel3.TabIndex = 1;
+            // 
+            // ctmAction
+            // 
+            this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.editToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.deleteToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.khoaToolStripMenuItem,
+            this.toolStripSeparator4,
+            this.moKhoaToolStripMenuItem});
+            this.ctmAction.Name = "cmtAction";
+            this.ctmAction.Size = new System.Drawing.Size(153, 160);
+            // 
+            // addToolStripMenuItem
+            // 
+            this.addToolStripMenuItem.Image = global::MM.Properties.Resources.add;
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addToolStripMenuItem.Text = "Thêm";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Image = global::MM.Properties.Resources.edit;
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.editToolStripMenuItem.Text = "Sửa";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Image = global::MM.Properties.Resources.del;
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Text = "Xóa";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
+            // 
+            // khoaToolStripMenuItem
+            // 
+            this.khoaToolStripMenuItem.Image = global::MM.Properties.Resources.lock_icon;
+            this.khoaToolStripMenuItem.Name = "khoaToolStripMenuItem";
+            this.khoaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.khoaToolStripMenuItem.Text = "Khóa";
+            this.khoaToolStripMenuItem.Click += new System.EventHandler(this.khoaToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(149, 6);
+            // 
+            // moKhoaToolStripMenuItem
+            // 
+            this.moKhoaToolStripMenuItem.Image = global::MM.Properties.Resources.lock_off_icon;
+            this.moKhoaToolStripMenuItem.Name = "moKhoaToolStripMenuItem";
+            this.moKhoaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.moKhoaToolStripMenuItem.Text = "Mở khóa";
+            this.moKhoaToolStripMenuItem.Click += new System.EventHandler(this.moKhoaToolStripMenuItem_Click);
+            // 
             // uContractList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -355,6 +442,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.companyContractViewBindingSource)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.ctmAction.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -384,5 +472,15 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn beginDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn EndDate;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Lock;
+        protected System.Windows.Forms.ContextMenuStrip ctmAction;
+        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem khoaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem moKhoaToolStripMenuItem;
     }
 }
