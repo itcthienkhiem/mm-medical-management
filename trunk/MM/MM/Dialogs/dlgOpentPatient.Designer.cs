@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgOpentPatient));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnVaoPhongCho = new System.Windows.Forms.Button();
@@ -35,8 +36,13 @@
             this.btnOpenPatient = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this._uSearchPatient = new MM.Controls.uSearchPatient();
+            this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.openPatientToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.vaoPhongChoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.ctmAction.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -97,12 +103,47 @@
             // 
             // _uSearchPatient
             // 
-            //this._uSearchPatient.DataSource = null;
+            this._uSearchPatient.ContextMenuStrip = this.ctmAction;
             this._uSearchPatient.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uSearchPatient.HopDongGUID = "";
+            this._uSearchPatient.IsMulti = false;
             this._uSearchPatient.Location = new System.Drawing.Point(0, 0);
             this._uSearchPatient.Name = "_uSearchPatient";
+            this._uSearchPatient.PatientGUID = "";
+            this._uSearchPatient.PatientSearchType = MM.Common.PatientSearchType.BenhNhan;
+            this._uSearchPatient.ServiceGUID = "";
             this._uSearchPatient.Size = new System.Drawing.Size(853, 399);
             this._uSearchPatient.TabIndex = 0;
+            // 
+            // ctmAction
+            // 
+            this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.openPatientToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.vaoPhongChoToolStripMenuItem});
+            this.ctmAction.Name = "ctmAction";
+            this.ctmAction.Size = new System.Drawing.Size(157, 76);
+            // 
+            // openPatientToolStripMenuItem
+            // 
+            this.openPatientToolStripMenuItem.Image = global::MM.Properties.Resources.folder_customer_icon__1_;
+            this.openPatientToolStripMenuItem.Name = "openPatientToolStripMenuItem";
+            this.openPatientToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.openPatientToolStripMenuItem.Text = "Mở bệnh nhân";
+            this.openPatientToolStripMenuItem.Click += new System.EventHandler(this.openPatientToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(153, 6);
+            // 
+            // vaoPhongChoToolStripMenuItem
+            // 
+            this.vaoPhongChoToolStripMenuItem.Image = global::MM.Properties.Resources.conference_icon;
+            this.vaoPhongChoToolStripMenuItem.Name = "vaoPhongChoToolStripMenuItem";
+            this.vaoPhongChoToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.vaoPhongChoToolStripMenuItem.Text = "Vào phòng chờ";
+            this.vaoPhongChoToolStripMenuItem.Click += new System.EventHandler(this.vaoPhongChoToolStripMenuItem_Click);
             // 
             // dlgOpentPatient
             // 
@@ -118,6 +159,7 @@
             this.Text = "Mo benh nhan";
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.ctmAction.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -130,5 +172,9 @@
         private System.Windows.Forms.Button btnCancel;
         private Controls.uSearchPatient _uSearchPatient;
         private System.Windows.Forms.Button btnVaoPhongCho;
+        private System.Windows.Forms.ContextMenuStrip ctmAction;
+        private System.Windows.Forms.ToolStripMenuItem openPatientToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem vaoPhongChoToolStripMenuItem;
     }
 }

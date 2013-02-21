@@ -25,6 +25,7 @@ namespace MM.Dialogs
             InitializeComponent();
             _uSearchPatient.OnOpenPatientEvent += new OpenPatientHandler(_uSearchPatient_OnOpenPatient);
             btnVaoPhongCho.Enabled = Global.AllowAddPhongCho;
+            vaoPhongChoToolStripMenuItem.Enabled = Global.AllowAddPhongCho;
         }
         #endregion
 
@@ -37,21 +38,7 @@ namespace MM.Dialogs
         #endregion
 
         #region UI Command
-        
-        #endregion
-
-        #region Window Event Handlers
-        private void btnOpenPatient_Click(object sender, EventArgs e)
-        {
-            _patientRow = _uSearchPatient.PatientRow;
-            if (_patientRow != null)
-            {
-                this.DialogResult = System.Windows.Forms.DialogResult.OK;
-                this.Close();
-            }
-        }
-
-        private void _uSearchPatient_OnOpenPatient(DataRow patientRow)
+        private void OnOpentPatient(DataRow patientRow)
         {
             _patientRow = patientRow;
             if (_patientRow != null)
@@ -61,7 +48,7 @@ namespace MM.Dialogs
             }
         }
 
-        private void btnVaoPhongCho_Click(object sender, EventArgs e)
+        private void OnVaoPhongCho()
         {
             _patientRow = _uSearchPatient.PatientRow;
             if (_patientRow != null)
@@ -82,5 +69,34 @@ namespace MM.Dialogs
                 MsgBox.Show(Application.ProductName, "Vui lòng chọn bệnh nhân mà bạn muốn đưa vào phòng chờ.", IconType.Information);
         }
         #endregion
+
+        #region Window Event Handlers
+        private void btnOpenPatient_Click(object sender, EventArgs e)
+        {
+            OnOpentPatient(_uSearchPatient.PatientRow);
+        }
+
+        private void _uSearchPatient_OnOpenPatient(DataRow patientRow)
+        {
+            OnOpentPatient(patientRow);
+        }
+
+        private void btnVaoPhongCho_Click(object sender, EventArgs e)
+        {
+            OnVaoPhongCho();
+        }
+
+        private void openPatientToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnOpentPatient(_uSearchPatient.PatientRow);
+        }
+
+        private void vaoPhongChoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnVaoPhongCho();
+        }
+        #endregion
+
+        
     }
 }

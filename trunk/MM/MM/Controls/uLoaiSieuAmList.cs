@@ -54,6 +54,10 @@ namespace MM.Controls
             btnAdd.Enabled = AllowAdd;
             btnEdit.Enabled = AllowEdit;
             btnDelete.Enabled = AllowDelete;
+
+            addToolStripMenuItem.Enabled = AllowAdd;
+            editToolStripMenuItem.Enabled = AllowEdit;
+            deleteToolStripMenuItem.Enabled = AllowDelete;
         }
 
         public void DisplayAsThread()
@@ -400,6 +404,78 @@ namespace MM.Controls
                 Utility.WriteToTraceLog(result.GetErrorAsString("SieuAmBus.GetMauBaoCaoList"));
             }
         }
+
+        private void OnExportWord()
+        {
+            try
+            {
+                if (raChung.Checked)
+                {
+                    if (_textControl1.Text.Trim() == string.Empty) return;
+
+                    SaveFileDialog dlg = new SaveFileDialog();
+                    dlg.Filter = "Rich Text Format (*.rtf)|*.rtf";
+                    if (dlg.ShowDialog() == DialogResult.OK)
+                    {
+                        _textControl1.Save(dlg.FileName, TXTextControl.StreamType.RichTextFormat);
+                    }
+                }
+                else
+                {
+                    if (chkNam.Checked && chkNu.Checked)
+                    {
+                        if (tabMauBaoCao.SelectedIndex == 0)
+                        {
+                            if (_textControl1.Text.Trim() == string.Empty) return;
+                            SaveFileDialog dlg = new SaveFileDialog();
+                            dlg.Filter = "Rich Text Format (*.rtf)|*.rtf";
+                            if (dlg.ShowDialog() == DialogResult.OK)
+                            {
+                                _textControl1.Save(dlg.FileName, TXTextControl.StreamType.RichTextFormat);
+                            }
+                        }
+                        else
+                        {
+                            if (_textControl2.Text.Trim() == string.Empty) return;
+                            SaveFileDialog dlg = new SaveFileDialog();
+                            dlg.Filter = "Rich Text Format (*.rtf)|*.rtf";
+                            if (dlg.ShowDialog() == DialogResult.OK)
+                            {
+                                _textControl2.Save(dlg.FileName, TXTextControl.StreamType.RichTextFormat);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        if (chkNam.Checked)
+                        {
+                            if (_textControl1.Text.Trim() == string.Empty) return;
+                            SaveFileDialog dlg = new SaveFileDialog();
+                            dlg.Filter = "Rich Text Format (*.rtf)|*.rtf";
+                            if (dlg.ShowDialog() == DialogResult.OK)
+                            {
+                                _textControl1.Save(dlg.FileName, TXTextControl.StreamType.RichTextFormat);
+                            }
+                        }
+                        else if (chkNu.Checked)
+                        {
+                            if (_textControl2.Text.Trim() == string.Empty) return;
+                            SaveFileDialog dlg = new SaveFileDialog();
+                            dlg.Filter = "Rich Text Format (*.rtf)|*.rtf";
+                            if (dlg.ShowDialog() == DialogResult.OK)
+                            {
+                                _textControl2.Save(dlg.FileName, TXTextControl.StreamType.RichTextFormat);
+                            }
+                        }
+                    }
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+            }
+        }
         #endregion
 
         #region Window Event Handlers
@@ -612,74 +688,27 @@ namespace MM.Controls
 
         private void btnExportWord_Click(object sender, EventArgs e)
         {
-            try
-            {
-                if (raChung.Checked)
-                {
-                    if (_textControl1.Text.Trim() == string.Empty) return;
+            OnExportWord();   
+        }
 
-                    SaveFileDialog dlg = new SaveFileDialog();
-                    dlg.Filter = "Rich Text Format (*.rtf)|*.rtf";
-                    if (dlg.ShowDialog() == DialogResult.OK)
-                    {
-                        _textControl1.Save(dlg.FileName, TXTextControl.StreamType.RichTextFormat);
-                    }
-                }
-                else
-                {
-                    if (chkNam.Checked && chkNu.Checked)
-                    {
-                        if (tabMauBaoCao.SelectedIndex == 0)
-                        {
-                            if (_textControl1.Text.Trim() == string.Empty) return;
-                            SaveFileDialog dlg = new SaveFileDialog();
-                            dlg.Filter = "Rich Text Format (*.rtf)|*.rtf";
-                            if (dlg.ShowDialog() == DialogResult.OK)
-                            {
-                                _textControl1.Save(dlg.FileName, TXTextControl.StreamType.RichTextFormat);
-                            }
-                        }
-                        else
-                        {
-                            if (_textControl2.Text.Trim() == string.Empty) return;
-                            SaveFileDialog dlg = new SaveFileDialog();
-                            dlg.Filter = "Rich Text Format (*.rtf)|*.rtf";
-                            if (dlg.ShowDialog() == DialogResult.OK)
-                            {
-                                _textControl2.Save(dlg.FileName, TXTextControl.StreamType.RichTextFormat);
-                            }
-                        }
-                    }
-                    else
-                    {
-                        if (chkNam.Checked)
-                        {
-                            if (_textControl1.Text.Trim() == string.Empty) return;
-                            SaveFileDialog dlg = new SaveFileDialog();
-                            dlg.Filter = "Rich Text Format (*.rtf)|*.rtf";
-                            if (dlg.ShowDialog() == DialogResult.OK)
-                            {
-                                _textControl1.Save(dlg.FileName, TXTextControl.StreamType.RichTextFormat);
-                            }
-                        }
-                        else if (chkNu.Checked)
-                        {
-                            if (_textControl2.Text.Trim() == string.Empty) return;
-                            SaveFileDialog dlg = new SaveFileDialog();
-                            dlg.Filter = "Rich Text Format (*.rtf)|*.rtf";
-                            if (dlg.ShowDialog() == DialogResult.OK)
-                            {
-                                _textControl2.Save(dlg.FileName, TXTextControl.StreamType.RichTextFormat);
-                            }
-                        }
-                    }
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnDelete();
+        }
 
-                }
-            }
-            catch (Exception ex)
-            {
-                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
-            }
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnAdd();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnEdit();
+        }
+
+        private void exportWordToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnExportWord();
         }
         #endregion
 
@@ -702,5 +731,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }

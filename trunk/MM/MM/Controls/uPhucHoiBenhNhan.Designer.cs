@@ -60,11 +60,14 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbKetQuaTimDuoc = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.phucHoiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.ctmAction.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel3
@@ -114,6 +117,7 @@
             this.workPhoneDataGridViewTextBoxColumn,
             this.mobileDataGridViewTextBoxColumn,
             this.emailDataGridViewTextBoxColumn});
+            this.dgPatient.ContextMenuStrip = this.ctmAction;
             this.dgPatient.DataSource = this.patientViewBindingSource;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
@@ -317,6 +321,21 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Tìm bệnh nhân:";
             // 
+            // ctmAction
+            // 
+            this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.phucHoiToolStripMenuItem});
+            this.ctmAction.Name = "ctmAction";
+            this.ctmAction.Size = new System.Drawing.Size(153, 48);
+            // 
+            // phucHoiToolStripMenuItem
+            // 
+            this.phucHoiToolStripMenuItem.Image = global::MM.Properties.Resources.backup_restore_icon__1_;
+            this.phucHoiToolStripMenuItem.Name = "phucHoiToolStripMenuItem";
+            this.phucHoiToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.phucHoiToolStripMenuItem.Text = "Phục hồi";
+            this.phucHoiToolStripMenuItem.Click += new System.EventHandler(this.phucHoiToolStripMenuItem_Click);
+            // 
             // uPhucHoiBenhNhan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -333,6 +352,7 @@
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.ctmAction.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -361,5 +381,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn mobileDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn emailDataGridViewTextBoxColumn;
         private System.Windows.Forms.Label lbKetQuaTimDuoc;
+        private System.Windows.Forms.ContextMenuStrip ctmAction;
+        private System.Windows.Forms.ToolStripMenuItem phucHoiToolStripMenuItem;
     }
 }

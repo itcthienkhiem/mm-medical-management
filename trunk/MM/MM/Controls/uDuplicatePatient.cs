@@ -33,6 +33,7 @@ namespace MM.Controls
         private void UpdateGUI()
         {
             btnMerge.Enabled = AllowEdit;
+            mergeToolStripMenuItem.Enabled = AllowEdit;
         }
 
         public void ClearData()
@@ -117,6 +118,31 @@ namespace MM.Controls
                 }
             }
         }
+
+        private void OnMergePatient()
+        {
+            if (dgDuplicatePatient.SelectedRows == null || dgDuplicatePatient.SelectedRows.Count <= 1)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn ít nhất 2 bệnh nhân để merge.", IconType.Information);
+                return;
+            }
+            else
+            {
+                DataTable dt = (dgDuplicatePatient.DataSource as DataTable).Clone();
+                for (int i = 0; i < dgDuplicatePatient.SelectedRows.Count; i++)
+                {
+                    DataRow dr = (dgDuplicatePatient.SelectedRows[i].DataBoundItem as DataRowView).Row;
+                    dt.ImportRow(dr);
+                }
+                dlgMergePatient dlg = new dlgMergePatient();
+                dlg.SetDataSource(dt);
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    //re-bind data soource
+                    OnDisplayDuplicatePatientList();
+                }
+            }
+        }
         #endregion
         
         #region Working Thread
@@ -154,27 +180,7 @@ namespace MM.Controls
         #region Window Event Handers
         private void btnMerge_Click(object sender, EventArgs e)
         {
-            if (dgDuplicatePatient.SelectedRows == null || dgDuplicatePatient.SelectedRows.Count <= 1)
-            {
-                MsgBox.Show(Application.ProductName, "Vui lòng chọn ít nhất 2 bệnh nhân để merge.", IconType.Information);
-                return;
-            }
-            else
-            {
-                DataTable dt = (dgDuplicatePatient.DataSource as DataTable).Clone();
-                for (int i = 0; i < dgDuplicatePatient.SelectedRows.Count; i++)
-                {
-                    DataRow dr = (dgDuplicatePatient.SelectedRows[i].DataBoundItem as DataRowView).Row;
-                    dt.ImportRow(dr);
-                }
-                dlgMergePatient dlg = new dlgMergePatient();
-                dlg.SetDataSource(dt);
-                if (dlg.ShowDialog() == DialogResult.OK)
-                {
-                    //re-bind data soource
-                    OnDisplayDuplicatePatientList();
-                }
-            }
+            OnMergePatient();
         }
 
         private void dgDuplicatePatient_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -225,6 +231,11 @@ namespace MM.Controls
         private void txtSearchPatient_TextChanged(object sender, EventArgs e)
         {
             StartTimer();
+        }
+
+        private void mergeToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnMergePatient();
         }
         #endregion
     }
