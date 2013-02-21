@@ -43,6 +43,9 @@ namespace MM.Controls
         {
             btnAdd.Enabled = Global.AllowAddLoiKhuyen;
             btnDelete.Enabled = Global.AllowDeleteLoiKhuyen;
+
+            addToolStripMenuItem.Enabled = Global.AllowAddLoiKhuyen;
+            deleteToolStripMenuItem.Enabled = Global.AllowDeleteLoiKhuyen;
         }
 
         public void DisplayAsThread()
@@ -221,6 +224,21 @@ namespace MM.Controls
 
             DisplayAsThread();
         }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnAdd();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnEdit();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnDelete();
+        }
         #endregion
 
         #region Working Thread
@@ -242,6 +260,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
         
     }

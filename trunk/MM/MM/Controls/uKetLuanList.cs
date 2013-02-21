@@ -45,6 +45,9 @@ namespace MM.Controls
         {
             btnAdd.Enabled = Global.AllowAddKetLuan;
             btnDelete.Enabled = Global.AllowDeleteKetLuan;
+
+            addToolStripMenuItem.Enabled = Global.AllowAddKetLuan;
+            deleteToolStripMenuItem.Enabled = Global.AllowDeleteKetLuan;
         }
 
         public void DisplayAsThread()
@@ -223,6 +226,21 @@ namespace MM.Controls
 
             DisplayAsThread();
         }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnAdd();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnEdit();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnDelete();
+        }
         #endregion
 
         #region Working Thread
@@ -244,6 +262,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
         
     }

@@ -47,6 +47,10 @@ namespace MM.Controls
             btnDelete.Enabled = AllowDelete;
             btnPrint.Enabled = AllowPrint;
             btnExportInvoice.Enabled = AllowExport;
+
+            deleteToolStripMenuItem.Enabled = AllowDelete;
+            printToolStripMenuItem.Enabled = AllowPrint;
+            xuatHoaDonToolStripMenuItem.Enabled = AllowExport;
         }
 
         public void DisplayAsThread()
@@ -78,8 +82,6 @@ namespace MM.Controls
                 base.HideWaiting();
             }
         }
-
-        
 
         private void OnDisplayInvoiceList()
         {
@@ -266,6 +268,15 @@ namespace MM.Controls
             dlgInvoiceInfo dlg = new dlgInvoiceInfo(drInvoice, true);
             dlg.ShowDialog();
         }
+
+        private void OnXuatHoaDon()
+        {
+            dlgInvoiceInfo dlg = new dlgInvoiceInfo(null);
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                DisplayAsThread();
+            }
+        }
         #endregion
 
         #region Window Event Handlers
@@ -322,47 +333,22 @@ namespace MM.Controls
 
         private void btnExportInvoice_Click(object sender, EventArgs e)
         {
-            dlgInvoiceInfo dlg = new dlgInvoiceInfo(null);
-            if (dlg.ShowDialog() == DialogResult.OK)
-            {
-                /*DataTable dt = dgInvoice.DataSource as DataTable;
-                if (dt == null) return;
-                DataRow newRow = dt.NewRow();
-                newRow["Checked"] = false;
-                newRow["InvoiceGUID"] = dlg.Invoice.InvoiceGUID.ToString();
-                newRow["InvoiceCode"] = dlg.Invoice.InvoiceCode;
-                newRow["InvoiceDate"] = dlg.Invoice.InvoiceDate;
-                newRow["TenNguoiMuaHang"] = dlg.Invoice.TenNguoiMuaHang;
-                newRow["TenDonVi"] = dlg.Invoice.TenDonVi;
-                newRow["MaSoThue"] = dlg.Invoice.MaSoThue;
-                newRow["DiaChi"] = dlg.Invoice.DiaChi;
-                newRow["SoTaiKhoan"] = dlg.Invoice.SoTaiKhoan;
-                newRow["HinhThucThanhToan"] = dlg.Invoice.HinhThucThanhToan;
-                newRow["VAT"] = dlg.Invoice.VAT;
-                newRow["HinhThucThanhToanStr"] = Utility.ParseHinhThucThanhToanToStr((PaymentType)dlg.Invoice.HinhThucThanhToan);
+            OnXuatHoaDon();
+        }
 
-                if (dlg.Invoice.CreatedDate.HasValue)
-                    newRow["CreatedDate"] = dlg.Invoice.CreatedDate;
+        private void xuatHoaDonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnXuatHoaDon();
+        }
 
-                if (dlg.Invoice.CreatedBy.HasValue)
-                    newRow["CreatedBy"] = dlg.Invoice.CreatedBy.ToString();
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnDeleteInvoice();
+        }
 
-                if (dlg.Invoice.UpdatedDate.HasValue)
-                    newRow["UpdatedDate"] = dlg.Invoice.UpdatedDate;
-
-                if (dlg.Invoice.UpdatedBy.HasValue)
-                    newRow["UpdatedBy"] = dlg.Invoice.UpdatedBy.ToString();
-
-                if (dlg.Invoice.DeletedDate.HasValue)
-                    newRow["DeletedDate"] = dlg.Invoice.DeletedDate;
-
-                if (dlg.Invoice.DeletedBy.HasValue)
-                    newRow["DeletedBy"] = dlg.Invoice.DeletedBy.ToString();
-
-                newRow["Status"] = dlg.Invoice.Status;
-                dt.Rows.Add(newRow);*/
-                DisplayAsThread();
-            }
+        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnPrint();
         }
         #endregion
 
@@ -385,5 +371,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }

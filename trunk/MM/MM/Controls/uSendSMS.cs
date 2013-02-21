@@ -39,6 +39,8 @@ namespace MM.Controls
         private void UpdateGUI()
         {
             btnSendSMS.Enabled = AllowSendSMS;
+
+            guiSMSToolStripMenuItem.Enabled = AllowSendSMS;
         }
 
         public void ClearData()
@@ -330,6 +332,11 @@ namespace MM.Controls
         {
             OnSendSMS();
         }
+
+        private void guiSMSToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnSendSMS();
+        }
         #endregion
 
         #region Working Thread
@@ -363,6 +370,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
         
     }

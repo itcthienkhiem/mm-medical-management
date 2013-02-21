@@ -45,11 +45,17 @@ namespace MM.Controls
         #region UI Command
         private void UpdateGUI()
         {
-            btnAdd.Enabled = Global.AllowAddKhamNoiSoi;
-            btnDelete.Enabled = Global.AllowDeleteKhamNoiSoi;
-            btnPrint.Enabled = Global.AllowPrintKhamNoiSoi;
-            btnPrintPreview.Enabled = Global.AllowPrintKhamNoiSoi;
-            btnExportExcel.Enabled = Global.AllowExportKhamNoiSoi;
+            btnAdd.Enabled = Global.AllowAddKhamCTC;
+            btnDelete.Enabled = Global.AllowDeleteKhamCTC;
+            btnPrint.Enabled = Global.AllowPrintKhamCTC;
+            btnPrintPreview.Enabled = Global.AllowPrintKhamCTC;
+            btnExportExcel.Enabled = Global.AllowExportKhamCTC;
+
+            addToolStripMenuItem.Enabled = Global.AllowAddKhamCTC;
+            deleteToolStripMenuItem.Enabled = Global.AllowDeleteKhamCTC;
+            printPreviewToolStripMenuItem.Enabled = Global.AllowPrintKhamCTC;
+            printToolStripMenuItem.Enabled = Global.AllowPrintKhamCTC;
+            exportExcelToolStripMenuItem.Enabled = Global.AllowExportKhamCTC;
         }
 
         public void DisplayAsThread()
@@ -388,6 +394,36 @@ namespace MM.Controls
         {
             OnEdit();
         }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnAdd();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnEdit();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnDelete();
+        }
+
+        private void printPreviewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnPrint(true);
+        }
+
+        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnPrint(false);
+        }
+
+        private void exportExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnExportExcel();
+        }
         #endregion
 
         #region Working Thread
@@ -409,5 +445,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }

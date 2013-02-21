@@ -30,6 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.txtKetQua = new System.Windows.Forms.TextBox();
+            this.lbKetQua = new System.Windows.Forms.Label();
             this.dtpkDenNgay = new System.Windows.Forms.DateTimePicker();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -45,12 +47,13 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnExportExcel = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.lbKetQua = new System.Windows.Forms.Label();
-            this.txtKetQua = new System.Windows.Forms.TextBox();
+            this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.exportExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.companyContractBindingSource)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.ctmAction.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -72,6 +75,23 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(758, 123);
             this.panel1.TabIndex = 0;
+            // 
+            // txtKetQua
+            // 
+            this.txtKetQua.Location = new System.Drawing.Point(286, 92);
+            this.txtKetQua.Name = "txtKetQua";
+            this.txtKetQua.ReadOnly = true;
+            this.txtKetQua.Size = new System.Drawing.Size(78, 20);
+            this.txtKetQua.TabIndex = 16;
+            // 
+            // lbKetQua
+            // 
+            this.lbKetQua.AutoSize = true;
+            this.lbKetQua.Location = new System.Drawing.Point(170, 95);
+            this.lbKetQua.Name = "lbKetQua";
+            this.lbKetQua.Size = new System.Drawing.Size(114, 13);
+            this.lbKetQua.TabIndex = 15;
+            this.lbKetQua.Text = "Kết quả được tìm thấy:";
             // 
             // dtpkDenNgay
             // 
@@ -183,6 +203,7 @@
             // 
             // _ucReportViewer
             // 
+            this._ucReportViewer.ContextMenuStrip = this.ctmAction;
             this._ucReportViewer.Dock = System.Windows.Forms.DockStyle.Fill;
             this._ucReportViewer.Location = new System.Drawing.Point(0, 0);
             this._ucReportViewer.Name = "_ucReportViewer";
@@ -219,22 +240,20 @@
             this.panel3.Size = new System.Drawing.Size(758, 275);
             this.panel3.TabIndex = 3;
             // 
-            // lbKetQua
+            // ctmAction
             // 
-            this.lbKetQua.AutoSize = true;
-            this.lbKetQua.Location = new System.Drawing.Point(170, 95);
-            this.lbKetQua.Name = "lbKetQua";
-            this.lbKetQua.Size = new System.Drawing.Size(114, 13);
-            this.lbKetQua.TabIndex = 15;
-            this.lbKetQua.Text = "Kết quả được tìm thấy:";
+            this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.exportExcelToolStripMenuItem});
+            this.ctmAction.Name = "cmtAction";
+            this.ctmAction.Size = new System.Drawing.Size(153, 48);
             // 
-            // txtKetQua
+            // exportExcelToolStripMenuItem
             // 
-            this.txtKetQua.Location = new System.Drawing.Point(286, 92);
-            this.txtKetQua.Name = "txtKetQua";
-            this.txtKetQua.ReadOnly = true;
-            this.txtKetQua.Size = new System.Drawing.Size(78, 20);
-            this.txtKetQua.TabIndex = 16;
+            this.exportExcelToolStripMenuItem.Image = global::MM.Properties.Resources.page_excel_icon;
+            this.exportExcelToolStripMenuItem.Name = "exportExcelToolStripMenuItem";
+            this.exportExcelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exportExcelToolStripMenuItem.Text = "Xuất Excel";
+            this.exportExcelToolStripMenuItem.Click += new System.EventHandler(this.exportExcelToolStripMenuItem_Click);
             // 
             // uDichVuHopDong
             // 
@@ -250,6 +269,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.companyContractBindingSource)).EndInit();
             this.panel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
+            this.ctmAction.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -274,5 +294,7 @@
         private System.Windows.Forms.DateTimePicker dtpkTuNgay;
         private System.Windows.Forms.TextBox txtKetQua;
         private System.Windows.Forms.Label lbKetQua;
+        protected System.Windows.Forms.ContextMenuStrip ctmAction;
+        private System.Windows.Forms.ToolStripMenuItem exportExcelToolStripMenuItem;
     }
 }

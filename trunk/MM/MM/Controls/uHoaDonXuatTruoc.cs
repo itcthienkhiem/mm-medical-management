@@ -81,6 +81,13 @@ namespace MM.Controls
 
             btnAdd.Enabled = AllowAddDangKy;
             btnDelete.Enabled = AllowDeleteDangKy;
+
+            deleteToolStripMenuItem.Enabled = AllowDelete;
+            printToolStripMenuItem.Enabled = AllowPrint;
+            xuatHoaDonToolStripMenuItem.Enabled = AllowExport;
+
+            addToolStripMenuItem.Enabled = AllowAddDangKy;
+            deleteDangKySoHDToolStripMenuItem.Enabled = AllowDeleteDangKy;
         }
 
         public void ClearData()
@@ -496,6 +503,31 @@ namespace MM.Controls
         {
             OnDisplayInvoiceInfo();
         }
+
+        private void xuatHoaDonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnExportInvoice();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnDeleteInvoice();
+        }
+
+        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnPrint();
+        }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnAddDangKy();
+        }
+
+        private void deleteDangKySoHDToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnDeleteDangKy();
+        }
         #endregion
 
         #region Working Thread
@@ -518,5 +550,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }

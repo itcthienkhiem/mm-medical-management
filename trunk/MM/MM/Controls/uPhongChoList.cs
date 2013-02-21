@@ -129,25 +129,8 @@ namespace MM.Controls
                 Utility.WriteToTraceLog(result.GetErrorAsString("PhongChoBus.GetPhongChoList"));
             }
         }
-        #endregion
 
-        #region Window Event Handlers
-        private void _timer_Tick(object sender, EventArgs e)
-        {
-            OnDisplayPhongChoList();
-        }
-
-        private void chkChecked_CheckedChanged(object sender, EventArgs e)
-        {
-            DataTable dt = dgPatient.DataSource as DataTable;
-            if (dt == null || dt.Rows.Count <= 0) return;
-            foreach (DataRow row in dt.Rows)
-            {
-                row["Checked"] = chkChecked.Checked;
-            }
-        }
-
-        private void btnDelete_Click(object sender, EventArgs e)
+        private void OnRaPhongCho()
         {
             List<string> deletedPhongChoList = new List<string>();
             DataTable dt = dgPatient.DataSource as DataTable;
@@ -173,6 +156,28 @@ namespace MM.Controls
             }
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân ra khỏi phòng chờ.", IconType.Information);
+        }
+        #endregion
+
+        #region Window Event Handlers
+        private void _timer_Tick(object sender, EventArgs e)
+        {
+            OnDisplayPhongChoList();
+        }
+
+        private void chkChecked_CheckedChanged(object sender, EventArgs e)
+        {
+            DataTable dt = dgPatient.DataSource as DataTable;
+            if (dt == null || dt.Rows.Count <= 0) return;
+            foreach (DataRow row in dt.Rows)
+            {
+                row["Checked"] = chkChecked.Checked;
+            }
+        }
+
+        private void btnDelete_Click(object sender, EventArgs e)
+        {
+            OnRaPhongCho();
         }
 
         private void dgPatient_DoubleClick(object sender, EventArgs e)
@@ -219,6 +224,13 @@ namespace MM.Controls
                 }
             }
         }
+
+        private void raPhongChoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnRaPhongCho();
+        }
         #endregion
+
+        
     }
 }

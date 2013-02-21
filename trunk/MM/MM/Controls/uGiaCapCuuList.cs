@@ -39,6 +39,10 @@ namespace MM.Controls
             btnAdd.Enabled = AllowAdd;
             btnEdit.Enabled = AllowEdit;
             btnDelete.Enabled = AllowDelete;
+
+            addToolStripMenuItem.Enabled = AllowAdd;
+            editToolStripMenuItem.Enabled = AllowEdit;
+            deleteToolStripMenuItem.Enabled = AllowDelete;
         }
 
         public void ClearData()
@@ -315,6 +319,21 @@ namespace MM.Controls
                 }
             }
         }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnAddGiaThuoc();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnEditGiaThuoc();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnDeleteGiaThuoc();
+        }
         #endregion
 
         #region Working Thread
@@ -348,5 +367,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }

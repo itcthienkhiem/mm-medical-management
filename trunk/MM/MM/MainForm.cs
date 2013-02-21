@@ -1173,6 +1173,7 @@ namespace MM
                             _uBaoCaoSoLuongKham.AllowImport = isImport;
                             _uBaoCaoSoLuongKham.AllowLock = isLock;
                             _uBaoCaoSoLuongKham.AllowExportAll = isExportAll;
+                            _uBaoCaoSoLuongKham.UpdateGUI();
                         }
                         else if (functionCode == Const.TraCuuThongTinKhachHang)
                         {

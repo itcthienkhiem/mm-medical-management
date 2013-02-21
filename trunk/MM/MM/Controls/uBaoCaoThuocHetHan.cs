@@ -107,6 +107,11 @@ namespace MM.Controls
         {
             ViewAsThread();
         }
+
+        private void xemToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ViewAsThread();
+        }
         #endregion
 
         #region Working Thread
@@ -128,5 +133,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }

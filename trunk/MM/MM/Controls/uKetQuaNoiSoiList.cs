@@ -49,6 +49,12 @@ namespace MM.Controls
             btnPrint.Enabled = Global.AllowPrintKhamNoiSoi;
             btnPrintPreview.Enabled = Global.AllowPrintKhamNoiSoi;
             btnExportExcel.Enabled = Global.AllowExportKhamNoiSoi;
+
+            addToolStripMenuItem.Enabled = Global.AllowAddKhamNoiSoi;
+            deleteToolStripMenuItem.Enabled = Global.AllowDeleteKhamNoiSoi;
+            printPreviewToolStripMenuItem.Enabled = Global.AllowPrintKhamNoiSoi;
+            printToolStripMenuItem.Enabled = Global.AllowPrintKhamNoiSoi;
+            exportExcelToolStripMenuItem.Enabled = Global.AllowExportKhamNoiSoi;
         }
 
         public void DisplayAsThread()
@@ -626,6 +632,36 @@ namespace MM.Controls
 
             DisplayAsThread();
         }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnAdd();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnEdit();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnDelete();
+        }
+
+        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnPrint(false);
+        }
+
+        private void printPreviewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnPrint(true);
+        }
+
+        private void exportExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnExportExcel();
+        }
         #endregion
 
         #region Working Thread
@@ -647,6 +683,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
         
     }

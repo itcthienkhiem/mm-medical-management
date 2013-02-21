@@ -92,8 +92,14 @@ namespace MM.Controls
             pTotal.Visible = Global.AllowShowServiePrice;
 
             btnAdd.Enabled = Global.AllowAddDichVuDaSuDung;
+            btnEdit.Enabled = Global.AllowEditDichVuDaSuDung;
             btnDelete.Enabled = Global.AllowDeleteDichVuDaSuDung;
             btnExportReceipt.Enabled = Global.AllowExportPhieuThuDichVu;
+
+            addToolStripMenuItem.Enabled = Global.AllowAddDichVuDaSuDung;
+            editToolStripMenuItem.Enabled = Global.AllowEditDichVuDaSuDung;
+            deleteToolStripMenuItem.Enabled = Global.AllowDeleteDichVuDaSuDung;
+            xuatPhieuThuToolStripMenuItem.Enabled = Global.AllowExportPhieuThuDichVu;
         }
 
         private void OnAdd()
@@ -480,6 +486,33 @@ namespace MM.Controls
         {
             HighlightPaidServices();
         }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnAdd();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnEdit();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnDelete();
+        }
+
+        private void xuatPhieuThuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dgServiceHistory.RowCount <= 0 ||
+               CheckedServiceRows == null || CheckedServiceRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu ít nhất 1 dịch vụ cần xuất phiếu thu.", IconType.Information);
+                return;
+            }
+
+            OnExportReceipt();
+        }
         #endregion
 
         #region Working Thread
@@ -501,5 +534,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }

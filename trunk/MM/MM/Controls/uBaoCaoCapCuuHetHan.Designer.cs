@@ -31,7 +31,10 @@
             this.components = new System.ComponentModel.Container();
             this.tabReport = new DevComponents.DotNetBar.TabControl();
             this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
+            this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.xemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel3 = new System.Windows.Forms.Panel();
+            this._uKhoCapCuu = new MM.Controls.uKhoCapCuu();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnView = new System.Windows.Forms.Button();
             this.panel1 = new System.Windows.Forms.Panel();
@@ -41,10 +44,10 @@
             this.tabControlPanel2 = new DevComponents.DotNetBar.TabControlPanel();
             this._ucReportViewer = new MM.Controls.ucReportViewer();
             this.pageBaoCao = new DevComponents.DotNetBar.TabItem(this.components);
-            this._uKhoCapCuu = new MM.Controls.uKhoCapCuu();
             ((System.ComponentModel.ISupportInitialize)(this.tabReport)).BeginInit();
             this.tabReport.SuspendLayout();
             this.tabControlPanel1.SuspendLayout();
+            this.ctmAction.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -72,6 +75,7 @@
             // 
             // tabControlPanel1
             // 
+            this.tabControlPanel1.ContextMenuStrip = this.ctmAction;
             this.tabControlPanel1.Controls.Add(this.panel3);
             this.tabControlPanel1.Controls.Add(this.panel2);
             this.tabControlPanel1.Controls.Add(this.panel1);
@@ -90,6 +94,21 @@
             this.tabControlPanel1.TabIndex = 1;
             this.tabControlPanel1.TabItem = this.pageFilter;
             // 
+            // ctmAction
+            // 
+            this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.xemToolStripMenuItem});
+            this.ctmAction.Name = "ctmAction";
+            this.ctmAction.Size = new System.Drawing.Size(153, 48);
+            // 
+            // xemToolStripMenuItem
+            // 
+            this.xemToolStripMenuItem.Image = global::MM.Properties.Resources.views_icon;
+            this.xemToolStripMenuItem.Name = "xemToolStripMenuItem";
+            this.xemToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.xemToolStripMenuItem.Text = "Xem";
+            this.xemToolStripMenuItem.Click += new System.EventHandler(this.xemToolStripMenuItem_Click);
+            // 
             // panel3
             // 
             this.panel3.Controls.Add(this._uKhoCapCuu);
@@ -98,6 +117,15 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(818, 379);
             this.panel3.TabIndex = 2;
+            // 
+            // _uKhoCapCuu
+            // 
+            this._uKhoCapCuu.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uKhoCapCuu.IsReport = true;
+            this._uKhoCapCuu.Location = new System.Drawing.Point(0, 0);
+            this._uKhoCapCuu.Name = "_uKhoCapCuu";
+            this._uKhoCapCuu.Size = new System.Drawing.Size(818, 379);
+            this._uKhoCapCuu.TabIndex = 0;
             // 
             // panel2
             // 
@@ -196,15 +224,6 @@
             this.pageBaoCao.Name = "pageBaoCao";
             this.pageBaoCao.Text = "Báo cáo";
             // 
-            // _uKhoCapCuu
-            // 
-            this._uKhoCapCuu.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._uKhoCapCuu.IsReport = true;
-            this._uKhoCapCuu.Location = new System.Drawing.Point(0, 0);
-            this._uKhoCapCuu.Name = "_uKhoCapCuu";
-            this._uKhoCapCuu.Size = new System.Drawing.Size(818, 379);
-            this._uKhoCapCuu.TabIndex = 0;
-            // 
             // uBaoCaoCapCuuHetHan
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -215,6 +234,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.tabReport)).EndInit();
             this.tabReport.ResumeLayout(false);
             this.tabControlPanel1.ResumeLayout(false);
+            this.ctmAction.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
@@ -240,5 +260,7 @@
         private System.Windows.Forms.Button btnView;
         private ucReportViewer _ucReportViewer;
         private uKhoCapCuu _uKhoCapCuu;
+        private System.Windows.Forms.ContextMenuStrip ctmAction;
+        private System.Windows.Forms.ToolStripMenuItem xemToolStripMenuItem;
     }
 }

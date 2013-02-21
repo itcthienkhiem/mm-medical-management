@@ -48,15 +48,6 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgLoThuoc = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.loThuocViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.dtpkDenNgay = new System.Windows.Forms.DateTimePicker();
-            this.dtpkTuNgay = new System.Windows.Forms.DateTimePicker();
-            this.label2 = new System.Windows.Forms.Label();
-            this.txtTenThuoc = new System.Windows.Forms.TextBox();
-            this.raTuNgayDenNgay = new System.Windows.Forms.RadioButton();
-            this.raTenThuoc = new System.Windows.Forms.RadioButton();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.maLoThuocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenLoThuocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -76,11 +67,27 @@
             this.nhaPhanPhoiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.CreatedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Note = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.loThuocViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.dtpkDenNgay = new System.Windows.Forms.DateTimePicker();
+            this.dtpkTuNgay = new System.Windows.Forms.DateTimePicker();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtTenThuoc = new System.Windows.Forms.TextBox();
+            this.raTuNgayDenNgay = new System.Windows.Forms.RadioButton();
+            this.raTenThuoc = new System.Windows.Forms.RadioButton();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgLoThuoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.loThuocViewBindingSource)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.ctmAction.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -175,6 +182,7 @@
             this.nhaPhanPhoiDataGridViewTextBoxColumn,
             this.CreatedDate,
             this.Note});
+            this.dgLoThuoc.ContextMenuStrip = this.ctmAction;
             this.dgLoThuoc.DataSource = this.loThuocViewBindingSource;
             dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle13.BackColor = System.Drawing.SystemColors.Window;
@@ -197,97 +205,6 @@
             this.dgLoThuoc.TabIndex = 4;
             this.dgLoThuoc.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgLoThuoc_CellMouseUp);
             this.dgLoThuoc.DoubleClick += new System.EventHandler(this.dgLoThuoc_DoubleClick);
-            // 
-            // loThuocViewBindingSource
-            // 
-            this.loThuocViewBindingSource.DataSource = typeof(MM.Databasae.LoThuocView);
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.dtpkDenNgay);
-            this.panel2.Controls.Add(this.dtpkTuNgay);
-            this.panel2.Controls.Add(this.label2);
-            this.panel2.Controls.Add(this.txtTenThuoc);
-            this.panel2.Controls.Add(this.raTuNgayDenNgay);
-            this.panel2.Controls.Add(this.raTenThuoc);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel2.Location = new System.Drawing.Point(0, 0);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(973, 64);
-            this.panel2.TabIndex = 6;
-            // 
-            // dtpkDenNgay
-            // 
-            this.dtpkDenNgay.CustomFormat = "dd/MM/yyyy";
-            this.dtpkDenNgay.Enabled = false;
-            this.dtpkDenNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkDenNgay.Location = new System.Drawing.Point(269, 34);
-            this.dtpkDenNgay.Name = "dtpkDenNgay";
-            this.dtpkDenNgay.Size = new System.Drawing.Size(111, 20);
-            this.dtpkDenNgay.TabIndex = 6;
-            this.dtpkDenNgay.ValueChanged += new System.EventHandler(this.dtpkDenNgay_ValueChanged);
-            // 
-            // dtpkTuNgay
-            // 
-            this.dtpkTuNgay.CustomFormat = "dd/MM/yyyy";
-            this.dtpkTuNgay.Enabled = false;
-            this.dtpkTuNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkTuNgay.Location = new System.Drawing.Point(93, 34);
-            this.dtpkTuNgay.Name = "dtpkTuNgay";
-            this.dtpkTuNgay.Size = new System.Drawing.Size(111, 20);
-            this.dtpkTuNgay.TabIndex = 5;
-            this.dtpkTuNgay.ValueChanged += new System.EventHandler(this.dtpkTuNgay_ValueChanged);
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(210, 38);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 13);
-            this.label2.TabIndex = 4;
-            this.label2.Text = "Đến ngày:";
-            // 
-            // txtTenThuoc
-            // 
-            this.txtTenThuoc.Location = new System.Drawing.Point(93, 10);
-            this.txtTenThuoc.Name = "txtTenThuoc";
-            this.txtTenThuoc.Size = new System.Drawing.Size(287, 20);
-            this.txtTenThuoc.TabIndex = 2;
-            this.txtTenThuoc.TextChanged += new System.EventHandler(this.txtTenThuoc_TextChanged);
-            // 
-            // raTuNgayDenNgay
-            // 
-            this.raTuNgayDenNgay.AutoSize = true;
-            this.raTuNgayDenNgay.Location = new System.Drawing.Point(16, 35);
-            this.raTuNgayDenNgay.Name = "raTuNgayDenNgay";
-            this.raTuNgayDenNgay.Size = new System.Drawing.Size(64, 17);
-            this.raTuNgayDenNgay.TabIndex = 1;
-            this.raTuNgayDenNgay.Text = "Từ ngày";
-            this.raTuNgayDenNgay.UseVisualStyleBackColor = true;
-            this.raTuNgayDenNgay.CheckedChanged += new System.EventHandler(this.raTuNgayDenNgay_CheckedChanged);
-            // 
-            // raTenThuoc
-            // 
-            this.raTenThuoc.AutoSize = true;
-            this.raTenThuoc.Checked = true;
-            this.raTenThuoc.Location = new System.Drawing.Point(16, 11);
-            this.raTenThuoc.Name = "raTenThuoc";
-            this.raTenThuoc.Size = new System.Drawing.Size(74, 17);
-            this.raTenThuoc.TabIndex = 0;
-            this.raTenThuoc.TabStop = true;
-            this.raTenThuoc.Text = "Tên thuốc";
-            this.raTenThuoc.UseVisualStyleBackColor = true;
-            this.raTenThuoc.CheckedChanged += new System.EventHandler(this.raTenThuoc_CheckedChanged);
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.chkChecked);
-            this.panel3.Controls.Add(this.dgLoThuoc);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 64);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(973, 336);
-            this.panel3.TabIndex = 7;
             // 
             // colChecked
             // 
@@ -475,6 +392,142 @@
             this.Note.ReadOnly = true;
             this.Note.Width = 200;
             // 
+            // loThuocViewBindingSource
+            // 
+            this.loThuocViewBindingSource.DataSource = typeof(MM.Databasae.LoThuocView);
+            // 
+            // panel2
+            // 
+            this.panel2.Controls.Add(this.dtpkDenNgay);
+            this.panel2.Controls.Add(this.dtpkTuNgay);
+            this.panel2.Controls.Add(this.label2);
+            this.panel2.Controls.Add(this.txtTenThuoc);
+            this.panel2.Controls.Add(this.raTuNgayDenNgay);
+            this.panel2.Controls.Add(this.raTenThuoc);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel2.Location = new System.Drawing.Point(0, 0);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(973, 64);
+            this.panel2.TabIndex = 6;
+            // 
+            // dtpkDenNgay
+            // 
+            this.dtpkDenNgay.CustomFormat = "dd/MM/yyyy";
+            this.dtpkDenNgay.Enabled = false;
+            this.dtpkDenNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpkDenNgay.Location = new System.Drawing.Point(269, 34);
+            this.dtpkDenNgay.Name = "dtpkDenNgay";
+            this.dtpkDenNgay.Size = new System.Drawing.Size(111, 20);
+            this.dtpkDenNgay.TabIndex = 6;
+            this.dtpkDenNgay.ValueChanged += new System.EventHandler(this.dtpkDenNgay_ValueChanged);
+            // 
+            // dtpkTuNgay
+            // 
+            this.dtpkTuNgay.CustomFormat = "dd/MM/yyyy";
+            this.dtpkTuNgay.Enabled = false;
+            this.dtpkTuNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpkTuNgay.Location = new System.Drawing.Point(93, 34);
+            this.dtpkTuNgay.Name = "dtpkTuNgay";
+            this.dtpkTuNgay.Size = new System.Drawing.Size(111, 20);
+            this.dtpkTuNgay.TabIndex = 5;
+            this.dtpkTuNgay.ValueChanged += new System.EventHandler(this.dtpkTuNgay_ValueChanged);
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(210, 38);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 13);
+            this.label2.TabIndex = 4;
+            this.label2.Text = "Đến ngày:";
+            // 
+            // txtTenThuoc
+            // 
+            this.txtTenThuoc.Location = new System.Drawing.Point(93, 10);
+            this.txtTenThuoc.Name = "txtTenThuoc";
+            this.txtTenThuoc.Size = new System.Drawing.Size(287, 20);
+            this.txtTenThuoc.TabIndex = 2;
+            this.txtTenThuoc.TextChanged += new System.EventHandler(this.txtTenThuoc_TextChanged);
+            // 
+            // raTuNgayDenNgay
+            // 
+            this.raTuNgayDenNgay.AutoSize = true;
+            this.raTuNgayDenNgay.Location = new System.Drawing.Point(16, 35);
+            this.raTuNgayDenNgay.Name = "raTuNgayDenNgay";
+            this.raTuNgayDenNgay.Size = new System.Drawing.Size(64, 17);
+            this.raTuNgayDenNgay.TabIndex = 1;
+            this.raTuNgayDenNgay.Text = "Từ ngày";
+            this.raTuNgayDenNgay.UseVisualStyleBackColor = true;
+            this.raTuNgayDenNgay.CheckedChanged += new System.EventHandler(this.raTuNgayDenNgay_CheckedChanged);
+            // 
+            // raTenThuoc
+            // 
+            this.raTenThuoc.AutoSize = true;
+            this.raTenThuoc.Checked = true;
+            this.raTenThuoc.Location = new System.Drawing.Point(16, 11);
+            this.raTenThuoc.Name = "raTenThuoc";
+            this.raTenThuoc.Size = new System.Drawing.Size(74, 17);
+            this.raTenThuoc.TabIndex = 0;
+            this.raTenThuoc.TabStop = true;
+            this.raTenThuoc.Text = "Tên thuốc";
+            this.raTenThuoc.UseVisualStyleBackColor = true;
+            this.raTenThuoc.CheckedChanged += new System.EventHandler(this.raTenThuoc_CheckedChanged);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.chkChecked);
+            this.panel3.Controls.Add(this.dgLoThuoc);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 64);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(973, 336);
+            this.panel3.TabIndex = 7;
+            // 
+            // ctmAction
+            // 
+            this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.editToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.deleteToolStripMenuItem});
+            this.ctmAction.Name = "cmtAction";
+            this.ctmAction.Size = new System.Drawing.Size(153, 104);
+            // 
+            // addToolStripMenuItem
+            // 
+            this.addToolStripMenuItem.Image = global::MM.Properties.Resources.add;
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addToolStripMenuItem.Text = "Thêm";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Image = global::MM.Properties.Resources.edit;
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.editToolStripMenuItem.Text = "Sửa";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Image = global::MM.Properties.Resources.del;
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Text = "Xóa";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
             // uLoThuocList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -491,6 +544,7 @@
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.ctmAction.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -531,5 +585,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn nhaPhanPhoiDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CreatedDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn Note;
+        protected System.Windows.Forms.ContextMenuStrip ctmAction;
+        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
     }
 }

@@ -31,20 +31,34 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uNhatKyLienHeCongTy));
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             this.nhatKyLienHeCongTyViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgNhatKyLienHeCongTy = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ngayGioLienHeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.UpdatedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SoNgay = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.congTyLienHeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DiaChi = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenNguoiLienHe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SoDienThoaiLienHe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SoNguoiKham = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ThangKham = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.noiDungLienHeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NguoiTao = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NguoiCapNhat = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnImportExcel = new System.Windows.Forms.Button();
             this.btnExportExcel = new System.Windows.Forms.Button();
@@ -80,26 +94,26 @@
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn12 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ngayGioLienHeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.UpdatedDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SoNgay = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.congTyLienHeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DiaChi = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TenNguoiLienHe = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SoDienThoaiLienHe = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SoNguoiKham = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ThangKham = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.noiDungLienHeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NguoiTao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NguoiCapNhat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.importExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.exportExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.printPreviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
             ((System.ComponentModel.ISupportInitialize)(this.nhatKyLienHeCongTyViewBindingSource)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgNhatKyLienHeCongTy)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
+            this.ctmAction.SuspendLayout();
             this.SuspendLayout();
             // 
             // nhatKyLienHeCongTyViewBindingSource
@@ -157,6 +171,7 @@
             this.fullNameDataGridViewTextBoxColumn,
             this.NguoiTao,
             this.NguoiCapNhat});
+            this.dgNhatKyLienHeCongTy.ContextMenuStrip = this.ctmAction;
             this.dgNhatKyLienHeCongTy.DataSource = this.nhatKyLienHeCongTyViewBindingSource;
             dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
@@ -179,6 +194,144 @@
             this.dgNhatKyLienHeCongTy.TabIndex = 4;
             this.dgNhatKyLienHeCongTy.DoubleClick += new System.EventHandler(this.dgYKienKhachHang_DoubleClick);
             // 
+            // colChecked
+            // 
+            this.colChecked.DataPropertyName = "Checked";
+            this.colChecked.Frozen = true;
+            this.colChecked.HeaderText = "";
+            this.colChecked.Name = "colChecked";
+            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colChecked.Width = 40;
+            // 
+            // ngayGioLienHeDataGridViewTextBoxColumn
+            // 
+            this.ngayGioLienHeDataGridViewTextBoxColumn.DataPropertyName = "NgayGioLienHe";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Format = "dd/MM/yyyy HH:mm:ss";
+            dataGridViewCellStyle2.NullValue = null;
+            this.ngayGioLienHeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ngayGioLienHeDataGridViewTextBoxColumn.HeaderText = "Liên hệ lần đầu";
+            this.ngayGioLienHeDataGridViewTextBoxColumn.Name = "ngayGioLienHeDataGridViewTextBoxColumn";
+            this.ngayGioLienHeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.ngayGioLienHeDataGridViewTextBoxColumn.Width = 130;
+            // 
+            // UpdatedDate
+            // 
+            this.UpdatedDate.DataPropertyName = "UpdatedDate";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.Format = "dd/MM/yyyy HH:mm:ss";
+            dataGridViewCellStyle3.NullValue = null;
+            this.UpdatedDate.DefaultCellStyle = dataGridViewCellStyle3;
+            this.UpdatedDate.HeaderText = "Liên hệ cập nhật";
+            this.UpdatedDate.Name = "UpdatedDate";
+            this.UpdatedDate.ReadOnly = true;
+            this.UpdatedDate.Width = 120;
+            // 
+            // SoNgay
+            // 
+            this.SoNgay.DataPropertyName = "SoNgay";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.NullValue = null;
+            this.SoNgay.DefaultCellStyle = dataGridViewCellStyle4;
+            this.SoNgay.HeaderText = "Số ngày";
+            this.SoNgay.Name = "SoNgay";
+            this.SoNgay.ReadOnly = true;
+            this.SoNgay.Width = 80;
+            // 
+            // congTyLienHeDataGridViewTextBoxColumn
+            // 
+            this.congTyLienHeDataGridViewTextBoxColumn.DataPropertyName = "CongTyLienHe";
+            this.congTyLienHeDataGridViewTextBoxColumn.HeaderText = "Công ty liên hệ";
+            this.congTyLienHeDataGridViewTextBoxColumn.Name = "congTyLienHeDataGridViewTextBoxColumn";
+            this.congTyLienHeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.congTyLienHeDataGridViewTextBoxColumn.Width = 250;
+            // 
+            // DiaChi
+            // 
+            this.DiaChi.DataPropertyName = "DiaChi";
+            this.DiaChi.HeaderText = "Địa chỉ (Quận)";
+            this.DiaChi.Name = "DiaChi";
+            this.DiaChi.ReadOnly = true;
+            this.DiaChi.Width = 200;
+            // 
+            // TenNguoiLienHe
+            // 
+            this.TenNguoiLienHe.DataPropertyName = "TenNguoiLienHe";
+            this.TenNguoiLienHe.HeaderText = "Người liên hệ";
+            this.TenNguoiLienHe.Name = "TenNguoiLienHe";
+            this.TenNguoiLienHe.ReadOnly = true;
+            this.TenNguoiLienHe.Width = 200;
+            // 
+            // SoDienThoaiLienHe
+            // 
+            this.SoDienThoaiLienHe.DataPropertyName = "SoDienThoaiLienHe";
+            this.SoDienThoaiLienHe.HeaderText = "Số ĐT liên hệ";
+            this.SoDienThoaiLienHe.Name = "SoDienThoaiLienHe";
+            this.SoDienThoaiLienHe.ReadOnly = true;
+            // 
+            // Email
+            // 
+            this.Email.DataPropertyName = "Email";
+            this.Email.HeaderText = "Email liên hệ";
+            this.Email.Name = "Email";
+            this.Email.ReadOnly = true;
+            this.Email.Width = 150;
+            // 
+            // SoNguoiKham
+            // 
+            this.SoNguoiKham.DataPropertyName = "SoNguoiKham";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.NullValue = null;
+            this.SoNguoiKham.DefaultCellStyle = dataGridViewCellStyle5;
+            this.SoNguoiKham.HeaderText = "Số người khám";
+            this.SoNguoiKham.Name = "SoNguoiKham";
+            this.SoNguoiKham.ReadOnly = true;
+            this.SoNguoiKham.Width = 110;
+            // 
+            // ThangKham
+            // 
+            this.ThangKham.DataPropertyName = "ThangKham";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.NullValue = null;
+            this.ThangKham.DefaultCellStyle = dataGridViewCellStyle6;
+            this.ThangKham.HeaderText = "Tháng khám";
+            this.ThangKham.Name = "ThangKham";
+            this.ThangKham.ReadOnly = true;
+            // 
+            // noiDungLienHeDataGridViewTextBoxColumn
+            // 
+            this.noiDungLienHeDataGridViewTextBoxColumn.DataPropertyName = "NoiDungLienHe";
+            this.noiDungLienHeDataGridViewTextBoxColumn.HeaderText = "Nội dung liên hệ";
+            this.noiDungLienHeDataGridViewTextBoxColumn.Name = "noiDungLienHeDataGridViewTextBoxColumn";
+            this.noiDungLienHeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.noiDungLienHeDataGridViewTextBoxColumn.Width = 250;
+            // 
+            // fullNameDataGridViewTextBoxColumn
+            // 
+            this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
+            this.fullNameDataGridViewTextBoxColumn.HeaderText = "Người khởi tạo";
+            this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
+            this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.fullNameDataGridViewTextBoxColumn.Visible = false;
+            this.fullNameDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // NguoiTao
+            // 
+            this.NguoiTao.DataPropertyName = "NguoiTao";
+            this.NguoiTao.HeaderText = "Người khỏi tạo";
+            this.NguoiTao.Name = "NguoiTao";
+            this.NguoiTao.ReadOnly = true;
+            this.NguoiTao.Width = 200;
+            // 
+            // NguoiCapNhat
+            // 
+            this.NguoiCapNhat.DataPropertyName = "NguoiCapNhat";
+            this.NguoiCapNhat.HeaderText = "Người cập nhật";
+            this.NguoiCapNhat.Name = "NguoiCapNhat";
+            this.NguoiCapNhat.ReadOnly = true;
+            this.NguoiCapNhat.Visible = false;
+            this.NguoiCapNhat.Width = 200;
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.btnImportExcel);
@@ -196,7 +349,7 @@
             // 
             // btnImportExcel
             // 
-            this.btnImportExcel.Image = ((System.Drawing.Image)(resources.GetObject("btnImportExcel.Image")));
+            this.btnImportExcel.Image = global::MM.Properties.Resources.Excel_icon;
             this.btnImportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnImportExcel.Location = new System.Drawing.Point(506, 7);
             this.btnImportExcel.Name = "btnImportExcel";
@@ -570,143 +723,110 @@
             this.dataGridViewTextBoxColumn12.Visible = false;
             this.dataGridViewTextBoxColumn12.Width = 200;
             // 
-            // colChecked
+            // ctmAction
             // 
-            this.colChecked.DataPropertyName = "Checked";
-            this.colChecked.Frozen = true;
-            this.colChecked.HeaderText = "";
-            this.colChecked.Name = "colChecked";
-            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colChecked.Width = 40;
+            this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.editToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.deleteToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.printPreviewToolStripMenuItem,
+            this.toolStripSeparator5,
+            this.printToolStripMenuItem,
+            this.toolStripSeparator6,
+            this.exportExcelToolStripMenuItem,
+            this.toolStripSeparator4,
+            this.importExcelToolStripMenuItem});
+            this.ctmAction.Name = "cmtAction";
+            this.ctmAction.Size = new System.Drawing.Size(153, 216);
             // 
-            // ngayGioLienHeDataGridViewTextBoxColumn
+            // addToolStripMenuItem
             // 
-            this.ngayGioLienHeDataGridViewTextBoxColumn.DataPropertyName = "NgayGioLienHe";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.Format = "dd/MM/yyyy HH:mm:ss";
-            dataGridViewCellStyle2.NullValue = null;
-            this.ngayGioLienHeDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.ngayGioLienHeDataGridViewTextBoxColumn.HeaderText = "Liên hệ lần đầu";
-            this.ngayGioLienHeDataGridViewTextBoxColumn.Name = "ngayGioLienHeDataGridViewTextBoxColumn";
-            this.ngayGioLienHeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.ngayGioLienHeDataGridViewTextBoxColumn.Width = 130;
+            this.addToolStripMenuItem.Image = global::MM.Properties.Resources.add;
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addToolStripMenuItem.Text = "Thêm";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
-            // UpdatedDate
+            // toolStripSeparator1
             // 
-            this.UpdatedDate.DataPropertyName = "UpdatedDate";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle3.Format = "dd/MM/yyyy HH:mm:ss";
-            dataGridViewCellStyle3.NullValue = null;
-            this.UpdatedDate.DefaultCellStyle = dataGridViewCellStyle3;
-            this.UpdatedDate.HeaderText = "Liên hệ cập nhật";
-            this.UpdatedDate.Name = "UpdatedDate";
-            this.UpdatedDate.ReadOnly = true;
-            this.UpdatedDate.Width = 120;
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
-            // SoNgay
+            // editToolStripMenuItem
             // 
-            this.SoNgay.DataPropertyName = "SoNgay";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.NullValue = null;
-            this.SoNgay.DefaultCellStyle = dataGridViewCellStyle4;
-            this.SoNgay.HeaderText = "Số ngày";
-            this.SoNgay.Name = "SoNgay";
-            this.SoNgay.ReadOnly = true;
-            this.SoNgay.Width = 80;
+            this.editToolStripMenuItem.Image = global::MM.Properties.Resources.edit;
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.editToolStripMenuItem.Text = "Sửa";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
-            // congTyLienHeDataGridViewTextBoxColumn
+            // toolStripSeparator2
             // 
-            this.congTyLienHeDataGridViewTextBoxColumn.DataPropertyName = "CongTyLienHe";
-            this.congTyLienHeDataGridViewTextBoxColumn.HeaderText = "Công ty liên hệ";
-            this.congTyLienHeDataGridViewTextBoxColumn.Name = "congTyLienHeDataGridViewTextBoxColumn";
-            this.congTyLienHeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.congTyLienHeDataGridViewTextBoxColumn.Width = 250;
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
             // 
-            // DiaChi
+            // deleteToolStripMenuItem
             // 
-            this.DiaChi.DataPropertyName = "DiaChi";
-            this.DiaChi.HeaderText = "Địa chỉ (Quận)";
-            this.DiaChi.Name = "DiaChi";
-            this.DiaChi.ReadOnly = true;
-            this.DiaChi.Width = 200;
+            this.deleteToolStripMenuItem.Image = global::MM.Properties.Resources.del;
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Text = "Xóa";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
-            // TenNguoiLienHe
+            // toolStripSeparator3
             // 
-            this.TenNguoiLienHe.DataPropertyName = "TenNguoiLienHe";
-            this.TenNguoiLienHe.HeaderText = "Người liên hệ";
-            this.TenNguoiLienHe.Name = "TenNguoiLienHe";
-            this.TenNguoiLienHe.ReadOnly = true;
-            this.TenNguoiLienHe.Width = 200;
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
             // 
-            // SoDienThoaiLienHe
+            // importExcelToolStripMenuItem
             // 
-            this.SoDienThoaiLienHe.DataPropertyName = "SoDienThoaiLienHe";
-            this.SoDienThoaiLienHe.HeaderText = "Số ĐT liên hệ";
-            this.SoDienThoaiLienHe.Name = "SoDienThoaiLienHe";
-            this.SoDienThoaiLienHe.ReadOnly = true;
+            this.importExcelToolStripMenuItem.Image = global::MM.Properties.Resources.Excel_icon;
+            this.importExcelToolStripMenuItem.Name = "importExcelToolStripMenuItem";
+            this.importExcelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.importExcelToolStripMenuItem.Text = "Nhập Excel";
+            this.importExcelToolStripMenuItem.Click += new System.EventHandler(this.importExcelToolStripMenuItem_Click);
             // 
-            // Email
+            // toolStripSeparator4
             // 
-            this.Email.DataPropertyName = "Email";
-            this.Email.HeaderText = "Email liên hệ";
-            this.Email.Name = "Email";
-            this.Email.ReadOnly = true;
-            this.Email.Width = 150;
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(149, 6);
             // 
-            // SoNguoiKham
+            // exportExcelToolStripMenuItem
             // 
-            this.SoNguoiKham.DataPropertyName = "SoNguoiKham";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.NullValue = null;
-            this.SoNguoiKham.DefaultCellStyle = dataGridViewCellStyle5;
-            this.SoNguoiKham.HeaderText = "Số người khám";
-            this.SoNguoiKham.Name = "SoNguoiKham";
-            this.SoNguoiKham.ReadOnly = true;
-            this.SoNguoiKham.Width = 110;
+            this.exportExcelToolStripMenuItem.Image = global::MM.Properties.Resources.page_excel_icon;
+            this.exportExcelToolStripMenuItem.Name = "exportExcelToolStripMenuItem";
+            this.exportExcelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exportExcelToolStripMenuItem.Text = "Xuất Excel";
+            this.exportExcelToolStripMenuItem.Click += new System.EventHandler(this.exportExcelToolStripMenuItem_Click);
             // 
-            // ThangKham
+            // toolStripSeparator5
             // 
-            this.ThangKham.DataPropertyName = "ThangKham";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.NullValue = null;
-            this.ThangKham.DefaultCellStyle = dataGridViewCellStyle6;
-            this.ThangKham.HeaderText = "Tháng khám";
-            this.ThangKham.Name = "ThangKham";
-            this.ThangKham.ReadOnly = true;
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(149, 6);
             // 
-            // noiDungLienHeDataGridViewTextBoxColumn
+            // printToolStripMenuItem
             // 
-            this.noiDungLienHeDataGridViewTextBoxColumn.DataPropertyName = "NoiDungLienHe";
-            this.noiDungLienHeDataGridViewTextBoxColumn.HeaderText = "Nội dung liên hệ";
-            this.noiDungLienHeDataGridViewTextBoxColumn.Name = "noiDungLienHeDataGridViewTextBoxColumn";
-            this.noiDungLienHeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.noiDungLienHeDataGridViewTextBoxColumn.Width = 250;
+            this.printToolStripMenuItem.Image = global::MM.Properties.Resources.Printer_icon__1_;
+            this.printToolStripMenuItem.Name = "printToolStripMenuItem";
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.printToolStripMenuItem.Text = "In";
+            this.printToolStripMenuItem.Click += new System.EventHandler(this.printToolStripMenuItem_Click);
             // 
-            // fullNameDataGridViewTextBoxColumn
+            // printPreviewToolStripMenuItem
             // 
-            this.fullNameDataGridViewTextBoxColumn.DataPropertyName = "FullName";
-            this.fullNameDataGridViewTextBoxColumn.HeaderText = "Người khởi tạo";
-            this.fullNameDataGridViewTextBoxColumn.Name = "fullNameDataGridViewTextBoxColumn";
-            this.fullNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.fullNameDataGridViewTextBoxColumn.Visible = false;
-            this.fullNameDataGridViewTextBoxColumn.Width = 200;
+            this.printPreviewToolStripMenuItem.Image = global::MM.Properties.Resources.Actions_print_preview_icon;
+            this.printPreviewToolStripMenuItem.Name = "printPreviewToolStripMenuItem";
+            this.printPreviewToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.printPreviewToolStripMenuItem.Text = "Xem bản in";
+            this.printPreviewToolStripMenuItem.Click += new System.EventHandler(this.printPreviewToolStripMenuItem_Click);
             // 
-            // NguoiTao
+            // toolStripSeparator6
             // 
-            this.NguoiTao.DataPropertyName = "NguoiTao";
-            this.NguoiTao.HeaderText = "Người khỏi tạo";
-            this.NguoiTao.Name = "NguoiTao";
-            this.NguoiTao.ReadOnly = true;
-            this.NguoiTao.Width = 200;
-            // 
-            // NguoiCapNhat
-            // 
-            this.NguoiCapNhat.DataPropertyName = "NguoiCapNhat";
-            this.NguoiCapNhat.HeaderText = "Người cập nhật";
-            this.NguoiCapNhat.Name = "NguoiCapNhat";
-            this.NguoiCapNhat.ReadOnly = true;
-            this.NguoiCapNhat.Visible = false;
-            this.NguoiCapNhat.Width = 200;
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(149, 6);
             // 
             // uNhatKyLienHeCongTy
             // 
@@ -724,6 +844,7 @@
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
+            this.ctmAction.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -785,5 +906,19 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn NguoiTao;
         private System.Windows.Forms.DataGridViewTextBoxColumn NguoiCapNhat;
+        protected System.Windows.Forms.ContextMenuStrip ctmAction;
+        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem printPreviewToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripMenuItem printToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripMenuItem exportExcelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem importExcelToolStripMenuItem;
     }
 }

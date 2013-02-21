@@ -37,6 +37,8 @@ namespace MM.Controls
         {
             _ucReportViewer.ShowPrintButton = AllowPrint;
             btnExportExcel.Enabled = AllowExport;
+
+            exportExcelToolStripMenuItem.Enabled = AllowExport;
         }
 
         public void InitData()
@@ -94,6 +96,18 @@ namespace MM.Controls
                 Utility.WriteToTraceLog(result.GetErrorAsString("ReportBus.GetDichVuTuTuc"));
             }
         }
+
+        private void OnExportExcel()
+        {
+            if (_results == null || _results.Count <= 0) return;
+            SaveFileDialog dlg = new SaveFileDialog();
+            dlg.Title = "Export Excel";
+            dlg.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
+            if (dlg.ShowDialog(this) == DialogResult.OK)
+            {
+                ExportExcel.ExportDichVuTuTucToExcel(dlg.FileName, _results);
+            }
+        }
         #endregion
 
         #region Window Event Handlers
@@ -104,14 +118,12 @@ namespace MM.Controls
 
         private void btnExportExcel_Click(object sender, EventArgs e)
         {
-            if (_results == null || _results.Count <= 0) return;
-            SaveFileDialog dlg = new SaveFileDialog();
-            dlg.Title = "Export Excel";
-            dlg.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
-            if (dlg.ShowDialog(this) == DialogResult.OK)
-            {
-                ExportExcel.ExportDichVuTuTucToExcel(dlg.FileName, _results);
-            }
+            OnExportExcel();
+        }
+
+        private void exportExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnExportExcel();
         }
         #endregion
 
@@ -135,6 +147,7 @@ namespace MM.Controls
         }
         #endregion
 
+       
         
     }
 }

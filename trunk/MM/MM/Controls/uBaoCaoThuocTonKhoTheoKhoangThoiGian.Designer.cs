@@ -29,14 +29,24 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tabReport = new DevComponents.DotNetBar.TabControl();
+            this.tabControlPanel2 = new DevComponents.DotNetBar.TabControlPanel();
+            this.dgThuocTonKho = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.tenThuocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.donViTinhDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.soDuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sLNhapDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sLXuatDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sLTonDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.spThuocTonKhoResultBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.pageBaoCao = new DevComponents.DotNetBar.TabItem(this.components);
             this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
             this.panel3 = new System.Windows.Forms.Panel();
             this._uThuocList = new MM.Controls.uThuocList();
@@ -49,32 +59,27 @@
             this.label3 = new System.Windows.Forms.Label();
             this.dtpkDenNgay = new System.Windows.Forms.DateTimePicker();
             this.pageFilter = new DevComponents.DotNetBar.TabItem(this.components);
-            this.tabControlPanel2 = new DevComponents.DotNetBar.TabControlPanel();
-            this.pageBaoCao = new DevComponents.DotNetBar.TabItem(this.components);
-            this.dgThuocTonKho = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.spThuocTonKhoResultBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.tenThuocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.donViTinhDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.soDuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sLNhapDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sLXuatDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.sLTonDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.xemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.exportExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.tabReport)).BeginInit();
             this.tabReport.SuspendLayout();
+            this.tabControlPanel2.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgThuocTonKho)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spThuocTonKhoResultBindingSource)).BeginInit();
             this.tabControlPanel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.tabControlPanel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgThuocTonKho)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spThuocTonKhoResultBindingSource)).BeginInit();
+            this.ctmAction.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabReport
             // 
             this.tabReport.CanReorderTabs = true;
-            this.tabReport.Controls.Add(this.tabControlPanel2);
             this.tabReport.Controls.Add(this.tabControlPanel1);
+            this.tabReport.Controls.Add(this.tabControlPanel2);
             this.tabReport.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabReport.Location = new System.Drawing.Point(0, 0);
             this.tabReport.Name = "tabReport";
@@ -88,8 +93,143 @@
             this.tabReport.Tabs.Add(this.pageBaoCao);
             this.tabReport.Text = "tabControl1";
             // 
+            // tabControlPanel2
+            // 
+            this.tabControlPanel2.Controls.Add(this.dgThuocTonKho);
+            this.tabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlPanel2.Location = new System.Drawing.Point(0, 25);
+            this.tabControlPanel2.Name = "tabControlPanel2";
+            this.tabControlPanel2.Padding = new System.Windows.Forms.Padding(1);
+            this.tabControlPanel2.Size = new System.Drawing.Size(768, 460);
+            this.tabControlPanel2.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.tabControlPanel2.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.tabControlPanel2.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.tabControlPanel2.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(168)))), ((int)(((byte)(153)))));
+            this.tabControlPanel2.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
+                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
+            this.tabControlPanel2.Style.GradientAngle = 90;
+            this.tabControlPanel2.TabIndex = 2;
+            this.tabControlPanel2.TabItem = this.pageBaoCao;
+            // 
+            // dgThuocTonKho
+            // 
+            this.dgThuocTonKho.AllowUserToAddRows = false;
+            this.dgThuocTonKho.AllowUserToDeleteRows = false;
+            this.dgThuocTonKho.AllowUserToOrderColumns = true;
+            this.dgThuocTonKho.AutoGenerateColumns = false;
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgThuocTonKho.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            this.dgThuocTonKho.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgThuocTonKho.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.tenThuocDataGridViewTextBoxColumn,
+            this.donViTinhDataGridViewTextBoxColumn,
+            this.soDuDataGridViewTextBoxColumn,
+            this.sLNhapDataGridViewTextBoxColumn,
+            this.sLXuatDataGridViewTextBoxColumn,
+            this.sLTonDataGridViewTextBoxColumn});
+            this.dgThuocTonKho.DataSource = this.spThuocTonKhoResultBindingSource;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgThuocTonKho.DefaultCellStyle = dataGridViewCellStyle14;
+            this.dgThuocTonKho.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgThuocTonKho.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dgThuocTonKho.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.dgThuocTonKho.HighlightSelectedColumnHeaders = false;
+            this.dgThuocTonKho.Location = new System.Drawing.Point(1, 1);
+            this.dgThuocTonKho.MultiSelect = false;
+            this.dgThuocTonKho.Name = "dgThuocTonKho";
+            this.dgThuocTonKho.ReadOnly = true;
+            this.dgThuocTonKho.RowHeadersWidth = 30;
+            this.dgThuocTonKho.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgThuocTonKho.Size = new System.Drawing.Size(766, 458);
+            this.dgThuocTonKho.TabIndex = 4;
+            // 
+            // tenThuocDataGridViewTextBoxColumn
+            // 
+            this.tenThuocDataGridViewTextBoxColumn.DataPropertyName = "TenThuoc";
+            this.tenThuocDataGridViewTextBoxColumn.HeaderText = "Tên thuốc";
+            this.tenThuocDataGridViewTextBoxColumn.Name = "tenThuocDataGridViewTextBoxColumn";
+            this.tenThuocDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tenThuocDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // donViTinhDataGridViewTextBoxColumn
+            // 
+            this.donViTinhDataGridViewTextBoxColumn.DataPropertyName = "DonViTinh";
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.donViTinhDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle9;
+            this.donViTinhDataGridViewTextBoxColumn.HeaderText = "ĐVT";
+            this.donViTinhDataGridViewTextBoxColumn.Name = "donViTinhDataGridViewTextBoxColumn";
+            this.donViTinhDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // soDuDataGridViewTextBoxColumn
+            // 
+            this.soDuDataGridViewTextBoxColumn.DataPropertyName = "SoDu";
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle10.Format = "N0";
+            dataGridViewCellStyle10.NullValue = null;
+            this.soDuDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle10;
+            this.soDuDataGridViewTextBoxColumn.HeaderText = "Sô dư";
+            this.soDuDataGridViewTextBoxColumn.Name = "soDuDataGridViewTextBoxColumn";
+            this.soDuDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // sLNhapDataGridViewTextBoxColumn
+            // 
+            this.sLNhapDataGridViewTextBoxColumn.DataPropertyName = "SLNhap";
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle11.Format = "N0";
+            dataGridViewCellStyle11.NullValue = null;
+            this.sLNhapDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle11;
+            this.sLNhapDataGridViewTextBoxColumn.HeaderText = "Số lượng nhập";
+            this.sLNhapDataGridViewTextBoxColumn.Name = "sLNhapDataGridViewTextBoxColumn";
+            this.sLNhapDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // sLXuatDataGridViewTextBoxColumn
+            // 
+            this.sLXuatDataGridViewTextBoxColumn.DataPropertyName = "SLXuat";
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle12.Format = "N0";
+            dataGridViewCellStyle12.NullValue = null;
+            this.sLXuatDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle12;
+            this.sLXuatDataGridViewTextBoxColumn.HeaderText = "Số lượng xuất";
+            this.sLXuatDataGridViewTextBoxColumn.Name = "sLXuatDataGridViewTextBoxColumn";
+            this.sLXuatDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // sLTonDataGridViewTextBoxColumn
+            // 
+            this.sLTonDataGridViewTextBoxColumn.DataPropertyName = "SLTon";
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle13.Format = "N0";
+            dataGridViewCellStyle13.NullValue = null;
+            this.sLTonDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle13;
+            this.sLTonDataGridViewTextBoxColumn.HeaderText = "Số lượng tồn";
+            this.sLTonDataGridViewTextBoxColumn.Name = "sLTonDataGridViewTextBoxColumn";
+            this.sLTonDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // spThuocTonKhoResultBindingSource
+            // 
+            this.spThuocTonKhoResultBindingSource.DataSource = typeof(MM.Databasae.spThuocTonKhoResult);
+            // 
+            // pageBaoCao
+            // 
+            this.pageBaoCao.AttachedControl = this.tabControlPanel2;
+            this.pageBaoCao.Image = global::MM.Properties.Resources.product_sales_report_icon;
+            this.pageBaoCao.Name = "pageBaoCao";
+            this.pageBaoCao.Text = "Báo cáo";
+            // 
             // tabControlPanel1
             // 
+            this.tabControlPanel1.ContextMenuStrip = this.ctmAction;
             this.tabControlPanel1.Controls.Add(this.panel3);
             this.tabControlPanel1.Controls.Add(this.panel2);
             this.tabControlPanel1.Controls.Add(this.panel1);
@@ -215,139 +355,35 @@
             this.pageFilter.Name = "pageFilter";
             this.pageFilter.Text = "Điều kiện xem báo cáo";
             // 
-            // tabControlPanel2
+            // ctmAction
             // 
-            this.tabControlPanel2.Controls.Add(this.dgThuocTonKho);
-            this.tabControlPanel2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlPanel2.Location = new System.Drawing.Point(0, 25);
-            this.tabControlPanel2.Name = "tabControlPanel2";
-            this.tabControlPanel2.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel2.Size = new System.Drawing.Size(768, 460);
-            this.tabControlPanel2.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.tabControlPanel2.Style.BackColor2.Color = System.Drawing.Color.White;
-            this.tabControlPanel2.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.tabControlPanel2.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(168)))), ((int)(((byte)(153)))));
-            this.tabControlPanel2.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
-                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
-            this.tabControlPanel2.Style.GradientAngle = 90;
-            this.tabControlPanel2.TabIndex = 2;
-            this.tabControlPanel2.TabItem = this.pageBaoCao;
+            this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.xemToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.exportExcelToolStripMenuItem});
+            this.ctmAction.Name = "ctmAction";
+            this.ctmAction.Size = new System.Drawing.Size(153, 76);
             // 
-            // pageBaoCao
+            // xemToolStripMenuItem
             // 
-            this.pageBaoCao.AttachedControl = this.tabControlPanel2;
-            this.pageBaoCao.Image = global::MM.Properties.Resources.product_sales_report_icon;
-            this.pageBaoCao.Name = "pageBaoCao";
-            this.pageBaoCao.Text = "Báo cáo";
+            this.xemToolStripMenuItem.Image = global::MM.Properties.Resources.views_icon;
+            this.xemToolStripMenuItem.Name = "xemToolStripMenuItem";
+            this.xemToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.xemToolStripMenuItem.Text = "Xem";
+            this.xemToolStripMenuItem.Click += new System.EventHandler(this.xemToolStripMenuItem_Click);
             // 
-            // dgThuocTonKho
+            // toolStripSeparator1
             // 
-            this.dgThuocTonKho.AllowUserToAddRows = false;
-            this.dgThuocTonKho.AllowUserToDeleteRows = false;
-            this.dgThuocTonKho.AllowUserToOrderColumns = true;
-            this.dgThuocTonKho.AutoGenerateColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgThuocTonKho.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgThuocTonKho.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgThuocTonKho.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.tenThuocDataGridViewTextBoxColumn,
-            this.donViTinhDataGridViewTextBoxColumn,
-            this.soDuDataGridViewTextBoxColumn,
-            this.sLNhapDataGridViewTextBoxColumn,
-            this.sLXuatDataGridViewTextBoxColumn,
-            this.sLTonDataGridViewTextBoxColumn});
-            this.dgThuocTonKho.DataSource = this.spThuocTonKhoResultBindingSource;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgThuocTonKho.DefaultCellStyle = dataGridViewCellStyle7;
-            this.dgThuocTonKho.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgThuocTonKho.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dgThuocTonKho.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.dgThuocTonKho.HighlightSelectedColumnHeaders = false;
-            this.dgThuocTonKho.Location = new System.Drawing.Point(1, 1);
-            this.dgThuocTonKho.MultiSelect = false;
-            this.dgThuocTonKho.Name = "dgThuocTonKho";
-            this.dgThuocTonKho.ReadOnly = true;
-            this.dgThuocTonKho.RowHeadersWidth = 30;
-            this.dgThuocTonKho.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgThuocTonKho.Size = new System.Drawing.Size(766, 458);
-            this.dgThuocTonKho.TabIndex = 4;
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
-            // spThuocTonKhoResultBindingSource
+            // exportExcelToolStripMenuItem
             // 
-            this.spThuocTonKhoResultBindingSource.DataSource = typeof(MM.Databasae.spThuocTonKhoResult);
-            // 
-            // tenThuocDataGridViewTextBoxColumn
-            // 
-            this.tenThuocDataGridViewTextBoxColumn.DataPropertyName = "TenThuoc";
-            this.tenThuocDataGridViewTextBoxColumn.HeaderText = "Tên thuốc";
-            this.tenThuocDataGridViewTextBoxColumn.Name = "tenThuocDataGridViewTextBoxColumn";
-            this.tenThuocDataGridViewTextBoxColumn.ReadOnly = true;
-            this.tenThuocDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // donViTinhDataGridViewTextBoxColumn
-            // 
-            this.donViTinhDataGridViewTextBoxColumn.DataPropertyName = "DonViTinh";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.donViTinhDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.donViTinhDataGridViewTextBoxColumn.HeaderText = "ĐVT";
-            this.donViTinhDataGridViewTextBoxColumn.Name = "donViTinhDataGridViewTextBoxColumn";
-            this.donViTinhDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // soDuDataGridViewTextBoxColumn
-            // 
-            this.soDuDataGridViewTextBoxColumn.DataPropertyName = "SoDu";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "N0";
-            dataGridViewCellStyle3.NullValue = null;
-            this.soDuDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.soDuDataGridViewTextBoxColumn.HeaderText = "Sô dư";
-            this.soDuDataGridViewTextBoxColumn.Name = "soDuDataGridViewTextBoxColumn";
-            this.soDuDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // sLNhapDataGridViewTextBoxColumn
-            // 
-            this.sLNhapDataGridViewTextBoxColumn.DataPropertyName = "SLNhap";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "N0";
-            dataGridViewCellStyle4.NullValue = null;
-            this.sLNhapDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.sLNhapDataGridViewTextBoxColumn.HeaderText = "Số lượng nhập";
-            this.sLNhapDataGridViewTextBoxColumn.Name = "sLNhapDataGridViewTextBoxColumn";
-            this.sLNhapDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // sLXuatDataGridViewTextBoxColumn
-            // 
-            this.sLXuatDataGridViewTextBoxColumn.DataPropertyName = "SLXuat";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "N0";
-            dataGridViewCellStyle5.NullValue = null;
-            this.sLXuatDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
-            this.sLXuatDataGridViewTextBoxColumn.HeaderText = "Số lượng xuất";
-            this.sLXuatDataGridViewTextBoxColumn.Name = "sLXuatDataGridViewTextBoxColumn";
-            this.sLXuatDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // sLTonDataGridViewTextBoxColumn
-            // 
-            this.sLTonDataGridViewTextBoxColumn.DataPropertyName = "SLTon";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.Format = "N0";
-            dataGridViewCellStyle6.NullValue = null;
-            this.sLTonDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle6;
-            this.sLTonDataGridViewTextBoxColumn.HeaderText = "Số lượng tồn";
-            this.sLTonDataGridViewTextBoxColumn.Name = "sLTonDataGridViewTextBoxColumn";
-            this.sLTonDataGridViewTextBoxColumn.ReadOnly = true;
+            this.exportExcelToolStripMenuItem.Image = global::MM.Properties.Resources.page_excel_icon;
+            this.exportExcelToolStripMenuItem.Name = "exportExcelToolStripMenuItem";
+            this.exportExcelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exportExcelToolStripMenuItem.Text = "Xuất Excel";
+            this.exportExcelToolStripMenuItem.Click += new System.EventHandler(this.exportExcelToolStripMenuItem_Click);
             // 
             // uBaoCaoThuocTonKhoTheoKhoangThoiGian
             // 
@@ -358,14 +394,15 @@
             this.Size = new System.Drawing.Size(768, 485);
             ((System.ComponentModel.ISupportInitialize)(this.tabReport)).EndInit();
             this.tabReport.ResumeLayout(false);
+            this.tabControlPanel2.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgThuocTonKho)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.spThuocTonKhoResultBindingSource)).EndInit();
             this.tabControlPanel1.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.tabControlPanel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgThuocTonKho)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.spThuocTonKhoResultBindingSource)).EndInit();
+            this.ctmAction.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -395,5 +432,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn sLXuatDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn sLTonDataGridViewTextBoxColumn;
         private System.Windows.Forms.BindingSource spThuocTonKhoResultBindingSource;
+        private System.Windows.Forms.ContextMenuStrip ctmAction;
+        private System.Windows.Forms.ToolStripMenuItem xemToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem exportExcelToolStripMenuItem;
     }
 }
