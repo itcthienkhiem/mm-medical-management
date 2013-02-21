@@ -74,6 +74,11 @@ namespace MM.Controls
             btnPrint.Enabled = AllowPrint;
             btnExportInvoice.Enabled = Global.AllowExportHoaDonDichVu;
             btnExportExcel.Enabled = AllowExport;
+
+            deleteToolStripMenuItem.Enabled = AllowDelete;
+            printToolStripMenuItem.Enabled = AllowPrint;
+            exportExcelToolStripMenuItem.Enabled = AllowExport;
+            xuatHoaDonToolStripMenuItem.Enabled = Global.AllowExportHoaDonDichVu;
         }
 
         public void DisplayAsThread()
@@ -413,6 +418,33 @@ namespace MM.Controls
         {
             HighlightExportedInvoice();
         }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnDeleteReceipt();
+        }
+
+        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnPrint();
+        }
+
+        private void exportExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnExportExcel();
+        }
+
+        private void xuatHoaDonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dgReceipt.RowCount <= 0 ||
+                CheckedReceiptRows == null || CheckedReceiptRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu ít nhất 1 phiếu thu cần xuất hóa đơn.", IconType.Information);
+                return;
+            }
+
+            OnExportInvoice();
+        }
         #endregion
 
         #region Working Thread
@@ -434,11 +466,5 @@ namespace MM.Controls
             }
         }
         #endregion
-
-        
-
-        
-
-        
     }
 }

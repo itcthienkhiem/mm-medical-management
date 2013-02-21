@@ -62,6 +62,12 @@ namespace MM.Controls
             btnPrintPreview.Enabled = AllowPrint;
             btnExportExcel.Enabled = AllowExport;
             //btnExportInvoice.Enabled = Global.AllowEx;
+
+            addToolStripMenuItem.Enabled = AllowAdd;
+            deleteToolStripMenuItem.Enabled = AllowDelete;
+            printPreviewToolStripMenuItem.Enabled = AllowPrint;
+            printToolStripMenuItem.Enabled = AllowPrint;
+            exportExcelToolStripMenuItem.Enabled = AllowExport;
         }
 
         public void ClearData()
@@ -440,6 +446,42 @@ namespace MM.Controls
         {
             //HighlightExportedInvoice();
         }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnAddPhieuThu();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnDeletePhieuThu();
+        }
+
+        private void printPreviewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnPrint(true);
+        }
+
+        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnPrint(false);
+        }
+
+        private void exportExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnExportExcel();
+        }
+
+        private void xuatHoaDonToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            if (dgPhieuThu.RowCount <= 0 || CheckedPTRows == null || CheckedPTRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu ít nhất 1 phiếu thu cần xuất hóa đơn.", IconType.Information);
+                return;
+            }
+
+            OnExportInvoice();
+        }
         #endregion
 
         #region Working Thread
@@ -461,5 +503,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+       
     }
 }

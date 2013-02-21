@@ -38,6 +38,10 @@ namespace MM.Controls
             btnPrintPreview.Enabled = AllowPrint;
             btnPrint.Enabled = AllowPrint;
             btnExportExcel.Enabled = AllowExport;
+
+            printPreviewToolStripMenuItem.Enabled = AllowPrint;
+            printToolStripMenuItem.Enabled = AllowPrint;
+            exportExcelToolStripMenuItem.Enabled = AllowExport;
         }
 
         public void DisplayAsThread()
@@ -197,6 +201,26 @@ namespace MM.Controls
         {
             OnExportExcel();
         }
+
+        private void raTenBenhNhan_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void printPreviewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnPrint(true);
+        }
+
+        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnPrint(false);
+        }
+
+        private void exportExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnExportExcel();
+        }
         #endregion
 
         #region Working Thread
@@ -219,9 +243,6 @@ namespace MM.Controls
         }
         #endregion
 
-        private void raTenBenhNhan_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }
