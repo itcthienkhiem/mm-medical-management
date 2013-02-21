@@ -37,6 +37,7 @@ namespace MM.Controls
         private void UpdateGUI()
         {
             btnPhucHoi.Enabled = AllowEdit;
+            phucHoiToolStripMenuItem.Enabled = AllowEdit;
         }
 
         public void DisplayAsThread()
@@ -282,6 +283,11 @@ namespace MM.Controls
         private void chkMaBenhNhan_CheckedChanged(object sender, EventArgs e)
         {
             SearchAsThread();
+        }
+
+        private void phucHoiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnPhucHoiBenhNhan();
         }
         #endregion
 

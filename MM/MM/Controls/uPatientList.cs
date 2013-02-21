@@ -49,6 +49,17 @@ namespace MM.Controls
             btnTaoMatKhau.Enabled = Global.AllowAddMatKhauHoSo;
             btnExportExcel.Enabled = AllowExport;
             btnPrint.Enabled = AllowPrint;
+
+            addToolStripMenuItem.Enabled = AllowAdd;
+            deleteToolStripMenuItem.Enabled = AllowDelete;
+            moBenhNhanToolStripMenuItem.Enabled = AllowOpenPatient;
+            importExcelToolStripMenuItem.Enabled = AllowImport;
+            vaoPhongChoToolStripMenuItem.Enabled = Global.AllowAddPhongCho;
+            taoHoSoToolStripMenuItem.Enabled = Global.AllowTaoHoSo;
+            uploadHoSoToolStripMenuItem.Enabled = Global.AllowUploadHoSo;
+            taoMatKhauToolStripMenuItem.Enabled = Global.AllowAddMatKhauHoSo;
+            exportExcelToolStripMenuItem.Enabled = AllowExport;
+            printToolStripMenuItem.Enabled = AllowPrint;
         }
 
         public void ClearData()
@@ -1071,10 +1082,34 @@ namespace MM.Controls
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân cần xuất Excel.", IconType.Information);
         }
-        #endregion
 
-        #region Window Event Handlers
-        private void btnUploadHoSo_Click(object sender, EventArgs e)
+        private void OnVaoPhongCho()
+        {
+            List<string> addedPatientList = new List<string>();
+            List<DataRow> checkedRows = _dictPatient.Values.ToList();
+            foreach (DataRow row in checkedRows)
+            {
+                string patientGUID = row["PatientGUID"].ToString();
+                addedPatientList.Add(patientGUID);
+            }
+
+            if (addedPatientList.Count > 0)
+            {
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn thêm những bệnh nhân đã đánh dấu vào phòng chờ ?") == DialogResult.Yes)
+                {
+                    Result result = PhongChoBus.AddPhongCho(addedPatientList);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("PhongChoBus.AddPhongCho"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("PhongChoBus.AddPhongCho"));
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân cần đưa vào phòng chờ.", IconType.Information);
+        }
+
+        private void UploadHoSo()
         {
             List<DataRow> checkedRows = _dictPatient.Values.ToList();
             if (checkedRows.Count > 0)
@@ -1086,6 +1121,25 @@ namespace MM.Controls
             }
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân cần upload hồ sơ.", IconType.Information);
+        }
+
+        private void TaoMatKhauHoSo()
+        {
+            List<DataRow> checkedRows = _dictPatient.Values.ToList();
+            if (checkedRows.Count > 0)
+            {
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn tạo mật khẩu hồ sơ cho những bệnh nhân bạn đánh dấu ?") == DialogResult.Yes)
+                    OnTaoMatKhauAsThread(checkedRows);
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân cần tạo mật khẩu hồ sơ.", IconType.Information);
+        }
+        #endregion
+
+        #region Window Event Handlers
+        private void btnUploadHoSo_Click(object sender, EventArgs e)
+        {
+            UploadHoSo();
         }
 
         private void btnXemHoSo_Click(object sender, EventArgs e)
@@ -1235,28 +1289,7 @@ namespace MM.Controls
 
         private void button1_Click(object sender, EventArgs e)
         {
-            List<string> addedPatientList = new List<string>();
-            List<DataRow> checkedRows = _dictPatient.Values.ToList();
-            foreach (DataRow row in checkedRows)
-            {
-                string patientGUID = row["PatientGUID"].ToString();
-                addedPatientList.Add(patientGUID);
-            }
-
-            if (addedPatientList.Count > 0)
-            {
-                if (MsgBox.Question(Application.ProductName, "Bạn có muốn thêm những bệnh nhân đã đánh dấu vào phòng chờ ?") == DialogResult.Yes)
-                {
-                    Result result = PhongChoBus.AddPhongCho(addedPatientList);
-                    if (!result.IsOK)
-                    {
-                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("PhongChoBus.AddPhongCho"), IconType.Error);
-                        Utility.WriteToTraceLog(result.GetErrorAsString("PhongChoBus.AddPhongCho"));
-                    }
-                }
-            }
-            else
-                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân cần đưa vào phòng chờ.", IconType.Information);
+            OnVaoPhongCho();
         }
 
         private void btnTaoHoSo_Click(object sender, EventArgs e)
@@ -1296,14 +1329,7 @@ namespace MM.Controls
 
         private void btnTaoMatKhau_Click(object sender, EventArgs e)
         {
-            List<DataRow> checkedRows = _dictPatient.Values.ToList();
-            if (checkedRows.Count > 0)
-            {
-                if (MsgBox.Question(Application.ProductName, "Bạn có muốn tạo mật khẩu hồ sơ cho những bệnh nhân bạn đánh dấu ?") == DialogResult.Yes)
-                    OnTaoMatKhauAsThread(checkedRows);
-            }
-            else
-                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân cần tạo mật khẩu hồ sơ.", IconType.Information);
+            TaoMatKhauHoSo();
         }
 
         private void chkTheoSoDienThoai_CheckedChanged(object sender, EventArgs e)
@@ -1319,6 +1345,66 @@ namespace MM.Controls
         private void btnPrint_Click(object sender, EventArgs e)
         {
             OnPrint();
+        }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnAddPatient();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnEditPatient();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnDeletePatient();
+        }
+
+        private void importExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnImportExcel();
+        }
+
+        private void exportExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnExportToExcel();
+        }
+
+        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnPrint();
+        }
+
+        private void moBenhNhanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnOpentPatient();
+        }
+
+        private void vaoPhongChoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnVaoPhongCho();
+        }
+
+        private void taoHoSoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnTaoHoSo();
+        }
+
+        private void xemHoSoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnXemHoSo();
+        }
+
+        private void uploadHoSoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            UploadHoSo();   
+        }
+
+        private void taoMatKhauToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            TaoMatKhauHoSo();
         }
         #endregion
 
@@ -1412,5 +1498,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }

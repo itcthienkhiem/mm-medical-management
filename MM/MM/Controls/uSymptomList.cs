@@ -43,6 +43,11 @@ namespace MM.Controls
             btnDelete.Enabled = AllowDelete;
             btnPrint.Enabled = AllowPrint;
             btnPrintPreview.Enabled = AllowPrint;
+
+            addToolStripMenuItem.Enabled = AllowAdd;
+            deleteToolStripMenuItem.Enabled = AllowDelete;
+            printPreviewToolStripMenuItem.Enabled = AllowPrint;
+            printToolStripMenuItem.Enabled = AllowPrint;
         }
 
         public void DisplayAsThread()
@@ -356,6 +361,31 @@ namespace MM.Controls
                 }
             }
         }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnAddSymptom();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnEditSymptom();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnDeleteSymptom();
+        }
+
+        private void printPreviewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnPrint(true);
+        }
+
+        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnPrint(false);
+        }
         #endregion
 
         #region Working Thread
@@ -389,6 +419,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
         
 

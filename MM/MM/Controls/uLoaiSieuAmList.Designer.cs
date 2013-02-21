@@ -31,13 +31,18 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uLoaiSieuAmList));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uLoaiSieuAmList));
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgLoaiSieuAm = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.tenSieuAmDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.thuTuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.loaiSieuAmBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -48,6 +53,12 @@
             this.panel8 = new System.Windows.Forms.Panel();
             this.panel10 = new System.Windows.Forms.Panel();
             this.tabMauBaoCao = new System.Windows.Forms.TabControl();
+            this.ctmAction2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.exportWordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._page1 = new System.Windows.Forms.TabPage();
             this._textControl1 = new TXTextControl.TextControl();
             this.panel9 = new System.Windows.Forms.Panel();
@@ -71,13 +82,11 @@
             this.btnExportWord = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.tenSieuAmDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.thuTuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             this.panel7.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgLoaiSieuAm)).BeginInit();
+            this.ctmAction.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.loaiSieuAmBindingSource)).BeginInit();
             this.panel4.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -85,6 +94,7 @@
             this.panel8.SuspendLayout();
             this.panel10.SuspendLayout();
             this.tabMauBaoCao.SuspendLayout();
+            this.ctmAction2.SuspendLayout();
             this._page1.SuspendLayout();
             this.panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numThuTu)).BeginInit();
@@ -151,6 +161,7 @@
             this.colChecked,
             this.tenSieuAmDataGridViewTextBoxColumn,
             this.thuTuDataGridViewTextBoxColumn});
+            this.dgLoaiSieuAm.ContextMenuStrip = this.ctmAction;
             this.dgLoaiSieuAm.DataSource = this.loaiSieuAmBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
@@ -172,6 +183,51 @@
             this.dgLoaiSieuAm.Size = new System.Drawing.Size(314, 559);
             this.dgLoaiSieuAm.TabIndex = 2;
             this.dgLoaiSieuAm.SelectionChanged += new System.EventHandler(this.dgLoaiSieuAm_SelectionChanged);
+            // 
+            // colChecked
+            // 
+            this.colChecked.DataPropertyName = "Checked";
+            this.colChecked.Frozen = true;
+            this.colChecked.HeaderText = "";
+            this.colChecked.Name = "colChecked";
+            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colChecked.Width = 40;
+            // 
+            // tenSieuAmDataGridViewTextBoxColumn
+            // 
+            this.tenSieuAmDataGridViewTextBoxColumn.DataPropertyName = "TenSieuAm";
+            this.tenSieuAmDataGridViewTextBoxColumn.HeaderText = "Tên siêu âm";
+            this.tenSieuAmDataGridViewTextBoxColumn.Name = "tenSieuAmDataGridViewTextBoxColumn";
+            this.tenSieuAmDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tenSieuAmDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.tenSieuAmDataGridViewTextBoxColumn.Width = 180;
+            // 
+            // thuTuDataGridViewTextBoxColumn
+            // 
+            this.thuTuDataGridViewTextBoxColumn.DataPropertyName = "ThuTu";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.thuTuDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.thuTuDataGridViewTextBoxColumn.HeaderText = "Thứ tự";
+            this.thuTuDataGridViewTextBoxColumn.Name = "thuTuDataGridViewTextBoxColumn";
+            this.thuTuDataGridViewTextBoxColumn.ReadOnly = true;
+            this.thuTuDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.thuTuDataGridViewTextBoxColumn.Width = 45;
+            // 
+            // ctmAction
+            // 
+            this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteToolStripMenuItem});
+            this.ctmAction.Name = "cmtAction";
+            this.ctmAction.Size = new System.Drawing.Size(104, 26);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Image = global::MM.Properties.Resources.del;
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
+            this.deleteToolStripMenuItem.Text = "Xóa";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // loaiSieuAmBindingSource
             // 
@@ -262,6 +318,7 @@
             // 
             // tabMauBaoCao
             // 
+            this.tabMauBaoCao.ContextMenuStrip = this.ctmAction2;
             this.tabMauBaoCao.Controls.Add(this._page1);
             this.tabMauBaoCao.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tabMauBaoCao.Location = new System.Drawing.Point(0, 0);
@@ -269,6 +326,51 @@
             this.tabMauBaoCao.SelectedIndex = 0;
             this.tabMauBaoCao.Size = new System.Drawing.Size(676, 421);
             this.tabMauBaoCao.TabIndex = 0;
+            // 
+            // ctmAction2
+            // 
+            this.ctmAction2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.editToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.exportWordToolStripMenuItem});
+            this.ctmAction2.Name = "cmtAction";
+            this.ctmAction2.Size = new System.Drawing.Size(153, 104);
+            // 
+            // addToolStripMenuItem
+            // 
+            this.addToolStripMenuItem.Image = global::MM.Properties.Resources.add;
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addToolStripMenuItem.Text = "Thêm mới";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Image = global::MM.Properties.Resources.edit;
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.editToolStripMenuItem.Text = "Cập nhật";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            // 
+            // exportWordToolStripMenuItem
+            // 
+            this.exportWordToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("exportWordToolStripMenuItem.Image")));
+            this.exportWordToolStripMenuItem.Name = "exportWordToolStripMenuItem";
+            this.exportWordToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exportWordToolStripMenuItem.Text = "Xuất Word";
+            this.exportWordToolStripMenuItem.Click += new System.EventHandler(this.exportWordToolStripMenuItem_Click);
             // 
             // _page1
             // 
@@ -297,6 +399,7 @@
             // 
             // panel9
             // 
+            this.panel9.ContextMenuStrip = this.ctmAction2;
             this.panel9.Controls.Add(this.chkInTrang2);
             this.panel9.Controls.Add(this.chkNu);
             this.panel9.Controls.Add(this.chkNam);
@@ -542,36 +645,6 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // colChecked
-            // 
-            this.colChecked.DataPropertyName = "Checked";
-            this.colChecked.Frozen = true;
-            this.colChecked.HeaderText = "";
-            this.colChecked.Name = "colChecked";
-            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.colChecked.Width = 40;
-            // 
-            // tenSieuAmDataGridViewTextBoxColumn
-            // 
-            this.tenSieuAmDataGridViewTextBoxColumn.DataPropertyName = "TenSieuAm";
-            this.tenSieuAmDataGridViewTextBoxColumn.HeaderText = "Tên siêu âm";
-            this.tenSieuAmDataGridViewTextBoxColumn.Name = "tenSieuAmDataGridViewTextBoxColumn";
-            this.tenSieuAmDataGridViewTextBoxColumn.ReadOnly = true;
-            this.tenSieuAmDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.tenSieuAmDataGridViewTextBoxColumn.Width = 180;
-            // 
-            // thuTuDataGridViewTextBoxColumn
-            // 
-            this.thuTuDataGridViewTextBoxColumn.DataPropertyName = "ThuTu";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.thuTuDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.thuTuDataGridViewTextBoxColumn.HeaderText = "Thứ tự";
-            this.thuTuDataGridViewTextBoxColumn.Name = "thuTuDataGridViewTextBoxColumn";
-            this.thuTuDataGridViewTextBoxColumn.ReadOnly = true;
-            this.thuTuDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.thuTuDataGridViewTextBoxColumn.Width = 45;
-            // 
             // uLoaiSieuAmList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -586,6 +659,7 @@
             this.panel7.ResumeLayout(false);
             this.panel7.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgLoaiSieuAm)).EndInit();
+            this.ctmAction.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.loaiSieuAmBindingSource)).EndInit();
             this.panel4.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
@@ -593,6 +667,7 @@
             this.panel8.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
             this.tabMauBaoCao.ResumeLayout(false);
+            this.ctmAction2.ResumeLayout(false);
             this._page1.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
@@ -645,5 +720,13 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn colChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn tenSieuAmDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn thuTuDataGridViewTextBoxColumn;
+        protected System.Windows.Forms.ContextMenuStrip ctmAction;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        protected System.Windows.Forms.ContextMenuStrip ctmAction2;
+        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem exportWordToolStripMenuItem;
     }
 }

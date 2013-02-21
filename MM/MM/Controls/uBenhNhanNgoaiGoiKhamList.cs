@@ -43,6 +43,13 @@ namespace MM.Controls
             btnPrint.Enabled = AllowPrint;
             btnPrintPreview.Enabled = AllowPrint;
             btnExportExcel.Enabled = AllowExport;
+
+            addToolStripMenuItem.Enabled = AllowAdd;
+            editToolStripMenuItem.Enabled = AllowEdit;
+            deleteToolStripMenuItem.Enabled = AllowDelete;
+            printPreviewToolStripMenuItem.Enabled = AllowPrint;
+            printToolStripMenuItem.Enabled = AllowPrint;
+            exportExcelToolStripMenuItem.Enabled = AllowExport;
         }
 
         public void DisplayAsThread()
@@ -328,6 +335,36 @@ namespace MM.Controls
                 row["Checked"] = chkChecked.Checked;
             }
         }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnAdd();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnEdit();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnDelete();
+        }
+
+        private void printPreviewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnPrint(true);
+        }
+
+        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnPrint(false);
+        }
+
+        private void exportExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnExportExcell();
+        }
         #endregion
 
         #region Working Thread
@@ -349,9 +386,5 @@ namespace MM.Controls
             }
         }
         #endregion
-
-        
-
-        
     }
 }

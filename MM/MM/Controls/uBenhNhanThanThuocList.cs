@@ -40,6 +40,11 @@ namespace MM.Controls
             btnDelete.Enabled = AllowDelete;
             btnOpenPatient.Enabled = AllowOpenPatient;
             btnVaoPhongCho.Enabled = Global.AllowAddPhongCho;
+
+            addToolStripMenuItem.Enabled = AllowAdd;
+            deleteToolStripMenuItem.Enabled = AllowDelete;
+            moBenhNhanToolStripMenuItem.Enabled = AllowOpenPatient;
+            vaoPhongChoToolStripMenuItem.Enabled = Global.AllowAddPhongCho;
         }
 
         public void ClearData()
@@ -358,6 +363,31 @@ namespace MM.Controls
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân thân thuộc cần xóa.", IconType.Information);
         }
+
+        private void OnVaoPhongCho()
+        {
+            List<string> addedPatientList = new List<string>();
+            foreach (DataRow row in _dictPatient.Values.ToList())
+            {
+                string patientGUID = row["PatientGUID"].ToString();
+                addedPatientList.Add(patientGUID);
+            }
+
+            if (addedPatientList.Count > 0)
+            {
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn thêm những bệnh nhân đã đánh dấu vào phòng chờ ?") == DialogResult.Yes)
+                {
+                    Result result = PhongChoBus.AddPhongCho(addedPatientList);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("PhongChoBus.AddPhongCho"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("PhongChoBus.AddPhongCho"));
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân cần đưa vào phòng chờ.", IconType.Information);
+        }
         #endregion
 
         #region Window Event Handlers
@@ -488,27 +518,7 @@ namespace MM.Controls
 
         private void btnVaoPhongCho_Click(object sender, EventArgs e)
         {
-            List<string> addedPatientList = new List<string>();
-            foreach (DataRow row in _dictPatient.Values.ToList())
-            {
-                string patientGUID = row["PatientGUID"].ToString();
-                addedPatientList.Add(patientGUID);
-            }
-
-            if (addedPatientList.Count > 0)
-            {
-                if (MsgBox.Question(Application.ProductName, "Bạn có muốn thêm những bệnh nhân đã đánh dấu vào phòng chờ ?") == DialogResult.Yes)
-                {
-                    Result result = PhongChoBus.AddPhongCho(addedPatientList);
-                    if (!result.IsOK)
-                    {
-                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("PhongChoBus.AddPhongCho"), IconType.Error);
-                        Utility.WriteToTraceLog(result.GetErrorAsString("PhongChoBus.AddPhongCho"));
-                    }
-                }
-            }
-            else
-                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân cần đưa vào phòng chờ.", IconType.Information);
+            OnVaoPhongCho();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
@@ -555,6 +565,31 @@ namespace MM.Controls
         {
             SearchAsThread();
         }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnAddBenhNhanThanThuoc();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnDeleteBenhNhanThanThuoc();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnEditPatient();
+        }
+
+        private void moBenhNhanToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnOpentPatient();
+        }
+
+        private void vaoPhongChoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnVaoPhongCho();
+        }
         #endregion
 
         #region Working Thread
@@ -588,12 +623,5 @@ namespace MM.Controls
             }
         }
         #endregion
-
-        
-
-        
-
-        
-        
     }
 }

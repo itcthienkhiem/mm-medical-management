@@ -49,11 +49,14 @@
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnMerge = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.mergeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgDuplicatePatient)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
+            this.ctmAction.SuspendLayout();
             this.SuspendLayout();
             // 
             // dgDuplicatePatient
@@ -78,6 +81,7 @@
             this.FullAddress,
             this.GenderAsStr,
             this.Mobile});
+            this.dgDuplicatePatient.ContextMenuStrip = this.ctmAction;
             this.dgDuplicatePatient.DataSource = this.patientViewBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
@@ -245,6 +249,21 @@
             this.panel2.Size = new System.Drawing.Size(867, 399);
             this.panel2.TabIndex = 7;
             // 
+            // ctmAction
+            // 
+            this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mergeToolStripMenuItem});
+            this.ctmAction.Name = "ctmAction";
+            this.ctmAction.Size = new System.Drawing.Size(153, 48);
+            // 
+            // mergeToolStripMenuItem
+            // 
+            this.mergeToolStripMenuItem.Image = global::MM.Properties.Resources.Architecture_info_icon;
+            this.mergeToolStripMenuItem.Name = "mergeToolStripMenuItem";
+            this.mergeToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.mergeToolStripMenuItem.Text = "Merge";
+            this.mergeToolStripMenuItem.Click += new System.EventHandler(this.mergeToolStripMenuItem_Click);
+            // 
             // uDuplicatePatient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -260,6 +279,7 @@
             this.panel1.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.ctmAction.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -283,5 +303,7 @@
         private System.Windows.Forms.CheckBox chkTheoSoDienThoai;
         private System.Windows.Forms.Panel panel2;
         private System.Windows.Forms.Label lbKetQuaTimDuoc;
+        private System.Windows.Forms.ContextMenuStrip ctmAction;
+        private System.Windows.Forms.ToolStripMenuItem mergeToolStripMenuItem;
     }
 }
