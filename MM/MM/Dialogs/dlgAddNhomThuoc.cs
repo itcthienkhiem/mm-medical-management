@@ -103,6 +103,9 @@ namespace MM.Dialogs
                     btnOK.Enabled = _allowEdit;
                     tabControlPanel1.Enabled = _allowEdit;
                     panel1.Enabled = _allowEdit;
+
+                    addToolStripMenuItem.Enabled = _allowEdit;
+                    deleteToolStripMenuItem.Enabled = _allowEdit;
                 }
             }
             catch (Exception e)
@@ -377,6 +380,16 @@ namespace MM.Dialogs
                 row["Checked"] = chkChecked.Checked;
             }
         }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnAddThuoc();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnDeleteThuoc();
+        }
         #endregion
 
         #region Working Thread
@@ -415,6 +428,8 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
 
         
     }

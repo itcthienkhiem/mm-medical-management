@@ -433,6 +433,16 @@ namespace MM.Dialogs
                 }
             }
         }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnAddService();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnDeleteService();
+        }
         #endregion
 
         #region Working Thread
@@ -471,5 +481,7 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
     }
 }

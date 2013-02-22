@@ -58,6 +58,10 @@
             this.pageDanhSachThuoc = new DevComponents.DotNetBar.TabItem(this.components);
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
+            this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.tabNhomThuoc)).BeginInit();
             this.tabNhomThuoc.SuspendLayout();
             this.tabControlPanel1.SuspendLayout();
@@ -66,13 +70,14 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgThuoc)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thuocBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
+            this.ctmAction.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabNhomThuoc
             // 
             this.tabNhomThuoc.CanReorderTabs = true;
-            this.tabNhomThuoc.Controls.Add(this.tabControlPanel1);
             this.tabNhomThuoc.Controls.Add(this.tabControlPanel2);
+            this.tabNhomThuoc.Controls.Add(this.tabControlPanel1);
             this.tabNhomThuoc.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabNhomThuoc.Location = new System.Drawing.Point(0, 0);
             this.tabNhomThuoc.Name = "tabNhomThuoc";
@@ -253,6 +258,7 @@
             this.colChecked,
             this.maThuocDataGridViewTextBoxColumn,
             this.tenThuocDataGridViewTextBoxColumn});
+            this.dgThuoc.ContextMenuStrip = this.ctmAction;
             this.dgThuoc.DataSource = this.thuocBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
@@ -376,6 +382,36 @@
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
+            // ctmAction
+            // 
+            this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.deleteToolStripMenuItem});
+            this.ctmAction.Name = "cmtAction";
+            this.ctmAction.Size = new System.Drawing.Size(153, 76);
+            // 
+            // addToolStripMenuItem
+            // 
+            this.addToolStripMenuItem.Image = global::MM.Properties.Resources.add;
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addToolStripMenuItem.Text = "Thêm";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Image = global::MM.Properties.Resources.del;
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Text = "Xóa";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
             // dlgAddNhomThuoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -405,6 +441,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgThuoc)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.thuocBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.ctmAction.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -436,5 +473,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn tenThuocDataGridViewTextBoxColumn;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
+        protected System.Windows.Forms.ContextMenuStrip ctmAction;
+        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
     }
 }

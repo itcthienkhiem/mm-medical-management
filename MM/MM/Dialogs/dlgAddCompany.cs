@@ -111,6 +111,9 @@ namespace MM.Dialogs
                     tabControlPanel1.Enabled = _allowEdit;
                     btnAdd.Enabled = _allowEdit;
                     btnDelete.Enabled = _allowEdit;
+
+                    addToolStripMenuItem.Enabled = _allowEdit;
+                    deleteToolStripMenuItem.Enabled = _allowEdit;
                 }
             }
             catch (Exception e)
@@ -611,6 +614,31 @@ namespace MM.Dialogs
         {
             OnExportExcel();
         }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnAddMember();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnDeleteMember();
+        }
+
+        private void printPreviewToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnPrint(true);
+        }
+
+        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnPrint(false);
+        }
+
+        private void exportExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnExportExcel();
+        }
         #endregion
 
         #region Working Thread
@@ -649,5 +677,7 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
     }
 }

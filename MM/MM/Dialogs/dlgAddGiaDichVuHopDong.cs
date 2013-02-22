@@ -321,6 +321,18 @@ namespace MM.Dialogs
                 row["Checked"] = chkChecked.Checked;
             }
         }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnAdd();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnDelete();
+        }
         #endregion
+
+        
     }
 }
