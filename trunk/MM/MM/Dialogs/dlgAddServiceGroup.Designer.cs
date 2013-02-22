@@ -34,33 +34,38 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddServiceGroup));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtCode = new System.Windows.Forms.TextBox();
-            this.label22 = new System.Windows.Forms.Label();
+            this.txtNote = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
             this.txtName = new System.Windows.Forms.TextBox();
-            this.txtNote = new System.Windows.Forms.TextBox();
+            this.label22 = new System.Windows.Forms.Label();
+            this.txtCode = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
-            this.pService = new System.Windows.Forms.Panel();
-            this.btnDeleteService = new System.Windows.Forms.Button();
-            this.btnAddService = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
             this.chkCheckedService = new System.Windows.Forms.CheckBox();
             this.dgService = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.serviceServiceGroupViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataGridViewCheckBoxXColumn1 = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.serviceServiceGroupViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.pService = new System.Windows.Forms.Panel();
+            this.btnDeleteService = new System.Windows.Forms.Button();
+            this.btnAddService = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
+            this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.pService.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgService)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceServiceGroupViewBindingSource)).BeginInit();
+            this.pService.SuspendLayout();
+            this.ctmAction.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -80,50 +85,14 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin nhóm dịch vụ";
             // 
-            // label1
+            // txtNote
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(22, 24);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(92, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Mã nhóm dịch vụ:";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(18, 48);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(96, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Tên nhóm dịch vụ:";
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(67, 72);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(47, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Ghi chú:";
-            // 
-            // txtCode
-            // 
-            this.txtCode.Location = new System.Drawing.Point(120, 21);
-            this.txtCode.MaxLength = 50;
-            this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(150, 20);
-            this.txtCode.TabIndex = 3;
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.ForeColor = System.Drawing.Color.Red;
-            this.label22.Location = new System.Drawing.Point(274, 24);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(17, 13);
-            this.label22.TabIndex = 44;
-            this.label22.Text = "[*]";
+            this.txtNote.Location = new System.Drawing.Point(120, 69);
+            this.txtNote.MaxLength = 500;
+            this.txtNote.Multiline = true;
+            this.txtNote.Name = "txtNote";
+            this.txtNote.Size = new System.Drawing.Size(325, 66);
+            this.txtNote.TabIndex = 47;
             // 
             // label6
             // 
@@ -143,14 +112,50 @@
             this.txtName.Size = new System.Drawing.Size(325, 20);
             this.txtName.TabIndex = 45;
             // 
-            // txtNote
+            // label22
             // 
-            this.txtNote.Location = new System.Drawing.Point(120, 69);
-            this.txtNote.MaxLength = 500;
-            this.txtNote.Multiline = true;
-            this.txtNote.Name = "txtNote";
-            this.txtNote.Size = new System.Drawing.Size(325, 66);
-            this.txtNote.TabIndex = 47;
+            this.label22.AutoSize = true;
+            this.label22.ForeColor = System.Drawing.Color.Red;
+            this.label22.Location = new System.Drawing.Point(274, 24);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(17, 13);
+            this.label22.TabIndex = 44;
+            this.label22.Text = "[*]";
+            // 
+            // txtCode
+            // 
+            this.txtCode.Location = new System.Drawing.Point(120, 21);
+            this.txtCode.MaxLength = 50;
+            this.txtCode.Name = "txtCode";
+            this.txtCode.Size = new System.Drawing.Size(150, 20);
+            this.txtCode.TabIndex = 3;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(67, 72);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(47, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Ghi chú:";
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(18, 48);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(96, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Tên nhóm dịch vụ:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(22, 24);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(92, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Mã nhóm dịch vụ:";
             // 
             // panel1
             // 
@@ -160,40 +165,6 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(596, 300);
             this.panel1.TabIndex = 1;
-            // 
-            // pService
-            // 
-            this.pService.Controls.Add(this.btnDeleteService);
-            this.pService.Controls.Add(this.btnAddService);
-            this.pService.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pService.Location = new System.Drawing.Point(491, 0);
-            this.pService.Name = "pService";
-            this.pService.Size = new System.Drawing.Size(105, 300);
-            this.pService.TabIndex = 8;
-            // 
-            // btnDeleteService
-            // 
-            this.btnDeleteService.Image = global::MM.Properties.Resources.del;
-            this.btnDeleteService.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDeleteService.Location = new System.Drawing.Point(6, 34);
-            this.btnDeleteService.Name = "btnDeleteService";
-            this.btnDeleteService.Size = new System.Drawing.Size(93, 25);
-            this.btnDeleteService.TabIndex = 6;
-            this.btnDeleteService.Text = "    &Xóa";
-            this.btnDeleteService.UseVisualStyleBackColor = true;
-            this.btnDeleteService.Click += new System.EventHandler(this.btnDeleteService_Click);
-            // 
-            // btnAddService
-            // 
-            this.btnAddService.Image = global::MM.Properties.Resources.add;
-            this.btnAddService.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddService.Location = new System.Drawing.Point(6, 6);
-            this.btnAddService.Name = "btnAddService";
-            this.btnAddService.Size = new System.Drawing.Size(93, 25);
-            this.btnAddService.TabIndex = 5;
-            this.btnAddService.Text = "    &Thêm";
-            this.btnAddService.UseVisualStyleBackColor = true;
-            this.btnAddService.Click += new System.EventHandler(this.btnAddService_Click);
             // 
             // panel2
             // 
@@ -234,6 +205,7 @@
             this.dataGridViewCheckBoxXColumn1,
             this.codeDataGridViewTextBoxColumn,
             this.nameDataGridViewTextBoxColumn});
+            this.dgService.ContextMenuStrip = this.ctmAction;
             this.dgService.DataSource = this.serviceServiceGroupViewBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
@@ -255,10 +227,6 @@
             this.dgService.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgService.Size = new System.Drawing.Size(491, 300);
             this.dgService.TabIndex = 16;
-            // 
-            // serviceServiceGroupViewBindingSource
-            // 
-            this.serviceServiceGroupViewBindingSource.DataSource = typeof(MM.Databasae.Service_ServiceGroupView);
             // 
             // dataGridViewCheckBoxXColumn1
             // 
@@ -292,6 +260,44 @@
             this.nameDataGridViewTextBoxColumn.ReadOnly = true;
             this.nameDataGridViewTextBoxColumn.Width = 250;
             // 
+            // serviceServiceGroupViewBindingSource
+            // 
+            this.serviceServiceGroupViewBindingSource.DataSource = typeof(MM.Databasae.Service_ServiceGroupView);
+            // 
+            // pService
+            // 
+            this.pService.Controls.Add(this.btnDeleteService);
+            this.pService.Controls.Add(this.btnAddService);
+            this.pService.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pService.Location = new System.Drawing.Point(491, 0);
+            this.pService.Name = "pService";
+            this.pService.Size = new System.Drawing.Size(105, 300);
+            this.pService.TabIndex = 8;
+            // 
+            // btnDeleteService
+            // 
+            this.btnDeleteService.Image = global::MM.Properties.Resources.del;
+            this.btnDeleteService.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDeleteService.Location = new System.Drawing.Point(6, 34);
+            this.btnDeleteService.Name = "btnDeleteService";
+            this.btnDeleteService.Size = new System.Drawing.Size(93, 25);
+            this.btnDeleteService.TabIndex = 6;
+            this.btnDeleteService.Text = "    &Xóa";
+            this.btnDeleteService.UseVisualStyleBackColor = true;
+            this.btnDeleteService.Click += new System.EventHandler(this.btnDeleteService_Click);
+            // 
+            // btnAddService
+            // 
+            this.btnAddService.Image = global::MM.Properties.Resources.add;
+            this.btnAddService.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddService.Location = new System.Drawing.Point(6, 6);
+            this.btnAddService.Name = "btnAddService";
+            this.btnAddService.Size = new System.Drawing.Size(93, 25);
+            this.btnAddService.TabIndex = 5;
+            this.btnAddService.Text = "    &Thêm";
+            this.btnAddService.UseVisualStyleBackColor = true;
+            this.btnAddService.Click += new System.EventHandler(this.btnAddService_Click);
+            // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -316,6 +322,36 @@
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
+            // ctmAction
+            // 
+            this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.deleteToolStripMenuItem});
+            this.ctmAction.Name = "cmtAction";
+            this.ctmAction.Size = new System.Drawing.Size(153, 76);
+            // 
+            // addToolStripMenuItem
+            // 
+            this.addToolStripMenuItem.Image = global::MM.Properties.Resources.add;
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addToolStripMenuItem.Text = "Thêm";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Image = global::MM.Properties.Resources.del;
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Text = "Xóa";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
             // dlgAddServiceGroup
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -339,11 +375,12 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.panel1.ResumeLayout(false);
-            this.pService.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgService)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceServiceGroupViewBindingSource)).EndInit();
+            this.pService.ResumeLayout(false);
+            this.ctmAction.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -372,5 +409,9 @@
         private System.Windows.Forms.BindingSource serviceServiceGroupViewBindingSource;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
+        protected System.Windows.Forms.ContextMenuStrip ctmAction;
+        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
     }
 }

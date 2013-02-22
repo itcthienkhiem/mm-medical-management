@@ -35,7 +35,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddToaThuoc));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.chkNgayTaiKham = new System.Windows.Forms.CheckBox();
             this.raToaSanKhoa = new System.Windows.Forms.RadioButton();
             this.raToaChung = new System.Windows.Forms.RadioButton();
             this.label12 = new System.Windows.Forms.Label();
@@ -63,6 +62,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
+            this.chkNgayTaiKham = new System.Windows.Forms.CheckBox();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.dgChiTiet = new DevComponents.DotNetBar.Controls.DataGridViewX();
@@ -76,10 +76,17 @@
             this.btnAddMember = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.chkChecked = new System.Windows.Forms.CheckBox();
+            this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgChiTiet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chiTietToaThuocViewBindingSource)).BeginInit();
+            this.ctmAction.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -117,19 +124,6 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin toa thuốc";
-            // 
-            // chkNgayTaiKham
-            // 
-            this.chkNgayTaiKham.AutoSize = true;
-            this.chkNgayTaiKham.Checked = true;
-            this.chkNgayTaiKham.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkNgayTaiKham.Location = new System.Drawing.Point(221, 47);
-            this.chkNgayTaiKham.Name = "chkNgayTaiKham";
-            this.chkNgayTaiKham.Size = new System.Drawing.Size(94, 17);
-            this.chkNgayTaiKham.TabIndex = 65;
-            this.chkNgayTaiKham.Text = "Ngày tái khám";
-            this.chkNgayTaiKham.UseVisualStyleBackColor = true;
-            this.chkNgayTaiKham.CheckedChanged += new System.EventHandler(this.chkNgayTaiKham_CheckedChanged);
             // 
             // raToaSanKhoa
             // 
@@ -382,6 +376,19 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Mã toa thuốc:";
             // 
+            // chkNgayTaiKham
+            // 
+            this.chkNgayTaiKham.AutoSize = true;
+            this.chkNgayTaiKham.Checked = true;
+            this.chkNgayTaiKham.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkNgayTaiKham.Location = new System.Drawing.Point(221, 47);
+            this.chkNgayTaiKham.Name = "chkNgayTaiKham";
+            this.chkNgayTaiKham.Size = new System.Drawing.Size(94, 17);
+            this.chkNgayTaiKham.TabIndex = 65;
+            this.chkNgayTaiKham.Text = "Ngày tái khám";
+            this.chkNgayTaiKham.UseVisualStyleBackColor = true;
+            this.chkNgayTaiKham.CheckedChanged += new System.EventHandler(this.chkNgayTaiKham_CheckedChanged);
+            // 
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
@@ -427,6 +434,7 @@
             this.soLuongDataGridViewTextBoxColumn,
             this.lieuDungDataGridViewTextBoxColumn,
             this.noteDataGridViewTextBoxColumn});
+            this.dgChiTiet.ContextMenuStrip = this.ctmAction;
             this.dgChiTiet.DataSource = this.chiTietToaThuocViewBindingSource;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
@@ -547,6 +555,51 @@
             this.chkChecked.TabIndex = 15;
             this.chkChecked.UseVisualStyleBackColor = true;
             // 
+            // ctmAction
+            // 
+            this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.editToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.deleteToolStripMenuItem});
+            this.ctmAction.Name = "cmtAction";
+            this.ctmAction.Size = new System.Drawing.Size(153, 104);
+            // 
+            // addToolStripMenuItem
+            // 
+            this.addToolStripMenuItem.Image = global::MM.Properties.Resources.add;
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addToolStripMenuItem.Text = "Thêm";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Image = global::MM.Properties.Resources.edit;
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.editToolStripMenuItem.Text = "Sửa";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Image = global::MM.Properties.Resources.del;
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Text = "Xóa";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
             // dlgAddToaThuoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -576,6 +629,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgChiTiet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.chiTietToaThuocViewBindingSource)).EndInit();
+            this.ctmAction.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -627,5 +681,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn lieuDungDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
         private System.Windows.Forms.CheckBox chkNgayTaiKham;
+        protected System.Windows.Forms.ContextMenuStrip ctmAction;
+        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
     }
 }

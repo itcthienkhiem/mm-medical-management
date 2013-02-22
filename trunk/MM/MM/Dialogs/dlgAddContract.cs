@@ -138,12 +138,29 @@ namespace MM.Dialogs
                     panel5.Enabled = !_isLock;
                     dgMembers.ReadOnly = true;
                     dgService.ReadOnly = true;
+
                     btnAddMember.Enabled = !_isLock;
                     btnDeleteMember.Enabled = !_isLock;
+                    btnImportDSNV.Enabled = !_isLock;
+
+                    themNVToolStripMenuItem.Enabled = !_isLock;
+                    xoaNVToolStripMenuItem.Enabled = !_isLock;
+                    nhapDVHDToolStripMenuItem.Enabled = !_isLock;
+
+
                     btnAddService.Enabled = !_isLock;
                     btnDeleteService.Enabled = !_isLock;
+
+                    themDVToolStripMenuItem.Enabled = !_isLock;
+                    xoaDVToolStripMenuItem.Enabled = !_isLock;
+
                     btnOK.Enabled = !_isLock;
-                    btnImportDSNV.Enabled = !_isLock;
+
+                    addToolStripMenuItem.Enabled = !_isLock;
+                    editToolStripMenuItem.Enabled = !_isLock;
+                    deleteToolStripMenuItem.Enabled = !_isLock;
+
+
                 }
 
                 DisplayDetailAsThread(_contract.CompanyContractGUID.ToString());
@@ -159,11 +176,24 @@ namespace MM.Dialogs
                     dtpkEndDate.Enabled = _allowEdit;
                     numSoTien.Enabled = _allowEdit;
                     numDatCoc.Enabled = _allowEdit;
+
                     panel5.Enabled = _allowEdit;
+
+                    addToolStripMenuItem.Enabled = _allowEdit;
+                    editToolStripMenuItem.Enabled = _allowEdit;
+                    deleteToolStripMenuItem.Enabled = _allowEdit;
+
                     btnAddMember.Enabled = _allowEdit;
                     btnDeleteMember.Enabled = _allowEdit;
+
+                    themNVToolStripMenuItem.Enabled = _allowEdit;
+                    xoaNVToolStripMenuItem.Enabled = _allowEdit;
+
                     btnAddService.Enabled = _allowEdit;
                     btnDeleteService.Enabled = _allowEdit;
+
+                    themDVToolStripMenuItem.Enabled = _allowEdit;
+                    xoaDVToolStripMenuItem.Enabled = _allowEdit;
                 }
             }
             catch (Exception e)
@@ -1628,6 +1658,76 @@ namespace MM.Dialogs
         private void dgGiaDichVu_SelectionChanged(object sender, EventArgs e)
         {
             DisplayDichVuCon();
+        }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnAddGiaDichVu();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnEditGiaDichVu();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnDeleteGiaDichVu();
+        }
+
+        private void themDVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnAddService();
+        }
+
+        private void xoaDVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnDeleteService();
+        }
+
+        private void themNVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnAddMember();
+        }
+
+        private void xoaNVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnDeleteMember();
+        }
+
+        private void xemBanInDSNVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnPrint(true);
+        }
+
+        private void inDSNVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnPrint(false);
+        }
+
+        private void xuatExcelDSNVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnExportExcel();
+        }
+
+        private void xemBanInChecklistToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnPrintCheckList(true);
+        }
+
+        private void inChecklistToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnPrintCheckList(false);
+        }
+
+        private void xuatExcelChecklistTtoolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnExportExcelCheckList();
+        }
+
+        private void nhapDVHDToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnImportDVHD();
         }
         #endregion
 

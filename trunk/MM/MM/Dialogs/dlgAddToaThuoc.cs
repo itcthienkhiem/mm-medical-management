@@ -238,6 +238,10 @@ namespace MM.Dialogs
                     btnAddMember.Enabled = _allowEdit;
                     btnEdit.Enabled = _allowEdit;
                     btnDeleteMember.Enabled = _allowEdit;
+
+                    addToolStripMenuItem.Enabled = _allowEdit;
+                    editToolStripMenuItem.Enabled = _allowEdit;
+                    deleteToolStripMenuItem.Enabled = _allowEdit;
                 }
             }
             catch (Exception e)
@@ -660,6 +664,21 @@ namespace MM.Dialogs
         {
             dtpkNgayTaiKham.Enabled = chkNgayTaiKham.Checked;
         }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnAddThuoc();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnEditThuoc();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnDeleteThuoc();
+        }
         #endregion
 
         #region Working Thread
@@ -680,5 +699,7 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
     }
 }

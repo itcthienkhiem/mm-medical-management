@@ -29,17 +29,17 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddContract));
             this.tabContract = new DevComponents.DotNetBar.TabControl();
             this.tabControlPanel3 = new DevComponents.DotNetBar.TabControlPanel();
@@ -55,6 +55,8 @@
             this.panel9 = new System.Windows.Forms.Panel();
             this.panel12 = new System.Windows.Forms.Panel();
             this.dgDichVuCon = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.codeDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dichVuConViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel11 = new System.Windows.Forms.Panel();
             this.label10 = new System.Windows.Forms.Label();
@@ -127,8 +129,34 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.imgList = new System.Windows.Forms.ImageList(this.components);
             this._printDialog = new System.Windows.Forms.PrintDialog();
-            this.codeDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctmAction2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.themDVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.xoaDVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctmAction3 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.themNVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.xoaNVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.xemBanInDSNVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.inDSNVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.xuatExcelDSNVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.xemBanInChecklistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.inChecklistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.xuatExcelChecklistTtoolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
+            this.nhapDVHDToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.tabContract)).BeginInit();
             this.tabContract.SuspendLayout();
             this.tabControlPanel3.SuspendLayout();
@@ -158,14 +186,17 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgMembers)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.contractMemberViewBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
+            this.ctmAction.SuspendLayout();
+            this.ctmAction2.SuspendLayout();
+            this.ctmAction3.SuspendLayout();
             this.SuspendLayout();
             // 
             // tabContract
             // 
             this.tabContract.CanReorderTabs = true;
+            this.tabContract.Controls.Add(this.tabControlPanel2);
             this.tabContract.Controls.Add(this.tabControlPanel3);
             this.tabContract.Controls.Add(this.tabControlPanel1);
-            this.tabContract.Controls.Add(this.tabControlPanel2);
             this.tabContract.Dock = System.Windows.Forms.DockStyle.Top;
             this.tabContract.Location = new System.Drawing.Point(0, 0);
             this.tabContract.Name = "tabContract";
@@ -237,29 +268,30 @@
             this.dgGiaDichVu.AllowUserToDeleteRows = false;
             this.dgGiaDichVu.AllowUserToOrderColumns = true;
             this.dgGiaDichVu.AutoGenerateColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgGiaDichVu.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle12.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle12.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle12.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle12.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle12.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle12.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgGiaDichVu.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle12;
             this.dgGiaDichVu.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgGiaDichVu.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewCheckBoxXColumn2,
             this.codeDataGridViewTextBoxColumn1,
             this.nameDataGridViewTextBoxColumn1,
             this.giaDataGridViewTextBoxColumn});
+            this.dgGiaDichVu.ContextMenuStrip = this.ctmAction;
             this.dgGiaDichVu.DataSource = this.giaDichVuHopDongViewBindingSource;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgGiaDichVu.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgGiaDichVu.DefaultCellStyle = dataGridViewCellStyle14;
             this.dgGiaDichVu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgGiaDichVu.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgGiaDichVu.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -303,10 +335,10 @@
             // giaDataGridViewTextBoxColumn
             // 
             this.giaDataGridViewTextBoxColumn.DataPropertyName = "Gia";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "N0";
-            dataGridViewCellStyle2.NullValue = null;
-            this.giaDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle13.Format = "N0";
+            dataGridViewCellStyle13.NullValue = null;
+            this.giaDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle13;
             this.giaDataGridViewTextBoxColumn.HeaderText = "Giá";
             this.giaDataGridViewTextBoxColumn.Name = "giaDataGridViewTextBoxColumn";
             this.giaDataGridViewTextBoxColumn.ReadOnly = true;
@@ -341,27 +373,27 @@
             this.dgDichVuCon.AllowUserToDeleteRows = false;
             this.dgDichVuCon.AllowUserToOrderColumns = true;
             this.dgDichVuCon.AutoGenerateColumns = false;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgDichVuCon.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgDichVuCon.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle7;
             this.dgDichVuCon.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgDichVuCon.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.codeDataGridViewTextBoxColumn2,
             this.nameDataGridViewTextBoxColumn2});
             this.dgDichVuCon.DataSource = this.dichVuConViewBindingSource;
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgDichVuCon.DefaultCellStyle = dataGridViewCellStyle5;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle9.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgDichVuCon.DefaultCellStyle = dataGridViewCellStyle9;
             this.dgDichVuCon.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgDichVuCon.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgDichVuCon.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -373,6 +405,22 @@
             this.dgDichVuCon.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgDichVuCon.Size = new System.Drawing.Size(718, 181);
             this.dgDichVuCon.TabIndex = 3;
+            // 
+            // codeDataGridViewTextBoxColumn2
+            // 
+            this.codeDataGridViewTextBoxColumn2.DataPropertyName = "Code";
+            this.codeDataGridViewTextBoxColumn2.HeaderText = "Mã dịch vụ";
+            this.codeDataGridViewTextBoxColumn2.Name = "codeDataGridViewTextBoxColumn2";
+            this.codeDataGridViewTextBoxColumn2.ReadOnly = true;
+            this.codeDataGridViewTextBoxColumn2.Width = 150;
+            // 
+            // nameDataGridViewTextBoxColumn2
+            // 
+            this.nameDataGridViewTextBoxColumn2.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn2.HeaderText = "Tên dịch vụ";
+            this.nameDataGridViewTextBoxColumn2.Name = "nameDataGridViewTextBoxColumn2";
+            this.nameDataGridViewTextBoxColumn2.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn2.Width = 300;
             // 
             // dichVuConViewBindingSource
             // 
@@ -782,14 +830,14 @@
             this.dgService.AllowUserToDeleteRows = false;
             this.dgService.AllowUserToOrderColumns = true;
             this.dgService.AutoGenerateColumns = false;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgService.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle15.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle15.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle15.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle15.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle15.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle15.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle15.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgService.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle15;
             this.dgService.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgService.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.dataGridViewCheckBoxXColumn1,
@@ -797,15 +845,16 @@
             this.nameDataGridViewTextBoxColumn,
             this.Using,
             this.NguoiChuyenNhuong});
+            this.dgService.ContextMenuStrip = this.ctmAction2;
             this.dgService.DataSource = this.companyCheckListViewBindingSource;
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgService.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle16.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle16.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle16.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle16.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle16.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle16.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle16.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgService.DefaultCellStyle = dataGridViewCellStyle16;
             this.dgService.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgService.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgService.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -943,14 +992,14 @@
             this.dgMembers.AllowUserToDeleteRows = false;
             this.dgMembers.AllowUserToOrderColumns = true;
             this.dgMembers.AutoGenerateColumns = false;
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgMembers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgMembers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgMembers.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgMembers.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colChecked,
@@ -958,15 +1007,16 @@
             this.fullNameDataGridViewTextBoxColumn,
             this.dobStrDataGridViewTextBoxColumn,
             this.genderAsStrDataGridViewTextBoxColumn});
+            this.dgMembers.ContextMenuStrip = this.ctmAction3;
             this.dgMembers.DataSource = this.contractMemberViewBindingSource;
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle11.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle11.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle11.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle11.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle11.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgMembers.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgMembers.DefaultCellStyle = dataGridViewCellStyle18;
             this.dgMembers.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgMembers.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgMembers.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -1010,8 +1060,8 @@
             // dobStrDataGridViewTextBoxColumn
             // 
             this.dobStrDataGridViewTextBoxColumn.DataPropertyName = "DobStr";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dobStrDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dobStrDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.dobStrDataGridViewTextBoxColumn.HeaderText = "Ngày sinh";
             this.dobStrDataGridViewTextBoxColumn.Name = "dobStrDataGridViewTextBoxColumn";
             this.dobStrDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1020,8 +1070,8 @@
             // genderAsStrDataGridViewTextBoxColumn
             // 
             this.genderAsStrDataGridViewTextBoxColumn.DataPropertyName = "GenderAsStr";
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.genderAsStrDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.genderAsStrDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle17;
             this.genderAsStrDataGridViewTextBoxColumn.HeaderText = "Giới tính";
             this.genderAsStrDataGridViewTextBoxColumn.Name = "genderAsStrDataGridViewTextBoxColumn";
             this.genderAsStrDataGridViewTextBoxColumn.ReadOnly = true;
@@ -1050,7 +1100,7 @@
             // 
             // btnImportDSNV
             // 
-            this.btnImportDSNV.Image = ((System.Drawing.Image)(resources.GetObject("btnImportDSNV.Image")));
+            this.btnImportDSNV.Image = global::MM.Properties.Resources.Excel_icon;
             this.btnImportDSNV.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnImportDSNV.Location = new System.Drawing.Point(6, 240);
             this.btnImportDSNV.Name = "btnImportDSNV";
@@ -1198,21 +1248,215 @@
             // 
             this._printDialog.UseEXDialog = true;
             // 
-            // codeDataGridViewTextBoxColumn2
+            // ctmAction
             // 
-            this.codeDataGridViewTextBoxColumn2.DataPropertyName = "Code";
-            this.codeDataGridViewTextBoxColumn2.HeaderText = "Mã dịch vụ";
-            this.codeDataGridViewTextBoxColumn2.Name = "codeDataGridViewTextBoxColumn2";
-            this.codeDataGridViewTextBoxColumn2.ReadOnly = true;
-            this.codeDataGridViewTextBoxColumn2.Width = 150;
+            this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.editToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.deleteToolStripMenuItem});
+            this.ctmAction.Name = "cmtAction";
+            this.ctmAction.Size = new System.Drawing.Size(112, 82);
             // 
-            // nameDataGridViewTextBoxColumn2
+            // addToolStripMenuItem
             // 
-            this.nameDataGridViewTextBoxColumn2.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn2.HeaderText = "Tên dịch vụ";
-            this.nameDataGridViewTextBoxColumn2.Name = "nameDataGridViewTextBoxColumn2";
-            this.nameDataGridViewTextBoxColumn2.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn2.Width = 300;
+            this.addToolStripMenuItem.Image = global::MM.Properties.Resources.add;
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.addToolStripMenuItem.Text = "Thêm";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(108, 6);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Image = global::MM.Properties.Resources.edit;
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.editToolStripMenuItem.Text = "Sửa";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(108, 6);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Image = global::MM.Properties.Resources.del;
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.deleteToolStripMenuItem.Text = "Xóa";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
+            // ctmAction2
+            // 
+            this.ctmAction2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.themDVToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.xoaDVToolStripMenuItem});
+            this.ctmAction2.Name = "cmtAction";
+            this.ctmAction2.Size = new System.Drawing.Size(112, 54);
+            // 
+            // themDVToolStripMenuItem
+            // 
+            this.themDVToolStripMenuItem.Image = global::MM.Properties.Resources.add;
+            this.themDVToolStripMenuItem.Name = "themDVToolStripMenuItem";
+            this.themDVToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.themDVToolStripMenuItem.Text = "Thêm";
+            this.themDVToolStripMenuItem.Click += new System.EventHandler(this.themDVToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(108, 6);
+            // 
+            // xoaDVToolStripMenuItem
+            // 
+            this.xoaDVToolStripMenuItem.Image = global::MM.Properties.Resources.del;
+            this.xoaDVToolStripMenuItem.Name = "xoaDVToolStripMenuItem";
+            this.xoaDVToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.xoaDVToolStripMenuItem.Text = "Xóa";
+            this.xoaDVToolStripMenuItem.Click += new System.EventHandler(this.xoaDVToolStripMenuItem_Click);
+            // 
+            // ctmAction3
+            // 
+            this.ctmAction3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.themNVToolStripMenuItem,
+            this.toolStripSeparator4,
+            this.xoaNVToolStripMenuItem,
+            this.toolStripSeparator5,
+            this.xemBanInDSNVToolStripMenuItem,
+            this.toolStripSeparator6,
+            this.inDSNVToolStripMenuItem,
+            this.toolStripSeparator7,
+            this.xuatExcelDSNVToolStripMenuItem,
+            this.toolStripSeparator8,
+            this.xemBanInChecklistToolStripMenuItem,
+            this.toolStripSeparator9,
+            this.inChecklistToolStripMenuItem,
+            this.toolStripSeparator10,
+            this.xuatExcelChecklistTtoolStripMenuItem,
+            this.toolStripSeparator11,
+            this.nhapDVHDToolStripMenuItem});
+            this.ctmAction3.Name = "cmtAction";
+            this.ctmAction3.Size = new System.Drawing.Size(184, 250);
+            // 
+            // themNVToolStripMenuItem
+            // 
+            this.themNVToolStripMenuItem.Image = global::MM.Properties.Resources.add;
+            this.themNVToolStripMenuItem.Name = "themNVToolStripMenuItem";
+            this.themNVToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.themNVToolStripMenuItem.Text = "Thêm";
+            this.themNVToolStripMenuItem.Click += new System.EventHandler(this.themNVToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(180, 6);
+            // 
+            // xoaNVToolStripMenuItem
+            // 
+            this.xoaNVToolStripMenuItem.Image = global::MM.Properties.Resources.del;
+            this.xoaNVToolStripMenuItem.Name = "xoaNVToolStripMenuItem";
+            this.xoaNVToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.xoaNVToolStripMenuItem.Text = "Xóa";
+            this.xoaNVToolStripMenuItem.Click += new System.EventHandler(this.xoaNVToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(180, 6);
+            // 
+            // xemBanInDSNVToolStripMenuItem
+            // 
+            this.xemBanInDSNVToolStripMenuItem.Image = global::MM.Properties.Resources.Actions_print_preview_icon;
+            this.xemBanInDSNVToolStripMenuItem.Name = "xemBanInDSNVToolStripMenuItem";
+            this.xemBanInDSNVToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.xemBanInDSNVToolStripMenuItem.Text = "Xem bản in DSNV";
+            this.xemBanInDSNVToolStripMenuItem.Click += new System.EventHandler(this.xemBanInDSNVToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(180, 6);
+            // 
+            // inDSNVToolStripMenuItem
+            // 
+            this.inDSNVToolStripMenuItem.Image = global::MM.Properties.Resources.Printer_icon__1_;
+            this.inDSNVToolStripMenuItem.Name = "inDSNVToolStripMenuItem";
+            this.inDSNVToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.inDSNVToolStripMenuItem.Text = "In DSNV";
+            this.inDSNVToolStripMenuItem.Click += new System.EventHandler(this.inDSNVToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(180, 6);
+            // 
+            // xuatExcelDSNVToolStripMenuItem
+            // 
+            this.xuatExcelDSNVToolStripMenuItem.Image = global::MM.Properties.Resources.page_excel_icon;
+            this.xuatExcelDSNVToolStripMenuItem.Name = "xuatExcelDSNVToolStripMenuItem";
+            this.xuatExcelDSNVToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.xuatExcelDSNVToolStripMenuItem.Text = "Xuất Excel DSNV";
+            this.xuatExcelDSNVToolStripMenuItem.Click += new System.EventHandler(this.xuatExcelDSNVToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(180, 6);
+            // 
+            // xemBanInChecklistToolStripMenuItem
+            // 
+            this.xemBanInChecklistToolStripMenuItem.Image = global::MM.Properties.Resources.Actions_print_preview_icon;
+            this.xemBanInChecklistToolStripMenuItem.Name = "xemBanInChecklistToolStripMenuItem";
+            this.xemBanInChecklistToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.xemBanInChecklistToolStripMenuItem.Text = "Xem bản in check list";
+            this.xemBanInChecklistToolStripMenuItem.Click += new System.EventHandler(this.xemBanInChecklistToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(180, 6);
+            // 
+            // inChecklistToolStripMenuItem
+            // 
+            this.inChecklistToolStripMenuItem.Image = global::MM.Properties.Resources.Printer_icon__1_;
+            this.inChecklistToolStripMenuItem.Name = "inChecklistToolStripMenuItem";
+            this.inChecklistToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.inChecklistToolStripMenuItem.Text = "In check list";
+            this.inChecklistToolStripMenuItem.Click += new System.EventHandler(this.inChecklistToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(180, 6);
+            // 
+            // xuatExcelChecklistTtoolStripMenuItem
+            // 
+            this.xuatExcelChecklistTtoolStripMenuItem.Image = global::MM.Properties.Resources.page_excel_icon;
+            this.xuatExcelChecklistTtoolStripMenuItem.Name = "xuatExcelChecklistTtoolStripMenuItem";
+            this.xuatExcelChecklistTtoolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.xuatExcelChecklistTtoolStripMenuItem.Text = "Xuất Excel check list";
+            this.xuatExcelChecklistTtoolStripMenuItem.Click += new System.EventHandler(this.xuatExcelChecklistTtoolStripMenuItem_Click);
+            // 
+            // toolStripSeparator11
+            // 
+            this.toolStripSeparator11.Name = "toolStripSeparator11";
+            this.toolStripSeparator11.Size = new System.Drawing.Size(180, 6);
+            // 
+            // nhapDVHDToolStripMenuItem
+            // 
+            this.nhapDVHDToolStripMenuItem.Image = global::MM.Properties.Resources.Excel_icon;
+            this.nhapDVHDToolStripMenuItem.Name = "nhapDVHDToolStripMenuItem";
+            this.nhapDVHDToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.nhapDVHDToolStripMenuItem.Text = "Nhập DVHĐ";
+            this.nhapDVHDToolStripMenuItem.Click += new System.EventHandler(this.nhapDVHDToolStripMenuItem_Click);
             // 
             // dlgAddContract
             // 
@@ -1267,6 +1511,9 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgMembers)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.contractMemberViewBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
+            this.ctmAction.ResumeLayout(false);
+            this.ctmAction2.ResumeLayout(false);
+            this.ctmAction3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1361,6 +1608,34 @@
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn2;
+        protected System.Windows.Forms.ContextMenuStrip ctmAction;
+        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        protected System.Windows.Forms.ContextMenuStrip ctmAction2;
+        private System.Windows.Forms.ToolStripMenuItem themDVToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem xoaDVToolStripMenuItem;
+        protected System.Windows.Forms.ContextMenuStrip ctmAction3;
+        private System.Windows.Forms.ToolStripMenuItem themNVToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem xoaNVToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripMenuItem xemBanInDSNVToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripMenuItem inDSNVToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripMenuItem xuatExcelDSNVToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ToolStripMenuItem xemBanInChecklistToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
+        private System.Windows.Forms.ToolStripMenuItem inChecklistToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
+        private System.Windows.Forms.ToolStripMenuItem xuatExcelChecklistTtoolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
+        private System.Windows.Forms.ToolStripMenuItem nhapDVHDToolStripMenuItem;
 
     }
 }
