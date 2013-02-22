@@ -40,6 +40,9 @@ namespace MM.Controls
         {
             btnPrint.Enabled = Global.AllowPrintHoaDonDichVu || Global.AllowPrintHoaDonThuoc ||
                 Global.AllowPrintHoaDonXuatTruoc || Global.AllowPrintHoaDonHopDong;
+
+            printToolStripMenuItem.Enabled = Global.AllowPrintHoaDonDichVu || Global.AllowPrintHoaDonThuoc ||
+                Global.AllowPrintHoaDonXuatTruoc || Global.AllowPrintHoaDonHopDong;
         }
 
         public void DisplayAsThread()
@@ -453,6 +456,11 @@ namespace MM.Controls
 
             DisplayAsThread();
         }
+
+        private void printToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnPrint();
+        }
         #endregion
 
         #region Working Thread
@@ -474,5 +482,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }

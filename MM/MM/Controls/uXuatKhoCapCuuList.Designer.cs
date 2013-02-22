@@ -38,6 +38,11 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgNhapKhoCapCuu = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.ngayXuatDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tenCapCuuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.soLuongDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.xuatKhoCapCuuViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel2 = new System.Windows.Forms.Panel();
             this.dtpkDenNgay = new System.Windows.Forms.DateTimePicker();
@@ -47,16 +52,16 @@
             this.raTuNgayDenNgay = new System.Windows.Forms.RadioButton();
             this.raTenCapCuu = new System.Windows.Forms.RadioButton();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.ngayXuatDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tenCapCuuDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.soLuongDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgNhapKhoCapCuu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.xuatKhoCapCuuViewBindingSource)).BeginInit();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
+            this.ctmAction.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -124,6 +129,7 @@
             this.tenCapCuuDataGridViewTextBoxColumn,
             this.soLuongDataGridViewTextBoxColumn,
             this.noteDataGridViewTextBoxColumn});
+            this.dgNhapKhoCapCuu.ContextMenuStrip = this.ctmAction;
             this.dgNhapKhoCapCuu.DataSource = this.xuatKhoCapCuuViewBindingSource;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
@@ -144,6 +150,54 @@
             this.dgNhapKhoCapCuu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgNhapKhoCapCuu.Size = new System.Drawing.Size(973, 336);
             this.dgNhapKhoCapCuu.TabIndex = 4;
+            // 
+            // colChecked
+            // 
+            this.colChecked.DataPropertyName = "Checked";
+            this.colChecked.HeaderText = "";
+            this.colChecked.Name = "colChecked";
+            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colChecked.Width = 40;
+            // 
+            // ngayXuatDataGridViewTextBoxColumn
+            // 
+            this.ngayXuatDataGridViewTextBoxColumn.DataPropertyName = "NgayXuat";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Format = "dd/MM/yyyy HH:mm:ss";
+            dataGridViewCellStyle2.NullValue = null;
+            this.ngayXuatDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ngayXuatDataGridViewTextBoxColumn.HeaderText = "Ngày xuất";
+            this.ngayXuatDataGridViewTextBoxColumn.Name = "ngayXuatDataGridViewTextBoxColumn";
+            this.ngayXuatDataGridViewTextBoxColumn.ReadOnly = true;
+            this.ngayXuatDataGridViewTextBoxColumn.Width = 120;
+            // 
+            // tenCapCuuDataGridViewTextBoxColumn
+            // 
+            this.tenCapCuuDataGridViewTextBoxColumn.DataPropertyName = "TenCapCuu";
+            this.tenCapCuuDataGridViewTextBoxColumn.HeaderText = "Tên cấp cứu";
+            this.tenCapCuuDataGridViewTextBoxColumn.Name = "tenCapCuuDataGridViewTextBoxColumn";
+            this.tenCapCuuDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tenCapCuuDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // soLuongDataGridViewTextBoxColumn
+            // 
+            this.soLuongDataGridViewTextBoxColumn.DataPropertyName = "SoLuong";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "N0";
+            dataGridViewCellStyle3.NullValue = null;
+            this.soLuongDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
+            this.soLuongDataGridViewTextBoxColumn.HeaderText = "Số lượng xuất";
+            this.soLuongDataGridViewTextBoxColumn.Name = "soLuongDataGridViewTextBoxColumn";
+            this.soLuongDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // noteDataGridViewTextBoxColumn
+            // 
+            this.noteDataGridViewTextBoxColumn.DataPropertyName = "Note";
+            this.noteDataGridViewTextBoxColumn.HeaderText = "Ghi chú";
+            this.noteDataGridViewTextBoxColumn.Name = "noteDataGridViewTextBoxColumn";
+            this.noteDataGridViewTextBoxColumn.ReadOnly = true;
+            this.noteDataGridViewTextBoxColumn.Width = 250;
             // 
             // xuatKhoCapCuuViewBindingSource
             // 
@@ -236,53 +290,35 @@
             this.panel3.Size = new System.Drawing.Size(973, 336);
             this.panel3.TabIndex = 7;
             // 
-            // colChecked
+            // ctmAction
             // 
-            this.colChecked.DataPropertyName = "Checked";
-            this.colChecked.HeaderText = "";
-            this.colChecked.Name = "colChecked";
-            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.colChecked.Width = 40;
+            this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.deleteToolStripMenuItem});
+            this.ctmAction.Name = "cmtAction";
+            this.ctmAction.Size = new System.Drawing.Size(153, 76);
             // 
-            // ngayXuatDataGridViewTextBoxColumn
+            // addToolStripMenuItem
             // 
-            this.ngayXuatDataGridViewTextBoxColumn.DataPropertyName = "NgayXuat";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.Format = "dd/MM/yyyy HH:mm:ss";
-            dataGridViewCellStyle2.NullValue = null;
-            this.ngayXuatDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
-            this.ngayXuatDataGridViewTextBoxColumn.HeaderText = "Ngày xuất";
-            this.ngayXuatDataGridViewTextBoxColumn.Name = "ngayXuatDataGridViewTextBoxColumn";
-            this.ngayXuatDataGridViewTextBoxColumn.ReadOnly = true;
-            this.ngayXuatDataGridViewTextBoxColumn.Width = 120;
+            this.addToolStripMenuItem.Image = global::MM.Properties.Resources.add;
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addToolStripMenuItem.Text = "Thêm";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
-            // tenCapCuuDataGridViewTextBoxColumn
+            // toolStripSeparator1
             // 
-            this.tenCapCuuDataGridViewTextBoxColumn.DataPropertyName = "TenCapCuu";
-            this.tenCapCuuDataGridViewTextBoxColumn.HeaderText = "Tên cấp cứu";
-            this.tenCapCuuDataGridViewTextBoxColumn.Name = "tenCapCuuDataGridViewTextBoxColumn";
-            this.tenCapCuuDataGridViewTextBoxColumn.ReadOnly = true;
-            this.tenCapCuuDataGridViewTextBoxColumn.Width = 200;
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
-            // soLuongDataGridViewTextBoxColumn
+            // deleteToolStripMenuItem
             // 
-            this.soLuongDataGridViewTextBoxColumn.DataPropertyName = "SoLuong";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "N0";
-            dataGridViewCellStyle3.NullValue = null;
-            this.soLuongDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.soLuongDataGridViewTextBoxColumn.HeaderText = "Số lượng xuất";
-            this.soLuongDataGridViewTextBoxColumn.Name = "soLuongDataGridViewTextBoxColumn";
-            this.soLuongDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // noteDataGridViewTextBoxColumn
-            // 
-            this.noteDataGridViewTextBoxColumn.DataPropertyName = "Note";
-            this.noteDataGridViewTextBoxColumn.HeaderText = "Ghi chú";
-            this.noteDataGridViewTextBoxColumn.Name = "noteDataGridViewTextBoxColumn";
-            this.noteDataGridViewTextBoxColumn.ReadOnly = true;
-            this.noteDataGridViewTextBoxColumn.Width = 250;
+            this.deleteToolStripMenuItem.Image = global::MM.Properties.Resources.del;
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Text = "Xóa";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // uXuatKhoCapCuuList
             // 
@@ -300,6 +336,7 @@
             this.panel2.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
+            this.ctmAction.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -325,5 +362,9 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn tenCapCuuDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn soLuongDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
+        protected System.Windows.Forms.ContextMenuStrip ctmAction;
+        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
     }
 }
