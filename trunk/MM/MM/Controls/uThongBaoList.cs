@@ -38,19 +38,28 @@ namespace MM.Controls
         {
             btnAdd.Enabled = AllowConfirm ? true : AllowAdd;
             btnEdit.Enabled = AllowConfirm ? true : AllowEdit;
+
+            addToolStripMenuItem.Enabled = AllowConfirm ? true : AllowAdd;
+            editToolStripMenuItem.Enabled = AllowConfirm ? true : AllowEdit;
             
             if (raDaXoa.Checked)
             {
                 btnPhucHoi.Enabled = AllowConfirm ? true : AllowEdit;
                 btnDelete.Enabled = false;
+
+                phucHoiToolStripMenuItem.Enabled = AllowConfirm ? true : AllowEdit;
+                deleteToolStripMenuItem.Enabled = false;
             }
             else
             {
                 btnPhucHoi.Enabled = false;
+                phucHoiToolStripMenuItem.Enabled = false;
                 btnDelete.Enabled = AllowConfirm ? true : AllowDelete;
+                deleteToolStripMenuItem.Enabled = AllowConfirm ? true : AllowDelete;
             }
             
             btnXemQuaTrinhDuyet.Enabled = AllowConfirm;
+            xemQuaTrinhDuyetToolStripMenuItem.Enabled = AllowConfirm; 
 
             if (!AllowConfirm && !AllowAdd && !AllowEdit && !AllowDelete)
             {
@@ -352,6 +361,31 @@ namespace MM.Controls
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những thông báo cần phục hồi.", IconType.Information);
         }
+
+        private void OnXemSuaDoiThongBao()
+        {
+            if (dgThongBao.SelectedRows == null || dgThongBao.SelectedRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 thông báo.", IconType.Information);
+                return;
+            }
+
+            DataRow drThongBao = (dgThongBao.SelectedRows[0].DataBoundItem as DataRowView).Row;
+
+            string nguoiTaoGUID = drThongBao["CreatedBy"].ToString();
+            if (AllowConfirm)
+            {
+                byte[] buff = (byte[])drThongBao["ThongBaoBuff"];
+                ExecuteThongBao(buff);
+            }
+            else if (nguoiTaoGUID == Global.UserGUID)
+            {
+                byte[] buff = (byte[])drThongBao["ThongBaoBuff"];
+                ExecuteThongBao(buff);
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Bạn không thể xem thông báo do người khác tạo. Vui lòng kiểm tra lại.", IconType.Information);
+        }
         #endregion
         
         #region Window Event Handlers
@@ -425,27 +459,7 @@ namespace MM.Controls
 
         private void btnXemSuaDoi_Click(object sender, EventArgs e)
         {
-            if (dgThongBao.SelectedRows == null || dgThongBao.SelectedRows.Count <= 0)
-            {
-                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 thông báo.", IconType.Information);
-                return;
-            }
-
-            DataRow drThongBao = (dgThongBao.SelectedRows[0].DataBoundItem as DataRowView).Row;
-
-            string nguoiTaoGUID = drThongBao["CreatedBy"].ToString();
-            if (AllowConfirm)
-            {
-                byte[] buff = (byte[])drThongBao["ThongBaoBuff"];
-                ExecuteThongBao(buff);
-            }
-            else if (nguoiTaoGUID == Global.UserGUID)
-            {
-                byte[] buff = (byte[])drThongBao["ThongBaoBuff"];
-                ExecuteThongBao(buff);
-            }
-            else
-                MsgBox.Show(Application.ProductName, "Bạn không thể xem thông báo do người khác tạo. Vui lòng kiểm tra lại.", IconType.Information);
+            OnXemSuaDoiThongBao();
         }
 
         private void raDaXoa_CheckedChanged(object sender, EventArgs e)
@@ -456,6 +470,41 @@ namespace MM.Controls
         private void btnPhucHoi_Click(object sender, EventArgs e)
         {
             OnPhucHoiThongBao();
+        }
+
+        private void addToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnAdd();
+        }
+
+        private void editToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnEdit();
+        }
+
+        private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnDelete();
+        }
+
+        private void phucHoiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnPhucHoiThongBao();
+        }
+
+        private void xemThongBaoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnXemThongBao();
+        }
+
+        private void xemQuaTrinhDuyetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnXemQuaTrinhDuyet();
+        }
+
+        private void xemSuaDoiCanDuyetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnXemSuaDoiThongBao();
         }
         #endregion
 
@@ -478,6 +527,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+       
 
        
         

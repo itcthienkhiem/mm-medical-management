@@ -70,11 +70,26 @@
             this.createdDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.thongBaoViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.phucHoiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.xemThongBaoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.xemQuaTrinhDuyetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.xemSuaDoiCanDuyetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgThongBao)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thongBaoViewBindingSource)).BeginInit();
+            this.ctmAction.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
@@ -378,6 +393,7 @@
             this.ngayDuyet3DataGridViewTextBoxColumn,
             this.createdDateDataGridViewTextBoxColumn,
             this.fullNameDataGridViewTextBoxColumn});
+            this.dgThongBao.ContextMenuStrip = this.ctmAction;
             this.dgThongBao.DataSource = this.thongBaoViewBindingSource;
             dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
@@ -478,6 +494,111 @@
             // 
             this.thongBaoViewBindingSource.DataSource = typeof(MM.Databasae.ThongBaoView);
             // 
+            // ctmAction
+            // 
+            this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.editToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.deleteToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.phucHoiToolStripMenuItem,
+            this.toolStripSeparator4,
+            this.xemThongBaoToolStripMenuItem,
+            this.toolStripSeparator5,
+            this.xemQuaTrinhDuyetToolStripMenuItem,
+            this.toolStripSeparator6,
+            this.xemSuaDoiCanDuyetToolStripMenuItem});
+            this.ctmAction.Name = "cmtAction";
+            this.ctmAction.Size = new System.Drawing.Size(195, 216);
+            // 
+            // addToolStripMenuItem
+            // 
+            this.addToolStripMenuItem.Image = global::MM.Properties.Resources.add;
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.addToolStripMenuItem.Text = "Thêm";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(191, 6);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Image = global::MM.Properties.Resources.edit;
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.editToolStripMenuItem.Text = "Sửa";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(191, 6);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Image = global::MM.Properties.Resources.del;
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.deleteToolStripMenuItem.Text = "Xóa";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(191, 6);
+            // 
+            // phucHoiToolStripMenuItem
+            // 
+            this.phucHoiToolStripMenuItem.Image = global::MM.Properties.Resources.backup_restore_icon__1_;
+            this.phucHoiToolStripMenuItem.Name = "phucHoiToolStripMenuItem";
+            this.phucHoiToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.phucHoiToolStripMenuItem.Text = "Phục hồi";
+            this.phucHoiToolStripMenuItem.Click += new System.EventHandler(this.phucHoiToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(191, 6);
+            // 
+            // xemThongBaoToolStripMenuItem
+            // 
+            this.xemThongBaoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("xemThongBaoToolStripMenuItem.Image")));
+            this.xemThongBaoToolStripMenuItem.Name = "xemThongBaoToolStripMenuItem";
+            this.xemThongBaoToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.xemThongBaoToolStripMenuItem.Text = "Xem thông báo";
+            this.xemThongBaoToolStripMenuItem.Click += new System.EventHandler(this.xemThongBaoToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(191, 6);
+            // 
+            // xemQuaTrinhDuyetToolStripMenuItem
+            // 
+            this.xemQuaTrinhDuyetToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("xemQuaTrinhDuyetToolStripMenuItem.Image")));
+            this.xemQuaTrinhDuyetToolStripMenuItem.Name = "xemQuaTrinhDuyetToolStripMenuItem";
+            this.xemQuaTrinhDuyetToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.xemQuaTrinhDuyetToolStripMenuItem.Text = "Xem quá trình duyệt";
+            this.xemQuaTrinhDuyetToolStripMenuItem.Click += new System.EventHandler(this.xemQuaTrinhDuyetToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(191, 6);
+            // 
+            // xemSuaDoiCanDuyetToolStripMenuItem
+            // 
+            this.xemSuaDoiCanDuyetToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("xemSuaDoiCanDuyetToolStripMenuItem.Image")));
+            this.xemSuaDoiCanDuyetToolStripMenuItem.Name = "xemSuaDoiCanDuyetToolStripMenuItem";
+            this.xemSuaDoiCanDuyetToolStripMenuItem.Size = new System.Drawing.Size(194, 22);
+            this.xemSuaDoiCanDuyetToolStripMenuItem.Text = "Xem sửa đổi cần duyệt";
+            this.xemSuaDoiCanDuyetToolStripMenuItem.Click += new System.EventHandler(this.xemSuaDoiCanDuyetToolStripMenuItem_Click);
+            // 
             // uThongBaoList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -494,6 +615,7 @@
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgThongBao)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.thongBaoViewBindingSource)).EndInit();
+            this.ctmAction.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -534,5 +656,19 @@
         private System.Windows.Forms.TextBox txtTenThongBao;
         private System.Windows.Forms.RadioButton raDaXoa;
         private System.Windows.Forms.Button btnPhucHoi;
+        protected System.Windows.Forms.ContextMenuStrip ctmAction;
+        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem phucHoiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem xemThongBaoToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripMenuItem xemQuaTrinhDuyetToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripMenuItem xemSuaDoiCanDuyetToolStripMenuItem;
     }
 }
