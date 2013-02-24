@@ -438,21 +438,616 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result Merge2Patients(string keepPatientGuid, string mergePatientGuid, string doneByGuid)
+        public static Result Merge2Patients(string keepPatientGuid, string mergePatientGuid)
         {
-            Result result = null;
+            Result result = new Result();
+            MMOverride db = null;
 
             try
             {
-                string spName = "spMerge2Patients";
-                List<SqlParameter> sqlParams = new List<SqlParameter>();
-                SqlParameter param = new SqlParameter("@KeepGUID", keepPatientGuid);
-                sqlParams.Add(param);
-                SqlParameter param2 = new SqlParameter("@MergedGUID", mergePatientGuid);
-                sqlParams.Add(param2);
-                SqlParameter param3 = new SqlParameter("@DoneByGUID", doneByGuid);
-                sqlParams.Add(param3);
-                return ExcuteQuery(spName, sqlParams);
+                db = new MMOverride();
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    Guid keepGUID = Guid.Parse(keepPatientGuid);
+                    Guid mergeGUID = Guid.Parse(mergePatientGuid);
+                    Guid userGUID = Guid.Parse(Global.UserGUID);
+
+                    Patient keepPatient = (from b in db.Patients
+                                          where b.PatientGUID == keepGUID
+                                          select b).FirstOrDefault();
+
+                    Patient mergePatient = (from b in db.Patients
+                                            where b.PatientGUID == mergeGUID
+                                            select b).FirstOrDefault();
+
+                    #region Bệnh nhân ngoài gói khám
+                    var benhNhanNgoaiGoiKhamList = from b in db.BenhNhanNgoaiGoiKhams
+                                                   where b.PatientGUID == mergeGUID
+                                                   select b;
+
+                    if (benhNhanNgoaiGoiKhamList != null)
+                    {
+                        foreach (var bnngk in benhNhanNgoaiGoiKhamList)
+                        {
+                            bnngk.PatientGUID = keepGUID;
+                            //Tracking
+                            string desc = string.Format("- BenhNhanNgoaiGoiKhamGUID: '{0}': PatientGUID: '{1}' ==> '{2}' (BenhNhanNgoaiGoiKham)",
+                                bnngk.BenhNhanNgoaiGoiKhamGUID.ToString(), mergePatientGuid, keepPatientGuid);
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = userGUID;
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Merge thông tin bệnh nhân";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.None;
+                            db.Trackings.InsertOnSubmit(tk);
+                        }
+                    }
+                    #endregion
+
+                    #region Bệnh nhân thân thuộc
+                    var benhNhanThanThuocList = from b in db.BenhNhanThanThuocs
+                                                where b.PatientGUID == mergeGUID
+                                                select b;
+
+                    if (benhNhanThanThuocList != null)
+                    {
+                        foreach (var bntt in benhNhanThanThuocList)
+                        {
+                            bntt.PatientGUID = keepGUID;
+                            //Tracking
+                            string desc = string.Format("- BenhNhanThanThuocGUID: '{0}': PatientGUID: '{1}' ==> '{2}' (BenhNhanThanThuoc)",
+                                bntt.BenhNhanThanThuocGUID.ToString(), mergePatientGuid, keepPatientGuid);
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = userGUID;
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Merge thông tin bệnh nhân";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.None;
+                            db.Trackings.InsertOnSubmit(tk);
+                        }
+                    }
+                    #endregion
+
+                    #region Cân đo
+                    var canDoList = from c in db.CanDos
+                                    where c.PatientGUID == mergeGUID
+                                    select c;
+
+                    if (canDoList != null)
+                    {
+                        foreach (var cd in canDoList)
+                        {
+                            cd.PatientGUID = keepGUID;
+                            //Tracking
+                            string desc = string.Format("- CanDoGUID: '{0}': PatientGUID: '{1}' ==> '{2}' (CanDo)",
+                                cd.CanDoGuid.ToString(), mergePatientGuid, keepPatientGuid);
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = userGUID;
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Merge thông tin bệnh nhân";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.None;
+                            db.Trackings.InsertOnSubmit(tk);
+                        }
+                    }
+                    #endregion
+
+                    #region Chỉ định
+                    var chiDinhList = from c in db.ChiDinhs
+                                      where c.BenhNhanGUID == mergeGUID
+                                      select c;
+
+                    if (chiDinhList != null)
+                    {
+                        foreach (var cd in chiDinhList)
+                        {
+                            cd.BenhNhanGUID = keepGUID;
+                            //Tracking
+                            string desc = string.Format("- ChiDinhGUID: '{0}': PatientGUID: '{1}' ==> '{2}' (ChiDinh)",
+                                cd.ChiDinhGUID.ToString(), mergePatientGuid, keepPatientGuid);
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = userGUID;
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Merge thông tin bệnh nhân";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.None;
+                            db.Trackings.InsertOnSubmit(tk);
+                        }
+                    }
+                    #endregion
+
+                    #region Kết luận
+                    var ketLuanList = from k in db.KetLuans
+                                      where k.PatientGUID == mergeGUID
+                                      select k;
+
+                    if (ketLuanList != null)
+                    {
+                        foreach (var kl in ketLuanList)
+                        {
+                            kl.PatientGUID = keepGUID;
+                            //Tracking
+                            string desc = string.Format("- KetLuanGUID: '{0}': PatientGUID: '{1}' ==> '{2}' (KetLuan)",
+                                kl.KetLuanGUID.ToString(), mergePatientGuid, keepPatientGuid);
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = userGUID;
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Merge thông tin bệnh nhân";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.None;
+                            db.Trackings.InsertOnSubmit(tk);
+                        }
+                    }
+                    #endregion
+
+                    #region Kết quả cận lâm sàng
+                    var ketQuaCanLamSangList = from k in db.KetQuaCanLamSangs
+                                               where k.PatientGUID == mergeGUID
+                                               select k;
+
+                    if (ketQuaCanLamSangList != null)
+                    {
+                        foreach (var kqcls in ketQuaCanLamSangList)
+                        {
+                            kqcls.PatientGUID = keepGUID;
+                            //Tracking
+                            string desc = string.Format("- KetQuaCanLamSangGUID: '{0}': PatientGUID: '{1}' ==> '{2}' (KetQuaCanLamSang)",
+                                kqcls.KetQuaCanLamSangGUID.ToString(), mergePatientGuid, keepPatientGuid);
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = userGUID;
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Merge thông tin bệnh nhân";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.None;
+                            db.Trackings.InsertOnSubmit(tk);
+                        }
+                    }
+                    #endregion
+
+                    #region Kết quả lâm sàng
+                    var ketQuaLamSangList = from k in db.KetQuaLamSangs
+                                        where k.PatientGUID == mergeGUID
+                                        select k;
+
+                    if (ketQuaLamSangList != null)
+                    {
+                        foreach (var kqls in ketQuaLamSangList)
+                        {
+                            kqls.PatientGUID = keepGUID;
+                            //Tracking
+                            string desc = string.Format("- KetQuaLamSangGUID: '{0}': PatientGUID: '{1}' ==> '{2}' (KetQuaLamSang)",
+                                kqls.KetQuaLamSangGUID.ToString(), mergePatientGuid, keepPatientGuid);
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = userGUID;
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Merge thông tin bệnh nhân";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.None;
+                            db.Trackings.InsertOnSubmit(tk);
+                        }
+                    }
+                    #endregion
+
+                    #region Kết quả nội soi
+                    var ketQuaNoiSoiList = from k in db.KetQuaNoiSois
+                                           where k.PatientGUID == mergeGUID
+                                           select k;
+
+                    if (ketQuaNoiSoiList != null)
+                    {
+                        foreach (var kqns in ketQuaNoiSoiList)
+                        {
+                            kqns.PatientGUID = keepGUID;
+                            //Tracking
+                            string desc = string.Format("- KetQuaNoiSoiGUID: '{0}': PatientGUID: '{1}' ==> '{2}' (KetQuaNoiSoi)",
+                                kqns.KetQuaNoiSoiGUID.ToString(), mergePatientGuid, keepPatientGuid);
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = userGUID;
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Merge thông tin bệnh nhân";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.None;
+                            db.Trackings.InsertOnSubmit(tk);
+                        }
+                    }
+                    #endregion
+
+                    #region Kết quả siêu âm
+                    var ketQuaSieuAmList = from k in db.KetQuaSieuAms
+                                           where k.PatientGUID == mergeGUID
+                                           select k;
+
+                    if (ketQuaSieuAmList != null)
+                    {
+                        foreach (var kqsa in ketQuaSieuAmList)
+                        {
+                            kqsa.PatientGUID = keepGUID;
+                            //Tracking
+                            string desc = string.Format("- KetQuaSieuAmGUID: '{0}': PatientGUID: '{1}' ==> '{2}' (KetQuaSieuAm)",
+                                kqsa.KetQuaSieuAmGUID.ToString(), mergePatientGuid, keepPatientGuid);
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = userGUID;
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Merge thông tin bệnh nhân";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.None;
+                            db.Trackings.InsertOnSubmit(tk);
+                        }
+                    }
+                    #endregion
+
+                    #region Kết quả soi CTC
+                    var ketQuaSoiCTCList = from k in db.KetQuaSoiCTCs
+                                           where k.PatientGUID == mergeGUID
+                                           select k;
+
+                    if (ketQuaSoiCTCList != null)
+                    {
+                        foreach (var kqsctc in ketQuaSoiCTCList)
+                        {
+                            kqsctc.PatientGUID = keepGUID;
+                            //Tracking
+                            string desc = string.Format("- KetQuaSoiCTCGUID: '{0}': PatientGUID: '{1}' ==> '{2}' (KetQuaSoiCTC)",
+                                kqsctc.KetQuaSoiCTCGUID.ToString(), mergePatientGuid, keepPatientGuid);
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = userGUID;
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Merge thông tin bệnh nhân";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.None;
+                            db.Trackings.InsertOnSubmit(tk);
+                        }
+                    }
+                    #endregion
+
+                    #region Lời khuyên
+                    var loiKhuyenList = from l in db.LoiKhuyens
+                                        where l.PatientGUID == mergeGUID
+                                        select l;
+
+                    if (loiKhuyenList != null)
+                    {
+                        foreach (var lk in loiKhuyenList)
+                        {
+                            lk.PatientGUID = keepGUID;
+                            //Tracking
+                            string desc = string.Format("- LoiKhuyenGUID: '{0}': PatientGUID: '{1}' ==> '{2}' (LoiKhuyen)",
+                                lk.LoiKhuyenGUID.ToString(), mergePatientGuid, keepPatientGuid);
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = userGUID;
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Merge thông tin bệnh nhân";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.None;
+                            db.Trackings.InsertOnSubmit(tk);
+                        }
+                    }
+                    #endregion
+
+                    #region Phiếu thu cấp cứu
+                    var phieuThuCapCuuList = from p in db.PhieuThuCapCuus
+                                             where p.MaBenhNhan.ToLower() == mergePatient.FileNum.ToLower()
+                                             select p;
+
+                    if (phieuThuCapCuuList != null)
+                    {
+                        foreach (var ptcc in phieuThuCapCuuList)
+                        {
+                            ptcc.MaBenhNhan = keepPatient.FileNum;
+                            //Tracking
+                            string desc = string.Format("- PhieuThuCapCuuGUID: '{0}': PatientGUID: '{1}' ==> '{2}' (PhieuThuCapCuu)",
+                                ptcc.PhieuThuCapCuuGUID.ToString(), mergePatientGuid, keepPatientGuid);
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = userGUID;
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Merge thông tin bệnh nhân";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.None;
+                            db.Trackings.InsertOnSubmit(tk);
+                        }
+                    }
+                    #endregion
+
+                    #region PhieuThuThuoc
+                    var phieuThuThuocList = from p in db.PhieuThuThuocs
+                                            where p.MaBenhNhan.ToLower() == mergePatient.FileNum.ToLower()
+                                            select p;
+
+                    if (phieuThuThuocList != null)
+                    {
+                        foreach (var ptt in phieuThuThuocList)
+                        {
+                            ptt.MaBenhNhan = keepPatient.FileNum;
+                            //Tracking
+                            string desc = string.Format("- PhieuThuThuocGUID: '{0}': PatientGUID: '{1}' ==> '{2}' (PhieuThuThuoc)",
+                                ptt.PhieuThuThuocGUID.ToString(), mergePatientGuid, keepPatientGuid);
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = userGUID;
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Merge thông tin bệnh nhân";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.None;
+                            db.Trackings.InsertOnSubmit(tk);
+                        }
+                    }
+                    #endregion
+
+                    #region Phiếu thu dịch vụ
+                    var phieuThuDichVuList = from p in db.Receipts
+                                             where p.PatientGUID == mergeGUID
+                                             select p;
+
+                    if (phieuThuDichVuList != null)
+                    {
+                        foreach (var ptdv in phieuThuDichVuList)
+                        {
+                            ptdv.PatientGUID = keepGUID;
+                            //Tracking
+                            string desc = string.Format("- ReceiptGUID: '{0}': PatientGUID: '{1}' ==> '{2}' (Receipt)",
+                                ptdv.ReceiptGUID.ToString(), mergePatientGuid, keepPatientGuid);
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = userGUID;
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Merge thông tin bệnh nhân";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.None;
+                            db.Trackings.InsertOnSubmit(tk);
+                        }
+                    }
+                    #endregion
+
+                    #region Service History
+                    var serviceHistoryList = from s in db.ServiceHistories
+                                             where s.PatientGUID == mergeGUID
+                                             select s;
+
+                    if (serviceHistoryList != null)
+                    {
+                        foreach (var sh in serviceHistoryList)
+                        {
+                            sh.PatientGUID = keepGUID;
+                            //Tracking
+                            string desc = string.Format("- ServiceHistoryGUID: '{0}': PatientGUID: '{1}' ==> '{2}' (ServiceHistory)",
+                                sh.ServiceHistoryGUID.ToString(), mergePatientGuid, keepPatientGuid);
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = userGUID;
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Merge thông tin bệnh nhân";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.None;
+                            db.Trackings.InsertOnSubmit(tk);
+                        }
+                    }
+                    #endregion
+
+                    #region Tiêm ngừa
+                    var tiemNguaList = from tn in db.TiemNguas
+                                       where tn.PatientGUID == mergeGUID
+                                       select tn;
+
+                    if (tiemNguaList != null)
+                    {
+                        foreach (var tn in tiemNguaList)
+                        {
+                            tn.PatientGUID = keepGUID;
+                            //Tracking
+                            string desc = string.Format("- TiemNguaGUID: '{0}': PatientGUID: '{1}' ==> '{2}' (TiemNgua)",
+                                tn.TiemNguaGUID.ToString(), mergePatientGuid, keepPatientGuid);
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = userGUID;
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Merge thông tin bệnh nhân";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.None;
+                            db.Trackings.InsertOnSubmit(tk);
+                        }
+                    }
+                    #endregion
+
+                    #region Toa cấp cứu
+                    var toaCapCuuList = from c in db.ToaCapCuus
+                                        where c.MaBenhNhan.ToLower() == mergePatient.FileNum.ToLower()
+                                        select c;
+
+                    if (toaCapCuuList != null)
+                    {
+                        foreach (var tcc in toaCapCuuList)
+                        {
+                            tcc.MaBenhNhan = keepPatient.FileNum;
+                            //Tracking
+                            string desc = string.Format("- ToaCapCuuGUID: '{0}': PatientGUID: '{1}' ==> '{2}' (ToaCapCuu)",
+                                tcc.ToaCapCuuGUID.ToString(), mergePatientGuid, keepPatientGuid);
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = userGUID;
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Merge thông tin bệnh nhân";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.None;
+                            db.Trackings.InsertOnSubmit(tk);
+                        }
+                    }
+                    #endregion
+
+                    #region Toa Thuốc
+                    var toaThuocList = from tt in db.ToaThuocs
+                                       where tt.BenhNhan == mergeGUID
+                                       select tt;
+
+                    if (toaThuocList != null)
+                    {
+                        foreach (var tt in toaThuocList)
+                        {
+                            tt.BenhNhan = keepGUID;
+                            //Tracking
+                            string desc = string.Format("- ToaThuocGUID: '{0}': PatientGUID: '{1}' ==> '{2}' (ToaThuoc)",
+                                tt.ToaThuocGUID.ToString(), mergePatientGuid, keepPatientGuid);
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = userGUID;
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Merge thông tin bệnh nhân";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.None;
+                            db.Trackings.InsertOnSubmit(tk);
+                        }
+                    }
+                    #endregion
+
+                    #region Ý kiến khách hàng
+                    var yKienKhachHangList = from y in db.YKienKhachHangs
+                                             where y.PatientGUID == mergeGUID
+                                             select y;
+
+                    if (yKienKhachHangList != null)
+                    {
+                        foreach (var ykkh in yKienKhachHangList)
+                        {
+                            ykkh.PatientGUID = keepGUID;
+                            //Tracking
+                            string desc = string.Format("- YKienKhachHangGUID: '{0}': PatientGUID: '{1}' ==> '{2}' (YKienKhachHang)",
+                                ykkh.YKienKhachHangGUID.ToString(), mergePatientGuid, keepPatientGuid);
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = userGUID;
+                            tk.ActionType = (byte)ActionType.Edit;
+                            tk.Action = "Merge thông tin bệnh nhân";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.None;
+                            db.Trackings.InsertOnSubmit(tk);
+                        }
+                    }
+                    #endregion
+
+                    #region Hợp đồng
+                    CompanyMember keepCompanyMember = (from c in db.CompanyMembers
+                                                       where c.PatientGUID == keepGUID
+                                                       select c).FirstOrDefault();
+
+                    CompanyMember mergeCompanyMember = (from c in db.CompanyMembers
+                                                        where c.PatientGUID == mergeGUID
+                                                        select c).FirstOrDefault();
+
+                    if (keepCompanyMember != null && mergeCompanyMember != null && 
+                        keepCompanyMember.CompanyGUID == mergeCompanyMember.CompanyGUID)
+                    {
+                        List<ContractMember> keepContractMemberList = (from c in db.ContractMembers
+                                                                      where c.CompanyMemberGUID == keepCompanyMember.CompanyMemberGUID
+                                                                      select c).ToList();
+
+                        if (keepContractMemberList != null)
+                        {
+                            foreach (var kcm in keepContractMemberList)
+                            {
+                                ContractMember cm = (from c in db.ContractMembers
+                                                    where c.CompanyMemberGUID == mergeCompanyMember.CompanyMemberGUID &&
+                                                    c.CompanyContractGUID == kcm.CompanyContractGUID
+                                                    select c).FirstOrDefault();
+
+                                if (cm != null)
+                                {
+                                    #region CompanyCheckList
+                                    var companyCheckList = from c in db.CompanyCheckLists
+                                                           where c.ContractMemberGUID == cm.ContractMemberGUID
+                                                           select c;
+
+                                    if (companyCheckList != null)
+                                    {
+                                        foreach (var cl in companyCheckList)
+                                        {
+                                            cl.ContractMemberGUID = kcm.ContractMemberGUID;
+                                            //Tracking
+                                            string desc = string.Format("- CompanyCheckListGUID: '{0}': ContractMemberGUID: '{1}' ==> '{2}' (CompanyCheckList)",
+                                                cl.CompanyCheckListGUID.ToString(), cm.ContractMemberGUID.ToString(), kcm.ContractMemberGUID.ToString());
+                                            Tracking tk = new Tracking();
+                                            tk.TrackingGUID = Guid.NewGuid();
+                                            tk.TrackingDate = DateTime.Now;
+                                            tk.DocStaffGUID = userGUID;
+                                            tk.ActionType = (byte)ActionType.Edit;
+                                            tk.Action = "Merge thông tin bệnh nhân";
+                                            tk.Description = desc;
+                                            tk.TrackingType = (byte)TrackingType.None;
+                                            db.Trackings.InsertOnSubmit(tk);
+                                        }
+                                    }
+                                    #endregion
+
+                                    #region Dịch vụ làm thêm
+                                    var dichVuLamThemList = from d in db.DichVuLamThems
+                                                            where d.ContractMemberGUID == cm.ContractMemberGUID
+                                                            select d;
+
+                                    if (dichVuLamThemList != null)
+                                    {
+                                        foreach (var dvlt in dichVuLamThemList)
+                                        {
+                                            dvlt.ContractMemberGUID = kcm.ContractMemberGUID;
+                                            //Tracking
+                                            string desc = string.Format("- DichVuLamThemGUID: '{0}': ContractMemberGUID: '{1}' ==> '{2}' (DichVuLamThem)",
+                                                dvlt.DichVuLamThemGUID.ToString(), cm.ContractMemberGUID.ToString(), kcm.ContractMemberGUID.ToString());
+                                            Tracking tk = new Tracking();
+                                            tk.TrackingGUID = Guid.NewGuid();
+                                            tk.TrackingDate = DateTime.Now;
+                                            tk.DocStaffGUID = userGUID;
+                                            tk.ActionType = (byte)ActionType.Edit;
+                                            tk.Action = "Merge thông tin bệnh nhân";
+                                            tk.Description = desc;
+                                            tk.TrackingType = (byte)TrackingType.None;
+                                            db.Trackings.InsertOnSubmit(tk);
+                                        }
+                                    }
+                                    #endregion
+                                }
+                            }
+                        }
+                    }
+                    #endregion
+
+                    #region Delete Merge Patient
+                    mergePatient.Contact.Archived = true;
+                    mergePatient.Contact.DeletedDate = DateTime.Now;
+                    mergePatient.Contact.DeletedBy = userGUID;
+                    mergePatient.Contact.Note += string.Format(" Merge with patient: '{0}'", keepPatientGuid);
+                    #endregion
+
+                    db.SubmitChanges();
+                    t.Complete();
+                }
             }
             catch (System.Data.SqlClient.SqlException se)
             {
@@ -464,9 +1059,49 @@ namespace MM.Bussiness
                 result.Error.Code = ErrorCode.UNKNOWN_ERROR;
                 result.Error.Description = e.ToString();
             }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
 
             return result;
         }
+
+        //public static Result Merge2Patients(string keepPatientGuid, string mergePatientGuid, string doneByGuid)
+        //{
+        //    Result result = null;
+
+        //    try
+        //    {
+        //        string spName = "spMerge2Patients";
+        //        List<SqlParameter> sqlParams = new List<SqlParameter>();
+        //        SqlParameter param = new SqlParameter("@KeepGUID", keepPatientGuid);
+        //        sqlParams.Add(param);
+        //        SqlParameter param2 = new SqlParameter("@MergedGUID", mergePatientGuid);
+        //        sqlParams.Add(param2);
+        //        SqlParameter param3 = new SqlParameter("@DoneByGUID", doneByGuid);
+        //        sqlParams.Add(param3);
+        //        return ExcuteQuery(spName, sqlParams);
+        //    }
+        //    catch (System.Data.SqlClient.SqlException se)
+        //    {
+        //        result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+        //        result.Error.Description = se.ToString();
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+        //        result.Error.Description = e.ToString();
+        //    }
+
+        //    return result;
+        //}
+
         public static Result GetPatientCount()
         {
             Result result = new Result();
