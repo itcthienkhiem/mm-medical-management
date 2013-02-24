@@ -57,7 +57,7 @@ namespace MM.Controls
                 if (dr["PatientGUID"].ToString() != keepPatientGUID)
                 {
                     string mergePatientGUID = dr["PatientGUID"].ToString();
-                    PatientBus.Merge2Patients(keepPatientGUID, mergePatientGUID, Global.UserGUID);
+                    PatientBus.Merge2Patients(keepPatientGUID, mergePatientGUID);
                 }
             }
 
