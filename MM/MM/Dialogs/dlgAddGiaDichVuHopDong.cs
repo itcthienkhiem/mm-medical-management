@@ -265,6 +265,8 @@ namespace MM.Dialogs
                 else
                 {
                     string serviceGUID = cboService.SelectedValue.ToString();
+                    if (_companyInfo.DictDichVuCon == null) _companyInfo.DictDichVuCon = new Dictionary<string, DataTable>();
+
                     if (_companyInfo.DictDichVuCon.ContainsKey(serviceGUID))
                         _companyInfo.DictDichVuCon[serviceGUID] = dgDichVuCon.DataSource as DataTable;
                     else
