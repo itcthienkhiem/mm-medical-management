@@ -43,6 +43,7 @@ namespace MM
             _uCompanyList.OnOpenPatientEvent += new OpenPatientHandler(_uPatientList_OnOpenPatient);
             _uContractList.OnOpenPatientEvent += new OpenPatientHandler(_uPatientList_OnOpenPatient);
             _uPhongChoList.OnOpenPatientEvent += new OpenPatientHandler(_uPatientList_OnOpenPatient);
+            _uKhamHopDong.OnOpenPatientEvent += new OpenPatientHandler(_uPatientList_OnOpenPatient);
             _uBenhNhanThanThuocList.OnOpenPatientEvent += new OpenPatientHandler(_uPatientList_OnOpenPatient);
 
             Utility.CreateFolder(Global.UsersPath);
@@ -622,6 +623,7 @@ namespace MM
                             openPatientToolStripMenuItem.Enabled = isView && isLogin;
                             tbOpenPatient.Enabled = isView && isLogin;
                             _uPatientList.AllowOpenPatient = isView;
+                            _uKhamHopDong.AllowOpenPatient = isView;
                         }
                         else if (functionCode == Const.Permission)
                         {
