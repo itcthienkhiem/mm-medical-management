@@ -38,6 +38,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uSendSMS));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -45,7 +46,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uSendSMS));
             this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
@@ -61,6 +61,8 @@
             this.workPhoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mobileDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.guiSMSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._uPrintKetQuaSieuAm = new MM.Controls.uPrintKetQuaSieuAm();
             this.panel2 = new System.Windows.Forms.Panel();
             this.btnSendSMS = new System.Windows.Forms.Button();
@@ -81,14 +83,12 @@
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.guiSMSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).BeginInit();
+            this.ctmAction.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.ctmAction.SuspendLayout();
             this.SuspendLayout();
             // 
             // patientViewBindingSource
@@ -270,6 +270,21 @@
             this.emailDataGridViewTextBoxColumn.ReadOnly = true;
             this.emailDataGridViewTextBoxColumn.Width = 150;
             // 
+            // ctmAction
+            // 
+            this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.guiSMSToolStripMenuItem});
+            this.ctmAction.Name = "ctmAction";
+            this.ctmAction.Size = new System.Drawing.Size(153, 48);
+            // 
+            // guiSMSToolStripMenuItem
+            // 
+            this.guiSMSToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("guiSMSToolStripMenuItem.Image")));
+            this.guiSMSToolStripMenuItem.Name = "guiSMSToolStripMenuItem";
+            this.guiSMSToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.guiSMSToolStripMenuItem.Text = "Gửi SMS";
+            this.guiSMSToolStripMenuItem.Click += new System.EventHandler(this.guiSMSToolStripMenuItem_Click);
+            // 
             // _uPrintKetQuaSieuAm
             // 
             this._uPrintKetQuaSieuAm.Location = new System.Drawing.Point(656, 89);
@@ -336,6 +351,8 @@
             // chkMaBenhNhan
             // 
             this.chkMaBenhNhan.AutoSize = true;
+            this.chkMaBenhNhan.Checked = true;
+            this.chkMaBenhNhan.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chkMaBenhNhan.Location = new System.Drawing.Point(393, 12);
             this.chkMaBenhNhan.Name = "chkMaBenhNhan";
             this.chkMaBenhNhan.Size = new System.Drawing.Size(122, 17);
@@ -465,21 +482,6 @@
             this.dataGridViewTextBoxColumn10.ReadOnly = true;
             this.dataGridViewTextBoxColumn10.Width = 150;
             // 
-            // ctmAction
-            // 
-            this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.guiSMSToolStripMenuItem});
-            this.ctmAction.Name = "ctmAction";
-            this.ctmAction.Size = new System.Drawing.Size(153, 48);
-            // 
-            // guiSMSToolStripMenuItem
-            // 
-            this.guiSMSToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("guiSMSToolStripMenuItem.Image")));
-            this.guiSMSToolStripMenuItem.Name = "guiSMSToolStripMenuItem";
-            this.guiSMSToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.guiSMSToolStripMenuItem.Text = "Gửi SMS";
-            this.guiSMSToolStripMenuItem.Click += new System.EventHandler(this.guiSMSToolStripMenuItem_Click);
-            // 
             // uSendSMS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -493,10 +495,10 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).EndInit();
+            this.ctmAction.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.ctmAction.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
