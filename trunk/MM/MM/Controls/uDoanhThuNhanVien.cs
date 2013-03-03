@@ -77,7 +77,7 @@ namespace MM.Controls
 
         private void OnDisplayDocStaffList()
         {
-            Result result = DocStaffBus.GetDocStaffList();
+            Result result = DocStaffBus.GetDocStaffList(1);
             if (result.IsOK)
             {
                 MethodInvoker method = delegate

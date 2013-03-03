@@ -198,6 +198,8 @@ namespace MM.Dialogs
                 txtFax.Text = drDocStaff["Fax"] as string;
                 txtAddress.Text = drDocStaff["Address"] as string;
 
+                chkXoa.Checked = !Convert.ToBoolean(drDocStaff["AvailableToWork"]);
+
                 Result result = DocStaffBus.GetChuKy(_docStaff.DocStaffGUID.ToString());
                 if (result.IsOK)
                 {
@@ -289,7 +291,7 @@ namespace MM.Dialogs
                 _contact.FAX = txtFax.Text;
                 _contact.Address = txtAddress.Text;
                 _docStaff.Qualifications = txtQualifications.Text;
-                _docStaff.AvailableToWork = true;
+                
 
                 if (_isNew)
                 {
@@ -304,6 +306,16 @@ namespace MM.Dialogs
 
                 MethodInvoker method = delegate
                 {
+                    _docStaff.AvailableToWork = !chkXoa.Checked;
+                    _contact.Archived = chkXoa.Checked;
+
+                    if (chkXoa.Checked)
+                    {
+                        _contact.DateArchived = DateTime.Now;
+                        _contact.DeletedBy = Guid.Parse(Global.UserGUID);
+                        _contact.DeletedDate = DateTime.Now;
+                    }
+
                     _docStaff.SpecialityGUID = Guid.Parse(cboSpeciality.SelectedValue.ToString());
                     _docStaff.WorkType = (byte)cboWorkType.SelectedIndex;
                     _docStaff.StaffType = (byte)GetStaffType(cboStaffType.SelectedIndex);

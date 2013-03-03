@@ -19,6 +19,7 @@ namespace MM.Controls
     {
         #region Members
         private bool _isAscending = true;
+        private int _type = 1; //0: Tất cả; 1: Chưa xóa; 2: Đã xóa
         #endregion
 
         #region Constructor
@@ -32,12 +33,11 @@ namespace MM.Controls
         private void UpdateGUI()
         {
             btnAdd.Enabled = AllowAdd;
-            //btnEdit.Enabled = AllowEdit;
-            btnDelete.Enabled = AllowDelete;
+            btnDelete.Enabled = AllowDelete && !raDaXoa.Checked;
             btnExportExcel.Enabled = AllowExport;
 
             addToolStripMenuItem.Enabled = AllowAdd;
-            deleteToolStripMenuItem.Enabled = AllowDelete;
+            deleteToolStripMenuItem.Enabled = AllowDelete && !raDaXoa.Checked;
             exportExcelToolStripMenuItem.Enabled = AllowExport;
         }
 
@@ -59,6 +59,11 @@ namespace MM.Controls
             {
                 UpdateGUI();
                 chkChecked.Checked = false;
+
+                if (raTatCa.Checked) _type = 0;
+                else if (raChuaXoa.Checked) _type = 1;
+                else if (raDaXoa.Checked) _type = 2;
+
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayDocStaffListProc));
                 base.ShowWaiting();
             }
@@ -75,7 +80,7 @@ namespace MM.Controls
 
         private void OnDisplayDocStaffList()
         {
-            Result result = DocStaffBus.GetDocStaffList();
+            Result result = DocStaffBus.GetDocStaffList(_type);
             if (result.IsOK)
             {
                 MethodInvoker method = delegate
@@ -99,59 +104,60 @@ namespace MM.Controls
             dlgAddDocStaff dlg = new dlgAddDocStaff();
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                DataTable dt = dgDocStaff.DataSource as DataTable;
-                if (dt == null) return;
-                DataRow newRow = dt.NewRow();
-                newRow["Checked"] = false;
-                newRow["DocStaffGUID"] = dlg.DocStaff.DocStaffGUID.ToString();
-                newRow["ContactGUID"] = dlg.Contact.ContactGUID.ToString();
-                newRow["FullName"] = dlg.Contact.FullName;
-                newRow["SurName"] = dlg.Contact.SurName;
-                newRow["MiddleName"] = dlg.Contact.MiddleName;
-                newRow["FirstName"] = dlg.Contact.FirstName;
-                newRow["KnownAs"] = dlg.Contact.KnownAs;
-                newRow["PreferredName"] = dlg.Contact.PreferredName;
-                newRow["Gender"] = dlg.Contact.Gender;
+                DisplayAsThread();
+                //DataTable dt = dgDocStaff.DataSource as DataTable;
+                //if (dt == null) return;
+                //DataRow newRow = dt.NewRow();
+                //newRow["Checked"] = false;
+                //newRow["DocStaffGUID"] = dlg.DocStaff.DocStaffGUID.ToString();
+                //newRow["ContactGUID"] = dlg.Contact.ContactGUID.ToString();
+                //newRow["FullName"] = dlg.Contact.FullName;
+                //newRow["SurName"] = dlg.Contact.SurName;
+                //newRow["MiddleName"] = dlg.Contact.MiddleName;
+                //newRow["FirstName"] = dlg.Contact.FirstName;
+                //newRow["KnownAs"] = dlg.Contact.KnownAs;
+                //newRow["PreferredName"] = dlg.Contact.PreferredName;
+                //newRow["Gender"] = dlg.Contact.Gender;
 
-                if (dlg.Contact.Gender == 0) newRow["GenderAsStr"] = "Nam";//dlg.Contact.Gender == 0 ? "Nam" : "Nữ";
-                else if (dlg.Contact.Gender == 1) newRow["GenderAsStr"] = "Nữ";
-                else newRow["GenderAsStr"] = "Không xác định";
+                //if (dlg.Contact.Gender == 0) newRow["GenderAsStr"] = "Nam";//dlg.Contact.Gender == 0 ? "Nam" : "Nữ";
+                //else if (dlg.Contact.Gender == 1) newRow["GenderAsStr"] = "Nữ";
+                //else newRow["GenderAsStr"] = "Không xác định";
 
-                newRow["DobStr"] = dlg.Contact.DobStr;
-                newRow["IdentityCard"] = dlg.Contact.IdentityCard;
-                newRow["HomePhone"] = dlg.Contact.HomePhone;
-                newRow["WorkPhone"] = dlg.Contact.WorkPhone;
-                newRow["Mobile"] = dlg.Contact.Mobile;
-                newRow["Email"] = dlg.Contact.Email;
-                newRow["FAX"] = dlg.Contact.FAX;
-                newRow["Address"] = dlg.Contact.Address;
-                newRow["Ward"] = dlg.Contact.Ward;
-                newRow["District"] = dlg.Contact.District;
-                newRow["City"] = dlg.Contact.City;
+                //newRow["DobStr"] = dlg.Contact.DobStr;
+                //newRow["IdentityCard"] = dlg.Contact.IdentityCard;
+                //newRow["HomePhone"] = dlg.Contact.HomePhone;
+                //newRow["WorkPhone"] = dlg.Contact.WorkPhone;
+                //newRow["Mobile"] = dlg.Contact.Mobile;
+                //newRow["Email"] = dlg.Contact.Email;
+                //newRow["FAX"] = dlg.Contact.FAX;
+                //newRow["Address"] = dlg.Contact.Address;
+                //newRow["Ward"] = dlg.Contact.Ward;
+                //newRow["District"] = dlg.Contact.District;
+                //newRow["City"] = dlg.Contact.City;
 
-                newRow["Qualifications"] = dlg.DocStaff.Qualifications;
-                newRow["SpecialityGUID"] = dlg.DocStaff.SpecialityGUID.ToString();
-                newRow["WorkType"] = dlg.DocStaff.WorkType;
-                newRow["StaffType"] = dlg.DocStaff.StaffType;
+                //newRow["Qualifications"] = dlg.DocStaff.Qualifications;
+                //newRow["SpecialityGUID"] = dlg.DocStaff.SpecialityGUID.ToString();
+                //newRow["WorkType"] = dlg.DocStaff.WorkType;
+                //newRow["StaffType"] = dlg.DocStaff.StaffType;
 
-                if (dlg.Contact.CreatedDate.HasValue)
-                    newRow["CreatedDate"] = dlg.Contact.CreatedDate;
+                //if (dlg.Contact.CreatedDate.HasValue)
+                //    newRow["CreatedDate"] = dlg.Contact.CreatedDate;
 
-                if (dlg.Contact.CreatedBy.HasValue)
-                    newRow["CreatedBy"] = dlg.Contact.CreatedBy.ToString();
+                //if (dlg.Contact.CreatedBy.HasValue)
+                //    newRow["CreatedBy"] = dlg.Contact.CreatedBy.ToString();
 
-                if (dlg.Contact.UpdatedDate.HasValue)
-                    newRow["UpdatedDate"] = dlg.Contact.UpdatedDate;
+                //if (dlg.Contact.UpdatedDate.HasValue)
+                //    newRow["UpdatedDate"] = dlg.Contact.UpdatedDate;
 
-                if (dlg.Contact.UpdatedBy.HasValue)
-                    newRow["UpdatedBy"] = dlg.Contact.UpdatedBy.ToString();
+                //if (dlg.Contact.UpdatedBy.HasValue)
+                //    newRow["UpdatedBy"] = dlg.Contact.UpdatedBy.ToString();
 
-                if (dlg.Contact.DeletedDate.HasValue)
-                    newRow["DeletedDate"] = dlg.Contact.DeletedDate;
+                //if (dlg.Contact.DeletedDate.HasValue)
+                //    newRow["DeletedDate"] = dlg.Contact.DeletedDate;
 
-                if (dlg.Contact.DeletedBy.HasValue)
-                    newRow["DeletedBy"] = dlg.Contact.DeletedBy.ToString();
-                dt.Rows.Add(newRow);
+                //if (dlg.Contact.DeletedBy.HasValue)
+                //    newRow["DeletedBy"] = dlg.Contact.DeletedBy.ToString();
+                //dt.Rows.Add(newRow);
                 //SelectLastedRow();
             }
         }
@@ -174,52 +180,53 @@ namespace MM.Controls
             dlgAddDocStaff dlg = new dlgAddDocStaff(drDocStaff, AllowEdit);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                drDocStaff["FullName"] = dlg.Contact.FullName;
-                drDocStaff["SurName"] = dlg.Contact.SurName;
-                drDocStaff["MiddleName"] = dlg.Contact.MiddleName;
-                drDocStaff["FirstName"] = dlg.Contact.FirstName;
-                drDocStaff["KnownAs"] = dlg.Contact.KnownAs;
-                drDocStaff["PreferredName"] = dlg.Contact.PreferredName;
-                drDocStaff["Gender"] = dlg.Contact.Gender;
+                DisplayAsThread();
+                //drDocStaff["FullName"] = dlg.Contact.FullName;
+                //drDocStaff["SurName"] = dlg.Contact.SurName;
+                //drDocStaff["MiddleName"] = dlg.Contact.MiddleName;
+                //drDocStaff["FirstName"] = dlg.Contact.FirstName;
+                //drDocStaff["KnownAs"] = dlg.Contact.KnownAs;
+                //drDocStaff["PreferredName"] = dlg.Contact.PreferredName;
+                //drDocStaff["Gender"] = dlg.Contact.Gender;
 
-                if (dlg.Contact.Gender == 0) drDocStaff["GenderAsStr"] = "Nam";//dlg.Contact.Gender == 0 ? "Nam" : "Nữ";
-                else if (dlg.Contact.Gender == 1) drDocStaff["GenderAsStr"] = "Nữ";
-                else drDocStaff["GenderAsStr"] = "Không xác định";
+                //if (dlg.Contact.Gender == 0) drDocStaff["GenderAsStr"] = "Nam";//dlg.Contact.Gender == 0 ? "Nam" : "Nữ";
+                //else if (dlg.Contact.Gender == 1) drDocStaff["GenderAsStr"] = "Nữ";
+                //else drDocStaff["GenderAsStr"] = "Không xác định";
 
-                drDocStaff["DobStr"] = dlg.Contact.DobStr;
-                drDocStaff["IdentityCard"] = dlg.Contact.IdentityCard;
-                drDocStaff["HomePhone"] = dlg.Contact.HomePhone;
-                drDocStaff["WorkPhone"] = dlg.Contact.WorkPhone;
-                drDocStaff["Mobile"] = dlg.Contact.Mobile;
-                drDocStaff["Email"] = dlg.Contact.Email;
-                drDocStaff["FAX"] = dlg.Contact.FAX;
-                drDocStaff["Address"] = dlg.Contact.Address;
-                drDocStaff["Ward"] = dlg.Contact.Ward;
-                drDocStaff["District"] = dlg.Contact.District;
-                drDocStaff["City"] = dlg.Contact.City;
+                //drDocStaff["DobStr"] = dlg.Contact.DobStr;
+                //drDocStaff["IdentityCard"] = dlg.Contact.IdentityCard;
+                //drDocStaff["HomePhone"] = dlg.Contact.HomePhone;
+                //drDocStaff["WorkPhone"] = dlg.Contact.WorkPhone;
+                //drDocStaff["Mobile"] = dlg.Contact.Mobile;
+                //drDocStaff["Email"] = dlg.Contact.Email;
+                //drDocStaff["FAX"] = dlg.Contact.FAX;
+                //drDocStaff["Address"] = dlg.Contact.Address;
+                //drDocStaff["Ward"] = dlg.Contact.Ward;
+                //drDocStaff["District"] = dlg.Contact.District;
+                //drDocStaff["City"] = dlg.Contact.City;
 
-                drDocStaff["Qualifications"] = dlg.DocStaff.Qualifications;
-                drDocStaff["SpecialityGUID"] = dlg.DocStaff.SpecialityGUID.ToString();
-                drDocStaff["WorkType"] = dlg.DocStaff.WorkType;
-                drDocStaff["StaffType"] = dlg.DocStaff.StaffType;
+                //drDocStaff["Qualifications"] = dlg.DocStaff.Qualifications;
+                //drDocStaff["SpecialityGUID"] = dlg.DocStaff.SpecialityGUID.ToString();
+                //drDocStaff["WorkType"] = dlg.DocStaff.WorkType;
+                //drDocStaff["StaffType"] = dlg.DocStaff.StaffType;
 
-                if (dlg.Contact.CreatedDate.HasValue)
-                    drDocStaff["CreatedDate"] = dlg.Contact.CreatedDate;
+                //if (dlg.Contact.CreatedDate.HasValue)
+                //    drDocStaff["CreatedDate"] = dlg.Contact.CreatedDate;
 
-                if (dlg.Contact.CreatedBy.HasValue)
-                    drDocStaff["CreatedBy"] = dlg.Contact.CreatedBy.ToString();
+                //if (dlg.Contact.CreatedBy.HasValue)
+                //    drDocStaff["CreatedBy"] = dlg.Contact.CreatedBy.ToString();
 
-                if (dlg.Contact.UpdatedDate.HasValue)
-                    drDocStaff["UpdatedDate"] = dlg.Contact.UpdatedDate;
+                //if (dlg.Contact.UpdatedDate.HasValue)
+                //    drDocStaff["UpdatedDate"] = dlg.Contact.UpdatedDate;
 
-                if (dlg.Contact.UpdatedBy.HasValue)
-                    drDocStaff["UpdatedBy"] = dlg.Contact.UpdatedBy.ToString();
+                //if (dlg.Contact.UpdatedBy.HasValue)
+                //    drDocStaff["UpdatedBy"] = dlg.Contact.UpdatedBy.ToString();
 
-                if (dlg.Contact.DeletedDate.HasValue)
-                    drDocStaff["DeletedDate"] = dlg.Contact.DeletedDate;
+                //if (dlg.Contact.DeletedDate.HasValue)
+                //    drDocStaff["DeletedDate"] = dlg.Contact.DeletedDate;
 
-                if (dlg.Contact.DeletedBy.HasValue)
-                    drDocStaff["DeletedBy"] = dlg.Contact.DeletedBy.ToString();
+                //if (dlg.Contact.DeletedBy.HasValue)
+                //    drDocStaff["DeletedBy"] = dlg.Contact.DeletedBy.ToString();
             }
         }
 
@@ -244,10 +251,11 @@ namespace MM.Controls
                     Result result = DocStaffBus.DeleteDocStaff(deletedDocStaffList);
                     if (result.IsOK)
                     {
-                        foreach (DataRow row in deletedRows)
-                        {
-                            dt.Rows.Remove(row);
-                        }
+                        //foreach (DataRow row in deletedRows)
+                        //{
+                        //    dt.Rows.Remove(row);
+                        //}
+                        DisplayAsThread();
                     }
                     else
                     {
@@ -375,6 +383,21 @@ namespace MM.Controls
         {
             OnExportExcel();
         }
+
+        private void raTatCa_CheckedChanged(object sender, EventArgs e)
+        {
+            if (raTatCa.Checked) DisplayAsThread();
+        }
+
+        private void raChuaXoa_CheckedChanged(object sender, EventArgs e)
+        {
+            if (raChuaXoa.Checked) DisplayAsThread();
+        }
+
+        private void raDaXoa_CheckedChanged(object sender, EventArgs e)
+        {
+            if (raDaXoa.Checked) DisplayAsThread();
+        }
         #endregion
 
         #region Working Thread
@@ -396,7 +419,5 @@ namespace MM.Controls
             }
         }
         #endregion
-
-        
     }
 }
