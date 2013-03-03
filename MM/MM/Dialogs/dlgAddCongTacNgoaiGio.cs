@@ -51,7 +51,7 @@ namespace MM.Dialogs
             dtpkGioVao.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, 0, 0);
             dtpkGioRa.Value = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, DateTime.Now.Hour, 0, 0);
 
-            Result result = DocStaffBus.GetDocStaffList();
+            Result result = DocStaffBus.GetDocStaffList(1);
             if (!result.IsOK)
             {
                 MsgBox.Show(this.Text, result.GetErrorAsString("DocStaffBus.GetDocStaffList"), IconType.Error);

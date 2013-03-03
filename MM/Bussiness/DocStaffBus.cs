@@ -11,13 +11,19 @@ namespace MM.Bussiness
 {
     public class DocStaffBus : BusBase
     {
-        public static Result GetDocStaffList()
+        public static Result GetDocStaffList(int type)
         {
             Result result = null;
 
             try
             {
-                string query = "SELECT  CAST(0 AS Bit) AS Checked, * FROM DocStaffView WHERE AvailableToWork = 'True' ORDER BY FullName";
+                string query = string.Empty;
+                if (type == 0)
+                    query = "SELECT  CAST(0 AS Bit) AS Checked, * FROM DocStaffView ORDER BY FullName";
+                else if (type == 1)
+                    query = "SELECT  CAST(0 AS Bit) AS Checked, * FROM DocStaffView WHERE AvailableToWork = 'True' ORDER BY FullName";
+                else if (type == 2)
+                    query = "SELECT  CAST(0 AS Bit) AS Checked, * FROM DocStaffView WHERE AvailableToWork = 'False' ORDER BY FullName";
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
