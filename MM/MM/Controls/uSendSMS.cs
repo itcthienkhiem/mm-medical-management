@@ -14,6 +14,7 @@ using MM.Common;
 using MM.Databasae;
 using SpreadsheetGear;
 using SpreadsheetGear.Advanced.Cells;
+using System.Net;
 
 namespace MM.Controls
 {
@@ -172,7 +173,99 @@ namespace MM.Controls
                             noiDung = noiDung.Replace("#Mobile#", mobile);
                             noiDung = noiDung.Replace("#Email#", email);
 
+                            noiDung = Utility.ConvertToUnSign3(noiDung);
+                            noiDung = noiDung.Replace("\n", "\r\n");
 
+                            Stream resStream = null;
+                            StreamReader sr = null;
+                            try
+                            {
+                                string url = string.Format("http://sms.vietguys.biz/api/?u=vigor&pwd=ahhsw&from=VigorHEALTH&phone={0}&sms={1}",
+                                mobile, noiDung);
+
+                                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(url);
+                                HttpWebResponse response = (HttpWebResponse)request.GetResponse();
+                                resStream = response.GetResponseStream();
+                                sr = new StreamReader(resStream);
+                                string responseFromServer = sr.ReadToEnd();
+
+                                int result = 0;
+                                if (int.TryParse(responseFromServer, out result))
+                                {
+                                    switch (result)
+                                    {
+                                        case -1:
+                                            //MM.MsgBox.Show(Application.ProductName, "Send SMS Error: Chưa nhập đầy đủ các tham số yêu cầu.", IconType.Error);
+                                            Utility.WriteToTraceLog(string.Format("Send SMS Error: Chưa nhập đầy đủ các tham số yêu cầu (Mã bệnh nhân: {0}, Tên bệnh nhân: {1}).", maBenhNhan, tenBenhNhan));
+                                            break;
+                                        case -2:
+                                            //MM.MsgBox.Show(Application.ProductName, "Send SMS Error: Không thể kết nối đến máy chủ VIETGUYS, máy chủ đang bận.", IconType.Error);
+                                            Utility.WriteToTraceLog(string.Format("Send SMS Error: Không thể kết nối đến máy chủ VIETGUYS, máy chủ đang bận (Mã bệnh nhân: {0}, Tên bệnh nhân: {1}).", maBenhNhan, tenBenhNhan));
+                                            break;
+                                        case -3:
+                                        case -5:
+                                            //MM.MsgBox.Show(Application.ProductName, "Send SMS Error: Thông tin xác nhận tài khoản chưa chính xác.", IconType.Error);
+                                            Utility.WriteToTraceLog(string.Format("Send SMS Error: Thông tin xác nhận tài khoản chưa chính xác (Mã bệnh nhân: {0}, Tên bệnh nhân: {1}).", maBenhNhan, tenBenhNhan));
+                                            break;
+                                        case -4:
+                                            //MM.MsgBox.Show(Application.ProductName, "Send SMS Error: Tài khoản bị khóa.", IconType.Error);
+                                            Utility.WriteToTraceLog(string.Format("Send SMS Error: Tài khoản bị khóa (Mã bệnh nhân: {0}, Tên bệnh nhân: {1}).", maBenhNhan, tenBenhNhan));
+                                            break;
+                                        case -6:
+                                            //MM.MsgBox.Show(Application.ProductName, "Send SMS Error: Chức năng API chưa kích hoạt.", IconType.Error);
+                                            Utility.WriteToTraceLog(string.Format("Send SMS Error: Chức năng API chưa kích hoạt (Mã bệnh nhân: {0}, Tên bệnh nhân: {1}).", maBenhNhan, tenBenhNhan));
+                                            break;
+                                        case -7:
+                                            //MM.MsgBox.Show(Application.ProductName, "Send SMS Error: IP bị giới hạn truy cập, không được phép gửi từ IP này.", IconType.Error);
+                                            Utility.WriteToTraceLog(string.Format("Send SMS Error: IP bị giới hạn truy cập, không được phép gửi từ IP này (Mã bệnh nhân: {0}, Tên bệnh nhân: {1}).", maBenhNhan, tenBenhNhan));
+                                            break;
+                                        case -8:
+                                            //MM.MsgBox.Show(Application.ProductName, "Send SMS Error: Giá trị Gửi-từ-đâu chưa được phép sử dụng, vui lòng liên hệ với VIETGUYS để khai báo trước khi sử dụng.", IconType.Error);
+                                            Utility.WriteToTraceLog(string.Format("Send SMS Error: Giá trị Gửi-từ-đâu chưa được phép sử dụng, vui lòng liên hệ với VIETGUYS để khai báo trước khi sử dụng (Mã bệnh nhân: {0}, Tên bệnh nhân: {1}).", maBenhNhan, tenBenhNhan));
+                                            break;
+                                        case -9:
+                                            //MM.MsgBox.Show(Application.ProductName, "Send SMS Error: Tài khoản hết credits gửi tin.", IconType.Error);
+                                            Utility.WriteToTraceLog(string.Format("Send SMS Error: Tài khoản hết credits gửi tin (Mã bệnh nhân: {0}, Tên bệnh nhân: {1}).", maBenhNhan, tenBenhNhan));
+                                            break;
+                                        case -10:
+                                            //MM.MsgBox.Show(Application.ProductName, "Send SMS Error: Số điện thoại người nhận chưa chính xác.", IconType.Error);
+                                            Utility.WriteToTraceLog(string.Format("Send SMS Error: Số điện thoại người nhận chưa chính xác (Mã bệnh nhân: {0}, Tên bệnh nhân: {1}).", maBenhNhan, tenBenhNhan));
+                                            break;
+                                        case -11:
+                                            //MM.MsgBox.Show(Application.ProductName, "Send SMS Error: Số điện thoại nằm trong danh sách Blacklist, là danh sách không muốn nhận tin nhắn.", IconType.Error);
+                                            Utility.WriteToTraceLog(string.Format("Send SMS Error: Số điện thoại nằm trong danh sách Blacklist, là danh sách không muốn nhận tin nhắn (Mã bệnh nhân: {0}, Tên bệnh nhân: {1}).", maBenhNhan, tenBenhNhan));
+                                            break;
+                                        case -12:
+                                            //MM.MsgBox.Show(Application.ProductName, "Send SMS Error: Tài khoản không đủ credits để thực hiện gửi tin nhắn.", IconType.Error);
+                                            Utility.WriteToTraceLog(string.Format("Send SMS Error: Tài khoản không đủ credits để thực hiện gửi tin nhắn (Mã bệnh nhân: {0}, Tên bệnh nhân: {1}).", maBenhNhan, tenBenhNhan));
+                                            break;
+                                    }
+                                }
+                                else
+                                {
+                                    Utility.WriteToTraceLog(string.Format("Send SMS OK: {0} (Mã bệnh nhân: {1}, Tên bệnh nhân: {2}).", responseFromServer, maBenhNhan, tenBenhNhan));
+                                }
+                            }
+                            catch (Exception e)
+                            {
+                                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                                Utility.WriteToTraceLog(e.Message);
+                            }
+                            finally
+                            {
+                                if (sr != null)
+                                {
+                                    sr.Close();
+                                    sr = null;
+                                }
+
+                                if (resStream != null)
+                                {
+                                    resStream.Close();
+                                    resStream = null;
+                                }
+                            }
+                            
                         }
                     }
                 }
