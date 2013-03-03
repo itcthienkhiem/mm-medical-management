@@ -188,6 +188,7 @@ namespace MM.Controls
                                 resStream = response.GetResponseStream();
                                 sr = new StreamReader(resStream);
                                 string responseFromServer = sr.ReadToEnd();
+                                responseFromServer = responseFromServer.Replace("\t", "");
 
                                 int result = 0;
                                 if (int.TryParse(responseFromServer, out result))
