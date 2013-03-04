@@ -174,6 +174,8 @@ namespace MM.Controls
                             noiDung = noiDung.Replace("#Email#", email);
 
                             noiDung = Utility.ConvertToUnSign3(noiDung);
+                            noiDung = noiDung.Replace("Đ", "D");
+                            noiDung = noiDung.Replace("đ", "d");
                             noiDung = noiDung.Replace("\n", "\r\n");
 
                             Stream resStream = null;
