@@ -49,6 +49,10 @@ namespace MM
             Utility.CreateFolder(Global.UsersPath);
 
             InitControl();
+
+            //string pass = "hoTn+aDg1LDgMf+9Hdt+ZA==";
+            //RijndaelCrypto cryto = new RijndaelCrypto();
+            //pass = cryto.Decrypt(pass);
         }
         #endregion
 
