@@ -23,14 +23,17 @@ namespace MM.Bussiness
                 DateTime toDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 59, 59);
                 string query = string.Empty;
 
-                if (Global.StaffType != StaffType.BacSi && Global.StaffType != StaffType.BacSiSieuAm &&
-                    Global.StaffType != StaffType.BacSiNgoaiTongQuat && Global.StaffType != StaffType.BacSiNoiTongQuat && 
-                    Global.StaffType != StaffType.BacSiPhuKhoa)
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ChiDinhView WITH(NOLOCK) WHERE Archived='False' AND Status={0} AND BenhNhanGUID='{1}' AND NgayChiDinh BETWEEN '{2}' AND '{3}' ORDER BY NgayChiDinh DESC",
+                //if (Global.StaffType != StaffType.BacSi && Global.StaffType != StaffType.BacSiSieuAm &&
+                //    Global.StaffType != StaffType.BacSiNgoaiTongQuat && Global.StaffType != StaffType.BacSiNoiTongQuat && 
+                //    Global.StaffType != StaffType.BacSiPhuKhoa)
+                //    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ChiDinhView WITH(NOLOCK) WHERE Archived='False' AND Status={0} AND BenhNhanGUID='{1}' AND NgayChiDinh BETWEEN '{2}' AND '{3}' ORDER BY NgayChiDinh DESC",
+                //        (byte)Status.Actived, patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
+                //else
+                //    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ChiDinhView WITH(NOLOCK) WHERE Archived='False' AND Status={0} AND BenhNhanGUID='{1}' AND NgayChiDinh BETWEEN '{2}' AND '{3}' AND BacSiChiDinhGUID='{4}' ORDER BY NgayChiDinh DESC",
+                //        (byte)Status.Actived, patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), Global.UserGUID);
+
+                query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ChiDinhView WITH(NOLOCK) WHERE Archived='False' AND Status={0} AND BenhNhanGUID='{1}' AND NgayChiDinh BETWEEN '{2}' AND '{3}' ORDER BY NgayChiDinh DESC",
                         (byte)Status.Actived, patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
-                else
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ChiDinhView WITH(NOLOCK) WHERE Archived='False' AND Status={0} AND BenhNhanGUID='{1}' AND NgayChiDinh BETWEEN '{2}' AND '{3}' AND BacSiChiDinhGUID='{4}' ORDER BY NgayChiDinh DESC",
-                        (byte)Status.Actived, patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), Global.UserGUID);
 
                 return ExcuteQuery(query);
             }
