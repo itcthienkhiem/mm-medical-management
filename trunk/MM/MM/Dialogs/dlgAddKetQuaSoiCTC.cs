@@ -406,6 +406,17 @@ namespace MM.Dialogs
                 Utility.WriteToTraceLog(e.Message);
             }
         }
+
+        private void ChonHinhTuBenNgoai(PictureBox picBox)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                Bitmap bmp = new Bitmap(dlg.FileName);
+                picBox.Image = bmp;
+            }
+        }
         #endregion
 
         #region Window Event Handlers
@@ -584,6 +595,26 @@ namespace MM.Dialogs
                 MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             
+        }
+
+        private void chọnHìnhTừBênNgoàiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChonHinhTuBenNgoai(picHinh1);
+        }
+
+        private void chọnHìnhTừBênNgoàiToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ChonHinhTuBenNgoai(picHinh2);
+        }
+
+        private void picHinh1_DoubleClick(object sender, EventArgs e)
+        {
+            ChonHinhTuBenNgoai(picHinh1);
+        }
+
+        private void picHinh2_DoubleClick(object sender, EventArgs e)
+        {
+            ChonHinhTuBenNgoai(picHinh2);
         }
         #endregion
 

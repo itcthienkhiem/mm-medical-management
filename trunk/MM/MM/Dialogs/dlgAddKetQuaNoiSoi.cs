@@ -1151,6 +1151,17 @@ namespace MM.Dialogs
                     cboDeNghi.Items.Add(row["Value"].ToString());
             }
         }
+
+        private void ChonHinhTuBenNgoai(PictureBox picBox)
+        {
+            OpenFileDialog dlg = new OpenFileDialog();
+            dlg.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                Bitmap bmp = new Bitmap(dlg.FileName);
+                picBox.Image = bmp;
+            }
+        }
         #endregion
 
         #region Window Event Handlers
@@ -1337,6 +1348,46 @@ namespace MM.Dialogs
             this.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.Close();
         }
+
+        private void chọnHìnhTừBênNgoàiToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ChonHinhTuBenNgoai(picHinh1);
+        }
+
+        private void chọnHìnhTừBênNgoàiToolStripMenuItem1_Click(object sender, EventArgs e)
+        {
+            ChonHinhTuBenNgoai(picHinh2);
+        }
+
+        private void chọnHìnhTừBênNgoàiToolStripMenuItem2_Click(object sender, EventArgs e)
+        {
+            ChonHinhTuBenNgoai(picHinh3);
+        }
+
+        private void chọnHìnhTừBênNgoàiToolStripMenuItem3_Click(object sender, EventArgs e)
+        {
+            ChonHinhTuBenNgoai(picHinh4);
+        }
+
+        private void picHinh1_DoubleClick(object sender, EventArgs e)
+        {
+            ChonHinhTuBenNgoai(picHinh1);
+        }
+
+        private void picHinh2_DoubleClick(object sender, EventArgs e)
+        {
+            ChonHinhTuBenNgoai(picHinh2);
+        }
+
+        private void picHinh3_DoubleClick(object sender, EventArgs e)
+        {
+            ChonHinhTuBenNgoai(picHinh3);
+        }
+
+        private void picHinh4_DoubleClick(object sender, EventArgs e)
+        {
+            ChonHinhTuBenNgoai(picHinh4);
+        }
         #endregion
 
         #region Working Thread
@@ -1357,5 +1408,9 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
+
+        
     }
 }
