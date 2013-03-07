@@ -53,10 +53,14 @@
             this.btnHinh2 = new System.Windows.Forms.Button();
             this.picHinh2 = new System.Windows.Forms.PictureBox();
             this.ctmHinh2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.chọnHìnhTừBênNgoàiToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.btnHinh1 = new System.Windows.Forms.Button();
             this.picHinh1 = new System.Windows.Forms.PictureBox();
             this.ctmHinh1 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.chọnHìnhTừBênNgoàiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.xóaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.panel5 = new System.Windows.Forms.Panel();
             this._textControl = new TXTextControl.TextControl();
@@ -304,18 +308,33 @@
             this.picHinh2.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picHinh2.TabIndex = 20;
             this.picHinh2.TabStop = false;
+            this.picHinh2.DoubleClick += new System.EventHandler(this.picHinh2_DoubleClick);
             // 
             // ctmHinh2
             // 
             this.ctmHinh2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.chọnHìnhTừBênNgoàiToolStripMenuItem1,
+            this.toolStripSeparator2,
             this.toolStripMenuItem1});
             this.ctmHinh2.Name = "ctmHinh1";
-            this.ctmHinh2.Size = new System.Drawing.Size(153, 48);
+            this.ctmHinh2.Size = new System.Drawing.Size(201, 76);
+            // 
+            // chọnHìnhTừBênNgoàiToolStripMenuItem1
+            // 
+            this.chọnHìnhTừBênNgoàiToolStripMenuItem1.Name = "chọnHìnhTừBênNgoàiToolStripMenuItem1";
+            this.chọnHìnhTừBênNgoàiToolStripMenuItem1.Size = new System.Drawing.Size(200, 22);
+            this.chọnHìnhTừBênNgoàiToolStripMenuItem1.Text = "Chọn hình từ bên ngoài";
+            this.chọnHìnhTừBênNgoàiToolStripMenuItem1.Click += new System.EventHandler(this.chọnHìnhTừBênNgoàiToolStripMenuItem1_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(197, 6);
             // 
             // toolStripMenuItem1
             // 
             this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItem1.Size = new System.Drawing.Size(200, 22);
             this.toolStripMenuItem1.Text = "Xóa";
             this.toolStripMenuItem1.Click += new System.EventHandler(this.toolStripMenuItem1_Click);
             // 
@@ -339,18 +358,33 @@
             this.picHinh1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picHinh1.TabIndex = 18;
             this.picHinh1.TabStop = false;
+            this.picHinh1.DoubleClick += new System.EventHandler(this.picHinh1_DoubleClick);
             // 
             // ctmHinh1
             // 
             this.ctmHinh1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.chọnHìnhTừBênNgoàiToolStripMenuItem,
+            this.toolStripSeparator1,
             this.xóaToolStripMenuItem1});
             this.ctmHinh1.Name = "ctmHinh1";
-            this.ctmHinh1.Size = new System.Drawing.Size(104, 26);
+            this.ctmHinh1.Size = new System.Drawing.Size(201, 54);
+            // 
+            // chọnHìnhTừBênNgoàiToolStripMenuItem
+            // 
+            this.chọnHìnhTừBênNgoàiToolStripMenuItem.Name = "chọnHìnhTừBênNgoàiToolStripMenuItem";
+            this.chọnHìnhTừBênNgoàiToolStripMenuItem.Size = new System.Drawing.Size(200, 22);
+            this.chọnHìnhTừBênNgoàiToolStripMenuItem.Text = "Chọn hình từ bên ngoài";
+            this.chọnHìnhTừBênNgoàiToolStripMenuItem.Click += new System.EventHandler(this.chọnHìnhTừBênNgoàiToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(197, 6);
             // 
             // xóaToolStripMenuItem1
             // 
             this.xóaToolStripMenuItem1.Name = "xóaToolStripMenuItem1";
-            this.xóaToolStripMenuItem1.Size = new System.Drawing.Size(152, 22);
+            this.xóaToolStripMenuItem1.Size = new System.Drawing.Size(200, 22);
             this.xóaToolStripMenuItem1.Text = "Xóa";
             this.xóaToolStripMenuItem1.Click += new System.EventHandler(this.xóaToolStripMenuItem1_Click);
             // 
@@ -441,5 +475,9 @@
         private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ContextMenuStrip ctmHinh1;
         private System.Windows.Forms.ToolStripMenuItem xóaToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripMenuItem chọnHìnhTừBênNgoàiToolStripMenuItem1;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem chọnHìnhTừBênNgoàiToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
