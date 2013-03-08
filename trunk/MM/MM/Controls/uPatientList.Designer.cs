@@ -38,6 +38,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uPatientList));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -45,7 +46,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle15 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle16 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uPatientList));
             this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
@@ -61,8 +61,35 @@
             this.workPhoneDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mobileDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.emailDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.importExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.exportExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
+            this.xuatMaVachToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
+            this.moBenhNhanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.vaoPhongChoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.taoHoSoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.xemHoSoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.uploadHoSoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
+            this.taoMatKhauToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._uPrintKetQuaSieuAm = new MM.Controls.uPrintKetQuaSieuAm();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.btnXuatMaVach = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnExportExcel = new System.Windows.Forms.Button();
             this.btnTaoMatKhau = new System.Windows.Forms.Button();
@@ -93,36 +120,13 @@
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this._printDialog = new System.Windows.Forms.PrintDialog();
-            this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.importExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
-            this.exportExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator6 = new System.Windows.Forms.ToolStripSeparator();
-            this.moBenhNhanToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
-            this.vaoPhongChoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
-            this.taoHoSoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
-            this.xemHoSoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
-            this.uploadHoSoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
-            this.taoMatKhauToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.barCode = new DSBarCode.BarCodeCtrl();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).BeginInit();
+            this.ctmAction.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
-            this.ctmAction.SuspendLayout();
             this.SuspendLayout();
             // 
             // patientViewBindingSource
@@ -135,9 +139,9 @@
             this.panel3.Controls.Add(this.dgPatient);
             this.panel3.Controls.Add(this._uPrintKetQuaSieuAm);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 36);
+            this.panel3.Location = new System.Drawing.Point(0, 38);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1089, 368);
+            this.panel3.Size = new System.Drawing.Size(1154, 366);
             this.panel3.TabIndex = 1;
             // 
             // chkChecked
@@ -196,7 +200,7 @@
             this.dgPatient.Name = "dgPatient";
             this.dgPatient.RowHeadersWidth = 30;
             this.dgPatient.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgPatient.Size = new System.Drawing.Size(1089, 368);
+            this.dgPatient.Size = new System.Drawing.Size(1154, 366);
             this.dgPatient.TabIndex = 2;
             this.dgPatient.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPatient_CellMouseUp);
             this.dgPatient.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgPatient_ColumnHeaderMouseClick);
@@ -305,6 +309,201 @@
             this.emailDataGridViewTextBoxColumn.ReadOnly = true;
             this.emailDataGridViewTextBoxColumn.Width = 150;
             // 
+            // ctmAction
+            // 
+            this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.editToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.deleteToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.importExcelToolStripMenuItem,
+            this.toolStripSeparator4,
+            this.exportExcelToolStripMenuItem,
+            this.toolStripSeparator12,
+            this.xuatMaVachToolStripMenuItem,
+            this.toolStripSeparator5,
+            this.printToolStripMenuItem,
+            this.toolStripSeparator6,
+            this.moBenhNhanToolStripMenuItem,
+            this.toolStripSeparator7,
+            this.vaoPhongChoToolStripMenuItem,
+            this.toolStripSeparator8,
+            this.taoHoSoToolStripMenuItem,
+            this.toolStripSeparator9,
+            this.xemHoSoToolStripMenuItem,
+            this.toolStripSeparator10,
+            this.uploadHoSoToolStripMenuItem,
+            this.toolStripSeparator11,
+            this.taoMatKhauToolStripMenuItem});
+            this.ctmAction.Name = "cmtAction";
+            this.ctmAction.Size = new System.Drawing.Size(157, 362);
+            // 
+            // addToolStripMenuItem
+            // 
+            this.addToolStripMenuItem.Image = global::MM.Properties.Resources.add;
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.addToolStripMenuItem.Text = "Thêm";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(153, 6);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Image = global::MM.Properties.Resources.edit;
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.editToolStripMenuItem.Text = "Sửa";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(153, 6);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Image = global::MM.Properties.Resources.del;
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.deleteToolStripMenuItem.Text = "Xóa";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(153, 6);
+            // 
+            // importExcelToolStripMenuItem
+            // 
+            this.importExcelToolStripMenuItem.Image = global::MM.Properties.Resources.Excel_icon;
+            this.importExcelToolStripMenuItem.Name = "importExcelToolStripMenuItem";
+            this.importExcelToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.importExcelToolStripMenuItem.Text = "Nhập Excel";
+            this.importExcelToolStripMenuItem.Click += new System.EventHandler(this.importExcelToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(153, 6);
+            // 
+            // exportExcelToolStripMenuItem
+            // 
+            this.exportExcelToolStripMenuItem.Image = global::MM.Properties.Resources.page_excel_icon;
+            this.exportExcelToolStripMenuItem.Name = "exportExcelToolStripMenuItem";
+            this.exportExcelToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.exportExcelToolStripMenuItem.Text = "Xuất Excel";
+            this.exportExcelToolStripMenuItem.Click += new System.EventHandler(this.exportExcelToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator12
+            // 
+            this.toolStripSeparator12.Name = "toolStripSeparator12";
+            this.toolStripSeparator12.Size = new System.Drawing.Size(153, 6);
+            // 
+            // xuatMaVachToolStripMenuItem
+            // 
+            this.xuatMaVachToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("xuatMaVachToolStripMenuItem.Image")));
+            this.xuatMaVachToolStripMenuItem.Name = "xuatMaVachToolStripMenuItem";
+            this.xuatMaVachToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.xuatMaVachToolStripMenuItem.Text = "Xuất mã vạch";
+            this.xuatMaVachToolStripMenuItem.Click += new System.EventHandler(this.xuatMaVachToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(153, 6);
+            // 
+            // printToolStripMenuItem
+            // 
+            this.printToolStripMenuItem.Image = global::MM.Properties.Resources.Printer_icon__1_;
+            this.printToolStripMenuItem.Name = "printToolStripMenuItem";
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.printToolStripMenuItem.Text = "In";
+            this.printToolStripMenuItem.Click += new System.EventHandler(this.printToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator6
+            // 
+            this.toolStripSeparator6.Name = "toolStripSeparator6";
+            this.toolStripSeparator6.Size = new System.Drawing.Size(153, 6);
+            // 
+            // moBenhNhanToolStripMenuItem
+            // 
+            this.moBenhNhanToolStripMenuItem.Image = global::MM.Properties.Resources.folder_customer_icon__1_;
+            this.moBenhNhanToolStripMenuItem.Name = "moBenhNhanToolStripMenuItem";
+            this.moBenhNhanToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.moBenhNhanToolStripMenuItem.Text = "Mở bệnh nhân";
+            this.moBenhNhanToolStripMenuItem.Click += new System.EventHandler(this.moBenhNhanToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(153, 6);
+            // 
+            // vaoPhongChoToolStripMenuItem
+            // 
+            this.vaoPhongChoToolStripMenuItem.Image = global::MM.Properties.Resources.conference_icon;
+            this.vaoPhongChoToolStripMenuItem.Name = "vaoPhongChoToolStripMenuItem";
+            this.vaoPhongChoToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.vaoPhongChoToolStripMenuItem.Text = "Vào phòng chờ";
+            this.vaoPhongChoToolStripMenuItem.Click += new System.EventHandler(this.vaoPhongChoToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(153, 6);
+            // 
+            // taoHoSoToolStripMenuItem
+            // 
+            this.taoHoSoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("taoHoSoToolStripMenuItem.Image")));
+            this.taoHoSoToolStripMenuItem.Name = "taoHoSoToolStripMenuItem";
+            this.taoHoSoToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.taoHoSoToolStripMenuItem.Text = "Tạo hồ sơ";
+            this.taoHoSoToolStripMenuItem.Click += new System.EventHandler(this.taoHoSoToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(153, 6);
+            // 
+            // xemHoSoToolStripMenuItem
+            // 
+            this.xemHoSoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("xemHoSoToolStripMenuItem.Image")));
+            this.xemHoSoToolStripMenuItem.Name = "xemHoSoToolStripMenuItem";
+            this.xemHoSoToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.xemHoSoToolStripMenuItem.Text = "Xem hồ sơ";
+            this.xemHoSoToolStripMenuItem.Click += new System.EventHandler(this.xemHoSoToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(153, 6);
+            // 
+            // uploadHoSoToolStripMenuItem
+            // 
+            this.uploadHoSoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("uploadHoSoToolStripMenuItem.Image")));
+            this.uploadHoSoToolStripMenuItem.Name = "uploadHoSoToolStripMenuItem";
+            this.uploadHoSoToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.uploadHoSoToolStripMenuItem.Text = "Upload hồ sơ";
+            this.uploadHoSoToolStripMenuItem.Click += new System.EventHandler(this.uploadHoSoToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator11
+            // 
+            this.toolStripSeparator11.Name = "toolStripSeparator11";
+            this.toolStripSeparator11.Size = new System.Drawing.Size(153, 6);
+            // 
+            // taoMatKhauToolStripMenuItem
+            // 
+            this.taoMatKhauToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("taoMatKhauToolStripMenuItem.Image")));
+            this.taoMatKhauToolStripMenuItem.Name = "taoMatKhauToolStripMenuItem";
+            this.taoMatKhauToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.taoMatKhauToolStripMenuItem.Text = "Tạo mật khẩu";
+            this.taoMatKhauToolStripMenuItem.Click += new System.EventHandler(this.taoMatKhauToolStripMenuItem_Click);
+            // 
             // _uPrintKetQuaSieuAm
             // 
             this._uPrintKetQuaSieuAm.Location = new System.Drawing.Point(656, 89);
@@ -316,6 +515,7 @@
             // panel2
             // 
             this.panel2.AutoScroll = true;
+            this.panel2.Controls.Add(this.btnXuatMaVach);
             this.panel2.Controls.Add(this.btnPrint);
             this.panel2.Controls.Add(this.btnExportExcel);
             this.panel2.Controls.Add(this.btnTaoMatKhau);
@@ -331,14 +531,27 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 404);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(1089, 36);
+            this.panel2.Size = new System.Drawing.Size(1154, 36);
             this.panel2.TabIndex = 5;
+            // 
+            // btnXuatMaVach
+            // 
+            this.btnXuatMaVach.Image = ((System.Drawing.Image)(resources.GetObject("btnXuatMaVach.Image")));
+            this.btnXuatMaVach.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnXuatMaVach.Location = new System.Drawing.Point(383, 5);
+            this.btnXuatMaVach.Name = "btnXuatMaVach";
+            this.btnXuatMaVach.Size = new System.Drawing.Size(99, 25);
+            this.btnXuatMaVach.TabIndex = 79;
+            this.btnXuatMaVach.Text = "&Xuất mã vạch";
+            this.btnXuatMaVach.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnXuatMaVach.UseVisualStyleBackColor = true;
+            this.btnXuatMaVach.Click += new System.EventHandler(this.btnXuatMaVach_Click);
             // 
             // btnPrint
             // 
             this.btnPrint.Image = global::MM.Properties.Resources.Printer_icon__1_;
             this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(418, 5);
+            this.btnPrint.Location = new System.Drawing.Point(485, 5);
             this.btnPrint.Name = "btnPrint";
             this.btnPrint.Size = new System.Drawing.Size(49, 25);
             this.btnPrint.TabIndex = 78;
@@ -350,7 +563,7 @@
             // 
             this.btnExportExcel.Image = global::MM.Properties.Resources.page_excel_icon;
             this.btnExportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportExcel.Location = new System.Drawing.Point(324, 5);
+            this.btnExportExcel.Location = new System.Drawing.Point(289, 5);
             this.btnExportExcel.Name = "btnExportExcel";
             this.btnExportExcel.Size = new System.Drawing.Size(91, 25);
             this.btnExportExcel.TabIndex = 77;
@@ -362,7 +575,7 @@
             // 
             this.btnTaoMatKhau.Image = ((System.Drawing.Image)(resources.GetObject("btnTaoMatKhau.Image")));
             this.btnTaoMatKhau.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTaoMatKhau.Location = new System.Drawing.Point(978, 5);
+            this.btnTaoMatKhau.Location = new System.Drawing.Point(1045, 5);
             this.btnTaoMatKhau.Name = "btnTaoMatKhau";
             this.btnTaoMatKhau.Size = new System.Drawing.Size(101, 25);
             this.btnTaoMatKhau.TabIndex = 15;
@@ -374,7 +587,7 @@
             // 
             this.btnXemHoSo.Image = ((System.Drawing.Image)(resources.GetObject("btnXemHoSo.Image")));
             this.btnXemHoSo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnXemHoSo.Location = new System.Drawing.Point(786, 5);
+            this.btnXemHoSo.Location = new System.Drawing.Point(853, 5);
             this.btnXemHoSo.Name = "btnXemHoSo";
             this.btnXemHoSo.Size = new System.Drawing.Size(86, 25);
             this.btnXemHoSo.TabIndex = 13;
@@ -386,7 +599,7 @@
             // 
             this.btnUploadHoSo.Image = ((System.Drawing.Image)(resources.GetObject("btnUploadHoSo.Image")));
             this.btnUploadHoSo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUploadHoSo.Location = new System.Drawing.Point(875, 5);
+            this.btnUploadHoSo.Location = new System.Drawing.Point(942, 5);
             this.btnUploadHoSo.Name = "btnUploadHoSo";
             this.btnUploadHoSo.Size = new System.Drawing.Size(100, 25);
             this.btnUploadHoSo.TabIndex = 14;
@@ -398,7 +611,7 @@
             // 
             this.btnTaoHoSo.Image = ((System.Drawing.Image)(resources.GetObject("btnTaoHoSo.Image")));
             this.btnTaoHoSo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTaoHoSo.Location = new System.Drawing.Point(697, 5);
+            this.btnTaoHoSo.Location = new System.Drawing.Point(764, 5);
             this.btnTaoHoSo.Name = "btnTaoHoSo";
             this.btnTaoHoSo.Size = new System.Drawing.Size(86, 25);
             this.btnTaoHoSo.TabIndex = 12;
@@ -410,7 +623,7 @@
             // 
             this.btnVaoPhongCho.Image = global::MM.Properties.Resources.conference_icon;
             this.btnVaoPhongCho.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnVaoPhongCho.Location = new System.Drawing.Point(581, 5);
+            this.btnVaoPhongCho.Location = new System.Drawing.Point(648, 5);
             this.btnVaoPhongCho.Name = "btnVaoPhongCho";
             this.btnVaoPhongCho.Size = new System.Drawing.Size(113, 25);
             this.btnVaoPhongCho.TabIndex = 11;
@@ -422,7 +635,7 @@
             // 
             this.btnImportExcel.Image = global::MM.Properties.Resources.Excel_icon;
             this.btnImportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnImportExcel.Location = new System.Drawing.Point(228, 5);
+            this.btnImportExcel.Location = new System.Drawing.Point(193, 5);
             this.btnImportExcel.Name = "btnImportExcel";
             this.btnImportExcel.Size = new System.Drawing.Size(93, 25);
             this.btnImportExcel.TabIndex = 10;
@@ -434,7 +647,7 @@
             // 
             this.btnOpenPatient.Image = global::MM.Properties.Resources.folder_customer_icon__1_;
             this.btnOpenPatient.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOpenPatient.Location = new System.Drawing.Point(470, 5);
+            this.btnOpenPatient.Location = new System.Drawing.Point(537, 5);
             this.btnOpenPatient.Name = "btnOpenPatient";
             this.btnOpenPatient.Size = new System.Drawing.Size(108, 25);
             this.btnOpenPatient.TabIndex = 9;
@@ -446,11 +659,12 @@
             // 
             this.btnDelete.Image = global::MM.Properties.Resources.del;
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDelete.Location = new System.Drawing.Point(154, 5);
+            this.btnDelete.Location = new System.Drawing.Point(133, 5);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(71, 25);
+            this.btnDelete.Size = new System.Drawing.Size(57, 25);
             this.btnDelete.TabIndex = 8;
-            this.btnDelete.Text = "    &Xóa";
+            this.btnDelete.Text = "&Xóa";
+            this.btnDelete.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnDelete.UseVisualStyleBackColor = true;
             this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
             // 
@@ -458,11 +672,12 @@
             // 
             this.btnEdit.Image = global::MM.Properties.Resources.edit;
             this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit.Location = new System.Drawing.Point(80, 5);
+            this.btnEdit.Location = new System.Drawing.Point(72, 5);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(71, 25);
+            this.btnEdit.Size = new System.Drawing.Size(58, 25);
             this.btnEdit.TabIndex = 7;
-            this.btnEdit.Text = "    &Sửa";
+            this.btnEdit.Text = "&Sửa";
+            this.btnEdit.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
@@ -472,14 +687,16 @@
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnAdd.Location = new System.Drawing.Point(6, 5);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(71, 25);
+            this.btnAdd.Size = new System.Drawing.Size(63, 25);
             this.btnAdd.TabIndex = 6;
-            this.btnAdd.Text = "     &Thêm";
+            this.btnAdd.Text = "&Thêm";
+            this.btnAdd.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.barCode);
             this.panel1.Controls.Add(this.lbKetQuaTimDuoc);
             this.panel1.Controls.Add(this.chkTheoSoDienThoai);
             this.panel1.Controls.Add(this.chkMaBenhNhan);
@@ -488,7 +705,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1089, 36);
+            this.panel1.Size = new System.Drawing.Size(1154, 38);
             this.panel1.TabIndex = 0;
             // 
             // lbKetQuaTimDuoc
@@ -654,185 +871,25 @@
             this._printDialog.ShowHelp = true;
             this._printDialog.UseEXDialog = true;
             // 
-            // ctmAction
+            // barCode
             // 
-            this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.editToolStripMenuItem,
-            this.toolStripSeparator2,
-            this.deleteToolStripMenuItem,
-            this.toolStripSeparator3,
-            this.importExcelToolStripMenuItem,
-            this.toolStripSeparator4,
-            this.exportExcelToolStripMenuItem,
-            this.toolStripSeparator5,
-            this.printToolStripMenuItem,
-            this.toolStripSeparator6,
-            this.moBenhNhanToolStripMenuItem,
-            this.toolStripSeparator7,
-            this.vaoPhongChoToolStripMenuItem,
-            this.toolStripSeparator8,
-            this.taoHoSoToolStripMenuItem,
-            this.toolStripSeparator9,
-            this.xemHoSoToolStripMenuItem,
-            this.toolStripSeparator10,
-            this.uploadHoSoToolStripMenuItem,
-            this.toolStripSeparator11,
-            this.taoMatKhauToolStripMenuItem});
-            this.ctmAction.Name = "cmtAction";
-            this.ctmAction.Size = new System.Drawing.Size(157, 356);
-            // 
-            // addToolStripMenuItem
-            // 
-            this.addToolStripMenuItem.Image = global::MM.Properties.Resources.add;
-            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.addToolStripMenuItem.Text = "Thêm";
-            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(153, 6);
-            // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.Image = global::MM.Properties.Resources.edit;
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.editToolStripMenuItem.Text = "Sửa";
-            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(153, 6);
-            // 
-            // deleteToolStripMenuItem
-            // 
-            this.deleteToolStripMenuItem.Image = global::MM.Properties.Resources.del;
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.deleteToolStripMenuItem.Text = "Xóa";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(153, 6);
-            // 
-            // importExcelToolStripMenuItem
-            // 
-            this.importExcelToolStripMenuItem.Image = global::MM.Properties.Resources.Excel_icon;
-            this.importExcelToolStripMenuItem.Name = "importExcelToolStripMenuItem";
-            this.importExcelToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.importExcelToolStripMenuItem.Text = "Nhập Excel";
-            this.importExcelToolStripMenuItem.Click += new System.EventHandler(this.importExcelToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator4
-            // 
-            this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(153, 6);
-            // 
-            // exportExcelToolStripMenuItem
-            // 
-            this.exportExcelToolStripMenuItem.Image = global::MM.Properties.Resources.page_excel_icon;
-            this.exportExcelToolStripMenuItem.Name = "exportExcelToolStripMenuItem";
-            this.exportExcelToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.exportExcelToolStripMenuItem.Text = "Xuất Excel";
-            this.exportExcelToolStripMenuItem.Click += new System.EventHandler(this.exportExcelToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(153, 6);
-            // 
-            // printToolStripMenuItem
-            // 
-            this.printToolStripMenuItem.Image = global::MM.Properties.Resources.Printer_icon__1_;
-            this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.printToolStripMenuItem.Text = "In";
-            this.printToolStripMenuItem.Click += new System.EventHandler(this.printToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator6
-            // 
-            this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(153, 6);
-            // 
-            // moBenhNhanToolStripMenuItem
-            // 
-            this.moBenhNhanToolStripMenuItem.Image = global::MM.Properties.Resources.folder_customer_icon__1_;
-            this.moBenhNhanToolStripMenuItem.Name = "moBenhNhanToolStripMenuItem";
-            this.moBenhNhanToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.moBenhNhanToolStripMenuItem.Text = "Mở bệnh nhân";
-            this.moBenhNhanToolStripMenuItem.Click += new System.EventHandler(this.moBenhNhanToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator7
-            // 
-            this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(153, 6);
-            // 
-            // vaoPhongChoToolStripMenuItem
-            // 
-            this.vaoPhongChoToolStripMenuItem.Image = global::MM.Properties.Resources.conference_icon;
-            this.vaoPhongChoToolStripMenuItem.Name = "vaoPhongChoToolStripMenuItem";
-            this.vaoPhongChoToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.vaoPhongChoToolStripMenuItem.Text = "Vào phòng chờ";
-            this.vaoPhongChoToolStripMenuItem.Click += new System.EventHandler(this.vaoPhongChoToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator8
-            // 
-            this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(153, 6);
-            // 
-            // taoHoSoToolStripMenuItem
-            // 
-            this.taoHoSoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("taoHoSoToolStripMenuItem.Image")));
-            this.taoHoSoToolStripMenuItem.Name = "taoHoSoToolStripMenuItem";
-            this.taoHoSoToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.taoHoSoToolStripMenuItem.Text = "Tạo hồ sơ";
-            this.taoHoSoToolStripMenuItem.Click += new System.EventHandler(this.taoHoSoToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator9
-            // 
-            this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(153, 6);
-            // 
-            // xemHoSoToolStripMenuItem
-            // 
-            this.xemHoSoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("xemHoSoToolStripMenuItem.Image")));
-            this.xemHoSoToolStripMenuItem.Name = "xemHoSoToolStripMenuItem";
-            this.xemHoSoToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.xemHoSoToolStripMenuItem.Text = "Xem hồ sơ";
-            this.xemHoSoToolStripMenuItem.Click += new System.EventHandler(this.xemHoSoToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator10
-            // 
-            this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(153, 6);
-            // 
-            // uploadHoSoToolStripMenuItem
-            // 
-            this.uploadHoSoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("uploadHoSoToolStripMenuItem.Image")));
-            this.uploadHoSoToolStripMenuItem.Name = "uploadHoSoToolStripMenuItem";
-            this.uploadHoSoToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.uploadHoSoToolStripMenuItem.Text = "Upload hồ sơ";
-            this.uploadHoSoToolStripMenuItem.Click += new System.EventHandler(this.uploadHoSoToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator11
-            // 
-            this.toolStripSeparator11.Name = "toolStripSeparator11";
-            this.toolStripSeparator11.Size = new System.Drawing.Size(153, 6);
-            // 
-            // taoMatKhauToolStripMenuItem
-            // 
-            this.taoMatKhauToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("taoMatKhauToolStripMenuItem.Image")));
-            this.taoMatKhauToolStripMenuItem.Name = "taoMatKhauToolStripMenuItem";
-            this.taoMatKhauToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
-            this.taoMatKhauToolStripMenuItem.Text = "Tạo mật khẩu";
-            this.taoMatKhauToolStripMenuItem.Click += new System.EventHandler(this.taoMatKhauToolStripMenuItem_Click);
+            this.barCode.BarCode = "";
+            this.barCode.BarCodeHeight = 40;
+            this.barCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.barCode.FooterFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.barCode.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.barCode.HeaderText = "";
+            this.barCode.LeftMargin = 10;
+            this.barCode.Location = new System.Drawing.Point(806, 12);
+            this.barCode.Name = "barCode";
+            this.barCode.ShowFooter = true;
+            this.barCode.ShowHeader = false;
+            this.barCode.Size = new System.Drawing.Size(267, 62);
+            this.barCode.TabIndex = 58;
+            this.barCode.TopMargin = 5;
+            this.barCode.VertAlign = DSBarCode.BarCodeCtrl.AlignType.Left;
+            this.barCode.Visible = false;
+            this.barCode.Weight = DSBarCode.BarCodeCtrl.BarCodeWeight.Small;
             // 
             // uPatientList
             // 
@@ -842,15 +899,15 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "uPatientList";
-            this.Size = new System.Drawing.Size(1089, 440);
+            this.Size = new System.Drawing.Size(1154, 440);
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).EndInit();
+            this.ctmAction.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
-            this.ctmAction.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -928,5 +985,9 @@
         private System.Windows.Forms.ToolStripMenuItem uploadHoSoToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
         private System.Windows.Forms.ToolStripMenuItem taoMatKhauToolStripMenuItem;
+        private System.Windows.Forms.Button btnXuatMaVach;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
+        private System.Windows.Forms.ToolStripMenuItem xuatMaVachToolStripMenuItem;
+        private DSBarCode.BarCodeCtrl barCode;
     }
 }

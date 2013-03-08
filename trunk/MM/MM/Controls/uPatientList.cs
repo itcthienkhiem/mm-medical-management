@@ -49,6 +49,7 @@ namespace MM.Controls
             btnTaoMatKhau.Enabled = Global.AllowAddMatKhauHoSo;
             btnExportExcel.Enabled = AllowExport;
             btnPrint.Enabled = AllowPrint;
+            btnXuatMaVach.Enabled = AllowExport;
 
             addToolStripMenuItem.Enabled = AllowAdd;
             deleteToolStripMenuItem.Enabled = AllowDelete;
@@ -60,6 +61,7 @@ namespace MM.Controls
             taoMatKhauToolStripMenuItem.Enabled = Global.AllowAddMatKhauHoSo;
             exportExcelToolStripMenuItem.Enabled = AllowExport;
             printToolStripMenuItem.Enabled = AllowPrint;
+            xuatMaVachToolStripMenuItem.Enabled = AllowExport;
         }
 
         public void ClearData()
@@ -1134,6 +1136,30 @@ namespace MM.Controls
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân cần tạo mật khẩu hồ sơ.", IconType.Information);
         }
+
+        private void OnXuatMaVach()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            List<DataRow> checkedRows = _dictPatient.Values.ToList();
+            if (checkedRows.Count > 0)
+            {
+                FolderBrowserDialog dlg = new FolderBrowserDialog();
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    foreach (DataRow row in checkedRows)
+                    {
+                        string fileNum = row["FileNum"].ToString();
+                        string fullName = row["FullName"].ToString();
+                        fullName = Utility.ConvertToUnSign(row["FullName"].ToString());
+                        string fileName = string.Format("{0}\\{1}-{2}.png", dlg.SelectedPath, fileNum, fullName);
+                        barCode.BarCode = fileNum;
+                        barCode.SaveImage(fileName);
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân cần xuất mã vạch.", IconType.Information);
+        }
         #endregion
 
         #region Window Event Handlers
@@ -1406,6 +1432,16 @@ namespace MM.Controls
         {
             TaoMatKhauHoSo();
         }
+
+        private void btnXuatMaVach_Click(object sender, EventArgs e)
+        {
+            OnXuatMaVach();
+        }
+
+        private void xuatMaVachToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnXuatMaVach();
+        }
         #endregion
 
         #region Working Thread
@@ -1498,6 +1534,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
         
     }
