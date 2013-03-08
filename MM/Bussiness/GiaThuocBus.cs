@@ -36,7 +36,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetGiaThuocList(string tenThuoc)
+        public static Result GetGiaThuocList(string tenThuoc, int type)
         {
             Result result = null;
 
@@ -50,8 +50,16 @@ namespace MM.Bussiness
                 }
                 else
                 {
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM GiaThuocView WITH(NOLOCK) WHERE TenThuoc LIKE N'{0}%' AND GiaThuocStatus={1} AND ThuocStatus={1} ORDER BY TenThuoc ASC, NgayApDung DESC",
-                        tenThuoc, (byte)Status.Actived);
+                    if (type == 0)
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM GiaThuocView WITH(NOLOCK) WHERE TenThuoc LIKE N'{0}%' AND GiaThuocStatus={1} AND ThuocStatus={1} ORDER BY TenThuoc ASC, NgayApDung DESC",
+                            tenThuoc, (byte)Status.Actived);
+                    }
+                    else if (type == 1)
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM GiaThuocView WITH(NOLOCK) WHERE BietDuoc LIKE N'{0}%' AND GiaThuocStatus={1} AND ThuocStatus={1} ORDER BY TenThuoc ASC, NgayApDung DESC",
+                            tenThuoc, (byte)Status.Actived);
+                    }
                 }
 
                 return ExcuteQuery(query);
