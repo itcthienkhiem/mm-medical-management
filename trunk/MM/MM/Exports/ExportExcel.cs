@@ -1299,23 +1299,20 @@ namespace MM.Exports
                     range.Borders.LineStyle = LineStyle.Continuous;
                     range.Borders.Weight = BorderWeight.Thin;
 
-                    range = workSheet.Cells[string.Format("D{0}", dt.Rows.Count + 11)];
-                    range.Value = string.Format("                    Printed Date: {0}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
-                    range.HorizontalAlignment = HAlign.Center;
-                    range.VerticalAlignment = VAlign.Top;
-
-                    range = workSheet.Cells[string.Format("D{0}", dt.Rows.Count + 12)];
-                    range.Value = "                    Doctor's signature";
+                    range = workSheet.Cells[string.Format("D{0}:E{0}", dt.Rows.Count + 11)];
+                    range.Merge();
+                    range.Value = "Doctor's signature";
                     range.Font.Bold = true;
                     range.HorizontalAlignment = HAlign.Center;
                     range.VerticalAlignment = VAlign.Top;
 
-                    range = workSheet.Cells[string.Format("D{0}", dt.Rows.Count + 13)];
-                    range.Value = "                    (BS điều trị)";
+                    range = workSheet.Cells[string.Format("D{0}:E{0}", dt.Rows.Count + 12)];
+                    range.Merge();
+                    range.Value = "(BS điều trị)";
                     range.HorizontalAlignment = HAlign.Center;
                     range.VerticalAlignment = VAlign.Top;
 
-                    range = workSheet.Cells[string.Format("D{0}", dt.Rows.Count + 14)];
+                    range = workSheet.Cells[string.Format("D{0}", dt.Rows.Count + 13)];
                     range.RowHeight = 15.75 * 3;
 
                     result = DocStaffBus.GetChuKy(toaThuoc.BacSiKeToa.ToString());
@@ -1328,8 +1325,8 @@ namespace MM.Exports
 
                     if (result.QueryResult != null)
                     {
-                        double left = workSheet.WindowInfo.ColumnToPoints(3);
-                        double top = workSheet.WindowInfo.RowToPoints(dt.Rows.Count + 13);
+                        double left = workSheet.WindowInfo.ColumnToPoints(3) + 40;
+                        double top = workSheet.WindowInfo.RowToPoints(dt.Rows.Count + 12);
                         double width = 170;
                         double height = 47.25;
                         byte[] buff = (byte[])result.QueryResult;
@@ -1337,11 +1334,14 @@ namespace MM.Exports
                         workSheet.Shapes.AddPicture(buff, left, top, width, height);
                     }
 
-                    range = workSheet.Cells[string.Format("D{0}", dt.Rows.Count + 15)];
-                    range.Value = string.Format("                    {0}", toaThuoc.TenBacSi);
+                    range = workSheet.Cells[string.Format("D{0}:E{0}", dt.Rows.Count + 14)];
+                    range.Merge();
+                    range.Value = string.Format("{0}", toaThuoc.TenBacSi);
                     range.HorizontalAlignment = HAlign.Center;
                     range.VerticalAlignment = VAlign.Top;
 
+                    range = workSheet.Cells[string.Format("A{0}", dt.Rows.Count + 15)];
+                    range.Value = string.Format("Printed Date (Ngày in): {0}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
                 }
                 else
                 {
@@ -1411,15 +1411,15 @@ namespace MM.Exports
                         range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)];
                         range.HorizontalAlignment = HAlign.Left;
                         range.VerticalAlignment = VAlign.Top;
-                        range.Value = "Sáng (AM)";
+                        range.Value = string.Format("     Sáng (AM): {0}", SangNote);
 
-                        range = workSheet.Cells[string.Format("B{0}", rowIndex + 1)];
-                        range.HorizontalAlignment = HAlign.Right;
-                        range.VerticalAlignment = VAlign.Top;
-                        range.Value = SangNote;
+                        //range = workSheet.Cells[string.Format("B{0}", rowIndex + 1)];
+                        //range.HorizontalAlignment = HAlign.Right;
+                        //range.VerticalAlignment = VAlign.Top;
+                        //range.Value = SangNote;
 
                         shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox, 
-                            workSheet.WindowInfo.ColumnToPoints(1) - 4, workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
+                            workSheet.WindowInfo.ColumnToPoints(0), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
                         shape.Name = string.Empty; 
                         shape.Line.Visible = false;
                         shape.ControlFormat.Value = Sang ? 1 : 0;
@@ -1427,15 +1427,15 @@ namespace MM.Exports
                         range = workSheet.Cells[string.Format("C{0}", rowIndex + 1)];
                         range.HorizontalAlignment = HAlign.Left;
                         range.VerticalAlignment = VAlign.Top;
-                        range.Value = "Trưa (Noon)";
+                        range.Value = string.Format("     Trưa (Noon): {0}", TruaNote);
 
-                        range = workSheet.Cells[string.Format("D{0}", rowIndex + 1)];
-                        range.HorizontalAlignment = HAlign.Right;
-                        range.VerticalAlignment = VAlign.Top;
-                        range.Value = TruaNote;
+                        //range = workSheet.Cells[string.Format("D{0}", rowIndex + 1)];
+                        //range.HorizontalAlignment = HAlign.Right;
+                        //range.VerticalAlignment = VAlign.Top;
+                        //range.Value = TruaNote;
 
                         shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
-                            workSheet.WindowInfo.ColumnToPoints(3) - 4, workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
+                            workSheet.WindowInfo.ColumnToPoints(2), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
                         shape.Name = string.Empty;
                         shape.Line.Visible = false;
                         shape.ControlFormat.Value = Trua ? 1 : 0;
@@ -1443,15 +1443,15 @@ namespace MM.Exports
                         range = workSheet.Cells[string.Format("E{0}", rowIndex + 1)];
                         range.HorizontalAlignment = HAlign.Left;
                         range.VerticalAlignment = VAlign.Top;
-                        range.Value = "Chiều (PM)";
+                        range.Value = string.Format("     Chiều (PM): {0}", ChieuNote);
 
-                        range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
-                        range.HorizontalAlignment = HAlign.Right;
-                        range.VerticalAlignment = VAlign.Top;
-                        range.Value = ChieuNote;
+                        //range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
+                        //range.HorizontalAlignment = HAlign.Right;
+                        //range.VerticalAlignment = VAlign.Top;
+                        //range.Value = ChieuNote;
 
                         shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
-                            workSheet.WindowInfo.ColumnToPoints(5) - 4, workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
+                            workSheet.WindowInfo.ColumnToPoints(4), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
                         shape.Name = string.Empty;
                         shape.Line.Visible = false;
                         shape.ControlFormat.Value = Chieu ? 1 : 0;
@@ -1459,15 +1459,15 @@ namespace MM.Exports
                         range = workSheet.Cells[string.Format("G{0}", rowIndex + 1)];
                         range.HorizontalAlignment = HAlign.Left;
                         range.VerticalAlignment = VAlign.Top;
-                        range.Value = "Tối (Night)";
+                        range.Value = string.Format("     Tối (Night): {0}", ToiNote);
 
-                        range = workSheet.Cells[string.Format("H{0}", rowIndex + 1)];
-                        range.HorizontalAlignment = HAlign.Right;
-                        range.VerticalAlignment = VAlign.Top;
-                        range.Value = ToiNote;
+                        //range = workSheet.Cells[string.Format("H{0}", rowIndex + 1)];
+                        //range.HorizontalAlignment = HAlign.Right;
+                        //range.VerticalAlignment = VAlign.Top;
+                        //range.Value = ToiNote;
 
                         shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
-                            workSheet.WindowInfo.ColumnToPoints(7) - 4, workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
+                            workSheet.WindowInfo.ColumnToPoints(6), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
                         shape.Name = string.Empty;
                         shape.Line.Visible = false;
                         shape.ControlFormat.Value = Toi ? 1 : 0;
@@ -1477,15 +1477,15 @@ namespace MM.Exports
                         range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)];
                         range.HorizontalAlignment = HAlign.Left;
                         range.VerticalAlignment = VAlign.Top;
-                        range.Value = "Trước ăn (Before meal)";
+                        range.Value = string.Format("     Trước ăn (Before meal): {0}", TruocAnNote);
 
-                        range = workSheet.Cells[string.Format("C{0}", rowIndex + 1)];
-                        range.HorizontalAlignment = HAlign.Right;
-                        range.VerticalAlignment = VAlign.Top;
-                        range.Value = TruocAnNote;
+                        //range = workSheet.Cells[string.Format("C{0}", rowIndex + 1)];
+                        //range.HorizontalAlignment = HAlign.Right;
+                        //range.VerticalAlignment = VAlign.Top;
+                        //range.Value = TruocAnNote;
 
                         shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
-                            workSheet.WindowInfo.ColumnToPoints(2) - 4, workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
+                            workSheet.WindowInfo.ColumnToPoints(0), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
                         shape.Name = string.Empty;
                         shape.Line.Visible = false;
                         shape.ControlFormat.Value = TruocAn ? 1 : 0;
@@ -1493,15 +1493,15 @@ namespace MM.Exports
                         range = workSheet.Cells[string.Format("D{0}", rowIndex + 1)];
                         range.HorizontalAlignment = HAlign.Left;
                         range.VerticalAlignment = VAlign.Top;
-                        range.Value = "Sau ăn (After meal)";
+                        range.Value = string.Format("     Sau ăn (After meal): {0}", SauAnNote);
 
-                        range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
-                        range.HorizontalAlignment = HAlign.Right;
-                        range.VerticalAlignment = VAlign.Top;
-                        range.Value = SauAnNote;
+                        //range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
+                        //range.HorizontalAlignment = HAlign.Right;
+                        //range.VerticalAlignment = VAlign.Top;
+                        //range.Value = SauAnNote;
 
                         shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
-                            workSheet.WindowInfo.ColumnToPoints(5) - 4, workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
+                            workSheet.WindowInfo.ColumnToPoints(3), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
                         shape.Name = string.Empty;
                         shape.Line.Visible = false;
                         shape.ControlFormat.Value = SauAn ? 1 : 0;
@@ -1509,15 +1509,15 @@ namespace MM.Exports
                         range = workSheet.Cells[string.Format("G{0}", rowIndex + 1)];
                         range.HorizontalAlignment = HAlign.Left;
                         range.VerticalAlignment = VAlign.Top;
-                        range.Value = "Khác (Others)";
+                        range.Value = string.Format("     Khác (Others): {0}", Khac_TruocSauAnNote);
 
-                        range = workSheet.Cells[string.Format("H{0}", rowIndex + 1)];
-                        range.HorizontalAlignment = HAlign.Right;
-                        range.VerticalAlignment = VAlign.Top;
-                        range.Value = Khac_TruocSauAnNote;
+                        //range = workSheet.Cells[string.Format("H{0}", rowIndex + 1)];
+                        //range.HorizontalAlignment = HAlign.Right;
+                        //range.VerticalAlignment = VAlign.Top;
+                        //range.Value = Khac_TruocSauAnNote;
 
                         shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
-                            workSheet.WindowInfo.ColumnToPoints(7) + 13, workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
+                            workSheet.WindowInfo.ColumnToPoints(6), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
                         shape.Name = string.Empty;
                         shape.Line.Visible = false;
                         shape.ControlFormat.Value = Khac_TruocSauAn ? 1 : 0;
@@ -1527,15 +1527,15 @@ namespace MM.Exports
                         range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)];
                         range.HorizontalAlignment = HAlign.Left;
                         range.VerticalAlignment = VAlign.Top;
-                        range.Value = "Uống";
+                        range.Value = string.Format("     Uống: {0}", UongNote);
 
-                        range = workSheet.Cells[string.Format("B{0}", rowIndex + 1)];
-                        range.HorizontalAlignment = HAlign.Right;
-                        range.VerticalAlignment = VAlign.Top;
-                        range.Value = UongNote;
+                        //range = workSheet.Cells[string.Format("B{0}", rowIndex + 1)];
+                        //range.HorizontalAlignment = HAlign.Right;
+                        //range.VerticalAlignment = VAlign.Top;
+                        //range.Value = UongNote;
 
                         shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
-                            workSheet.WindowInfo.ColumnToPoints(1) - 4, workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
+                            workSheet.WindowInfo.ColumnToPoints(0), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
                         shape.Name = string.Empty;
                         shape.Line.Visible = false;
                         shape.ControlFormat.Value = Uong ? 1 : 0;
@@ -1543,15 +1543,15 @@ namespace MM.Exports
                         range = workSheet.Cells[string.Format("C{0}", rowIndex + 1)];
                         range.HorizontalAlignment = HAlign.Left;
                         range.VerticalAlignment = VAlign.Top;
-                        range.Value = "Bôi";
+                        range.Value = string.Format("     Bôi: {0}", BoiNote);
 
-                        range = workSheet.Cells[string.Format("D{0}", rowIndex + 1)];
-                        range.HorizontalAlignment = HAlign.Right;
-                        range.VerticalAlignment = VAlign.Top;
-                        range.Value = BoiNote;
+                        //range = workSheet.Cells[string.Format("D{0}", rowIndex + 1)];
+                        //range.HorizontalAlignment = HAlign.Right;
+                        //range.VerticalAlignment = VAlign.Top;
+                        //range.Value = BoiNote;
 
                         shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
-                            workSheet.WindowInfo.ColumnToPoints(3) - 4, workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
+                            workSheet.WindowInfo.ColumnToPoints(2), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
                         shape.Name = string.Empty;
                         shape.Line.Visible = false;
                         shape.ControlFormat.Value = Boi ? 1 : 0;
@@ -1559,15 +1559,15 @@ namespace MM.Exports
                         range = workSheet.Cells[string.Format("E{0}", rowIndex + 1)];
                         range.HorizontalAlignment = HAlign.Left;
                         range.VerticalAlignment = VAlign.Top;
-                        range.Value = "Đặt AĐ";
+                        range.Value = string.Format("     Đặt AĐ: {0}", DatADNote);
 
-                        range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
-                        range.HorizontalAlignment = HAlign.Right;
-                        range.VerticalAlignment = VAlign.Top;
-                        range.Value = DatADNote;
+                        //range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
+                        //range.HorizontalAlignment = HAlign.Right;
+                        //range.VerticalAlignment = VAlign.Top;
+                        //range.Value = DatADNote;
 
                         shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
-                            workSheet.WindowInfo.ColumnToPoints(5) - 4, workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
+                            workSheet.WindowInfo.ColumnToPoints(4), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
                         shape.Name = string.Empty;
                         shape.Line.Visible = false;
                         shape.ControlFormat.Value = DatAD ? 1 : 0;
@@ -1575,15 +1575,15 @@ namespace MM.Exports
                         range = workSheet.Cells[string.Format("G{0}", rowIndex + 1)];
                         range.HorizontalAlignment = HAlign.Left;
                         range.VerticalAlignment = VAlign.Top;
-                        range.Value = "Khác";
+                        range.Value = string.Format("     Khác: {0}", Khac_CachDungNote);
 
-                        range = workSheet.Cells[string.Format("H{0}", rowIndex + 1)];
-                        range.HorizontalAlignment = HAlign.Right;
-                        range.VerticalAlignment = VAlign.Top;
-                        range.Value = Khac_CachDungNote;
+                        //range = workSheet.Cells[string.Format("H{0}", rowIndex + 1)];
+                        //range.HorizontalAlignment = HAlign.Right;
+                        //range.VerticalAlignment = VAlign.Top;
+                        //range.Value = Khac_CachDungNote;
 
                         shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
-                            workSheet.WindowInfo.ColumnToPoints(7) - 4, workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
+                            workSheet.WindowInfo.ColumnToPoints(6), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
                         shape.Name = string.Empty;
                         shape.Line.Visible = false;
                         shape.ControlFormat.Value = Khac_CachDung ? 1 : 0;
@@ -1591,22 +1591,22 @@ namespace MM.Exports
                         rowIndex++;
 
                         range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)];
-                        range.HorizontalAlignment = HAlign.Left;
+                        range.HorizontalAlignment = HAlign.Center;
                         range.VerticalAlignment = VAlign.Top;
                         range.Value = "(Take)";
 
                         range = workSheet.Cells[string.Format("C{0}", rowIndex + 1)];
-                        range.HorizontalAlignment = HAlign.Left;
+                        range.HorizontalAlignment = HAlign.Center;
                         range.VerticalAlignment = VAlign.Top;
                         range.Value = "(Apply)";
 
                         range = workSheet.Cells[string.Format("E{0}", rowIndex + 1)];
-                        range.HorizontalAlignment = HAlign.Left;
+                        range.HorizontalAlignment = HAlign.Center;
                         range.VerticalAlignment = VAlign.Top;
                         range.Value = "(Put inside vagina)";
 
                         range = workSheet.Cells[string.Format("G{0}", rowIndex + 1)];
-                        range.HorizontalAlignment = HAlign.Left;
+                        range.HorizontalAlignment = HAlign.Center;
                         range.VerticalAlignment = VAlign.Top;
                         range.Value = "(Orthers)";
 
@@ -1635,20 +1635,14 @@ namespace MM.Exports
                     range.Value = "* Khi tái khám vui lòng mang theo toa này (Please, keep it belong you for re-examination).";
                     rowIndex++;
 
-                    range = workSheet.Cells[string.Format("F{0}:G{0}", rowIndex + 1)];
+                    range = workSheet.Cells[string.Format("E{0}:G{0}", rowIndex + 1)];
                     range.Merge();
-                    range.HorizontalAlignment = HAlign.Left;
+                    range.HorizontalAlignment = HAlign.Center;
                     range.VerticalAlignment = VAlign.Top;
-                    range.Value = string.Format("Date: {0}", toaThuoc.NgayKham.Value.ToString("dd/MM/yyyy"));
+                    range.Value = string.Format("Date (Ngày khám): {0}", toaThuoc.NgayKham.Value.ToString("dd/MM/yyyy"));
                     rowIndex++;
 
-                    range = workSheet.Cells[string.Format("F{0}", rowIndex + 1)];
-                    range.HorizontalAlignment = HAlign.Left;
-                    range.VerticalAlignment = VAlign.Top;
-                    range.Value = string.Format("Printed Date: {0}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
-                    rowIndex++;
-
-                    range = workSheet.Cells[string.Format("F{0}:G{0}", rowIndex + 1)];
+                    range = workSheet.Cells[string.Format("E{0}:G{0}", rowIndex + 1)];
                     range.Merge();
                     range.HorizontalAlignment = HAlign.Center;
                     range.VerticalAlignment = VAlign.Top;
@@ -1656,14 +1650,14 @@ namespace MM.Exports
                     range.Value = "Doctor's signature";
                     rowIndex++;
 
-                    range = workSheet.Cells[string.Format("F{0}:G{0}", rowIndex + 1)];
+                    range = workSheet.Cells[string.Format("E{0}:G{0}", rowIndex + 1)];
                     range.Merge();
                     range.HorizontalAlignment = HAlign.Center;
                     range.VerticalAlignment = VAlign.Top;
                     range.Value = "(BS điều trị)";
 
                     rowIndex++;
-                    range = workSheet.Cells[string.Format("F{0}:G{0}", rowIndex + 1)];
+                    range = workSheet.Cells[string.Format("E{0}:G{0}", rowIndex + 1)];
                     range.RowHeight = 15.75 * 3;
 
                     result = DocStaffBus.GetChuKy(toaThuoc.BacSiKeToa.ToString());
@@ -1676,7 +1670,7 @@ namespace MM.Exports
 
                     if (result.QueryResult != null)
                     {
-                        double left = workSheet.WindowInfo.ColumnToPoints(5) - 20;
+                        double left = workSheet.WindowInfo.ColumnToPoints(5) - 45;
                         double top = workSheet.WindowInfo.RowToPoints(rowIndex);
                         double width = 170;
                         double height = 47.25;
@@ -1686,11 +1680,15 @@ namespace MM.Exports
                     }
                     
                     rowIndex++;
-                    range = workSheet.Cells[string.Format("F{0}:G{0}", rowIndex + 1)];
+                    range = workSheet.Cells[string.Format("E{0}:G{0}", rowIndex + 1)];
                     range.Merge();
                     range.HorizontalAlignment = HAlign.Center;
                     range.VerticalAlignment = VAlign.Top;
                     range.Value = toaThuoc.TenBacSi;
+                    rowIndex++;
+
+                    range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)];
+                    range.Value = string.Format("Printed Date (Ngày in): {0}", DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"));
                 }
 
                 string path = string.Format("{0}\\Temp", Application.StartupPath);
