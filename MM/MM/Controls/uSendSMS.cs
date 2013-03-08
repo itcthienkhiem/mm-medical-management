@@ -172,7 +172,6 @@ namespace MM.Controls
                             noiDung = noiDung.Replace("#CMND#", cmnd);
                             noiDung = noiDung.Replace("#Mobile#", mobile);
                             noiDung = noiDung.Replace("#Email#", email);
-
                             noiDung = Utility.ConvertToUnSign3(noiDung);
                             noiDung = noiDung.Replace("\n", "\r\n");
 
