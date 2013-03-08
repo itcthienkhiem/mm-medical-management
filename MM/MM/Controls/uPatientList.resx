@@ -136,6 +136,15 @@
     <value>400, 18</value>
   </metadata>
   <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="xuatMaVachToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAKJJREFUOE+lk0EK
+        wjAURJMTdFnowrt6nyJCQcGFiy668QC9Qa8R88MMiIwDksDnpRnmrfpzKSV1nRD0TMo5x5zB2fA7ax0K
+        Lig6yoyCKwSOMqNggcBRZhTcIXCUGQUPCBxlRsETAkeZUbBC4CgzCjYIHGVGwQsCR5lxDXYIKGzv7U8D
+        Rb6zfKqXGz6Oj8Xi/RejE9001BnrTH9OdIauTYwtfgNkH6eX5QYETAAAAABJRU5ErkJggg==
+</value>
+  </data>
   <data name="taoHoSoToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
     <value>
         iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
@@ -202,6 +211,15 @@
         qFBWTJ9UYlO9aJ5z7fwFuln9jULeOTY8zsnMWGNl7969648dO/Y/MjIyhGAawKZgz549mSdPnvzf1NS0
         gCwDtmzZonzhwoX/QJc8dHBw4CLLEKDm6+vWrfugqKgoT5YBDQ0NPPb29srEaAYAb31CwXM+EP4AAAAA
         SUVORK5CYII=
+</value>
+  </data>
+  <data name="btnXuatMaVach.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAAgY0hSTQAAeiYAAICEAAD6AAAAgOgAAHUwAADqYAAAOpgAABdwnLpRPAAAAKJJREFUOE+lk0EK
+        wjAURJMTdFnowrt6nyJCQcGFiy668QC9Qa8R88MMiIwDksDnpRnmrfpzKSV1nRD0TMo5x5zB2fA7ax0K
+        Lig6yoyCKwSOMqNggcBRZhTcIXCUGQUPCBxlRsETAkeZUbBC4CgzCjYIHGVGwQsCR5lxDXYIKGzv7U8D
+        Rb6zfKqXGz6Oj8Xi/RejE9001BnrTH9OdIauTYwtfgNkH6eX5QYETAAAAABJRU5ErkJggg==
 </value>
   </data>
   <data name="btnTaoMatKhau.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
