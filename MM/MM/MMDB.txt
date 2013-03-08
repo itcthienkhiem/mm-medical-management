@@ -290,6 +290,12 @@ Nguon
 13. Suy nghi cach the hien goi kham dich vu: vi du Xet nghiem mau thi gom nhieu loai va nhan vien nao cung lam giong nhau : 
 cho cach add nhanh cac dich vu nay vao vi thuong xet nhiem mau gom ~10 dich vu chi tiet (OK)
 14. Xem lai khong the copy thong tin tu hoa don cu. (OK)
-
-
-
+===========================================================================================================
+1. Update templates.
+2. Thêm tiếng viet.
+3. Move checkbox ra truoc.
+4. Coi default templates.
+5. Chuyen mgay in wa goc trai.
+6. Search theo biet duoc.
+7. Cho them thuoc o ngoai.
+8. Bỏ validate giá dịch vụ hợp đồng
