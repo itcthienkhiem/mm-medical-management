@@ -64,6 +64,15 @@
             this.txtFullName = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.tabPatient = new DevComponents.DotNetBar.TabControl();
+            this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
+            this.dtpkNgayKham = new System.Windows.Forms.DateTimePicker();
+            this.chkNgayKham = new System.Windows.Forms.CheckBox();
+            this.txtNo = new System.Windows.Forms.TextBox();
+            this.txtTenCongTy = new System.Windows.Forms.TextBox();
+            this.label24 = new System.Windows.Forms.Label();
+            this.barCode = new DSBarCode.BarCodeCtrl();
+            this.label23 = new System.Windows.Forms.Label();
+            this.pagePatientInfo = new DevComponents.DotNetBar.TabItem(this.components);
             this.tabControlPanel2 = new DevComponents.DotNetBar.TabControlPanel();
             this.raKhac = new System.Windows.Forms.RadioButton();
             this.raCoGiaDinh = new System.Windows.Forms.RadioButton();
@@ -97,19 +106,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.chkDiUngThuoc = new System.Windows.Forms.CheckBox();
             this.pagePatientHistory = new DevComponents.DotNetBar.TabItem(this.components);
-            this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
-            this.dtpkNgayKham = new System.Windows.Forms.DateTimePicker();
-            this.chkNgayKham = new System.Windows.Forms.CheckBox();
-            this.txtNo = new System.Windows.Forms.TextBox();
-            this.txtTenCongTy = new System.Windows.Forms.TextBox();
-            this.label24 = new System.Windows.Forms.Label();
-            this.barCode = new DSBarCode.BarCodeCtrl();
-            this.label23 = new System.Windows.Forms.Label();
-            this.pagePatientInfo = new DevComponents.DotNetBar.TabItem(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.tabPatient)).BeginInit();
             this.tabPatient.SuspendLayout();
-            this.tabControlPanel2.SuspendLayout();
             this.tabControlPanel1.SuspendLayout();
+            this.tabControlPanel2.SuspendLayout();
             this.SuspendLayout();
             // 
             // btnOK
@@ -454,6 +454,145 @@
             this.tabPatient.TabStop = false;
             this.tabPatient.Text = "tabControl1";
             this.tabPatient.SelectedTabChanged += new DevComponents.DotNetBar.TabStrip.SelectedTabChangedEventHandler(this.tabPatient_SelectedTabChanged);
+            // 
+            // tabControlPanel1
+            // 
+            this.tabControlPanel1.Controls.Add(this.dtpkNgayKham);
+            this.tabControlPanel1.Controls.Add(this.chkNgayKham);
+            this.tabControlPanel1.Controls.Add(this.txtNo);
+            this.tabControlPanel1.Controls.Add(this.txtTenCongTy);
+            this.tabControlPanel1.Controls.Add(this.label24);
+            this.tabControlPanel1.Controls.Add(this.barCode);
+            this.tabControlPanel1.Controls.Add(this.label23);
+            this.tabControlPanel1.Controls.Add(this.label2);
+            this.tabControlPanel1.Controls.Add(this.txtFullName);
+            this.tabControlPanel1.Controls.Add(this.txtDOB);
+            this.tabControlPanel1.Controls.Add(this.label1);
+            this.tabControlPanel1.Controls.Add(this.label19);
+            this.tabControlPanel1.Controls.Add(this.label4);
+            this.tabControlPanel1.Controls.Add(this.txtFileNum);
+            this.tabControlPanel1.Controls.Add(this.txtAddress);
+            this.tabControlPanel1.Controls.Add(this.label20);
+            this.tabControlPanel1.Controls.Add(this.label8);
+            this.tabControlPanel1.Controls.Add(this.label22);
+            this.tabControlPanel1.Controls.Add(this.cboGender);
+            this.tabControlPanel1.Controls.Add(this.txtOccupation);
+            this.tabControlPanel1.Controls.Add(this.label9);
+            this.tabControlPanel1.Controls.Add(this.label18);
+            this.tabControlPanel1.Controls.Add(this.txtWorkPhone);
+            this.tabControlPanel1.Controls.Add(this.txtPreferredName);
+            this.tabControlPanel1.Controls.Add(this.label10);
+            this.tabControlPanel1.Controls.Add(this.label17);
+            this.tabControlPanel1.Controls.Add(this.txtIdentityCard);
+            this.tabControlPanel1.Controls.Add(this.txtKnownAs);
+            this.tabControlPanel1.Controls.Add(this.label11);
+            this.tabControlPanel1.Controls.Add(this.label16);
+            this.tabControlPanel1.Controls.Add(this.txtHomePhone);
+            this.tabControlPanel1.Controls.Add(this.txtEmail);
+            this.tabControlPanel1.Controls.Add(this.label12);
+            this.tabControlPanel1.Controls.Add(this.label15);
+            this.tabControlPanel1.Controls.Add(this.txtMobile);
+            this.tabControlPanel1.Controls.Add(this.txtFax);
+            this.tabControlPanel1.Controls.Add(this.label13);
+            this.tabControlPanel1.Controls.Add(this.label14);
+            this.tabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlPanel1.Location = new System.Drawing.Point(0, 25);
+            this.tabControlPanel1.Name = "tabControlPanel1";
+            this.tabControlPanel1.Padding = new System.Windows.Forms.Padding(1);
+            this.tabControlPanel1.Size = new System.Drawing.Size(446, 460);
+            this.tabControlPanel1.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.tabControlPanel1.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.tabControlPanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.tabControlPanel1.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(168)))), ((int)(((byte)(153)))));
+            this.tabControlPanel1.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
+                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
+            this.tabControlPanel1.Style.GradientAngle = 90;
+            this.tabControlPanel1.TabIndex = 1;
+            this.tabControlPanel1.TabItem = this.pagePatientInfo;
+            // 
+            // dtpkNgayKham
+            // 
+            this.dtpkNgayKham.CustomFormat = "dd/MM/yyyy";
+            this.dtpkNgayKham.Enabled = false;
+            this.dtpkNgayKham.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpkNgayKham.Location = new System.Drawing.Point(110, 91);
+            this.dtpkNgayKham.Name = "dtpkNgayKham";
+            this.dtpkNgayKham.Size = new System.Drawing.Size(104, 20);
+            this.dtpkNgayKham.TabIndex = 3;
+            // 
+            // chkNgayKham
+            // 
+            this.chkNgayKham.AutoSize = true;
+            this.chkNgayKham.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.chkNgayKham.Location = new System.Drawing.Point(20, 92);
+            this.chkNgayKham.Name = "chkNgayKham";
+            this.chkNgayKham.Size = new System.Drawing.Size(83, 17);
+            this.chkNgayKham.TabIndex = 2;
+            this.chkNgayKham.Text = "Ngày khám:";
+            this.chkNgayKham.UseVisualStyleBackColor = false;
+            this.chkNgayKham.CheckedChanged += new System.EventHandler(this.chkNgayKham_CheckedChanged);
+            // 
+            // txtNo
+            // 
+            this.txtNo.Location = new System.Drawing.Point(216, 10);
+            this.txtNo.MaxLength = 50;
+            this.txtNo.Name = "txtNo";
+            this.txtNo.Size = new System.Drawing.Size(67, 20);
+            this.txtNo.TabIndex = 1;
+            // 
+            // txtTenCongTy
+            // 
+            this.txtTenCongTy.Location = new System.Drawing.Point(110, 283);
+            this.txtTenCongTy.MaxLength = 255;
+            this.txtTenCongTy.Name = "txtTenCongTy";
+            this.txtTenCongTy.Size = new System.Drawing.Size(303, 20);
+            this.txtTenCongTy.TabIndex = 12;
+            // 
+            // label24
+            // 
+            this.label24.AutoSize = true;
+            this.label24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label24.Location = new System.Drawing.Point(29, 286);
+            this.label24.Name = "label24";
+            this.label24.Size = new System.Drawing.Size(67, 13);
+            this.label24.TabIndex = 59;
+            this.label24.Text = "Tên công ty:";
+            // 
+            // barCode
+            // 
+            this.barCode.BarCode = "";
+            this.barCode.BarCodeHeight = 40;
+            this.barCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.barCode.FooterFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
+            this.barCode.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 18F);
+            this.barCode.HeaderText = "";
+            this.barCode.LeftMargin = 10;
+            this.barCode.Location = new System.Drawing.Point(110, 34);
+            this.barCode.Name = "barCode";
+            this.barCode.ShowFooter = false;
+            this.barCode.ShowHeader = false;
+            this.barCode.Size = new System.Drawing.Size(324, 53);
+            this.barCode.TabIndex = 57;
+            this.barCode.TopMargin = 5;
+            this.barCode.VertAlign = DSBarCode.BarCodeCtrl.AlignType.Left;
+            this.barCode.Weight = DSBarCode.BarCodeCtrl.BarCodeWeight.Small;
+            // 
+            // label23
+            // 
+            this.label23.AutoSize = true;
+            this.label23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label23.Location = new System.Drawing.Point(48, 36);
+            this.label23.Name = "label23";
+            this.label23.Size = new System.Drawing.Size(52, 13);
+            this.label23.TabIndex = 56;
+            this.label23.Text = "Mã vạch:";
+            // 
+            // pagePatientInfo
+            // 
+            this.pagePatientInfo.AttachedControl = this.tabControlPanel1;
+            this.pagePatientInfo.Image = global::MM.Properties.Resources.personal_information_icon;
+            this.pagePatientInfo.Name = "pagePatientInfo";
+            this.pagePatientInfo.Text = "Thông tin bệnh nhân";
             // 
             // tabControlPanel2
             // 
@@ -846,144 +985,6 @@
             this.pagePatientHistory.Name = "pagePatientHistory";
             this.pagePatientHistory.Text = "Bệnh sử";
             // 
-            // tabControlPanel1
-            // 
-            this.tabControlPanel1.Controls.Add(this.dtpkNgayKham);
-            this.tabControlPanel1.Controls.Add(this.chkNgayKham);
-            this.tabControlPanel1.Controls.Add(this.txtNo);
-            this.tabControlPanel1.Controls.Add(this.txtTenCongTy);
-            this.tabControlPanel1.Controls.Add(this.label24);
-            this.tabControlPanel1.Controls.Add(this.barCode);
-            this.tabControlPanel1.Controls.Add(this.label23);
-            this.tabControlPanel1.Controls.Add(this.label2);
-            this.tabControlPanel1.Controls.Add(this.txtFullName);
-            this.tabControlPanel1.Controls.Add(this.txtDOB);
-            this.tabControlPanel1.Controls.Add(this.label1);
-            this.tabControlPanel1.Controls.Add(this.label19);
-            this.tabControlPanel1.Controls.Add(this.label4);
-            this.tabControlPanel1.Controls.Add(this.txtFileNum);
-            this.tabControlPanel1.Controls.Add(this.txtAddress);
-            this.tabControlPanel1.Controls.Add(this.label20);
-            this.tabControlPanel1.Controls.Add(this.label8);
-            this.tabControlPanel1.Controls.Add(this.label22);
-            this.tabControlPanel1.Controls.Add(this.cboGender);
-            this.tabControlPanel1.Controls.Add(this.txtOccupation);
-            this.tabControlPanel1.Controls.Add(this.label9);
-            this.tabControlPanel1.Controls.Add(this.label18);
-            this.tabControlPanel1.Controls.Add(this.txtWorkPhone);
-            this.tabControlPanel1.Controls.Add(this.txtPreferredName);
-            this.tabControlPanel1.Controls.Add(this.label10);
-            this.tabControlPanel1.Controls.Add(this.label17);
-            this.tabControlPanel1.Controls.Add(this.txtIdentityCard);
-            this.tabControlPanel1.Controls.Add(this.txtKnownAs);
-            this.tabControlPanel1.Controls.Add(this.label11);
-            this.tabControlPanel1.Controls.Add(this.label16);
-            this.tabControlPanel1.Controls.Add(this.txtHomePhone);
-            this.tabControlPanel1.Controls.Add(this.txtEmail);
-            this.tabControlPanel1.Controls.Add(this.label12);
-            this.tabControlPanel1.Controls.Add(this.label15);
-            this.tabControlPanel1.Controls.Add(this.txtMobile);
-            this.tabControlPanel1.Controls.Add(this.txtFax);
-            this.tabControlPanel1.Controls.Add(this.label13);
-            this.tabControlPanel1.Controls.Add(this.label14);
-            this.tabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlPanel1.Location = new System.Drawing.Point(0, 25);
-            this.tabControlPanel1.Name = "tabControlPanel1";
-            this.tabControlPanel1.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel1.Size = new System.Drawing.Size(446, 460);
-            this.tabControlPanel1.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.tabControlPanel1.Style.BackColor2.Color = System.Drawing.Color.White;
-            this.tabControlPanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.tabControlPanel1.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(168)))), ((int)(((byte)(153)))));
-            this.tabControlPanel1.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
-                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
-            this.tabControlPanel1.Style.GradientAngle = 90;
-            this.tabControlPanel1.TabIndex = 1;
-            this.tabControlPanel1.TabItem = this.pagePatientInfo;
-            // 
-            // dtpkNgayKham
-            // 
-            this.dtpkNgayKham.CustomFormat = "dd/MM/yyyy";
-            this.dtpkNgayKham.Enabled = false;
-            this.dtpkNgayKham.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkNgayKham.Location = new System.Drawing.Point(110, 91);
-            this.dtpkNgayKham.Name = "dtpkNgayKham";
-            this.dtpkNgayKham.Size = new System.Drawing.Size(104, 20);
-            this.dtpkNgayKham.TabIndex = 3;
-            // 
-            // chkNgayKham
-            // 
-            this.chkNgayKham.AutoSize = true;
-            this.chkNgayKham.Location = new System.Drawing.Point(20, 92);
-            this.chkNgayKham.Name = "chkNgayKham";
-            this.chkNgayKham.Size = new System.Drawing.Size(83, 17);
-            this.chkNgayKham.TabIndex = 2;
-            this.chkNgayKham.Text = "Ngày khám:";
-            this.chkNgayKham.UseVisualStyleBackColor = true;
-            this.chkNgayKham.CheckedChanged += new System.EventHandler(this.chkNgayKham_CheckedChanged);
-            // 
-            // txtNo
-            // 
-            this.txtNo.Location = new System.Drawing.Point(216, 10);
-            this.txtNo.MaxLength = 50;
-            this.txtNo.Name = "txtNo";
-            this.txtNo.Size = new System.Drawing.Size(67, 20);
-            this.txtNo.TabIndex = 1;
-            // 
-            // txtTenCongTy
-            // 
-            this.txtTenCongTy.Location = new System.Drawing.Point(110, 283);
-            this.txtTenCongTy.MaxLength = 255;
-            this.txtTenCongTy.Name = "txtTenCongTy";
-            this.txtTenCongTy.Size = new System.Drawing.Size(303, 20);
-            this.txtTenCongTy.TabIndex = 12;
-            // 
-            // label24
-            // 
-            this.label24.AutoSize = true;
-            this.label24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label24.Location = new System.Drawing.Point(29, 286);
-            this.label24.Name = "label24";
-            this.label24.Size = new System.Drawing.Size(67, 13);
-            this.label24.TabIndex = 59;
-            this.label24.Text = "Tên công ty:";
-            // 
-            // barCode
-            // 
-            this.barCode.BarCode = "";
-            this.barCode.BarCodeHeight = 40;
-            this.barCode.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.barCode.FooterFont = new System.Drawing.Font("Microsoft Sans Serif", 8F);
-            this.barCode.HeaderFont = new System.Drawing.Font("Microsoft Sans Serif", 18F);
-            this.barCode.HeaderText = "";
-            this.barCode.LeftMargin = 10;
-            this.barCode.Location = new System.Drawing.Point(110, 34);
-            this.barCode.Name = "barCode";
-            this.barCode.ShowFooter = false;
-            this.barCode.ShowHeader = false;
-            this.barCode.Size = new System.Drawing.Size(324, 53);
-            this.barCode.TabIndex = 57;
-            this.barCode.TopMargin = 5;
-            this.barCode.VertAlign = DSBarCode.BarCodeCtrl.AlignType.Left;
-            this.barCode.Weight = DSBarCode.BarCodeCtrl.BarCodeWeight.Small;
-            // 
-            // label23
-            // 
-            this.label23.AutoSize = true;
-            this.label23.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label23.Location = new System.Drawing.Point(48, 36);
-            this.label23.Name = "label23";
-            this.label23.Size = new System.Drawing.Size(52, 13);
-            this.label23.TabIndex = 56;
-            this.label23.Text = "Mã vạch:";
-            // 
-            // pagePatientInfo
-            // 
-            this.pagePatientInfo.AttachedControl = this.tabControlPanel1;
-            this.pagePatientInfo.Image = global::MM.Properties.Resources.personal_information_icon;
-            this.pagePatientInfo.Name = "pagePatientInfo";
-            this.pagePatientInfo.Text = "Thông tin bệnh nhân";
-            // 
             // dlgAddPatient
             // 
             this.AcceptButton = this.btnOK;
@@ -1006,10 +1007,10 @@
             this.Load += new System.EventHandler(this.dlgAddPatient_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tabPatient)).EndInit();
             this.tabPatient.ResumeLayout(false);
-            this.tabControlPanel2.ResumeLayout(false);
-            this.tabControlPanel2.PerformLayout();
             this.tabControlPanel1.ResumeLayout(false);
             this.tabControlPanel1.PerformLayout();
+            this.tabControlPanel2.ResumeLayout(false);
+            this.tabControlPanel2.PerformLayout();
             this.ResumeLayout(false);
 
         }
