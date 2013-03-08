@@ -143,11 +143,11 @@ namespace MM.Dialogs
                 return false;
             }
 
-            if (numPrice.Value == 0)
-            {
-                MsgBox.Show(this.Text, "Vui lòng nhập giá cho dịch vụ.", IconType.Information);
-                return false;
-            }
+            //if (numPrice.Value == 0)
+            //{
+            //    MsgBox.Show(this.Text, "Vui lòng nhập giá cho dịch vụ.", IconType.Information);
+            //    return false;
+            //}
 
             if (_dataSource != null)
             {
