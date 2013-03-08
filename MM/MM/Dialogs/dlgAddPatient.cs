@@ -141,8 +141,8 @@ namespace MM.Dialogs
                     no += c.ToString();
             }
 
-            txtFileNum.Text = refix;
             txtNo.Text = no;
+            txtFileNum.Text = refix;
         }
 
         private void DisplayInfo(DataRow drPatient)
@@ -513,7 +513,12 @@ namespace MM.Dialogs
 
         private void txtFileNum_TextChanged(object sender, EventArgs e)
         {
-            barCode.BarCode = txtFileNum.Text;
+            barCode.BarCode = txtFileNum.Text + txtNo.Text;
+        }
+
+        private void txtNo_TextChanged(object sender, EventArgs e)
+        {
+            barCode.BarCode = txtFileNum.Text + txtNo.Text;
         }
 
         private void tabPatient_SelectedTabChanged(object sender, DevComponents.DotNetBar.TabStripTabChangedEventArgs e)
@@ -555,8 +560,5 @@ namespace MM.Dialogs
         }
         #endregion
 
-        
-
-        
     }
 }
