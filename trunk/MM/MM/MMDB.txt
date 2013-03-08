@@ -291,11 +291,11 @@ Nguon
 cho cach add nhanh cac dich vu nay vao vi thuong xet nhiem mau gom ~10 dich vu chi tiet (OK)
 14. Xem lai khong the copy thong tin tu hoa don cu. (OK)
 ===========================================================================================================
-1. Update templates.
-2. Thêm tiếng viet.
-3. Move checkbox ra truoc.
-4. Coi default templates.
-5. Chuyen mgay in wa goc trai.
-6. Search theo biet duoc.
-7. Cho them thuoc o ngoai.
-8. Bỏ validate giá dịch vụ hợp đồng
+1. Update templates toàn bộ template excel.
+2. Thêm tiếng việt (Date, Printed Date) trong toa thuốc chung và sản khoa.
+3. Move checkbox toa thuốc chung ra truoc.
+4. Xem lại default template toa thuốc chung templates.
+5. Chuyen mgay in wa goc trai trong toa thuốc.
+6. Search thuốc theo biet duoc (OK).
+7. Bỏ validate giá dịch vụ hợp đồng (OK)
+8. Cho them thuoc o ngoai.

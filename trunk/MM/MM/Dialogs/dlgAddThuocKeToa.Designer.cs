@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddThuocKeToa));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.numSoLuongTon = new System.Windows.Forms.NumericUpDown();
+            this.label5 = new System.Windows.Forms.Label();
             this.btnChonThuoc = new System.Windows.Forms.Button();
             this.btnThuocThayThe = new System.Windows.Forms.Button();
             this.gbToaSanKhoa = new System.Windows.Forms.GroupBox();
@@ -68,14 +70,12 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.numSoLuongTon = new System.Windows.Forms.NumericUpDown();
-            this.label5 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numSoLuongTon)).BeginInit();
             this.gbToaSanKhoa.SuspendLayout();
             this.gbToaChung.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSoLuong)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thuocBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numSoLuongTon)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -96,6 +96,29 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin thuốc kê toa";
+            // 
+            // numSoLuongTon
+            // 
+            this.numSoLuongTon.Enabled = false;
+            this.numSoLuongTon.Location = new System.Drawing.Point(289, 47);
+            this.numSoLuongTon.Maximum = new decimal(new int[] {
+            999999,
+            0,
+            0,
+            0});
+            this.numSoLuongTon.Name = "numSoLuongTon";
+            this.numSoLuongTon.Size = new System.Drawing.Size(86, 20);
+            this.numSoLuongTon.TabIndex = 9;
+            this.numSoLuongTon.ThousandsSeparator = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(214, 49);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(70, 13);
+            this.label5.TabIndex = 8;
+            this.label5.Text = "Số lượng tồn:";
             // 
             // btnChonThuoc
             // 
@@ -215,9 +238,8 @@
             // chkUong
             // 
             this.chkUong.AutoSize = true;
-            this.chkUong.Location = new System.Drawing.Point(406, 26);
+            this.chkUong.Location = new System.Drawing.Point(402, 26);
             this.chkUong.Name = "chkUong";
-            this.chkUong.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkUong.Size = new System.Drawing.Size(52, 17);
             this.chkUong.TabIndex = 14;
             this.chkUong.Text = "Uống";
@@ -227,9 +249,8 @@
             // chkTruocAn
             // 
             this.chkTruocAn.AutoSize = true;
-            this.chkTruocAn.Location = new System.Drawing.Point(198, 26);
+            this.chkTruocAn.Location = new System.Drawing.Point(201, 26);
             this.chkTruocAn.Name = "chkTruocAn";
-            this.chkTruocAn.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkTruocAn.Size = new System.Drawing.Size(69, 17);
             this.chkTruocAn.TabIndex = 8;
             this.chkTruocAn.Text = "Trước ăn";
@@ -248,9 +269,8 @@
             // chkKhac_CachDung
             // 
             this.chkKhac_CachDung.AutoSize = true;
-            this.chkKhac_CachDung.Location = new System.Drawing.Point(407, 98);
+            this.chkKhac_CachDung.Location = new System.Drawing.Point(402, 98);
             this.chkKhac_CachDung.Name = "chkKhac_CachDung";
-            this.chkKhac_CachDung.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkKhac_CachDung.Size = new System.Drawing.Size(51, 17);
             this.chkKhac_CachDung.TabIndex = 20;
             this.chkKhac_CachDung.Text = "Khác";
@@ -269,9 +289,8 @@
             // chkBoi
             // 
             this.chkBoi.AutoSize = true;
-            this.chkBoi.Location = new System.Drawing.Point(417, 50);
+            this.chkBoi.Location = new System.Drawing.Point(402, 50);
             this.chkBoi.Name = "chkBoi";
-            this.chkBoi.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkBoi.Size = new System.Drawing.Size(41, 17);
             this.chkBoi.TabIndex = 16;
             this.chkBoi.Text = "Bôi";
@@ -299,9 +318,8 @@
             // chkDatAD
             // 
             this.chkDatAD.AutoSize = true;
-            this.chkDatAD.Location = new System.Drawing.Point(397, 74);
+            this.chkDatAD.Location = new System.Drawing.Point(402, 74);
             this.chkDatAD.Name = "chkDatAD";
-            this.chkDatAD.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkDatAD.Size = new System.Drawing.Size(61, 17);
             this.chkDatAD.TabIndex = 18;
             this.chkDatAD.Text = "Đặt AĐ";
@@ -311,9 +329,8 @@
             // chkKhac_TruocSauAn
             // 
             this.chkKhac_TruocSauAn.AutoSize = true;
-            this.chkKhac_TruocSauAn.Location = new System.Drawing.Point(216, 73);
+            this.chkKhac_TruocSauAn.Location = new System.Drawing.Point(201, 73);
             this.chkKhac_TruocSauAn.Name = "chkKhac_TruocSauAn";
-            this.chkKhac_TruocSauAn.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkKhac_TruocSauAn.Size = new System.Drawing.Size(51, 17);
             this.chkKhac_TruocSauAn.TabIndex = 12;
             this.chkKhac_TruocSauAn.Text = "Khác";
@@ -332,9 +349,8 @@
             // chkSauAn
             // 
             this.chkSauAn.AutoSize = true;
-            this.chkSauAn.Location = new System.Drawing.Point(207, 50);
+            this.chkSauAn.Location = new System.Drawing.Point(201, 50);
             this.chkSauAn.Name = "chkSauAn";
-            this.chkSauAn.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkSauAn.Size = new System.Drawing.Size(60, 17);
             this.chkSauAn.TabIndex = 10;
             this.chkSauAn.Text = "Sau ăn";
@@ -353,9 +369,8 @@
             // chkToi
             // 
             this.chkToi.AutoSize = true;
-            this.chkToi.Location = new System.Drawing.Point(28, 98);
+            this.chkToi.Location = new System.Drawing.Point(20, 98);
             this.chkToi.Name = "chkToi";
-            this.chkToi.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkToi.Size = new System.Drawing.Size(41, 17);
             this.chkToi.TabIndex = 6;
             this.chkToi.Text = "Tối";
@@ -374,9 +389,8 @@
             // chkChieu
             // 
             this.chkChieu.AutoSize = true;
-            this.chkChieu.Location = new System.Drawing.Point(16, 74);
+            this.chkChieu.Location = new System.Drawing.Point(20, 74);
             this.chkChieu.Name = "chkChieu";
-            this.chkChieu.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkChieu.Size = new System.Drawing.Size(53, 17);
             this.chkChieu.TabIndex = 4;
             this.chkChieu.Text = "Chiều";
@@ -395,9 +409,8 @@
             // chkTrua
             // 
             this.chkTrua.AutoSize = true;
-            this.chkTrua.Location = new System.Drawing.Point(21, 50);
+            this.chkTrua.Location = new System.Drawing.Point(20, 50);
             this.chkTrua.Name = "chkTrua";
-            this.chkTrua.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkTrua.Size = new System.Drawing.Size(48, 17);
             this.chkTrua.TabIndex = 2;
             this.chkTrua.Text = "Trưa";
@@ -416,9 +429,8 @@
             // chkSang
             // 
             this.chkSang.AutoSize = true;
-            this.chkSang.Location = new System.Drawing.Point(18, 26);
+            this.chkSang.Location = new System.Drawing.Point(20, 26);
             this.chkSang.Name = "chkSang";
-            this.chkSang.RightToLeft = System.Windows.Forms.RightToLeft.Yes;
             this.chkSang.Size = new System.Drawing.Size(51, 17);
             this.chkSang.TabIndex = 0;
             this.chkSang.Text = "Sáng";
@@ -507,29 +519,6 @@
             this.btnOK.Text = "    &Đồng ý";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
-            // numSoLuongTon
-            // 
-            this.numSoLuongTon.Enabled = false;
-            this.numSoLuongTon.Location = new System.Drawing.Point(289, 47);
-            this.numSoLuongTon.Maximum = new decimal(new int[] {
-            999999,
-            0,
-            0,
-            0});
-            this.numSoLuongTon.Name = "numSoLuongTon";
-            this.numSoLuongTon.Size = new System.Drawing.Size(86, 20);
-            this.numSoLuongTon.TabIndex = 9;
-            this.numSoLuongTon.ThousandsSeparator = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(214, 49);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(70, 13);
-            this.label5.TabIndex = 8;
-            this.label5.Text = "Số lượng tồn:";
-            // 
             // dlgAddThuocKeToa
             // 
             this.AcceptButton = this.btnOK;
@@ -552,13 +541,13 @@
             this.Load += new System.EventHandler(this.dlgAddThuocKeToa_Load);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numSoLuongTon)).EndInit();
             this.gbToaSanKhoa.ResumeLayout(false);
             this.gbToaSanKhoa.PerformLayout();
             this.gbToaChung.ResumeLayout(false);
             this.gbToaChung.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numSoLuong)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.thuocBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numSoLuongTon)).EndInit();
             this.ResumeLayout(false);
 
         }

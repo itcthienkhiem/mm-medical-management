@@ -20,6 +20,7 @@ namespace MM.Controls
         private DataTable _dtTemp = null;
         private Dictionary<string, DataRow> _dictGiaThuoc = new Dictionary<string,DataRow>();
         private string _name = string.Empty;
+        private int _type = 0; //0: Tên thuốc; 1: Biệt dược
         #endregion
 
         #region Constructor
@@ -64,6 +65,7 @@ namespace MM.Controls
                 UpdateGUI();
                 chkChecked.Checked = false;
                 _name = txtTenThuoc.Text;
+                _type = chkBietDuoc.Checked ? 1 : 0;
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayGiaThuocListProc));
                 base.ShowWaiting();
             }
@@ -84,6 +86,7 @@ namespace MM.Controls
             {
                 chkChecked.Checked = false;
                 _name = txtTenThuoc.Text;
+                _type = chkBietDuoc.Checked ? 1 : 0;
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnSearchProc));
             }
             catch (Exception e)
@@ -97,7 +100,7 @@ namespace MM.Controls
         {
             lock (ThisLock)
             {
-                Result result = GiaThuocBus.GetGiaThuocList(_name);
+                Result result = GiaThuocBus.GetGiaThuocList(_name, _type);
                 if (result.IsOK)
                 {
                     dgGiaThuoc.Invoke(new MethodInvoker(delegate()
@@ -335,6 +338,11 @@ namespace MM.Controls
         {
             OnDeleteGiaThuoc();
         }
+
+        private void chkBietDuoc_CheckedChanged(object sender, EventArgs e)
+        {
+            SearchAsThread();
+        }
         #endregion
 
         #region Working Thread
@@ -368,7 +376,5 @@ namespace MM.Controls
             }
         }
         #endregion
-
-        
     }
 }

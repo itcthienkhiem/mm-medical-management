@@ -38,6 +38,7 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.chkBietDuoc = new System.Windows.Forms.CheckBox();
             this.txtTenThuoc = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.chkChecked = new System.Windows.Forms.CheckBox();
@@ -45,11 +46,10 @@
             this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.maThuocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenThuocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.BietDuoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.HamLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DonViTinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.thuocBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panel3 = new System.Windows.Forms.Panel();
             this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -58,12 +58,14 @@
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.exportExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.thuocBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgThuoc)).BeginInit();
+            this.ctmAction.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.thuocBindingSource)).BeginInit();
             this.panel3.SuspendLayout();
-            this.ctmAction.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -128,6 +130,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.chkBietDuoc);
             this.panel2.Controls.Add(this.txtTenThuoc);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
@@ -135,6 +138,17 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(796, 35);
             this.panel2.TabIndex = 0;
+            // 
+            // chkBietDuoc
+            // 
+            this.chkBietDuoc.AutoSize = true;
+            this.chkBietDuoc.Location = new System.Drawing.Point(382, 10);
+            this.chkBietDuoc.Name = "chkBietDuoc";
+            this.chkBietDuoc.Size = new System.Drawing.Size(71, 17);
+            this.chkBietDuoc.TabIndex = 6;
+            this.chkBietDuoc.Text = "Biệt dược";
+            this.chkBietDuoc.UseVisualStyleBackColor = true;
+            this.chkBietDuoc.CheckedChanged += new System.EventHandler(this.chkBietDuoc_CheckedChanged);
             // 
             // txtTenThuoc
             // 
@@ -183,6 +197,7 @@
             this.colChecked,
             this.maThuocDataGridViewTextBoxColumn,
             this.tenThuocDataGridViewTextBoxColumn,
+            this.BietDuoc,
             this.HamLuong,
             this.DonViTinh,
             this.noteDataGridViewTextBoxColumn});
@@ -236,6 +251,14 @@
             this.tenThuocDataGridViewTextBoxColumn.ReadOnly = true;
             this.tenThuocDataGridViewTextBoxColumn.Width = 250;
             // 
+            // BietDuoc
+            // 
+            this.BietDuoc.DataPropertyName = "BietDuoc";
+            this.BietDuoc.HeaderText = "Biệt dược";
+            this.BietDuoc.Name = "BietDuoc";
+            this.BietDuoc.ReadOnly = true;
+            this.BietDuoc.Width = 200;
+            // 
             // HamLuong
             // 
             this.HamLuong.DataPropertyName = "HamLuong";
@@ -259,20 +282,6 @@
             this.noteDataGridViewTextBoxColumn.Name = "noteDataGridViewTextBoxColumn";
             this.noteDataGridViewTextBoxColumn.ReadOnly = true;
             this.noteDataGridViewTextBoxColumn.Width = 250;
-            // 
-            // thuocBindingSource
-            // 
-            this.thuocBindingSource.DataSource = typeof(MM.Databasae.Thuoc);
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.chkChecked);
-            this.panel3.Controls.Add(this.dgThuoc);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 35);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(796, 364);
-            this.panel3.TabIndex = 1;
             // 
             // ctmAction
             // 
@@ -334,6 +343,20 @@
             this.exportExcelToolStripMenuItem.Text = "Xuất Excel";
             this.exportExcelToolStripMenuItem.Click += new System.EventHandler(this.exportExcelToolStripMenuItem_Click);
             // 
+            // thuocBindingSource
+            // 
+            this.thuocBindingSource.DataSource = typeof(MM.Databasae.Thuoc);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.chkChecked);
+            this.panel3.Controls.Add(this.dgThuoc);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 35);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(796, 364);
+            this.panel3.TabIndex = 1;
+            // 
             // uThuocList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -347,10 +370,10 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgThuoc)).EndInit();
+            this.ctmAction.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.thuocBindingSource)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.ctmAction.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -369,12 +392,6 @@
         private System.Windows.Forms.TextBox txtTenThuoc;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnExportExcel;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn colChecked;
-        private System.Windows.Forms.DataGridViewTextBoxColumn maThuocDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tenThuocDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn HamLuong;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DonViTinh;
-        private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
         protected System.Windows.Forms.ContextMenuStrip ctmAction;
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
@@ -383,5 +400,13 @@
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem exportExcelToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn colChecked;
+        private System.Windows.Forms.DataGridViewTextBoxColumn maThuocDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tenThuocDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn BietDuoc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HamLuong;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DonViTinh;
+        private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
+        private System.Windows.Forms.CheckBox chkBietDuoc;
     }
 }
