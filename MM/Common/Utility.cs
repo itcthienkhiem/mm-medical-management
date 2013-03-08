@@ -1411,6 +1411,7 @@ namespace MM.Common
 
         public static string ConvertToUnSign(string text)
         {
+            text = text.Replace("Ð", "D");
             for (int i = 32; i < 48; i++)
             {
                 text = text.Replace(((char)i).ToString(), " ");
@@ -1430,6 +1431,7 @@ namespace MM.Common
 
         public static string ConvertToUnSign2(string text)
         {
+            text = text.Replace("Ð", "D");
             for (int i = 32; i < 48; i++)
             {
                 text = text.Replace(((char)i).ToString(), " ");
