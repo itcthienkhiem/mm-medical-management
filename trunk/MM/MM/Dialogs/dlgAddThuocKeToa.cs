@@ -282,6 +282,15 @@ namespace MM.Dialogs
         {
             InitData();
             if (!_isNew) DisplayInfo(_drThuoc);
+            else
+            {
+                DataTable dtThuoc = cboThuoc.DataSource as DataTable;
+                dlgSelectSingleThuoc dlg = new dlgSelectSingleThuoc(dtThuoc);
+                if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+                {
+                    cboThuoc.SelectedValue = dlg.MaThuocGUID;
+                }
+            }
         }
 
         private void dlgAddThuocKeToa_FormClosing(object sender, FormClosingEventArgs e)
