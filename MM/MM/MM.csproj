@@ -101,6 +101,12 @@
     <Compile Include="Controls\uBaoCaoCongNoHopDong.Designer.cs">
       <DependentUpon>uBaoCaoCongNoHopDong.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uSMSLog.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uSMSLog.Designer.cs">
+      <DependentUpon>uSMSLog.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgAddDichVuLamThem.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1598,6 +1604,9 @@
     <EmbeddedResource Include="Controls\uBaoCaoCongNoHopDong.resx">
       <DependentUpon>uBaoCaoCongNoHopDong.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uSMSLog.resx">
+      <DependentUpon>uSMSLog.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddDichVuLamThem.resx">
       <DependentUpon>dlgAddDichVuLamThem.cs</DependentUpon>
     </EmbeddedResource>
@@ -2362,6 +2371,7 @@
     <None Include="Properties\DataSources\MM.Databasae.ServiceGroup.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ServiceHistoryView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Service_ServiceGroupView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.SMSLogView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.spCapCuuTonKhoResult.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.spDichVuHopDongResult.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.spDichVuTuTucResult.datasource" />
