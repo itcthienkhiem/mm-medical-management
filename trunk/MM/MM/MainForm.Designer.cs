@@ -349,6 +349,9 @@
             this._uServicesList = new MM.Controls.uServicesList();
             this._timerCheckAlert = new System.Windows.Forms.Timer(this.components);
             this._timerPatient = new System.Windows.Forms.Timer(this.components);
+            this.toolStripSeparator73 = new System.Windows.Forms.ToolStripSeparator();
+            this.sMSLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._uSMSLog = new MM.Controls.uSMSLog();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -1815,7 +1818,9 @@
             this.sMSToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.tinNhanMauToolStripMenuItem,
             this.toolStripSeparator71,
-            this.guiSMSToolStripMenuItem});
+            this.guiSMSToolStripMenuItem,
+            this.toolStripSeparator73,
+            this.sMSLogToolStripMenuItem});
             resources.ApplyResources(this.sMSToolStripMenuItem, "sMSToolStripMenuItem");
             this.sMSToolStripMenuItem.Name = "sMSToolStripMenuItem";
             // 
@@ -2211,6 +2216,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uSMSLog);
             this._mainPanel.Controls.Add(this._uBaoCaoCongNoHopDong);
             this._mainPanel.Controls.Add(this._uSendSMS);
             this._mainPanel.Controls.Add(this._uTinNhanMauList);
@@ -2658,6 +2664,23 @@
             // 
             this._timerPatient.Interval = 5000;
             // 
+            // toolStripSeparator73
+            // 
+            this.toolStripSeparator73.Name = "toolStripSeparator73";
+            resources.ApplyResources(this.toolStripSeparator73, "toolStripSeparator73");
+            // 
+            // sMSLogToolStripMenuItem
+            // 
+            resources.ApplyResources(this.sMSLogToolStripMenuItem, "sMSLogToolStripMenuItem");
+            this.sMSLogToolStripMenuItem.Name = "sMSLogToolStripMenuItem";
+            this.sMSLogToolStripMenuItem.Tag = "SMSLog";
+            this.sMSLogToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // _uSMSLog
+            // 
+            resources.ApplyResources(this._uSMSLog, "_uSMSLog");
+            this._uSMSLog.Name = "_uSMSLog";
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -3009,6 +3032,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator72;
         private System.Windows.Forms.ToolStripMenuItem baoCaoCongNoTheoHopDongToolStripMenuItem;
         private Controls.uBaoCaoCongNoHopDong _uBaoCaoCongNoHopDong;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator73;
+        private System.Windows.Forms.ToolStripMenuItem sMSLogToolStripMenuItem;
+        private Controls.uSMSLog _uSMSLog;
 
     }
 }

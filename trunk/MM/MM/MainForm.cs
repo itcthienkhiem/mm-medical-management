@@ -396,6 +396,8 @@ namespace MM
                 _uSendSMS.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uBaoCaoCongNoHopDong))
                 _uBaoCaoCongNoHopDong.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uSMSLog))
+                _uSMSLog.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -1539,6 +1541,20 @@ namespace MM
                             _uBaoCaoCongNoHopDong.AllowExportAll = isExportAll;
                             _uBaoCaoCongNoHopDong.AllowConfirm = isConfirm;
                         }
+                        else if (functionCode == Const.SMSLog)
+                        {
+                            sMSToolStripMenuItem.Enabled = isLogin;
+                            sMSLogToolStripMenuItem.Enabled = isView && isLogin;
+                            _uSMSLog.AllowAdd = isAdd;
+                            _uSMSLog.AllowEdit = isEdit;
+                            _uSMSLog.AllowDelete = isDelete;
+                            _uSMSLog.AllowPrint = isPrint;
+                            _uSMSLog.AllowExport = isExport;
+                            _uSMSLog.AllowImport = isImport;
+                            _uSMSLog.AllowLock = isLock;
+                            _uSMSLog.AllowExportAll = isExportAll;
+                            _uSMSLog.AllowConfirm = isConfirm;
+                        }
                     }
                 }
                 else
@@ -1764,6 +1780,7 @@ namespace MM
                 tinNhanMauToolStripMenuItem.Enabled = isLogin;
                 guiSMSToolStripMenuItem.Enabled = isLogin;
                 baoCaoCongNoTheoHopDongToolStripMenuItem.Enabled = isLogin;
+                sMSLogToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -2202,7 +2219,18 @@ namespace MM
                 case "BaoCaoCongNoHopDong":
                     OnBaoCaoCongNoHopDong();
                     break;
+
+                case "SMSLog":
+                    OnSMSLog();
+                    break;
             }
+        }
+
+        private void OnSMSLog()
+        {
+            this.Text = string.Format("{0} - SMS Log", Application.ProductName);
+            ViewControl(_uSMSLog);
+            _uSMSLog.DisplayAsThread();
         }
 
         private void OnBaoCaoCongNoHopDong()
@@ -3145,6 +3173,7 @@ namespace MM
             _uTinNhanMauList.ClearData();
             _uSendSMS.ClearData();
             _uBaoCaoCongNoHopDong.ClearData();
+            _uSMSLog.ClearData();
         }
         #endregion
 

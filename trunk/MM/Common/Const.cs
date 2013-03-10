@@ -114,6 +114,7 @@ namespace MM.Common
         public static string TinNhanMau = "TinNhanMau";
         public static string GuiSMS = "GuiSMS";
         public static string BaoCaoCongNoHopDong = "BaoCaoCongNoTheoHopDong";
+        public static string SMSLog = "SMSLog";
 
         public static string CheckListTemplate = "Theo dõi thực hiện";
         public static string ChiTietPhieuThuDichVuTemplate = "Chi tiết phiếu thu dịch vụ";
