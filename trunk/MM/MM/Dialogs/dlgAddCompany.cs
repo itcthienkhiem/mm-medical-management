@@ -80,6 +80,7 @@ namespace MM.Dialogs
                 txtDienThoai.Text = drCompany["DienThoai"] as string;
                 txtFax.Text = drCompany["Fax"] as string;
                 txtWebsite.Text = drCompany["Website"] as string;
+                txtMaSoThue.Text = drCompany["MaSoThue"] as string;
 
                 _company.CompanyGUID = Guid.Parse(drCompany["CompanyGUID"].ToString());
 
@@ -272,6 +273,7 @@ namespace MM.Dialogs
                 _company.Dienthoai = txtDienThoai.Text;
                 _company.Fax = txtFax.Text;
                 _company.Website = txtWebsite.Text;
+                _company.MaSoThue = txtMaSoThue.Text;
                 _company.Status = (byte)Status.Actived;
 
                 if (_isNew)
