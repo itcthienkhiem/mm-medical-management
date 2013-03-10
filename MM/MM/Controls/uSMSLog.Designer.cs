@@ -45,7 +45,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgTracking = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.sMSLogViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ngayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mobileDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,6 +52,7 @@
             this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.notesDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nguoiGuiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.sMSLogViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgTracking)).BeginInit();
@@ -184,7 +184,7 @@
             this.dgTracking.AllowUserToDeleteRows = false;
             this.dgTracking.AllowUserToOrderColumns = true;
             this.dgTracking.AutoGenerateColumns = false;
-            this.dgTracking.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
+            this.dgTracking.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -223,16 +223,13 @@
             this.dgTracking.Size = new System.Drawing.Size(1107, 314);
             this.dgTracking.TabIndex = 1;
             // 
-            // sMSLogViewBindingSource
-            // 
-            this.sMSLogViewBindingSource.DataSource = typeof(MM.Databasae.SMSLogView);
-            // 
             // ngayDataGridViewTextBoxColumn
             // 
             this.ngayDataGridViewTextBoxColumn.DataPropertyName = "Ngay";
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle2.Format = "dd/MM/yyyy HH:mm:ss";
             this.ngayDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.ngayDataGridViewTextBoxColumn.Frozen = true;
             this.ngayDataGridViewTextBoxColumn.HeaderText = "Ngày";
             this.ngayDataGridViewTextBoxColumn.Name = "ngayDataGridViewTextBoxColumn";
             this.ngayDataGridViewTextBoxColumn.ReadOnly = true;
@@ -286,6 +283,10 @@
             this.nguoiGuiDataGridViewTextBoxColumn.Name = "nguoiGuiDataGridViewTextBoxColumn";
             this.nguoiGuiDataGridViewTextBoxColumn.ReadOnly = true;
             this.nguoiGuiDataGridViewTextBoxColumn.Width = 250;
+            // 
+            // sMSLogViewBindingSource
+            // 
+            this.sMSLogViewBindingSource.DataSource = typeof(MM.Databasae.SMSLogView);
             // 
             // uSMSLog
             // 
