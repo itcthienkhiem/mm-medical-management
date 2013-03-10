@@ -38,25 +38,26 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgCompany = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.maCtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tenCtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.diaChiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dienthoaiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.faxDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.websiteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.companyBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.companyBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.maCtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tenCtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.MaSoThue = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.diaChiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dienthoaiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.faxDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.websiteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgCompany)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.companyBindingSource)).BeginInit();
             this.ctmAction.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.companyBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -145,6 +146,7 @@
             this.colChecked,
             this.maCtyDataGridViewTextBoxColumn,
             this.tenCtyDataGridViewTextBoxColumn,
+            this.MaSoThue,
             this.diaChiDataGridViewTextBoxColumn,
             this.dienthoaiDataGridViewTextBoxColumn,
             this.faxDataGridViewTextBoxColumn,
@@ -171,65 +173,6 @@
             this.dgCompany.Size = new System.Drawing.Size(896, 390);
             this.dgCompany.TabIndex = 4;
             this.dgCompany.DoubleClick += new System.EventHandler(this.dgCompany_DoubleClick);
-            // 
-            // colChecked
-            // 
-            this.colChecked.DataPropertyName = "Checked";
-            this.colChecked.Frozen = true;
-            this.colChecked.HeaderText = "";
-            this.colChecked.Name = "colChecked";
-            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.colChecked.Width = 40;
-            // 
-            // maCtyDataGridViewTextBoxColumn
-            // 
-            this.maCtyDataGridViewTextBoxColumn.DataPropertyName = "MaCty";
-            this.maCtyDataGridViewTextBoxColumn.HeaderText = "Mã công ty";
-            this.maCtyDataGridViewTextBoxColumn.Name = "maCtyDataGridViewTextBoxColumn";
-            this.maCtyDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // tenCtyDataGridViewTextBoxColumn
-            // 
-            this.tenCtyDataGridViewTextBoxColumn.DataPropertyName = "TenCty";
-            this.tenCtyDataGridViewTextBoxColumn.HeaderText = "Tên công ty";
-            this.tenCtyDataGridViewTextBoxColumn.Name = "tenCtyDataGridViewTextBoxColumn";
-            this.tenCtyDataGridViewTextBoxColumn.ReadOnly = true;
-            this.tenCtyDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // diaChiDataGridViewTextBoxColumn
-            // 
-            this.diaChiDataGridViewTextBoxColumn.DataPropertyName = "DiaChi";
-            this.diaChiDataGridViewTextBoxColumn.HeaderText = "Địa chỉ";
-            this.diaChiDataGridViewTextBoxColumn.Name = "diaChiDataGridViewTextBoxColumn";
-            this.diaChiDataGridViewTextBoxColumn.ReadOnly = true;
-            this.diaChiDataGridViewTextBoxColumn.Width = 200;
-            // 
-            // dienthoaiDataGridViewTextBoxColumn
-            // 
-            this.dienthoaiDataGridViewTextBoxColumn.DataPropertyName = "Dienthoai";
-            this.dienthoaiDataGridViewTextBoxColumn.HeaderText = "Điện thoại";
-            this.dienthoaiDataGridViewTextBoxColumn.Name = "dienthoaiDataGridViewTextBoxColumn";
-            this.dienthoaiDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // faxDataGridViewTextBoxColumn
-            // 
-            this.faxDataGridViewTextBoxColumn.DataPropertyName = "Fax";
-            this.faxDataGridViewTextBoxColumn.HeaderText = "Fax";
-            this.faxDataGridViewTextBoxColumn.Name = "faxDataGridViewTextBoxColumn";
-            this.faxDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // websiteDataGridViewTextBoxColumn
-            // 
-            this.websiteDataGridViewTextBoxColumn.DataPropertyName = "Website";
-            this.websiteDataGridViewTextBoxColumn.HeaderText = "Website";
-            this.websiteDataGridViewTextBoxColumn.Name = "websiteDataGridViewTextBoxColumn";
-            this.websiteDataGridViewTextBoxColumn.ReadOnly = true;
-            this.websiteDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // companyBindingSource
-            // 
-            this.companyBindingSource.DataSource = typeof(MM.Databasae.Company);
             // 
             // ctmAction
             // 
@@ -276,6 +219,72 @@
             this.deleteToolStripMenuItem.Text = "Xóa";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
+            // companyBindingSource
+            // 
+            this.companyBindingSource.DataSource = typeof(MM.Databasae.Company);
+            // 
+            // colChecked
+            // 
+            this.colChecked.DataPropertyName = "Checked";
+            this.colChecked.Frozen = true;
+            this.colChecked.HeaderText = "";
+            this.colChecked.Name = "colChecked";
+            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colChecked.Width = 40;
+            // 
+            // maCtyDataGridViewTextBoxColumn
+            // 
+            this.maCtyDataGridViewTextBoxColumn.DataPropertyName = "MaCty";
+            this.maCtyDataGridViewTextBoxColumn.HeaderText = "Mã công ty";
+            this.maCtyDataGridViewTextBoxColumn.Name = "maCtyDataGridViewTextBoxColumn";
+            this.maCtyDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // tenCtyDataGridViewTextBoxColumn
+            // 
+            this.tenCtyDataGridViewTextBoxColumn.DataPropertyName = "TenCty";
+            this.tenCtyDataGridViewTextBoxColumn.HeaderText = "Tên công ty";
+            this.tenCtyDataGridViewTextBoxColumn.Name = "tenCtyDataGridViewTextBoxColumn";
+            this.tenCtyDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tenCtyDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // MaSoThue
+            // 
+            this.MaSoThue.DataPropertyName = "MaSoThue";
+            this.MaSoThue.HeaderText = "Mã số thuế";
+            this.MaSoThue.Name = "MaSoThue";
+            this.MaSoThue.ReadOnly = true;
+            // 
+            // diaChiDataGridViewTextBoxColumn
+            // 
+            this.diaChiDataGridViewTextBoxColumn.DataPropertyName = "DiaChi";
+            this.diaChiDataGridViewTextBoxColumn.HeaderText = "Địa chỉ";
+            this.diaChiDataGridViewTextBoxColumn.Name = "diaChiDataGridViewTextBoxColumn";
+            this.diaChiDataGridViewTextBoxColumn.ReadOnly = true;
+            this.diaChiDataGridViewTextBoxColumn.Width = 200;
+            // 
+            // dienthoaiDataGridViewTextBoxColumn
+            // 
+            this.dienthoaiDataGridViewTextBoxColumn.DataPropertyName = "Dienthoai";
+            this.dienthoaiDataGridViewTextBoxColumn.HeaderText = "Điện thoại";
+            this.dienthoaiDataGridViewTextBoxColumn.Name = "dienthoaiDataGridViewTextBoxColumn";
+            this.dienthoaiDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // faxDataGridViewTextBoxColumn
+            // 
+            this.faxDataGridViewTextBoxColumn.DataPropertyName = "Fax";
+            this.faxDataGridViewTextBoxColumn.HeaderText = "Fax";
+            this.faxDataGridViewTextBoxColumn.Name = "faxDataGridViewTextBoxColumn";
+            this.faxDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // websiteDataGridViewTextBoxColumn
+            // 
+            this.websiteDataGridViewTextBoxColumn.DataPropertyName = "Website";
+            this.websiteDataGridViewTextBoxColumn.HeaderText = "Website";
+            this.websiteDataGridViewTextBoxColumn.Name = "websiteDataGridViewTextBoxColumn";
+            this.websiteDataGridViewTextBoxColumn.ReadOnly = true;
+            this.websiteDataGridViewTextBoxColumn.Width = 150;
+            // 
             // uCompanyList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -288,8 +297,8 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgCompany)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.companyBindingSource)).EndInit();
             this.ctmAction.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.companyBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -304,18 +313,19 @@
         private System.Windows.Forms.CheckBox chkChecked;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgCompany;
         private System.Windows.Forms.BindingSource companyBindingSource;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn colChecked;
-        private System.Windows.Forms.DataGridViewTextBoxColumn maCtyDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tenCtyDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn diaChiDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn dienthoaiDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn faxDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn websiteDataGridViewTextBoxColumn;
         protected System.Windows.Forms.ContextMenuStrip ctmAction;
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn colChecked;
+        private System.Windows.Forms.DataGridViewTextBoxColumn maCtyDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tenCtyDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn MaSoThue;
+        private System.Windows.Forms.DataGridViewTextBoxColumn diaChiDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dienthoaiDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn faxDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn websiteDataGridViewTextBoxColumn;
     }
 }

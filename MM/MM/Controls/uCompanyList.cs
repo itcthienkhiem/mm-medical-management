@@ -106,6 +106,7 @@ namespace MM.Controls
                 newRow["CompanyGUID"] = dlg.Company.CompanyGUID.ToString();
                 newRow["MaCty"] = dlg.Company.MaCty;
                 newRow["TenCty"] = dlg.Company.TenCty;
+                newRow["MaSoThue"] = dlg.Company.MaSoThue;
                 newRow["DiaChi"] = dlg.Company.DiaChi;
                 newRow["Dienthoai"] = dlg.Company.Dienthoai;
                 newRow["Fax"] = dlg.Company.Fax;
@@ -149,6 +150,7 @@ namespace MM.Controls
             {
                 drCom["MaCty"] = dlg.Company.MaCty;
                 drCom["TenCty"] = dlg.Company.TenCty;
+                drCom["MaSoThue"] = dlg.Company.MaSoThue;
                 drCom["DiaChi"] = dlg.Company.DiaChi;
                 drCom["Dienthoai"] = dlg.Company.Dienthoai;
                 drCom["Fax"] = dlg.Company.Fax;

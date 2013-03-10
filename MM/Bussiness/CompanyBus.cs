@@ -210,8 +210,8 @@ namespace MM.Bussiness
                             foreach (var cm in c.CompanyMembers)
                                 cm.Status = (byte)Status.Deactived;
 
-                            desc += string.Format("- GUID: '{0}', Mã cty: '{1}', Tên cty: '{2}', Địa chỉ: '{3}', Điện thoại: '{4}', Fax: '{5}', Website: '{6}'\n",
-                                c.CompanyGUID.ToString(), c.MaCty, c.TenCty, c.DiaChi, c.Dienthoai, c.Fax, c.Website);
+                            desc += string.Format("- GUID: '{0}', Mã cty: '{1}', Tên cty: '{2}', Địa chỉ: '{3}', Điện thoại: '{4}', Fax: '{5}', Website: '{6}', Mã số thuế: '{7}'\n",
+                                c.CompanyGUID.ToString(), c.MaCty, c.TenCty, c.DiaChi, c.Dienthoai, c.Fax, c.Website, c.MaSoThue);
                         }
                     }
 
@@ -355,8 +355,8 @@ namespace MM.Bussiness
                         db.Companies.InsertOnSubmit(com);
                         db.SubmitChanges();
 
-                        desc += string.Format("- Công ty: GUID: '{0}', Mã cty: '{1}', Tên cty: '{2}', Địa chỉ: '{3}', Điện thoại: '{4}', Fax: '{5}', Website: '{6}'\n",
-                                com.CompanyGUID.ToString(), com.MaCty, com.TenCty, com.DiaChi, com.Dienthoai, com.Fax, com.Website);
+                        desc += string.Format("- Công ty: GUID: '{0}', Mã cty: '{1}', Tên cty: '{2}', Địa chỉ: '{3}', Điện thoại: '{4}', Fax: '{5}', Website: '{6}', Mã số thuế: '{7}'\n",
+                                com.CompanyGUID.ToString(), com.MaCty, com.TenCty, com.DiaChi, com.Dienthoai, com.Fax, com.Website, com.MaSoThue);
 
                         //Members
                         if (addedMembers != null && addedMembers.Count > 0)
@@ -410,6 +410,7 @@ namespace MM.Bussiness
                         if (company != null)
                         {
                             company.MaCty = com.MaCty;
+                            company.MaSoThue = com.MaSoThue;
                             company.TenCty = com.TenCty;
                             company.DiaChi = com.DiaChi;
                             company.Dienthoai = com.Dienthoai;
@@ -423,8 +424,8 @@ namespace MM.Bussiness
                             company.DeletedBy = com.DeletedBy;
                             company.Status = com.Status;
 
-                            desc += string.Format("- Công ty: GUID: '{0}', Mã cty: '{1}', Tên cty: '{2}', Địa chỉ: '{3}', Điện thoại: '{4}', Fax: '{5}', Website: '{6}'\n",
-                                company.CompanyGUID.ToString(), company.MaCty, company.TenCty, company.DiaChi, company.Dienthoai, company.Fax, company.Website);
+                            desc += string.Format("- Công ty: GUID: '{0}', Mã cty: '{1}', Tên cty: '{2}', Địa chỉ: '{3}', Điện thoại: '{4}', Fax: '{5}', Website: '{6}', Mã số thuế: '{7}'\n",
+                                company.CompanyGUID.ToString(), company.MaCty, company.TenCty, company.DiaChi, company.Dienthoai, company.Fax, company.Website, company.MaSoThue);
 
                             //Members
                             if (deletedMembers != null && deletedMembers.Count > 0)
