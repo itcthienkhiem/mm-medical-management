@@ -30,8 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbKetQuaTimDuoc = new System.Windows.Forms.Label();
             this.raKhongThanhCong = new System.Windows.Forms.RadioButton();
@@ -43,8 +44,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.sMSLogViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dgTracking = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.sMSLogViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ngayDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mobileDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -54,8 +55,8 @@
             this.nguoiGuiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.sMSLogViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgTracking)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sMSLogViewBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -177,17 +178,13 @@
             this.panel2.Size = new System.Drawing.Size(1107, 314);
             this.panel2.TabIndex = 2;
             // 
-            // sMSLogViewBindingSource
-            // 
-            this.sMSLogViewBindingSource.DataSource = typeof(MM.Databasae.SMSLogView);
-            // 
             // dgTracking
             // 
             this.dgTracking.AllowUserToAddRows = false;
             this.dgTracking.AllowUserToDeleteRows = false;
             this.dgTracking.AllowUserToOrderColumns = true;
             this.dgTracking.AutoGenerateColumns = false;
-            this.dgTracking.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dgTracking.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.DisplayedCells;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -206,14 +203,14 @@
             this.notesDataGridViewTextBoxColumn,
             this.nguoiGuiDataGridViewTextBoxColumn});
             this.dgTracking.DataSource = this.sMSLogViewBindingSource;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgTracking.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgTracking.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgTracking.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgTracking.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgTracking.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -225,6 +222,10 @@
             this.dgTracking.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgTracking.Size = new System.Drawing.Size(1107, 314);
             this.dgTracking.TabIndex = 1;
+            // 
+            // sMSLogViewBindingSource
+            // 
+            this.sMSLogViewBindingSource.DataSource = typeof(MM.Databasae.SMSLogView);
             // 
             // ngayDataGridViewTextBoxColumn
             // 
@@ -263,6 +264,8 @@
             // statusDataGridViewTextBoxColumn
             // 
             this.statusDataGridViewTextBoxColumn.DataPropertyName = "Status";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.statusDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.statusDataGridViewTextBoxColumn.HeaderText = "Trạng thái";
             this.statusDataGridViewTextBoxColumn.Name = "statusDataGridViewTextBoxColumn";
             this.statusDataGridViewTextBoxColumn.ReadOnly = true;
@@ -295,8 +298,8 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             this.panel2.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.sMSLogViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgTracking)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.sMSLogViewBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
