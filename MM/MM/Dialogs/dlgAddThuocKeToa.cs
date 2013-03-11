@@ -64,7 +64,14 @@ namespace MM.Dialogs
             Cursor.Current = Cursors.WaitCursor;
             Result result = ThuocBus.GetThuocList();
             if (result.IsOK)
-                cboThuoc.DataSource = result.QueryResult;
+            {
+                DataTable dt = result.QueryResult as DataTable;
+                DataRow newRow = dt.NewRow();
+                newRow["ThuocGUID"] = Guid.Empty;
+                newRow["TenThuoc"] = string.Empty;
+                dt.Rows.InsertAt(newRow, 0);
+                cboThuoc.DataSource = dt;
+            }
             else
             {
                 MsgBox.Show(this.Text, result.GetErrorAsString("ThuocBus.GetThuocList"), IconType.Error);

@@ -470,8 +470,6 @@
             // 
             // cboThuoc
             // 
-            this.cboThuoc.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.cboThuoc.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboThuoc.DataSource = this.thuocBindingSource;
             this.cboThuoc.DisplayMember = "TenThuoc";
             this.cboThuoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
