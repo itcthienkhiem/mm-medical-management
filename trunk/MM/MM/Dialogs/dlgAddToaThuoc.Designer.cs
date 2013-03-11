@@ -30,9 +30,8 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddToaThuoc));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.raToaSanKhoa = new System.Windows.Forms.RadioButton();
@@ -66,27 +65,27 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.dgChiTiet = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.Checked = new DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn();
-            this.tenThuocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.soLuongDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.lieuDungDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.chiTietToaThuocViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.btnDeleteMember = new System.Windows.Forms.Button();
-            this.btnAddMember = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.chkChecked = new System.Windows.Forms.CheckBox();
             this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.chiTietToaThuocViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.btnDeleteMember = new System.Windows.Forms.Button();
+            this.btnAddMember = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.chkChecked = new System.Windows.Forms.CheckBox();
+            this.Checked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.tenThuocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.soLuongDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.lieuDungDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.noteDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgChiTiet)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chiTietToaThuocViewBindingSource)).BeginInit();
             this.ctmAction.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.chiTietToaThuocViewBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -436,124 +435,24 @@
             this.noteDataGridViewTextBoxColumn});
             this.dgChiTiet.ContextMenuStrip = this.ctmAction;
             this.dgChiTiet.DataSource = this.chiTietToaThuocViewBindingSource;
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgChiTiet.DefaultCellStyle = dataGridViewCellStyle4;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgChiTiet.DefaultCellStyle = dataGridViewCellStyle3;
             this.dgChiTiet.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgChiTiet.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
             this.dgChiTiet.HighlightSelectedColumnHeaders = false;
             this.dgChiTiet.Location = new System.Drawing.Point(12, 273);
             this.dgChiTiet.Name = "dgChiTiet";
-            this.dgChiTiet.ReadOnly = true;
             this.dgChiTiet.RowHeadersWidth = 30;
             this.dgChiTiet.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgChiTiet.Size = new System.Drawing.Size(703, 312);
             this.dgChiTiet.TabIndex = 11;
             this.dgChiTiet.DoubleClick += new System.EventHandler(this.dgChiTiet_DoubleClick);
-            // 
-            // Checked
-            // 
-            this.Checked.Checked = true;
-            this.Checked.CheckState = System.Windows.Forms.CheckState.Indeterminate;
-            this.Checked.CheckValue = "N";
-            this.Checked.DataPropertyName = "Checked";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.Checked.DefaultCellStyle = dataGridViewCellStyle2;
-            this.Checked.Frozen = true;
-            this.Checked.HeaderText = "";
-            this.Checked.Name = "Checked";
-            this.Checked.ReadOnly = true;
-            this.Checked.Width = 40;
-            // 
-            // tenThuocDataGridViewTextBoxColumn
-            // 
-            this.tenThuocDataGridViewTextBoxColumn.DataPropertyName = "TenThuoc";
-            this.tenThuocDataGridViewTextBoxColumn.HeaderText = "Tên thuốc";
-            this.tenThuocDataGridViewTextBoxColumn.Name = "tenThuocDataGridViewTextBoxColumn";
-            this.tenThuocDataGridViewTextBoxColumn.ReadOnly = true;
-            this.tenThuocDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // soLuongDataGridViewTextBoxColumn
-            // 
-            this.soLuongDataGridViewTextBoxColumn.DataPropertyName = "SoLuong";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "N0";
-            dataGridViewCellStyle3.NullValue = null;
-            this.soLuongDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
-            this.soLuongDataGridViewTextBoxColumn.HeaderText = "Số lượng";
-            this.soLuongDataGridViewTextBoxColumn.Name = "soLuongDataGridViewTextBoxColumn";
-            this.soLuongDataGridViewTextBoxColumn.ReadOnly = true;
-            this.soLuongDataGridViewTextBoxColumn.Width = 90;
-            // 
-            // lieuDungDataGridViewTextBoxColumn
-            // 
-            this.lieuDungDataGridViewTextBoxColumn.DataPropertyName = "LieuDung";
-            this.lieuDungDataGridViewTextBoxColumn.HeaderText = "Liều dùng";
-            this.lieuDungDataGridViewTextBoxColumn.Name = "lieuDungDataGridViewTextBoxColumn";
-            this.lieuDungDataGridViewTextBoxColumn.ReadOnly = true;
-            this.lieuDungDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // noteDataGridViewTextBoxColumn
-            // 
-            this.noteDataGridViewTextBoxColumn.DataPropertyName = "Note";
-            this.noteDataGridViewTextBoxColumn.HeaderText = "Ghi chú";
-            this.noteDataGridViewTextBoxColumn.Name = "noteDataGridViewTextBoxColumn";
-            this.noteDataGridViewTextBoxColumn.ReadOnly = true;
-            this.noteDataGridViewTextBoxColumn.Width = 220;
-            // 
-            // chiTietToaThuocViewBindingSource
-            // 
-            this.chiTietToaThuocViewBindingSource.DataSource = typeof(MM.Databasae.ChiTietToaThuocView);
-            // 
-            // btnDeleteMember
-            // 
-            this.btnDeleteMember.Image = global::MM.Properties.Resources.del;
-            this.btnDeleteMember.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDeleteMember.Location = new System.Drawing.Point(721, 331);
-            this.btnDeleteMember.Name = "btnDeleteMember";
-            this.btnDeleteMember.Size = new System.Drawing.Size(75, 25);
-            this.btnDeleteMember.TabIndex = 12;
-            this.btnDeleteMember.Text = "    &Xóa";
-            this.btnDeleteMember.UseVisualStyleBackColor = true;
-            this.btnDeleteMember.Click += new System.EventHandler(this.btnDeleteMember_Click);
-            // 
-            // btnAddMember
-            // 
-            this.btnAddMember.Image = global::MM.Properties.Resources.add;
-            this.btnAddMember.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAddMember.Location = new System.Drawing.Point(721, 273);
-            this.btnAddMember.Name = "btnAddMember";
-            this.btnAddMember.Size = new System.Drawing.Size(75, 25);
-            this.btnAddMember.TabIndex = 10;
-            this.btnAddMember.Text = "    &Thêm";
-            this.btnAddMember.UseVisualStyleBackColor = true;
-            this.btnAddMember.Click += new System.EventHandler(this.btnAddMember_Click);
-            // 
-            // btnEdit
-            // 
-            this.btnEdit.Image = global::MM.Properties.Resources.edit;
-            this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit.Location = new System.Drawing.Point(721, 302);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(75, 25);
-            this.btnEdit.TabIndex = 11;
-            this.btnEdit.Text = "    &Sửa";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
-            // 
-            // chkChecked
-            // 
-            this.chkChecked.AutoSize = true;
-            this.chkChecked.Location = new System.Drawing.Point(57, 278);
-            this.chkChecked.Name = "chkChecked";
-            this.chkChecked.Size = new System.Drawing.Size(15, 14);
-            this.chkChecked.TabIndex = 15;
-            this.chkChecked.UseVisualStyleBackColor = true;
             // 
             // ctmAction
             // 
@@ -600,6 +499,101 @@
             this.deleteToolStripMenuItem.Text = "Xóa";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
+            // chiTietToaThuocViewBindingSource
+            // 
+            this.chiTietToaThuocViewBindingSource.DataSource = typeof(MM.Databasae.ChiTietToaThuocView);
+            // 
+            // btnDeleteMember
+            // 
+            this.btnDeleteMember.Image = global::MM.Properties.Resources.del;
+            this.btnDeleteMember.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDeleteMember.Location = new System.Drawing.Point(721, 331);
+            this.btnDeleteMember.Name = "btnDeleteMember";
+            this.btnDeleteMember.Size = new System.Drawing.Size(75, 25);
+            this.btnDeleteMember.TabIndex = 12;
+            this.btnDeleteMember.Text = "    &Xóa";
+            this.btnDeleteMember.UseVisualStyleBackColor = true;
+            this.btnDeleteMember.Click += new System.EventHandler(this.btnDeleteMember_Click);
+            // 
+            // btnAddMember
+            // 
+            this.btnAddMember.Image = global::MM.Properties.Resources.add;
+            this.btnAddMember.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAddMember.Location = new System.Drawing.Point(721, 273);
+            this.btnAddMember.Name = "btnAddMember";
+            this.btnAddMember.Size = new System.Drawing.Size(75, 25);
+            this.btnAddMember.TabIndex = 10;
+            this.btnAddMember.Text = "    &Thêm";
+            this.btnAddMember.UseVisualStyleBackColor = true;
+            this.btnAddMember.Click += new System.EventHandler(this.btnAddMember_Click);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Image = global::MM.Properties.Resources.edit;
+            this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnEdit.Location = new System.Drawing.Point(721, 302);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(75, 25);
+            this.btnEdit.TabIndex = 11;
+            this.btnEdit.Text = "    &Sửa";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // chkChecked
+            // 
+            this.chkChecked.AutoSize = true;
+            this.chkChecked.Location = new System.Drawing.Point(56, 278);
+            this.chkChecked.Name = "chkChecked";
+            this.chkChecked.Size = new System.Drawing.Size(15, 14);
+            this.chkChecked.TabIndex = 15;
+            this.chkChecked.UseVisualStyleBackColor = true;
+            this.chkChecked.CheckedChanged += new System.EventHandler(this.chkChecked_CheckedChanged);
+            // 
+            // Checked
+            // 
+            this.Checked.DataPropertyName = "Checked";
+            this.Checked.Frozen = true;
+            this.Checked.HeaderText = "";
+            this.Checked.Name = "Checked";
+            this.Checked.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Checked.Width = 40;
+            // 
+            // tenThuocDataGridViewTextBoxColumn
+            // 
+            this.tenThuocDataGridViewTextBoxColumn.DataPropertyName = "TenThuoc";
+            this.tenThuocDataGridViewTextBoxColumn.HeaderText = "Tên thuốc";
+            this.tenThuocDataGridViewTextBoxColumn.Name = "tenThuocDataGridViewTextBoxColumn";
+            this.tenThuocDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tenThuocDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // soLuongDataGridViewTextBoxColumn
+            // 
+            this.soLuongDataGridViewTextBoxColumn.DataPropertyName = "SoLuong";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = null;
+            this.soLuongDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            this.soLuongDataGridViewTextBoxColumn.HeaderText = "Số lượng";
+            this.soLuongDataGridViewTextBoxColumn.Name = "soLuongDataGridViewTextBoxColumn";
+            this.soLuongDataGridViewTextBoxColumn.ReadOnly = true;
+            this.soLuongDataGridViewTextBoxColumn.Width = 90;
+            // 
+            // lieuDungDataGridViewTextBoxColumn
+            // 
+            this.lieuDungDataGridViewTextBoxColumn.DataPropertyName = "LieuDung";
+            this.lieuDungDataGridViewTextBoxColumn.HeaderText = "Liều dùng";
+            this.lieuDungDataGridViewTextBoxColumn.Name = "lieuDungDataGridViewTextBoxColumn";
+            this.lieuDungDataGridViewTextBoxColumn.ReadOnly = true;
+            this.lieuDungDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // noteDataGridViewTextBoxColumn
+            // 
+            this.noteDataGridViewTextBoxColumn.DataPropertyName = "Note";
+            this.noteDataGridViewTextBoxColumn.HeaderText = "Ghi chú";
+            this.noteDataGridViewTextBoxColumn.Name = "noteDataGridViewTextBoxColumn";
+            this.noteDataGridViewTextBoxColumn.ReadOnly = true;
+            this.noteDataGridViewTextBoxColumn.Width = 220;
+            // 
             // dlgAddToaThuoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -628,8 +622,8 @@
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgChiTiet)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.chiTietToaThuocViewBindingSource)).EndInit();
             this.ctmAction.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.chiTietToaThuocViewBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -675,11 +669,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn soLuongTrongLanDataGridViewTextBoxColumn;
         private System.Windows.Forms.CheckBox chkChecked;
         private System.Windows.Forms.BindingSource chiTietToaThuocViewBindingSource;
-        private DevComponents.DotNetBar.Controls.DataGridViewCheckBoxXColumn Checked;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tenThuocDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn soLuongDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn lieuDungDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
         private System.Windows.Forms.CheckBox chkNgayTaiKham;
         protected System.Windows.Forms.ContextMenuStrip ctmAction;
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
@@ -687,5 +676,10 @@
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Checked;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tenThuocDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn soLuongDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn lieuDungDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
     }
 }

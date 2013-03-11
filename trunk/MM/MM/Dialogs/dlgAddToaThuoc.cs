@@ -679,6 +679,16 @@ namespace MM.Dialogs
         {
             OnDeleteThuoc();
         }
+
+        private void chkChecked_CheckedChanged(object sender, EventArgs e)
+        {
+            DataTable dt = dgChiTiet.DataSource as DataTable;
+            if (dt == null || dt.Rows.Count <= 0) return;
+            foreach (DataRow row in dt.Rows)
+            {
+                row["Checked"] = chkChecked.Checked;
+            }
+        }
         #endregion
 
         #region Working Thread
@@ -699,7 +709,5 @@ namespace MM.Dialogs
             }
         }
         #endregion
-
-        
     }
 }
