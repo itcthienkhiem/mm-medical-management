@@ -473,7 +473,6 @@
             this.cboThuoc.DataSource = this.thuocBindingSource;
             this.cboThuoc.DisplayMember = "TenThuoc";
             this.cboThuoc.DropDownStyle = System.Windows.Forms.ComboBoxStyle.Simple;
-            this.cboThuoc.Enabled = false;
             this.cboThuoc.FormattingEnabled = true;
             this.cboThuoc.Location = new System.Drawing.Point(80, 22);
             this.cboThuoc.Name = "cboThuoc";

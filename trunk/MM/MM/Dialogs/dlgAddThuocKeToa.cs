@@ -95,7 +95,12 @@ namespace MM.Dialogs
             try
             {
                 _chiTietToaThuoc.ChiTietToaThuocGUID = Guid.Parse(drThuoc["ChiTietToaThuocGUID"].ToString());
-                cboThuoc.SelectedValue = drThuoc["ThuocGUID"].ToString();
+
+                if (drThuoc["ThuocGUID"] != null && drThuoc["ThuocGUID"] != DBNull.Value)
+                    cboThuoc.SelectedValue = drThuoc["ThuocGUID"].ToString();
+                else
+                    cboThuoc.Text = drThuoc["TenThuoc"].ToString();
+
                 numSoLuong.Value = (Decimal)Convert.ToInt32(drThuoc["SoLuong"]);
                 if (_type == LoaiToaThuoc.Chung)
                 {
@@ -137,7 +142,7 @@ namespace MM.Dialogs
 
         private bool CheckInfo()
         {
-            if (cboThuoc.SelectedValue == null || cboThuoc.Text == string.Empty)
+            if (cboThuoc.Text.Trim() == string.Empty)
             {
                 MsgBox.Show(this.Text, "Vui lòng chọn 1 thuốc.", IconType.Information);
                 cboThuoc.Focus();
@@ -148,10 +153,11 @@ namespace MM.Dialogs
             {
                 foreach (DataRow row in _dataSource.Rows)
                 {
-                    string thuocGUID = row["ThuocGUID"].ToString();
+                    string tenThuoc = row["TenThuoc"].ToString();
+
                     if (_isNew)
                     {
-                        if (thuocGUID == cboThuoc.SelectedValue.ToString())
+                        if (tenThuoc.Trim().ToLower() == cboThuoc.Text.Trim().ToLower())
                         {
                             MsgBox.Show(this.Text, string.Format("Thuốc '{0}' đã được kê toa rồi. Vui lòng chọn thuốc khác.", cboThuoc.Text), IconType.Information);
                             cboThuoc.Focus();
@@ -164,7 +170,7 @@ namespace MM.Dialogs
                         if (row["ChiTietToaThuocGUID"] != null && row["ChiTietToaThuocGUID"] != DBNull.Value)
                             chiTietToaThuocGUID = row["ChiTietToaThuocGUID"].ToString();
 
-                        if (thuocGUID == cboThuoc.SelectedValue.ToString() && 
+                        if (tenThuoc.Trim().ToLower() == cboThuoc.Text.Trim().ToLower() && 
                             _chiTietToaThuoc.ChiTietToaThuocGUID.ToString() != chiTietToaThuocGUID)
                         {
                             MsgBox.Show(this.Text, string.Format("Thuốc '{0}' đã được kê toa rồi. Vui lòng chọn thuốc khác.", cboThuoc.Text), IconType.Information);
@@ -175,38 +181,41 @@ namespace MM.Dialogs
                 }
             }
 
-            string maThuocGUID = cboThuoc.SelectedValue.ToString();
-            int soLuong = (int)numSoLuong.Value;
-            Result result = LoThuocBus.CheckThuocTonKho(maThuocGUID, soLuong);
-            if (result.IsOK)
+            if (cboThuoc.SelectedValue != null && cboThuoc.Text.Trim() != string.Empty && cboThuoc.SelectedValue.ToString() != Guid.Empty.ToString())
             {
-                if (!Convert.ToBoolean(result.QueryResult))
+                string maThuocGUID = cboThuoc.SelectedValue.ToString();
+                int soLuong = (int)numSoLuong.Value;
+                Result result = LoThuocBus.CheckThuocTonKho(maThuocGUID, soLuong);
+                if (result.IsOK)
                 {
-                    MsgBox.Show(this.Text, string.Format("Thuốc '{0}' đã hết hoặc không đủ số lượng để bán. Vui lòng chọn thuốc khác.", cboThuoc.Text), IconType.Information);
+                    if (!Convert.ToBoolean(result.QueryResult))
+                    {
+                        MsgBox.Show(this.Text, string.Format("Thuốc '{0}' đã hết hoặc không đủ số lượng để bán. Vui lòng chọn thuốc khác.", cboThuoc.Text), IconType.Information);
+                        return false;
+                    }
+                }
+                else
+                {
+                    MsgBox.Show(this.Text, result.GetErrorAsString("LoThuocBus.CheckThuocTonKho"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("LoThuocBus.CheckThuocTonKho"));
                     return false;
                 }
-            }
-            else
-            {
-                MsgBox.Show(this.Text, result.GetErrorAsString("LoThuocBus.CheckThuocTonKho"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("LoThuocBus.CheckThuocTonKho"));
-                return false;
-            }
-            
-            result = LoThuocBus.CheckThuocHetHan(maThuocGUID);
-            if (result.IsOK)
-            {
-                if (Convert.ToBoolean(result.QueryResult))
+
+                result = LoThuocBus.CheckThuocHetHan(maThuocGUID);
+                if (result.IsOK)
                 {
-                    MsgBox.Show(this.Text, string.Format("Thuốc '{0}' đã hết hạn sử dụng. Vui lòng chọn thuốc khác.", cboThuoc.Text), IconType.Information);
+                    if (Convert.ToBoolean(result.QueryResult))
+                    {
+                        MsgBox.Show(this.Text, string.Format("Thuốc '{0}' đã hết hạn sử dụng. Vui lòng chọn thuốc khác.", cboThuoc.Text), IconType.Information);
+                        return false;
+                    }
+                }
+                else
+                {
+                    MsgBox.Show(this.Text, result.GetErrorAsString("LoThuocBus.CheckThuocHetHan"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("LoThuocBus.CheckThuocHetHan"));
                     return false;
                 }
-            }
-            else
-            {
-                MsgBox.Show(this.Text, result.GetErrorAsString("LoThuocBus.CheckThuocHetHan"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("LoThuocBus.CheckThuocHetHan"));
-                return false;
             }
 
             return true;
@@ -216,7 +225,12 @@ namespace MM.Dialogs
         {
             try
             {
-                _chiTietToaThuoc.ThuocGUID = Guid.Parse(cboThuoc.SelectedValue.ToString());
+                if (cboThuoc.SelectedValue != null && cboThuoc.Text.Trim() != string.Empty && 
+                    cboThuoc.SelectedValue.ToString() != Guid.Empty.ToString())
+                    _chiTietToaThuoc.ThuocGUID = Guid.Parse(cboThuoc.SelectedValue.ToString());
+                else
+                    _chiTietToaThuoc.TenThuocNgoai = cboThuoc.Text.Trim();
+
                 _chiTietToaThuoc.SoLuong = (int)numSoLuong.Value;
                 if (_isNew)
                 {
@@ -410,7 +424,11 @@ namespace MM.Dialogs
 
         private void cboThuoc_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (cboThuoc.SelectedValue == null || cboThuoc.Text.Trim() == string.Empty) return;
+            if (cboThuoc.SelectedValue == null || cboThuoc.Text.Trim() == string.Empty)
+            {
+                numSoLuongTon.Value = 0;
+                return;
+            }
 
             string thuocGUID = cboThuoc.SelectedValue.ToString();
             DisplayThuocTonKho(thuocGUID);
