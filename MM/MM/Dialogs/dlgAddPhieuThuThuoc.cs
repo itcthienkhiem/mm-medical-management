@@ -276,7 +276,7 @@ namespace MM.Dialogs
 
         private void OnDisplayChiTietToaThuoc(string toaThuocGUID)
         {
-            Result result = KeToaBus.GetChiTietToaThuocList(toaThuocGUID);
+            Result result = KeToaBus.GetChiTietToaThuocListWithoutThuocNgoai(toaThuocGUID);
             if (result.IsOK)
             {
                 DataTable dtChiTiet = dgChiTiet.DataSource as DataTable;

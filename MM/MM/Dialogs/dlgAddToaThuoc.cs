@@ -369,7 +369,11 @@ namespace MM.Dialogs
                             cttt.CreatedBy = Guid.Parse(Global.UserGUID);
                         }
 
-                        cttt.ThuocGUID = Guid.Parse(row["ThuocGUID"].ToString());
+                        if (row["ThuocGUID"] != null && row["ThuocGUID"] != DBNull.Value)
+                            cttt.ThuocGUID = Guid.Parse(row["ThuocGUID"].ToString());
+                        else
+                            cttt.TenThuocNgoai = row["TenThuoc"].ToString();
+
                         cttt.SoLuong = Convert.ToInt32(row["SoLuong"]);
                         cttt.LieuDung = row["LieuDung"].ToString();
                         cttt.Note = row["Note"].ToString();
@@ -437,7 +441,11 @@ namespace MM.Dialogs
                 DataRow newRow = dt.NewRow();
                 newRow["Checked"] = false;
                 newRow["ChiTietToaThuocGUID"] = dlg.ChiTietToaThuoc.ChiTietToaThuocGUID;
-                newRow["ThuocGUID"] = dlg.ChiTietToaThuoc.ThuocGUID;
+                if (dlg.ChiTietToaThuoc.ThuocGUID != null && dlg.ChiTietToaThuoc.ThuocGUID.HasValue)
+                    newRow["ThuocGUID"] = dlg.ChiTietToaThuoc.ThuocGUID;
+                else
+                    newRow["ThuocGUID"] = DBNull.Value;
+
                 newRow["TenThuoc"] = dlg.TenThuoc;
                 newRow["SoLuong"] = dlg.ChiTietToaThuoc.SoLuong;
                 newRow["Sang"] = dlg.ChiTietToaThuoc.Sang;
@@ -505,7 +513,11 @@ namespace MM.Dialogs
             dlg.DataSource = dt;
             if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
-                drThuoc["ThuocGUID"] = dlg.ChiTietToaThuoc.ThuocGUID;
+                if (dlg.ChiTietToaThuoc.ThuocGUID != null && dlg.ChiTietToaThuoc.ThuocGUID.HasValue)
+                    drThuoc["ThuocGUID"] = dlg.ChiTietToaThuoc.ThuocGUID;
+                else
+                    drThuoc["ThuocGUID"] = DBNull.Value;
+
                 drThuoc["TenThuoc"] = dlg.TenThuoc;
                 drThuoc["SoLuong"] = dlg.ChiTietToaThuoc.SoLuong;
                 drThuoc["Sang"] = dlg.ChiTietToaThuoc.Sang;

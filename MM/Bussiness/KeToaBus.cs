@@ -142,6 +142,30 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetChiTietToaThuocListWithoutThuocNgoai(string toaThuocGUID)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ChiTietToaThuocView WITH(NOLOCK) WHERE ThuocStatus={0} AND ChiTietToaThuocStatus={0} AND ToaThuocGUID='{1}' AND ThuocGUID IS NOT NULL ORDER BY TenThuoc",
+                    (byte)Status.Actived, toaThuocGUID);
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetToaThuoc(string toaThuocGUID)
         {
             Result result = new Result();
@@ -352,8 +376,12 @@ namespace MM.Bussiness
                                 db.ChiTietToaThuocs.InsertOnSubmit(cttt);
                                 db.SubmitChanges();
 
+                                string tenThuoc = string.Empty;
+                                if (cttt.Thuoc != null) tenThuoc = cttt.Thuoc.TenThuoc;
+                                else tenThuoc = cttt.TenThuocNgoai;
+
                                 desc += string.Format("  + GUID: '{0}', Thuốc: '{1}', Số lượng: '{2}'\n", cttt.ChiTietToaThuocGUID.ToString(),
-                                    cttt.Thuoc.TenThuoc, cttt.SoLuong);
+                                    tenThuoc, cttt.SoLuong);
                             }
                         }
 
@@ -415,8 +443,12 @@ namespace MM.Bussiness
                                         cttt.DeletedBy = Guid.Parse(Global.UserGUID);
                                         cttt.Status = (byte)Status.Deactived;
 
+                                        string tenThuoc = string.Empty;
+                                        if (cttt.Thuoc != null) tenThuoc = cttt.Thuoc.TenThuoc;
+                                        else tenThuoc = cttt.TenThuocNgoai;
+
                                         desc += string.Format("  + GUID: '{0}', Thuốc: '{1}', Số lượng: '{2}'\n", cttt.ChiTietToaThuocGUID.ToString(),
-                                        cttt.Thuoc.TenThuoc, cttt.SoLuong);
+                                        tenThuoc, cttt.SoLuong);
                                     }
                                 }
 
@@ -437,8 +469,12 @@ namespace MM.Bussiness
                                         db.ChiTietToaThuocs.InsertOnSubmit(cttt);
                                         db.SubmitChanges();
 
+                                        string tenThuoc = string.Empty;
+                                        if (cttt.Thuoc != null) tenThuoc = cttt.Thuoc.TenThuoc;
+                                        else tenThuoc = cttt.TenThuocNgoai;
+
                                         desc += string.Format("  + GUID: '{0}', Thuốc: '{1}', Số lượng: '{2}'\n", cttt.ChiTietToaThuocGUID.ToString(),
-                                        cttt.Thuoc.TenThuoc, cttt.SoLuong);
+                                        tenThuoc, cttt.SoLuong);
                                     }
                                     else
                                     {
@@ -446,6 +482,7 @@ namespace MM.Bussiness
                                         if (chiTietToaThuoc != null)
                                         {
                                             chiTietToaThuoc.ThuocGUID = cttt.ThuocGUID;
+                                            chiTietToaThuoc.TenThuocNgoai = cttt.TenThuocNgoai;
                                             chiTietToaThuoc.SoLuong = cttt.SoLuong;
                                             chiTietToaThuoc.LieuDung = cttt.LieuDung;
                                             chiTietToaThuoc.Note = cttt.Note;
@@ -476,8 +513,12 @@ namespace MM.Bussiness
                                             chiTietToaThuoc.UpdatedBy = cttt.UpdatedBy;
                                             db.SubmitChanges();
 
+                                            string tenThuoc = string.Empty;
+                                            if (cttt.Thuoc != null) tenThuoc = cttt.Thuoc.TenThuoc;
+                                            else tenThuoc = cttt.TenThuocNgoai;
+
                                             desc += string.Format("  + GUID: '{0}', Thuốc: '{1}', Số lượng: '{2}'\n", 
-                                                chiTietToaThuoc.ChiTietToaThuocGUID.ToString(), chiTietToaThuoc.Thuoc.TenThuoc, chiTietToaThuoc.SoLuong);
+                                                chiTietToaThuoc.ChiTietToaThuocGUID.ToString(), tenThuoc, chiTietToaThuoc.SoLuong);
                                         }
                                     }
                                 }
