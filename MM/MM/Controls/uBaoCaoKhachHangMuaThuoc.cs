@@ -61,8 +61,8 @@ namespace MM.Controls
             {
                 dt.Rows.Clear();
                 dt.Clear();
-                dt = null;
-                dgDSKhachHang.DataSource = null;
+                //dt = null;
+                //dgDSKhachHang.DataSource = null;
             }
         }
 
