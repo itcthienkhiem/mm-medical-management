@@ -37,6 +37,7 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.txtTieuDe = new System.Windows.Forms.TextBox();
+            this.chkDuyet = new System.Windows.Forms.CheckBox();
             this.SuspendLayout();
             // 
             // txtNoiDung
@@ -89,7 +90,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(276, 241);
+            this.btnCancel.Location = new System.Drawing.Point(276, 265);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 17;
@@ -101,7 +102,7 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(197, 241);
+            this.btnOK.Location = new System.Drawing.Point(197, 265);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 16;
@@ -125,11 +126,22 @@
             this.txtTieuDe.Size = new System.Drawing.Size(475, 20);
             this.txtTieuDe.TabIndex = 1;
             // 
+            // chkDuyet
+            // 
+            this.chkDuyet.AutoSize = true;
+            this.chkDuyet.Location = new System.Drawing.Point(8, 243);
+            this.chkDuyet.Name = "chkDuyet";
+            this.chkDuyet.Size = new System.Drawing.Size(54, 17);
+            this.chkDuyet.TabIndex = 19;
+            this.chkDuyet.Text = "Duyệt";
+            this.chkDuyet.UseVisualStyleBackColor = true;
+            // 
             // dlgAddTinNhanMau
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(549, 272);
+            this.ClientSize = new System.Drawing.Size(549, 295);
+            this.Controls.Add(this.chkDuyet);
             this.Controls.Add(this.txtTieuDe);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnCancel);
@@ -162,5 +174,6 @@
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox txtTieuDe;
+        private System.Windows.Forms.CheckBox chkDuyet;
     }
 }

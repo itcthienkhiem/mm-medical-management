@@ -19,18 +19,23 @@ namespace MM.Dialogs
         private bool _isNew = true;
         private TinNhanMau _tinNhanMau = new TinNhanMau();
         private DataRow _drTinNhanMau = null;
+        private bool _allowDuyet = false;
         #endregion
 
         #region Constructor
-        public dlgAddTinNhanMau()
+        public dlgAddTinNhanMau(bool allowDuyet)
         {
             InitializeComponent();
+            _allowDuyet = allowDuyet;
+            chkDuyet.Enabled = _allowDuyet;
         }
 
-        public dlgAddTinNhanMau(DataRow drTinNhanMau)
+        public dlgAddTinNhanMau(DataRow drTinNhanMau, bool allowDuyet)
         {
             InitializeComponent();
             _isNew = false;
+            _allowDuyet = allowDuyet;
+            chkDuyet.Enabled = _allowDuyet;
             _drTinNhanMau = drTinNhanMau;
             this.Text = "Sua tin nhan mau";
         }
@@ -74,6 +79,8 @@ namespace MM.Dialogs
                 txtTieuDe.Text = _drTinNhanMau["TieuDe"] as string;
 
                 txtNoiDung.Text = _drTinNhanMau["NoiDung"] as string;
+
+                chkDuyet.Checked = Convert.ToBoolean(_drTinNhanMau["IsDuyet"]);
 
                 _tinNhanMau.TinNhanMauGUID = Guid.Parse(_drTinNhanMau["TinNhanMauGUID"].ToString());
 
@@ -147,7 +154,8 @@ namespace MM.Dialogs
                 this.Invoke(new MethodInvoker(delegate()
                 {
                     _tinNhanMau.TieuDe = txtTieuDe.Text;
-                    _tinNhanMau.NoiDung = txtNoiDung.Text;    
+                    _tinNhanMau.NoiDung = txtNoiDung.Text;
+                    _tinNhanMau.IsDuyet = chkDuyet.Checked;
                 }));
 
                 _tinNhanMau.Status = (byte)Status.Actived;
