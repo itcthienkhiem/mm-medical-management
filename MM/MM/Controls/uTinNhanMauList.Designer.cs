@@ -32,6 +32,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uTinNhanMauList));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
@@ -39,32 +40,41 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgTinNhanMau = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.TieuDe = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.noiDungDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tinNhanMauBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.tinNhanMauBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.TieuDe = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.noiDungDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.IsDuyet = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.btnDuyet = new System.Windows.Forms.Button();
+            this.btnBoDuyet = new System.Windows.Forms.Button();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.duyetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.boDuyetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgTinNhanMau)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tinNhanMauBindingSource)).BeginInit();
             this.ctmAction.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tinNhanMauBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnBoDuyet);
+            this.panel1.Controls.Add(this.btnDuyet);
             this.panel1.Controls.Add(this.btnDelete);
             this.panel1.Controls.Add(this.btnEdit);
             this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 430);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(823, 38);
+            this.panel1.Size = new System.Drawing.Size(854, 38);
             this.panel1.TabIndex = 3;
             // 
             // btnDelete
@@ -110,7 +120,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(823, 430);
+            this.panel2.Size = new System.Drawing.Size(854, 430);
             this.panel2.TabIndex = 4;
             // 
             // chkChecked
@@ -142,7 +152,8 @@
             this.dgTinNhanMau.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colChecked,
             this.TieuDe,
-            this.noiDungDataGridViewTextBoxColumn});
+            this.noiDungDataGridViewTextBoxColumn,
+            this.IsDuyet});
             this.dgTinNhanMau.ContextMenuStrip = this.ctmAction;
             this.dgTinNhanMau.DataSource = this.tinNhanMauBindingSource;
             dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -162,9 +173,62 @@
             this.dgTinNhanMau.Name = "dgTinNhanMau";
             this.dgTinNhanMau.RowHeadersWidth = 30;
             this.dgTinNhanMau.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgTinNhanMau.Size = new System.Drawing.Size(823, 430);
+            this.dgTinNhanMau.Size = new System.Drawing.Size(854, 430);
             this.dgTinNhanMau.TabIndex = 0;
             this.dgTinNhanMau.DoubleClick += new System.EventHandler(this.dgTinNhanMau_DoubleClick);
+            // 
+            // ctmAction
+            // 
+            this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.editToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.deleteToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.duyetToolStripMenuItem,
+            this.toolStripSeparator4,
+            this.boDuyetToolStripMenuItem});
+            this.ctmAction.Name = "cmtAction";
+            this.ctmAction.Size = new System.Drawing.Size(129, 138);
+            // 
+            // addToolStripMenuItem
+            // 
+            this.addToolStripMenuItem.Image = global::MM.Properties.Resources.add;
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.addToolStripMenuItem.Text = "Thêm";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(125, 6);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Image = global::MM.Properties.Resources.edit;
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.editToolStripMenuItem.Text = "Sửa";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(125, 6);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Image = global::MM.Properties.Resources.del;
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.deleteToolStripMenuItem.Text = "Xóa";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
+            // tinNhanMauBindingSource
+            // 
+            this.tinNhanMauBindingSource.DataSource = typeof(MM.Databasae.TinNhanMau);
             // 
             // colChecked
             // 
@@ -194,54 +258,63 @@
             this.noiDungDataGridViewTextBoxColumn.ReadOnly = true;
             this.noiDungDataGridViewTextBoxColumn.Width = 450;
             // 
-            // tinNhanMauBindingSource
+            // IsDuyet
             // 
-            this.tinNhanMauBindingSource.DataSource = typeof(MM.Databasae.TinNhanMau);
+            this.IsDuyet.DataPropertyName = "IsDuyet";
+            this.IsDuyet.HeaderText = "Duyệt";
+            this.IsDuyet.Name = "IsDuyet";
+            this.IsDuyet.ReadOnly = true;
+            this.IsDuyet.Width = 60;
             // 
-            // ctmAction
+            // btnDuyet
             // 
-            this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.editToolStripMenuItem,
-            this.toolStripSeparator2,
-            this.deleteToolStripMenuItem});
-            this.ctmAction.Name = "cmtAction";
-            this.ctmAction.Size = new System.Drawing.Size(153, 104);
+            this.btnDuyet.Image = global::MM.Properties.Resources.check;
+            this.btnDuyet.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDuyet.Location = new System.Drawing.Point(243, 6);
+            this.btnDuyet.Name = "btnDuyet";
+            this.btnDuyet.Size = new System.Drawing.Size(75, 25);
+            this.btnDuyet.TabIndex = 3;
+            this.btnDuyet.Text = "    &Duyệt";
+            this.btnDuyet.UseVisualStyleBackColor = true;
+            this.btnDuyet.Click += new System.EventHandler(this.btnDuyet_Click);
             // 
-            // addToolStripMenuItem
+            // btnBoDuyet
             // 
-            this.addToolStripMenuItem.Image = global::MM.Properties.Resources.add;
-            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.addToolStripMenuItem.Text = "Thêm";
-            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
+            this.btnBoDuyet.Image = ((System.Drawing.Image)(resources.GetObject("btnBoDuyet.Image")));
+            this.btnBoDuyet.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnBoDuyet.Location = new System.Drawing.Point(322, 6);
+            this.btnBoDuyet.Name = "btnBoDuyet";
+            this.btnBoDuyet.Size = new System.Drawing.Size(81, 25);
+            this.btnBoDuyet.TabIndex = 4;
+            this.btnBoDuyet.Text = "     &Bỏ duyệt";
+            this.btnBoDuyet.UseVisualStyleBackColor = true;
+            this.btnBoDuyet.Click += new System.EventHandler(this.btnBoDuyet_Click);
             // 
-            // toolStripSeparator1
+            // toolStripSeparator3
             // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(125, 6);
             // 
-            // editToolStripMenuItem
+            // duyetToolStripMenuItem
             // 
-            this.editToolStripMenuItem.Image = global::MM.Properties.Resources.edit;
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.editToolStripMenuItem.Text = "Sửa";
-            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            this.duyetToolStripMenuItem.Image = global::MM.Properties.Resources.check;
+            this.duyetToolStripMenuItem.Name = "duyetToolStripMenuItem";
+            this.duyetToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.duyetToolStripMenuItem.Text = "Duyệt";
+            this.duyetToolStripMenuItem.Click += new System.EventHandler(this.duyetToolStripMenuItem_Click);
             // 
-            // toolStripSeparator2
+            // toolStripSeparator4
             // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(125, 6);
             // 
-            // deleteToolStripMenuItem
+            // boDuyetToolStripMenuItem
             // 
-            this.deleteToolStripMenuItem.Image = global::MM.Properties.Resources.del;
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.deleteToolStripMenuItem.Text = "Xóa";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            this.boDuyetToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("boDuyetToolStripMenuItem.Image")));
+            this.boDuyetToolStripMenuItem.Name = "boDuyetToolStripMenuItem";
+            this.boDuyetToolStripMenuItem.Size = new System.Drawing.Size(128, 22);
+            this.boDuyetToolStripMenuItem.Text = "Bỏ duyệt";
+            this.boDuyetToolStripMenuItem.Click += new System.EventHandler(this.boDuyetToolStripMenuItem_Click);
             // 
             // uTinNhanMauList
             // 
@@ -250,13 +323,13 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "uTinNhanMauList";
-            this.Size = new System.Drawing.Size(823, 468);
+            this.Size = new System.Drawing.Size(854, 468);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgTinNhanMau)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.tinNhanMauBindingSource)).EndInit();
             this.ctmAction.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.tinNhanMauBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -271,14 +344,21 @@
         private System.Windows.Forms.CheckBox chkChecked;
         private DevComponents.DotNetBar.Controls.DataGridViewX dgTinNhanMau;
         private System.Windows.Forms.BindingSource tinNhanMauBindingSource;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn colChecked;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TieuDe;
-        private System.Windows.Forms.DataGridViewTextBoxColumn noiDungDataGridViewTextBoxColumn;
         protected System.Windows.Forms.ContextMenuStrip ctmAction;
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn colChecked;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TieuDe;
+        private System.Windows.Forms.DataGridViewTextBoxColumn noiDungDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn IsDuyet;
+        private System.Windows.Forms.Button btnBoDuyet;
+        private System.Windows.Forms.Button btnDuyet;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem duyetToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem boDuyetToolStripMenuItem;
     }
 }

@@ -34,10 +34,14 @@ namespace MM.Controls
             btnAdd.Enabled = AllowAdd;
             btnEdit.Enabled = AllowEdit;
             btnDelete.Enabled = AllowDelete;
+            btnDuyet.Enabled = AllowConfirm;
+            btnBoDuyet.Enabled = AllowConfirm;
 
             addToolStripMenuItem.Enabled = AllowAdd;
             editToolStripMenuItem.Enabled = AllowEdit;
             deleteToolStripMenuItem.Enabled = AllowDelete;
+            duyetToolStripMenuItem.Enabled = AllowConfirm;
+            boDuyetToolStripMenuItem.Enabled = AllowConfirm;
         }
 
         public void ClearData()
@@ -138,6 +142,13 @@ namespace MM.Controls
             }
 
             DataRow drTinNhanMau = (dgTinNhanMau.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            bool isDuyet = Convert.ToBoolean(drTinNhanMau["IsDuyet"]);
+            if (isDuyet)
+            {
+                MsgBox.Show(Application.ProductName, "Tin nhắn mẫu này đã được duyệt. Bạn không thể sửa.", IconType.Information);
+                return;
+            }
+
             dlgAddTinNhanMau dlg = new dlgAddTinNhanMau(drTinNhanMau);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
@@ -202,6 +213,49 @@ namespace MM.Controls
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những tin nhắn mẫu cần xóa.", IconType.Information);
         }
+
+        private void OnDuyetTinNhan(bool isDuyet)
+        {
+            List<string> deletedKeys = new List<string>();
+            List<DataRow> deletedRows = new List<DataRow>();
+            DataTable dt = dgTinNhanMau.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                {
+                    deletedKeys.Add(row["TinNhanMauGUID"].ToString());
+                    deletedRows.Add(row);
+                }
+            }
+
+            string msg = isDuyet ? "Bạn có muốn duyệt những tin nhắn mẫu mà bạn đã đánh dấu ?" : 
+                "Bạn có muốn bỏ duyệt những tin nhắn mẫu mà bạn đã đánh dấu ?";
+
+            string msg2 = isDuyet ? "Vui lòng đánh dấu những tin nhắn mẫu cần duyệt." :
+                "Vui lòng đánh dấu những tin nhắn mẫu cần bỏ duyệt.";
+
+            if (deletedKeys.Count > 0)
+            {
+                if (MsgBox.Question(Application.ProductName, msg) == DialogResult.Yes)
+                {
+                    Result result = TinNhanMauBus.DuyetTinNhanMau(deletedKeys, isDuyet);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("TinNhanMauBus.DuyetTinNhanMau"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("TinNhanMauBus.DuyetTinNhanMau"));
+                    }
+                    else
+                    {
+                        foreach (DataRow row in deletedRows)
+                        {
+                            row["IsDuyet"] = isDuyet;
+                        }
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, msg2, IconType.Information);
+        }
         #endregion
 
         #region Window Event Handlers
@@ -250,6 +304,26 @@ namespace MM.Controls
         {
             OnDelete();
         }
+
+        private void duyetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnDuyetTinNhan(true);
+        }
+
+        private void boDuyetToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnDuyetTinNhan(false);
+        }
+
+        private void btnDuyet_Click(object sender, EventArgs e)
+        {
+            OnDuyetTinNhan(true);
+        }
+
+        private void btnBoDuyet_Click(object sender, EventArgs e)
+        {
+            OnDuyetTinNhan(false);
+        }
         #endregion
 
         #region Working Thread
@@ -271,9 +345,5 @@ namespace MM.Controls
             }
         }
         #endregion
-
-        
-
-        
     }
 }
