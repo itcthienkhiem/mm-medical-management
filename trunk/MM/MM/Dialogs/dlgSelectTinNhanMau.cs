@@ -59,7 +59,7 @@ namespace MM.Dialogs
 
         private void OnDisplayTinNhanMauList()
         {
-            Result result = TinNhanMauBus.GetTinNhanMauList();
+            Result result = TinNhanMauBus.GetTinNhanMauDaDuyetList();
             if (result.IsOK)
             {
                 MethodInvoker method = delegate
