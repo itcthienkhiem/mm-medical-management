@@ -1405,6 +1405,8 @@ namespace MM.Exports
 
                         range = workSheet.Cells[string.Format("G{0}", rowIndex + 1)];
                         range.Value = soLuong;
+                        range.HorizontalAlignment = HAlign.Left;
+                        range.VerticalAlignment = VAlign.Top;
 
                         rowIndex++;
 
