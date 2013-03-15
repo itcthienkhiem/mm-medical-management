@@ -1408,155 +1408,231 @@ namespace MM.Exports
 
                         rowIndex++;
 
-                        range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)];
-                        range.HorizontalAlignment = HAlign.Left;
-                        range.VerticalAlignment = VAlign.Top;
-                        range.Value = string.Format("     Sáng (AM): {0}", SangNote);
+                        int colIndex = 0;
+                        bool hasNextRow = false;
 
-                        shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox, 
-                            workSheet.WindowInfo.ColumnToPoints(0), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
-                        shape.Name = string.Empty; 
-                        shape.Line.Visible = false;
-                        shape.ControlFormat.Value = Sang ? 1 : 0;
+                        if (Sang)
+                        {
+                            range = workSheet.Cells[rowIndex, colIndex];
+                            range.HorizontalAlignment = HAlign.Left;
+                            range.VerticalAlignment = VAlign.Top;
+                            range.Value = string.Format("     Sáng (AM): {0}", SangNote);
 
-                        range = workSheet.Cells[string.Format("C{0}", rowIndex + 1)];
-                        range.HorizontalAlignment = HAlign.Left;
-                        range.VerticalAlignment = VAlign.Top;
-                        range.Value = string.Format("     Trưa (Noon): {0}", TruaNote);
+                            shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
+                                workSheet.WindowInfo.ColumnToPoints(colIndex), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
+                            shape.Name = string.Empty;
+                            shape.Line.Visible = false;
+                            shape.ControlFormat.Value = Sang ? 1 : 0;
+                            colIndex += 2;
+                            hasNextRow = true;
+                        }
 
-                        shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
-                            workSheet.WindowInfo.ColumnToPoints(2), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
-                        shape.Name = string.Empty;
-                        shape.Line.Visible = false;
-                        shape.ControlFormat.Value = Trua ? 1 : 0;
+                        if (Trua)
+                        {
+                            range = workSheet.Cells[rowIndex, colIndex];
+                            range.HorizontalAlignment = HAlign.Left;
+                            range.VerticalAlignment = VAlign.Top;
+                            range.Value = string.Format("     Trưa (Noon): {0}", TruaNote);
 
-                        range = workSheet.Cells[string.Format("E{0}", rowIndex + 1)];
-                        range.HorizontalAlignment = HAlign.Left;
-                        range.VerticalAlignment = VAlign.Top;
-                        range.Value = string.Format("     Chiều (PM): {0}", ChieuNote);
+                            shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
+                                workSheet.WindowInfo.ColumnToPoints(colIndex), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
+                            shape.Name = string.Empty;
+                            shape.Line.Visible = false;
+                            shape.ControlFormat.Value = Trua ? 1 : 0;
+                            colIndex += 2;
+                            hasNextRow = true;
+                        }
 
-                        shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
-                            workSheet.WindowInfo.ColumnToPoints(4), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
-                        shape.Name = string.Empty;
-                        shape.Line.Visible = false;
-                        shape.ControlFormat.Value = Chieu ? 1 : 0;
+                        if (Chieu)
+                        {
+                            range = workSheet.Cells[rowIndex, colIndex];
+                            range.HorizontalAlignment = HAlign.Left;
+                            range.VerticalAlignment = VAlign.Top;
+                            range.Value = string.Format("     Chiều (PM): {0}", ChieuNote);
 
-                        range = workSheet.Cells[string.Format("G{0}", rowIndex + 1)];
-                        range.HorizontalAlignment = HAlign.Left;
-                        range.VerticalAlignment = VAlign.Top;
-                        range.Value = string.Format("     Tối (Night): {0}", ToiNote);
+                            shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
+                                workSheet.WindowInfo.ColumnToPoints(colIndex), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
+                            shape.Name = string.Empty;
+                            shape.Line.Visible = false;
+                            shape.ControlFormat.Value = Chieu ? 1 : 0;
+                            colIndex += 2;
+                            hasNextRow = true;
+                        }
 
-                        shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
-                            workSheet.WindowInfo.ColumnToPoints(6), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
-                        shape.Name = string.Empty;
-                        shape.Line.Visible = false;
-                        shape.ControlFormat.Value = Toi ? 1 : 0;
+                        if (Toi)
+                        {
+                            range = workSheet.Cells[rowIndex, colIndex];
+                            range.HorizontalAlignment = HAlign.Left;
+                            range.VerticalAlignment = VAlign.Top;
+                            range.Value = string.Format("     Tối (Night): {0}", ToiNote);
 
-                        rowIndex++;
+                            shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
+                                workSheet.WindowInfo.ColumnToPoints(colIndex), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
+                            shape.Name = string.Empty;
+                            shape.Line.Visible = false;
+                            shape.ControlFormat.Value = Toi ? 1 : 0;
+                            hasNextRow = true;
+                        }
 
-                        range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)];
-                        range.HorizontalAlignment = HAlign.Left;
-                        range.VerticalAlignment = VAlign.Top;
-                        range.Value = string.Format("     Trước ăn (Before meal): {0}", TruocAnNote);
+                        if (hasNextRow) rowIndex++;
+                        colIndex = 0;
+                        hasNextRow = false;
 
-                        shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
-                            workSheet.WindowInfo.ColumnToPoints(0), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
-                        shape.Name = string.Empty;
-                        shape.Line.Visible = false;
-                        shape.ControlFormat.Value = TruocAn ? 1 : 0;
+                        if (TruocAn)
+                        {
+                            range = workSheet.Cells[rowIndex, colIndex];
+                            range.HorizontalAlignment = HAlign.Left;
+                            range.VerticalAlignment = VAlign.Top;
+                            range.Value = string.Format("     Trước ăn (Before meal): {0}", TruocAnNote);
 
-                        range = workSheet.Cells[string.Format("D{0}", rowIndex + 1)];
-                        range.HorizontalAlignment = HAlign.Left;
-                        range.VerticalAlignment = VAlign.Top;
-                        range.Value = string.Format("     Sau ăn (After meal): {0}", SauAnNote);
+                            shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
+                                workSheet.WindowInfo.ColumnToPoints(colIndex), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
+                            shape.Name = string.Empty;
+                            shape.Line.Visible = false;
+                            shape.ControlFormat.Value = TruocAn ? 1 : 0;
+                            colIndex += 3;
+                            hasNextRow = true;
+                        }
 
-                        shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
-                            workSheet.WindowInfo.ColumnToPoints(3), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
-                        shape.Name = string.Empty;
-                        shape.Line.Visible = false;
-                        shape.ControlFormat.Value = SauAn ? 1 : 0;
+                        if (SauAn)
+                        {
+                            range = workSheet.Cells[rowIndex, colIndex];
+                            range.HorizontalAlignment = HAlign.Left;
+                            range.VerticalAlignment = VAlign.Top;
+                            range.Value = string.Format("     Sau ăn (After meal): {0}", SauAnNote);
 
-                        range = workSheet.Cells[string.Format("G{0}", rowIndex + 1)];
-                        range.HorizontalAlignment = HAlign.Left;
-                        range.VerticalAlignment = VAlign.Top;
-                        range.Value = string.Format("     Khác (Others): {0}", Khac_TruocSauAnNote);
+                            shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
+                                workSheet.WindowInfo.ColumnToPoints(colIndex), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
+                            shape.Name = string.Empty;
+                            shape.Line.Visible = false;
+                            shape.ControlFormat.Value = SauAn ? 1 : 0;
+                            colIndex += 3;
+                            hasNextRow = true;
+                        }
 
-                        shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
-                            workSheet.WindowInfo.ColumnToPoints(6), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
-                        shape.Name = string.Empty;
-                        shape.Line.Visible = false;
-                        shape.ControlFormat.Value = Khac_TruocSauAn ? 1 : 0;
+                        if (Khac_TruocSauAn)
+                        {
+                            range = workSheet.Cells[rowIndex, colIndex];
+                            range.HorizontalAlignment = HAlign.Left;
+                            range.VerticalAlignment = VAlign.Top;
+                            range.Value = string.Format("     Khác (Others): {0}", Khac_TruocSauAnNote);
 
-                        rowIndex++;
+                            shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
+                                workSheet.WindowInfo.ColumnToPoints(colIndex), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
+                            shape.Name = string.Empty;
+                            shape.Line.Visible = false;
+                            shape.ControlFormat.Value = Khac_TruocSauAn ? 1 : 0;
+                            hasNextRow = true;
+                        }
+                        
+                        if (hasNextRow) rowIndex++;
+                        colIndex = 0;
+                        hasNextRow = false;
 
-                        range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)];
-                        range.HorizontalAlignment = HAlign.Left;
-                        range.VerticalAlignment = VAlign.Top;
-                        range.Value = string.Format("     Uống: {0}", UongNote);
+                        if (Uong)
+                        {
+                            range = workSheet.Cells[rowIndex, colIndex];
+                            range.HorizontalAlignment = HAlign.Left;
+                            range.VerticalAlignment = VAlign.Top;
+                            range.Value = string.Format("     Uống: {0}", UongNote);
 
-                        shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
-                            workSheet.WindowInfo.ColumnToPoints(0), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
-                        shape.Name = string.Empty;
-                        shape.Line.Visible = false;
-                        shape.ControlFormat.Value = Uong ? 1 : 0;
+                            shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
+                                workSheet.WindowInfo.ColumnToPoints(colIndex), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
+                            shape.Name = string.Empty;
+                            shape.Line.Visible = false;
+                            shape.ControlFormat.Value = Uong ? 1 : 0;
+                            colIndex += 2;
+                            hasNextRow = true;
+                        }
 
-                        range = workSheet.Cells[string.Format("C{0}", rowIndex + 1)];
-                        range.HorizontalAlignment = HAlign.Left;
-                        range.VerticalAlignment = VAlign.Top;
-                        range.Value = string.Format("     Bôi: {0}", BoiNote);
+                        if (Boi)
+                        {
+                            range = workSheet.Cells[rowIndex, colIndex];
+                            range.HorizontalAlignment = HAlign.Left;
+                            range.VerticalAlignment = VAlign.Top;
+                            range.Value = string.Format("     Bôi: {0}", BoiNote);
 
-                        shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
-                            workSheet.WindowInfo.ColumnToPoints(2), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
-                        shape.Name = string.Empty;
-                        shape.Line.Visible = false;
-                        shape.ControlFormat.Value = Boi ? 1 : 0;
+                            shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
+                                workSheet.WindowInfo.ColumnToPoints(colIndex), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
+                            shape.Name = string.Empty;
+                            shape.Line.Visible = false;
+                            shape.ControlFormat.Value = Boi ? 1 : 0;
+                            colIndex += 2;
+                            hasNextRow = true;
+                        }
 
-                        range = workSheet.Cells[string.Format("E{0}", rowIndex + 1)];
-                        range.HorizontalAlignment = HAlign.Left;
-                        range.VerticalAlignment = VAlign.Top;
-                        range.Value = string.Format("     Đặt AĐ: {0}", DatADNote);
+                        if (DatAD)
+                        {
+                            range = workSheet.Cells[rowIndex, colIndex];
+                            range.HorizontalAlignment = HAlign.Left;
+                            range.VerticalAlignment = VAlign.Top;
+                            range.Value = string.Format("     Đặt AĐ: {0}", DatADNote);
 
-                        shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
-                            workSheet.WindowInfo.ColumnToPoints(4), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
-                        shape.Name = string.Empty;
-                        shape.Line.Visible = false;
-                        shape.ControlFormat.Value = DatAD ? 1 : 0;
+                            shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
+                                workSheet.WindowInfo.ColumnToPoints(colIndex), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
+                            shape.Name = string.Empty;
+                            shape.Line.Visible = false;
+                            shape.ControlFormat.Value = DatAD ? 1 : 0;
+                            colIndex += 2;
+                            hasNextRow = true;
+                        }
 
-                        range = workSheet.Cells[string.Format("G{0}", rowIndex + 1)];
-                        range.HorizontalAlignment = HAlign.Left;
-                        range.VerticalAlignment = VAlign.Top;
-                        range.Value = string.Format("     Khác: {0}", Khac_CachDungNote);
+                        if (Khac_CachDung)
+                        {
+                            range = workSheet.Cells[rowIndex, colIndex];
+                            range.HorizontalAlignment = HAlign.Left;
+                            range.VerticalAlignment = VAlign.Top;
+                            range.Value = string.Format("     Khác: {0}", Khac_CachDungNote);
 
-                        shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
-                            workSheet.WindowInfo.ColumnToPoints(6), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
-                        shape.Name = string.Empty;
-                        shape.Line.Visible = false;
-                        shape.ControlFormat.Value = Khac_CachDung ? 1 : 0;
+                            shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
+                                workSheet.WindowInfo.ColumnToPoints(colIndex), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
+                            shape.Name = string.Empty;
+                            shape.Line.Visible = false;
+                            shape.ControlFormat.Value = Khac_CachDung ? 1 : 0;
+                            hasNextRow = true;
+                        }
 
-                        rowIndex++;
+                        if (hasNextRow) rowIndex++;
+                        colIndex = 0;
 
-                        range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)];
-                        range.HorizontalAlignment = HAlign.Center;
-                        range.VerticalAlignment = VAlign.Top;
-                        range.Value = "(Take)";
+                        if (Uong)
+                        {
+                            range = workSheet.Cells[rowIndex, colIndex];
+                            range.HorizontalAlignment = HAlign.Center;
+                            range.VerticalAlignment = VAlign.Top;
+                            range.Value = "(Take)";
+                            colIndex += 2;
+                        }
 
-                        range = workSheet.Cells[string.Format("C{0}", rowIndex + 1)];
-                        range.HorizontalAlignment = HAlign.Center;
-                        range.VerticalAlignment = VAlign.Top;
-                        range.Value = "(Apply)";
+                        if (Boi)
+                        {
+                            range = workSheet.Cells[rowIndex, colIndex];
+                            range.HorizontalAlignment = HAlign.Center;
+                            range.VerticalAlignment = VAlign.Top;
+                            range.Value = "(Apply)";
+                            colIndex += 2;
+                        }
 
-                        range = workSheet.Cells[string.Format("E{0}", rowIndex + 1)];
-                        range.HorizontalAlignment = HAlign.Center;
-                        range.VerticalAlignment = VAlign.Top;
-                        range.Value = "(Put inside vagina)";
+                        if (DatAD)
+                        {
+                            range = workSheet.Cells[rowIndex, colIndex];
+                            range.HorizontalAlignment = HAlign.Center;
+                            range.VerticalAlignment = VAlign.Top;
+                            range.Value = "(Put inside vagina)";
+                            colIndex += 2;
+                        }
 
-                        range = workSheet.Cells[string.Format("G{0}", rowIndex + 1)];
-                        range.HorizontalAlignment = HAlign.Center;
-                        range.VerticalAlignment = VAlign.Top;
-                        range.Value = "(Orthers)";
+                        if (Khac_CachDung)
+                        {
+                            range = workSheet.Cells[rowIndex, colIndex];
+                            range.HorizontalAlignment = HAlign.Center;
+                            range.VerticalAlignment = VAlign.Top;
+                            range.Value = "(Orthers)";
+                        }
 
                         stt++;
-                        rowIndex += 2;
+                        if (hasNextRow) rowIndex += 2;
+                        else rowIndex++;
                     }
 
                     range = workSheet.Cells[string.Format("A{0}:H{1}", rowIndex + 1, rowIndex + 3)];

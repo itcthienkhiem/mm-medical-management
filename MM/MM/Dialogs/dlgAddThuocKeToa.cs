@@ -106,26 +106,47 @@ namespace MM.Dialogs
                 {
                     chkSang.Checked = Convert.ToBoolean(drThuoc["Sang"]);
                     txtSangNote.Text = drThuoc["SangNote"].ToString();
+                    //if (txtSangNote.Text.Trim() == string.Empty) chkSang.Checked = false;
+
                     chkTrua.Checked = Convert.ToBoolean(drThuoc["Trua"]);
                     txtTruaNote.Text = drThuoc["TruaNote"].ToString();
+                    //if (txtTruaNote.Text.Trim() == string.Empty) chkTrua.Checked = false;
+
                     chkChieu.Checked = Convert.ToBoolean(drThuoc["Chieu"]);
                     txtChieuNote.Text = drThuoc["ChieuNote"].ToString();
+                    //if (txtChieuNote.Text.Trim() == string.Empty) chkChieu.Checked = false;
+
                     chkToi.Checked = Convert.ToBoolean(drThuoc["Toi"]);
                     txtToiNote.Text = drThuoc["ToiNote"].ToString();
+                    //if (txtToiNote.Text.Trim() == string.Empty) chkToi.Checked = false;
+
                     chkTruocAn.Checked = Convert.ToBoolean(drThuoc["TruocAn"]);
                     txtTruocAnNote.Text = drThuoc["TruocAnNote"].ToString();
+                    //if (txtTruocAnNote.Text.Trim() == string.Empty) chkTruocAn.Checked = false;
+
                     chkSauAn.Checked = Convert.ToBoolean(drThuoc["SauAn"]);
                     txtSauAnNote.Text = drThuoc["SauAnNote"].ToString();
+                    //if (txtSauAnNote.Text.Trim() == string.Empty) chkSauAn.Checked = false;
+
                     chkKhac_TruocSauAn.Checked = Convert.ToBoolean(drThuoc["Khac_TruocSauAn"]);
                     txtKhac_TruocSauAnNote.Text = drThuoc["Khac_TruocSauAnNote"].ToString();
+                    //if (txtKhac_TruocSauAnNote.Text.Trim() == string.Empty) chkKhac_TruocSauAn.Checked = false;
+
                     chkUong.Checked = Convert.ToBoolean(drThuoc["Uong"]);
                     txtUongNote.Text = drThuoc["UongNote"].ToString();
+                    //if (txtUongNote.Text.Trim() == string.Empty) chkUong.Checked = false;
+
                     chkBoi.Checked = Convert.ToBoolean(drThuoc["Boi"]);
                     txtBoiNote.Text = drThuoc["BoiNote"].ToString();
+                    //if (txtBoiNote.Text.Trim() == string.Empty) chkBoi.Checked = false;
+
                     chkDatAD.Checked = Convert.ToBoolean(drThuoc["Dat"]);
                     txtDatADNote.Text = drThuoc["DatNote"].ToString();
+                    //if (txtDatADNote.Text.Trim() == string.Empty) chkDatAD.Checked = false;
+
                     chkKhac_CachDung.Checked = Convert.ToBoolean(drThuoc["Khac_CachDung"]);
                     txtKhac_CachDungNote.Text = drThuoc["Khac_CachDungNote"].ToString();
+                    //if (txtKhac_CachDungNote.Text.Trim() == string.Empty) chkKhac_CachDung.Checked = false;
                 }
                 else
                 {
@@ -247,26 +268,37 @@ namespace MM.Dialogs
 
                 _chiTietToaThuoc.Sang = chkSang.Checked;
                 _chiTietToaThuoc.SangNote = txtSangNote.Text;
+
                 _chiTietToaThuoc.Trua = chkTrua.Checked;
                 _chiTietToaThuoc.TruaNote = txtTruaNote.Text;
+
                 _chiTietToaThuoc.Chieu = chkChieu.Checked;
                 _chiTietToaThuoc.ChieuNote = txtChieuNote.Text;
+
                 _chiTietToaThuoc.Toi = chkToi.Checked;
                 _chiTietToaThuoc.ToiNote = txtToiNote.Text;
+
                 _chiTietToaThuoc.TruocAn = chkTruocAn.Checked;
                 _chiTietToaThuoc.TruocAnNote = txtTruocAnNote.Text;
+
                 _chiTietToaThuoc.SauAn = chkSauAn.Checked;
                 _chiTietToaThuoc.SauAnNote = txtSauAnNote.Text;
+
                 _chiTietToaThuoc.Khac_TruocSauAn = chkKhac_TruocSauAn.Checked;
                 _chiTietToaThuoc.Khac_TruocSauAnNote = txtKhac_TruocSauAnNote.Text;
+
                 _chiTietToaThuoc.Uong = chkUong.Checked;
                 _chiTietToaThuoc.UongNote = txtUongNote.Text;
+
                 _chiTietToaThuoc.Boi = chkBoi.Checked;
                 _chiTietToaThuoc.BoiNote = txtBoiNote.Text;
+
                 _chiTietToaThuoc.Dat = chkDatAD.Checked;
                 _chiTietToaThuoc.DatNote = txtDatADNote.Text;
+
                 _chiTietToaThuoc.Khac_CachDung = chkKhac_CachDung.Checked;
                 _chiTietToaThuoc.Khac_CachDungNote = txtKhac_CachDungNote.Text;
+
                 _chiTietToaThuoc.LieuDung = txtLieuDung.Text;
                 _chiTietToaThuoc.Note = txtGhiChu.Text;
             }
