@@ -38,7 +38,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetToaThuocList(bool isAll, DateTime fromDate, DateTime toDate)
+        public static Result GetToaThuocList(bool isAll, DateTime fromDate, DateTime toDate, string tenBenhNhan)
         {
             Result result = null;
 
@@ -47,11 +47,11 @@ namespace MM.Bussiness
                 string query = string.Empty;
 
                 if (isAll)
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ToaThuocView WITH(NOLOCK) WHERE Status={0} ORDER BY NgayKham DESC",
-                        (byte)Status.Actived);
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ToaThuocView WITH(NOLOCK) WHERE Status={0} AND TenBenhNhan LIKE N'%{1}%' ORDER BY NgayKham DESC",
+                        (byte)Status.Actived, tenBenhNhan);
                 else
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ToaThuocView WITH(NOLOCK) WHERE Status={0} AND NgayKham BETWEEN '{1}' AND '{2}' ORDER BY NgayKham DESC",
-                        (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ToaThuocView WITH(NOLOCK) WHERE Status={0} AND NgayKham BETWEEN '{1}' AND '{2}' AND TenBenhNhan LIKE N'%{3}%' ORDER BY NgayKham DESC",
+                        (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), tenBenhNhan);
 
                 return ExcuteQuery(query);
             }

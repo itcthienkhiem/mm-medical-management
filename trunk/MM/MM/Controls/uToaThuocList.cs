@@ -22,6 +22,7 @@ namespace MM.Controls
         private DateTime _fromDate = DateTime.Now;
         private DateTime _toDate = DateTime.Now;
         private bool _isAll = true;
+        private string _tenBenhNhan = string.Empty;
         #endregion
 
         #region Constructor
@@ -56,6 +57,11 @@ namespace MM.Controls
             printToolStripMenuItem.Enabled = AllowPrint;
         }
 
+        public bool EnableTextboxBenhNhan
+        {
+            set { txtTenBenhNhan.Enabled = value; }
+        }
+
         public void ClearData()
         {
             DataTable dt = dgToaThuoc.DataSource as DataTable;
@@ -75,9 +81,10 @@ namespace MM.Controls
                 UpdateGUI();
                 chkChecked.Checked = false;
 
-                _isAll = raAll.Checked;
+                _isAll = !chkTuNgay.Checked;
                 _fromDate = new DateTime(dtpkFromDate.Value.Year, dtpkFromDate.Value.Month, dtpkFromDate.Value.Day, 0, 0, 0);
                 _toDate = new DateTime(dtpkToDate.Value.Year, dtpkToDate.Value.Month, dtpkToDate.Value.Day, 23, 59, 59);
+                _tenBenhNhan = txtTenBenhNhan.Text;
 
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayToaThuocListProc));
                 base.ShowWaiting();
@@ -97,7 +104,7 @@ namespace MM.Controls
         {
             Result result = null;
             if (_patientRow == null)
-                result = KeToaBus.GetToaThuocList(_isAll, _fromDate, _toDate);
+                result = KeToaBus.GetToaThuocList(_isAll, _fromDate, _toDate, _tenBenhNhan);
             else
             {
                 string patientGUID = _patientRow["PatientGUID"].ToString();
@@ -301,15 +308,6 @@ namespace MM.Controls
             OnPrint(false);
         }
 
-        private void raAll_CheckedChanged(object sender, EventArgs e)
-        {
-            dtpkFromDate.Enabled = !raAll.Checked;
-            dtpkToDate.Enabled = !raAll.Checked;
-            btnSearch.Enabled = !raAll.Checked;
-
-            DisplayAsThread();
-        }
-
         private void btnSearch_Click(object sender, EventArgs e)
         {
             DisplayAsThread();
@@ -339,6 +337,24 @@ namespace MM.Controls
         {
             OnPrint(false);
         }
+
+        private void chkTuNgay_CheckedChanged(object sender, EventArgs e)
+        {
+            dtpkFromDate.Enabled = chkTuNgay.Checked;
+            dtpkToDate.Enabled = chkTuNgay.Checked;
+
+            DisplayAsThread();
+        }
+
+        private void txtTenBenhNhan_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) DisplayAsThread();
+        }
+
+        private void btnSearch_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) DisplayAsThread();
+        }
         #endregion
 
         #region Working Thread
@@ -360,7 +376,5 @@ namespace MM.Controls
             }
         }
         #endregion
-
-        
     }
 }
