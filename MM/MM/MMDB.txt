@@ -298,4 +298,8 @@ cho cach add nhanh cac dich vu nay vao vi thuong xet nhiem mau gom ~10 dich vu c
 5. Chuyen mgay in wa goc trai trong toa thuốc (OK).
 6. Search thuốc theo biet duoc (OK).
 7. Bỏ validate giá dịch vụ hợp đồng (OK)
-8. Cho them thuoc o ngoai.
+8. Cho them thuoc o ngoai (OK).
+===============================================================================
+1. Cho nhấn enter focus wa control kế tiếp trong toa thuốc
+2. Canh lại số lượng cho dịch vô (OK).
+3. Cái nào kô có kê số lượng thì kô in ra.

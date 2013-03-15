@@ -33,6 +33,7 @@ namespace MM.Controls
             _uServiceHistory.OnRefreshCheckList += new RefreshCheckListHandler(_uServiceHistory_OnRefreshCheckList);
             _uDailyServiceHistory.OnRefreshCheckList += new RefreshCheckListHandler(_uServiceHistory_OnRefreshCheckList);
             this.HandleCreated += new EventHandler(uPatient_HandleCreated);
+            _uToaThuocList.EnableTextboxBenhNhan = false;
         }
 
         private void _uServiceHistory_OnRefreshCheckList()
