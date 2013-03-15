@@ -433,8 +433,140 @@ namespace MM.Dialogs
             string thuocGUID = cboThuoc.SelectedValue.ToString();
             DisplayThuocTonKho(thuocGUID);
         }
-        #endregion
 
-        
+        private void cboThuoc_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) numSoLuong.Focus();
+        }
+
+        private void numSoLuong_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                if (_type == LoaiToaThuoc.Chung) chkSang.Focus();
+                else txtLieuDung.Focus();
+            }
+        }
+
+        private void chkSang_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) txtSangNote.Focus();
+        }
+
+        private void txtSangNote_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) chkTrua.Focus();
+        }
+
+        private void chkTrua_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) txtTruaNote.Focus();
+        }
+
+        private void txtTruaNote_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) chkChieu.Focus();
+        }
+
+        private void chkChieu_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) txtChieuNote.Focus();
+        }
+
+        private void txtChieuNote_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) chkToi.Focus();
+        }
+
+        private void chkToi_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) txtToiNote.Focus();
+        }
+
+        private void txtToiNote_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) chkTruocAn.Focus();
+        }
+
+        private void chkTruocAn_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) txtTruocAnNote.Focus();
+        }
+
+        private void txtTruocAnNote_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) chkSauAn.Focus();
+        }
+
+        private void chkSauAn_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) txtSauAnNote.Focus();
+        }
+
+        private void txtSauAnNote_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) chkKhac_TruocSauAn.Focus();
+        }
+
+        private void chkKhac_TruocSauAn_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) txtKhac_TruocSauAnNote.Focus();
+        }
+
+        private void txtKhac_TruocSauAnNote_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) chkUong.Focus();
+        }
+
+        private void chkUong_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) txtUongNote.Focus();
+        }
+
+        private void txtUongNote_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) chkBoi.Focus();
+        }
+
+        private void chkBoi_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) txtBoiNote.Focus();
+        }
+
+        private void txtBoiNote_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) chkDatAD.Focus();
+        }
+
+        private void chkDatAD_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) txtDatADNote.Focus();
+        }
+
+        private void txtDatADNote_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) chkKhac_CachDung.Focus();
+        }
+
+        private void chkKhac_CachDung_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) txtKhac_CachDungNote.Focus();
+        }
+
+        private void txtKhac_CachDungNote_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) btnOK.Focus();
+        }
+
+        private void txtLieuDung_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) txtGhiChu.Focus();
+        }
+
+        private void txtGhiChu_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter) btnOK.Focus();
+        }
+        #endregion
     }
 }
