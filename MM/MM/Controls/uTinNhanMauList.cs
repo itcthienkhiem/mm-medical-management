@@ -99,7 +99,7 @@ namespace MM.Controls
 
         private void OnAdd()
         {
-            dlgAddTinNhanMau dlg = new dlgAddTinNhanMau();
+            dlgAddTinNhanMau dlg = new dlgAddTinNhanMau(AllowConfirm);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 DataTable dt = dgTinNhanMau.DataSource as DataTable;
@@ -109,6 +109,7 @@ namespace MM.Controls
                 newRow["TinNhanMauGUID"] = dlg.TinNhanMau.TinNhanMauGUID.ToString();
                 newRow["TieuDe"] = dlg.TinNhanMau.TieuDe;
                 newRow["NoiDung"] = dlg.TinNhanMau.NoiDung;
+                newRow["IsDuyet"] = dlg.TinNhanMau.IsDuyet;
 
                 if (dlg.TinNhanMau.CreatedDate.HasValue)
                     newRow["CreatedDate"] = dlg.TinNhanMau.CreatedDate;
@@ -149,11 +150,12 @@ namespace MM.Controls
                 return;
             }
 
-            dlgAddTinNhanMau dlg = new dlgAddTinNhanMau(drTinNhanMau);
+            dlgAddTinNhanMau dlg = new dlgAddTinNhanMau(drTinNhanMau, AllowConfirm);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 drTinNhanMau["TieuDe"] = dlg.TinNhanMau.TieuDe;
                 drTinNhanMau["NoiDung"] = dlg.TinNhanMau.NoiDung;
+                drTinNhanMau["IsDuyet"] = dlg.TinNhanMau.IsDuyet;
 
                 if (dlg.TinNhanMau.CreatedDate.HasValue)
                     drTinNhanMau["CreatedDate"] = dlg.TinNhanMau.CreatedDate;
