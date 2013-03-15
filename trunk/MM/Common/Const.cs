@@ -113,7 +113,7 @@ namespace MM.Common
         public static string KhamHopDong = "KhamHopDong";
         public static string TinNhanMau = "TinNhanMau";
         public static string GuiSMS = "GuiSMS";
-        public static string BaoCaoCongNoHopDong = "BaoCaoCongNoTheoHopDong";
+        public static string BaoCaoCongNoHopDong = "BaoCaoCongNoHopDong";
         public static string SMSLog = "SMSLog";
 
         public static string CheckListTemplate = "Theo dõi thực hiện";
