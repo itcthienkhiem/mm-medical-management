@@ -302,6 +302,6 @@ cho cach add nhanh cac dich vu nay vao vi thuong xet nhiem mau gom ~10 dich vu c
 ===============================================================================
 1. Cho nhấn enter focus wa control kế tiếp trong toa thuốc (OK).
 2. Canh lại số lượng cho dịch vô (OK).
-3. Cái nào kô có kê số lượng thì kô in ra.
+3. Cái nào kô có check thì kô in ra (OK).
 4. Tin nhắn mẫu có thêm chức năng duyệt mới dc quyền send (OK).
 5. Merge nhân viên, waring khi nhập nv trùng trên.
