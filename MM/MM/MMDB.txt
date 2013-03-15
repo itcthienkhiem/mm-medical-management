@@ -310,4 +310,6 @@ cho cach add nhanh cac dich vu nay vao vi thuong xet nhiem mau gom ~10 dich vu c
 8. Thêm tên nhân sự phụ trách, sdt, ngày tháng đặt cọc hợp đồng trong hợp đồng (kô bắt buộc nhập)
 9. Thêm tổng tiền trong khám hợp đồng (checklist, làm thêm)
 10. Show msg thông báo lưu check list thành công
-11. Cho apply nhanh checklist trong 1 tập nv dc chọn (Chức năng mới)
+11. Cho apply nhanh checklist trong 1 tập nv dc chọn (Chức năng mới: CAP NHAT NHANH CHECK LIST)
+12. Báo cáo công nợ hợp đồng show theo hàng ngang.
+13. 
