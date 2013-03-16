@@ -36,6 +36,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.chkMaBenhNhan = new System.Windows.Forms.CheckBox();
             this.raChuaDenKham = new System.Windows.Forms.RadioButton();
             this.raDenKham = new System.Windows.Forms.RadioButton();
             this.txtMaBenhNhan = new System.Windows.Forms.TextBox();
@@ -60,13 +61,13 @@
             this.GenderAsStr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colMobile = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this._printDialog = new System.Windows.Forms.PrintDialog();
             this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.printPreviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.exportExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._printDialog = new System.Windows.Forms.PrintDialog();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -76,6 +77,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.chkMaBenhNhan);
             this.panel2.Controls.Add(this.raChuaDenKham);
             this.panel2.Controls.Add(this.raDenKham);
             this.panel2.Controls.Add(this.txtMaBenhNhan);
@@ -92,31 +94,46 @@
             this.panel2.Size = new System.Drawing.Size(833, 110);
             this.panel2.TabIndex = 5;
             // 
+            // chkMaBenhNhan
+            // 
+            this.chkMaBenhNhan.AutoSize = true;
+            this.chkMaBenhNhan.Checked = true;
+            this.chkMaBenhNhan.CheckState = System.Windows.Forms.CheckState.Checked;
+            this.chkMaBenhNhan.Location = new System.Drawing.Point(384, 35);
+            this.chkMaBenhNhan.Name = "chkMaBenhNhan";
+            this.chkMaBenhNhan.Size = new System.Drawing.Size(122, 17);
+            this.chkMaBenhNhan.TabIndex = 22;
+            this.chkMaBenhNhan.Text = "Theo mã bệnh nhân";
+            this.chkMaBenhNhan.UseVisualStyleBackColor = true;
+            this.chkMaBenhNhan.CheckedChanged += new System.EventHandler(this.chkMaBenhNhan_CheckedChanged);
+            // 
             // raChuaDenKham
             // 
             this.raChuaDenKham.AutoSize = true;
-            this.raChuaDenKham.Location = new System.Drawing.Point(188, 57);
+            this.raChuaDenKham.Location = new System.Drawing.Point(170, 57);
             this.raChuaDenKham.Name = "raChuaDenKham";
             this.raChuaDenKham.Size = new System.Drawing.Size(101, 17);
             this.raChuaDenKham.TabIndex = 21;
             this.raChuaDenKham.Text = "Chưa đến khám";
             this.raChuaDenKham.UseVisualStyleBackColor = true;
+            this.raChuaDenKham.CheckedChanged += new System.EventHandler(this.raChuaDenKham_CheckedChanged);
             // 
             // raDenKham
             // 
             this.raDenKham.AutoSize = true;
             this.raDenKham.Checked = true;
-            this.raDenKham.Location = new System.Drawing.Point(95, 57);
+            this.raDenKham.Location = new System.Drawing.Point(77, 57);
             this.raDenKham.Name = "raDenKham";
             this.raDenKham.Size = new System.Drawing.Size(74, 17);
             this.raDenKham.TabIndex = 20;
             this.raDenKham.TabStop = true;
             this.raDenKham.Text = "Đến khám";
             this.raDenKham.UseVisualStyleBackColor = true;
+            this.raDenKham.CheckedChanged += new System.EventHandler(this.raDenKham_CheckedChanged);
             // 
             // txtMaBenhNhan
             // 
-            this.txtMaBenhNhan.Location = new System.Drawing.Point(95, 33);
+            this.txtMaBenhNhan.Location = new System.Drawing.Point(77, 33);
             this.txtMaBenhNhan.Name = "txtMaBenhNhan";
             this.txtMaBenhNhan.Size = new System.Drawing.Size(301, 20);
             this.txtMaBenhNhan.TabIndex = 4;
@@ -125,7 +142,7 @@
             // 
             this.lbKetQua.AutoSize = true;
             this.lbKetQua.ForeColor = System.Drawing.Color.Blue;
-            this.lbKetQua.Location = new System.Drawing.Point(185, 85);
+            this.lbKetQua.Location = new System.Drawing.Point(167, 85);
             this.lbKetQua.Name = "lbKetQua";
             this.lbKetQua.Size = new System.Drawing.Size(123, 13);
             this.lbKetQua.TabIndex = 19;
@@ -135,7 +152,7 @@
             // 
             this.btnView.Image = global::MM.Properties.Resources.views_icon;
             this.btnView.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnView.Location = new System.Drawing.Point(95, 80);
+            this.btnView.Location = new System.Drawing.Point(77, 80);
             this.btnView.Name = "btnView";
             this.btnView.Size = new System.Drawing.Size(75, 23);
             this.btnView.TabIndex = 6;
@@ -148,15 +165,15 @@
             this.label3.AutoSize = true;
             this.label3.Location = new System.Drawing.Point(10, 36);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(79, 13);
+            this.label3.Size = new System.Drawing.Size(62, 13);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Mã bệnh nhân:";
+            this.label3.Text = "Bệnh nhân:";
             // 
             // dtpkToDate
             // 
             this.dtpkToDate.CustomFormat = "dd/MM/yyyy";
             this.dtpkToDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkToDate.Location = new System.Drawing.Point(282, 10);
+            this.dtpkToDate.Location = new System.Drawing.Point(264, 10);
             this.dtpkToDate.Name = "dtpkToDate";
             this.dtpkToDate.Size = new System.Drawing.Size(114, 20);
             this.dtpkToDate.TabIndex = 3;
@@ -165,7 +182,7 @@
             // 
             this.dtpkFromDate.CustomFormat = "dd/MM/yyyy";
             this.dtpkFromDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkFromDate.Location = new System.Drawing.Point(95, 10);
+            this.dtpkFromDate.Location = new System.Drawing.Point(77, 10);
             this.dtpkFromDate.Name = "dtpkFromDate";
             this.dtpkFromDate.Size = new System.Drawing.Size(114, 20);
             this.dtpkFromDate.TabIndex = 2;
@@ -173,7 +190,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(220, 14);
+            this.label2.Location = new System.Drawing.Point(202, 14);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(56, 13);
             this.label2.TabIndex = 1;
@@ -182,7 +199,7 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(41, 14);
+            this.label1.Location = new System.Drawing.Point(23, 14);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(49, 13);
             this.label1.TabIndex = 0;
@@ -360,14 +377,6 @@
             this.Address.ReadOnly = true;
             this.Address.Width = 250;
             // 
-            // _printDialog
-            // 
-            this._printDialog.AllowCurrentPage = true;
-            this._printDialog.AllowSelection = true;
-            this._printDialog.AllowSomePages = true;
-            this._printDialog.ShowHelp = true;
-            this._printDialog.UseEXDialog = true;
-            // 
             // ctmAction
             // 
             this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -412,6 +421,14 @@
             this.exportExcelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.exportExcelToolStripMenuItem.Text = "Xuất Excel";
             this.exportExcelToolStripMenuItem.Click += new System.EventHandler(this.exportExcelToolStripMenuItem_Click);
+            // 
+            // _printDialog
+            // 
+            this._printDialog.AllowCurrentPage = true;
+            this._printDialog.AllowSelection = true;
+            this._printDialog.AllowSomePages = true;
+            this._printDialog.ShowHelp = true;
+            this._printDialog.UseEXDialog = true;
             // 
             // uBaoCaoSoLuongKham
             // 
@@ -466,5 +483,6 @@
         private System.Windows.Forms.ToolStripMenuItem printToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem exportExcelToolStripMenuItem;
+        private System.Windows.Forms.CheckBox chkMaBenhNhan;
     }
 }

@@ -305,7 +305,7 @@ cho cach add nhanh cac dich vu nay vao vi thuong xet nhiem mau gom ~10 dich vu c
 3. Cái nào kô có check thì kô in ra (OK).
 4. Tin nhắn mẫu có thêm chức năng duyệt mới dc quyền send (OK).
 5. Merge nhân viên, waring khi nhập nv trùng trên.
-6. Tìm bn khám bệnh từ ngày tới ngày và mã bệnh nhân or tên bn
+6. Tìm bn khám bệnh từ ngày tới ngày và mã bệnh nhân or tên bn (OK) (Báo cáo số lượng khám)
 7. Nhắn tin cho 1 số dt tự do
 8. Thêm tên nhân sự phụ trách, sdt, ngày tháng đặt cọc hợp đồng trong hợp đồng (kô bắt buộc nhập)
 9. Thêm tổng tiền trong khám hợp đồng (checklist, làm thêm)
