@@ -568,7 +568,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetDanhSachBenhNhanKhamBenh(DateTime fromDate, DateTime toDate, string maBenhNhan, bool isDenKham)
+        public static Result GetDanhSachBenhNhanKhamBenh(DateTime fromDate, DateTime toDate, string maBenhNhan, bool isDenKham, int type)
         {
             Result result = new Result();
 
@@ -580,6 +580,8 @@ namespace MM.Bussiness
                 param = new SqlParameter("@ToDate", toDate);
                 sqlParams.Add(param);
                 param = new SqlParameter("@MaBenhNhan", maBenhNhan);
+                sqlParams.Add(param);
+                param = new SqlParameter("@Type", type);
                 sqlParams.Add(param);
 
                 if (isDenKham)

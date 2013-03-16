@@ -16,7 +16,7 @@ namespace MM.Controls
     public partial class uBaoCaoSoLuongKham : uBase
     {
         #region Members
-
+        
         #endregion
 
         #region Constructor
@@ -65,10 +65,11 @@ namespace MM.Controls
             DateTime fromDate = new DateTime(dtpkFromDate.Value.Year, dtpkFromDate.Value.Month, dtpkFromDate.Value.Day, 0, 0, 0);
             DateTime toDate = new DateTime(dtpkToDate.Value.Year, dtpkToDate.Value.Month, dtpkToDate.Value.Day, 23, 59, 59);
             bool isDenKham = raDenKham.Checked;
+            int type = chkMaBenhNhan.Checked ? 1 : 0;
 
             ClearData();
 
-            Result result = ReportBus.GetDanhSachBenhNhanKhamBenh(fromDate, toDate, txtMaBenhNhan.Text.Trim(), isDenKham);
+            Result result = ReportBus.GetDanhSachBenhNhanKhamBenh(fromDate, toDate, txtMaBenhNhan.Text.Trim(), isDenKham, type);
             if (result.IsOK)
             {
                 DataTable dt = result.QueryResult as DataTable;
@@ -173,8 +174,21 @@ namespace MM.Controls
         {
             OnExportExcel();
         }
-        #endregion
 
-        
+        private void raDenKham_CheckedChanged(object sender, EventArgs e)
+        {
+            if (raDenKham.Checked) OnViewData();
+        }
+
+        private void raChuaDenKham_CheckedChanged(object sender, EventArgs e)
+        {
+            if (raChuaDenKham.Checked) OnViewData();
+        }
+
+        private void chkMaBenhNhan_CheckedChanged(object sender, EventArgs e)
+        {
+            OnViewData();
+        }
+        #endregion
     }
 }
