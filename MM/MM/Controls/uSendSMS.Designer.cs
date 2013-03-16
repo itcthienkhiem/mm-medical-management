@@ -83,6 +83,9 @@
             this.dataGridViewTextBoxColumn8 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnGuiSMSTuDo = new System.Windows.Forms.Button();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.guiSMSTuDoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).BeginInit();
@@ -273,9 +276,11 @@
             // ctmAction
             // 
             this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.guiSMSToolStripMenuItem});
+            this.guiSMSToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.guiSMSTuDoToolStripMenuItem});
             this.ctmAction.Name = "ctmAction";
-            this.ctmAction.Size = new System.Drawing.Size(153, 48);
+            this.ctmAction.Size = new System.Drawing.Size(153, 76);
             // 
             // guiSMSToolStripMenuItem
             // 
@@ -295,6 +300,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnGuiSMSTuDo);
             this.panel2.Controls.Add(this.btnSendSMS);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 404);
@@ -482,6 +488,31 @@
             this.dataGridViewTextBoxColumn10.ReadOnly = true;
             this.dataGridViewTextBoxColumn10.Width = 150;
             // 
+            // btnGuiSMSTuDo
+            // 
+            this.btnGuiSMSTuDo.Image = ((System.Drawing.Image)(resources.GetObject("btnGuiSMSTuDo.Image")));
+            this.btnGuiSMSTuDo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGuiSMSTuDo.Location = new System.Drawing.Point(98, 6);
+            this.btnGuiSMSTuDo.Name = "btnGuiSMSTuDo";
+            this.btnGuiSMSTuDo.Size = new System.Drawing.Size(115, 25);
+            this.btnGuiSMSTuDo.TabIndex = 8;
+            this.btnGuiSMSTuDo.Text = "     &Gửi SMS tự do";
+            this.btnGuiSMSTuDo.UseVisualStyleBackColor = true;
+            this.btnGuiSMSTuDo.Click += new System.EventHandler(this.btnGuiSMSTuDo_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            // 
+            // guiSMSTuDoToolStripMenuItem
+            // 
+            this.guiSMSTuDoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("guiSMSTuDoToolStripMenuItem.Image")));
+            this.guiSMSTuDoToolStripMenuItem.Name = "guiSMSTuDoToolStripMenuItem";
+            this.guiSMSTuDoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.guiSMSTuDoToolStripMenuItem.Text = "Gửi SMS tự do";
+            this.guiSMSTuDoToolStripMenuItem.Click += new System.EventHandler(this.guiSMSTuDoToolStripMenuItem_Click);
+            // 
             // uSendSMS
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -542,5 +573,8 @@
         private System.Windows.Forms.Button btnSendSMS;
         private System.Windows.Forms.ContextMenuStrip ctmAction;
         private System.Windows.Forms.ToolStripMenuItem guiSMSToolStripMenuItem;
+        private System.Windows.Forms.Button btnGuiSMSTuDo;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem guiSMSTuDoToolStripMenuItem;
     }
 }

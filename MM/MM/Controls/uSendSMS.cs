@@ -40,8 +40,10 @@ namespace MM.Controls
         private void UpdateGUI()
         {
             btnSendSMS.Enabled = AllowSendSMS;
+            btnGuiSMSTuDo.Enabled = AllowSendSMS;
 
             guiSMSToolStripMenuItem.Enabled = AllowSendSMS;
+            guiSMSTuDoToolStripMenuItem.Enabled = AllowSendSMS;
         }
 
         public void ClearData()
@@ -173,6 +175,7 @@ namespace MM.Controls
                             noiDung = noiDung.Replace("#Mobile#", mobile);
                             noiDung = noiDung.Replace("#Email#", email);
                             noiDung = Utility.ConvertToUnSign3(noiDung);
+                            noiDung = noiDung.Replace("#", "");
                             noiDung = noiDung.Replace("\n", "\r\n");
 
                             Stream resStream = null;
@@ -204,14 +207,10 @@ namespace MM.Controls
                                         case -1:
                                             smsLog.Status = -1;
                                             smsLog.Notes = "Chưa nhập đầy đủ các tham số yêu cầu.";
-                                            //MM.MsgBox.Show(Application.ProductName, "Send SMS Error: Chưa nhập đầy đủ các tham số yêu cầu.", IconType.Error);
-                                            //Utility.WriteToTraceLog(string.Format("Send SMS Error: Chưa nhập đầy đủ các tham số yêu cầu (Mã bệnh nhân: {0}, Tên bệnh nhân: {1}).", maBenhNhan, tenBenhNhan));
                                             break;
                                         case -2:
                                             smsLog.Status = -2;
                                             smsLog.Notes = "Không thể kết nối đến máy chủ VIETGUYS, máy chủ đang bận.";
-                                            //MM.MsgBox.Show(Application.ProductName, "Send SMS Error: Không thể kết nối đến máy chủ VIETGUYS, máy chủ đang bận.", IconType.Error);
-                                            //Utility.WriteToTraceLog(string.Format("Send SMS Error: Không thể kết nối đến máy chủ VIETGUYS, máy chủ đang bận (Mã bệnh nhân: {0}, Tên bệnh nhân: {1}).", maBenhNhan, tenBenhNhan));
                                             break;
                                         case -3:
                                             smsLog.Status = -3;
@@ -220,56 +219,38 @@ namespace MM.Controls
                                         case -5:
                                             smsLog.Status = -5;
                                             smsLog.Notes = "Thông tin xác nhận tài khoản chưa chính xác.";
-                                            //MM.MsgBox.Show(Application.ProductName, "Send SMS Error: Thông tin xác nhận tài khoản chưa chính xác.", IconType.Error);
-                                            //Utility.WriteToTraceLog(string.Format("Send SMS Error: Thông tin xác nhận tài khoản chưa chính xác (Mã bệnh nhân: {0}, Tên bệnh nhân: {1}).", maBenhNhan, tenBenhNhan));
                                             break;
                                         case -4:
                                             smsLog.Status = -4;
                                             smsLog.Notes = "Tài khoản bị khóa.";
-                                            //MM.MsgBox.Show(Application.ProductName, "Send SMS Error: Tài khoản bị khóa.", IconType.Error);
-                                            //Utility.WriteToTraceLog(string.Format("Send SMS Error: Tài khoản bị khóa (Mã bệnh nhân: {0}, Tên bệnh nhân: {1}).", maBenhNhan, tenBenhNhan));
                                             break;
                                         case -6:
                                             smsLog.Status = -6;
                                             smsLog.Notes = "Tài khoản bị khóa.";
-                                            //MM.MsgBox.Show(Application.ProductName, "Send SMS Error: Chức năng API chưa kích hoạt.", IconType.Error);
-                                            //Utility.WriteToTraceLog(string.Format("Send SMS Error: Chức năng API chưa kích hoạt (Mã bệnh nhân: {0}, Tên bệnh nhân: {1}).", maBenhNhan, tenBenhNhan));
                                             break;
                                         case -7:
                                             smsLog.Status = -7;
                                             smsLog.Notes = "IP bị giới hạn truy cập, không được phép gửi từ IP này.";
-                                            //MM.MsgBox.Show(Application.ProductName, "Send SMS Error: IP bị giới hạn truy cập, không được phép gửi từ IP này.", IconType.Error);
-                                            //Utility.WriteToTraceLog(string.Format("Send SMS Error: IP bị giới hạn truy cập, không được phép gửi từ IP này (Mã bệnh nhân: {0}, Tên bệnh nhân: {1}).", maBenhNhan, tenBenhNhan));
                                             break;
                                         case -8:
                                             smsLog.Status = -8;
                                             smsLog.Notes = "Giá trị Gửi-từ-đâu chưa được phép sử dụng, vui lòng liên hệ với VIETGUYS để khai báo trước khi sử dụng.";
-                                            //MM.MsgBox.Show(Application.ProductName, "Send SMS Error: Giá trị Gửi-từ-đâu chưa được phép sử dụng, vui lòng liên hệ với VIETGUYS để khai báo trước khi sử dụng.", IconType.Error);
-                                            //Utility.WriteToTraceLog(string.Format("Send SMS Error: Giá trị Gửi-từ-đâu chưa được phép sử dụng, vui lòng liên hệ với VIETGUYS để khai báo trước khi sử dụng (Mã bệnh nhân: {0}, Tên bệnh nhân: {1}).", maBenhNhan, tenBenhNhan));
                                             break;
                                         case -9:
                                             smsLog.Status = -9;
                                             smsLog.Notes = "Tài khoản hết credits gửi tin.";
-                                            //MM.MsgBox.Show(Application.ProductName, "Send SMS Error: Tài khoản hết credits gửi tin.", IconType.Error);
-                                            //Utility.WriteToTraceLog(string.Format("Send SMS Error: Tài khoản hết credits gửi tin (Mã bệnh nhân: {0}, Tên bệnh nhân: {1}).", maBenhNhan, tenBenhNhan));
                                             break;
                                         case -10:
                                             smsLog.Status = -10;
                                             smsLog.Notes = "Số điện thoại người nhận chưa chính xác.";
-                                            //MM.MsgBox.Show(Application.ProductName, "Send SMS Error: Số điện thoại người nhận chưa chính xác.", IconType.Error);
-                                            //Utility.WriteToTraceLog(string.Format("Send SMS Error: Số điện thoại người nhận chưa chính xác (Mã bệnh nhân: {0}, Tên bệnh nhân: {1}).", maBenhNhan, tenBenhNhan));
                                             break;
                                         case -11:
                                             smsLog.Status = -11;
                                             smsLog.Notes = "Số điện thoại nằm trong danh sách Blacklist, là danh sách không muốn nhận tin nhắn.";
-                                            //MM.MsgBox.Show(Application.ProductName, "Send SMS Error: Số điện thoại nằm trong danh sách Blacklist, là danh sách không muốn nhận tin nhắn.", IconType.Error);
-                                            //Utility.WriteToTraceLog(string.Format("Send SMS Error: Số điện thoại nằm trong danh sách Blacklist, là danh sách không muốn nhận tin nhắn (Mã bệnh nhân: {0}, Tên bệnh nhân: {1}).", maBenhNhan, tenBenhNhan));
                                             break;
                                         case -12:
                                             smsLog.Status = -12;
                                             smsLog.Notes = "Tài khoản không đủ credits để thực hiện gửi tin nhắn.";
-                                            //MM.MsgBox.Show(Application.ProductName, "Send SMS Error: Tài khoản không đủ credits để thực hiện gửi tin nhắn.", IconType.Error);
-                                            //Utility.WriteToTraceLog(string.Format("Send SMS Error: Tài khoản không đủ credits để thực hiện gửi tin nhắn (Mã bệnh nhân: {0}, Tên bệnh nhân: {1}).", maBenhNhan, tenBenhNhan));
                                             break;
                                     }
                                 }
@@ -277,7 +258,6 @@ namespace MM.Controls
                                 {
                                     smsLog.Status = 0;
                                     smsLog.Notes = responseFromServer;
-                                    //Utility.WriteToTraceLog(string.Format("Send SMS OK: {0} (Mã bệnh nhân: {1}, Tên bệnh nhân: {2}).", responseFromServer, maBenhNhan, tenBenhNhan));
                                 }
 
                                 Result rs = SMSLogBus.InsertSMSLog(smsLog);
@@ -285,6 +265,7 @@ namespace MM.Controls
                                 {
                                     MsgBox.Show(this.Text, rs.GetErrorAsString("SMSLogBus.InsertSMSLog"), IconType.Error);
                                     Utility.WriteToTraceLog(rs.GetErrorAsString("SMSLogBus.InsertSMSLog"));
+                                    return;
                                 }
                             }
                             catch (Exception e)
@@ -313,6 +294,12 @@ namespace MM.Controls
             }
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân cần gửi SMS.", IconType.Information);
+        }
+
+        private void OnSendSMSTuDo()
+        {
+            dlgSendSMSTuDo dlg = new dlgSendSMSTuDo();
+            dlg.ShowDialog(this);
         }
         #endregion
 
@@ -471,6 +458,16 @@ namespace MM.Controls
         {
             OnSendSMS();
         }
+
+        private void btnGuiSMSTuDo_Click(object sender, EventArgs e)
+        {
+            OnSendSMSTuDo();
+        }
+
+        private void guiSMSTuDoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnSendSMSTuDo();
+        }
         #endregion
 
         #region Working Thread
@@ -504,9 +501,5 @@ namespace MM.Controls
             }
         }
         #endregion
-
-        
-
-        
     }
 }
