@@ -47,8 +47,8 @@ namespace MM.Controls
             {
                 dt.Rows.Clear();
                 dt.Clear();
-                dt = null;
-                dgBenhNhan.DataSource = null;
+                //dt = null;
+                //dgBenhNhan.DataSource = null;
             }
         }
 

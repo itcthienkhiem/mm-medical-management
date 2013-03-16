@@ -312,4 +312,3 @@ cho cach add nhanh cac dich vu nay vao vi thuong xet nhiem mau gom ~10 dich vu c
 10. Show msg thông báo lưu check list thành công
 11. Cho apply nhanh checklist trong 1 tập nv dc chọn (Chức năng mới: CAP NHAT NHANH CHECK LIST)
 12. Báo cáo công nợ hợp đồng show theo hàng ngang.
-13. 
