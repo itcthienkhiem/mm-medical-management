@@ -60,6 +60,8 @@ namespace MM.Controls
                 dgService.DataSource = null;
             }
 
+            lbTongTienChecklist.Text = "Tổng tiền: 0 (VNĐ)";
+
             //btnLuu.Enabled = false;
         }
 
@@ -73,6 +75,8 @@ namespace MM.Controls
                 dt = null;
                 dgDichVuLamThem.DataSource = null;
             }
+
+            lbTongTienLamThem.Text = "Tổng tiền: 0 (VNĐ)";
         }
 
         private void UpdateGUI()
@@ -237,6 +241,92 @@ namespace MM.Controls
             }
         }
 
+        private void OnTinhTongTienDichVuLamThem()
+        {
+            try
+            {
+                DataTable dt = dgDichVuLamThem.DataSource as DataTable;
+                if (dt == null || dt.Rows.Count <= 0)
+                {
+                    lbTongTienLamThem.Text = "Tổng tiền: 0 (VNĐ)";
+                    return;
+                }
+
+                double tongTien = 0;
+                foreach (DataRow row in dt.Rows)
+                {
+                    bool daThuTien = Convert.ToBoolean(row["DaThuTien"]);
+                    if (!daThuTien) continue;
+                    double soTien = Convert.ToDouble(row["Amount"]);
+                    tongTien += soTien;
+                }
+
+                if (tongTien == 0) lbTongTienLamThem.Text = "Tổng tiền: 0 (VNĐ)";
+                else lbTongTienLamThem.Text = string.Format("Tổng tiền: {0} (VNĐ)", tongTien.ToString("#,###"));
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(this.Text, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+        }
+
+        private void OnTinhTongTienChecklist(string patientGUID)
+        {
+            try
+            {
+                DataTable dt = dgService.DataSource as DataTable;
+                if (dt == null || dt.Rows.Count <= 0)
+                {
+                    lbTongTienChecklist.Text = "Tổng tiền: 0 (VNĐ)";
+                    return;
+                }
+
+                double tongTien = 0;
+                foreach (DataRow row in dt.Rows)
+                {
+                    bool isUsing = Convert.ToBoolean(row["Using"]);
+                    if (!isUsing) continue;
+                    string serviceGUID = row["ServiceGUID"].ToString();
+                    string nguoiChuyenNhuong = row["NguoiChuyenNhuong"] as string;
+
+                    Result result = null;
+
+                    if (nguoiChuyenNhuong == null || nguoiChuyenNhuong.Trim() == string.Empty)
+                    {
+                        result = PhieuThuHopDongBus.GetThanhTienDichVuKhamTheoHopDong(_hopDongGUID, serviceGUID, patientGUID);
+                        if (!result.IsOK)
+                        {
+                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("PhieuThuHopDongBus.GetGiaDichVuKhamTheoHopDong"), IconType.Error);
+                            Utility.WriteToTraceLog(result.GetErrorAsString("PhieuThuHopDongBus.GetGiaDichVuKhamTheoHopDong"));
+                            return;
+                        }
+                    }
+                    else
+                    {
+                        result = PhieuThuHopDongBus.GetThanhTienDichVuKhamChuyenNhuong(_hopDongGUID, serviceGUID, patientGUID);
+                        if (!result.IsOK)
+                        {
+                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("PhieuThuHopDongBus.GetThanhTienDichVuKhamChuyenNhuong"), IconType.Error);
+                            Utility.WriteToTraceLog(result.GetErrorAsString("PhieuThuHopDongBus.GetThanhTienDichVuKhamChuyenNhuong"));
+                            return;
+                        }
+                    }
+
+                    double soTien = Convert.ToDouble(result.QueryResult);
+                    tongTien += soTien;
+                }
+
+                if (tongTien == 0) lbTongTienChecklist.Text = "Tổng tiền: 0 (VNĐ)";
+                else lbTongTienChecklist.Text = string.Format("Tổng tiền: {0} (VNĐ)", tongTien.ToString("#,###"));
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(this.Text, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+        }
+
         private void OnDisplayCheckList(string patientGUID)
         {
             ClearCheckList();
@@ -258,6 +348,7 @@ namespace MM.Controls
                     }
                 }
 
+                OnTinhTongTienChecklist(patientGUID);
                 //btnLuu.Enabled = AllowEdit;
             }
             else
@@ -275,6 +366,8 @@ namespace MM.Controls
             if (result.IsOK)
             {
                 dgDichVuLamThem.DataSource = result.QueryResult;
+
+                OnTinhTongTienDichVuLamThem();
             }
             else
             {
@@ -316,8 +409,14 @@ namespace MM.Controls
                 MsgBox.Show(this.Text, result.GetErrorAsString("ServiceHistoryBus.UpdateChecklist"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("ServiceHistoryBus.UpdateChecklist"));
             }
+            else
+            {
+                MsgBox.Show(this.Text, "Đã lưu thành công.", IconType.Information);
+                _isSaved = true;
+                OnTinhTongTienChecklist(_patientGUID);
+            }
 
-            _isSaved = true;
+            
         }
 
         private void OnAddDichVuLamThem()
@@ -361,6 +460,8 @@ namespace MM.Controls
                 newRow["Status"] = dlg.DichVuLamThem.Status;
 
                 dt.Rows.Add(newRow);
+
+                OnTinhTongTienDichVuLamThem();
             }
         }
 
@@ -406,6 +507,8 @@ namespace MM.Controls
                     drDichVuLamThem["DeletedBy"] = dlg.DichVuLamThem.DeletedBy.ToString();
 
                 drDichVuLamThem["Status"] = dlg.DichVuLamThem.Status;
+
+                OnTinhTongTienDichVuLamThem();
             }
         }
 
@@ -434,6 +537,8 @@ namespace MM.Controls
                         {
                             dt.Rows.Remove(row);
                         }
+
+                        OnTinhTongTienDichVuLamThem();
                     }
                     else
                     {

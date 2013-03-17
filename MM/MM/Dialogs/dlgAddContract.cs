@@ -94,6 +94,21 @@ namespace MM.Dialogs
                 numSoTien.Value = (Decimal)Convert.ToDouble(drContract["SoTien"]);
                 numDatCoc.Value = (Decimal)Convert.ToDouble(drContract["DatCoc"]);
 
+                if (drContract["NgayDatCoc"] != null && drContract["NgayDatCoc"] != DBNull.Value)
+                {
+                    chkNgayDatCoc.Checked = true;
+                    dtpkNgayDatCoc.Visible = true;
+                    dtpkNgayDatCoc.Value = Convert.ToDateTime(drContract["NgayDatCoc"]);
+                }
+                else
+                {
+                    chkNgayDatCoc.Checked = false;
+                    dtpkNgayDatCoc.Visible = false;
+                }
+
+                txtNhanSuPhuTrach.Text = drContract["NhanSuPhuTrach"] as string;
+                txtSoDienThoai.Text = drContract["SoDienThoai"] as string;
+
                 if (chkCompleted.Checked)
                 {
                     dtpkEndDate.Value = Convert.ToDateTime(drContract["EndDate"]);
@@ -134,6 +149,10 @@ namespace MM.Dialogs
                     dtpkEndDate.Enabled = !_isLock;
                     numSoTien.Enabled = !_isLock;
                     numDatCoc.Enabled = !_isLock;
+                    chkNgayDatCoc.Enabled = !_isLock;
+                    dtpkNgayDatCoc.Enabled = !_isLock;
+                    txtNhanSuPhuTrach.Enabled = !_isLock;
+                    txtSoDienThoai.Enabled = !_isLock;
                     dgGiaDichVu.ReadOnly = true;
                     panel5.Enabled = !_isLock;
                     dgMembers.ReadOnly = true;
@@ -159,8 +178,6 @@ namespace MM.Dialogs
                     addToolStripMenuItem.Enabled = !_isLock;
                     editToolStripMenuItem.Enabled = !_isLock;
                     deleteToolStripMenuItem.Enabled = !_isLock;
-
-
                 }
 
                 DisplayDetailAsThread(_contract.CompanyContractGUID.ToString());
@@ -176,6 +193,10 @@ namespace MM.Dialogs
                     dtpkEndDate.Enabled = _allowEdit;
                     numSoTien.Enabled = _allowEdit;
                     numDatCoc.Enabled = _allowEdit;
+                    chkNgayDatCoc.Enabled = _allowEdit;
+                    dtpkNgayDatCoc.Enabled = _allowEdit;
+                    txtNhanSuPhuTrach.Enabled = _allowEdit;
+                    txtSoDienThoai.Enabled = _allowEdit;
 
                     panel5.Enabled = _allowEdit;
 
@@ -315,6 +336,9 @@ namespace MM.Dialogs
                     _contract.CompanyGUID = Guid.Parse(cboCompany.SelectedValue.ToString());
                     _contract.SoTien = (double)numSoTien.Value;
                     _contract.DatCoc = (double)numDatCoc.Value;
+                    if (chkNgayDatCoc.Checked) _contract.NgayDatCoc = dtpkNgayDatCoc.Value;
+                    _contract.NhanSuPhuTrach = txtNhanSuPhuTrach.Text;
+                    _contract.SoDienThoai = txtSoDienThoai.Text;
 
                     Result result = CompanyContractBus.InsertContract(_contract, _selectedCompanyInfo);
                     if (!result.IsOK)
@@ -1728,6 +1752,11 @@ namespace MM.Dialogs
         private void nhapDVHDToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OnImportDVHD();
+        }
+
+        private void chkNgayDatCoc_CheckedChanged(object sender, EventArgs e)
+        {
+            dtpkNgayDatCoc.Visible = chkNgayDatCoc.Checked;
         }
         #endregion
 
