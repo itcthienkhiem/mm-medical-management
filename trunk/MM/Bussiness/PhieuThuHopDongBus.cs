@@ -7,6 +7,7 @@ using System.Data.Linq;
 using System.Transactions;
 using MM.Common;
 using MM.Databasae;
+using System.Data.SqlClient;
 
 namespace MM.Bussiness
 {
@@ -802,6 +803,31 @@ namespace MM.Bussiness
                     db.Dispose();
                     db = null;
                 }
+            }
+
+            return result;
+        }
+
+        public static Result GetCongNoHopDong(string hopDongGUID)
+        {
+            Result result = new Result();
+
+            try
+            {
+                List<SqlParameter> sqlParams = new List<SqlParameter>();
+                SqlParameter param = new SqlParameter("@HopDongGUID", hopDongGUID);
+                sqlParams.Add(param);
+                return ExcuteQuery("spCongNoHopDong", sqlParams);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
             }
 
             return result;
