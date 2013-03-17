@@ -466,6 +466,39 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetThanhTienDichVuKhamTheoHopDong(string hopDongGUID, string serviceGUID, string patientGUID)
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Format("SELECT SH.Price FROM CompanyContract HD WITH(NOLOCK), ContractMember CM WITH(NOLOCK), CompanyMember NV WITH(NOLOCK), PatientView PV WITH(NOLOCK), CompanyCheckList CL WITH(NOLOCK), ServiceHistory SH WITH(NOLOCK), Services S WITH(NOLOCK) WHERE HD.CompanyContractGUID = CM.CompanyContractGUID AND CM.CompanyMemberGUID = NV.CompanyMemberGUID AND CL.ContractMemberGUID = CM.ContractMemberGUID AND CL.ServiceGUID = SH.ServiceGUID AND NV.PatientGUID = SH.PatientGUID AND SH.ServiceGUID = S.ServiceGUID AND PV.PatientGUID = NV.PatientGUID AND PV.Archived = 'False' AND HD.Status = 0 AND CM.Status = 0 AND CL.Status = 0 AND S.Status = 0 AND SH.Status = 0 AND HD.CompanyContractGUID = '{0}' AND SH.IsExported = 'False' AND SH.KhamTuTuc = 'False' AND ((HD.Completed = 'False' AND SH.ActivedDate > HD.BeginDate) OR (HD.Completed = 'True' AND SH.ActivedDate BETWEEN HD.BeginDate AND HD.EndDate)) AND PV.PatientGUID='{1}' AND S.ServiceGUID='{2}'", 
+                    hopDongGUID, patientGUID, serviceGUID);
+                result = ExcuteQuery(query);
+
+                if (!result.IsOK) return result;
+
+                double soTien = 0;
+                DataTable dt = result.QueryResult as DataTable;
+                if (dt != null && dt.Rows.Count > 0)
+                    soTien = Convert.ToDouble(dt.Rows[0][0]);
+
+                result.QueryResult = soTien;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetTongTienDichVuKhamTheoHopDong(string hopDongGUID)
         {
             Result result = new Result();
@@ -505,6 +538,38 @@ namespace MM.Bussiness
             {
                 string query = string.Format("SELECT PV.FullName AS NguoiChuyenNhuong, PV2.FullName AS NguoiNhanChuyenNhuong, S.[Name], SH.Price, SH.Discount, CAST((SH.Price - (SH.Price * SH.Discount)/100) AS float) AS ThanhTien FROM CompanyContract HD WITH(NOLOCK), ContractMember CM WITH(NOLOCK), CompanyMember NV WITH(NOLOCK), PatientView PV WITH(NOLOCK), CompanyCheckList CL WITH(NOLOCK), ServiceHistory SH WITH(NOLOCK), Services S WITH(NOLOCK), PatientView PV2 WITH(NOLOCK) WHERE HD.CompanyContractGUID = CM.CompanyContractGUID AND CM.CompanyMemberGUID = NV.CompanyMemberGUID AND CL.ContractMemberGUID = CM.ContractMemberGUID AND CL.ServiceGUID = SH.ServiceGUID AND  NV.PatientGUID = SH.RootPatientGUID AND SH.ServiceGUID = S.ServiceGUID AND PV.PatientGUID = NV.PatientGUID AND PV.Archived = 'False' AND HD.Status = 0 AND CM.Status = 0 AND CL.Status = 0 AND S.Status = 0 AND SH.Status = 0 AND HD.CompanyContractGUID = '{0}' AND SH.IsExported = 'False' AND SH.KhamTuTuc = 'True' AND ((HD.Completed = 'False' AND SH.ActivedDate > HD.BeginDate) OR (HD.Completed = 'True' AND SH.ActivedDate BETWEEN HD.BeginDate AND HD.EndDate)) AND SH.PatientGUID = PV2.PatientGUID ORDER BY PV.FullName", hopDongGUID);
                 result = ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
+        public static Result GetThanhTienDichVuKhamChuyenNhuong(string hopDongGUID, string serviceGUID, string patientGUID)
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Format("SELECT CAST((SH.Price - (SH.Price * SH.Discount)/100) AS float) AS ThanhTien FROM CompanyContract HD WITH(NOLOCK), ContractMember CM WITH(NOLOCK), CompanyMember NV WITH(NOLOCK), PatientView PV WITH(NOLOCK), CompanyCheckList CL WITH(NOLOCK), ServiceHistory SH WITH(NOLOCK), Services S WITH(NOLOCK), PatientView PV2 WITH(NOLOCK) WHERE HD.CompanyContractGUID = CM.CompanyContractGUID AND CM.CompanyMemberGUID = NV.CompanyMemberGUID AND CL.ContractMemberGUID = CM.ContractMemberGUID AND CL.ServiceGUID = SH.ServiceGUID AND  NV.PatientGUID = SH.RootPatientGUID AND SH.ServiceGUID = S.ServiceGUID AND PV.PatientGUID = NV.PatientGUID AND PV.Archived = 'False' AND HD.Status = 0 AND CM.Status = 0 AND CL.Status = 0 AND S.Status = 0 AND SH.Status = 0 AND HD.CompanyContractGUID = '{0}' AND SH.IsExported = 'False' AND SH.KhamTuTuc = 'True' AND ((HD.Completed = 'False' AND SH.ActivedDate > HD.BeginDate) OR (HD.Completed = 'True' AND SH.ActivedDate BETWEEN HD.BeginDate AND HD.EndDate)) AND SH.PatientGUID = PV2.PatientGUID AND PV.PatientGUID='{1}' AND S.ServiceGUID='{2}'", 
+                    hopDongGUID, patientGUID, serviceGUID);
+                result = ExcuteQuery(query);
+
+                if (!result.IsOK) return result;
+
+                DataTable dt = result.QueryResult as DataTable;
+                if (dt != null && dt.Rows.Count > 0 && dt.Rows[0][0] != null && dt.Rows[0][0] != DBNull.Value)
+                    result.QueryResult = Convert.ToDouble(dt.Rows[0][0]);
+                else
+                    result.QueryResult = 0;
             }
             catch (System.Data.SqlClient.SqlException se)
             {

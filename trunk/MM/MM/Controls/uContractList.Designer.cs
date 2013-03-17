@@ -30,11 +30,12 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnMoKhoa = new System.Windows.Forms.Button();
             this.btnKhoa = new System.Windows.Forms.Button();
@@ -47,17 +48,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgContract = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.contractCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.contractNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tenCtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SoTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DatCoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.beginDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.EndDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Lock = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.companyContractViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panel3 = new System.Windows.Forms.Panel();
             this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -68,12 +58,26 @@
             this.khoaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
             this.moKhoaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.companyContractViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.contractCodeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.contractNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tenCtyDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SoTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.DatCoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NgayDatCoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NhanSuPhuTrach = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.SoDienThoai = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.beginDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.EndDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Lock = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgContract)).BeginInit();
+            this.ctmAction.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.companyContractViewBindingSource)).BeginInit();
             this.panel3.SuspendLayout();
-            this.ctmAction.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -86,7 +90,7 @@
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel1.Location = new System.Drawing.Point(0, 397);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(879, 38);
+            this.panel1.Size = new System.Drawing.Size(936, 38);
             this.panel1.TabIndex = 2;
             // 
             // btnMoKhoa
@@ -157,7 +161,7 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(879, 39);
+            this.panel2.Size = new System.Drawing.Size(936, 39);
             this.panel2.TabIndex = 0;
             // 
             // chkMaHopDong
@@ -221,19 +225,22 @@
             this.tenCtyDataGridViewTextBoxColumn,
             this.SoTien,
             this.DatCoc,
+            this.NgayDatCoc,
+            this.NhanSuPhuTrach,
+            this.SoDienThoai,
             this.beginDateDataGridViewTextBoxColumn,
             this.EndDate,
             this.Lock});
             this.dgContract.ContextMenuStrip = this.ctmAction;
             this.dgContract.DataSource = this.companyContractViewBindingSource;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgContract.DefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle7.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle7.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle7.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle7.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle7.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgContract.DefaultCellStyle = dataGridViewCellStyle7;
             this.dgContract.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgContract.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgContract.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -243,113 +250,10 @@
             this.dgContract.Name = "dgContract";
             this.dgContract.RowHeadersWidth = 30;
             this.dgContract.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgContract.Size = new System.Drawing.Size(879, 358);
+            this.dgContract.Size = new System.Drawing.Size(936, 358);
             this.dgContract.TabIndex = 6;
             this.dgContract.CellMouseUp += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgContract_CellMouseUp);
             this.dgContract.DoubleClick += new System.EventHandler(this.dgContract_DoubleClick);
-            // 
-            // colChecked
-            // 
-            this.colChecked.DataPropertyName = "Checked";
-            this.colChecked.Frozen = true;
-            this.colChecked.HeaderText = "";
-            this.colChecked.Name = "colChecked";
-            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.colChecked.Width = 40;
-            // 
-            // contractCodeDataGridViewTextBoxColumn
-            // 
-            this.contractCodeDataGridViewTextBoxColumn.DataPropertyName = "ContractCode";
-            this.contractCodeDataGridViewTextBoxColumn.HeaderText = "Mã hợp đồng";
-            this.contractCodeDataGridViewTextBoxColumn.Name = "contractCodeDataGridViewTextBoxColumn";
-            this.contractCodeDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // contractNameDataGridViewTextBoxColumn
-            // 
-            this.contractNameDataGridViewTextBoxColumn.DataPropertyName = "ContractName";
-            this.contractNameDataGridViewTextBoxColumn.HeaderText = "Tên hợp đồng";
-            this.contractNameDataGridViewTextBoxColumn.Name = "contractNameDataGridViewTextBoxColumn";
-            this.contractNameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.contractNameDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // tenCtyDataGridViewTextBoxColumn
-            // 
-            this.tenCtyDataGridViewTextBoxColumn.DataPropertyName = "TenCty";
-            this.tenCtyDataGridViewTextBoxColumn.HeaderText = "Công ty";
-            this.tenCtyDataGridViewTextBoxColumn.Name = "tenCtyDataGridViewTextBoxColumn";
-            this.tenCtyDataGridViewTextBoxColumn.ReadOnly = true;
-            this.tenCtyDataGridViewTextBoxColumn.Width = 150;
-            // 
-            // SoTien
-            // 
-            this.SoTien.DataPropertyName = "SoTien";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle2.Format = "N0";
-            dataGridViewCellStyle2.NullValue = null;
-            this.SoTien.DefaultCellStyle = dataGridViewCellStyle2;
-            this.SoTien.HeaderText = "Số tiền";
-            this.SoTien.Name = "SoTien";
-            this.SoTien.ReadOnly = true;
-            this.SoTien.Width = 120;
-            // 
-            // DatCoc
-            // 
-            this.DatCoc.DataPropertyName = "DatCoc";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle3.Format = "N0";
-            dataGridViewCellStyle3.NullValue = null;
-            this.DatCoc.DefaultCellStyle = dataGridViewCellStyle3;
-            this.DatCoc.HeaderText = "Đặt cọc";
-            this.DatCoc.Name = "DatCoc";
-            this.DatCoc.ReadOnly = true;
-            this.DatCoc.Width = 120;
-            // 
-            // beginDateDataGridViewTextBoxColumn
-            // 
-            this.beginDateDataGridViewTextBoxColumn.DataPropertyName = "BeginDate";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle4.Format = "dd/MM/yyyy";
-            dataGridViewCellStyle4.NullValue = null;
-            this.beginDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
-            this.beginDateDataGridViewTextBoxColumn.HeaderText = "Ngày bắt đầu";
-            this.beginDateDataGridViewTextBoxColumn.Name = "beginDateDataGridViewTextBoxColumn";
-            this.beginDateDataGridViewTextBoxColumn.ReadOnly = true;
-            // 
-            // EndDate
-            // 
-            this.EndDate.DataPropertyName = "EndDate";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle5.Format = "dd/MM/yyyy";
-            dataGridViewCellStyle5.NullValue = null;
-            this.EndDate.DefaultCellStyle = dataGridViewCellStyle5;
-            this.EndDate.HeaderText = "Ngày kết thúc";
-            this.EndDate.Name = "EndDate";
-            this.EndDate.ReadOnly = true;
-            // 
-            // Lock
-            // 
-            this.Lock.DataPropertyName = "Lock";
-            this.Lock.HeaderText = "Khóa";
-            this.Lock.Name = "Lock";
-            this.Lock.ReadOnly = true;
-            this.Lock.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Lock.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Lock.Width = 70;
-            // 
-            // companyContractViewBindingSource
-            // 
-            this.companyContractViewBindingSource.DataSource = typeof(MM.Databasae.CompanyContractView);
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.chkChecked);
-            this.panel3.Controls.Add(this.dgContract);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 39);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(879, 358);
-            this.panel3.TabIndex = 1;
             // 
             // ctmAction
             // 
@@ -426,6 +330,137 @@
             this.moKhoaToolStripMenuItem.Text = "Mở khóa";
             this.moKhoaToolStripMenuItem.Click += new System.EventHandler(this.moKhoaToolStripMenuItem_Click);
             // 
+            // companyContractViewBindingSource
+            // 
+            this.companyContractViewBindingSource.DataSource = typeof(MM.Databasae.CompanyContractView);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.chkChecked);
+            this.panel3.Controls.Add(this.dgContract);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 39);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(936, 358);
+            this.panel3.TabIndex = 1;
+            // 
+            // colChecked
+            // 
+            this.colChecked.DataPropertyName = "Checked";
+            this.colChecked.Frozen = true;
+            this.colChecked.HeaderText = "";
+            this.colChecked.Name = "colChecked";
+            this.colChecked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.colChecked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.colChecked.Width = 40;
+            // 
+            // contractCodeDataGridViewTextBoxColumn
+            // 
+            this.contractCodeDataGridViewTextBoxColumn.DataPropertyName = "ContractCode";
+            this.contractCodeDataGridViewTextBoxColumn.HeaderText = "Mã hợp đồng";
+            this.contractCodeDataGridViewTextBoxColumn.Name = "contractCodeDataGridViewTextBoxColumn";
+            this.contractCodeDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // contractNameDataGridViewTextBoxColumn
+            // 
+            this.contractNameDataGridViewTextBoxColumn.DataPropertyName = "ContractName";
+            this.contractNameDataGridViewTextBoxColumn.HeaderText = "Tên hợp đồng";
+            this.contractNameDataGridViewTextBoxColumn.Name = "contractNameDataGridViewTextBoxColumn";
+            this.contractNameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.contractNameDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // tenCtyDataGridViewTextBoxColumn
+            // 
+            this.tenCtyDataGridViewTextBoxColumn.DataPropertyName = "TenCty";
+            this.tenCtyDataGridViewTextBoxColumn.HeaderText = "Công ty";
+            this.tenCtyDataGridViewTextBoxColumn.Name = "tenCtyDataGridViewTextBoxColumn";
+            this.tenCtyDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tenCtyDataGridViewTextBoxColumn.Width = 150;
+            // 
+            // SoTien
+            // 
+            this.SoTien.DataPropertyName = "SoTien";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle2.Format = "N0";
+            dataGridViewCellStyle2.NullValue = null;
+            this.SoTien.DefaultCellStyle = dataGridViewCellStyle2;
+            this.SoTien.HeaderText = "Số tiền";
+            this.SoTien.Name = "SoTien";
+            this.SoTien.ReadOnly = true;
+            this.SoTien.Width = 120;
+            // 
+            // DatCoc
+            // 
+            this.DatCoc.DataPropertyName = "DatCoc";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle3.Format = "N0";
+            dataGridViewCellStyle3.NullValue = null;
+            this.DatCoc.DefaultCellStyle = dataGridViewCellStyle3;
+            this.DatCoc.HeaderText = "Đặt cọc";
+            this.DatCoc.Name = "DatCoc";
+            this.DatCoc.ReadOnly = true;
+            this.DatCoc.Width = 120;
+            // 
+            // NgayDatCoc
+            // 
+            this.NgayDatCoc.DataPropertyName = "NgayDatCoc";
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.Format = "dd/MM/yyyy HH:mm:ss";
+            dataGridViewCellStyle4.NullValue = null;
+            this.NgayDatCoc.DefaultCellStyle = dataGridViewCellStyle4;
+            this.NgayDatCoc.HeaderText = "Ngày đặt cọc";
+            this.NgayDatCoc.Name = "NgayDatCoc";
+            this.NgayDatCoc.ReadOnly = true;
+            this.NgayDatCoc.Width = 120;
+            // 
+            // NhanSuPhuTrach
+            // 
+            this.NhanSuPhuTrach.DataPropertyName = "NhanSuPhuTrach";
+            this.NhanSuPhuTrach.HeaderText = "Nhân sự phụ trách";
+            this.NhanSuPhuTrach.Name = "NhanSuPhuTrach";
+            this.NhanSuPhuTrach.ReadOnly = true;
+            this.NhanSuPhuTrach.Width = 250;
+            // 
+            // SoDienThoai
+            // 
+            this.SoDienThoai.DataPropertyName = "SoDienThoai";
+            this.SoDienThoai.HeaderText = "Số điện thoại";
+            this.SoDienThoai.Name = "SoDienThoai";
+            this.SoDienThoai.ReadOnly = true;
+            this.SoDienThoai.Width = 120;
+            // 
+            // beginDateDataGridViewTextBoxColumn
+            // 
+            this.beginDateDataGridViewTextBoxColumn.DataPropertyName = "BeginDate";
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.Format = "dd/MM/yyyy";
+            dataGridViewCellStyle5.NullValue = null;
+            this.beginDateDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
+            this.beginDateDataGridViewTextBoxColumn.HeaderText = "Ngày bắt đầu";
+            this.beginDateDataGridViewTextBoxColumn.Name = "beginDateDataGridViewTextBoxColumn";
+            this.beginDateDataGridViewTextBoxColumn.ReadOnly = true;
+            // 
+            // EndDate
+            // 
+            this.EndDate.DataPropertyName = "EndDate";
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle6.Format = "dd/MM/yyyy";
+            dataGridViewCellStyle6.NullValue = null;
+            this.EndDate.DefaultCellStyle = dataGridViewCellStyle6;
+            this.EndDate.HeaderText = "Ngày kết thúc";
+            this.EndDate.Name = "EndDate";
+            this.EndDate.ReadOnly = true;
+            // 
+            // Lock
+            // 
+            this.Lock.DataPropertyName = "Lock";
+            this.Lock.HeaderText = "Khóa";
+            this.Lock.Name = "Lock";
+            this.Lock.ReadOnly = true;
+            this.Lock.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.Lock.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Lock.Width = 70;
+            // 
             // uContractList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -434,15 +469,15 @@
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Name = "uContractList";
-            this.Size = new System.Drawing.Size(879, 435);
+            this.Size = new System.Drawing.Size(936, 435);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgContract)).EndInit();
+            this.ctmAction.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.companyContractViewBindingSource)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.ctmAction.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -463,15 +498,6 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Button btnKhoa;
         private System.Windows.Forms.Button btnMoKhoa;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn colChecked;
-        private System.Windows.Forms.DataGridViewTextBoxColumn contractCodeDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn contractNameDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn tenCtyDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SoTien;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DatCoc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn beginDateDataGridViewTextBoxColumn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn EndDate;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Lock;
         protected System.Windows.Forms.ContextMenuStrip ctmAction;
         private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
@@ -482,5 +508,17 @@
         private System.Windows.Forms.ToolStripMenuItem khoaToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
         private System.Windows.Forms.ToolStripMenuItem moKhoaToolStripMenuItem;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn colChecked;
+        private System.Windows.Forms.DataGridViewTextBoxColumn contractCodeDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn contractNameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn tenCtyDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SoTien;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DatCoc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NgayDatCoc;
+        private System.Windows.Forms.DataGridViewTextBoxColumn NhanSuPhuTrach;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SoDienThoai;
+        private System.Windows.Forms.DataGridViewTextBoxColumn beginDateDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn EndDate;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Lock;
     }
 }
