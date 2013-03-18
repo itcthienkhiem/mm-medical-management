@@ -256,7 +256,7 @@ namespace MM.Controls
                 foreach (DataRow row in dt.Rows)
                 {
                     bool daThuTien = Convert.ToBoolean(row["DaThuTien"]);
-                    if (!daThuTien) continue;
+                    if (daThuTien) continue;
                     double soTien = Convert.ToDouble(row["Amount"]);
                     tongTien += soTien;
                 }
