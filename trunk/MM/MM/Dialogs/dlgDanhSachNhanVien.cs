@@ -33,7 +33,7 @@ namespace MM.Dialogs
         #region UI Command
         private void OnDisplayInfo()
         {
-            Result result = CompanyContractBus.GetDanhSachNhanVien(_contractGUID, _type);
+            Result result = CompanyContractBus.GetDanhSachNhanVien(_contractGUID, _type, string.Empty, 0);
             if (result.IsOK)
             {
                 MethodInvoker method = delegate

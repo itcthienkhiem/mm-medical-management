@@ -451,7 +451,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetDanhSachNhanVien(string contractGUID, int type)
+        public static Result GetDanhSachNhanVien(string contractGUID, int type, string tenBenhNhan, int filterType)
         {
             Result result = null;
 
@@ -462,6 +462,10 @@ namespace MM.Bussiness
                 SqlParameter param = new SqlParameter("@ContractGUID", contractGUID);
                 sqlParams.Add(param);
                 param = new SqlParameter("@Type", type);
+                sqlParams.Add(param);
+                param = new SqlParameter("@TenBenhNhan", tenBenhNhan);
+                sqlParams.Add(param);
+                param = new SqlParameter("@FilterType", filterType);
                 sqlParams.Add(param);
 
                 return ExcuteQuery(spName, sqlParams);
