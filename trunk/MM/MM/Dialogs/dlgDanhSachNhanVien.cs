@@ -157,6 +157,8 @@ namespace MM.Dialogs
             }
             else
                 _isAscending = false;
+
+            RefreshNo();
         }
         #endregion
 
