@@ -70,16 +70,19 @@ namespace MM.Controls
                 string exportFileName = string.Format("{0}\\Temp\\BaoCaoCongNoHopDong.xls", Application.StartupPath);
                 if (isPreview)
                 {
-                    if (raTongHop.Checked)
-                    {
-                        if (!ExportExcel.ExportCongNoHopDongTongHopToExcel(exportFileName, hopDongGUID, row["ContractCode"].ToString(), cboHopDong.Text))
-                            return;
-                    }
-                    else
-                    {
-                        if (!ExportExcel.ExportCongNoHopDongChiTietToExcel(exportFileName, hopDongGUID, row["ContractCode"].ToString(), cboHopDong.Text))
-                            return;
-                    }
+                    //if (raTongHop.Checked)
+                    //{
+                    //    if (!ExportExcel.ExportCongNoHopDongTongHopToExcel(exportFileName, hopDongGUID, row["ContractCode"].ToString(), cboHopDong.Text))
+                    //        return;
+                    //}
+                    //else
+                    //{
+                    //    if (!ExportExcel.ExportCongNoHopDongChiTietToExcel(exportFileName, hopDongGUID, row["ContractCode"].ToString(), cboHopDong.Text))
+                    //        return;
+                    //}
+
+                    if (!ExportExcel.ExportCongNoHopDongToExcel(exportFileName, hopDongGUID, row["ContractCode"].ToString(), cboHopDong.Text))
+                        return;
 
                     try
                     {
@@ -95,16 +98,19 @@ namespace MM.Controls
                 {
                     if (_printDialog.ShowDialog() == DialogResult.OK)
                     {
-                        if (raTongHop.Checked)
-                        {
-                            if (!ExportExcel.ExportCongNoHopDongTongHopToExcel(exportFileName, hopDongGUID, row["ContractCode"].ToString(), cboHopDong.Text))
+                        //if (raTongHop.Checked)
+                        //{
+                        //    if (!ExportExcel.ExportCongNoHopDongTongHopToExcel(exportFileName, hopDongGUID, row["ContractCode"].ToString(), cboHopDong.Text))
+                        //    return;
+                        //}
+                        //else
+                        //{
+                        //    if (!ExportExcel.ExportCongNoHopDongChiTietToExcel(exportFileName, hopDongGUID, row["ContractCode"].ToString(), cboHopDong.Text))
+                        //    return;
+                        //}
+
+                        if (!ExportExcel.ExportCongNoHopDongToExcel(exportFileName, hopDongGUID, row["ContractCode"].ToString(), cboHopDong.Text))
                             return;
-                        }
-                        else
-                        {
-                            if (!ExportExcel.ExportCongNoHopDongChiTietToExcel(exportFileName, hopDongGUID, row["ContractCode"].ToString(), cboHopDong.Text))
-                            return;
-                        }
                         
                         try
                         {
@@ -146,16 +152,18 @@ namespace MM.Controls
                     string hopDongGUID = cboHopDong.SelectedValue.ToString();
                     DataRow row = GetHopDongRow(hopDongGUID);
 
-                    if (raTongHop.Checked)
-                    {
-                        if (!ExportExcel.ExportCongNoHopDongTongHopToExcel(dlg.FileName, hopDongGUID, row["ContractCode"].ToString(), cboHopDong.Text))
-                            return;
-                    }
-                    else
-                    {
-                        if (!ExportExcel.ExportCongNoHopDongChiTietToExcel(dlg.FileName, hopDongGUID, row["ContractCode"].ToString(), cboHopDong.Text))
-                            return;
-                    }
+                    //if (raTongHop.Checked)
+                    //{
+                    //    if (!ExportExcel.ExportCongNoHopDongTongHopToExcel(dlg.FileName, hopDongGUID, row["ContractCode"].ToString(), cboHopDong.Text))
+                    //        return;
+                    //}
+                    //else
+                    //{
+                    //    if (!ExportExcel.ExportCongNoHopDongChiTietToExcel(dlg.FileName, hopDongGUID, row["ContractCode"].ToString(), cboHopDong.Text))
+                    //        return;
+                    //}
+
+                    ExportExcel.ExportCongNoHopDongToExcel(dlg.FileName, hopDongGUID, row["ContractCode"].ToString(), cboHopDong.Text);
                 }
             }
             else

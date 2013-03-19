@@ -817,7 +817,7 @@ namespace MM.Bussiness
                 List<SqlParameter> sqlParams = new List<SqlParameter>();
                 SqlParameter param = new SqlParameter("@HopDongGUID", hopDongGUID);
                 sqlParams.Add(param);
-                return ExcuteQuery("spCongNoHopDong", sqlParams);
+                return ExcuteQueryDataSet("spCongNoHopDong", sqlParams);
             }
             catch (System.Data.SqlClient.SqlException se)
             {
