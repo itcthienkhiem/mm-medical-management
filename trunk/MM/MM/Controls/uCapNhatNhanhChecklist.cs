@@ -158,7 +158,23 @@ namespace MM.Controls
 
         private void OnCapNhatAllChecklist()
         {
+            List<string> deletedPatientList = new List<string>();
+            List<DataRow> deletedRows = _dictPatient.Values.ToList();
+            foreach (DataRow row in deletedRows)
+            {
+                string patientGUID = row["PatientGUID"].ToString();
+                deletedPatientList.Add(patientGUID);
+            }
 
+            if (deletedPatientList.Count > 0)
+            {
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn cập nhật tất cả checklist của những nhân viên được chọn ?") == DialogResult.Yes)
+                {
+                    
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những nhân viên cần cập nhật.", IconType.Information);
         }
         #endregion
 
