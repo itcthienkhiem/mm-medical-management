@@ -128,6 +128,8 @@
             this.khamHopDongToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator72 = new System.Windows.Forms.ToolStripSeparator();
             this.baoCaoCongNoTheoHopDongToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator74 = new System.Windows.Forms.ToolStripSeparator();
+            this.capNhatNhanhChecklistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.receiptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.receiptListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator24 = new System.Windows.Forms.ToolStripSeparator();
@@ -236,6 +238,8 @@
             this.tinNhanMauToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator71 = new System.Windows.Forms.ToolStripSeparator();
             this.guiSMSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator73 = new System.Windows.Forms.ToolStripSeparator();
+            this.sMSLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.medicalManagementHelpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
@@ -275,6 +279,7 @@
             this.dockSite3 = new DevComponents.DotNetBar.DockSite();
             this._timerShowAlert = new System.Windows.Forms.Timer(this.components);
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uSMSLog = new MM.Controls.uSMSLog();
             this._uBaoCaoCongNoHopDong = new MM.Controls.uBaoCaoCongNoHopDong();
             this._uSendSMS = new MM.Controls.uSendSMS();
             this._uTinNhanMauList = new MM.Controls.uTinNhanMauList();
@@ -349,9 +354,7 @@
             this._uServicesList = new MM.Controls.uServicesList();
             this._timerCheckAlert = new System.Windows.Forms.Timer(this.components);
             this._timerPatient = new System.Windows.Forms.Timer(this.components);
-            this.toolStripSeparator73 = new System.Windows.Forms.ToolStripSeparator();
-            this.sMSLogToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._uSMSLog = new MM.Controls.uSMSLog();
+            this._uCapNhatNhanhChecklist = new MM.Controls.uCapNhatNhanhChecklist();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -999,7 +1002,9 @@
             this.toolStripSeparator69,
             this.khamHopDongToolStripMenuItem,
             this.toolStripSeparator72,
-            this.baoCaoCongNoTheoHopDongToolStripMenuItem});
+            this.baoCaoCongNoTheoHopDongToolStripMenuItem,
+            this.toolStripSeparator74,
+            this.capNhatNhanhChecklistToolStripMenuItem});
             resources.ApplyResources(this.companyToolStripMenuItem, "companyToolStripMenuItem");
             this.companyToolStripMenuItem.Name = "companyToolStripMenuItem";
             // 
@@ -1047,6 +1052,18 @@
             this.baoCaoCongNoTheoHopDongToolStripMenuItem.Name = "baoCaoCongNoTheoHopDongToolStripMenuItem";
             this.baoCaoCongNoTheoHopDongToolStripMenuItem.Tag = "BaoCaoCongNoHopDong";
             this.baoCaoCongNoTheoHopDongToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator74
+            // 
+            this.toolStripSeparator74.Name = "toolStripSeparator74";
+            resources.ApplyResources(this.toolStripSeparator74, "toolStripSeparator74");
+            // 
+            // capNhatNhanhChecklistToolStripMenuItem
+            // 
+            resources.ApplyResources(this.capNhatNhanhChecklistToolStripMenuItem, "capNhatNhanhChecklistToolStripMenuItem");
+            this.capNhatNhanhChecklistToolStripMenuItem.Name = "capNhatNhanhChecklistToolStripMenuItem";
+            this.capNhatNhanhChecklistToolStripMenuItem.Tag = "CapNhatNhanhChecklist";
+            this.capNhatNhanhChecklistToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // receiptToolStripMenuItem
             // 
@@ -1843,6 +1860,18 @@
             this.guiSMSToolStripMenuItem.Tag = "GuiSMS";
             this.guiSMSToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
+            // toolStripSeparator73
+            // 
+            this.toolStripSeparator73.Name = "toolStripSeparator73";
+            resources.ApplyResources(this.toolStripSeparator73, "toolStripSeparator73");
+            // 
+            // sMSLogToolStripMenuItem
+            // 
+            resources.ApplyResources(this.sMSLogToolStripMenuItem, "sMSLogToolStripMenuItem");
+            this.sMSLogToolStripMenuItem.Name = "sMSLogToolStripMenuItem";
+            this.sMSLogToolStripMenuItem.Tag = "SMSLog";
+            this.sMSLogToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
             // helpToolStripMenuItem
             // 
             this.helpToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -2216,6 +2245,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uCapNhatNhanhChecklist);
             this._mainPanel.Controls.Add(this._uSMSLog);
             this._mainPanel.Controls.Add(this._uBaoCaoCongNoHopDong);
             this._mainPanel.Controls.Add(this._uSendSMS);
@@ -2290,6 +2320,11 @@
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uSMSLog
+            // 
+            resources.ApplyResources(this._uSMSLog, "_uSMSLog");
+            this._uSMSLog.Name = "_uSMSLog";
             // 
             // _uBaoCaoCongNoHopDong
             // 
@@ -2664,22 +2699,10 @@
             // 
             this._timerPatient.Interval = 5000;
             // 
-            // toolStripSeparator73
+            // _uCapNhatNhanhChecklist
             // 
-            this.toolStripSeparator73.Name = "toolStripSeparator73";
-            resources.ApplyResources(this.toolStripSeparator73, "toolStripSeparator73");
-            // 
-            // sMSLogToolStripMenuItem
-            // 
-            resources.ApplyResources(this.sMSLogToolStripMenuItem, "sMSLogToolStripMenuItem");
-            this.sMSLogToolStripMenuItem.Name = "sMSLogToolStripMenuItem";
-            this.sMSLogToolStripMenuItem.Tag = "SMSLog";
-            this.sMSLogToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // _uSMSLog
-            // 
-            resources.ApplyResources(this._uSMSLog, "_uSMSLog");
-            this._uSMSLog.Name = "_uSMSLog";
+            resources.ApplyResources(this._uCapNhatNhanhChecklist, "_uCapNhatNhanhChecklist");
+            this._uCapNhatNhanhChecklist.Name = "_uCapNhatNhanhChecklist";
             // 
             // MainForm
             // 
@@ -3035,6 +3058,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator73;
         private System.Windows.Forms.ToolStripMenuItem sMSLogToolStripMenuItem;
         private Controls.uSMSLog _uSMSLog;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator74;
+        private System.Windows.Forms.ToolStripMenuItem capNhatNhanhChecklistToolStripMenuItem;
+        private Controls.uCapNhatNhanhChecklist _uCapNhatNhanhChecklist;
 
     }
 }
