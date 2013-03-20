@@ -101,6 +101,12 @@
     <Compile Include="Controls\uBaoCaoCongNoHopDong.Designer.cs">
       <DependentUpon>uBaoCaoCongNoHopDong.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uCapNhatNhanhChecklist.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uCapNhatNhanhChecklist.Designer.cs">
+      <DependentUpon>uCapNhatNhanhChecklist.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uSMSLog.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1609,6 +1615,9 @@
     </Compile>
     <EmbeddedResource Include="Controls\uBaoCaoCongNoHopDong.resx">
       <DependentUpon>uBaoCaoCongNoHopDong.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uCapNhatNhanhChecklist.resx">
+      <DependentUpon>uCapNhatNhanhChecklist.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uSMSLog.resx">
       <DependentUpon>uSMSLog.cs</DependentUpon>

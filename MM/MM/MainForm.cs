@@ -398,6 +398,8 @@ namespace MM
                 _uBaoCaoCongNoHopDong.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uSMSLog))
                 _uSMSLog.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uCapNhatNhanhChecklist))
+                _uCapNhatNhanhChecklist.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -1555,6 +1557,20 @@ namespace MM
                             _uSMSLog.AllowExportAll = isExportAll;
                             _uSMSLog.AllowConfirm = isConfirm;
                         }
+                        else if (functionCode == Const.CapNhatNhanhChecklist)
+                        {
+                            companyToolStripMenuItem.Enabled = isLogin;
+                            capNhatNhanhChecklistToolStripMenuItem.Enabled = isView && isLogin;
+                            _uCapNhatNhanhChecklist.AllowAdd = isAdd;
+                            _uCapNhatNhanhChecklist.AllowEdit = isEdit;
+                            _uCapNhatNhanhChecklist.AllowDelete = isDelete;
+                            _uCapNhatNhanhChecklist.AllowPrint = isPrint;
+                            _uCapNhatNhanhChecklist.AllowExport = isExport;
+                            _uCapNhatNhanhChecklist.AllowImport = isImport;
+                            _uCapNhatNhanhChecklist.AllowLock = isLock;
+                            _uCapNhatNhanhChecklist.AllowExportAll = isExportAll;
+                            _uCapNhatNhanhChecklist.AllowConfirm = isConfirm;
+                        }
                     }
                 }
                 else
@@ -1781,6 +1797,7 @@ namespace MM
                 guiSMSToolStripMenuItem.Enabled = isLogin;
                 baoCaoCongNoTheoHopDongToolStripMenuItem.Enabled = isLogin;
                 sMSLogToolStripMenuItem.Enabled = isLogin;
+                capNhatNhanhChecklistToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -2223,7 +2240,18 @@ namespace MM
                 case "SMSLog":
                     OnSMSLog();
                     break;
+
+                case "CapNhatNhanhChecklist":
+                    OnCapNhatNhanhChecklist();
+                    break;
             }
+        }
+
+        private void OnCapNhatNhanhChecklist()
+        {
+            this.Text = string.Format("{0} - Cap nhat nhanh checklist", Application.ProductName);
+            ViewControl(_uCapNhatNhanhChecklist);
+            _uCapNhatNhanhChecklist.DisplayAsThread();
         }
 
         private void OnSMSLog()
@@ -3174,6 +3202,7 @@ namespace MM
             _uSendSMS.ClearData();
             _uBaoCaoCongNoHopDong.ClearData();
             _uSMSLog.ClearData();
+            _uCapNhatNhanhChecklist.ClearData();
         }
         #endregion
 
