@@ -170,7 +170,8 @@ namespace MM.Controls
             {
                 if (MsgBox.Question(Application.ProductName, "Bạn có muốn cập nhật tất cả checklist của những nhân viên được chọn ?") == DialogResult.Yes)
                 {
-                    
+
+                    SearchAsThread();
                 }
             }
             else
