@@ -52,6 +52,7 @@
             this.companyContractViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label5 = new System.Windows.Forms.Label();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.label2 = new System.Windows.Forms.Label();
             this.btnEdit = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
@@ -70,7 +71,7 @@
             this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.label2 = new System.Windows.Forms.Label();
+            this.lbThongBao = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.companyContractViewBindingSource)).BeginInit();
             this.panel2.SuspendLayout();
@@ -82,6 +83,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lbThongBao);
             this.panel1.Controls.Add(this.lbKetQuaTimDuoc);
             this.panel1.Controls.Add(this.raDaKhamDu);
             this.panel1.Controls.Add(this.raKhamChuaDu);
@@ -232,6 +234,18 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(749, 38);
             this.panel2.TabIndex = 3;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.label2.ForeColor = System.Drawing.Color.Blue;
+            this.label2.Location = new System.Drawing.Point(175, 12);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(484, 13);
+            this.label2.TabIndex = 2;
+            this.label2.Text = "Cập nhật tất cả checklist là cập nhật tất cả những dịch vụ chưa khám trong checkl" +
+                "ist của nhân viên.";
             // 
             // btnEdit
             // 
@@ -438,17 +452,15 @@
             // 
             this.patientViewBindingSource.DataSource = typeof(MM.Databasae.PatientView);
             // 
-            // label2
+            // lbThongBao
             // 
-            this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Italic, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.label2.ForeColor = System.Drawing.Color.Blue;
-            this.label2.Location = new System.Drawing.Point(175, 12);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(484, 13);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "Cập nhật tất cả checklist là cập nhật tất cả những dịch vụ chưa khám trong checkl" +
-                "ist của nhân viên.";
+            this.lbThongBao.AutoSize = true;
+            this.lbThongBao.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lbThongBao.ForeColor = System.Drawing.Color.Red;
+            this.lbThongBao.Location = new System.Drawing.Point(388, 13);
+            this.lbThongBao.Name = "lbThongBao";
+            this.lbThongBao.Size = new System.Drawing.Size(0, 13);
+            this.lbThongBao.TabIndex = 37;
             // 
             // uCapNhatNhanhChecklist
             // 
@@ -508,5 +520,6 @@
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.Label lbKetQuaTimDuoc;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label lbThongBao;
     }
 }
