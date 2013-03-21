@@ -23,6 +23,8 @@ namespace MM.Controls
         private int _type2 = 0;
         private DataTable _dtTemp = null;
         private bool _isAscending = true;
+        private DateTime _beginDate = DateTime.Now;
+        private DateTime _endDate = DateTime.Now;
         #endregion
 
         #region Constructor
@@ -158,6 +160,8 @@ namespace MM.Controls
 
         private void OnCapNhatAllChecklist()
         {
+            if (_hopDongGUID == string.Empty || _hopDongGUID == Guid.Empty.ToString()) return;
+
             List<string> deletedPatientList = new List<string>();
             List<DataRow> deletedRows = _dictPatient.Values.ToList();
             foreach (DataRow row in deletedRows)
@@ -170,12 +174,105 @@ namespace MM.Controls
             {
                 if (MsgBox.Question(Application.ProductName, "Bạn có muốn cập nhật tất cả checklist của những nhân viên được chọn ?") == DialogResult.Yes)
                 {
+                    foreach (string patientGUID in deletedPatientList)
+                    {
+                        Result result = CompanyContractBus.GetCheckList(_hopDongGUID, patientGUID);
+                        if (!result.IsOK)
+                        {
+                            MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.GetCheckList"), IconType.Error);
+                            Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.GetCheckList"));
+                            return;
+                        }
 
+                        DataTable dtChecklist = result.QueryResult as DataTable;
+                        List<DataRow> checkListRows = new List<DataRow>();
+                        foreach (DataRow row in dtChecklist.Rows)
+                        {
+                            bool isUsing = Convert.ToBoolean(row["Using"]);
+                            if (isUsing) continue;
+                            row["Using"] = true;
+                            checkListRows.Add(row);
+                        }
+
+                        if (checkListRows.Count <= 0) continue;
+                        result = ServiceHistoryBus.UpdateChecklist(patientGUID, _hopDongGUID, _beginDate, _endDate, checkListRows);
+                        if (!result.IsOK)
+                        {
+                            MsgBox.Show(this.Text, result.GetErrorAsString("ServiceHistoryBus.UpdateChecklist"), IconType.Error);
+                            Utility.WriteToTraceLog(result.GetErrorAsString("ServiceHistoryBus.UpdateChecklist"));
+                            return;
+                        }
+                    }
+
+                    MsgBox.Show(this.Text, "Đã cập nhật thành công.", IconType.Information);
                     SearchAsThread();
                 }
             }
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những nhân viên cần cập nhật.", IconType.Information);
+        }
+
+        private void ValidateHopDong(string hopDongGUID)
+        {
+            if (hopDongGUID == string.Empty || hopDongGUID == Guid.Empty.ToString())
+            {
+                lbThongBao.Text = string.Empty;
+                dgPatient.ReadOnly = false;
+                chkChecked.Enabled = true;
+                panel2.Enabled = true;
+                return;
+            }
+
+            _beginDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+            _endDate = Global.MaxDateTime;
+            string tenHopDong = string.Empty;
+
+            DataTable dt = cboHopDong.DataSource as DataTable;
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                DataRow[] rows = dt.Select(string.Format("CompanyContractGUID='{0}'", hopDongGUID));
+                if (rows == null || rows.Length <= 0)
+                {
+                    lbThongBao.Text = string.Empty;
+                    dgPatient.ReadOnly = false;
+                    chkChecked.Enabled = true;
+                    panel2.Enabled = true;
+                    return;
+                }
+
+                _beginDate = Convert.ToDateTime(rows[0]["BeginDate"]);
+                _beginDate = new DateTime(_beginDate.Year, _beginDate.Month, _beginDate.Day, 0, 0, 0);
+                if (rows[0]["EndDate"] != null && rows[0]["EndDate"] != DBNull.Value)
+                {
+                    _endDate = Convert.ToDateTime(rows[0]["EndDate"]);
+                    _endDate = new DateTime(_endDate.Year, _endDate.Month, _endDate.Day, 23, 59, 59);
+                }
+
+                tenHopDong = rows[0]["ContractName"].ToString();
+            }
+
+            DateTime dtNow = DateTime.Now;
+            if (dtNow >= _beginDate && dtNow <= _endDate)
+            {
+                lbThongBao.Text = string.Empty;
+                dgPatient.ReadOnly = false;
+                chkChecked.Enabled = true;
+                panel2.Enabled = true;
+            }
+            else if (dtNow > _endDate)
+            {
+                lbThongBao.Text = string.Format("Hợp đồng đã kết thúc ngày {0}.", _endDate.ToString("dd/MM/yyyy"));
+                dgPatient.ReadOnly = true;
+                chkChecked.Enabled = false;
+                panel2.Enabled = false;
+            }
+            else
+            {
+                lbThongBao.Text = string.Format("Hợp đồng này bắt đầu ngày {0}, chưa tới ngày khám.", _beginDate.ToString("dd/MM/yyyy"));
+                dgPatient.ReadOnly = true;
+                chkChecked.Enabled = false;
+                panel2.Enabled = false;
+            }
         }
         #endregion
 
@@ -227,6 +324,12 @@ namespace MM.Controls
 
         private void cboHopDong_SelectedIndexChanged(object sender, EventArgs e)
         {
+            string hopDongGUID = string.Empty;
+            if (cboHopDong.SelectedValue != null)
+                hopDongGUID = cboHopDong.SelectedValue.ToString();
+
+            ValidateHopDong(hopDongGUID);
+
             SearchAsThread();
         }
 
