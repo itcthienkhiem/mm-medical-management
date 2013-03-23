@@ -27,6 +27,7 @@ namespace MM.Dialogs
         private bool _isExported = false;
         private DataTable _dtCheckList = null;
         private bool _allowEdit = true;
+        private string _hopDongGUID = string.Empty;
         #endregion
 
         #region Constructor
@@ -49,6 +50,12 @@ namespace MM.Dialogs
         #endregion
 
         #region Properties
+        public string HopDongGUID
+        {
+            get { return _hopDongGUID; }
+            set { _hopDongGUID = value; }
+        }
+
         public string ServiceGUID
         {
             set { _serviceGUID = value; }
@@ -112,6 +119,14 @@ namespace MM.Dialogs
             }
 
             DisplayBacSiChiDinhList();
+
+            if (_hopDongGUID != string.Empty)
+            {
+                raKhamTheoHopDong.Enabled = false;
+                chkChuyenNhuong.Enabled = false;
+                txtChuyenNhuong.Enabled = false;
+                btnChonBenhNhan.Enabled = false;
+            }
         }
 
         private void GetCheckListByPatient(string patientGUID)
@@ -440,6 +455,9 @@ namespace MM.Dialogs
                         _serviceHistory.Negative = chkNegative.Checked;
                         _serviceHistory.Positive = chkPositive.Checked;
                     }
+
+                    if (_hopDongGUID != string.Empty)
+                        _serviceHistory.HopDongGUID = Guid.Parse(_hopDongGUID);
 
                     Result result = GiaVonDichVuBus.GetGiaVonDichVuMoiNhat(_serviceHistory.ServiceGUID.ToString(), _serviceHistory.ActivedDate.Value);
                     if (!result.IsOK)

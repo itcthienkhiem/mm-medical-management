@@ -12,6 +12,31 @@ namespace MM.Bussiness
 {
     public class ServiceHistoryBus : BusBase
     {
+        public static Result GetDichVuLamThemList(string patientGUID, string hopDongGUID)
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, S.*, CAST((S.FixedPrice - (S.FixedPrice * S.Discount)/100) AS float) AS Amount, CASE ISNULL(R.ChuaThuTien, CAST(1 AS bit)) WHEN 1 THEN 0 ELSE 1 END AS DaThuTien FROM ReceiptDetail D WITH(NOLOCK) INNER JOIN Receipt R WITH(NOLOCK) ON D.ReceiptGUID = R.ReceiptGUID RIGHT OUTER JOIN ServiceHistoryView S WITH(NOLOCK) ON D.ServiceHistoryGUID = S.ServiceHistoryGUID WHERE S.PatientGUID = '{0}' AND S.Status = {1} AND S.ServiceStatus = {1} AND S.HopDongGUID='{2}' AND (R.Status IS NULL OR R.Status={1}) AND (D.Status IS NULL OR D.Status={1}) ORDER BY S.[Name]",
+                            patientGUID, (byte)Status.Actived, hopDongGUID);
+
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetServiceHistory(string patientGUID, bool isAll, DateTime fromDate, DateTime toDate)
         {
             Result result = new Result();
@@ -221,9 +246,13 @@ namespace MM.Bussiness
                                 if (patient != null) nguoiChuyenNhuong = patient.FullName;
                             }
 
-                            desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Dịch vụ: '{3}', Giá: '{4}', Giảm: '{5}', Giá vốn: '{6}', Nguuời chuyển nhượng: '{7}', Khám tự túc: '{8}'\n",
+                            string hopDongGUID = string.Empty;
+                            if (srvHistory.HopDongGUID != null && srvHistory.HopDongGUID.HasValue)
+                                hopDongGUID = srvHistory.HopDongGUID.Value.ToString();
+
+                            desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Dịch vụ: '{3}', Giá: '{4}', Giảm: '{5}', Giá vốn: '{6}', Nguuời chuyển nhượng: '{7}', Khám tự túc: '{8}', Hợp đồng GUID: '{9}'\n",
                                 srvHistory.ServiceHistoryGUID.ToString(), srvHistory.Patient.Contact.FullName, bacSiThucHien,
-                                srvHistory.Service.Name, srvHistory.Price.Value, srvHistory.Discount, srvHistory.GiaVon, nguoiChuyenNhuong, srvHistory.KhamTuTuc);
+                                srvHistory.Service.Name, srvHistory.Price.Value, srvHistory.Discount, srvHistory.GiaVon, nguoiChuyenNhuong, srvHistory.KhamTuTuc, hopDongGUID);
                         }
                     }
 
@@ -295,10 +324,14 @@ namespace MM.Bussiness
                         }
 
                         //Tracking
-                        desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Dịch vụ: '{3}', Giá: '{4}', Giảm: '{5}', Giá vốn: '{6}', Người chuyển nhượng: '{7}', Khám tự túc: '{8}'",
+                        string hopDongGUID = string.Empty;
+                        if (serviceHistory.HopDongGUID != null && serviceHistory.HopDongGUID.HasValue)
+                            hopDongGUID = serviceHistory.HopDongGUID.Value.ToString();
+
+                        desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Dịch vụ: '{3}', Giá: '{4}', Giảm: '{5}', Giá vốn: '{6}', Người chuyển nhượng: '{7}', Khám tự túc: '{8}', Hợp đồng GUID: '{9}'",
                                 serviceHistory.ServiceHistoryGUID.ToString(), serviceHistory.Patient.Contact.FullName, bacSiThucHien,
                                 serviceHistory.Service.Name, serviceHistory.Price.Value, serviceHistory.Discount, serviceHistory.GiaVon, 
-                                nguoiChuyenNhuong, serviceHistory.KhamTuTuc);
+                                nguoiChuyenNhuong, serviceHistory.KhamTuTuc, hopDongGUID);
 
                         Tracking tk = new Tracking();
                         tk.TrackingGUID = Guid.NewGuid();
@@ -342,6 +375,7 @@ namespace MM.Bussiness
                             srvHistory.Positive = serviceHistory.Positive;
                             srvHistory.RootPatientGUID = serviceHistory.RootPatientGUID;
                             srvHistory.KhamTuTuc = serviceHistory.KhamTuTuc;
+                            srvHistory.HopDongGUID = serviceHistory.HopDongGUID;
 
                             string bacSiThucHien = string.Empty;
                             if (srvHistory.DocStaff != null)
@@ -355,9 +389,13 @@ namespace MM.Bussiness
                             }
 
                             //Tracking
-                            desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Dịch vụ: '{3}', Giá: cũ: '{4}' - mới: '{5}', Giảm: cũ: '{6}' - mới: '{7}', Giá vốn cũ: '{8}' - mới: '{9}', Người chuyển nhượng: '{10}', Khám tự túc: '{11}'",
+                            string hopDongGUID = string.Empty;
+                            if (serviceHistory.HopDongGUID != null && serviceHistory.HopDongGUID.HasValue)
+                                hopDongGUID = serviceHistory.HopDongGUID.Value.ToString();
+
+                            desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Dịch vụ: '{3}', Giá: cũ: '{4}' - mới: '{5}', Giảm: cũ: '{6}' - mới: '{7}', Giá vốn cũ: '{8}' - mới: '{9}', Người chuyển nhượng: '{10}', Khám tự túc: '{11}', Hợp đồng GUID: '{12}'",
                                     srvHistory.ServiceHistoryGUID.ToString(), srvHistory.Patient.Contact.FullName, bacSiThucHien,
-                                    srvHistory.Service.Name, giaCu, srvHistory.Price.Value, giamCu, srvHistory.Discount, giaVonCu, srvHistory.GiaVon, nguoiChuyenNhuong, srvHistory.KhamTuTuc);
+                                    srvHistory.Service.Name, giaCu, srvHistory.Price.Value, giamCu, srvHistory.Discount, giaVonCu, srvHistory.GiaVon, nguoiChuyenNhuong, srvHistory.KhamTuTuc, hopDongGUID);
 
                             Tracking tk = new Tracking();
                             tk.TrackingGUID = Guid.NewGuid();
