@@ -8858,7 +8858,7 @@ namespace MM.Exports
                 }
 
                 DataSet ds = result.QueryResult as DataSet;
-                if (ds == null || ds.Tables.Count != 2 || ds.Tables[0].Rows.Count <= 0)
+                if (ds == null || ds.Tables.Count != 3 || ds.Tables[0].Rows.Count <= 0)
                 {
                     MsgBox.Show(Application.ProductName, "Hợp đồng này không có dữ liệu.", IconType.Information);
                     return false;
@@ -8866,6 +8866,7 @@ namespace MM.Exports
 
                 DataTable dtCongNo = ds.Tables[0];
                 DataTable dtMaxCol = ds.Tables[1];
+                DataTable dtServices = ds.Tables[2];
                 int maxKhamHopDongCol = 0;
                 int maxChuyenNhuongCol = 0;
                 int maxDichVuLamThemCol = 0;
@@ -8880,22 +8881,53 @@ namespace MM.Exports
                 }
 
                 int colIndex = 2;
-                int rowIndex = 2;
+                int rowIndex = 3;
+                double colWidth = 25;
                 IRange range = null;
 
                 if (maxKhamHopDongCol != 0)
                 {
+                    DataRow[] rows = dtServices.Select(string.Format("Loai=0"));
+
                     for (int i = 0; i < maxKhamHopDongCol; i++)
                     {
                         range = workSheet.Cells[rowIndex, colIndex + 1];
-                        range.ColumnWidth = 29.29;
-                        range = workSheet.Cells[rowIndex, colIndex + 2];
-                        range.ColumnWidth = 12.86;
-                        colIndex += 2;
+                        range.ColumnWidth = colWidth;
+                        range.Value = rows[i]["Name"].ToString();
+                        string serviceGUID = rows[i]["ServiceGUID"].ToString();
+                        Result rs = CompanyContractBus.GetDichVuCon(hopDongGUID, serviceGUID);
+                        if (!rs.IsOK)
+                        {
+                            MsgBox.Show(Application.ProductName, rs.GetErrorAsString("CompanyContractBus.GetDichVuCon"), IconType.Error);
+                            Utility.WriteToTraceLog(rs.GetErrorAsString("CompanyContractBus.GetDichVuCon"));
+                            return false;
+                        }
+
+                        DataTable dt = rs.QueryResult as DataTable;
+                        if (dt != null && dt.Rows.Count > 0)
+                        {
+                            string s = string.Empty;
+                            foreach (DataRow drDichVuCon in dt.Rows)
+                            {
+                                s += string.Format("\n  + {0}", drDichVuCon["Name"].ToString());
+                            }
+
+                            range.Value += s;
+                        }
+
+                        range.WrapText = true;
+                        range.Borders.Color = Color.Black;
+                        range.Borders.LineStyle = LineStyle.Continuous;
+                        range.Borders.Weight = BorderWeight.Thin;
+                        range.HorizontalAlignment = HAlign.Center;
+                        range.VerticalAlignment = VAlign.Center;
+                        range.Interior.Color = Color.LightGray;
+                        range.Font.Bold = true;
+                        colIndex ++;
                     }
 
                     colIndex = 2;
-                    range = workSheet.Cells[rowIndex, colIndex + 1, rowIndex, colIndex + (maxKhamHopDongCol * 2)];
+                    range = workSheet.Cells[rowIndex - 1, colIndex + 1, rowIndex - 1, colIndex + maxKhamHopDongCol];
                     range.Merge();
                     range.Borders.Color = Color.Black;
                     range.Borders.LineStyle = LineStyle.Continuous;
@@ -8906,69 +8938,110 @@ namespace MM.Exports
                     range.Font.Bold = true;
                 }
 
-                colIndex = 2 + (maxKhamHopDongCol * 2);
+                colIndex = 2 + maxKhamHopDongCol;
                 if (maxChuyenNhuongCol != 0)
                 {
+                    DataRow[] rows = dtServices.Select(string.Format("Loai=1"));
+
                     for (int i = 0; i < maxChuyenNhuongCol; i++)
                     {
                         range = workSheet.Cells[rowIndex, colIndex + 1];
-                        range.ColumnWidth = 29.29;
-                        range = workSheet.Cells[rowIndex, colIndex + 2];
-                        range.ColumnWidth = 12.86;
-                        colIndex += 2;
+                        range.ColumnWidth = colWidth;
+                        range.Value = rows[i]["Name"].ToString();
+
+                        string serviceGUID = rows[i]["ServiceGUID"].ToString();
+                        Result rs = CompanyContractBus.GetDichVuCon(hopDongGUID, serviceGUID);
+                        if (!rs.IsOK)
+                        {
+                            MsgBox.Show(Application.ProductName, rs.GetErrorAsString("CompanyContractBus.GetDichVuCon"), IconType.Error);
+                            Utility.WriteToTraceLog(rs.GetErrorAsString("CompanyContractBus.GetDichVuCon"));
+                            return false;
+                        }
+
+                        DataTable dt = rs.QueryResult as DataTable;
+                        if (dt != null && dt.Rows.Count > 0)
+                        {
+                            string s = string.Empty;
+                            foreach (DataRow drDichVuCon in dt.Rows)
+                            {
+                                s += string.Format("\n  + {0}", drDichVuCon["Name"].ToString());
+                            }
+
+                            range.Value += s;
+                        }
+
+                        range.WrapText = true;
+                        range.Borders.Color = Color.Black;
+                        range.Borders.LineStyle = LineStyle.Continuous;
+                        range.Borders.Weight = BorderWeight.Thin;
+                        range.HorizontalAlignment = HAlign.Center;
+                        range.VerticalAlignment = VAlign.Center;
+                        range.Interior.Color = Color.LightGray;
+                        range.Font.Bold = true;
+                        colIndex ++;
                     }
 
-                    colIndex = 2 + (maxKhamHopDongCol * 2);
-                    range = workSheet.Cells[rowIndex, colIndex + 1, rowIndex, colIndex + (maxChuyenNhuongCol * 2)];
+                    colIndex = 2 + maxKhamHopDongCol;
+                    range = workSheet.Cells[rowIndex - 1, colIndex + 1, rowIndex - 1, colIndex + maxChuyenNhuongCol];
                     range.Merge();
                     range.Borders.Color = Color.Black;
                     range.Borders.LineStyle = LineStyle.Continuous;
                     range.Borders.Weight = BorderWeight.Thin;
-                    range.Value = "DỊCH VỤ CHUYỂN NHƯỢNG";
+                    range.Value = "DV CHUYỂN NHƯỢNG";
                     range.HorizontalAlignment = HAlign.Center;
                     range.Interior.Color = Color.LightGray;
                     range.Font.Bold = true;
                 }
 
-                colIndex = 2 + (maxKhamHopDongCol * 2) + (maxChuyenNhuongCol*2);
+                colIndex = 2 + maxKhamHopDongCol + maxChuyenNhuongCol;
                 if (maxDichVuLamThemCol != 0)
                 {
+                    DataRow[] rows = dtServices.Select(string.Format("Loai=2"));
+
                     for (int i = 0; i < maxDichVuLamThemCol; i++)
                     {
                         range = workSheet.Cells[rowIndex, colIndex + 1];
-                        range.ColumnWidth = 29.29;
-                        range = workSheet.Cells[rowIndex, colIndex + 2];
-                        range.ColumnWidth = 12.86;
-                        colIndex += 2;
+                        range.ColumnWidth = colWidth;
+                        range.Value = rows[i]["Name"].ToString();
+                        range.WrapText = true;
+                        range.Borders.Color = Color.Black;
+                        range.Borders.LineStyle = LineStyle.Continuous;
+                        range.Borders.Weight = BorderWeight.Thin;
+                        range.HorizontalAlignment = HAlign.Center;
+                        range.VerticalAlignment = VAlign.Center;
+                        range.Interior.Color = Color.LightGray;
+                        range.Font.Bold = true;
+                        colIndex ++;
                     }
 
-                    colIndex = 2 + (maxKhamHopDongCol * 2) + (maxChuyenNhuongCol * 2);
-                    range = workSheet.Cells[rowIndex, colIndex + 1, rowIndex, colIndex + (maxDichVuLamThemCol * 2)];
+                    colIndex = 2 + maxKhamHopDongCol + maxChuyenNhuongCol;
+                    range = workSheet.Cells[rowIndex - 1, colIndex + 1, rowIndex - 1, colIndex + maxDichVuLamThemCol];
                     range.Merge();
                     range.Borders.Color = Color.Black;
                     range.Borders.LineStyle = LineStyle.Continuous;
                     range.Borders.Weight = BorderWeight.Thin;
-                    range.Value = "DỊCH VỤ LÀM THÊM";
+                    range.Value = "DV LÀM THÊM";
                     range.HorizontalAlignment = HAlign.Center;
                     range.Interior.Color = Color.LightGray;
                     range.Font.Bold = true;
                 }
 
-                colIndex = 3 + (maxKhamHopDongCol * 2) + (maxChuyenNhuongCol * 2) + (maxDichVuLamThemCol * 2);
+                colIndex = 3 + maxKhamHopDongCol + maxChuyenNhuongCol + maxDichVuLamThemCol;
                 range = workSheet.Cells[rowIndex, colIndex];
                 range.ColumnWidth = 14;
                 range.Borders.Color = Color.Black;
                 range.Borders.LineStyle = LineStyle.Continuous;
                 range.Borders.Weight = BorderWeight.Thin;
-                range.Value = "Tổng tiền";
+                range.Value = "Thành tiền";
                 range.HorizontalAlignment = HAlign.Center;
+                range.VerticalAlignment = VAlign.Center;
                 range.Interior.Color = Color.LightGray;
                 range.Font.Bold = true;
 
                 string currentPatient = string.Empty;
                 int currentLoai = -1;
                 colIndex = 2;
-                rowIndex = 2;
+                rowIndex = 3;
                 double tongTien = 0;
                 double congNo = 0;
                 foreach (DataRow row in dtCongNo.Rows)
@@ -8987,12 +9060,12 @@ namespace MM.Exports
                         currentPatient = patientGUID;
                         currentLoai = loai;
                         if (currentLoai == 0) colIndex = 2;
-                        else if (currentLoai == 1) colIndex = 2 + (maxKhamHopDongCol * 2);
-                        else if (currentLoai == 2) colIndex = 2 + (maxKhamHopDongCol * 2) + (maxChuyenNhuongCol * 2);
+                        else if (currentLoai == 1) colIndex = 2 + maxKhamHopDongCol;
+                        else if (currentLoai == 2) colIndex = 2 + maxKhamHopDongCol + maxChuyenNhuongCol;
 
-                        if (rowIndex > 2)
+                        if (rowIndex > 3)
                         {
-                            range = workSheet.Cells[rowIndex, 3 + (maxKhamHopDongCol * 2) + (maxChuyenNhuongCol * 2) + (maxDichVuLamThemCol * 2)];
+                            range = workSheet.Cells[rowIndex, 3 + maxKhamHopDongCol + maxChuyenNhuongCol + maxDichVuLamThemCol];
                             range.Value = tongTien;
                             range.HorizontalAlignment = HAlign.Right;
                             range.Font.Bold = true;
@@ -9014,7 +9087,7 @@ namespace MM.Exports
                         range.Value = gioiTinh;
                         range.HorizontalAlignment = HAlign.Center;
 
-                        range = workSheet.Cells[rowIndex, 0, rowIndex, 3 + (maxKhamHopDongCol * 2) + (maxChuyenNhuongCol * 2) + (maxDichVuLamThemCol * 2)];
+                        range = workSheet.Cells[rowIndex, 0, rowIndex, 3 + maxKhamHopDongCol + maxChuyenNhuongCol + maxDichVuLamThemCol];
                         range.Borders.Color = Color.Black;
                         range.Borders.LineStyle = LineStyle.Continuous;
                         range.Borders.Weight = BorderWeight.Thin;
@@ -9028,49 +9101,20 @@ namespace MM.Exports
                         {
                             currentLoai = loai;
                             if (currentLoai == 0) colIndex = 2;
-                            else if (currentLoai == 1) colIndex = 2 + (maxKhamHopDongCol * 2);
-                            else if (currentLoai == 2) colIndex = 2 + (maxKhamHopDongCol * 2) + (maxChuyenNhuongCol * 2);
+                            else if (currentLoai == 1) colIndex = 2 + maxKhamHopDongCol;
+                            else if (currentLoai == 2) colIndex = 2 + maxKhamHopDongCol + maxChuyenNhuongCol;
                         }
                     }
 
                     range = workSheet.Cells[rowIndex, colIndex + 1];
-                    range.Value = dichVu;
-                    range.HorizontalAlignment = HAlign.Left;
-                    range.WrapText = true;
-
-                    if (loai == 0)
-                    {
-                        string serviceGUID = row["ServiceGUID"].ToString();
-                        Result rs = CompanyContractBus.GetDichVuCon(hopDongGUID, serviceGUID);
-                        if (!rs.IsOK)
-                        {
-                            MsgBox.Show(Application.ProductName, rs.GetErrorAsString("CompanyContractBus.GetDichVuCon"), IconType.Error);
-                            Utility.WriteToTraceLog(rs.GetErrorAsString("CompanyContractBus.GetDichVuCon"));
-                            return false;
-                        }
-
-                        DataTable dt = rs.QueryResult as DataTable;
-                        if (dt != null && dt.Rows.Count > 0)
-                        {
-                            string s = string.Empty;
-                            foreach (DataRow drDichVuCon in dt.Rows)
-                            {
-                                s += string.Format("\n  + {0}", drDichVuCon["Name"].ToString());
-                            }
-
-                            range.Value += s;
-                        }
-                    }
-
-                    range = workSheet.Cells[rowIndex, colIndex + 2];
                     range.Value = gia;
                     range.HorizontalAlignment = HAlign.Right;
                     if (gia != 0) range.NumberFormat = "#,###";
 
-                    colIndex += 2;
+                    colIndex ++;
                 }
 
-                range = workSheet.Cells[rowIndex, 3 + (maxKhamHopDongCol * 2) + (maxChuyenNhuongCol * 2) + (maxDichVuLamThemCol * 2)];
+                range = workSheet.Cells[rowIndex, 3 + maxKhamHopDongCol + maxChuyenNhuongCol + maxDichVuLamThemCol];
                 range.Value = tongTien;
                 range.HorizontalAlignment = HAlign.Right;
                 range.Font.Bold = true;
