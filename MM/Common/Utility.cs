@@ -1468,6 +1468,20 @@ namespace MM.Common
             string strFormD = text.Normalize(System.Text.NormalizationForm.FormD);
             return regex.Replace(strFormD, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D');
         }
+
+        public static void RenameFileName(string sourceFileName, string destFileName)
+        {
+            try
+            {
+                FileInfo fileInfo = new FileInfo(sourceFileName);
+                fileInfo.MoveTo(destFileName);
+            }
+            catch (Exception e)
+            {
+                WriteToTraceLog(e.Message);
+                throw e;
+            }
+        }
     }
 }
 
