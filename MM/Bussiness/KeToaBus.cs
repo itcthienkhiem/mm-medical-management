@@ -38,6 +38,31 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetToaThuocTrongNgayList()
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ToaThuocView WITH(NOLOCK) WHERE Status={0} AND IsWarning=1 AND NgayKham BETWEEN '{1}' AND '{2}' ORDER BY NgayKham DESC",
+                        (byte)Status.Actived, DateTime.Now.ToString("yyyy-MM-dd 00:00:00"), DateTime.Now.ToString("yyyy-MM-dd 23:59:59"));
+
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetToaThuocList(bool isAll, DateTime fromDate, DateTime toDate, string tenBenhNhan)
         {
             Result result = null;
@@ -296,6 +321,74 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result TatCanhBaoToaThuoc(List<string> toaThuocKeys)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    string desc = string.Empty;
+                    foreach (string key in toaThuocKeys)
+                    {
+                        ToaThuoc toaThuoc = db.ToaThuocs.SingleOrDefault<ToaThuoc>(tt => tt.ToaThuocGUID.ToString() == key);
+                        if (toaThuoc != null)
+                        {
+                            toaThuoc.UpdatedDate = DateTime.Now;
+                            toaThuoc.UpdatedBy = Guid.Parse(Global.UserGUID);
+                            toaThuoc.IsWarning = false;
+
+                            string ngayTaiKhamStr = string.Empty;
+                            if (toaThuoc.NgayTaiKham != null && toaThuoc.NgayTaiKham.HasValue)
+                                ngayTaiKhamStr = toaThuoc.NgayTaiKham.Value.ToString("dd/MM/yyyy HH:mm:ss");
+
+                            desc += string.Format("- GUID: '{0}', Mã toa thuốc: '{1}', Ngày khám: '{2}', Ngày tái khám: '{3}', Bác sĩ kê toa: '{4}', Bệnh nhân: '{5}', Chẩn đoán: '{6}', Lời dặn: '{7}'\n",
+                                toaThuoc.ToaThuocGUID.ToString(), toaThuoc.MaToaThuoc, toaThuoc.NgayKham.Value.ToString("dd/MM/yyyy HH:mm:ss"), ngayTaiKhamStr,
+                                toaThuoc.DocStaff.Contact.FullName, toaThuoc.Patient.Contact.FullName, toaThuoc.ChanDoan, toaThuoc.Note);
+                        }
+                    }
+
+                    //Tracking
+                    desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Edit;
+                    tk.Action = "Tắt cảnh báo toa thuốc";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.None;
+                    db.Trackings.InsertOnSubmit(tk);
+
+                    db.SubmitChanges();
+                    t.Complete();
+                }
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
         public static Result CheckToaThuocExistCode(string toaThuocGUID, string code)
         {
             Result result = new Result();
@@ -353,6 +446,7 @@ namespace MM.Bussiness
                     if (toaThuoc.ToaThuocGUID == null || toaThuoc.ToaThuocGUID == Guid.Empty)
                     {
                         toaThuoc.ToaThuocGUID = Guid.NewGuid();
+                        toaThuoc.IsWarning = true;
                         db.ToaThuocs.InsertOnSubmit(toaThuoc);
                         db.SubmitChanges();
 
