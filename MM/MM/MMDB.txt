@@ -315,4 +315,4 @@ cho cach add nhanh cac dich vu nay vao vi thuong xet nhiem mau gom ~10 dich vu c
 ================================================================================
 (1) thuoc: canh bao toa thuoc (OK)
 (2) hop dong: chinh lai format bao cao cong no (OK)
-(3) moi lam cai rename
+(3) moi lam cai rename (OK)
