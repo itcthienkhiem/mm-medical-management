@@ -1482,6 +1482,14 @@ namespace MM.Common
                 throw e;
             }
         }
+
+        public static Image LoadImageFromFile(string path)
+        {
+            var bytes = File.ReadAllBytes(path);
+            var ms = new MemoryStream(bytes);
+            var img = Image.FromStream(ms);
+            return img;
+        }
     }
 }
 
