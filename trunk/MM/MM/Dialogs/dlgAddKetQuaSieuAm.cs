@@ -32,6 +32,7 @@ namespace MM.Dialogs
         private Hashtable _htMauBaoCao = new Hashtable();
         private string _loaiSieuAmGUID = string.Empty;
         private WatchingFolder _watchingFolder = null;
+        private string _maBenhNhan = string.Empty;
         #endregion
 
         #region Constructor
@@ -97,6 +98,18 @@ namespace MM.Dialogs
                     if (!Utility.CheckRunningProcess(Const.TVHomeProcessName))
                         Utility.ExecuteFile(Global.TVHomeConfig.Path);
                 }
+            }
+
+            Result result = PatientBus.GetPatient2(_patientGUID);
+            if (result.IsOK)
+            {
+                PatientView patient = result.QueryResult as PatientView;
+                _maBenhNhan = patient.FileNum;
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.GetPatient"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatient"));
             }
         }
 
@@ -491,12 +504,14 @@ namespace MM.Dialogs
             try
             {
                 int count = 0;
-                Bitmap bmp = null;
+                Image bmp = null;
+                string fileName = string.Format("{0}\\SieuAm-{1}-{2}.png", Global.HinhChupPath, _maBenhNhan, DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss-ms"));
                 while (bmp == null && count <= 10)
                 {
                     try
                     {
-                        bmp = new Bitmap(e.FullPath);
+                        bmp = Utility.LoadImageFromFile(e.FullPath);
+                        Utility.RenameFileName(e.FullPath, fileName);
                     }
                     catch
                     {

@@ -565,13 +565,14 @@ namespace MM.Dialogs
                 lvCapture.Invoke(new MethodInvoker(delegate()
                 {
                     int count = 0;
-                    Bitmap bmp = null;
+                    Image bmp = null;
                     string fileName = string.Format("{0}\\SoiCTC-{1}-{2}.png", Global.HinhChupPath, _maBenhNhan, DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss-ms"));
                     while (bmp == null && count <= 10)
                     {
                         try
                         {
-                            bmp = new Bitmap(e.FullPath);
+                            bmp = Utility.LoadImageFromFile(e.FullPath);
+                            Utility.RenameFileName(e.FullPath, fileName);
                         }
                         catch (Exception ex)
                         {
