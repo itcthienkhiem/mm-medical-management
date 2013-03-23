@@ -385,6 +385,12 @@ namespace MM.Dialogs
             if (result.IsOK)
             {
                 cboCompany.DataSource = result.QueryResult as DataTable;
+
+                if (cboCompany.SelectedValue != null)
+                {
+                    DataRow row = GetCompanyRow(cboCompany.SelectedValue.ToString());
+                    txtMaSoThue.Text = row["MaSoThue"] as string;
+                }
             }
             else
             {
@@ -1309,6 +1315,17 @@ namespace MM.Dialogs
             DataTable dtDichVuCon = _selectedCompanyInfo.DictDichVuCon[serviceGUID];
             dgDichVuCon.DataSource = dtDichVuCon;
         }
+
+        private DataRow GetCompanyRow(string companyGUID)
+        {
+            DataTable dt = cboCompany.DataSource as DataTable;
+            if (dt == null || dt.Rows.Count <= 0) return null;
+
+            DataRow[] rows = dt.Select(string.Format("CompanyGUID='{0}'", companyGUID));
+            if (rows == null || rows.Length <= 0) return null;
+
+            return rows[0];
+        }
         #endregion
 
         #region Window Event Handlers
@@ -1466,6 +1483,9 @@ namespace MM.Dialogs
                 _htCompany.Add(companyGUID, _selectedCompanyInfo);
                 dgMembers.DataSource = _selectedCompanyInfo.DataSource;
             }
+
+            DataRow row = GetCompanyRow(cboCompany.SelectedValue.ToString());
+            txtMaSoThue.Text = row["MaSoThue"] as string;
         }
 
         private void dgMembers_DoubleClick(object sender, EventArgs e)
