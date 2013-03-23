@@ -25,6 +25,7 @@ namespace MM.Dialogs
         private int _imgCount = 0;
         private bool _isNew = true;
         private string _patientGUID = string.Empty;
+        private string _maBenhNhan = string.Empty;  
         private KetQuaSoiCTC _ketQuaSoiCTC = new KetQuaSoiCTC();
         private DataRow _drKetQuaSoiCTC = null;
         private bool _isPrint = false;
@@ -85,6 +86,18 @@ namespace MM.Dialogs
                     if (!Utility.CheckRunningProcess(Const.TVHomeProcessName))
                         Utility.ExecuteFile(Global.TVHomeConfig.Path);
                 }
+            }
+
+            Result result = PatientBus.GetPatient2(_patientGUID);
+            if (result.IsOK)
+            {
+                PatientView patient = result.QueryResult as PatientView;
+                _maBenhNhan = patient.FileNum;
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.GetPatient"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatient"));
             }
         }
                 
@@ -553,12 +566,12 @@ namespace MM.Dialogs
                 {
                     int count = 0;
                     Bitmap bmp = null;
+                    string fileName = string.Format("{0}\\SoiCTC-{1}-{2}.png", Global.HinhChupPath, _maBenhNhan, DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss-ms"));
                     while (bmp == null && count <= 10)
                     {
                         try
                         {
                             bmp = new Bitmap(e.FullPath);
-
                         }
                         catch (Exception ex)
                         {
