@@ -557,7 +557,8 @@ namespace MM.Dialogs
                     {
                         try
                         {
-                            bmp = new Bitmap(e.FullPath);    
+                            bmp = new Bitmap(e.FullPath);
+
                         }
                         catch (Exception ex)
                         {

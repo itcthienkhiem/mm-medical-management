@@ -400,6 +400,8 @@ namespace MM
                 _uSMSLog.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uCapNhatNhanhChecklist))
                 _uCapNhatNhanhChecklist.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uToaThuocTrongNgayList))
+                _uToaThuocTrongNgayList.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -1571,6 +1573,20 @@ namespace MM
                             _uCapNhatNhanhChecklist.AllowExportAll = isExportAll;
                             _uCapNhatNhanhChecklist.AllowConfirm = isConfirm;
                         }
+                        else if (functionCode == Const.ToaThuocTrongNgay)
+                        {
+                            thuocToolStripMenuItem.Enabled = isLogin;
+                            toaThuocTrongNgayToolStripMenuItem.Enabled = isView && isLogin;
+                            _uToaThuocTrongNgayList.AllowAdd = isAdd;
+                            _uToaThuocTrongNgayList.AllowEdit = isEdit;
+                            _uToaThuocTrongNgayList.AllowDelete = isDelete;
+                            _uToaThuocTrongNgayList.AllowPrint = isPrint;
+                            _uToaThuocTrongNgayList.AllowExport = isExport;
+                            _uToaThuocTrongNgayList.AllowImport = isImport;
+                            _uToaThuocTrongNgayList.AllowLock = isLock;
+                            _uToaThuocTrongNgayList.AllowExportAll = isExportAll;
+                            _uToaThuocTrongNgayList.AllowConfirm = isConfirm;
+                        }
                     }
                 }
                 else
@@ -1798,6 +1814,7 @@ namespace MM
                 baoCaoCongNoTheoHopDongToolStripMenuItem.Enabled = isLogin;
                 sMSLogToolStripMenuItem.Enabled = isLogin;
                 capNhatNhanhChecklistToolStripMenuItem.Enabled = isLogin;
+                toaThuocTrongNgayToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -2244,7 +2261,18 @@ namespace MM
                 case "CapNhatNhanhChecklist":
                     OnCapNhatNhanhChecklist();
                     break;
+
+                case "ToaThuocTrongNgay":
+                    OnToaThuocTrongNgay();
+                    break;
             }
+        }
+
+        private void OnToaThuocTrongNgay()
+        {
+            this.Text = string.Format("{0} - Toa thuốc trong ngày", Application.ProductName);
+            ViewControl(_uToaThuocTrongNgayList);
+            _uToaThuocTrongNgayList.DisplayAsThread();
         }
 
         private void OnCapNhatNhanhChecklist()
@@ -3203,6 +3231,7 @@ namespace MM
             _uBaoCaoCongNoHopDong.ClearData();
             _uSMSLog.ClearData();
             _uCapNhatNhanhChecklist.ClearData();
+            _uToaThuocTrongNgayList.ClearData();
         }
         #endregion
 
