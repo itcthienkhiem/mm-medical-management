@@ -11,6 +11,7 @@ using MM.Common;
 using MM.Databasae;
 using MM.Bussiness;
 using MM.Dialogs;
+using MM.Exports;
 
 namespace MM.Controls
 {
@@ -33,6 +34,25 @@ namespace MM.Controls
         public uKhamHopDong()
         {
             InitializeComponent();
+        }
+        #endregion
+
+        #region Properties
+        public List<DataRow> CheckedServiceRows
+        {
+            get
+            {
+                if (dgDichVuLamThem.RowCount <= 0) return null;
+                List<DataRow> checkedRows = new List<DataRow>();
+                DataTable dt = dgDichVuLamThem.DataSource as DataTable;
+                foreach (DataRow row in dt.Rows)
+                {
+                    if (Boolean.Parse(row["Checked"].ToString()))
+                        checkedRows.Add(row);
+                }
+
+                return checkedRows;
+            }
         }
         #endregion
 
@@ -85,6 +105,7 @@ namespace MM.Controls
             btnAdd.Enabled = AllowAdd;
             btnEdit.Enabled = AllowEdit;
             btnDelete.Enabled = AllowDelete;
+            btnExportReceipt.Enabled = Global.AllowExportPhieuThuDichVu;
 
             dgService.ReadOnly = !AllowEdit;
             chkChecked.Enabled = AllowEdit;
@@ -96,6 +117,8 @@ namespace MM.Controls
 
             fixedPriceDataGridViewTextBoxColumn.Visible = Global.AllowShowServiePrice;
             colThanhTien.Visible = Global.AllowShowServiePrice;
+            lbTongTienLamThem.Visible = Global.AllowShowServiePrice;
+            lbTongTienChecklist.Visible = Global.AllowShowServiePrice;
 
             btnOpenPatient.Enabled = AllowOpenPatient;
             moBenhNhanToolStripMenuItem.Enabled = AllowOpenPatient;
@@ -358,21 +381,32 @@ namespace MM.Controls
             }
         }
 
-        private void OnDisplayDichVuLamThem(string contractMemberGUID)
+        private void OnDisplayDichVuLamThem(string patientGUID)
         {
             ClearDichVuLamThem();
             chkChecked2.Checked = false;
-            Result result = DichVuLamThemBus.GetDichVuLamThemList(contractMemberGUID);
+            Result result = ServiceHistoryBus.GetDichVuLamThemList(patientGUID, _hopDongGUID);
             if (result.IsOK)
             {
                 dgDichVuLamThem.DataSource = result.QueryResult;
-
+                HighlightPaidServices();
                 OnTinhTongTienDichVuLamThem();
             }
             else
             {
-                MsgBox.Show(this.Text, result.GetErrorAsString("DichVuLamThemBus.GetDichVuLamThemList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("DichVuLamThemBus.GetDichVuLamThemList"));
+                MsgBox.Show(this.Text, result.GetErrorAsString("ServiceHistoryBus.GetDichVuLamThemList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("ServiceHistoryBus.GetDichVuLamThemList"));
+            }
+        }
+
+        public void HighlightPaidServices()
+        {
+            foreach (DataGridViewRow row in dgDichVuLamThem.Rows)
+            {
+                DataRow dr = (row.DataBoundItem as DataRowView).Row;
+                bool isExported = Convert.ToBoolean(dr["IsExported"]);
+                if (isExported)
+                    row.DefaultCellStyle.BackColor = Color.LightSeaGreen;
             }
         }
 
@@ -421,46 +455,12 @@ namespace MM.Controls
 
         private void OnAddDichVuLamThem()
         {
-            if (_contractMemberGUID == string.Empty) return;
-            dlgAddDichVuLamThem dlg = new dlgAddDichVuLamThem(_contractMemberGUID);
+            if (_patientGUID == string.Empty) return;
+            dlgAddServiceHistory dlg = new dlgAddServiceHistory(_patientGUID);
+            dlg.HopDongGUID = _hopDongGUID;
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-                DataTable dt = dgDichVuLamThem.DataSource as DataTable;
-                if (dt == null) return;
-                DataRow newRow = dt.NewRow();
-                newRow["Checked"] = false;
-                newRow["DichVuLamThemGUID"] = dlg.DichVuLamThem.DichVuLamThemGUID.ToString();
-                newRow["ContractMemberGUID"] = _contractMemberGUID;
-                newRow["ServiceGUID"] = dlg.DichVuLamThem.ServiceGUID.ToString();
-                newRow["Name"] = dlg.ServiceName;
-                newRow["FixedPrice"] = dlg.DichVuLamThem.Price;
-                newRow["Discount"] = dlg.DichVuLamThem.Discount;
-                newRow["ActiveDate"] = dlg.DichVuLamThem.ActiveDate;
-                newRow["Amount"] = dlg.DichVuLamThem.Price - ((dlg.DichVuLamThem.Price * dlg.DichVuLamThem.Discount) / 100);
-                newRow["DaThuTien"] = dlg.DichVuLamThem.DaThuTien;
-
-                if (dlg.DichVuLamThem.CreatedDate.HasValue)
-                    newRow["CreatedDate"] = dlg.DichVuLamThem.CreatedDate;
-
-                if (dlg.DichVuLamThem.CreatedBy.HasValue)
-                    newRow["CreatedBy"] = dlg.DichVuLamThem.CreatedBy.ToString();
-
-                if (dlg.DichVuLamThem.UpdatedDate.HasValue)
-                    newRow["UpdatedDate"] = dlg.DichVuLamThem.UpdatedDate;
-
-                if (dlg.DichVuLamThem.UpdatedBy.HasValue)
-                    newRow["UpdatedBy"] = dlg.DichVuLamThem.UpdatedBy.ToString();
-
-                if (dlg.DichVuLamThem.DeletedDate.HasValue)
-                    newRow["DeletedDate"] = dlg.DichVuLamThem.DeletedDate;
-
-                if (dlg.DichVuLamThem.DeletedBy.HasValue)
-                    newRow["DeletedBy"] = dlg.DichVuLamThem.DeletedBy.ToString();
-
-                newRow["Status"] = dlg.DichVuLamThem.Status;
-
-                dt.Rows.Add(newRow);
-
+                OnDisplayDichVuLamThem(_patientGUID);
                 OnTinhTongTienDichVuLamThem();
             }
         }
@@ -475,38 +475,13 @@ namespace MM.Controls
 
             DataRow drDichVuLamThem = (dgDichVuLamThem.SelectedRows[0].DataBoundItem as DataRowView).Row;
             if (drDichVuLamThem == null) return;
-            if (_contractMemberGUID == string.Empty) return;
+            if (_patientGUID == string.Empty) return;
 
-            dlgAddDichVuLamThem dlg = new dlgAddDichVuLamThem(_contractMemberGUID, drDichVuLamThem);
+            dlgAddServiceHistory dlg = new dlgAddServiceHistory(_patientGUID, drDichVuLamThem, AllowEdit);
+            dlg.HopDongGUID = _hopDongGUID;
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
-                drDichVuLamThem["ServiceGUID"] = dlg.DichVuLamThem.ServiceGUID.ToString();
-                drDichVuLamThem["Name"] = dlg.ServiceName;
-                drDichVuLamThem["FixedPrice"] = dlg.DichVuLamThem.Price;
-                drDichVuLamThem["Discount"] = dlg.DichVuLamThem.Discount;
-                drDichVuLamThem["ActiveDate"] = dlg.DichVuLamThem.ActiveDate;
-                drDichVuLamThem["Amount"] = dlg.DichVuLamThem.Price - ((dlg.DichVuLamThem.Price * dlg.DichVuLamThem.Discount) / 100);
-                drDichVuLamThem["DaThuTien"] = dlg.DichVuLamThem.DaThuTien;
-
-                if (dlg.DichVuLamThem.CreatedDate.HasValue)
-                    drDichVuLamThem["CreatedDate"] = dlg.DichVuLamThem.CreatedDate;
-
-                if (dlg.DichVuLamThem.CreatedBy.HasValue)
-                    drDichVuLamThem["CreatedBy"] = dlg.DichVuLamThem.CreatedBy.ToString();
-
-                if (dlg.DichVuLamThem.UpdatedDate.HasValue)
-                    drDichVuLamThem["UpdatedDate"] = dlg.DichVuLamThem.UpdatedDate;
-
-                if (dlg.DichVuLamThem.UpdatedBy.HasValue)
-                    drDichVuLamThem["UpdatedBy"] = dlg.DichVuLamThem.UpdatedBy.ToString();
-
-                if (dlg.DichVuLamThem.DeletedDate.HasValue)
-                    drDichVuLamThem["DeletedDate"] = dlg.DichVuLamThem.DeletedDate;
-
-                if (dlg.DichVuLamThem.DeletedBy.HasValue)
-                    drDichVuLamThem["DeletedBy"] = dlg.DichVuLamThem.DeletedBy.ToString();
-
-                drDichVuLamThem["Status"] = dlg.DichVuLamThem.Status;
+                OnDisplayDichVuLamThem(_patientGUID);
 
                 OnTinhTongTienDichVuLamThem();
             }
@@ -514,36 +489,64 @@ namespace MM.Controls
 
         private void OnDeleteDichVuLamThem()
         {
-            List<string> deletedKeyList = new List<string>();
+            List<string> deletedServiceHistoryList = new List<string>();
             List<DataRow> deletedRows = new List<DataRow>();
             DataTable dt = dgDichVuLamThem.DataSource as DataTable;
             foreach (DataRow row in dt.Rows)
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
                 {
-                    deletedKeyList.Add(row["DichVuLamThemGUID"].ToString());
-                    deletedRows.Add(row);
+                    bool isExported = Convert.ToBoolean(row["IsExported"]);
+
+                    if (!isExported)
+                    {
+                        deletedServiceHistoryList.Add(row["ServiceHistoryGUID"].ToString());
+                        deletedRows.Add(row);
+                    }
+                    else
+                    {
+                        string srvHistoryGUID = row["ServiceHistoryGUID"].ToString();
+                        Result r = ServiceHistoryBus.GetPhieuThuByServiceHistoryGUID(srvHistoryGUID);
+                        if (r.IsOK)
+                        {
+                            string soPhieuThu = string.Empty;
+                            if (r.QueryResult != null)
+                            {
+                                Receipt receipt = r.QueryResult as Receipt;
+                                soPhieuThu = receipt.ReceiptCode;
+                            }
+
+                            string srvName = row["Name"].ToString();
+                            MsgBox.Show(Application.ProductName, string.Format("Dịch vụ: '{0}' không thể xóa vì đã xuất phiếu thu ({1}). Vui lòng chọn lại.", srvName, soPhieuThu),
+                                IconType.Information);
+                            return;
+                        }
+                        else
+                        {
+                            MsgBox.Show(Application.ProductName, r.GetErrorAsString("ServiceHistoryBus.GetPhieuThuByServiceHistoryGUID"), IconType.Error);
+                            Utility.WriteToTraceLog(r.GetErrorAsString("ServiceHistoryBus.GetPhieuThuByServiceHistoryGUID"));
+                            return;
+                        }
+                    }
                 }
             }
 
-            if (deletedKeyList.Count > 0)
+            if (deletedServiceHistoryList.Count > 0)
             {
                 if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những dịch vụ làm thêm mà bạn đã đánh dấu ?") == DialogResult.Yes)
                 {
-                    Result result = DichVuLamThemBus.DeleteDichVuLamThem(deletedKeyList);
+                    Result result = ServiceHistoryBus.DeleteServiceHistory(deletedServiceHistoryList);
                     if (result.IsOK)
                     {
                         foreach (DataRow row in deletedRows)
                         {
                             dt.Rows.Remove(row);
                         }
-
-                        OnTinhTongTienDichVuLamThem();
                     }
                     else
                     {
-                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("DichVuLamThemBus.DeleteDichVuLamThem"), IconType.Error);
-                        Utility.WriteToTraceLog(result.GetErrorAsString("DichVuLamThemBus.DeleteDichVuLamThem"));
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("ServiceHistoryBus.DeleteServiceHistory"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("ServiceHistoryBus.DeleteServiceHistory"));
                     }
                 }
             }
@@ -595,6 +598,123 @@ namespace MM.Controls
                     rows[0]["Address"] = patientRow["Address"];
                     rows[0]["Thuoc_Di_Ung"] = patientRow["Thuoc_Di_Ung"];
                     base.RaiseOpentPatient(rows[0]);
+                }
+            }
+        }
+
+        private string GenerateCode()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            Result result = ReceiptBus.GetReceiptCount();
+            if (result.IsOK)
+            {
+                int count = Convert.ToInt32(result.QueryResult);
+                return Utility.GetCode("PT", count + 1, 4);
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("ReceiptBus.GetReceiptCount"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("ReceiptBus.GetReceiptCount"));
+                return string.Empty;
+            }
+        }
+
+        private void OnPrintPhieuThu(string receiptGUID)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            if (dgDichVuLamThem.RowCount <= 0) return;
+
+            string exportFileName = string.Format("{0}\\Temp\\Receipt.xls", Application.StartupPath);
+            if (ExportExcel.ExportReceiptToExcel(exportFileName, receiptGUID))
+            {
+                try
+                {
+                    if (_printDialog.ShowDialog() == DialogResult.OK)
+                        ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.PhieuThuDichVuTemplate));
+                }
+                catch (Exception ex)
+                {
+                    MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                }
+            }
+        }
+
+        private void OnXuatPhieuThu()
+        {
+            if (dgDichVuLamThem.RowCount <= 0 ||
+                CheckedServiceRows == null || CheckedServiceRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu ít nhất 1 dịch vụ làm thêm cần xuất phiếu thu.", IconType.Information);
+                return;
+            }
+
+            List<DataRow> paidServiceList = new List<DataRow>();
+            List<DataRow> noPaidServiceList = new List<DataRow>();
+            List<DataRow> checkedRows = CheckedServiceRows;
+
+            foreach (DataRow row in checkedRows)
+            {
+                bool isKhamTuTuc = Convert.ToBoolean(row["KhamTuTuc"]);
+                string serviceName = row["Name"].ToString();
+                bool isExported = Convert.ToBoolean(row["IsExported"]);
+                if (!isExported)
+                    noPaidServiceList.Add(row);
+                else
+                    paidServiceList.Add(row);
+            }
+
+            if (paidServiceList.Count > 0)
+            {
+                MsgBox.Show(Application.ProductName, "(Một số) dịch vụ đã xuất phiếu thu rồi. Vui lòng kiểm tra lại.", IconType.Information);
+                return;
+            }
+
+            if (MsgBox.Question(Application.ProductName, "Bạn có muốn xuất phiếu thu ?") == DialogResult.No) return;
+
+            dlgConfirmThuTien dlg = new dlgConfirmThuTien();
+            if (dlg.ShowDialog(this) == DialogResult.OK)
+            {
+                if (paidServiceList.Count <= 0)
+                {
+                    List<ReceiptDetail> receiptDetails = new List<ReceiptDetail>();
+                    foreach (DataRow row in noPaidServiceList)
+                    {
+                        ReceiptDetail detail = new ReceiptDetail();
+                        detail.ServiceHistoryGUID = Guid.Parse(row["ServiceHistoryGUID"].ToString());
+                        detail.CreatedDate = DateTime.Now;
+                        detail.CreatedBy = Guid.Parse(Global.UserGUID);
+                        detail.Status = (byte)Status.Actived;
+                        receiptDetails.Add(detail);
+                    }
+
+                    Receipt receipt = new Receipt();
+                    receipt.ReceiptCode = GenerateCode();
+                    receipt.PatientGUID = Guid.Parse(_patientGUID);
+                    receipt.ReceiptDate = dlg.NgayXuat;
+                    receipt.Status = (byte)Status.Actived;
+                    receipt.CreatedDate = DateTime.Now;
+                    receipt.CreatedBy = Guid.Parse(Global.UserGUID);
+                    receipt.IsExportedInVoice = false;
+                    receipt.ChuaThuTien = !dlg.DaThuTien;
+                    receipt.Notes = dlg.GhiChu;
+                    receipt.LyDoGiam = dlg.LyDoGiam;
+
+                    Result result = ReceiptBus.InsertReceipt(receipt, receiptDetails);
+                    if (result.IsOK)
+                    {
+                        OnDisplayDichVuLamThem(_patientGUID);
+
+                        if (Global.AllowPrintPhieuThuDichVu)
+                        {
+                            if (MsgBox.Question(Application.ProductName, "Bạn có muốn in phiếu thu ?") == DialogResult.Yes)
+                                OnPrintPhieuThu(receipt.ReceiptGUID.ToString());
+                        }
+                    }
+                    else
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReceiptBus.InsertReceipt"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("ReceiptBus.InsertReceipt"));
+                    }
                 }
             }
         }
@@ -691,9 +811,8 @@ namespace MM.Controls
             DataRow row = (dgPatient.SelectedRows[0].DataBoundItem as DataRowView).Row;
             _patientGUID = row["PatientGUID"].ToString();
             _tenNhanVien = row["FullName"].ToString();
-            _contractMemberGUID = row["ContractMemberGUID"].ToString();
             OnDisplayCheckList(_patientGUID);
-            OnDisplayDichVuLamThem(_contractMemberGUID);
+            OnDisplayDichVuLamThem(_patientGUID);
         }
 
         private void chkChecked_CheckedChanged(object sender, EventArgs e)
@@ -792,6 +911,16 @@ namespace MM.Controls
         {
             OnOpenPatient();
         }
+
+        private void xuatPhieuThuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnXuatPhieuThu();
+        }
+
+        private void btnExportReceipt_Click(object sender, EventArgs e)
+        {
+            OnXuatPhieuThu();
+        }
         #endregion
 
         #region Working Thread
@@ -825,6 +954,10 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
+
+        
 
         
     }
