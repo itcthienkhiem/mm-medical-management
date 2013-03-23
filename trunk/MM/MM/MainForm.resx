@@ -544,6 +544,40 @@
   <data name="statusAlert.Visible" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
+  <data name="statusToaThuocMoi.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABgAAAAYCAYAAADgdz34AAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAARlSURBVEhL7ZR5TFR3EMdFrTZWbAxpjYmAlqPLzR6tFREQS2PBSoNVyqHYACK1orUBlF4KRbEQ
+        EZIaWjAc7iJsgQIuN6yrKCmCRiyVK16A7M0hlyzLTOct2NQIJdv0T1/yzbz83rz5vO/85vcWLHh56dOB
+        Uzt/NDoTkMLPPJCpEJ0qllYmi8pzY/ih6RHpK/WpM2dukt/ZmqxwPhZGF8DNCw3Y1/wAla09cKuocaz4
+        ZKEwLTzN68ze5MX/CRa57eiqtJAMyA4XYM6BXCAINvwiwcc37sNoXz+O9KrxYUMnFieV9CaGnTsZGZFu
+        rhco2vvY6xkHs7X8iDwgFwwIcg/lQWW8CDrKW+BacxcUNXVC9d0eqLgrhbOSzqmgC/V1H6Rc8n0/uXjJ
+        vLAPnT0X/bAnoZwfWYDZnwt0Tp65+TquCOOuPMLb8gkcGNfCuGZKF9vVGrx4R4H7hY1SAsVuSbm0elaQ
+        iYmJAZfLXb55g/t7GZE5Q9mHheRiGhD3pQC8825jyFU1xjYNYtn9MegemsQxzRRMaAGHnk5hV78Gfm0b
+        xGDhzdHNyaXfO58WLnoOpAPwuIYEsXR/d0vUxdhCjSCqELLIie/xfPAXKyBQooI9EjVEXO+Hc3eewI2+
+        p6Ac1cLEJIBGC6Aa0wIDD6t+BG7JpRkvOKHiS0hrLCwsvF0cXbN+SxJNFp4QoVdiKewQqzBQop6RCoLJ
+        TczvA5DbPoItiglUEEg1qkVJ9zh+1dDPOIZNSUUOs0GWsdlsK0tLywAXtmtmSUqZJji1AswrZOBSowD/
+        yyoIIDFudpP2XVXDt40DkN46DPy2EYhvHmTg4Ff1GDYm5B95AWBnZ8fshSGHy7GzsbHZ5WTv9FPcCf7Y
+        QUkvcqpkaF4pR+86gpCbaZAad5M+u6LWuQpiXNK6f60UN54WJsy64Q4ODgxkBcmeLh+eLS/+8PkydWrL
+        ALrVytCwTAr2VQr0Eevc6Nr2DEbF0a9ODm5l3eiUkP/dnKP7N4THtWNz2B+9be8YFXT6/D3+n2oMuaaA
+        NeV9+JpICg5VcvSqVaKvWAmfipX4cY0Mt1J7Qss70C2xwOdfz4btdLuW03RZczgcT5aV9X734CNiwa2e
+        qZ//GIC99QpwrZHB1lo5bCftqpPBF/VyyGlVQ1hOXZdnYt7SeQ+ftbU1A1lGEAuKHrRHgbabPFK/EVQq
+        Lz98AqX3hjG3fQiFHUNQ82AYm3qH8Jigus/JN5gzb/F/JlDxpQQxIbnQlO20ZFkdWr8jqDgms6Qv83q7
+        Nruhbeo4XyTz2BeZz3Nydqe8VST9foocLncxgd6kF3kUt9EABJqbm0WYmpoeNV27NprFYoUy6/R0/czH
+        vKqXCybZ0dFxITPGupbxuK50v51xxOZwPpkp7krr9qTVpPn3YK4voGKvkIyoiCWXx3uH4gYSE21IxqQV
+        5Pj5/5G+dlhWVswAMCDGkRHFN0grmaGgg6pf/+eDr3trnYGZmdlCRsbGxgbz5f+vz/8CyJqMQT48qnQA
+        AAAASUVORK5CYII=
+</value>
+  </data>
+  <data name="statusToaThuocMoi.Size" type="System.Drawing.Size, System.Drawing">
+    <value>109, 24</value>
+  </data>
+  <data name="statusToaThuocMoi.Text" xml:space="preserve">
+    <value>Toa thuốc mới</value>
+  </data>
+  <data name="statusToaThuocMoi.Visible" type="System.Boolean, mscorlib">
+    <value>False</value>
+  </data>
   <data name="_mainStatus.Location" type="System.Drawing.Point, System.Drawing">
     <value>0, 666</value>
   </data>
@@ -1344,61 +1378,61 @@
     <value>False</value>
   </data>
   <data name="danhMucThuocToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 30</value>
+    <value>189, 22</value>
   </data>
   <data name="danhMucThuocToolStripMenuItem.Text" xml:space="preserve">
     <value>Danh mục thuốc</value>
   </data>
   <data name="toolStripSeparator17.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 6</value>
+    <value>186, 6</value>
   </data>
   <data name="nhomThuocToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="nhomThuocToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 30</value>
+    <value>189, 22</value>
   </data>
   <data name="nhomThuocToolStripMenuItem.Text" xml:space="preserve">
     <value>Nhóm thuốc</value>
   </data>
   <data name="toolStripSeparator19.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 6</value>
+    <value>186, 6</value>
   </data>
   <data name="loThuocToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="loThuocToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 30</value>
+    <value>189, 22</value>
   </data>
   <data name="loThuocToolStripMenuItem.Text" xml:space="preserve">
     <value>Lô thuốc</value>
   </data>
   <data name="toolStripSeparator20.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 6</value>
+    <value>186, 6</value>
   </data>
   <data name="giaThuocToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="giaThuocToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 30</value>
+    <value>189, 22</value>
   </data>
   <data name="giaThuocToolStripMenuItem.Text" xml:space="preserve">
     <value>Giá thuốc</value>
   </data>
   <data name="toolStripSeparator21.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 6</value>
+    <value>186, 6</value>
   </data>
   <data name="keToaToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
   </data>
   <data name="keToaToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 30</value>
+    <value>189, 22</value>
   </data>
   <data name="keToaToolStripMenuItem.Text" xml:space="preserve">
     <value>Kê toa</value>
   </data>
   <data name="toolStripSeparator75.Size" type="System.Drawing.Size, System.Drawing">
-    <value>194, 6</value>
+    <value>186, 6</value>
   </data>
   <data name="toaThuocTrongNgayToolStripMenuItem.Enabled" type="System.Boolean, mscorlib">
     <value>False</value>
@@ -1429,7 +1463,7 @@
 </value>
   </data>
   <data name="toaThuocTrongNgayToolStripMenuItem.Size" type="System.Drawing.Size, System.Drawing">
-    <value>197, 30</value>
+    <value>189, 22</value>
   </data>
   <data name="toaThuocTrongNgayToolStripMenuItem.Text" xml:space="preserve">
     <value>Toa thuốc trong ngày</value>
@@ -7889,6 +7923,12 @@
     <value>statusAlert</value>
   </data>
   <data name="&gt;&gt;statusAlert.Type" xml:space="preserve">
+    <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
+  </data>
+  <data name="&gt;&gt;statusToaThuocMoi.Name" xml:space="preserve">
+    <value>statusToaThuocMoi</value>
+  </data>
+  <data name="&gt;&gt;statusToaThuocMoi.Type" xml:space="preserve">
     <value>System.Windows.Forms.ToolStripStatusLabel, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </data>
   <data name="&gt;&gt;systemToolStripMenuItem.Name" xml:space="preserve">

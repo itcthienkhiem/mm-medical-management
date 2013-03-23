@@ -29,6 +29,7 @@ namespace MM
         private bool _isStartTiemNgua = false;
         private bool _isStartCapCuuHetHSD = false;
         private bool _isStartCapCuuHetTonKho = false;
+        private bool _isStartToaThuocMoi = false;
 
         private uUserGroupList _uUserGroupList = new uUserGroupList();
         private uNguoiSuDungList _uNguoiSuDungList = new uNguoiSuDungList();
@@ -84,6 +85,7 @@ namespace MM
             statusAlert.Visible = false;
             statusCapCuuHetHan.Visible = false;
             statusCapCuuHetTonKho.Visible = false;
+            statusToaThuocMoi.Visible = false;
         }
 
         private void StartTimerCheckAlert()
@@ -3136,6 +3138,7 @@ namespace MM
             _isStartTiemNgua = false;
             _isStartCapCuuHetHSD = false;
             _isStartCapCuuHetTonKho = false;
+            _isStartToaThuocMoi = false;
 
             StopTimerShowAlert();
 
@@ -3164,7 +3167,18 @@ namespace MM
             else
                 Utility.WriteToTraceLog(result.GetErrorAsString("NhapKhoCapCuuBus.CheckKhoCapCuuTonKho"));
 
-            if (_isStartTiemNgua || _isStartCapCuuHetHSD || _isStartCapCuuHetTonKho)
+            //Toa thuốc trong ngày
+            result = KeToaBus.GetToaThuocTrongNgayList();
+            if (result.IsOK)
+            {
+                DataTable dt = result.QueryResult as DataTable;
+                if (dt != null && dt.Rows.Count > 0)
+                    _isStartToaThuocMoi = true;
+            }
+            else
+                Utility.WriteToTraceLog(result.GetErrorAsString("KeToaBus.GetToaThuocTrongNgayList"));
+
+            if (_isStartTiemNgua || _isStartCapCuuHetHSD || _isStartCapCuuHetTonKho || _isStartToaThuocMoi)
                 StartTimerShowAlert();
         }
 
@@ -3295,6 +3309,7 @@ namespace MM
             if (_isStartTiemNgua) statusAlert.Visible = !statusAlert.Visible;
             if(_isStartCapCuuHetHSD) statusCapCuuHetHan.Visible = !statusCapCuuHetHan.Visible;
             if (_isStartCapCuuHetTonKho) statusCapCuuHetTonKho.Visible = !statusCapCuuHetTonKho.Visible;
+            if (_isStartToaThuocMoi) statusToaThuocMoi.Visible  = !statusToaThuocMoi.Visible;
         }
 
         private void _timerCheckAlert_Tick(object sender, EventArgs e)
@@ -3315,6 +3330,11 @@ namespace MM
         private void statusCapCuuHetHan_DoubleClick(object sender, EventArgs e)
         {
             if (_isStartCapCuuHetHSD) OnNhapKhoCapCuu();
+        }
+
+        private void statusToaThuocMoi_DoubleClick(object sender, EventArgs e)
+        {
+            if (_isStartToaThuocMoi) OnToaThuocTrongNgay();
         }
         #endregion
 
