@@ -158,58 +158,76 @@ namespace MM.Controls
             }
         }
 
-        private void OnCapNhatAllChecklist()
+        private void CapNhatAllChecklistAsThread()
         {
-            if (_hopDongGUID == string.Empty || _hopDongGUID == Guid.Empty.ToString()) return;
-
-            List<string> deletedPatientList = new List<string>();
-            List<DataRow> deletedRows = _dictPatient.Values.ToList();
-            foreach (DataRow row in deletedRows)
+            try
             {
-                string patientGUID = row["PatientGUID"].ToString();
-                deletedPatientList.Add(patientGUID);
-            }
+                if (_hopDongGUID == string.Empty || _hopDongGUID == Guid.Empty.ToString()) return;
 
-            if (deletedPatientList.Count > 0)
-            {
-                if (MsgBox.Question(Application.ProductName, "Bạn có muốn cập nhật tất cả checklist của những nhân viên được chọn ?") == DialogResult.Yes)
+                List<string> deletedPatientList = new List<string>();
+                List<DataRow> deletedRows = _dictPatient.Values.ToList();
+                foreach (DataRow row in deletedRows)
                 {
-                    foreach (string patientGUID in deletedPatientList)
+                    string patientGUID = row["PatientGUID"].ToString();
+                    deletedPatientList.Add(patientGUID);
+                }
+
+                if (deletedPatientList.Count > 0)
+                {
+                    if (MsgBox.Question(Application.ProductName, "Bạn có muốn cập nhật tất cả checklist của những nhân viên được chọn ?") == DialogResult.Yes)
                     {
-                        Result result = CompanyContractBus.GetCheckList(_hopDongGUID, patientGUID);
-                        if (!result.IsOK)
-                        {
-                            MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.GetCheckList"), IconType.Error);
-                            Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.GetCheckList"));
-                            return;
-                        }
-
-                        DataTable dtChecklist = result.QueryResult as DataTable;
-                        List<DataRow> checkListRows = new List<DataRow>();
-                        foreach (DataRow row in dtChecklist.Rows)
-                        {
-                            bool isUsing = Convert.ToBoolean(row["Using"]);
-                            if (isUsing) continue;
-                            row["Using"] = true;
-                            checkListRows.Add(row);
-                        }
-
-                        if (checkListRows.Count <= 0) continue;
-                        result = ServiceHistoryBus.UpdateChecklist(patientGUID, _hopDongGUID, _beginDate, _endDate, checkListRows);
-                        if (!result.IsOK)
-                        {
-                            MsgBox.Show(this.Text, result.GetErrorAsString("ServiceHistoryBus.UpdateChecklist"), IconType.Error);
-                            Utility.WriteToTraceLog(result.GetErrorAsString("ServiceHistoryBus.UpdateChecklist"));
-                            return;
-                        }
+                        ThreadPool.QueueUserWorkItem(new WaitCallback(OnCapNhatAllChecklistProc), deletedPatientList);
+                        base.ShowWaiting();
+                        SearchAsThread();
                     }
+                }
+                else
+                    MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những nhân viên cần cập nhật.", IconType.Information);
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
+        }
 
-                    MsgBox.Show(this.Text, "Đã cập nhật thành công.", IconType.Information);
-                    SearchAsThread();
+        private void OnCapNhatAllChecklist(List<string> checkedPatientList)
+        {
+            foreach (string patientGUID in checkedPatientList)
+            {
+                Result result = CompanyContractBus.GetCheckList(_hopDongGUID, patientGUID);
+                if (!result.IsOK)
+                {
+                    MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.GetCheckList"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.GetCheckList"));
+                    return;
+                }
+
+                DataTable dtChecklist = result.QueryResult as DataTable;
+                List<DataRow> checkListRows = new List<DataRow>();
+                foreach (DataRow row in dtChecklist.Rows)
+                {
+                    bool isUsing = Convert.ToBoolean(row["Using"]);
+                    if (isUsing) continue;
+                    row["Using"] = true;
+                    checkListRows.Add(row);
+                }
+
+                if (checkListRows.Count <= 0) continue;
+                result = ServiceHistoryBus.UpdateChecklist(patientGUID, _hopDongGUID, _beginDate, _endDate, checkListRows);
+                if (!result.IsOK)
+                {
+                    MsgBox.Show(this.Text, result.GetErrorAsString("ServiceHistoryBus.UpdateChecklist"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("ServiceHistoryBus.UpdateChecklist"));
+                    return;
                 }
             }
-            else
-                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những nhân viên cần cập nhật.", IconType.Information);
+
+            MsgBox.Show(this.Text, "Đã cập nhật thành công.", IconType.Information);
         }
 
         private void ValidateHopDong(string hopDongGUID)
@@ -279,12 +297,12 @@ namespace MM.Controls
         #region Window Event Handlers
         private void editToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OnCapNhatAllChecklist();
+            CapNhatAllChecklistAsThread();
         }
 
         private void btnEdit_Click(object sender, EventArgs e)
         {
-            OnCapNhatAllChecklist();
+            CapNhatAllChecklistAsThread();
         }
 
         private void chkChecked_CheckedChanged(object sender, EventArgs e)
@@ -442,10 +460,24 @@ namespace MM.Controls
                 Utility.WriteToTraceLog(e.Message);
             }
         }
+
+        private void OnCapNhatAllChecklistProc(object state)
+        {
+            try
+            {
+                List<string> checkedPatientList = (List<string>)state;
+                OnCapNhatAllChecklist(checkedPatientList);
+            }
+            catch (Exception e)
+            {
+                MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
+                Utility.WriteToTraceLog(e.Message);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
+        }
         #endregion
-
-        
-
-        
     }
 }
