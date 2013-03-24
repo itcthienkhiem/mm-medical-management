@@ -2895,6 +2895,8 @@ namespace MM
                 statusLabel.Text = string.Format("Người đăng nhập: {0}", Global.Fullname);
                 RefreshFunction(true);
                 RefreshData();
+                OnCheckAlert();
+                StartTimerCheckAlert();
             }
         }
 
@@ -2914,6 +2916,8 @@ namespace MM
                 RefreshFunction(false);
                 HideAllControls();
                 ClearAllData();
+                StopTimerShowAlert();
+                StopTimerCheckAlert();
             }
         }
 
@@ -3168,15 +3172,18 @@ namespace MM
                 Utility.WriteToTraceLog(result.GetErrorAsString("NhapKhoCapCuuBus.CheckKhoCapCuuTonKho"));
 
             //Toa thuốc trong ngày
-            result = KeToaBus.GetToaThuocTrongNgayList();
-            if (result.IsOK)
+            if (toaThuocTrongNgayToolStripMenuItem.Enabled)
             {
-                DataTable dt = result.QueryResult as DataTable;
-                if (dt != null && dt.Rows.Count > 0)
-                    _isStartToaThuocMoi = true;
+                result = KeToaBus.GetToaThuocTrongNgayList();
+                if (result.IsOK)
+                {
+                    DataTable dt = result.QueryResult as DataTable;
+                    if (dt != null && dt.Rows.Count > 0)
+                        _isStartToaThuocMoi = true;
+                }
+                else
+                    Utility.WriteToTraceLog(result.GetErrorAsString("KeToaBus.GetToaThuocTrongNgayList"));
             }
-            else
-                Utility.WriteToTraceLog(result.GetErrorAsString("KeToaBus.GetToaThuocTrongNgayList"));
 
             if (_isStartTiemNgua || _isStartCapCuuHetHSD || _isStartCapCuuHetTonKho || _isStartToaThuocMoi)
                 StartTimerShowAlert();
@@ -3267,8 +3274,7 @@ namespace MM
         private void MainForm_Load(object sender, EventArgs e)
         {
             InitConfigAsThread();
-            OnCheckAlert();
-            StartTimerCheckAlert();
+            
 
             if (!System.Diagnostics.Debugger.IsAttached)
                 AutoDetectUpdateAsThread();
