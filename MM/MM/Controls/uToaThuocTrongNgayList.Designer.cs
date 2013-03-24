@@ -39,6 +39,11 @@
             this.btnTatCanhBao = new System.Windows.Forms.Button();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgToaThuoc = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.tatCanhBaoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toaThuocViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel3 = new System.Windows.Forms.Panel();
             this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.maToaThuocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NgayKham = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -51,11 +56,6 @@
             this.Mobile = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Address = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenBacSiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.tatCanhBaoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toaThuocViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgToaThuoc)).BeginInit();
             this.ctmAction.SuspendLayout();
@@ -145,6 +145,41 @@
             this.dgToaThuoc.TabIndex = 4;
             this.dgToaThuoc.DoubleClick += new System.EventHandler(this.dgThuoc_DoubleClick);
             // 
+            // ctmAction
+            // 
+            this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripSeparator1,
+            this.tatCanhBaoToolStripMenuItem});
+            this.ctmAction.Name = "cmtAction";
+            this.ctmAction.Size = new System.Drawing.Size(144, 32);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(140, 6);
+            // 
+            // tatCanhBaoToolStripMenuItem
+            // 
+            this.tatCanhBaoToolStripMenuItem.Image = global::MM.Properties.Resources.del;
+            this.tatCanhBaoToolStripMenuItem.Name = "tatCanhBaoToolStripMenuItem";
+            this.tatCanhBaoToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
+            this.tatCanhBaoToolStripMenuItem.Text = "Tắt cảnh báo";
+            this.tatCanhBaoToolStripMenuItem.Click += new System.EventHandler(this.tatCanhBaoToolStripMenuItem_Click);
+            // 
+            // toaThuocViewBindingSource
+            // 
+            this.toaThuocViewBindingSource.DataSource = typeof(MM.Databasae.ToaThuocView);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.chkChecked);
+            this.panel3.Controls.Add(this.dgToaThuoc);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 0);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(839, 431);
+            this.panel3.TabIndex = 4;
+            // 
             // colChecked
             // 
             this.colChecked.DataPropertyName = "Checked";
@@ -166,13 +201,13 @@
             // 
             this.NgayKham.DataPropertyName = "NgayKham";
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.Format = "dd/MM/yyyy";
+            dataGridViewCellStyle2.Format = "dd/MM/yyyy HH:mm:ss";
             dataGridViewCellStyle2.NullValue = null;
             this.NgayKham.DefaultCellStyle = dataGridViewCellStyle2;
             this.NgayKham.HeaderText = "Ngày khám";
             this.NgayKham.Name = "NgayKham";
             this.NgayKham.ReadOnly = true;
-            this.NgayKham.Width = 90;
+            this.NgayKham.Width = 120;
             // 
             // NgayTaiKham
             // 
@@ -252,41 +287,6 @@
             this.tenBacSiDataGridViewTextBoxColumn.ReadOnly = true;
             this.tenBacSiDataGridViewTextBoxColumn.Width = 150;
             // 
-            // ctmAction
-            // 
-            this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.toolStripSeparator1,
-            this.tatCanhBaoToolStripMenuItem});
-            this.ctmAction.Name = "cmtAction";
-            this.ctmAction.Size = new System.Drawing.Size(144, 32);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(140, 6);
-            // 
-            // tatCanhBaoToolStripMenuItem
-            // 
-            this.tatCanhBaoToolStripMenuItem.Image = global::MM.Properties.Resources.del;
-            this.tatCanhBaoToolStripMenuItem.Name = "tatCanhBaoToolStripMenuItem";
-            this.tatCanhBaoToolStripMenuItem.Size = new System.Drawing.Size(143, 22);
-            this.tatCanhBaoToolStripMenuItem.Text = "Tắt cảnh báo";
-            this.tatCanhBaoToolStripMenuItem.Click += new System.EventHandler(this.tatCanhBaoToolStripMenuItem_Click);
-            // 
-            // toaThuocViewBindingSource
-            // 
-            this.toaThuocViewBindingSource.DataSource = typeof(MM.Databasae.ToaThuocView);
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.chkChecked);
-            this.panel3.Controls.Add(this.dgToaThuoc);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 0);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(839, 431);
-            this.panel3.TabIndex = 4;
-            // 
             // uToaThuocTrongNgayList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -313,6 +313,9 @@
         private DevComponents.DotNetBar.Controls.DataGridViewX dgToaThuoc;
         private System.Windows.Forms.BindingSource toaThuocViewBindingSource;
         private System.Windows.Forms.Panel panel3;
+        protected System.Windows.Forms.ContextMenuStrip ctmAction;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem tatCanhBaoToolStripMenuItem;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn maToaThuocDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn NgayKham;
@@ -325,8 +328,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Mobile;
         private System.Windows.Forms.DataGridViewTextBoxColumn Address;
         private System.Windows.Forms.DataGridViewTextBoxColumn tenBacSiDataGridViewTextBoxColumn;
-        protected System.Windows.Forms.ContextMenuStrip ctmAction;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem tatCanhBaoToolStripMenuItem;
     }
 }
