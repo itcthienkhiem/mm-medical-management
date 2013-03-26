@@ -51,7 +51,7 @@ namespace MM
 
             InitControl();
 
-            //string pass = "hoTn+aDg1LDgMf+9Hdt+ZA==";
+            //string pass = "fy2p7fwk13MQfaRoBHjmbA==";
             //RijndaelCrypto cryto = new RijndaelCrypto();
             //pass = cryto.Decrypt(pass);
         }
