@@ -1155,7 +1155,7 @@ namespace MM.Dialogs
         private void ChonHinhTuBenNgoai(PictureBox picBox)
         {
             OpenFileDialog dlg = new OpenFileDialog();
-            dlg.Filter = "Image files (*.jpg, *.jpeg, *.jpe, *.jfif, *.png) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png";
+            dlg.Filter = "Image files (*.jpg; *.jpeg; *.jpe; *.jfif; *.png; *.bmp; *gif) | *.jpg; *.jpeg; *.jpe; *.jfif; *.png; *.bmp; *gif";
             if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
                 Bitmap bmp = new Bitmap(dlg.FileName);
