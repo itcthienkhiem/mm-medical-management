@@ -1114,6 +1114,19 @@ namespace MM.Dialogs
                     (row.Cells["IsLock"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsExportAll"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                 }
+                else if (functionCode == Const.NhanVienTrungLap)
+                {
+                    (row.Cells["IsView"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsAdd"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsEdit"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsDelete"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsLock"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsExportAll"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                }
             }
         }
 

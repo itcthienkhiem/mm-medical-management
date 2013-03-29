@@ -100,6 +100,8 @@
             this.toolStripSeparator40 = new System.Windows.Forms.ToolStripSeparator();
             this.nhanVienToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator41 = new System.Windows.Forms.ToolStripSeparator();
+            this.nhanVienTrungLapToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator76 = new System.Windows.Forms.ToolStripSeparator();
             this.trieuChungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator56 = new System.Windows.Forms.ToolStripSeparator();
             this.loaiSieuAmToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -359,6 +361,7 @@
             this._uServicesList = new MM.Controls.uServicesList();
             this._timerCheckAlert = new System.Windows.Forms.Timer(this.components);
             this._timerPatient = new System.Windows.Forms.Timer(this.components);
+            this._uNhanVienTrungLap = new MM.Controls.uNhanVienTrungLap();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -818,6 +821,8 @@
             this.toolStripSeparator40,
             this.nhanVienToolStripMenuItem,
             this.toolStripSeparator41,
+            this.nhanVienTrungLapToolStripMenuItem,
+            this.toolStripSeparator76,
             this.trieuChungToolStripMenuItem,
             this.toolStripSeparator56,
             this.loaiSieuAmToolStripMenuItem});
@@ -849,6 +854,18 @@
             // 
             this.toolStripSeparator41.Name = "toolStripSeparator41";
             resources.ApplyResources(this.toolStripSeparator41, "toolStripSeparator41");
+            // 
+            // nhanVienTrungLapToolStripMenuItem
+            // 
+            resources.ApplyResources(this.nhanVienTrungLapToolStripMenuItem, "nhanVienTrungLapToolStripMenuItem");
+            this.nhanVienTrungLapToolStripMenuItem.Name = "nhanVienTrungLapToolStripMenuItem";
+            this.nhanVienTrungLapToolStripMenuItem.Tag = "NhanVienTrungLap";
+            this.nhanVienTrungLapToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator76
+            // 
+            this.toolStripSeparator76.Name = "toolStripSeparator76";
+            resources.ApplyResources(this.toolStripSeparator76, "toolStripSeparator76");
             // 
             // trieuChungToolStripMenuItem
             // 
@@ -2271,6 +2288,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uNhanVienTrungLap);
             this._mainPanel.Controls.Add(this._uToaThuocTrongNgayList);
             this._mainPanel.Controls.Add(this._uCapNhatNhanhChecklist);
             this._mainPanel.Controls.Add(this._uSMSLog);
@@ -2736,6 +2754,11 @@
             // 
             this._timerPatient.Interval = 5000;
             // 
+            // _uNhanVienTrungLap
+            // 
+            resources.ApplyResources(this._uNhanVienTrungLap, "_uNhanVienTrungLap");
+            this._uNhanVienTrungLap.Name = "_uNhanVienTrungLap";
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -3097,6 +3120,9 @@
         private System.Windows.Forms.ToolStripMenuItem toaThuocTrongNgayToolStripMenuItem;
         private Controls.uToaThuocTrongNgayList _uToaThuocTrongNgayList;
         private System.Windows.Forms.ToolStripStatusLabel statusToaThuocMoi;
+        private System.Windows.Forms.ToolStripMenuItem nhanVienTrungLapToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator76;
+        private Controls.uNhanVienTrungLap _uNhanVienTrungLap;
 
     }
 }

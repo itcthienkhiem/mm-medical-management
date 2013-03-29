@@ -404,6 +404,8 @@ namespace MM
                 _uCapNhatNhanhChecklist.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uToaThuocTrongNgayList))
                 _uToaThuocTrongNgayList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uNhanVienTrungLap))
+                _uNhanVienTrungLap.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -1589,6 +1591,20 @@ namespace MM
                             _uToaThuocTrongNgayList.AllowExportAll = isExportAll;
                             _uToaThuocTrongNgayList.AllowConfirm = isConfirm;
                         }
+                        else if (functionCode == Const.NhanVienTrungLap)
+                        {
+                            danhmụcToolStripMenuItem.Enabled = isLogin;
+                            nhanVienTrungLapToolStripMenuItem.Enabled = isView && isLogin;
+                            _uNhanVienTrungLap.AllowAdd = isAdd;
+                            _uNhanVienTrungLap.AllowEdit = isEdit;
+                            _uNhanVienTrungLap.AllowDelete = isDelete;
+                            _uNhanVienTrungLap.AllowPrint = isPrint;
+                            _uNhanVienTrungLap.AllowExport = isExport;
+                            _uNhanVienTrungLap.AllowImport = isImport;
+                            _uNhanVienTrungLap.AllowLock = isLock;
+                            _uNhanVienTrungLap.AllowExportAll = isExportAll;
+                            _uNhanVienTrungLap.AllowConfirm = isConfirm;
+                        }
                     }
                 }
                 else
@@ -1817,6 +1833,7 @@ namespace MM
                 sMSLogToolStripMenuItem.Enabled = isLogin;
                 capNhatNhanhChecklistToolStripMenuItem.Enabled = isLogin;
                 toaThuocTrongNgayToolStripMenuItem.Enabled = isLogin;
+                nhanVienTrungLapToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -2267,12 +2284,23 @@ namespace MM
                 case "ToaThuocTrongNgay":
                     OnToaThuocTrongNgay();
                     break;
+
+                case "NhanVienTrungLap":
+                    OnNhanVienTrungLap();
+                    break;
             }
+        }
+
+        private void OnNhanVienTrungLap()
+        {
+            this.Text = string.Format("{0} - Nhan vien trung lap", Application.ProductName);
+            ViewControl(_uNhanVienTrungLap);
+            _uNhanVienTrungLap.DisplayAsThread();
         }
 
         private void OnToaThuocTrongNgay()
         {
-            this.Text = string.Format("{0} - Toa thuốc trong ngày", Application.ProductName);
+            this.Text = string.Format("{0} - Toa thuoc trong ngay", Application.ProductName);
             ViewControl(_uToaThuocTrongNgayList);
             _uToaThuocTrongNgayList.DisplayAsThread();
         }
@@ -2991,6 +3019,8 @@ namespace MM
                 _uBenhNhanThanThuocList.ClearData();
             else if (ctrl.GetType() == typeof(uKhoCapCuu))
                 _uKhoCapCuu.ClearData();
+            else if (ctrl.GetType() == typeof(uNhanVienTrungLap))
+                _uNhanVienTrungLap.ClearData();
         }
 
         private void OnDoctorList()
@@ -3253,6 +3283,7 @@ namespace MM
             _uSMSLog.ClearData();
             _uCapNhatNhanhChecklist.ClearData();
             _uToaThuocTrongNgayList.ClearData();
+            _uNhanVienTrungLap.ClearData();
         }
         #endregion
 
