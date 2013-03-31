@@ -334,3 +334,5 @@ ThongBao (co update CreatedBy, UpdatedBy)
 ToaCapCuu
 ToaThuoc
 YKienKhachHang
+=================================================================================
+1). Chuyển bệnh án trong khám bệnh
