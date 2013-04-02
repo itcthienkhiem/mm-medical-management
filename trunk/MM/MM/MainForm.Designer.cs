@@ -361,7 +361,7 @@
             this._uServicesList = new MM.Controls.uServicesList();
             this._timerCheckAlert = new System.Windows.Forms.Timer(this.components);
             this._timerPatient = new System.Windows.Forms.Timer(this.components);
-            this._uNhanVienTrungLap = new MM.Controls.uNhanVienTrungLap();
+            this._uNhanVienTrungLap = new MM.Controls.uNhanVienTrungLapList();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -3122,7 +3122,7 @@
         private System.Windows.Forms.ToolStripStatusLabel statusToaThuocMoi;
         private System.Windows.Forms.ToolStripMenuItem nhanVienTrungLapToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator76;
-        private Controls.uNhanVienTrungLap _uNhanVienTrungLap;
+        private Controls.uNhanVienTrungLapList _uNhanVienTrungLap;
 
     }
 }
