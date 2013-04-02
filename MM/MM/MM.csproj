@@ -95,11 +95,17 @@
     <Reference Include="TXTextControl, Version=15.1.800.500, Culture=neutral, PublicKeyToken=6b83fe9a75cfb638" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\uNhanVienTrungLap.cs">
+    <Compile Include="Controls\uMergeDocStaff.cs">
       <SubType>UserControl</SubType>
     </Compile>
-    <Compile Include="Controls\uNhanVienTrungLap.Designer.cs">
-      <DependentUpon>uNhanVienTrungLap.cs</DependentUpon>
+    <Compile Include="Controls\uMergeDocStaff.Designer.cs">
+      <DependentUpon>uMergeDocStaff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\uNhanVienTrungLapList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uNhanVienTrungLapList.Designer.cs">
+      <DependentUpon>uNhanVienTrungLapList.cs</DependentUpon>
     </Compile>
     <Compile Include="Controls\uToaThuocTrongNgayList.cs">
       <SubType>UserControl</SubType>
@@ -124,6 +130,12 @@
     </Compile>
     <Compile Include="Controls\uSMSLog.Designer.cs">
       <DependentUpon>uSMSLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgMergeNhanVien.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgMergeNhanVien.Designer.cs">
+      <DependentUpon>dlgMergeNhanVien.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\dlgAddDichVuLamThem.cs">
       <SubType>Form</SubType>
@@ -1625,8 +1637,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="Controls\uNhanVienTrungLap.resx">
-      <DependentUpon>uNhanVienTrungLap.cs</DependentUpon>
+    <EmbeddedResource Include="Controls\uMergeDocStaff.resx">
+      <DependentUpon>uMergeDocStaff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uNhanVienTrungLapList.resx">
+      <DependentUpon>uNhanVienTrungLapList.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uToaThuocTrongNgayList.resx">
       <DependentUpon>uToaThuocTrongNgayList.cs</DependentUpon>
@@ -1639,6 +1654,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uSMSLog.resx">
       <DependentUpon>uSMSLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgMergeNhanVien.resx">
+      <DependentUpon>dlgMergeNhanVien.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddDichVuLamThem.resx">
       <DependentUpon>dlgAddDichVuLamThem.cs</DependentUpon>

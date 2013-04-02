@@ -404,7 +404,7 @@ namespace MM
                 _uCapNhatNhanhChecklist.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uToaThuocTrongNgayList))
                 _uToaThuocTrongNgayList.DisplayAsThread();
-            else if (ctrl.GetType() == typeof(uNhanVienTrungLap))
+            else if (ctrl.GetType() == typeof(uNhanVienTrungLapList))
                 _uNhanVienTrungLap.DisplayAsThread();
         }
 
@@ -3019,7 +3019,7 @@ namespace MM
                 _uBenhNhanThanThuocList.ClearData();
             else if (ctrl.GetType() == typeof(uKhoCapCuu))
                 _uKhoCapCuu.ClearData();
-            else if (ctrl.GetType() == typeof(uNhanVienTrungLap))
+            else if (ctrl.GetType() == typeof(uNhanVienTrungLapList))
                 _uNhanVienTrungLap.ClearData();
         }
 
