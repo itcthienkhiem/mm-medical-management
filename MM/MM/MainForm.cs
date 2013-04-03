@@ -406,6 +406,8 @@ namespace MM
                 _uToaThuocTrongNgayList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uNhanVienTrungLapList))
                 _uNhanVienTrungLap.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uChuyenBenhAn))
+                _uChuyenBenhAn.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -1605,6 +1607,20 @@ namespace MM
                             _uNhanVienTrungLap.AllowExportAll = isExportAll;
                             _uNhanVienTrungLap.AllowConfirm = isConfirm;
                         }
+                        else if (functionCode == Const.ChuyenBenhAn)
+                        {
+                            patientToolStripMenuItem.Enabled = isLogin;
+                            chuyenBenhAnToolStripMenuItem.Enabled = isView && isLogin;
+                            _uChuyenBenhAn.AllowAdd = isAdd;
+                            _uChuyenBenhAn.AllowEdit = isEdit;
+                            _uChuyenBenhAn.AllowDelete = isDelete;
+                            _uChuyenBenhAn.AllowPrint = isPrint;
+                            _uChuyenBenhAn.AllowExport = isExport;
+                            _uChuyenBenhAn.AllowImport = isImport;
+                            _uChuyenBenhAn.AllowLock = isLock;
+                            _uChuyenBenhAn.AllowExportAll = isExportAll;
+                            _uChuyenBenhAn.AllowConfirm = isConfirm;
+                        }
                     }
                 }
                 else
@@ -1834,6 +1850,7 @@ namespace MM
                 capNhatNhanhChecklistToolStripMenuItem.Enabled = isLogin;
                 toaThuocTrongNgayToolStripMenuItem.Enabled = isLogin;
                 nhanVienTrungLapToolStripMenuItem.Enabled = isLogin;
+                chuyenBenhAnToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -2288,7 +2305,18 @@ namespace MM
                 case "NhanVienTrungLap":
                     OnNhanVienTrungLap();
                     break;
+
+                case "ChuyenBenhAn":
+                    OnChuyenBenhAn();
+                    break;
             }
+        }
+
+        private void OnChuyenBenhAn()
+        {
+            this.Text = string.Format("{0} - Chuyen benh an", Application.ProductName);
+            ViewControl(_uChuyenBenhAn);
+            _uChuyenBenhAn.DisplayAsThread();
         }
 
         private void OnNhanVienTrungLap()
@@ -3284,6 +3312,7 @@ namespace MM
             _uCapNhatNhanhChecklist.ClearData();
             _uToaThuocTrongNgayList.ClearData();
             _uNhanVienTrungLap.ClearData();
+            _uChuyenBenhAn.ClearData();
         }
         #endregion
 
