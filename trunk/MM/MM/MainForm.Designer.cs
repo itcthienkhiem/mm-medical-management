@@ -284,6 +284,7 @@
             this.dockSite3 = new DevComponents.DotNetBar.DockSite();
             this._timerShowAlert = new System.Windows.Forms.Timer(this.components);
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uNhanVienTrungLap = new MM.Controls.uNhanVienTrungLapList();
             this._uToaThuocTrongNgayList = new MM.Controls.uToaThuocTrongNgayList();
             this._uCapNhatNhanhChecklist = new MM.Controls.uCapNhatNhanhChecklist();
             this._uSMSLog = new MM.Controls.uSMSLog();
@@ -361,7 +362,9 @@
             this._uServicesList = new MM.Controls.uServicesList();
             this._timerCheckAlert = new System.Windows.Forms.Timer(this.components);
             this._timerPatient = new System.Windows.Forms.Timer(this.components);
-            this._uNhanVienTrungLap = new MM.Controls.uNhanVienTrungLapList();
+            this.toolStripSeparator77 = new System.Windows.Forms.ToolStripSeparator();
+            this.chuyenBenhAnToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._uChuyenBenhAn = new MM.Controls.uChuyenBenhAn();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -945,7 +948,9 @@
             this.toolStripSeparator55,
             this.benhNhanThanThuocToolStripMenuItem,
             this.toolStripSeparator64,
-            this.benhNhanNgoaiGoiKhamToolStripMenuItem});
+            this.benhNhanNgoaiGoiKhamToolStripMenuItem,
+            this.toolStripSeparator77,
+            this.chuyenBenhAnToolStripMenuItem});
             resources.ApplyResources(this.patientToolStripMenuItem, "patientToolStripMenuItem");
             this.patientToolStripMenuItem.Name = "patientToolStripMenuItem";
             // 
@@ -2054,7 +2059,7 @@
             this.dgPatient.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -2075,7 +2080,7 @@
             this.dgPatient.DataSource = this.patientViewBindingSource;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText;
@@ -2288,6 +2293,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uChuyenBenhAn);
             this._mainPanel.Controls.Add(this._uNhanVienTrungLap);
             this._mainPanel.Controls.Add(this._uToaThuocTrongNgayList);
             this._mainPanel.Controls.Add(this._uCapNhatNhanhChecklist);
@@ -2365,6 +2371,11 @@
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uNhanVienTrungLap
+            // 
+            resources.ApplyResources(this._uNhanVienTrungLap, "_uNhanVienTrungLap");
+            this._uNhanVienTrungLap.Name = "_uNhanVienTrungLap";
             // 
             // _uToaThuocTrongNgayList
             // 
@@ -2754,10 +2765,22 @@
             // 
             this._timerPatient.Interval = 5000;
             // 
-            // _uNhanVienTrungLap
+            // toolStripSeparator77
             // 
-            resources.ApplyResources(this._uNhanVienTrungLap, "_uNhanVienTrungLap");
-            this._uNhanVienTrungLap.Name = "_uNhanVienTrungLap";
+            this.toolStripSeparator77.Name = "toolStripSeparator77";
+            resources.ApplyResources(this.toolStripSeparator77, "toolStripSeparator77");
+            // 
+            // chuyenBenhAnToolStripMenuItem
+            // 
+            resources.ApplyResources(this.chuyenBenhAnToolStripMenuItem, "chuyenBenhAnToolStripMenuItem");
+            this.chuyenBenhAnToolStripMenuItem.Name = "chuyenBenhAnToolStripMenuItem";
+            this.chuyenBenhAnToolStripMenuItem.Tag = "ChuyenBenhAn";
+            this.chuyenBenhAnToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // _uChuyenBenhAn
+            // 
+            resources.ApplyResources(this._uChuyenBenhAn, "_uChuyenBenhAn");
+            this._uChuyenBenhAn.Name = "_uChuyenBenhAn";
             // 
             // MainForm
             // 
@@ -3123,6 +3146,9 @@
         private System.Windows.Forms.ToolStripMenuItem nhanVienTrungLapToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator76;
         private Controls.uNhanVienTrungLapList _uNhanVienTrungLap;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator77;
+        private System.Windows.Forms.ToolStripMenuItem chuyenBenhAnToolStripMenuItem;
+        private Controls.uChuyenBenhAn _uChuyenBenhAn;
 
     }
 }
