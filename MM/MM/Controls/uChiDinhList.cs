@@ -19,8 +19,10 @@ namespace MM.Controls
     {
         #region Members
         private DataRow _patientRow = null;
+        private DataRow _patientRow2 = null;
         private Hashtable _htDichVuChiDinh = null;
         private bool _flag = true;
+        private bool _isChuyenBenhAn = false;
         #endregion
 
         #region Constructor
@@ -31,10 +33,33 @@ namespace MM.Controls
         #endregion
 
         #region Properties
+        public bool IsChuyenBenhAn
+        {
+            get { return _isChuyenBenhAn; }
+            set 
+            { 
+                _isChuyenBenhAn = value;
+                btnChuyen.Visible = _isChuyenBenhAn;
+                btnAdd.Visible = !_isChuyenBenhAn;
+                btnEdit.Visible = !_isChuyenBenhAn;
+                btnDelete.Visible = !_isChuyenBenhAn;
+                btnConfirm.Visible = !_isChuyenBenhAn;
+
+                if (_isChuyenBenhAn)
+                    this.ContextMenuStrip = ctmAction2;
+            }
+        }
+
         public DataRow PatientRow
         {
             get { return _patientRow; }
             set { _patientRow = value; }
+        }
+
+        public DataRow PatientRow2
+        {
+            get { return _patientRow2; }
+            set { _patientRow2 = value; }
         }
         #endregion
 
@@ -50,6 +75,9 @@ namespace MM.Controls
             editToolStripMenuItem.Enabled = Global.AllowEditChiDinh;
             deleteToolStripMenuItem.Enabled = Global.AllowDeleteChiDinh;
             xacNhanDVChiDinhToolStripMenuItem.Enabled = Global.AllowConfirmChiDinh;
+
+            btnChuyen.Enabled = AllowChuyenKetQuaKham;
+            chuyenToolStripMenuItem.Enabled = AllowChuyenKetQuaKham;
         }
 
         public void DisplayAsThread()
@@ -72,7 +100,7 @@ namespace MM.Controls
             }
         }
 
-        private void ClearChiDinhData()
+        public void ClearChiDinhData()
         {
             DataTable dt = dgChiDinh.DataSource as DataTable;
             if (dt != null)
@@ -142,7 +170,7 @@ namespace MM.Controls
             OnDisplayChiTietChiDinh();
         }
 
-        private void ClearChiTietChiDinh()
+        public void ClearChiTietChiDinh()
         {
             DataTable dt = dgChiTiet.DataSource as DataTable;
             if (dt != null)
@@ -275,6 +303,7 @@ namespace MM.Controls
 
         private void OnEditChiDinh()
         {
+            if (_isChuyenBenhAn) return;
             if (dgChiDinh.SelectedRows == null || dgChiDinh.SelectedRows.Count <= 0)
             {
                 MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 chỉ định.", IconType.Information);
@@ -404,6 +433,36 @@ namespace MM.Controls
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những dịch vụ chỉ định cần xác nhận.", IconType.Information);
         }
+
+        private void OnChuyenKetQuaKham()
+        {
+            if (!_isChuyenBenhAn) return;
+
+            List<DataRow> deletedRows = new List<DataRow>();
+            DataTable dt = dgChiDinh.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                    deletedRows.Add(row);
+            }
+
+            if (dgChiDinh.RowCount <= 0 || deletedRows == null || deletedRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu ít nhất 1 chỉ định cần chuyển.", IconType.Information);
+                return;
+            }
+
+            if (_patientRow2 == null)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn bệnh nhân nhận chỉ định chuyển đến.", IconType.Information);
+                return;
+            }
+
+            string fileNum = _patientRow2["FileNum"].ToString();
+            if (MsgBox.Question(Application.ProductName, string.Format("Bạn có muốn chuyển những chỉ định đã chọn đến bệnh nhân: '{0}'?", fileNum)) == DialogResult.No) return;
+
+
+        }
         #endregion
 
         #region Window Event Handlers
@@ -496,6 +555,16 @@ namespace MM.Controls
         {
             OnConfirmDichVuChiDinh();
         }
+
+        private void btnChuyen_Click(object sender, EventArgs e)
+        {
+            OnChuyenKetQuaKham();
+        }
+
+        private void chuyenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnChuyenKetQuaKham();
+        }
         #endregion
 
         #region Working Thread
@@ -517,9 +586,5 @@ namespace MM.Controls
             }
         }
         #endregion
-
-        
-
-       
     }
 }

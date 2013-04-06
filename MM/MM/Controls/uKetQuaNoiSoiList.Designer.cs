@@ -33,6 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uKetQuaNoiSoiList));
             this.pFilter = new System.Windows.Forms.Panel();
             this.raFromDateToDate = new System.Windows.Forms.RadioButton();
             this.raAll = new System.Windows.Forms.RadioButton();
@@ -58,8 +59,6 @@
             this.ketLuanDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.deNghiDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.loaiNoiSoiStrDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ketQuaNoiSoiViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this._printDialog = new System.Windows.Forms.PrintDialog();
             this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
@@ -67,17 +66,23 @@
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.exportExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.printPreviewToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.exportExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ketQuaNoiSoiViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._printDialog = new System.Windows.Forms.PrintDialog();
+            this.ctmAction2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.chuyenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnChuyen = new System.Windows.Forms.Button();
             this.pFilter.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgKhamNoiSoi)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ketQuaNoiSoiViewBindingSource)).BeginInit();
             this.ctmAction.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.ketQuaNoiSoiViewBindingSource)).BeginInit();
+            this.ctmAction2.SuspendLayout();
             this.SuspendLayout();
             // 
             // pFilter
@@ -161,6 +166,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnChuyen);
             this.panel2.Controls.Add(this.btnExportExcel);
             this.panel2.Controls.Add(this.btnPrintPreview);
             this.panel2.Controls.Add(this.btnPrint);
@@ -382,18 +388,6 @@
             this.loaiNoiSoiStrDataGridViewTextBoxColumn.ReadOnly = true;
             this.loaiNoiSoiStrDataGridViewTextBoxColumn.Width = 120;
             // 
-            // ketQuaNoiSoiViewBindingSource
-            // 
-            this.ketQuaNoiSoiViewBindingSource.DataSource = typeof(MM.Databasae.KetQuaNoiSoiView);
-            // 
-            // _printDialog
-            // 
-            this._printDialog.AllowCurrentPage = true;
-            this._printDialog.AllowSelection = true;
-            this._printDialog.AllowSomePages = true;
-            this._printDialog.ShowHelp = true;
-            this._printDialog.UseEXDialog = true;
-            // 
             // ctmAction
             // 
             this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -450,27 +444,6 @@
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
             // 
-            // exportExcelToolStripMenuItem
-            // 
-            this.exportExcelToolStripMenuItem.Image = global::MM.Properties.Resources.page_excel_icon;
-            this.exportExcelToolStripMenuItem.Name = "exportExcelToolStripMenuItem";
-            this.exportExcelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.exportExcelToolStripMenuItem.Text = "Xuất Excel";
-            this.exportExcelToolStripMenuItem.Click += new System.EventHandler(this.exportExcelToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(149, 6);
-            // 
-            // printToolStripMenuItem
-            // 
-            this.printToolStripMenuItem.Image = global::MM.Properties.Resources.Printer_icon__1_;
-            this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.printToolStripMenuItem.Text = "In";
-            this.printToolStripMenuItem.Click += new System.EventHandler(this.printToolStripMenuItem_Click);
-            // 
             // printPreviewToolStripMenuItem
             // 
             this.printPreviewToolStripMenuItem.Image = global::MM.Properties.Resources.Actions_print_preview_icon;
@@ -483,6 +456,67 @@
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
             this.toolStripSeparator4.Size = new System.Drawing.Size(149, 6);
+            // 
+            // printToolStripMenuItem
+            // 
+            this.printToolStripMenuItem.Image = global::MM.Properties.Resources.Printer_icon__1_;
+            this.printToolStripMenuItem.Name = "printToolStripMenuItem";
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.printToolStripMenuItem.Text = "In";
+            this.printToolStripMenuItem.Click += new System.EventHandler(this.printToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(149, 6);
+            // 
+            // exportExcelToolStripMenuItem
+            // 
+            this.exportExcelToolStripMenuItem.Image = global::MM.Properties.Resources.page_excel_icon;
+            this.exportExcelToolStripMenuItem.Name = "exportExcelToolStripMenuItem";
+            this.exportExcelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exportExcelToolStripMenuItem.Text = "Xuất Excel";
+            this.exportExcelToolStripMenuItem.Click += new System.EventHandler(this.exportExcelToolStripMenuItem_Click);
+            // 
+            // ketQuaNoiSoiViewBindingSource
+            // 
+            this.ketQuaNoiSoiViewBindingSource.DataSource = typeof(MM.Databasae.KetQuaNoiSoiView);
+            // 
+            // _printDialog
+            // 
+            this._printDialog.AllowCurrentPage = true;
+            this._printDialog.AllowSelection = true;
+            this._printDialog.AllowSomePages = true;
+            this._printDialog.ShowHelp = true;
+            this._printDialog.UseEXDialog = true;
+            // 
+            // ctmAction2
+            // 
+            this.ctmAction2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.chuyenToolStripMenuItem});
+            this.ctmAction2.Name = "cmtAction";
+            this.ctmAction2.Size = new System.Drawing.Size(153, 48);
+            // 
+            // chuyenToolStripMenuItem
+            // 
+            this.chuyenToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("chuyenToolStripMenuItem.Image")));
+            this.chuyenToolStripMenuItem.Name = "chuyenToolStripMenuItem";
+            this.chuyenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.chuyenToolStripMenuItem.Text = "Chuyển";
+            this.chuyenToolStripMenuItem.Click += new System.EventHandler(this.chuyenToolStripMenuItem_Click);
+            // 
+            // btnChuyen
+            // 
+            this.btnChuyen.Image = ((System.Drawing.Image)(resources.GetObject("btnChuyen.Image")));
+            this.btnChuyen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnChuyen.Location = new System.Drawing.Point(7, 6);
+            this.btnChuyen.Name = "btnChuyen";
+            this.btnChuyen.Size = new System.Drawing.Size(75, 25);
+            this.btnChuyen.TabIndex = 77;
+            this.btnChuyen.Text = "      &Chuyển";
+            this.btnChuyen.UseVisualStyleBackColor = true;
+            this.btnChuyen.Visible = false;
+            this.btnChuyen.Click += new System.EventHandler(this.btnChuyen_Click);
             // 
             // uKetQuaNoiSoiList
             // 
@@ -499,8 +533,9 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgKhamNoiSoi)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.ketQuaNoiSoiViewBindingSource)).EndInit();
             this.ctmAction.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.ketQuaNoiSoiViewBindingSource)).EndInit();
+            this.ctmAction2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -546,5 +581,8 @@
         private System.Windows.Forms.ToolStripMenuItem printPreviewToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem exportExcelToolStripMenuItem;
+        protected System.Windows.Forms.ContextMenuStrip ctmAction2;
+        private System.Windows.Forms.ToolStripMenuItem chuyenToolStripMenuItem;
+        private System.Windows.Forms.Button btnChuyen;
     }
 }

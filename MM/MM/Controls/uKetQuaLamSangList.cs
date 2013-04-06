@@ -21,6 +21,8 @@ namespace MM.Controls
         private string _patientGUID = string.Empty;
         private DateTime _fromDate = DateTime.Now;
         private DateTime _toDate = DateTime.Now;
+        private DataRow _patientRow2 = null;
+        private bool _isChuyenBenhAn = false;
         #endregion
 
         #region Constructor
@@ -31,10 +33,32 @@ namespace MM.Controls
         #endregion
 
         #region Properties
+        public bool IsChuyenBenhAn
+        {
+            get { return _isChuyenBenhAn; }
+            set 
+            { 
+                _isChuyenBenhAn = value;
+                btnChuyen.Visible = _isChuyenBenhAn;
+                btnAdd.Visible = !_isChuyenBenhAn;
+                btnEdit.Visible = !_isChuyenBenhAn;
+                btnDelete.Visible = !_isChuyenBenhAn;
+
+                if (_isChuyenBenhAn)
+                    dgKhamLamSang.ContextMenuStrip = ctmAction2;
+            }
+        }
+
         public DataRow PatientRow
         {
             get { return _patientRow; }
             set { _patientRow = value; }
+        }
+
+        public DataRow PatientRow2
+        {
+            get { return _patientRow2; }
+            set { _patientRow2 = value; }
         }
         #endregion
 
@@ -46,6 +70,9 @@ namespace MM.Controls
 
             addToolStripMenuItem.Enabled = Global.AllowAddKhamLamSang;
             deleteToolStripMenuItem.Enabled = Global.AllowDeleteKhamLamSang;
+
+            btnChuyen.Enabled = AllowChuyenKetQuaKham;
+            chuyenToolStripMenuItem.Enabled = AllowChuyenKetQuaKham;
         }
 
         public void DisplayAsThread()
@@ -83,7 +110,7 @@ namespace MM.Controls
             }
         }
 
-        private void ClearData()
+        public void ClearData()
         {
             DataTable dt = dgKhamLamSang.DataSource as DataTable;
             if (dt != null)
@@ -153,7 +180,8 @@ namespace MM.Controls
             }
 
             DataRow drKetQuaLamSang = (dgKhamLamSang.SelectedRows[0].DataBoundItem as DataRowView).Row;
-            dlgAddKhamLamSang dlg = new dlgAddKhamLamSang(_patientGUID, drKetQuaLamSang, Global.AllowEditKhamLamSang);
+            bool allowEdit = _isChuyenBenhAn ? false : Global.AllowEditKhamLamSang;
+            dlgAddKhamLamSang dlg = new dlgAddKhamLamSang(_patientGUID, drKetQuaLamSang, allowEdit);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 DisplayAsThread();
@@ -196,9 +224,49 @@ namespace MM.Controls
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những kết quả lâm sàng.", IconType.Information);
         }
+
+        private void OnChuyenKetQuaKham()
+        {
+            if (!_isChuyenBenhAn) return;
+
+            List<DataRow> deletedRows = new List<DataRow>();
+            DataTable dt = dgKhamLamSang.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                    deletedRows.Add(row);
+            }
+
+            if (dgKhamLamSang.RowCount <= 0 || deletedRows == null || deletedRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu ít nhất 1 kết quả lâm sàng cần chuyển.", IconType.Information);
+                return;
+            }
+
+            if (_patientRow2 == null)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn bệnh nhân nhận kết quả lâm sàng chuyển đến.", IconType.Information);
+                return;
+            }
+
+            string fileNum = _patientRow2["FileNum"].ToString();
+            if (MsgBox.Question(Application.ProductName, string.Format("Bạn có muốn chuyển những kết quả lâm sàng đã chọn đến bệnh nhân: '{0}'?", fileNum)) == DialogResult.No) return;
+
+
+        }
         #endregion
 
         #region Window Event Handlers
+        private void btnChuyen_Click(object sender, EventArgs e)
+        {
+            OnChuyenKetQuaKham();
+        }
+
+        private void chuyenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnChuyenKetQuaKham();
+        }
+
         private void btnSearch_Click(object sender, EventArgs e)
         {
             DisplayAsThread();
@@ -278,6 +346,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
         
 

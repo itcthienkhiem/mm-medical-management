@@ -19,10 +19,12 @@ namespace MM.Controls
     {
         #region Members
         private DataRow _patientRow = null;
+        private DataRow _patientRow2 = null;
         private DateTime _fromDate = DateTime.Now;
         private DateTime _toDate = DateTime.Now;
         private bool _isAll = true;
         private string _tenBenhNhan = string.Empty;
+        private bool _isChuyenBenhAn = false;
         #endregion
 
         #region Constructor
@@ -35,26 +37,52 @@ namespace MM.Controls
         #endregion
 
         #region Properties
+        public bool IsChuyenBenhAn
+        {
+            get { return _isChuyenBenhAn; }
+            set 
+            { 
+                _isChuyenBenhAn = value;
+                btnChuyen.Visible = _isChuyenBenhAn;
+                btnAdd.Visible = !_isChuyenBenhAn;
+                btnEdit.Visible = !_isChuyenBenhAn;
+                btnDelete.Visible = !_isChuyenBenhAn;
+                btnPrint.Visible = !_isChuyenBenhAn;
+                btnPrintPreview.Visible = !_isChuyenBenhAn;
+
+                if (_isChuyenBenhAn)
+                    dgToaThuoc.ContextMenuStrip = ctmAction2;
+            }
+        }
+
         public DataRow PatientRow
         {
             get { return _patientRow; }
             set { _patientRow = value; }
+        }
+
+        public DataRow PatientRow2
+        {
+            get { return _patientRow2; }
+            set { _patientRow2 = value; }
         }
         #endregion
 
         #region UI Command
         private void UpdateGUI()
         {
-            btnAdd.Enabled = AllowAdd;
-            //btnEdit.Enabled = AllowEdit;
-            btnDelete.Enabled = AllowDelete;
-            btnPrint.Enabled = AllowPrint;
-            btnPrintPreview.Enabled = AllowPrint;
+            btnAdd.Enabled = Global.AllowAddKeToa;
+            btnDelete.Enabled = Global.AllowDeleteKeToa;
+            btnPrint.Enabled = Global.AllowPrintKeToa;
+            btnPrintPreview.Enabled = Global.AllowPrintKeToa;
 
-            addToolStripMenuItem.Enabled = AllowAdd;
-            deleteToolStripMenuItem.Enabled = AllowDelete;
-            printPreviewToolStripMenuItem.Enabled = AllowPrint;
-            printToolStripMenuItem.Enabled = AllowPrint;
+            addToolStripMenuItem.Enabled = Global.AllowAddKeToa;
+            deleteToolStripMenuItem.Enabled = Global.AllowDeleteKeToa;
+            printPreviewToolStripMenuItem.Enabled = Global.AllowPrintKeToa;
+            printToolStripMenuItem.Enabled = Global.AllowPrintKeToa;
+
+            btnChuyen.Enabled = AllowChuyenKetQuaKham;
+            chuyenToolStripMenuItem.Enabled = AllowChuyenKetQuaKham;
         }
 
         public bool EnableTextboxBenhNhan
@@ -154,7 +182,8 @@ namespace MM.Controls
             }
 
             DataRow drToaThuoc = (dgToaThuoc.SelectedRows[0].DataBoundItem as DataRowView).Row;
-            dlgAddToaThuoc dlg = new dlgAddToaThuoc(drToaThuoc, AllowEdit);
+            bool allowEdit = _isChuyenBenhAn ? false : Global.AllowEditKeToa;
+            dlgAddToaThuoc dlg = new dlgAddToaThuoc(drToaThuoc, allowEdit);
             if (_patientRow != null) dlg.PatientRow = _patientRow;
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
@@ -264,9 +293,49 @@ namespace MM.Controls
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những toa thuốc cần in.", IconType.Information);
         }
+
+        private void OnChuyenKetQuaKham()
+        {
+            if (!_isChuyenBenhAn) return;
+
+            List<DataRow> deletedRows = new List<DataRow>();
+            DataTable dt = dgToaThuoc.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                    deletedRows.Add(row);
+            }
+
+            if (dgToaThuoc.RowCount <= 0 || deletedRows == null || deletedRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu ít nhất 1 toa thuốc cần chuyển.", IconType.Information);
+                return;
+            }
+
+            if (_patientRow2 == null)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn bệnh nhân nhận toa thuốc chuyển đến.", IconType.Information);
+                return;
+            }
+
+            string fileNum = _patientRow2["FileNum"].ToString();
+            if (MsgBox.Question(Application.ProductName, string.Format("Bạn có muốn chuyển những toa thuốc đã chọn đến bệnh nhân: '{0}'?", fileNum)) == DialogResult.No) return;
+
+
+        }
         #endregion
 
         #region Window Event Handlers
+        private void chuyenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnChuyenKetQuaKham();
+        }
+
+        private void btnChuyen_Click(object sender, EventArgs e)
+        {
+            OnChuyenKetQuaKham();
+        }
+
         private void btnAdd_Click(object sender, EventArgs e)
         {
             OnAddToaThuoc();
@@ -284,7 +353,6 @@ namespace MM.Controls
 
         private void dgThuoc_DoubleClick(object sender, EventArgs e)
         {
-            //if (!AllowEdit) return;
             OnEditToaThuoc();
         }
 
@@ -376,5 +444,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }

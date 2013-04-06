@@ -37,6 +37,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uServiceHistory));
             this.panel3 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgServiceHistory = new DevComponents.DotNetBar.Controls.DataGridViewX();
@@ -55,6 +56,14 @@
             this.createdDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DocStaffFullname = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NguoiCapNhat = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.xuatPhieuThuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serviceHistoryViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.pTotal = new System.Windows.Forms.Panel();
             this.lbTotalReceipt = new System.Windows.Forms.Label();
@@ -64,6 +73,7 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
+            this.btnChuyen = new System.Windows.Forms.Button();
             this.pFilter = new System.Windows.Forms.Panel();
             this.btnSearch = new System.Windows.Forms.Button();
             this.dtpkToDate = new System.Windows.Forms.DateTimePicker();
@@ -72,21 +82,16 @@
             this.raFromDateToDate = new System.Windows.Forms.RadioButton();
             this.raAll = new System.Windows.Forms.RadioButton();
             this._printDialog = new System.Windows.Forms.PrintDialog();
-            this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.xuatPhieuThuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.ctmAction2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.chuyenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgServiceHistory)).BeginInit();
+            this.ctmAction.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.serviceHistoryViewBindingSource)).BeginInit();
             this.pTotal.SuspendLayout();
             this.panel2.SuspendLayout();
             this.pFilter.SuspendLayout();
-            this.ctmAction.SuspendLayout();
+            this.ctmAction2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel3
@@ -311,6 +316,66 @@
             this.NguoiCapNhat.ReadOnly = true;
             this.NguoiCapNhat.Width = 150;
             // 
+            // ctmAction
+            // 
+            this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.addToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.editToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.deleteToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.xuatPhieuThuToolStripMenuItem});
+            this.ctmAction.Name = "cmtAction";
+            this.ctmAction.Size = new System.Drawing.Size(153, 110);
+            // 
+            // addToolStripMenuItem
+            // 
+            this.addToolStripMenuItem.Image = global::MM.Properties.Resources.add;
+            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addToolStripMenuItem.Text = "Thêm";
+            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            // 
+            // editToolStripMenuItem
+            // 
+            this.editToolStripMenuItem.Image = global::MM.Properties.Resources.edit;
+            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.editToolStripMenuItem.Text = "Sửa";
+            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Image = global::MM.Properties.Resources.del;
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Text = "Xóa";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
+            // 
+            // xuatPhieuThuToolStripMenuItem
+            // 
+            this.xuatPhieuThuToolStripMenuItem.Image = global::MM.Properties.Resources.export_icon;
+            this.xuatPhieuThuToolStripMenuItem.Name = "xuatPhieuThuToolStripMenuItem";
+            this.xuatPhieuThuToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.xuatPhieuThuToolStripMenuItem.Text = "Xuất phiếu thu";
+            this.xuatPhieuThuToolStripMenuItem.Click += new System.EventHandler(this.xuatPhieuThuToolStripMenuItem_Click);
+            // 
             // serviceHistoryViewBindingSource
             // 
             this.serviceHistoryViewBindingSource.DataSource = typeof(MM.Databasae.ServiceHistoryView);
@@ -352,6 +417,7 @@
             this.panel2.Controls.Add(this.btnExportReceipt);
             this.panel2.Controls.Add(this.btnDelete);
             this.panel2.Controls.Add(this.btnEdit);
+            this.panel2.Controls.Add(this.btnChuyen);
             this.panel2.Controls.Add(this.btnAdd);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel2.Location = new System.Drawing.Point(0, 543);
@@ -406,6 +472,19 @@
             this.btnAdd.Text = "    &Thêm";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnChuyen
+            // 
+            this.btnChuyen.Image = ((System.Drawing.Image)(resources.GetObject("btnChuyen.Image")));
+            this.btnChuyen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnChuyen.Location = new System.Drawing.Point(6, 6);
+            this.btnChuyen.Name = "btnChuyen";
+            this.btnChuyen.Size = new System.Drawing.Size(75, 25);
+            this.btnChuyen.TabIndex = 7;
+            this.btnChuyen.Text = "      &Chuyển";
+            this.btnChuyen.UseVisualStyleBackColor = true;
+            this.btnChuyen.Visible = false;
+            this.btnChuyen.Click += new System.EventHandler(this.btnChuyen_Click);
             // 
             // pFilter
             // 
@@ -489,65 +568,20 @@
             // 
             this._printDialog.UseEXDialog = true;
             // 
-            // ctmAction
+            // ctmAction2
             // 
-            this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.addToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.editToolStripMenuItem,
-            this.toolStripSeparator2,
-            this.deleteToolStripMenuItem,
-            this.toolStripSeparator3,
-            this.xuatPhieuThuToolStripMenuItem});
-            this.ctmAction.Name = "cmtAction";
-            this.ctmAction.Size = new System.Drawing.Size(153, 132);
+            this.ctmAction2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.chuyenToolStripMenuItem});
+            this.ctmAction2.Name = "cmtAction";
+            this.ctmAction2.Size = new System.Drawing.Size(116, 26);
             // 
-            // addToolStripMenuItem
+            // chuyenToolStripMenuItem
             // 
-            this.addToolStripMenuItem.Image = global::MM.Properties.Resources.add;
-            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.addToolStripMenuItem.Text = "Thêm";
-            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
-            // 
-            // editToolStripMenuItem
-            // 
-            this.editToolStripMenuItem.Image = global::MM.Properties.Resources.edit;
-            this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.editToolStripMenuItem.Text = "Sửa";
-            this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator2
-            // 
-            this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
-            // 
-            // deleteToolStripMenuItem
-            // 
-            this.deleteToolStripMenuItem.Image = global::MM.Properties.Resources.del;
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.deleteToolStripMenuItem.Text = "Xóa";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
-            // 
-            // xuatPhieuThuToolStripMenuItem
-            // 
-            this.xuatPhieuThuToolStripMenuItem.Image = global::MM.Properties.Resources.export_icon;
-            this.xuatPhieuThuToolStripMenuItem.Name = "xuatPhieuThuToolStripMenuItem";
-            this.xuatPhieuThuToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.xuatPhieuThuToolStripMenuItem.Text = "Xuất phiếu thu";
-            this.xuatPhieuThuToolStripMenuItem.Click += new System.EventHandler(this.xuatPhieuThuToolStripMenuItem_Click);
+            this.chuyenToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("chuyenToolStripMenuItem.Image")));
+            this.chuyenToolStripMenuItem.Name = "chuyenToolStripMenuItem";
+            this.chuyenToolStripMenuItem.Size = new System.Drawing.Size(115, 22);
+            this.chuyenToolStripMenuItem.Text = "Chuyển";
+            this.chuyenToolStripMenuItem.Click += new System.EventHandler(this.chuyenToolStripMenuItem_Click);
             // 
             // uServiceHistory
             // 
@@ -561,13 +595,14 @@
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgServiceHistory)).EndInit();
+            this.ctmAction.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.serviceHistoryViewBindingSource)).EndInit();
             this.pTotal.ResumeLayout(false);
             this.pTotal.PerformLayout();
             this.panel2.ResumeLayout(false);
             this.pFilter.ResumeLayout(false);
             this.pFilter.PerformLayout();
-            this.ctmAction.ResumeLayout(false);
+            this.ctmAction2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -619,5 +654,8 @@
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripMenuItem xuatPhieuThuToolStripMenuItem;
+        private System.Windows.Forms.Button btnChuyen;
+        protected System.Windows.Forms.ContextMenuStrip ctmAction2;
+        private System.Windows.Forms.ToolStripMenuItem chuyenToolStripMenuItem;
     }
 }

@@ -29,9 +29,10 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uCanDoList));
             this.pFilter = new System.Windows.Forms.Panel();
             this.raFromDateToDate = new System.Windows.Forms.RadioButton();
             this.raAll = new System.Windows.Forms.RadioButton();
@@ -57,19 +58,23 @@
             this.bMIDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.MuMau = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ThiLuc = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.canDoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.canDoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.ctmAction2 = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.chuyenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnChuyen = new System.Windows.Forms.Button();
             this.pFilter.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgCanDo)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.canDoBindingSource)).BeginInit();
             this.ctmAction.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.canDoBindingSource)).BeginInit();
+            this.ctmAction2.SuspendLayout();
             this.SuspendLayout();
             // 
             // pFilter
@@ -152,6 +157,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.btnChuyen);
             this.panel2.Controls.Add(this.btnDelete);
             this.panel2.Controls.Add(this.btnEdit);
             this.panel2.Controls.Add(this.btnAdd);
@@ -223,14 +229,14 @@
             this.dgCanDo.AllowUserToDeleteRows = false;
             this.dgCanDo.AllowUserToOrderColumns = true;
             this.dgCanDo.AutoGenerateColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgCanDo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgCanDo.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle4;
             this.dgCanDo.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgCanDo.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colChecked,
@@ -246,14 +252,14 @@
             this.ThiLuc});
             this.dgCanDo.ContextMenuStrip = this.ctmAction;
             this.dgCanDo.DataSource = this.canDoBindingSource;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgCanDo.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgCanDo.DefaultCellStyle = dataGridViewCellStyle6;
             this.dgCanDo.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgCanDo.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgCanDo.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -280,9 +286,9 @@
             // ngayCanDoDataGridViewTextBoxColumn
             // 
             this.ngayCanDoDataGridViewTextBoxColumn.DataPropertyName = "NgayCanDo";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.Format = "dd/MM/yyyy HH:mm:ss";
-            this.ngayCanDoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle5.Format = "dd/MM/yyyy HH:mm:ss";
+            this.ngayCanDoDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle5;
             this.ngayCanDoDataGridViewTextBoxColumn.HeaderText = "Ngày cân đo";
             this.ngayCanDoDataGridViewTextBoxColumn.Name = "ngayCanDoDataGridViewTextBoxColumn";
             this.ngayCanDoDataGridViewTextBoxColumn.ReadOnly = true;
@@ -360,10 +366,6 @@
             this.ThiLuc.ReadOnly = true;
             this.ThiLuc.Width = 200;
             // 
-            // canDoBindingSource
-            // 
-            this.canDoBindingSource.DataSource = typeof(MM.Databasae.CanDo);
-            // 
             // ctmAction
             // 
             this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -409,6 +411,38 @@
             this.deleteToolStripMenuItem.Text = "Xóa";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
+            // canDoBindingSource
+            // 
+            this.canDoBindingSource.DataSource = typeof(MM.Databasae.CanDo);
+            // 
+            // ctmAction2
+            // 
+            this.ctmAction2.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.chuyenToolStripMenuItem});
+            this.ctmAction2.Name = "cmtAction";
+            this.ctmAction2.Size = new System.Drawing.Size(153, 48);
+            // 
+            // chuyenToolStripMenuItem
+            // 
+            this.chuyenToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("chuyenToolStripMenuItem.Image")));
+            this.chuyenToolStripMenuItem.Name = "chuyenToolStripMenuItem";
+            this.chuyenToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.chuyenToolStripMenuItem.Text = "Chuyển";
+            this.chuyenToolStripMenuItem.Click += new System.EventHandler(this.chuyenToolStripMenuItem_Click);
+            // 
+            // btnChuyen
+            // 
+            this.btnChuyen.Image = ((System.Drawing.Image)(resources.GetObject("btnChuyen.Image")));
+            this.btnChuyen.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnChuyen.Location = new System.Drawing.Point(6, 6);
+            this.btnChuyen.Name = "btnChuyen";
+            this.btnChuyen.Size = new System.Drawing.Size(75, 25);
+            this.btnChuyen.TabIndex = 8;
+            this.btnChuyen.Text = "      &Chuyển";
+            this.btnChuyen.UseVisualStyleBackColor = true;
+            this.btnChuyen.Visible = false;
+            this.btnChuyen.Click += new System.EventHandler(this.btnChuyen_Click);
+            // 
             // uCanDoList
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -424,8 +458,9 @@
             this.panel1.ResumeLayout(false);
             this.panel1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgCanDo)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.canDoBindingSource)).EndInit();
             this.ctmAction.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.canDoBindingSource)).EndInit();
+            this.ctmAction2.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -464,5 +499,8 @@
         private System.Windows.Forms.ToolStripMenuItem editToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        protected System.Windows.Forms.ContextMenuStrip ctmAction2;
+        private System.Windows.Forms.ToolStripMenuItem chuyenToolStripMenuItem;
+        private System.Windows.Forms.Button btnChuyen;
     }
 }

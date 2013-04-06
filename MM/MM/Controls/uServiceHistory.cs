@@ -21,11 +21,13 @@ namespace MM.Controls
     {
         #region Members
         private DataRow _patientRow = null;
+        private DataRow _patientRow2 = null;
         private string _patientGUID = string.Empty;
         private DateTime _fromDate = DateTime.Now;
         private DateTime _toDate = DateTime.Now;
         private bool _isAll = true;
         private bool _isDailyService = false;
+        private bool _isChuyenBenhAn = false;
         #endregion
 
         #region Constructor
@@ -38,10 +40,34 @@ namespace MM.Controls
         #endregion
 
         #region Properties
+        public bool IsChuyenBenhAn
+        {
+            get { return _isChuyenBenhAn; }
+            set 
+            { 
+                _isChuyenBenhAn = value;
+                pTotal.Visible = !_isChuyenBenhAn;
+                btnChuyen.Visible = _isChuyenBenhAn;
+                btnAdd.Visible = !_isChuyenBenhAn;
+                btnEdit.Visible = !_isChuyenBenhAn;
+                btnDelete.Visible = !_isChuyenBenhAn;
+                btnExportReceipt.Visible = !_isChuyenBenhAn;
+
+                if (_isChuyenBenhAn)
+                    dgServiceHistory.ContextMenuStrip = ctmAction2;
+            }
+        }
+
         public DataRow PatientRow
         {
             get { return _patientRow; }
             set { _patientRow = value; }
+        }
+
+        public DataRow PatientRow2
+        {
+            get { return _patientRow2; }
+            set { _patientRow2 = value; }
         }
 
         public bool IsDailyService
@@ -89,7 +115,9 @@ namespace MM.Controls
         {
             fixedPriceDataGridViewTextBoxColumn.Visible = Global.AllowShowServiePrice;
             Amount.Visible = Global.AllowShowServiePrice;
-            pTotal.Visible = Global.AllowShowServiePrice;
+
+            if (!_isChuyenBenhAn)
+                pTotal.Visible = Global.AllowShowServiePrice;
 
             btnAdd.Enabled = Global.AllowAddDichVuDaSuDung;
             btnEdit.Enabled = Global.AllowEditDichVuDaSuDung;
@@ -100,6 +128,9 @@ namespace MM.Controls
             editToolStripMenuItem.Enabled = Global.AllowEditDichVuDaSuDung;
             deleteToolStripMenuItem.Enabled = Global.AllowDeleteDichVuDaSuDung;
             xuatPhieuThuToolStripMenuItem.Enabled = Global.AllowExportPhieuThuDichVu;
+
+            btnChuyen.Enabled = AllowChuyenKetQuaKham;
+            chuyenToolStripMenuItem.Enabled = AllowChuyenKetQuaKham;
         }
 
         private void OnAdd()
@@ -120,7 +151,9 @@ namespace MM.Controls
             }
 
             DataRow drServiceHistory = (dgServiceHistory.SelectedRows[0].DataBoundItem as DataRowView).Row;
-            dlgAddServiceHistory dlg = new dlgAddServiceHistory(_patientGUID, drServiceHistory, Global.AllowEditDichVuDaSuDung);
+            bool allowEdit = _isChuyenBenhAn ? false : Global.AllowEditDichVuDaSuDung;
+
+            dlgAddServiceHistory dlg = new dlgAddServiceHistory(_patientGUID, drServiceHistory, allowEdit);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 base.RaiseServiceHistoryChanged();
@@ -248,8 +281,12 @@ namespace MM.Controls
                 {
                     ClearData();
                     dgServiceHistory.DataSource = result.QueryResult;
-                    CalculateTotalPrice();
-                    HighlightPaidServices();
+
+                    if (!_isChuyenBenhAn)
+                    {
+                        CalculateTotalPrice();
+                        HighlightPaidServices();
+                    }
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -410,6 +447,29 @@ namespace MM.Controls
                 }
             }
         }
+
+        private void OnChuyenKetQuaKham()
+        {
+            if (!_isChuyenBenhAn) return;
+
+            if (dgServiceHistory.RowCount <= 0 ||
+                CheckedServiceRows == null || CheckedServiceRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu ít nhất 1 dịch vụ cần chuyển.", IconType.Information);
+                return;
+            }
+
+            if (_patientRow2 == null)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn bệnh nhân nhận dịch vụ chuyển đến.", IconType.Information);
+                return;
+            }
+
+            string fileNum = _patientRow2["FileNum"].ToString();
+            if (MsgBox.Question(Application.ProductName, string.Format("Bạn có muốn chuyển những dịch vụ đã chọn đến bệnh nhân: '{0}'?", fileNum)) == DialogResult.No) return;
+
+
+        }
         #endregion
 
         #region Window Event Handlers
@@ -513,6 +573,16 @@ namespace MM.Controls
 
             OnExportReceipt();
         }
+
+        private void chuyenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnChuyenKetQuaKham();
+        }
+
+        private void btnChuyen_Click(object sender, EventArgs e)
+        {
+            OnChuyenKetQuaKham();
+        }
         #endregion
 
         #region Working Thread
@@ -534,7 +604,5 @@ namespace MM.Controls
             }
         }
         #endregion
-
-        
     }
 }
