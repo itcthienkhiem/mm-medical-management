@@ -321,7 +321,14 @@ namespace MM.Controls
             string fileNum = _patientRow2["FileNum"].ToString();
             if (MsgBox.Question(Application.ProductName, string.Format("Bạn có muốn chuyển những toa thuốc đã chọn đến bệnh nhân: '{0}'?", fileNum)) == DialogResult.No) return;
 
-
+            Result result = KeToaBus.ChuyenBenhAn(_patientRow2["PatientGUID"].ToString(), deletedRows);
+            if (result.IsOK)
+                DisplayAsThread();
+            else
+            {
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("KeToaBus.ChuyenBenhAn"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("KeToaBus.ChuyenBenhAn"));
+            }
         }
         #endregion
 

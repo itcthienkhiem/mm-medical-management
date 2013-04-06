@@ -235,7 +235,14 @@ namespace MM.Controls
             string fileNum = _patientRow2["FileNum"].ToString();
             if (MsgBox.Question(Application.ProductName, string.Format("Bạn có muốn chuyển những cân đo đã chọn đến bệnh nhân: '{0}'?", fileNum)) == DialogResult.No) return;
 
-
+            Result result = CanDoBus.ChuyenBenhAn(_patientRow2["PatientGUID"].ToString(), deletedRows);
+            if (result.IsOK)
+                DisplayAsThread();
+            else
+            {
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("CanDoBus.ChuyenBenhAn"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("CanDoBus.ChuyenBenhAn"));
+            }
         }
         #endregion
 
