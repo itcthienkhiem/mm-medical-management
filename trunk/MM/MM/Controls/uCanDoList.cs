@@ -21,6 +21,8 @@ namespace MM.Controls
         private string _patientGUID = string.Empty;
         private DateTime _fromDate = DateTime.Now;
         private DateTime _toDate = DateTime.Now;
+        private DataRow _patientRow2 = null;
+        private bool _isChuyenBenhAn = false;
         #endregion
 
         #region Constructor
@@ -33,10 +35,32 @@ namespace MM.Controls
         #endregion
 
         #region Properties
+        public bool IsChuyenBenhAn
+        {
+            get { return _isChuyenBenhAn; }
+            set 
+            { 
+                _isChuyenBenhAn = value;
+                btnChuyen.Visible = _isChuyenBenhAn;
+                btnAdd.Visible = !_isChuyenBenhAn;
+                btnEdit.Visible = !_isChuyenBenhAn;
+                btnDelete.Visible = !_isChuyenBenhAn;
+
+                if (_isChuyenBenhAn)
+                    dgCanDo.ContextMenuStrip = ctmAction2;
+            }
+        }
+
         public object PatientRow
         {
             get { return _patientRow; }
             set { _patientRow = value; }
+        }
+
+        public DataRow PatientRow2
+        {
+            get { return _patientRow2; }
+            set { _patientRow2 = value; }
         }
         #endregion
 
@@ -48,6 +72,9 @@ namespace MM.Controls
 
             addToolStripMenuItem.Enabled = Global.AllowAddCanDo;
             deleteToolStripMenuItem.Enabled = Global.AllowDeleteCanDo;
+
+            btnChuyen.Enabled = AllowChuyenKetQuaKham;
+            chuyenToolStripMenuItem.Enabled = AllowChuyenKetQuaKham;
         }
 
         public void DisplayAsThread()
@@ -85,7 +112,7 @@ namespace MM.Controls
             }
         }
 
-        private void ClearData()
+        public void ClearData()
         {
             DataTable dt = dgCanDo.DataSource as DataTable;
             if (dt != null)
@@ -127,8 +154,6 @@ namespace MM.Controls
             }
         }
 
-
-
         private void OnEdit()
         {
             if (dgCanDo.SelectedRows == null || dgCanDo.SelectedRows.Count <= 0)
@@ -138,7 +163,8 @@ namespace MM.Controls
             }
 
             DataRow drCanDo = (dgCanDo.SelectedRows[0].DataBoundItem as DataRowView).Row;
-            dlgAddCanDo dlg = new dlgAddCanDo(_patientGUID, drCanDo, Global.AllowEditCanDo);
+            bool allowEdit = _isChuyenBenhAn ? false : Global.AllowEditCanDo;
+            dlgAddCanDo dlg = new dlgAddCanDo(_patientGUID, drCanDo, allowEdit);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 DisplayAsThread();
@@ -180,6 +206,36 @@ namespace MM.Controls
             }
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những cân đo cần xóa.", IconType.Information);
+        }
+
+        private void OnChuyenKetQuaKham()
+        {
+            if (!_isChuyenBenhAn) return;
+
+            List<DataRow> deletedRows = new List<DataRow>();
+            DataTable dt = dgCanDo.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                    deletedRows.Add(row);
+            }
+
+            if (dgCanDo.RowCount <= 0 || deletedRows == null || deletedRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu ít nhất 1 cân đo cần chuyển.", IconType.Information);
+                return;
+            }
+
+            if (_patientRow2 == null)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn bệnh nhân nhận cân đo chuyển đến.", IconType.Information);
+                return;
+            }
+
+            string fileNum = _patientRow2["FileNum"].ToString();
+            if (MsgBox.Question(Application.ProductName, string.Format("Bạn có muốn chuyển những cân đo đã chọn đến bệnh nhân: '{0}'?", fileNum)) == DialogResult.No) return;
+
+
         }
         #endregion
 
@@ -242,6 +298,16 @@ namespace MM.Controls
         {
             OnDelete();
         }
+
+        private void btnChuyen_Click(object sender, EventArgs e)
+        {
+            OnChuyenKetQuaKham();
+        }
+
+        private void chuyenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnChuyenKetQuaKham();
+        }
         #endregion
 
         #region Working Thread
@@ -263,6 +329,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
         
     }

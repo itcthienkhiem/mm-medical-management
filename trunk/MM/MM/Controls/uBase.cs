@@ -50,6 +50,7 @@ namespace MM.Controls
         public bool AllowView = true;
         public bool AllowExportInvoice = true;
         public bool AllowSendSMS = true;
+        public bool AllowChuyenKetQuaKham = false;
         public Object ThisLock = new Object();
         #endregion
 

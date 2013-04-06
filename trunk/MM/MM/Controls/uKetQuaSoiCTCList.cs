@@ -25,6 +25,8 @@ namespace MM.Controls
         private DateTime _toDate = DateTime.Now;
         private bool _isPrint = false;
         private KetQuaSoiCTC _ketQuaSoiCTC = new KetQuaSoiCTC();
+        private DataRow _patientRow2 = null;
+        private bool _isChuyenBenhAn = false;
         #endregion
 
         #region Constructor
@@ -35,10 +37,35 @@ namespace MM.Controls
         #endregion
 
         #region Properties
+        public bool IsChuyenBenhAn
+        {
+            get { return _isChuyenBenhAn; }
+            set 
+            { 
+                _isChuyenBenhAn = value;
+                btnChuyen.Visible = _isChuyenBenhAn;
+                btnAdd.Visible = !_isChuyenBenhAn;
+                btnEdit.Visible = !_isChuyenBenhAn;
+                btnDelete.Visible = !_isChuyenBenhAn;
+                btnExportExcel.Visible = !_isChuyenBenhAn;
+                btnPrint.Visible = !_isChuyenBenhAn;
+                btnPrintPreview.Visible = !_isChuyenBenhAn;
+
+                if (_isChuyenBenhAn)
+                    dgSoCTC.ContextMenuStrip = ctmAction2;
+            }
+        }
+
         public DataRow PatientRow
         {
             get { return _patientRow; }
             set { _patientRow = value; }
+        }
+
+        public DataRow PatientRow2
+        {
+            get { return _patientRow2; }
+            set { _patientRow2 = value; }
         }
         #endregion
 
@@ -56,6 +83,9 @@ namespace MM.Controls
             printPreviewToolStripMenuItem.Enabled = Global.AllowPrintKhamCTC;
             printToolStripMenuItem.Enabled = Global.AllowPrintKhamCTC;
             exportExcelToolStripMenuItem.Enabled = Global.AllowExportKhamCTC;
+
+            btnChuyen.Enabled = AllowChuyenKetQuaKham;
+            chuyenToolStripMenuItem.Enabled = AllowChuyenKetQuaKham;
         }
 
         public void DisplayAsThread()
@@ -92,7 +122,7 @@ namespace MM.Controls
             }
         }
 
-        private void ClearData()
+        public void ClearData()
         {
             DataTable dt = dgSoCTC.DataSource as DataTable;
             if (dt != null)
@@ -172,7 +202,8 @@ namespace MM.Controls
             }
 
             DataRow drKetQuaSoiCTC = (dgSoCTC.SelectedRows[0].DataBoundItem as DataRowView).Row;
-            dlgAddKetQuaSoiCTC dlg = new dlgAddKetQuaSoiCTC(_patientGUID, drKetQuaSoiCTC, Global.AllowEditKhamCTC);
+            bool allowEdit = _isChuyenBenhAn ? false : Global.AllowEditKhamCTC;
+            dlgAddKetQuaSoiCTC dlg = new dlgAddKetQuaSoiCTC(_patientGUID, drKetQuaSoiCTC, allowEdit);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 _isPrint = dlg.IsPrint;
@@ -333,6 +364,36 @@ namespace MM.Controls
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những kết quả soi cần xuất excel.", IconType.Information);
         }
+
+        private void OnChuyenKetQuaKham()
+        {
+            if (!_isChuyenBenhAn) return;
+
+            List<DataRow> deletedRows = new List<DataRow>();
+            DataTable dt = dgSoCTC.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                    deletedRows.Add(row);
+            }
+
+            if (dgSoCTC.RowCount <= 0 || deletedRows == null || deletedRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu ít nhất 1 kết quả soi CTC cần chuyển.", IconType.Information);
+                return;
+            }
+
+            if (_patientRow2 == null)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn bệnh nhân nhận kết quả soi CTC chuyển đến.", IconType.Information);
+                return;
+            }
+
+            string fileNum = _patientRow2["FileNum"].ToString();
+            if (MsgBox.Question(Application.ProductName, string.Format("Bạn có muốn chuyển những kết quả soi CTC đã chọn đến bệnh nhân: '{0}'?", fileNum)) == DialogResult.No) return;
+
+
+        }
         #endregion
 
         #region Window Event Handlers
@@ -424,6 +485,16 @@ namespace MM.Controls
         {
             OnExportExcel();
         }
+
+        private void btnChuyen_Click(object sender, EventArgs e)
+        {
+            OnChuyenKetQuaKham();
+        }
+
+        private void chuyenToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnChuyenKetQuaKham();
+        }
         #endregion
 
         #region Working Thread
@@ -445,6 +516,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
         
     }
