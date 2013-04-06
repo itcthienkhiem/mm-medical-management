@@ -639,5 +639,67 @@ namespace MM.Bussiness
 
             return result;
         }
+
+        public static Result ChuyenBenhAn(string patientGUID, List<DataRow> rows)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    foreach (DataRow row in rows)
+                    {
+                        string serviceHistoryGUID = row["ServiceHistoryGUID"].ToString();
+                        ServiceHistory srvHistory = (from s in db.ServiceHistories
+                                                    where s.ServiceHistoryGUID.ToString() == serviceHistoryGUID
+                                                    select s).FirstOrDefault();
+
+                        if (srvHistory == null) continue;
+
+                        //Tracking
+                        string desc = string.Format("- ServiceHistoryGUID: '{0}': PatientGUID: '{1}' ==> '{2}' (ServiceHistory)",
+                            serviceHistoryGUID, srvHistory.PatientGUID.ToString(), patientGUID);
+
+                        srvHistory.PatientGUID = Guid.Parse(patientGUID);
+
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Edit;
+                        tk.Action = "Chuyển bệnh án";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.None;
+                        db.Trackings.InsertOnSubmit(tk);
+                    }
+
+                    db.SubmitChanges();
+                    t.Complete();
+                }
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
     }
 }
