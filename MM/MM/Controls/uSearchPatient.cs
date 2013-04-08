@@ -306,7 +306,10 @@ namespace MM.Controls
                     }
                 }
             }
+        }
 
+        private void txtSearchPatient_KeyUp(object sender, KeyEventArgs e)
+        {
             if (e.KeyCode == Keys.Enter)
                 RaiseOpentPatient();
         }
@@ -417,6 +420,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
         
 
