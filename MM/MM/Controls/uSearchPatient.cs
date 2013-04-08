@@ -27,6 +27,7 @@ namespace MM.Controls
         private string _hopDongGUID = string.Empty;
         private string _serviceGUID = string.Empty;
         private string _patientGUID = string.Empty;
+        public bool AllowEnterKeyPress = true;
         #endregion
 
         #region Constructor
@@ -285,6 +286,7 @@ namespace MM.Controls
 
         private void dgPatient_KeyDown(object sender, KeyEventArgs e)
         {
+            if (!AllowEnterKeyPress) return;
             if (e.KeyCode == Keys.Enter)
                 RaiseOpentPatient();
         }
@@ -310,6 +312,7 @@ namespace MM.Controls
 
         private void txtSearchPatient_KeyUp(object sender, KeyEventArgs e)
         {
+            if (!AllowEnterKeyPress) return;
             if (e.KeyCode == Keys.Enter)
                 RaiseOpentPatient();
         }
