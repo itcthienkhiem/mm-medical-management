@@ -276,6 +276,7 @@ namespace MM.Controls
 
         private void txtSearchPatient_TextChanged(object sender, EventArgs e)
         {
+            ClearDataSource();
             StartTimer();
         }
 
