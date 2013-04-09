@@ -138,7 +138,6 @@
             this.txtSearchPatient.TabIndex = 3;
             this.txtSearchPatient.TextChanged += new System.EventHandler(this.txtSearchPatient_TextChanged);
             this.txtSearchPatient.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtSearchPatient_KeyDown);
-            this.txtSearchPatient.KeyUp += new System.Windows.Forms.KeyEventHandler(this.txtSearchPatient_KeyUp);
             // 
             // label1
             // 

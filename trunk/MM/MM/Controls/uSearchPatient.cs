@@ -28,18 +28,13 @@ namespace MM.Controls
         private string _serviceGUID = string.Empty;
         private string _patientGUID = string.Empty;
         public bool AllowEnterKeyPress = true;
-        private InputDevice _inputDevice = null;
-        private int _numberOfKeyboards = 0;
+        private List<DateTime> timeKeys = new List<DateTime>();
         #endregion
 
         #region Constructor
         public uSearchPatient()
         {
             InitializeComponent();
-
-            _inputDevice = new InputDevice(Handle);
-            _numberOfKeyboards = _inputDevice.EnumerateDevices();
-            _inputDevice.KeyPressed += new InputDevice.DeviceEventHandler(_inputDevice_KeyPressed);
         }
         #endregion
 
@@ -248,20 +243,6 @@ namespace MM.Controls
         #endregion
 
         #region Window Event Handlers
-        protected override void WndProc(ref Message message)
-        {
-            if (_inputDevice != null)
-                _inputDevice.ProcessMessage(message);
-
-            base.WndProc(ref message);
-        }
-
-        private void _inputDevice_KeyPressed(object sender, InputDevice.KeyControlEventArgs e)
-        {
-            if (e.Keyboard.vKey.ToLower() == "return")
-                RaiseOpentPatient();
-        }
-
         private void dgPatient_CellMouseUp(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (!_isMulti) return;
@@ -306,9 +287,26 @@ namespace MM.Controls
 
         private void dgPatient_KeyDown(object sender, KeyEventArgs e)
         {
-            //if (!AllowEnterKeyPress) return;
-            //if (e.KeyCode == Keys.Enter)
-            //    RaiseOpentPatient();
+            if (!AllowEnterKeyPress) return;
+
+            if (timeKeys.Count == 0)
+            {
+                timeKeys.Add(DateTime.Now);
+
+                if (e.KeyCode == Keys.Enter)
+                    RaiseOpentPatient();
+            }
+            else if (timeKeys.Count == 1)
+            {
+                DateTime dt = DateTime.Now;
+                TimeSpan timeSpan = dt.Subtract(timeKeys[0]);
+                timeKeys[0] = dt;
+                if (timeSpan.TotalMilliseconds >= 20)
+                {
+                    if (e.KeyCode == Keys.Enter)
+                        RaiseOpentPatient();
+                }
+            }
         }
 
         private void txtSearchPatient_KeyDown(object sender, KeyEventArgs e)
@@ -328,13 +326,26 @@ namespace MM.Controls
                     }
                 }
             }
-        }
 
-        private void txtSearchPatient_KeyUp(object sender, KeyEventArgs e)
-        {
-            //if (!AllowEnterKeyPress) return;
-            //if (e.KeyCode == Keys.Enter)
-            //    RaiseOpentPatient();
+            if (!AllowEnterKeyPress) return;
+            if (timeKeys.Count == 0)
+            {
+                timeKeys.Add(DateTime.Now);
+
+                if (e.KeyCode == Keys.Enter)
+                    RaiseOpentPatient();
+            }
+            else if (timeKeys.Count == 1)
+            {
+                DateTime dt = DateTime.Now;
+                TimeSpan timeSpan = dt.Subtract(timeKeys[0]);
+                timeKeys[0] = dt;
+                if (timeSpan.TotalMilliseconds >= 20)
+                {
+                    if (e.KeyCode == Keys.Enter)
+                        RaiseOpentPatient();
+                }
+            }
         }
 
         private void dgPatient_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
