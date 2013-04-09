@@ -118,6 +118,7 @@
     <Compile Include="Configuration.cs" />
     <Compile Include="ConnectionInfo.cs" />
     <Compile Include="Const.cs" />
+    <Compile Include="InputDevice.cs" />
     <Compile Include="PageSetupConfig.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="Error.cs" />
