@@ -24,10 +24,14 @@ namespace MM.Controls
         private string _hopDongGUID = string.Empty;
         private string _patientGUID = string.Empty;
         private string _tenNhanVien = string.Empty;
+        private DataRow _patientRow = null;
         private string _contractMemberGUID = string.Empty;
         private DateTime _beginDate = DateTime.Now;
         private DateTime _endDate = DateTime.Now;
         private bool _isSaved = true;
+        private double _giamGiaNam = 0;
+        private double _giamGiaNu = 0;
+        private double _giamGiaNuCoGD = 0;
         #endregion
 
         #region Constructor
@@ -184,6 +188,10 @@ namespace MM.Controls
                 }
 
                 tenHopDong = rows[0]["ContractName"].ToString();
+
+                _giamGiaNam = Convert.ToDouble(rows[0]["GiamGiaNam"]);
+                _giamGiaNu = Convert.ToDouble(rows[0]["GiamGiaNu"]);
+                _giamGiaNuCoGD = Convert.ToDouble(rows[0]["GiamGiaNuCoGD"]);
             }
 
             DateTime dtNow = DateTime.Now;
@@ -294,7 +302,7 @@ namespace MM.Controls
             }
         }
 
-        private void OnTinhTongTienChecklist(string patientGUID)
+        private void OnTinhTongTienChecklist(DataRow patientRow)
         {
             try
             {
@@ -305,6 +313,7 @@ namespace MM.Controls
                     return;
                 }
 
+                string patientGUID = patientRow["PatientGUID"].ToString();
                 double tongTien = 0;
                 foreach (DataRow row in dt.Rows)
                 {
@@ -340,6 +349,30 @@ namespace MM.Controls
                     tongTien += soTien;
                 }
 
+                string gioiTinh = patientRow["GenderAsStr"].ToString();
+                string tinhTrangGiaDinh = string.Empty;
+                if (patientRow["Tinh_Trang_Gia_Dinh"] != null && patientRow["Tinh_Trang_Gia_Dinh"] != DBNull.Value)
+                    tinhTrangGiaDinh = patientRow["Tinh_Trang_Gia_Dinh"].ToString();
+
+                if (gioiTinh.ToLower() == "nam")
+                {
+                    if (_giamGiaNam > 0)
+                        tongTien = Math.Round((tongTien * (100 - _giamGiaNam)) / 100, 0);
+                }
+                else
+                {
+                    if (tinhTrangGiaDinh.ToLower() == "có gia đình")
+                    {
+                        if (_giamGiaNuCoGD > 0)
+                            tongTien = Math.Round((tongTien * (100 - _giamGiaNuCoGD)) / 100, 0);
+                    }
+                    else
+                    {
+                        if (_giamGiaNu > 0)
+                            tongTien = Math.Round((tongTien * (100 - _giamGiaNu)) / 100, 0);
+                    }
+                }
+
                 if (tongTien == 0) lbTongTienChecklist.Text = "Tổng tiền: 0 (VNĐ)";
                 else lbTongTienChecklist.Text = string.Format("Tổng tiền: {0} (VNĐ)", tongTien.ToString("#,###"));
             }
@@ -350,11 +383,11 @@ namespace MM.Controls
             }
         }
 
-        private void OnDisplayCheckList(string patientGUID)
+        private void OnDisplayCheckList(DataRow patientRow)
         {
             ClearCheckList();
             chkChecked.Checked = false;
-            Result result = CompanyContractBus.GetCheckList(_hopDongGUID, patientGUID);
+            Result result = CompanyContractBus.GetCheckList(_hopDongGUID, patientRow["PatientGUID"].ToString());
             if (result.IsOK)
             {
                 DataTable dt = result.QueryResult as DataTable;
@@ -371,7 +404,7 @@ namespace MM.Controls
                     }
                 }
 
-                OnTinhTongTienChecklist(patientGUID);
+                OnTinhTongTienChecklist(patientRow);
                 //btnLuu.Enabled = AllowEdit;
             }
             else
@@ -447,10 +480,8 @@ namespace MM.Controls
             {
                 MsgBox.Show(this.Text, "Đã lưu thành công.", IconType.Information);
                 _isSaved = true;
-                OnTinhTongTienChecklist(_patientGUID);
+                OnTinhTongTienChecklist(_patientRow);
             }
-
-            
         }
 
         private void OnAddDichVuLamThem()
@@ -809,9 +840,10 @@ namespace MM.Controls
             }
 
             DataRow row = (dgPatient.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            _patientRow = row;
             _patientGUID = row["PatientGUID"].ToString();
             _tenNhanVien = row["FullName"].ToString();
-            OnDisplayCheckList(_patientGUID);
+            OnDisplayCheckList(row);
             OnDisplayDichVuLamThem(_patientGUID);
         }
 

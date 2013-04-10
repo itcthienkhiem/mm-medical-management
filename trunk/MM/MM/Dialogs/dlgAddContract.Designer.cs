@@ -42,7 +42,41 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddContract));
             this.tabContract = new DevComponents.DotNetBar.TabControl();
+            this.tabControlPanel3 = new DevComponents.DotNetBar.TabControlPanel();
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.panel10 = new System.Windows.Forms.Panel();
+            this.chkChecked = new System.Windows.Forms.CheckBox();
+            this.dgGiaDichVu = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.dataGridViewCheckBoxXColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.codeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.giaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator12 = new System.Windows.Forms.ToolStripSeparator();
+            this.themMoiDVToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.giaDichVuHopDongViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel9 = new System.Windows.Forms.Panel();
+            this.panel12 = new System.Windows.Forms.Panel();
+            this.dgDichVuCon = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.codeDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dichVuConViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel11 = new System.Windows.Forms.Panel();
+            this.label10 = new System.Windows.Forms.Label();
+            this.panel5 = new System.Windows.Forms.Panel();
+            this.btnThemMoiDichVu = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.pageDanhSachDichVuHopDong = new DevComponents.DotNetBar.TabItem(this.components);
             this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
+            this.txtMaSoThue = new System.Windows.Forms.TextBox();
+            this.label13 = new System.Windows.Forms.Label();
             this.txtSoDienThoai = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.txtNhanSuPhuTrach = new System.Windows.Forms.TextBox();
@@ -72,35 +106,6 @@
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
             this.pageContractInfo = new DevComponents.DotNetBar.TabItem(this.components);
-            this.tabControlPanel3 = new DevComponents.DotNetBar.TabControlPanel();
-            this.panel8 = new System.Windows.Forms.Panel();
-            this.panel10 = new System.Windows.Forms.Panel();
-            this.chkChecked = new System.Windows.Forms.CheckBox();
-            this.dgGiaDichVu = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.dataGridViewCheckBoxXColumn2 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.codeDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.giaDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.editToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.giaDichVuHopDongViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panel9 = new System.Windows.Forms.Panel();
-            this.panel12 = new System.Windows.Forms.Panel();
-            this.dgDichVuCon = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.codeDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.dichVuConViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panel11 = new System.Windows.Forms.Panel();
-            this.label10 = new System.Windows.Forms.Label();
-            this.panel5 = new System.Windows.Forms.Panel();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.pageDanhSachDichVuHopDong = new DevComponents.DotNetBar.TabItem(this.components);
             this.tabControlPanel2 = new DevComponents.DotNetBar.TabControlPanel();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
@@ -163,14 +168,17 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.imgList = new System.Windows.Forms.ImageList(this.components);
             this._printDialog = new System.Windows.Forms.PrintDialog();
-            this.txtMaSoThue = new System.Windows.Forms.TextBox();
-            this.label13 = new System.Windows.Forms.Label();
+            this.label14 = new System.Windows.Forms.Label();
+            this.label15 = new System.Windows.Forms.Label();
+            this.label16 = new System.Windows.Forms.Label();
+            this.numGiamGiaNam = new System.Windows.Forms.NumericUpDown();
+            this.label17 = new System.Windows.Forms.Label();
+            this.label18 = new System.Windows.Forms.Label();
+            this.numGiamGiaNu = new System.Windows.Forms.NumericUpDown();
+            this.label19 = new System.Windows.Forms.Label();
+            this.numGiamGiaNuCoGiaDinh = new System.Windows.Forms.NumericUpDown();
             ((System.ComponentModel.ISupportInitialize)(this.tabContract)).BeginInit();
             this.tabContract.SuspendLayout();
-            this.tabControlPanel1.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numDatCoc)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numSoTien)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.companyBindingSource)).BeginInit();
             this.tabControlPanel3.SuspendLayout();
             this.panel8.SuspendLayout();
             this.panel10.SuspendLayout();
@@ -183,6 +191,10 @@
             ((System.ComponentModel.ISupportInitialize)(this.dichVuConViewBindingSource)).BeginInit();
             this.panel11.SuspendLayout();
             this.panel5.SuspendLayout();
+            this.tabControlPanel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numDatCoc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSoTien)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.companyBindingSource)).BeginInit();
             this.tabControlPanel2.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -197,6 +209,9 @@
             this.ctmAction3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.contractMemberViewBindingSource)).BeginInit();
             this.panel1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numGiamGiaNam)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGiamGiaNu)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGiamGiaNuCoGiaDinh)).BeginInit();
             this.SuspendLayout();
             // 
             // tabContract
@@ -220,346 +235,6 @@
             this.tabContract.TabStop = false;
             this.tabContract.Text = "tab";
             this.tabContract.SelectedTabChanged += new DevComponents.DotNetBar.TabStrip.SelectedTabChangedEventHandler(this.tabContract_SelectedTabChanged);
-            // 
-            // tabControlPanel1
-            // 
-            this.tabControlPanel1.Controls.Add(this.txtMaSoThue);
-            this.tabControlPanel1.Controls.Add(this.label13);
-            this.tabControlPanel1.Controls.Add(this.txtSoDienThoai);
-            this.tabControlPanel1.Controls.Add(this.label12);
-            this.tabControlPanel1.Controls.Add(this.txtNhanSuPhuTrach);
-            this.tabControlPanel1.Controls.Add(this.label11);
-            this.tabControlPanel1.Controls.Add(this.dtpkNgayDatCoc);
-            this.tabControlPanel1.Controls.Add(this.chkNgayDatCoc);
-            this.tabControlPanel1.Controls.Add(this.label8);
-            this.tabControlPanel1.Controls.Add(this.numDatCoc);
-            this.tabControlPanel1.Controls.Add(this.label9);
-            this.tabControlPanel1.Controls.Add(this.label6);
-            this.tabControlPanel1.Controls.Add(this.numSoTien);
-            this.tabControlPanel1.Controls.Add(this.label5);
-            this.tabControlPanel1.Controls.Add(this.dtpkEndDate);
-            this.tabControlPanel1.Controls.Add(this.btnDSNVKhamDu);
-            this.tabControlPanel1.Controls.Add(this.btnDSNVChuaKhamDu);
-            this.tabControlPanel1.Controls.Add(this.btnDSNVChuaKham);
-            this.tabControlPanel1.Controls.Add(this.cboCompany);
-            this.tabControlPanel1.Controls.Add(this.label4);
-            this.tabControlPanel1.Controls.Add(this.chkCompleted);
-            this.tabControlPanel1.Controls.Add(this.dtpkBeginDate);
-            this.tabControlPanel1.Controls.Add(this.label3);
-            this.tabControlPanel1.Controls.Add(this.label7);
-            this.tabControlPanel1.Controls.Add(this.label22);
-            this.tabControlPanel1.Controls.Add(this.txtName);
-            this.tabControlPanel1.Controls.Add(this.txtCode);
-            this.tabControlPanel1.Controls.Add(this.label2);
-            this.tabControlPanel1.Controls.Add(this.label1);
-            this.tabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabControlPanel1.Location = new System.Drawing.Point(0, 25);
-            this.tabControlPanel1.Name = "tabControlPanel1";
-            this.tabControlPanel1.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel1.Size = new System.Drawing.Size(811, 511);
-            this.tabControlPanel1.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.tabControlPanel1.Style.BackColor2.Color = System.Drawing.Color.White;
-            this.tabControlPanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
-            this.tabControlPanel1.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(168)))), ((int)(((byte)(153)))));
-            this.tabControlPanel1.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
-                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
-            this.tabControlPanel1.Style.GradientAngle = 90;
-            this.tabControlPanel1.TabIndex = 1;
-            this.tabControlPanel1.TabItem = this.pageContractInfo;
-            // 
-            // txtSoDienThoai
-            // 
-            this.txtSoDienThoai.Location = new System.Drawing.Point(116, 206);
-            this.txtSoDienThoai.MaxLength = 50;
-            this.txtSoDienThoai.Name = "txtSoDienThoai";
-            this.txtSoDienThoai.Size = new System.Drawing.Size(163, 20);
-            this.txtSoDienThoai.TabIndex = 9;
-            // 
-            // label12
-            // 
-            this.label12.AutoSize = true;
-            this.label12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label12.Location = new System.Drawing.Point(18, 209);
-            this.label12.Name = "label12";
-            this.label12.Size = new System.Drawing.Size(73, 13);
-            this.label12.TabIndex = 68;
-            this.label12.Text = "Số điện thoại:";
-            // 
-            // txtNhanSuPhuTrach
-            // 
-            this.txtNhanSuPhuTrach.Location = new System.Drawing.Point(116, 182);
-            this.txtNhanSuPhuTrach.MaxLength = 50;
-            this.txtNhanSuPhuTrach.Name = "txtNhanSuPhuTrach";
-            this.txtNhanSuPhuTrach.Size = new System.Drawing.Size(300, 20);
-            this.txtNhanSuPhuTrach.TabIndex = 8;
-            // 
-            // label11
-            // 
-            this.label11.AutoSize = true;
-            this.label11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label11.Location = new System.Drawing.Point(18, 185);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(98, 13);
-            this.label11.TabIndex = 66;
-            this.label11.Text = "Nhân sự phụ trách:";
-            // 
-            // dtpkNgayDatCoc
-            // 
-            this.dtpkNgayDatCoc.CustomFormat = "dd/MM/yyyy";
-            this.dtpkNgayDatCoc.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkNgayDatCoc.Location = new System.Drawing.Point(116, 158);
-            this.dtpkNgayDatCoc.Name = "dtpkNgayDatCoc";
-            this.dtpkNgayDatCoc.Size = new System.Drawing.Size(97, 20);
-            this.dtpkNgayDatCoc.TabIndex = 7;
-            this.dtpkNgayDatCoc.Visible = false;
-            // 
-            // chkNgayDatCoc
-            // 
-            this.chkNgayDatCoc.AutoSize = true;
-            this.chkNgayDatCoc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.chkNgayDatCoc.Location = new System.Drawing.Point(21, 160);
-            this.chkNgayDatCoc.Name = "chkNgayDatCoc";
-            this.chkNgayDatCoc.Size = new System.Drawing.Size(94, 17);
-            this.chkNgayDatCoc.TabIndex = 6;
-            this.chkNgayDatCoc.Text = "Ngày đặt cọc:";
-            this.chkNgayDatCoc.UseVisualStyleBackColor = false;
-            this.chkNgayDatCoc.CheckedChanged += new System.EventHandler(this.chkNgayDatCoc_CheckedChanged);
-            // 
-            // label8
-            // 
-            this.label8.AutoSize = true;
-            this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label8.Location = new System.Drawing.Point(283, 138);
-            this.label8.Name = "label8";
-            this.label8.Size = new System.Drawing.Size(36, 13);
-            this.label8.TabIndex = 62;
-            this.label8.Text = "(VNĐ)";
-            // 
-            // numDatCoc
-            // 
-            this.numDatCoc.Location = new System.Drawing.Point(116, 134);
-            this.numDatCoc.Maximum = new decimal(new int[] {
-            276447231,
-            23283,
-            0,
-            0});
-            this.numDatCoc.Name = "numDatCoc";
-            this.numDatCoc.Size = new System.Drawing.Size(163, 20);
-            this.numDatCoc.TabIndex = 5;
-            this.numDatCoc.ThousandsSeparator = true;
-            // 
-            // label9
-            // 
-            this.label9.AutoSize = true;
-            this.label9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label9.Location = new System.Drawing.Point(18, 136);
-            this.label9.Name = "label9";
-            this.label9.Size = new System.Drawing.Size(48, 13);
-            this.label9.TabIndex = 61;
-            this.label9.Text = "Đặt cọc:";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label6.Location = new System.Drawing.Point(283, 114);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(36, 13);
-            this.label6.TabIndex = 59;
-            this.label6.Text = "(VNĐ)";
-            // 
-            // numSoTien
-            // 
-            this.numSoTien.Location = new System.Drawing.Point(116, 110);
-            this.numSoTien.Maximum = new decimal(new int[] {
-            276447231,
-            23283,
-            0,
-            0});
-            this.numSoTien.Name = "numSoTien";
-            this.numSoTien.Size = new System.Drawing.Size(163, 20);
-            this.numSoTien.TabIndex = 4;
-            this.numSoTien.ThousandsSeparator = true;
-            // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label5.Location = new System.Drawing.Point(18, 112);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(43, 13);
-            this.label5.TabIndex = 58;
-            this.label5.Text = "Số tiền:";
-            // 
-            // dtpkEndDate
-            // 
-            this.dtpkEndDate.CustomFormat = "dd/MM/yyyy";
-            this.dtpkEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkEndDate.Location = new System.Drawing.Point(116, 254);
-            this.dtpkEndDate.Name = "dtpkEndDate";
-            this.dtpkEndDate.Size = new System.Drawing.Size(97, 20);
-            this.dtpkEndDate.TabIndex = 12;
-            this.dtpkEndDate.Visible = false;
-            // 
-            // btnDSNVKhamDu
-            // 
-            this.btnDSNVKhamDu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDSNVKhamDu.Location = new System.Drawing.Point(475, 296);
-            this.btnDSNVKhamDu.Name = "btnDSNVKhamDu";
-            this.btnDSNVKhamDu.Size = new System.Drawing.Size(127, 45);
-            this.btnDSNVKhamDu.TabIndex = 56;
-            this.btnDSNVKhamDu.Text = "Danh sách nhân viên đã khám đầy đủ";
-            this.btnDSNVKhamDu.UseVisualStyleBackColor = true;
-            this.btnDSNVKhamDu.Visible = false;
-            this.btnDSNVKhamDu.Click += new System.EventHandler(this.btnDSNVKhamDu_Click);
-            // 
-            // btnDSNVChuaKhamDu
-            // 
-            this.btnDSNVChuaKhamDu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDSNVChuaKhamDu.Location = new System.Drawing.Point(342, 296);
-            this.btnDSNVChuaKhamDu.Name = "btnDSNVChuaKhamDu";
-            this.btnDSNVChuaKhamDu.Size = new System.Drawing.Size(127, 45);
-            this.btnDSNVChuaKhamDu.TabIndex = 55;
-            this.btnDSNVChuaKhamDu.Text = "Danh sách nhân viên chưa khám đủ dịch vụ";
-            this.btnDSNVChuaKhamDu.UseVisualStyleBackColor = true;
-            this.btnDSNVChuaKhamDu.Visible = false;
-            this.btnDSNVChuaKhamDu.Click += new System.EventHandler(this.btnDSNVChuaKhamDu_Click);
-            // 
-            // btnDSNVChuaKham
-            // 
-            this.btnDSNVChuaKham.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDSNVChuaKham.Location = new System.Drawing.Point(209, 296);
-            this.btnDSNVChuaKham.Name = "btnDSNVChuaKham";
-            this.btnDSNVChuaKham.Size = new System.Drawing.Size(127, 45);
-            this.btnDSNVChuaKham.TabIndex = 54;
-            this.btnDSNVChuaKham.Text = "Danh sách nhân viên chưa khám";
-            this.btnDSNVChuaKham.UseVisualStyleBackColor = true;
-            this.btnDSNVChuaKham.Visible = false;
-            this.btnDSNVChuaKham.Click += new System.EventHandler(this.btnDSNVChuaKham_Click);
-            // 
-            // cboCompany
-            // 
-            this.cboCompany.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.cboCompany.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboCompany.DataSource = this.companyBindingSource;
-            this.cboCompany.DisplayMember = "TenCty";
-            this.cboCompany.FormattingEnabled = true;
-            this.cboCompany.Location = new System.Drawing.Point(116, 61);
-            this.cboCompany.Name = "cboCompany";
-            this.cboCompany.Size = new System.Drawing.Size(300, 21);
-            this.cboCompany.TabIndex = 2;
-            this.cboCompany.ValueMember = "CompanyGUID";
-            this.cboCompany.SelectedValueChanged += new System.EventHandler(this.cboCompany_SelectedValueChanged);
-            // 
-            // companyBindingSource
-            // 
-            this.companyBindingSource.DataSource = typeof(MM.Databasae.Company);
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label4.Location = new System.Drawing.Point(18, 64);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(46, 13);
-            this.label4.TabIndex = 53;
-            this.label4.Text = "Công ty:";
-            // 
-            // chkCompleted
-            // 
-            this.chkCompleted.AutoSize = true;
-            this.chkCompleted.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.chkCompleted.Location = new System.Drawing.Point(21, 256);
-            this.chkCompleted.Name = "chkCompleted";
-            this.chkCompleted.Size = new System.Drawing.Size(96, 17);
-            this.chkCompleted.TabIndex = 11;
-            this.chkCompleted.Text = "Ngày kết thúc:";
-            this.chkCompleted.UseVisualStyleBackColor = false;
-            this.chkCompleted.CheckedChanged += new System.EventHandler(this.chkCompleted_CheckedChanged);
-            // 
-            // dtpkBeginDate
-            // 
-            this.dtpkBeginDate.CustomFormat = "dd/MM/yyyy";
-            this.dtpkBeginDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkBeginDate.Location = new System.Drawing.Point(116, 230);
-            this.dtpkBeginDate.Name = "dtpkBeginDate";
-            this.dtpkBeginDate.Size = new System.Drawing.Size(97, 20);
-            this.dtpkBeginDate.TabIndex = 10;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label3.Location = new System.Drawing.Point(18, 233);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(75, 13);
-            this.label3.TabIndex = 52;
-            this.label3.Text = "Ngày bắt đầu:";
-            // 
-            // label7
-            // 
-            this.label7.AutoSize = true;
-            this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label7.ForeColor = System.Drawing.Color.Red;
-            this.label7.Location = new System.Drawing.Point(419, 40);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(17, 13);
-            this.label7.TabIndex = 51;
-            this.label7.Text = "[*]";
-            // 
-            // label22
-            // 
-            this.label22.AutoSize = true;
-            this.label22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label22.ForeColor = System.Drawing.Color.Red;
-            this.label22.Location = new System.Drawing.Point(283, 16);
-            this.label22.Name = "label22";
-            this.label22.Size = new System.Drawing.Size(17, 13);
-            this.label22.TabIndex = 50;
-            this.label22.Text = "[*]";
-            // 
-            // txtName
-            // 
-            this.txtName.Location = new System.Drawing.Point(116, 37);
-            this.txtName.MaxLength = 500;
-            this.txtName.Name = "txtName";
-            this.txtName.Size = new System.Drawing.Size(300, 20);
-            this.txtName.TabIndex = 1;
-            // 
-            // txtCode
-            // 
-            this.txtCode.Location = new System.Drawing.Point(116, 13);
-            this.txtCode.MaxLength = 50;
-            this.txtCode.Name = "txtCode";
-            this.txtCode.Size = new System.Drawing.Size(163, 20);
-            this.txtCode.TabIndex = 0;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label2.Location = new System.Drawing.Point(18, 40);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(78, 13);
-            this.label2.TabIndex = 48;
-            this.label2.Text = "Tên hợp đồng:";
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label1.Location = new System.Drawing.Point(18, 16);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(74, 13);
-            this.label1.TabIndex = 47;
-            this.label1.Text = "Mã hợp đồng:";
-            // 
-            // pageContractInfo
-            // 
-            this.pageContractInfo.AttachedControl = this.tabControlPanel1;
-            this.pageContractInfo.Image = global::MM.Properties.Resources.info_icon;
-            this.pageContractInfo.Name = "pageContractInfo";
-            this.pageContractInfo.Text = "Thông tin hợp đồng";
             // 
             // tabControlPanel3
             // 
@@ -587,7 +262,7 @@
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel8.Location = new System.Drawing.Point(1, 1);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(718, 509);
+            this.panel8.Size = new System.Drawing.Size(700, 509);
             this.panel8.TabIndex = 1;
             // 
             // panel10
@@ -597,7 +272,7 @@
             this.panel10.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel10.Location = new System.Drawing.Point(0, 0);
             this.panel10.Name = "panel10";
-            this.panel10.Size = new System.Drawing.Size(718, 309);
+            this.panel10.Size = new System.Drawing.Size(700, 309);
             this.panel10.TabIndex = 5;
             // 
             // chkChecked
@@ -649,7 +324,7 @@
             this.dgGiaDichVu.Name = "dgGiaDichVu";
             this.dgGiaDichVu.RowHeadersWidth = 30;
             this.dgGiaDichVu.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgGiaDichVu.Size = new System.Drawing.Size(718, 309);
+            this.dgGiaDichVu.Size = new System.Drawing.Size(700, 309);
             this.dgGiaDichVu.TabIndex = 2;
             this.dgGiaDichVu.SelectionChanged += new System.EventHandler(this.dgGiaDichVu_SelectionChanged);
             this.dgGiaDichVu.DoubleClick += new System.EventHandler(this.dgGiaDichVu_DoubleClick);
@@ -699,43 +374,58 @@
             this.toolStripSeparator1,
             this.editToolStripMenuItem,
             this.toolStripSeparator2,
-            this.deleteToolStripMenuItem});
+            this.deleteToolStripMenuItem,
+            this.toolStripSeparator12,
+            this.themMoiDVToolStripMenuItem});
             this.ctmAction.Name = "cmtAction";
-            this.ctmAction.Size = new System.Drawing.Size(112, 82);
+            this.ctmAction.Size = new System.Drawing.Size(153, 132);
             // 
             // addToolStripMenuItem
             // 
             this.addToolStripMenuItem.Image = global::MM.Properties.Resources.add;
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.addToolStripMenuItem.Text = "Thêm";
             this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(108, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // editToolStripMenuItem
             // 
             this.editToolStripMenuItem.Image = global::MM.Properties.Resources.edit;
             this.editToolStripMenuItem.Name = "editToolStripMenuItem";
-            this.editToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.editToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.editToolStripMenuItem.Text = "Sửa";
             this.editToolStripMenuItem.Click += new System.EventHandler(this.editToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(108, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Image = global::MM.Properties.Resources.del;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.deleteToolStripMenuItem.Text = "Xóa";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator12
+            // 
+            this.toolStripSeparator12.Name = "toolStripSeparator12";
+            this.toolStripSeparator12.Size = new System.Drawing.Size(149, 6);
+            // 
+            // themMoiDVToolStripMenuItem
+            // 
+            this.themMoiDVToolStripMenuItem.Image = global::MM.Properties.Resources.add;
+            this.themMoiDVToolStripMenuItem.Name = "themMoiDVToolStripMenuItem";
+            this.themMoiDVToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.themMoiDVToolStripMenuItem.Text = "Thêm mới DV";
+            this.themMoiDVToolStripMenuItem.Click += new System.EventHandler(this.themMoiDVToolStripMenuItem_Click);
             // 
             // giaDichVuHopDongViewBindingSource
             // 
@@ -748,7 +438,7 @@
             this.panel9.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel9.Location = new System.Drawing.Point(0, 309);
             this.panel9.Name = "panel9";
-            this.panel9.Size = new System.Drawing.Size(718, 200);
+            this.panel9.Size = new System.Drawing.Size(700, 200);
             this.panel9.TabIndex = 4;
             // 
             // panel12
@@ -757,7 +447,7 @@
             this.panel12.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel12.Location = new System.Drawing.Point(0, 19);
             this.panel12.Name = "panel12";
-            this.panel12.Size = new System.Drawing.Size(718, 181);
+            this.panel12.Size = new System.Drawing.Size(700, 181);
             this.panel12.TabIndex = 5;
             // 
             // dgDichVuCon
@@ -796,7 +486,7 @@
             this.dgDichVuCon.Name = "dgDichVuCon";
             this.dgDichVuCon.RowHeadersWidth = 30;
             this.dgDichVuCon.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgDichVuCon.Size = new System.Drawing.Size(718, 181);
+            this.dgDichVuCon.Size = new System.Drawing.Size(700, 181);
             this.dgDichVuCon.TabIndex = 3;
             // 
             // codeDataGridViewTextBoxColumn2
@@ -825,7 +515,7 @@
             this.panel11.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel11.Location = new System.Drawing.Point(0, 0);
             this.panel11.Name = "panel11";
-            this.panel11.Size = new System.Drawing.Size(718, 19);
+            this.panel11.Size = new System.Drawing.Size(700, 19);
             this.panel11.TabIndex = 4;
             // 
             // label10
@@ -835,29 +525,42 @@
             this.label10.ForeColor = System.Drawing.Color.Blue;
             this.label10.Location = new System.Drawing.Point(0, 0);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(718, 19);
+            this.label10.Size = new System.Drawing.Size(700, 19);
             this.label10.TabIndex = 0;
             this.label10.Text = "Dịch vụ con";
             this.label10.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this.btnThemMoiDichVu);
             this.panel5.Controls.Add(this.btnDelete);
             this.panel5.Controls.Add(this.btnEdit);
             this.panel5.Controls.Add(this.btnAdd);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel5.Location = new System.Drawing.Point(719, 1);
+            this.panel5.Location = new System.Drawing.Point(701, 1);
             this.panel5.Name = "panel5";
-            this.panel5.Size = new System.Drawing.Size(91, 509);
+            this.panel5.Size = new System.Drawing.Size(109, 509);
             this.panel5.TabIndex = 0;
+            // 
+            // btnThemMoiDichVu
+            // 
+            this.btnThemMoiDichVu.Image = global::MM.Properties.Resources.add;
+            this.btnThemMoiDichVu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnThemMoiDichVu.Location = new System.Drawing.Point(5, 94);
+            this.btnThemMoiDichVu.Name = "btnThemMoiDichVu";
+            this.btnThemMoiDichVu.Size = new System.Drawing.Size(98, 25);
+            this.btnThemMoiDichVu.TabIndex = 6;
+            this.btnThemMoiDichVu.Text = "     &Thêm mới DV";
+            this.btnThemMoiDichVu.UseVisualStyleBackColor = true;
+            this.btnThemMoiDichVu.Click += new System.EventHandler(this.btnThemMoiDichVu_Click);
             // 
             // btnDelete
             // 
             this.btnDelete.Image = global::MM.Properties.Resources.del;
             this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDelete.Location = new System.Drawing.Point(8, 65);
+            this.btnDelete.Location = new System.Drawing.Point(5, 65);
             this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 25);
+            this.btnDelete.Size = new System.Drawing.Size(98, 25);
             this.btnDelete.TabIndex = 5;
             this.btnDelete.Text = "    &Xóa";
             this.btnDelete.UseVisualStyleBackColor = true;
@@ -867,9 +570,9 @@
             // 
             this.btnEdit.Image = global::MM.Properties.Resources.edit;
             this.btnEdit.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnEdit.Location = new System.Drawing.Point(8, 36);
+            this.btnEdit.Location = new System.Drawing.Point(5, 36);
             this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(75, 25);
+            this.btnEdit.Size = new System.Drawing.Size(98, 25);
             this.btnEdit.TabIndex = 4;
             this.btnEdit.Text = "    &Sửa";
             this.btnEdit.UseVisualStyleBackColor = true;
@@ -879,9 +582,9 @@
             // 
             this.btnAdd.Image = global::MM.Properties.Resources.add;
             this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(8, 7);
+            this.btnAdd.Location = new System.Drawing.Point(5, 7);
             this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 25);
+            this.btnAdd.Size = new System.Drawing.Size(98, 25);
             this.btnAdd.TabIndex = 3;
             this.btnAdd.Text = "    &Thêm";
             this.btnAdd.UseVisualStyleBackColor = true;
@@ -893,6 +596,374 @@
             this.pageDanhSachDichVuHopDong.Image = global::MM.Properties.Resources.checklist_icon;
             this.pageDanhSachDichVuHopDong.Name = "pageDanhSachDichVuHopDong";
             this.pageDanhSachDichVuHopDong.Text = "Danh sách dịch vụ hợp đồng";
+            // 
+            // tabControlPanel1
+            // 
+            this.tabControlPanel1.Controls.Add(this.label19);
+            this.tabControlPanel1.Controls.Add(this.numGiamGiaNuCoGiaDinh);
+            this.tabControlPanel1.Controls.Add(this.label18);
+            this.tabControlPanel1.Controls.Add(this.numGiamGiaNu);
+            this.tabControlPanel1.Controls.Add(this.label17);
+            this.tabControlPanel1.Controls.Add(this.numGiamGiaNam);
+            this.tabControlPanel1.Controls.Add(this.label16);
+            this.tabControlPanel1.Controls.Add(this.label15);
+            this.tabControlPanel1.Controls.Add(this.label14);
+            this.tabControlPanel1.Controls.Add(this.txtMaSoThue);
+            this.tabControlPanel1.Controls.Add(this.label13);
+            this.tabControlPanel1.Controls.Add(this.txtSoDienThoai);
+            this.tabControlPanel1.Controls.Add(this.label12);
+            this.tabControlPanel1.Controls.Add(this.txtNhanSuPhuTrach);
+            this.tabControlPanel1.Controls.Add(this.label11);
+            this.tabControlPanel1.Controls.Add(this.dtpkNgayDatCoc);
+            this.tabControlPanel1.Controls.Add(this.chkNgayDatCoc);
+            this.tabControlPanel1.Controls.Add(this.label8);
+            this.tabControlPanel1.Controls.Add(this.numDatCoc);
+            this.tabControlPanel1.Controls.Add(this.label9);
+            this.tabControlPanel1.Controls.Add(this.label6);
+            this.tabControlPanel1.Controls.Add(this.numSoTien);
+            this.tabControlPanel1.Controls.Add(this.label5);
+            this.tabControlPanel1.Controls.Add(this.dtpkEndDate);
+            this.tabControlPanel1.Controls.Add(this.btnDSNVKhamDu);
+            this.tabControlPanel1.Controls.Add(this.btnDSNVChuaKhamDu);
+            this.tabControlPanel1.Controls.Add(this.btnDSNVChuaKham);
+            this.tabControlPanel1.Controls.Add(this.cboCompany);
+            this.tabControlPanel1.Controls.Add(this.label4);
+            this.tabControlPanel1.Controls.Add(this.chkCompleted);
+            this.tabControlPanel1.Controls.Add(this.dtpkBeginDate);
+            this.tabControlPanel1.Controls.Add(this.label3);
+            this.tabControlPanel1.Controls.Add(this.label7);
+            this.tabControlPanel1.Controls.Add(this.label22);
+            this.tabControlPanel1.Controls.Add(this.txtName);
+            this.tabControlPanel1.Controls.Add(this.txtCode);
+            this.tabControlPanel1.Controls.Add(this.label2);
+            this.tabControlPanel1.Controls.Add(this.label1);
+            this.tabControlPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabControlPanel1.Location = new System.Drawing.Point(0, 25);
+            this.tabControlPanel1.Name = "tabControlPanel1";
+            this.tabControlPanel1.Padding = new System.Windows.Forms.Padding(1);
+            this.tabControlPanel1.Size = new System.Drawing.Size(811, 511);
+            this.tabControlPanel1.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.tabControlPanel1.Style.BackColor2.Color = System.Drawing.Color.White;
+            this.tabControlPanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
+            this.tabControlPanel1.Style.BorderColor.Color = System.Drawing.Color.FromArgb(((int)(((byte)(172)))), ((int)(((byte)(168)))), ((int)(((byte)(153)))));
+            this.tabControlPanel1.Style.BorderSide = ((DevComponents.DotNetBar.eBorderSide)(((DevComponents.DotNetBar.eBorderSide.Left | DevComponents.DotNetBar.eBorderSide.Right)
+                        | DevComponents.DotNetBar.eBorderSide.Bottom)));
+            this.tabControlPanel1.Style.GradientAngle = 90;
+            this.tabControlPanel1.TabIndex = 1;
+            this.tabControlPanel1.TabItem = this.pageContractInfo;
+            // 
+            // txtMaSoThue
+            // 
+            this.txtMaSoThue.Location = new System.Drawing.Point(152, 86);
+            this.txtMaSoThue.MaxLength = 50;
+            this.txtMaSoThue.Name = "txtMaSoThue";
+            this.txtMaSoThue.ReadOnly = true;
+            this.txtMaSoThue.Size = new System.Drawing.Size(163, 20);
+            this.txtMaSoThue.TabIndex = 3;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label13.Location = new System.Drawing.Point(18, 89);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(63, 13);
+            this.label13.TabIndex = 70;
+            this.label13.Text = "Mã số thuế:";
+            // 
+            // txtSoDienThoai
+            // 
+            this.txtSoDienThoai.Location = new System.Drawing.Point(152, 278);
+            this.txtSoDienThoai.MaxLength = 50;
+            this.txtSoDienThoai.Name = "txtSoDienThoai";
+            this.txtSoDienThoai.Size = new System.Drawing.Size(163, 20);
+            this.txtSoDienThoai.TabIndex = 12;
+            // 
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label12.Location = new System.Drawing.Point(18, 281);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(73, 13);
+            this.label12.TabIndex = 68;
+            this.label12.Text = "Số điện thoại:";
+            // 
+            // txtNhanSuPhuTrach
+            // 
+            this.txtNhanSuPhuTrach.Location = new System.Drawing.Point(152, 254);
+            this.txtNhanSuPhuTrach.MaxLength = 50;
+            this.txtNhanSuPhuTrach.Name = "txtNhanSuPhuTrach";
+            this.txtNhanSuPhuTrach.Size = new System.Drawing.Size(300, 20);
+            this.txtNhanSuPhuTrach.TabIndex = 11;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label11.Location = new System.Drawing.Point(18, 257);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(98, 13);
+            this.label11.TabIndex = 66;
+            this.label11.Text = "Nhân sự phụ trách:";
+            // 
+            // dtpkNgayDatCoc
+            // 
+            this.dtpkNgayDatCoc.CustomFormat = "dd/MM/yyyy";
+            this.dtpkNgayDatCoc.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpkNgayDatCoc.Location = new System.Drawing.Point(152, 230);
+            this.dtpkNgayDatCoc.Name = "dtpkNgayDatCoc";
+            this.dtpkNgayDatCoc.Size = new System.Drawing.Size(97, 20);
+            this.dtpkNgayDatCoc.TabIndex = 10;
+            this.dtpkNgayDatCoc.Visible = false;
+            // 
+            // chkNgayDatCoc
+            // 
+            this.chkNgayDatCoc.AutoSize = true;
+            this.chkNgayDatCoc.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.chkNgayDatCoc.Location = new System.Drawing.Point(21, 232);
+            this.chkNgayDatCoc.Name = "chkNgayDatCoc";
+            this.chkNgayDatCoc.Size = new System.Drawing.Size(94, 17);
+            this.chkNgayDatCoc.TabIndex = 9;
+            this.chkNgayDatCoc.Text = "Ngày đặt cọc:";
+            this.chkNgayDatCoc.UseVisualStyleBackColor = false;
+            this.chkNgayDatCoc.CheckedChanged += new System.EventHandler(this.chkNgayDatCoc_CheckedChanged);
+            // 
+            // label8
+            // 
+            this.label8.AutoSize = true;
+            this.label8.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label8.Location = new System.Drawing.Point(319, 210);
+            this.label8.Name = "label8";
+            this.label8.Size = new System.Drawing.Size(36, 13);
+            this.label8.TabIndex = 62;
+            this.label8.Text = "(VNĐ)";
+            // 
+            // numDatCoc
+            // 
+            this.numDatCoc.Location = new System.Drawing.Point(152, 206);
+            this.numDatCoc.Maximum = new decimal(new int[] {
+            276447231,
+            23283,
+            0,
+            0});
+            this.numDatCoc.Name = "numDatCoc";
+            this.numDatCoc.Size = new System.Drawing.Size(163, 20);
+            this.numDatCoc.TabIndex = 8;
+            this.numDatCoc.ThousandsSeparator = true;
+            // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label9.Location = new System.Drawing.Point(18, 208);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(48, 13);
+            this.label9.TabIndex = 61;
+            this.label9.Text = "Đặt cọc:";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label6.Location = new System.Drawing.Point(319, 114);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(36, 13);
+            this.label6.TabIndex = 59;
+            this.label6.Text = "(VNĐ)";
+            // 
+            // numSoTien
+            // 
+            this.numSoTien.Location = new System.Drawing.Point(152, 110);
+            this.numSoTien.Maximum = new decimal(new int[] {
+            276447231,
+            23283,
+            0,
+            0});
+            this.numSoTien.Name = "numSoTien";
+            this.numSoTien.Size = new System.Drawing.Size(163, 20);
+            this.numSoTien.TabIndex = 4;
+            this.numSoTien.ThousandsSeparator = true;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label5.Location = new System.Drawing.Point(18, 112);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(43, 13);
+            this.label5.TabIndex = 58;
+            this.label5.Text = "Số tiền:";
+            // 
+            // dtpkEndDate
+            // 
+            this.dtpkEndDate.CustomFormat = "dd/MM/yyyy";
+            this.dtpkEndDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpkEndDate.Location = new System.Drawing.Point(152, 326);
+            this.dtpkEndDate.Name = "dtpkEndDate";
+            this.dtpkEndDate.Size = new System.Drawing.Size(97, 20);
+            this.dtpkEndDate.TabIndex = 15;
+            this.dtpkEndDate.Visible = false;
+            // 
+            // btnDSNVKhamDu
+            // 
+            this.btnDSNVKhamDu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDSNVKhamDu.Location = new System.Drawing.Point(475, 370);
+            this.btnDSNVKhamDu.Name = "btnDSNVKhamDu";
+            this.btnDSNVKhamDu.Size = new System.Drawing.Size(127, 45);
+            this.btnDSNVKhamDu.TabIndex = 56;
+            this.btnDSNVKhamDu.Text = "Danh sách nhân viên đã khám đầy đủ";
+            this.btnDSNVKhamDu.UseVisualStyleBackColor = true;
+            this.btnDSNVKhamDu.Visible = false;
+            this.btnDSNVKhamDu.Click += new System.EventHandler(this.btnDSNVKhamDu_Click);
+            // 
+            // btnDSNVChuaKhamDu
+            // 
+            this.btnDSNVChuaKhamDu.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDSNVChuaKhamDu.Location = new System.Drawing.Point(342, 370);
+            this.btnDSNVChuaKhamDu.Name = "btnDSNVChuaKhamDu";
+            this.btnDSNVChuaKhamDu.Size = new System.Drawing.Size(127, 45);
+            this.btnDSNVChuaKhamDu.TabIndex = 55;
+            this.btnDSNVChuaKhamDu.Text = "Danh sách nhân viên chưa khám đủ dịch vụ";
+            this.btnDSNVChuaKhamDu.UseVisualStyleBackColor = true;
+            this.btnDSNVChuaKhamDu.Visible = false;
+            this.btnDSNVChuaKhamDu.Click += new System.EventHandler(this.btnDSNVChuaKhamDu_Click);
+            // 
+            // btnDSNVChuaKham
+            // 
+            this.btnDSNVChuaKham.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDSNVChuaKham.Location = new System.Drawing.Point(209, 370);
+            this.btnDSNVChuaKham.Name = "btnDSNVChuaKham";
+            this.btnDSNVChuaKham.Size = new System.Drawing.Size(127, 45);
+            this.btnDSNVChuaKham.TabIndex = 54;
+            this.btnDSNVChuaKham.Text = "Danh sách nhân viên chưa khám";
+            this.btnDSNVChuaKham.UseVisualStyleBackColor = true;
+            this.btnDSNVChuaKham.Visible = false;
+            this.btnDSNVChuaKham.Click += new System.EventHandler(this.btnDSNVChuaKham_Click);
+            // 
+            // cboCompany
+            // 
+            this.cboCompany.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cboCompany.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboCompany.DataSource = this.companyBindingSource;
+            this.cboCompany.DisplayMember = "TenCty";
+            this.cboCompany.FormattingEnabled = true;
+            this.cboCompany.Location = new System.Drawing.Point(152, 61);
+            this.cboCompany.Name = "cboCompany";
+            this.cboCompany.Size = new System.Drawing.Size(300, 21);
+            this.cboCompany.TabIndex = 2;
+            this.cboCompany.ValueMember = "CompanyGUID";
+            this.cboCompany.SelectedValueChanged += new System.EventHandler(this.cboCompany_SelectedValueChanged);
+            // 
+            // companyBindingSource
+            // 
+            this.companyBindingSource.DataSource = typeof(MM.Databasae.Company);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label4.Location = new System.Drawing.Point(18, 64);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(46, 13);
+            this.label4.TabIndex = 53;
+            this.label4.Text = "Công ty:";
+            // 
+            // chkCompleted
+            // 
+            this.chkCompleted.AutoSize = true;
+            this.chkCompleted.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.chkCompleted.Location = new System.Drawing.Point(21, 328);
+            this.chkCompleted.Name = "chkCompleted";
+            this.chkCompleted.Size = new System.Drawing.Size(96, 17);
+            this.chkCompleted.TabIndex = 14;
+            this.chkCompleted.Text = "Ngày kết thúc:";
+            this.chkCompleted.UseVisualStyleBackColor = false;
+            this.chkCompleted.CheckedChanged += new System.EventHandler(this.chkCompleted_CheckedChanged);
+            // 
+            // dtpkBeginDate
+            // 
+            this.dtpkBeginDate.CustomFormat = "dd/MM/yyyy";
+            this.dtpkBeginDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpkBeginDate.Location = new System.Drawing.Point(152, 302);
+            this.dtpkBeginDate.Name = "dtpkBeginDate";
+            this.dtpkBeginDate.Size = new System.Drawing.Size(97, 20);
+            this.dtpkBeginDate.TabIndex = 13;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label3.Location = new System.Drawing.Point(18, 305);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(75, 13);
+            this.label3.TabIndex = 52;
+            this.label3.Text = "Ngày bắt đầu:";
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label7.ForeColor = System.Drawing.Color.Red;
+            this.label7.Location = new System.Drawing.Point(455, 40);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(17, 13);
+            this.label7.TabIndex = 51;
+            this.label7.Text = "[*]";
+            // 
+            // label22
+            // 
+            this.label22.AutoSize = true;
+            this.label22.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label22.ForeColor = System.Drawing.Color.Red;
+            this.label22.Location = new System.Drawing.Point(319, 16);
+            this.label22.Name = "label22";
+            this.label22.Size = new System.Drawing.Size(17, 13);
+            this.label22.TabIndex = 50;
+            this.label22.Text = "[*]";
+            // 
+            // txtName
+            // 
+            this.txtName.Location = new System.Drawing.Point(152, 37);
+            this.txtName.MaxLength = 500;
+            this.txtName.Name = "txtName";
+            this.txtName.Size = new System.Drawing.Size(300, 20);
+            this.txtName.TabIndex = 1;
+            // 
+            // txtCode
+            // 
+            this.txtCode.Location = new System.Drawing.Point(152, 13);
+            this.txtCode.MaxLength = 50;
+            this.txtCode.Name = "txtCode";
+            this.txtCode.Size = new System.Drawing.Size(163, 20);
+            this.txtCode.TabIndex = 0;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label2.Location = new System.Drawing.Point(18, 40);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(78, 13);
+            this.label2.TabIndex = 48;
+            this.label2.Text = "Tên hợp đồng:";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label1.Location = new System.Drawing.Point(18, 16);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(74, 13);
+            this.label1.TabIndex = 47;
+            this.label1.Text = "Mã hợp đồng:";
+            // 
+            // pageContractInfo
+            // 
+            this.pageContractInfo.AttachedControl = this.tabControlPanel1;
+            this.pageContractInfo.Image = global::MM.Properties.Resources.info_icon;
+            this.pageContractInfo.Name = "pageContractInfo";
+            this.pageContractInfo.Text = "Thông tin hợp đồng";
             // 
             // tabControlPanel2
             // 
@@ -1035,26 +1106,26 @@
             this.toolStripSeparator3,
             this.xoaDVToolStripMenuItem});
             this.ctmAction2.Name = "cmtAction";
-            this.ctmAction2.Size = new System.Drawing.Size(112, 54);
+            this.ctmAction2.Size = new System.Drawing.Size(106, 54);
             // 
             // themDVToolStripMenuItem
             // 
             this.themDVToolStripMenuItem.Image = global::MM.Properties.Resources.add;
             this.themDVToolStripMenuItem.Name = "themDVToolStripMenuItem";
-            this.themDVToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.themDVToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
             this.themDVToolStripMenuItem.Text = "Thêm";
             this.themDVToolStripMenuItem.Click += new System.EventHandler(this.themDVToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(108, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(102, 6);
             // 
             // xoaDVToolStripMenuItem
             // 
             this.xoaDVToolStripMenuItem.Image = global::MM.Properties.Resources.del;
             this.xoaDVToolStripMenuItem.Name = "xoaDVToolStripMenuItem";
-            this.xoaDVToolStripMenuItem.Size = new System.Drawing.Size(111, 22);
+            this.xoaDVToolStripMenuItem.Size = new System.Drawing.Size(105, 22);
             this.xoaDVToolStripMenuItem.Text = "Xóa";
             this.xoaDVToolStripMenuItem.Click += new System.EventHandler(this.xoaDVToolStripMenuItem_Click);
             // 
@@ -1247,117 +1318,117 @@
             this.toolStripSeparator11,
             this.nhapDVHDToolStripMenuItem});
             this.ctmAction3.Name = "cmtAction";
-            this.ctmAction3.Size = new System.Drawing.Size(184, 250);
+            this.ctmAction3.Size = new System.Drawing.Size(187, 250);
             // 
             // themNVToolStripMenuItem
             // 
             this.themNVToolStripMenuItem.Image = global::MM.Properties.Resources.add;
             this.themNVToolStripMenuItem.Name = "themNVToolStripMenuItem";
-            this.themNVToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.themNVToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.themNVToolStripMenuItem.Text = "Thêm";
             this.themNVToolStripMenuItem.Click += new System.EventHandler(this.themNVToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(180, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(183, 6);
             // 
             // xoaNVToolStripMenuItem
             // 
             this.xoaNVToolStripMenuItem.Image = global::MM.Properties.Resources.del;
             this.xoaNVToolStripMenuItem.Name = "xoaNVToolStripMenuItem";
-            this.xoaNVToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.xoaNVToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.xoaNVToolStripMenuItem.Text = "Xóa";
             this.xoaNVToolStripMenuItem.Click += new System.EventHandler(this.xoaNVToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(180, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(183, 6);
             // 
             // xemBanInDSNVToolStripMenuItem
             // 
             this.xemBanInDSNVToolStripMenuItem.Image = global::MM.Properties.Resources.Actions_print_preview_icon;
             this.xemBanInDSNVToolStripMenuItem.Name = "xemBanInDSNVToolStripMenuItem";
-            this.xemBanInDSNVToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.xemBanInDSNVToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.xemBanInDSNVToolStripMenuItem.Text = "Xem bản in DSNV";
             this.xemBanInDSNVToolStripMenuItem.Click += new System.EventHandler(this.xemBanInDSNVToolStripMenuItem_Click);
             // 
             // toolStripSeparator6
             // 
             this.toolStripSeparator6.Name = "toolStripSeparator6";
-            this.toolStripSeparator6.Size = new System.Drawing.Size(180, 6);
+            this.toolStripSeparator6.Size = new System.Drawing.Size(183, 6);
             // 
             // inDSNVToolStripMenuItem
             // 
             this.inDSNVToolStripMenuItem.Image = global::MM.Properties.Resources.Printer_icon__1_;
             this.inDSNVToolStripMenuItem.Name = "inDSNVToolStripMenuItem";
-            this.inDSNVToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.inDSNVToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.inDSNVToolStripMenuItem.Text = "In DSNV";
             this.inDSNVToolStripMenuItem.Click += new System.EventHandler(this.inDSNVToolStripMenuItem_Click);
             // 
             // toolStripSeparator7
             // 
             this.toolStripSeparator7.Name = "toolStripSeparator7";
-            this.toolStripSeparator7.Size = new System.Drawing.Size(180, 6);
+            this.toolStripSeparator7.Size = new System.Drawing.Size(183, 6);
             // 
             // xuatExcelDSNVToolStripMenuItem
             // 
             this.xuatExcelDSNVToolStripMenuItem.Image = global::MM.Properties.Resources.page_excel_icon;
             this.xuatExcelDSNVToolStripMenuItem.Name = "xuatExcelDSNVToolStripMenuItem";
-            this.xuatExcelDSNVToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.xuatExcelDSNVToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.xuatExcelDSNVToolStripMenuItem.Text = "Xuất Excel DSNV";
             this.xuatExcelDSNVToolStripMenuItem.Click += new System.EventHandler(this.xuatExcelDSNVToolStripMenuItem_Click);
             // 
             // toolStripSeparator8
             // 
             this.toolStripSeparator8.Name = "toolStripSeparator8";
-            this.toolStripSeparator8.Size = new System.Drawing.Size(180, 6);
+            this.toolStripSeparator8.Size = new System.Drawing.Size(183, 6);
             // 
             // xemBanInChecklistToolStripMenuItem
             // 
             this.xemBanInChecklistToolStripMenuItem.Image = global::MM.Properties.Resources.Actions_print_preview_icon;
             this.xemBanInChecklistToolStripMenuItem.Name = "xemBanInChecklistToolStripMenuItem";
-            this.xemBanInChecklistToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.xemBanInChecklistToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.xemBanInChecklistToolStripMenuItem.Text = "Xem bản in check list";
             this.xemBanInChecklistToolStripMenuItem.Click += new System.EventHandler(this.xemBanInChecklistToolStripMenuItem_Click);
             // 
             // toolStripSeparator9
             // 
             this.toolStripSeparator9.Name = "toolStripSeparator9";
-            this.toolStripSeparator9.Size = new System.Drawing.Size(180, 6);
+            this.toolStripSeparator9.Size = new System.Drawing.Size(183, 6);
             // 
             // inChecklistToolStripMenuItem
             // 
             this.inChecklistToolStripMenuItem.Image = global::MM.Properties.Resources.Printer_icon__1_;
             this.inChecklistToolStripMenuItem.Name = "inChecklistToolStripMenuItem";
-            this.inChecklistToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.inChecklistToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.inChecklistToolStripMenuItem.Text = "In check list";
             this.inChecklistToolStripMenuItem.Click += new System.EventHandler(this.inChecklistToolStripMenuItem_Click);
             // 
             // toolStripSeparator10
             // 
             this.toolStripSeparator10.Name = "toolStripSeparator10";
-            this.toolStripSeparator10.Size = new System.Drawing.Size(180, 6);
+            this.toolStripSeparator10.Size = new System.Drawing.Size(183, 6);
             // 
             // xuatExcelChecklistTtoolStripMenuItem
             // 
             this.xuatExcelChecklistTtoolStripMenuItem.Image = global::MM.Properties.Resources.page_excel_icon;
             this.xuatExcelChecklistTtoolStripMenuItem.Name = "xuatExcelChecklistTtoolStripMenuItem";
-            this.xuatExcelChecklistTtoolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.xuatExcelChecklistTtoolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.xuatExcelChecklistTtoolStripMenuItem.Text = "Xuất Excel check list";
             this.xuatExcelChecklistTtoolStripMenuItem.Click += new System.EventHandler(this.xuatExcelChecklistTtoolStripMenuItem_Click);
             // 
             // toolStripSeparator11
             // 
             this.toolStripSeparator11.Name = "toolStripSeparator11";
-            this.toolStripSeparator11.Size = new System.Drawing.Size(180, 6);
+            this.toolStripSeparator11.Size = new System.Drawing.Size(183, 6);
             // 
             // nhapDVHDToolStripMenuItem
             // 
             this.nhapDVHDToolStripMenuItem.Image = global::MM.Properties.Resources.Excel_icon;
             this.nhapDVHDToolStripMenuItem.Name = "nhapDVHDToolStripMenuItem";
-            this.nhapDVHDToolStripMenuItem.Size = new System.Drawing.Size(183, 22);
+            this.nhapDVHDToolStripMenuItem.Size = new System.Drawing.Size(186, 22);
             this.nhapDVHDToolStripMenuItem.Text = "Nhập DVHĐ";
             this.nhapDVHDToolStripMenuItem.Click += new System.EventHandler(this.nhapDVHDToolStripMenuItem_Click);
             // 
@@ -1532,24 +1603,89 @@
             // 
             this._printDialog.UseEXDialog = true;
             // 
-            // txtMaSoThue
+            // label14
             // 
-            this.txtMaSoThue.Location = new System.Drawing.Point(116, 86);
-            this.txtMaSoThue.MaxLength = 50;
-            this.txtMaSoThue.Name = "txtMaSoThue";
-            this.txtMaSoThue.ReadOnly = true;
-            this.txtMaSoThue.Size = new System.Drawing.Size(163, 20);
-            this.txtMaSoThue.TabIndex = 3;
+            this.label14.AutoSize = true;
+            this.label14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label14.Location = new System.Drawing.Point(18, 137);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(82, 13);
+            this.label14.TabIndex = 71;
+            this.label14.Text = "Giảm giá (Nam):";
             // 
-            // label13
+            // label15
             // 
-            this.label13.AutoSize = true;
-            this.label13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label13.Location = new System.Drawing.Point(18, 89);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(63, 13);
-            this.label13.TabIndex = 70;
-            this.label13.Text = "Mã số thuế:";
+            this.label15.AutoSize = true;
+            this.label15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label15.Location = new System.Drawing.Point(18, 160);
+            this.label15.Name = "label15";
+            this.label15.Size = new System.Drawing.Size(120, 13);
+            this.label15.TabIndex = 72;
+            this.label15.Text = "Giảm giá (Nữ độc thân):";
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label16.Location = new System.Drawing.Point(18, 184);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(130, 13);
+            this.label16.TabIndex = 73;
+            this.label16.Text = "Giảm giá (Nữ có gia đình):";
+            // 
+            // numGiamGiaNam
+            // 
+            this.numGiamGiaNam.Location = new System.Drawing.Point(152, 134);
+            this.numGiamGiaNam.Name = "numGiamGiaNam";
+            this.numGiamGiaNam.Size = new System.Drawing.Size(71, 20);
+            this.numGiamGiaNam.TabIndex = 5;
+            this.numGiamGiaNam.ThousandsSeparator = true;
+            // 
+            // label17
+            // 
+            this.label17.AutoSize = true;
+            this.label17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label17.Location = new System.Drawing.Point(227, 137);
+            this.label17.Name = "label17";
+            this.label17.Size = new System.Drawing.Size(15, 13);
+            this.label17.TabIndex = 75;
+            this.label17.Text = "%";
+            // 
+            // label18
+            // 
+            this.label18.AutoSize = true;
+            this.label18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label18.Location = new System.Drawing.Point(227, 161);
+            this.label18.Name = "label18";
+            this.label18.Size = new System.Drawing.Size(15, 13);
+            this.label18.TabIndex = 77;
+            this.label18.Text = "%";
+            // 
+            // numGiamGiaNu
+            // 
+            this.numGiamGiaNu.Location = new System.Drawing.Point(152, 158);
+            this.numGiamGiaNu.Name = "numGiamGiaNu";
+            this.numGiamGiaNu.Size = new System.Drawing.Size(71, 20);
+            this.numGiamGiaNu.TabIndex = 6;
+            this.numGiamGiaNu.ThousandsSeparator = true;
+            // 
+            // label19
+            // 
+            this.label19.AutoSize = true;
+            this.label19.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label19.Location = new System.Drawing.Point(227, 185);
+            this.label19.Name = "label19";
+            this.label19.Size = new System.Drawing.Size(15, 13);
+            this.label19.TabIndex = 79;
+            this.label19.Text = "%";
+            // 
+            // numGiamGiaNuCoGiaDinh
+            // 
+            this.numGiamGiaNuCoGiaDinh.Location = new System.Drawing.Point(152, 182);
+            this.numGiamGiaNuCoGiaDinh.Name = "numGiamGiaNuCoGiaDinh";
+            this.numGiamGiaNuCoGiaDinh.Size = new System.Drawing.Size(71, 20);
+            this.numGiamGiaNuCoGiaDinh.TabIndex = 7;
+            this.numGiamGiaNuCoGiaDinh.ThousandsSeparator = true;
             // 
             // dlgAddContract
             // 
@@ -1573,11 +1709,6 @@
             this.Load += new System.EventHandler(this.dlgAddContract_Load);
             ((System.ComponentModel.ISupportInitialize)(this.tabContract)).EndInit();
             this.tabContract.ResumeLayout(false);
-            this.tabControlPanel1.ResumeLayout(false);
-            this.tabControlPanel1.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numDatCoc)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.numSoTien)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.companyBindingSource)).EndInit();
             this.tabControlPanel3.ResumeLayout(false);
             this.panel8.ResumeLayout(false);
             this.panel10.ResumeLayout(false);
@@ -1591,6 +1722,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.dichVuConViewBindingSource)).EndInit();
             this.panel11.ResumeLayout(false);
             this.panel5.ResumeLayout(false);
+            this.tabControlPanel1.ResumeLayout(false);
+            this.tabControlPanel1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numDatCoc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSoTien)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.companyBindingSource)).EndInit();
             this.tabControlPanel2.ResumeLayout(false);
             this.panel3.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
@@ -1607,6 +1743,9 @@
             this.ctmAction3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.contractMemberViewBindingSource)).EndInit();
             this.panel1.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.numGiamGiaNam)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGiamGiaNu)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numGiamGiaNuCoGiaDinh)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1737,6 +1876,18 @@
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.TextBox txtMaSoThue;
         private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.Button btnThemMoiDichVu;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator12;
+        private System.Windows.Forms.ToolStripMenuItem themMoiDVToolStripMenuItem;
+        private System.Windows.Forms.Label label19;
+        private System.Windows.Forms.NumericUpDown numGiamGiaNuCoGiaDinh;
+        private System.Windows.Forms.Label label18;
+        private System.Windows.Forms.NumericUpDown numGiamGiaNu;
+        private System.Windows.Forms.Label label17;
+        private System.Windows.Forms.NumericUpDown numGiamGiaNam;
+        private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.Label label15;
+        private System.Windows.Forms.Label label14;
 
     }
 }
