@@ -510,15 +510,17 @@ namespace MM.Bussiness
 
                             if (c.EndDate.HasValue)
                             {
-                                desc += string.Format("- GUID: '{0}', Mã hợp đồng: '{1}', Tên hợp đồng: '{2}', Cty: '{3}', Ngày bắt đầu: '{4}', Ngày kết thúc: '{5}', Số tiền: '{6}', Đặt cọc: '{7}', Nhân sự phụ trách: '{8}', Số điện thoại: '{9}', Ngày đặt cọc: '{10}'\n",
+                                desc += string.Format("- GUID: '{0}', Mã hợp đồng: '{1}', Tên hợp đồng: '{2}', Cty: '{3}', Ngày bắt đầu: '{4}', Ngày kết thúc: '{5}', Số tiền: '{6}', Đặt cọc: '{7}', Nhân sự phụ trách: '{8}', Số điện thoại: '{9}', Ngày đặt cọc: '{10}', Giảm giá nam: '{11}', Giảm giá nữ: '{12}', Giảm giá nữ có gđ: '{13}'\n",
                                     c.CompanyContractGUID.ToString(), c.ContractCode, c.ContractName, c.Company.TenCty, c.BeginDate.ToString("dd/MM/yyyy HH:mm:ss"),
-                                    c.EndDate.Value.ToString("dd/MM/yyyy HH:mm:ss"), c.SoTien, c.DatCoc, c.NhanSuPhuTrach, c.SoDienThoai, strNgayDatCoc);
+                                    c.EndDate.Value.ToString("dd/MM/yyyy HH:mm:ss"), c.SoTien, c.DatCoc, c.NhanSuPhuTrach, c.SoDienThoai, strNgayDatCoc,
+                                    c.GiamGiaNam, c.GiamGiaNu, c.GiamGiaNuCoGD);
                             }
                             else
                             {
-                                desc += string.Format("- GUID: '{0}', Mã hợp đồng: '{1}', Tên hợp đồng: '{2}', Cty: '{3}', Ngày bắt đầu: '{4}', Số tiền: '{5}', Đặt cọc: '{6}', Nhân sự phụ trách: '{7}', Số điện thoại: '{8}', Ngày đặt cọc: '{9}'\n",
+                                desc += string.Format("- GUID: '{0}', Mã hợp đồng: '{1}', Tên hợp đồng: '{2}', Cty: '{3}', Ngày bắt đầu: '{4}', Số tiền: '{5}', Đặt cọc: '{6}', Nhân sự phụ trách: '{7}', Số điện thoại: '{8}', Ngày đặt cọc: '{9}', Giảm giá nam: '{10}', Giảm giá nữ: '{11}', Giảm giá nữ có gđ: '{12}'\n",
                                     c.CompanyContractGUID.ToString(), c.ContractCode, c.ContractName, c.Company.TenCty, c.BeginDate.ToString("dd/MM/yyyy HH:mm:ss"),
-                                    c.SoTien, c.DatCoc, c.NhanSuPhuTrach, c.SoDienThoai, strNgayDatCoc);
+                                    c.SoTien, c.DatCoc, c.NhanSuPhuTrach, c.SoDienThoai, strNgayDatCoc,
+                                    c.GiamGiaNam, c.GiamGiaNu, c.GiamGiaNuCoGD);
                             }
                         }
                     }
@@ -627,15 +629,17 @@ namespace MM.Bussiness
                             strNgayDatCoc = contract.NgayDatCoc.Value.ToString("dd/MM/yyyy HH:mm:ss");
                         if (contract.EndDate.HasValue)
                         {
-                            desc += string.Format("- Hợp đồng: GUID: '{0}', Mã hợp đồng: '{1}', Tên hợp đồng: '{2}', Cty: '{3}', Ngày bắt đầu: '{4}', Ngày kết thúc: '{5}', Số tiền: '{6}', Đặt cọc: '{7}', Nhân sự phụ trách: '{8}', Số điện thoại: '{9}', Ngày đặt cọc: '{10}'\n",
+                            desc += string.Format("- Hợp đồng: GUID: '{0}', Mã hợp đồng: '{1}', Tên hợp đồng: '{2}', Cty: '{3}', Ngày bắt đầu: '{4}', Ngày kết thúc: '{5}', Số tiền: '{6}', Đặt cọc: '{7}', Nhân sự phụ trách: '{8}', Số điện thoại: '{9}', Ngày đặt cọc: '{10}', Giảm giá nam: '{11}', Giảm giá nữ: '{12}', Giảm giá nữ có gđ: '{13}\n",
                                 contract.CompanyContractGUID.ToString(), contract.ContractCode, contract.ContractName, contract.Company.TenCty,
-                                contract.BeginDate.ToString("dd/MM/yyyy HH:mm:ss"), contract.EndDate.Value.ToString("dd/MM/yyyy HH:mm:ss"), contract.SoTien, contract.DatCoc, contract.NhanSuPhuTrach, contract.SoDienThoai, strNgayDatCoc);
+                                contract.BeginDate.ToString("dd/MM/yyyy HH:mm:ss"), contract.EndDate.Value.ToString("dd/MM/yyyy HH:mm:ss"), contract.SoTien, contract.DatCoc, contract.NhanSuPhuTrach, contract.SoDienThoai, strNgayDatCoc,
+                                contract.GiamGiaNam, contract.GiamGiaNu, contract.GiamGiaNuCoGD);
                         }
                         else
                         {
-                            desc += string.Format("- Hợp đồng: GUID: '{0}', Mã hợp đồng: '{1}', Tên hợp đồng: '{2}', Cty: '{3}', Ngày bắt đầu: '{4}', Số tiền: '{5}', Đặt cọc: '{6}', Nhân sự phụ trách: '{7}', Số điện thoại: '{8}', Ngày đặt cọc: '{9}'\n",
+                            desc += string.Format("- Hợp đồng: GUID: '{0}', Mã hợp đồng: '{1}', Tên hợp đồng: '{2}', Cty: '{3}', Ngày bắt đầu: '{4}', Số tiền: '{5}', Đặt cọc: '{6}', Nhân sự phụ trách: '{7}', Số điện thoại: '{8}', Ngày đặt cọc: '{9}', Giảm giá nam: '{10}', Giảm giá nữ: '{11}', Giảm giá nữ có gđ: '{12}\n",
                                 contract.CompanyContractGUID.ToString(), contract.ContractCode, contract.ContractName, contract.Company.TenCty,
-                                contract.BeginDate.ToString("dd/MM/yyyy HH:mm:ss"), contract.SoTien, contract.DatCoc, contract.NhanSuPhuTrach, contract.SoDienThoai, strNgayDatCoc);
+                                contract.BeginDate.ToString("dd/MM/yyyy HH:mm:ss"), contract.SoTien, contract.DatCoc, contract.NhanSuPhuTrach, contract.SoDienThoai, strNgayDatCoc,
+                                contract.GiamGiaNam, contract.GiamGiaNu, contract.GiamGiaNuCoGD);
                         }
 
                         //Giá dịch vụ hợp đồng
@@ -775,6 +779,9 @@ namespace MM.Bussiness
                             con.NhanSuPhuTrach = contract.NhanSuPhuTrach;
                             con.SoDienThoai = contract.SoDienThoai;
                             con.NgayDatCoc = contract.NgayDatCoc;
+                            con.GiamGiaNam = contract.GiamGiaNam;
+                            con.GiamGiaNu = contract.GiamGiaNu;
+                            con.GiamGiaNuCoGD = contract.GiamGiaNuCoGD;
                             db.SubmitChanges();
 
                             string strNgayDatCoc = string.Empty;
@@ -783,15 +790,17 @@ namespace MM.Bussiness
 
                             if (con.EndDate.HasValue)
                             {
-                                desc += string.Format("- Hợp đồng: GUID: '{0}', Mã hợp đồng: '{1}', Tên hợp đồng: '{2}', Cty: '{3}', Ngày bắt đầu: '{4}', Ngày kết thúc: '{5}', Số tiền: '{6}', Đặt cọc: '{7}', Nhân sự phụ trách: '{8}', Số điện thoại: '{9}', Ngày đặt cọc: '{10}'\n",
+                                desc += string.Format("- Hợp đồng: GUID: '{0}', Mã hợp đồng: '{1}', Tên hợp đồng: '{2}', Cty: '{3}', Ngày bắt đầu: '{4}', Ngày kết thúc: '{5}', Số tiền: '{6}', Đặt cọc: '{7}', Nhân sự phụ trách: '{8}', Số điện thoại: '{9}', Ngày đặt cọc: '{10}', Giảm giá nam: '{11}', Giảm giá nữ: '{12}', Giảm giá nữ có gđ: '{13}'\n",
                                     con.CompanyContractGUID.ToString(), con.ContractCode, con.ContractName, con.Company.TenCty,
-                                    con.BeginDate.ToString("dd/MM/yyyy HH:mm:ss"), con.EndDate.Value.ToString("dd/MM/yyyy HH:mm:ss"), con.SoTien, con.DatCoc, con.NhanSuPhuTrach, con.SoDienThoai, strNgayDatCoc);
+                                    con.BeginDate.ToString("dd/MM/yyyy HH:mm:ss"), con.EndDate.Value.ToString("dd/MM/yyyy HH:mm:ss"), con.SoTien, con.DatCoc, con.NhanSuPhuTrach, con.SoDienThoai, strNgayDatCoc,
+                                    con.GiamGiaNam, con.GiamGiaNu, con.GiamGiaNuCoGD);
                             }
                             else
                             {
-                                desc += string.Format("- Hợp đồng: GUID: '{0}', Mã hợp đồng: '{1}', Tên hợp đồng: '{2}', Cty: '{3}', Ngày bắt đầu: '{4}', Số tiền: '{5}', Đặt cọc: '{6}', Nhân sự phụ trách: '{7}', Số điện thoại: '{8}', Ngày đặt cọc: '{9}'\n",
+                                desc += string.Format("- Hợp đồng: GUID: '{0}', Mã hợp đồng: '{1}', Tên hợp đồng: '{2}', Cty: '{3}', Ngày bắt đầu: '{4}', Số tiền: '{5}', Đặt cọc: '{6}', Nhân sự phụ trách: '{7}', Số điện thoại: '{8}', Ngày đặt cọc: '{9}', Giảm giá nam: '{10}', Giảm giá nữ: '{11}', Giảm giá nữ có gđ: '{12}'\n",
                                     con.CompanyContractGUID.ToString(), con.ContractCode, con.ContractName, con.Company.TenCty,
-                                    con.BeginDate.ToString("dd/MM/yyyy HH:mm:ss"), con.SoTien, con.DatCoc, con.NhanSuPhuTrach, con.SoDienThoai, strNgayDatCoc);
+                                    con.BeginDate.ToString("dd/MM/yyyy HH:mm:ss"), con.SoTien, con.DatCoc, con.NhanSuPhuTrach, con.SoDienThoai, strNgayDatCoc,
+                                    con.GiamGiaNam, con.GiamGiaNu, con.GiamGiaNuCoGD);
                             }
 
                             //Members
@@ -1487,6 +1496,42 @@ namespace MM.Bussiness
             {
                 result.Error.Code = ErrorCode.UNKNOWN_ERROR;
                 result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
+        public static Result GetHopDong(string hopDongGUID)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                CompanyContract con = (from c in db.CompanyContracts
+                                       where c.CompanyContractGUID.ToString() == hopDongGUID
+                                       select c).FirstOrDefault();
+
+                result.QueryResult = con;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
             }
 
             return result;

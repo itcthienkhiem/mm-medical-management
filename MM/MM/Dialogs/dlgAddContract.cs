@@ -94,6 +94,10 @@ namespace MM.Dialogs
                 numSoTien.Value = (Decimal)Convert.ToDouble(drContract["SoTien"]);
                 numDatCoc.Value = (Decimal)Convert.ToDouble(drContract["DatCoc"]);
 
+                numGiamGiaNam.Value = (Decimal)Convert.ToDouble(drContract["GiamGiaNam"]);
+                numGiamGiaNu.Value = (Decimal)Convert.ToDouble(drContract["GiamGiaNu"]);
+                numGiamGiaNuCoGiaDinh.Value = (Decimal)Convert.ToDouble(drContract["GiamGiaNuCoGD"]);
+
                 if (drContract["NgayDatCoc"] != null && drContract["NgayDatCoc"] != DBNull.Value)
                 {
                     chkNgayDatCoc.Checked = true;
@@ -148,6 +152,9 @@ namespace MM.Dialogs
                     chkCompleted.Enabled = !_isLock;
                     dtpkEndDate.Enabled = !_isLock;
                     numSoTien.Enabled = !_isLock;
+                    numGiamGiaNam.Enabled = !_isLock;
+                    numGiamGiaNu.Enabled = !_isLock;
+                    numGiamGiaNuCoGiaDinh.Enabled = !_isLock;
                     numDatCoc.Enabled = !_isLock;
                     chkNgayDatCoc.Enabled = !_isLock;
                     dtpkNgayDatCoc.Enabled = !_isLock;
@@ -178,9 +185,12 @@ namespace MM.Dialogs
                     addToolStripMenuItem.Enabled = !_isLock;
                     editToolStripMenuItem.Enabled = !_isLock;
                     deleteToolStripMenuItem.Enabled = !_isLock;
+                    themMoiDVToolStripMenuItem.Enabled = !_isLock;
                 }
 
                 DisplayDetailAsThread(_contract.CompanyContractGUID.ToString());
+
+                btnThemMoiDichVu.Enabled = _allowEdit;
 
                 if (!_allowEdit)
                 {
@@ -192,6 +202,9 @@ namespace MM.Dialogs
                     chkCompleted.Enabled = _allowEdit;
                     dtpkEndDate.Enabled = _allowEdit;
                     numSoTien.Enabled = _allowEdit;
+                    numGiamGiaNam.Enabled = _allowEdit;
+                    numGiamGiaNu.Enabled = _allowEdit;
+                    numGiamGiaNuCoGiaDinh.Enabled = _allowEdit;
                     numDatCoc.Enabled = _allowEdit;
                     chkNgayDatCoc.Enabled = _allowEdit;
                     dtpkNgayDatCoc.Enabled = _allowEdit;
@@ -203,6 +216,7 @@ namespace MM.Dialogs
                     addToolStripMenuItem.Enabled = _allowEdit;
                     editToolStripMenuItem.Enabled = _allowEdit;
                     deleteToolStripMenuItem.Enabled = _allowEdit;
+                    themMoiDVToolStripMenuItem.Enabled = _allowEdit;
 
                     btnAddMember.Enabled = _allowEdit;
                     btnDeleteMember.Enabled = _allowEdit;
@@ -339,6 +353,10 @@ namespace MM.Dialogs
                     if (chkNgayDatCoc.Checked) _contract.NgayDatCoc = dtpkNgayDatCoc.Value;
                     _contract.NhanSuPhuTrach = txtNhanSuPhuTrach.Text;
                     _contract.SoDienThoai = txtSoDienThoai.Text;
+
+                    _contract.GiamGiaNam = (double)numGiamGiaNam.Value;
+                    _contract.GiamGiaNu = (double)numGiamGiaNu.Value;
+                    _contract.GiamGiaNuCoGD = (double)numGiamGiaNuCoGiaDinh.Value;
 
                     Result result = CompanyContractBus.InsertContract(_contract, _selectedCompanyInfo);
                     if (!result.IsOK)
@@ -1312,8 +1330,13 @@ namespace MM.Dialogs
             DataRow drGiaDichVu = (dgGiaDichVu.SelectedRows[0].DataBoundItem as DataRowView).Row;
             string serviceGUID = drGiaDichVu["ServiceGUID"].ToString();
 
-            DataTable dtDichVuCon = _selectedCompanyInfo.DictDichVuCon[serviceGUID];
-            dgDichVuCon.DataSource = dtDichVuCon;
+            if (_selectedCompanyInfo.DictDichVuCon.ContainsKey(serviceGUID))
+            {
+                DataTable dtDichVuCon = _selectedCompanyInfo.DictDichVuCon[serviceGUID];
+                dgDichVuCon.DataSource = dtDichVuCon;
+            }
+            else
+                dgDichVuCon.DataSource = null;
         }
 
         private DataRow GetCompanyRow(string companyGUID)
@@ -1325,6 +1348,31 @@ namespace MM.Dialogs
             if (rows == null || rows.Length <= 0) return null;
 
             return rows[0];
+        }
+
+        private void OnThemMoiDV()
+        {
+            if (_selectedCompanyInfo == null) return;
+
+            if (_selectedCompanyInfo.GiaDichVuDataSource == null)
+                _selectedCompanyInfo.GiaDichVuDataSource = dgGiaDichVu.DataSource as DataTable;
+
+            dlgAddServices dlg = new dlgAddServices();
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                if (MsgBox.Question(this.Text, "Đã thêm mới dịch vụ thành công. Bạn có muốn thêm vào dịch vụ hợp đồng ?") == System.Windows.Forms.DialogResult.Yes)
+                {
+                    DataRow newRow = _selectedCompanyInfo.GiaDichVuDataSource.NewRow();
+                    newRow["Checked"] = false;
+                    newRow["ServiceGUID"] = dlg.Service.ServiceGUID.ToString();
+                    newRow["Code"] = dlg.Service.Code;
+                    newRow["Name"] = dlg.Service.Name;
+                    newRow["Gia"] = dlg.Service.Price;
+
+                    _selectedCompanyInfo.GiaDichVuDataSource.Rows.Add(newRow);
+                }
+                
+            }
         }
         #endregion
 
@@ -1778,6 +1826,16 @@ namespace MM.Dialogs
         {
             dtpkNgayDatCoc.Visible = chkNgayDatCoc.Checked;
         }
+
+        private void btnThemMoiDichVu_Click(object sender, EventArgs e)
+        {
+            OnThemMoiDV();
+        }
+
+        private void themMoiDVToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnThemMoiDV();
+        }
         #endregion
 
         #region Working Thread
@@ -1817,5 +1875,7 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
     }
 }

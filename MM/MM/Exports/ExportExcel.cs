@@ -8864,6 +8864,16 @@ namespace MM.Exports
                     return false;
                 }
 
+                result = CompanyContractBus.GetHopDong(hopDongGUID);
+                if (!result.IsOK)
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyContractBus.GetHopDong"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.GetHopDong"));
+                    return false;
+                }
+
+                CompanyContract contract = result.QueryResult as CompanyContract;
+
                 DataTable dtCongNo = ds.Tables[0];
                 DataTable dtMaxCol = ds.Tables[1];
                 DataTable dtServices = ds.Tables[2];
@@ -8926,7 +8936,46 @@ namespace MM.Exports
                         colIndex ++;
                     }
 
+                    range = workSheet.Cells[rowIndex, colIndex + 1];
+                    range.ColumnWidth = 14;
+                    range.Value = "Tổng gói khám";
+                    range.WrapText = true;
+                    range.Borders.Color = Color.Black;
+                    range.Borders.LineStyle = LineStyle.Continuous;
+                    range.Borders.Weight = BorderWeight.Thin;
+                    range.HorizontalAlignment = HAlign.Center;
+                    range.VerticalAlignment = VAlign.Center;
+                    range.Interior.Color = Color.LightGray;
+                    range.Font.Bold = true;
+
+                    colIndex++;
+                    range = workSheet.Cells[rowIndex, colIndex + 1];
+                    range.ColumnWidth = 7;
+                    range.Value = "Giảm";
+                    range.WrapText = true;
+                    range.Borders.Color = Color.Black;
+                    range.Borders.LineStyle = LineStyle.Continuous;
+                    range.Borders.Weight = BorderWeight.Thin;
+                    range.HorizontalAlignment = HAlign.Center;
+                    range.VerticalAlignment = VAlign.Center;
+                    range.Interior.Color = Color.LightGray;
+                    range.Font.Bold = true;
+
+                    colIndex++;
+                    range = workSheet.Cells[rowIndex, colIndex + 1];
+                    range.ColumnWidth = 14;
+                    range.Value = "Còn lại";
+                    range.WrapText = true;
+                    range.Borders.Color = Color.Black;
+                    range.Borders.LineStyle = LineStyle.Continuous;
+                    range.Borders.Weight = BorderWeight.Thin;
+                    range.HorizontalAlignment = HAlign.Center;
+                    range.VerticalAlignment = VAlign.Center;
+                    range.Interior.Color = Color.LightGray;
+                    range.Font.Bold = true;
+                    
                     colIndex = 2;
+                    maxKhamHopDongCol += 3;
                     range = workSheet.Cells[rowIndex - 1, colIndex + 1, rowIndex - 1, colIndex + maxKhamHopDongCol];
                     range.Merge();
                     range.Borders.Color = Color.Black;
@@ -9039,21 +9088,48 @@ namespace MM.Exports
                 range.Font.Bold = true;
 
                 string currentPatient = string.Empty;
+                string currentGioiTinh = string.Empty;
+                string currentTinhTrangGiaDinh = string.Empty;
                 int currentLoai = -1;
                 colIndex = 2;
                 rowIndex = 3;
                 double tongTien = 0;
                 double congNo = 0;
+                double tongGoiKham = 0;
+                string gioiTinh = string.Empty;
+                string tinhTrangGiaDinh = string.Empty;
                 foreach (DataRow row in dtCongNo.Rows)
                 {
                     string patientGUID = row["PatientGUID"].ToString();
                     string tenNhanVien = row["FullName"].ToString();
                     string ngaySinh = row["DobStr"].ToString();
-                    string gioiTinh = row["GenderAsStr"].ToString();
+                    gioiTinh = row["GenderAsStr"].ToString();
                     string dichVu = row["Name"].ToString();
+                    tinhTrangGiaDinh = string.Empty;
+                    if (row["Tinh_Trang_Gia_Dinh"] != null && row["Tinh_Trang_Gia_Dinh"] != DBNull.Value)
+                        tinhTrangGiaDinh = row["Tinh_Trang_Gia_Dinh"].ToString();
+
                     double gia = Convert.ToDouble(row["ThanhTien"]);
+                    double giaDaGiam = gia;
                     loai = Convert.ToInt32(row["Loai"]);
-                    congNo += gia;
+
+                    if (loai != 0) congNo += gia;
+                    else
+                    {
+                        if (gioiTinh.ToLower() == "nam")
+                        {
+                            giaDaGiam = Math.Round(((100 - contract.GiamGiaNam) * gia) / 100, 0);
+                        }
+                        else
+                        {
+                            if (tinhTrangGiaDinh.ToLower() == "có gia đình")
+                                giaDaGiam = Math.Round(((100 - contract.GiamGiaNuCoGD) * gia) / 100, 0);
+                            else
+                                giaDaGiam = Math.Round(((100 - contract.GiamGiaNu) * gia) / 100, 0);
+                        }
+
+                        congNo += giaDaGiam;
+                    }
 
                     if (currentPatient != patientGUID)
                     {
@@ -9070,10 +9146,40 @@ namespace MM.Exports
                             range.HorizontalAlignment = HAlign.Right;
                             range.Font.Bold = true;
                             if (tongTien != 0) range.NumberFormat = "#,###";
+
+                            if (maxKhamHopDongCol - 3 != 0)
+                            {
+                                range = workSheet.Cells[rowIndex, 3 + maxKhamHopDongCol - 3];
+                                range.Value = tongGoiKham;
+                                range.HorizontalAlignment = HAlign.Right;
+                                if (tongGoiKham != 0) range.NumberFormat = "#,###";
+
+                                range = workSheet.Cells[rowIndex, 3 + maxKhamHopDongCol - 2];
+                                double giam = 0;
+                                if (currentGioiTinh.ToLower() == "nam") giam = contract.GiamGiaNam;
+                                else if (currentTinhTrangGiaDinh.ToLower() == "có gia đình")
+                                    giam = contract.GiamGiaNuCoGD;
+                                else
+                                    giam = contract.GiamGiaNu;
+
+                                range.Value = giam;
+                                range.HorizontalAlignment = HAlign.Right;
+
+                                range = workSheet.Cells[rowIndex, 3 + maxKhamHopDongCol - 1];
+                                double conLai = Math.Round(((100 - giam) * tongGoiKham) / 100, 0);
+                                range.Value = conLai;
+                                if (conLai != 0) range.NumberFormat = "#,###";
+                                range.HorizontalAlignment = HAlign.Right;
+                            }
+
+                            currentGioiTinh = gioiTinh;
+                            currentTinhTrangGiaDinh = tinhTrangGiaDinh;
                         }
                         
                         rowIndex++;
-                        tongTien = gia;
+                        tongTien = giaDaGiam;
+                        if (loai == 0) tongGoiKham = gia;
+                        else tongGoiKham = 0;
 
                         range = workSheet.Cells[rowIndex, 0];
                         range.Value = tenNhanVien;
@@ -9096,7 +9202,9 @@ namespace MM.Exports
                     }
                     else
                     {
-                        tongTien += gia;
+                        tongTien += giaDaGiam;
+                        if (loai == 0) tongGoiKham += gia;
+
                         if (currentLoai != loai)
                         {
                             currentLoai = loai;
@@ -9119,6 +9227,31 @@ namespace MM.Exports
                 range.HorizontalAlignment = HAlign.Right;
                 range.Font.Bold = true;
                 if (tongTien != 0) range.NumberFormat = "#,###";
+
+                if (maxKhamHopDongCol - 3 != 0)
+                {
+                    range = workSheet.Cells[rowIndex, 3 + maxKhamHopDongCol - 3];
+                    range.Value = tongGoiKham;
+                    range.HorizontalAlignment = HAlign.Right;
+                    if (tongGoiKham != 0) range.NumberFormat = "#,###";
+
+                    range = workSheet.Cells[rowIndex, 3 + maxKhamHopDongCol - 2];
+                    double giam = 0;
+                    if (currentGioiTinh.ToLower() == "nam") giam = contract.GiamGiaNam;
+                    else if (currentTinhTrangGiaDinh.ToLower() == "có gia đình")
+                        giam = contract.GiamGiaNuCoGD;
+                    else
+                        giam = contract.GiamGiaNu;
+
+                    range.Value = giam;
+                    range.HorizontalAlignment = HAlign.Right;
+
+                    range = workSheet.Cells[rowIndex, 3 + maxKhamHopDongCol - 1];
+                    double conLai = Math.Round(((100 - giam) * tongGoiKham) / 100, 0);
+                    range.Value = conLai;
+                    if (conLai != 0) range.NumberFormat = "#,###";
+                    range.HorizontalAlignment = HAlign.Right;
+                }
 
                 rowIndex += 2;
                 range = workSheet.Cells[rowIndex, 0];

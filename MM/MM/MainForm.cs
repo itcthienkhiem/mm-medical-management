@@ -529,6 +529,7 @@ namespace MM
                 Global.AllowTaoHoSo = false;
                 Global.AllowUploadHoSo = false;
                 Global.AllowAddMatKhauHoSo = false;
+                Global.AllowAddDichVu = false;
 
                 Result result = LogonBus.GetPermission2(Global.LogonGUID);
                 if (result.IsOK)
@@ -610,6 +611,7 @@ namespace MM
                             servicesToolStripMenuItem.Enabled = isLogin;
                             tbServiceList.Enabled = isView && isLogin;
                             _uServicesList.AllowAdd = isAdd;
+                            Global.AllowAddDichVu = isAdd;
                             _uServicesList.AllowEdit = isEdit;
                             _uServicesList.AllowDelete = isDelete;
                             _uServicesList.AllowPrint = isPrint;
