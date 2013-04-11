@@ -633,6 +633,8 @@ namespace MM.Controls
                                         {
                                             MsgBox.Show(Application.ProductName, result.GetErrorAsString("PatientBus.InsertPatient"), IconType.Error);
                                             Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.InsertPatient"));
+                                            SearchAsThread();
+                                            return;
                                         }
                                     }
                                 }
