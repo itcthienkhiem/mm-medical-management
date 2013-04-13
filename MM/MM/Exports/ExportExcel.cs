@@ -8894,17 +8894,20 @@ namespace MM.Exports
                 int rowIndex = 3;
                 double colWidth = 25;
                 IRange range = null;
+                DataRow[] service1List = null;
+                DataRow[] service2List = null;
+                DataRow[] service3List = null;
 
                 if (maxKhamHopDongCol != 0)
                 {
-                    DataRow[] rows = dtServices.Select(string.Format("Loai=0"));
+                    service1List = dtServices.Select(string.Format("Loai=0"));
 
                     for (int i = 0; i < maxKhamHopDongCol; i++)
                     {
                         range = workSheet.Cells[rowIndex, colIndex + 1];
                         range.ColumnWidth = colWidth;
-                        range.Value = rows[i]["Name"].ToString();
-                        string serviceGUID = rows[i]["ServiceGUID"].ToString();
+                        range.Value = service1List[i]["Name"].ToString();
+                        string serviceGUID = service1List[i]["ServiceGUID"].ToString();
                         Result rs = CompanyContractBus.GetDichVuCon(hopDongGUID, serviceGUID);
                         if (!rs.IsOK)
                         {
@@ -8990,15 +8993,15 @@ namespace MM.Exports
                 colIndex = 2 + maxKhamHopDongCol;
                 if (maxChuyenNhuongCol != 0)
                 {
-                    DataRow[] rows = dtServices.Select(string.Format("Loai=1"));
+                    service2List = dtServices.Select(string.Format("Loai=1"));
 
                     for (int i = 0; i < maxChuyenNhuongCol; i++)
                     {
                         range = workSheet.Cells[rowIndex, colIndex + 1];
                         range.ColumnWidth = colWidth;
-                        range.Value = rows[i]["Name"].ToString();
+                        range.Value = service2List[i]["Name"].ToString();
 
-                        string serviceGUID = rows[i]["ServiceGUID"].ToString();
+                        string serviceGUID = service2List[i]["ServiceGUID"].ToString();
                         Result rs = CompanyContractBus.GetDichVuCon(hopDongGUID, serviceGUID);
                         if (!rs.IsOK)
                         {
@@ -9045,13 +9048,13 @@ namespace MM.Exports
                 colIndex = 2 + maxKhamHopDongCol + maxChuyenNhuongCol;
                 if (maxDichVuLamThemCol != 0)
                 {
-                    DataRow[] rows = dtServices.Select(string.Format("Loai=2"));
+                    service3List = dtServices.Select(string.Format("Loai=2"));
 
                     for (int i = 0; i < maxDichVuLamThemCol; i++)
                     {
                         range = workSheet.Cells[rowIndex, colIndex + 1];
                         range.ColumnWidth = colWidth;
-                        range.Value = rows[i]["Name"].ToString();
+                        range.Value = service3List[i]["Name"].ToString();
                         range.WrapText = true;
                         range.Borders.Color = Color.Black;
                         range.Borders.LineStyle = LineStyle.Continuous;
@@ -9100,6 +9103,7 @@ namespace MM.Exports
                 string tinhTrangGiaDinh = string.Empty;
                 foreach (DataRow row in dtCongNo.Rows)
                 {
+                    string serviceGUID = row["ServiceGUID"].ToString();
                     string patientGUID = row["PatientGUID"].ToString();
                     string tenNhanVien = row["FullName"].ToString();
                     string ngaySinh = row["DobStr"].ToString();
@@ -9135,9 +9139,6 @@ namespace MM.Exports
                     {
                         currentPatient = patientGUID;
                         currentLoai = loai;
-                        if (currentLoai == 0) colIndex = 2;
-                        else if (currentLoai == 1) colIndex = 2 + maxKhamHopDongCol;
-                        else if (currentLoai == 2) colIndex = 2 + maxKhamHopDongCol + maxChuyenNhuongCol;
 
                         if (rowIndex > 3)
                         {
@@ -9205,21 +9206,24 @@ namespace MM.Exports
                         tongTien += giaDaGiam;
                         if (loai == 0) tongGoiKham += gia;
 
-                        if (currentLoai != loai)
-                        {
-                            currentLoai = loai;
-                            if (currentLoai == 0) colIndex = 2;
-                            else if (currentLoai == 1) colIndex = 2 + maxKhamHopDongCol;
-                            else if (currentLoai == 2) colIndex = 2 + maxKhamHopDongCol + maxChuyenNhuongCol;
-                        }
+                        if (currentLoai != loai) currentLoai = loai;
                     }
+
+                    if (currentLoai == 0) colIndex = 2;
+                    else if (currentLoai == 1) colIndex = 2 + maxKhamHopDongCol;
+                    else if (currentLoai == 2) colIndex = 2 + maxKhamHopDongCol + maxChuyenNhuongCol;
+
+                    int index = -1;
+                    if (currentLoai == 0) index = GetServiceIndex(service1List, serviceGUID);
+                    else if (currentLoai == 1) index = GetServiceIndex(service2List, serviceGUID);
+                    else if (currentLoai == 2) index = GetServiceIndex(service3List, serviceGUID);
+
+                    colIndex += index;
 
                     range = workSheet.Cells[rowIndex, colIndex + 1];
                     range.Value = gia;
                     range.HorizontalAlignment = HAlign.Right;
                     if (gia != 0) range.NumberFormat = "#,###";
-
-                    colIndex ++;
                 }
 
                 range = workSheet.Cells[rowIndex, 3 + maxKhamHopDongCol + maxChuyenNhuongCol + maxDichVuLamThemCol];
@@ -9355,6 +9359,17 @@ namespace MM.Exports
             }
 
             return true;
+        }
+
+        private static int GetServiceIndex(DataRow[] rows, string serviceGUID)
+        {
+            for (int i = 0; i < rows.Length; i++)
+            {
+                if (rows[i]["ServiceGUID"].ToString().ToLower() == serviceGUID.ToLower())
+                    return i;
+            }
+
+            return -1;
         }
     }
 }
