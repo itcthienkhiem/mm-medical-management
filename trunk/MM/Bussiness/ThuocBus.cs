@@ -35,7 +35,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetThuocList(string tenThuoc, int type)
+        public static Result GetThuocList(string tenThuoc)
         {
             Result result = null;
 
@@ -49,16 +49,8 @@ namespace MM.Bussiness
                 }
                 else
                 {
-                    if (type == 0)
-                    {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM Thuoc WITH(NOLOCK) WHERE TenThuoc LIKE N'%{0}%' AND Status={1} ORDER BY TenThuoc",
-                        tenThuoc, (byte)Status.Actived);
-                    }
-                    else if (type == 1)
-                    {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM Thuoc WITH(NOLOCK) WHERE BietDuoc LIKE N'%{0}%' AND Status={1} ORDER BY TenThuoc",
-                        tenThuoc, (byte)Status.Actived);
-                    }
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM Thuoc WITH(NOLOCK) WHERE (TenThuoc LIKE N'%{0}%' OR BietDuoc LIKE N'%{0}%') AND Status={1} ORDER BY TenThuoc",
+                    tenThuoc, (byte)Status.Actived);
                 }
                 return ExcuteQuery(query);
             }
