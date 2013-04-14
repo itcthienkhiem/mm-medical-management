@@ -38,7 +38,6 @@
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
-            this.chkBietDuoc = new System.Windows.Forms.CheckBox();
             this.txtTenThuoc = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.chkChecked = new System.Windows.Forms.CheckBox();
@@ -130,7 +129,6 @@
             // 
             // panel2
             // 
-            this.panel2.Controls.Add(this.chkBietDuoc);
             this.panel2.Controls.Add(this.txtTenThuoc);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
@@ -138,17 +136,6 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(796, 35);
             this.panel2.TabIndex = 0;
-            // 
-            // chkBietDuoc
-            // 
-            this.chkBietDuoc.AutoSize = true;
-            this.chkBietDuoc.Location = new System.Drawing.Point(382, 10);
-            this.chkBietDuoc.Name = "chkBietDuoc";
-            this.chkBietDuoc.Size = new System.Drawing.Size(71, 17);
-            this.chkBietDuoc.TabIndex = 6;
-            this.chkBietDuoc.Text = "Biệt dược";
-            this.chkBietDuoc.UseVisualStyleBackColor = true;
-            this.chkBietDuoc.CheckedChanged += new System.EventHandler(this.chkBietDuoc_CheckedChanged);
             // 
             // txtTenThuoc
             // 
@@ -407,6 +394,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn HamLuong;
         private System.Windows.Forms.DataGridViewTextBoxColumn DonViTinh;
         private System.Windows.Forms.DataGridViewTextBoxColumn noteDataGridViewTextBoxColumn;
-        private System.Windows.Forms.CheckBox chkBietDuoc;
     }
 }

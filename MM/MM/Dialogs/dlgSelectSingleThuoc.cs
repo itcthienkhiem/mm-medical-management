@@ -76,24 +76,15 @@ namespace MM.Dialogs
             newDataSource = dt.Clone();
 
             //Ten Thuoc
-            if (!chkBietDuoc.Checked)
-            {
-                results = (from p in dt.AsEnumerable()
-                           where p.Field<string>("TenThuoc") != null &&
-                           p.Field<string>("TenThuoc").Trim() != string.Empty &&
-                           p.Field<string>("TenThuoc").ToLower().IndexOf(str) == 0
-                           orderby p.Field<string>("TenThuoc")
-                           select p).ToList<DataRow>();
-            }
-            else
-            {
-                results = (from p in dt.AsEnumerable()
-                           where p.Field<string>("BietDuoc") != null &&
-                           p.Field<string>("BietDuoc").Trim() != string.Empty &&
-                           p.Field<string>("BietDuoc").ToLower().IndexOf(str) == 0
-                           orderby p.Field<string>("TenThuoc")
-                           select p).ToList<DataRow>();
-            }
+            results = (from p in dt.AsEnumerable()
+                        where (p.Field<string>("TenThuoc") != null &&
+                        p.Field<string>("TenThuoc").Trim() != string.Empty &&
+                        p.Field<string>("TenThuoc").ToLower().IndexOf(str) >= 0) ||
+                        (p.Field<string>("BietDuoc") != null &&
+                        p.Field<string>("BietDuoc").Trim() != string.Empty &&
+                        p.Field<string>("BietDuoc").ToLower().IndexOf(str) >= 0)
+                        orderby p.Field<string>("TenThuoc")
+                        select p).ToList<DataRow>();
 
             foreach (DataRow row in results)
                 newDataSource.ImportRow(row);
@@ -177,15 +168,6 @@ namespace MM.Dialogs
                 }
             }
         }
-
-        private void chkBietDuoc_CheckedChanged(object sender, EventArgs e)
-        {
-            OnSearch();
-        }
         #endregion
-
-        
-
-        
     }
 }

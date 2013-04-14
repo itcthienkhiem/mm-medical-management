@@ -22,7 +22,6 @@ namespace MM.Controls
         private Dictionary<string, DataRow> _dictThuoc = new Dictionary<string,DataRow>();
         private DataTable _dtTemp = null;
         private string _name = string.Empty;
-        private int _type = 0; //0: Tên thuốc; 1: Biệt dược
         #endregion
 
         #region Constructor
@@ -81,7 +80,6 @@ namespace MM.Controls
                 UpdateGUI();
                 chkChecked.Checked = false;
                 _name = txtTenThuoc.Text;
-                _type = chkBietDuoc.Checked ? 1 : 0;
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayThuocListProc));
                 base.ShowWaiting();
             }
@@ -102,7 +100,6 @@ namespace MM.Controls
             {
                 chkChecked.Checked = false;
                 _name = txtTenThuoc.Text;
-                _type = chkBietDuoc.Checked ? 1 : 0;
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnSearchProc));
             }
             catch (Exception e)
@@ -116,7 +113,7 @@ namespace MM.Controls
         {
             lock (ThisLock)
             {
-                Result result = ThuocBus.GetThuocList(_name, _type);
+                Result result = ThuocBus.GetThuocList(_name);
                 if (result.IsOK)
                 {
                     dgThuoc.Invoke(new MethodInvoker(delegate()
@@ -383,11 +380,6 @@ namespace MM.Controls
         private void exportExcelToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OnExportExcel();
-        }
-
-        private void chkBietDuoc_CheckedChanged(object sender, EventArgs e)
-        {
-            SearchAsThread();
         }
         #endregion
 

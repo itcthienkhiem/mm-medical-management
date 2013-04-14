@@ -39,12 +39,11 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.dgThuoc = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.thuocBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.chkBietDuoc = new System.Windows.Forms.CheckBox();
             this.maThuocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tenThuocDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.BietDuoc = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.thuocBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel3 = new System.Windows.Forms.Panel();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgThuoc)).BeginInit();
@@ -54,7 +53,6 @@
             // 
             // panel1
             // 
-            this.panel1.Controls.Add(this.chkBietDuoc);
             this.panel1.Controls.Add(this.txtTimThuoc);
             this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
@@ -157,30 +155,6 @@
             this.dgThuoc.TabIndex = 9;
             this.dgThuoc.DoubleClick += new System.EventHandler(this.dgThuoc_DoubleClick);
             // 
-            // thuocBindingSource
-            // 
-            this.thuocBindingSource.DataSource = typeof(MM.Databasae.Thuoc);
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.dgThuoc);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 38);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(650, 371);
-            this.panel3.TabIndex = 2;
-            // 
-            // chkBietDuoc
-            // 
-            this.chkBietDuoc.AutoSize = true;
-            this.chkBietDuoc.Location = new System.Drawing.Point(390, 12);
-            this.chkBietDuoc.Name = "chkBietDuoc";
-            this.chkBietDuoc.Size = new System.Drawing.Size(71, 17);
-            this.chkBietDuoc.TabIndex = 8;
-            this.chkBietDuoc.Text = "Biệt dược";
-            this.chkBietDuoc.UseVisualStyleBackColor = true;
-            this.chkBietDuoc.CheckedChanged += new System.EventHandler(this.chkBietDuoc_CheckedChanged);
-            // 
             // maThuocDataGridViewTextBoxColumn
             // 
             this.maThuocDataGridViewTextBoxColumn.DataPropertyName = "MaThuoc";
@@ -204,6 +178,19 @@
             this.BietDuoc.Name = "BietDuoc";
             this.BietDuoc.ReadOnly = true;
             this.BietDuoc.Width = 200;
+            // 
+            // thuocBindingSource
+            // 
+            this.thuocBindingSource.DataSource = typeof(MM.Databasae.Thuoc);
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.dgThuoc);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 38);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(650, 371);
+            this.panel3.TabIndex = 2;
             // 
             // dlgSelectSingleThuoc
             // 
@@ -246,7 +233,6 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
-        private System.Windows.Forms.CheckBox chkBietDuoc;
         private System.Windows.Forms.DataGridViewTextBoxColumn maThuocDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn tenThuocDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn BietDuoc;
