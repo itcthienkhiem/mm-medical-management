@@ -1473,15 +1473,22 @@ namespace MM.Exports
                             shape.Name = string.Empty;
                             shape.Line.Visible = false;
                             shape.ControlFormat.Value = Toi ? 1 : 0;
+                            colIndex += 2;
                             hasNextRow = true;
                         }
 
-                        if (hasNextRow) rowIndex++;
-                        colIndex = 0;
+                        //if (hasNextRow) rowIndex++;
+                        //colIndex = 0;
                         hasNextRow = false;
 
                         if (TruocAn)
                         {
+                            if (colIndex >= 6)
+                            {
+                                colIndex = 0;
+                                rowIndex++;
+                            }
+
                             range = workSheet.Cells[rowIndex, colIndex];
                             range.HorizontalAlignment = HAlign.Left;
                             range.VerticalAlignment = VAlign.Top;
@@ -1498,6 +1505,12 @@ namespace MM.Exports
 
                         if (SauAn)
                         {
+                            if (colIndex > 6)
+                            {
+                                colIndex = 0;
+                                rowIndex++;
+                            }
+
                             range = workSheet.Cells[rowIndex, colIndex];
                             range.HorizontalAlignment = HAlign.Left;
                             range.VerticalAlignment = VAlign.Top;
@@ -1508,12 +1521,20 @@ namespace MM.Exports
                             shape.Name = string.Empty;
                             shape.Line.Visible = false;
                             shape.ControlFormat.Value = SauAn ? 1 : 0;
-                            colIndex += 3;
+                            colIndex += 2;
                             hasNextRow = true;
                         }
 
+                        
+
                         if (Khac_TruocSauAn)
                         {
+                            if (colIndex > 6)
+                            {
+                                colIndex = 0;
+                                rowIndex++;
+                            }
+
                             range = workSheet.Cells[rowIndex, colIndex];
                             range.HorizontalAlignment = HAlign.Left;
                             range.VerticalAlignment = VAlign.Top;
@@ -1524,19 +1545,28 @@ namespace MM.Exports
                             shape.Name = string.Empty;
                             shape.Line.Visible = false;
                             shape.ControlFormat.Value = Khac_TruocSauAn ? 1 : 0;
+                            colIndex += 2;
                             hasNextRow = true;
                         }
                         
-                        if (hasNextRow) rowIndex++;
-                        colIndex = 0;
+                        //if (hasNextRow) rowIndex++;
+                        //colIndex = 0;
+                        
+
                         hasNextRow = false;
 
                         if (Uong)
                         {
+                            if (colIndex > 6)
+                            {
+                                colIndex = 0;
+                                rowIndex++;
+                            }
+
                             range = workSheet.Cells[rowIndex, colIndex];
                             range.HorizontalAlignment = HAlign.Left;
                             range.VerticalAlignment = VAlign.Top;
-                            range.Value = string.Format("     Uống: {0}", UongNote);
+                            range.Value = string.Format("     Uống (Take): {0}", UongNote);
 
                             shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
                                 workSheet.WindowInfo.ColumnToPoints(colIndex), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
@@ -1549,10 +1579,16 @@ namespace MM.Exports
 
                         if (Boi)
                         {
+                            if (colIndex > 6)
+                            {
+                                colIndex = 0;
+                                rowIndex++;
+                            }
+
                             range = workSheet.Cells[rowIndex, colIndex];
                             range.HorizontalAlignment = HAlign.Left;
                             range.VerticalAlignment = VAlign.Top;
-                            range.Value = string.Format("     Bôi: {0}", BoiNote);
+                            range.Value = string.Format("     Bôi (Apply): {0}", BoiNote);
 
                             shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
                                 workSheet.WindowInfo.ColumnToPoints(colIndex), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
@@ -1565,10 +1601,16 @@ namespace MM.Exports
 
                         if (DatAD)
                         {
+                            if (colIndex > 6)
+                            {
+                                colIndex = 0;
+                                rowIndex++;
+                            }
+
                             range = workSheet.Cells[rowIndex, colIndex];
                             range.HorizontalAlignment = HAlign.Left;
                             range.VerticalAlignment = VAlign.Top;
-                            range.Value = string.Format("     Đặt AĐ: {0}", DatADNote);
+                            range.Value = string.Format("     Đặt AĐ (Put vagina): {0}", DatADNote);
 
                             shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
                                 workSheet.WindowInfo.ColumnToPoints(colIndex), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
@@ -1581,10 +1623,16 @@ namespace MM.Exports
 
                         if (Khac_CachDung)
                         {
+                            if (colIndex > 6)
+                            {
+                                colIndex = 0;
+                                rowIndex++;
+                            }
+
                             range = workSheet.Cells[rowIndex, colIndex];
                             range.HorizontalAlignment = HAlign.Left;
                             range.VerticalAlignment = VAlign.Top;
-                            range.Value = string.Format("     Khác: {0}", Khac_CachDungNote);
+                            range.Value = string.Format("     Khác (Others): {0}", Khac_CachDungNote);
 
                             shape = workSheet.Shapes.AddFormControl(SpreadsheetGear.Shapes.FormControlType.CheckBox,
                                 workSheet.WindowInfo.ColumnToPoints(colIndex), workSheet.WindowInfo.RowToPoints(rowIndex), 15, 15);
@@ -1594,47 +1642,9 @@ namespace MM.Exports
                             hasNextRow = true;
                         }
 
-                        if (hasNextRow) rowIndex++;
-                        colIndex = 0;
-
-                        if (Uong)
-                        {
-                            range = workSheet.Cells[rowIndex, colIndex];
-                            range.HorizontalAlignment = HAlign.Center;
-                            range.VerticalAlignment = VAlign.Top;
-                            range.Value = "(Take)";
-                            colIndex += 2;
-                        }
-
-                        if (Boi)
-                        {
-                            range = workSheet.Cells[rowIndex, colIndex];
-                            range.HorizontalAlignment = HAlign.Center;
-                            range.VerticalAlignment = VAlign.Top;
-                            range.Value = "(Apply)";
-                            colIndex += 2;
-                        }
-
-                        if (DatAD)
-                        {
-                            range = workSheet.Cells[rowIndex, colIndex];
-                            range.HorizontalAlignment = HAlign.Center;
-                            range.VerticalAlignment = VAlign.Top;
-                            range.Value = "(Put inside vagina)";
-                            colIndex += 2;
-                        }
-
-                        if (Khac_CachDung)
-                        {
-                            range = workSheet.Cells[rowIndex, colIndex];
-                            range.HorizontalAlignment = HAlign.Center;
-                            range.VerticalAlignment = VAlign.Top;
-                            range.Value = "(Orthers)";
-                        }
-
                         stt++;
-                        if (hasNextRow) rowIndex += 2;
-                        else rowIndex++;
+                        //if (hasNextRow) rowIndex += 2;
+                        rowIndex += 2;
                     }
 
                     range = workSheet.Cells[string.Format("A{0}:H{1}", rowIndex + 1, rowIndex + 3)];
