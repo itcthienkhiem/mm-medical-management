@@ -69,6 +69,9 @@ namespace MM.Dialogs
                 numVAT.Enabled = false;
                 dtpkNgay.Enabled = false;
 
+                raKhachTuLay.Enabled = false;
+                raGuiQuaBuuDien.Enabled = false;
+
                 btnOK.Visible = true;
                 if (Global.StaffType == StaffType.Admin)
                 {
@@ -264,6 +267,21 @@ namespace MM.Dialogs
                     txtAddress.Text = _drInvoice["DiaChi"].ToString();
 
                 chkDaThuTien.Checked = Convert.ToBoolean(_drInvoice["DaThuTien"]);
+
+                if (_drInvoice["HinhThucNhanHoaDon"] != null && _drInvoice["HinhThucNhanHoaDon"] != DBNull.Value)
+                {
+                    string hinhThucNhanHoaDon = _drInvoice["HinhThucNhanHoaDon"].ToString();
+                    if (hinhThucNhanHoaDon.ToLower() == "khách tự lấy")
+                    {
+                        raKhachTuLay.Checked = true;
+                        raGuiQuaBuuDien.Checked = false;
+                    }
+                    else
+                    {
+                        raKhachTuLay.Checked = false;
+                        raGuiQuaBuuDien.Checked = true;
+                    }
+                }
                 
                 Result result = HoaDonXuatTruocBus.GetChiTietHoaDonXuatTruoc(_drInvoice["HoaDonXuatTruocGUID"].ToString());
                 if (result.IsOK)
@@ -534,6 +552,7 @@ namespace MM.Dialogs
                 invoice.ChuaThuTien = !chkDaThuTien.Checked;
                 invoice.MauSo = Global.MauSoSauCung;
                 invoice.KiHieu = Global.KiHieuSauCung;
+                invoice.HinhThucNhanHoaDon = raKhachTuLay.Checked ? "Khách tự lấy" : "Gởi qua bưu điện";
 
                 List<ChiTietHoaDonXuatTruoc> addedDetails = new List<ChiTietHoaDonXuatTruoc>();
                 for (int i = 0; i < dgDetail.RowCount - 1; i++)
