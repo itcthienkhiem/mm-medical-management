@@ -284,8 +284,8 @@ namespace MM.Controls
 
                     if (!_isChuyenBenhAn)
                     {
-                        CalculateTotalPrice();
                         HighlightPaidServices();
+                        CalculateTotalPrice();
                     }
                 };
 
@@ -305,29 +305,66 @@ namespace MM.Controls
 
             double totalPrice = 0;
             double totalPriceReceipt = 0;
+            int count = 0;
             DataTable dt = dgServiceHistory.DataSource as DataTable;
             if (dt == null || dt.Rows.Count <= 0)
             {
                 lbTotalPrice.Text = "Tổng tiền: 0 (VNĐ)";
-                lbTotalReceipt.Text = "Tổng tiền thu: 0 (VNĐ)";
+                lbTotalReceipt.Text = "Tổng tiền thu (dịch vụ chưa thu tiền): 0 (VNĐ)";
+                lbCount.Text = "Còn lại 0 dịch vụ chưa thu tiền";
             }
             else
             {
                 foreach (DataRow row in dt.Rows)
                 {
                     double price = Convert.ToDouble(row["Amount"]);
-                    bool isChecked = Convert.ToBoolean(row["Checked"]);
+                    bool isExport = Convert.ToBoolean(row["IsExported"]);
                     totalPrice += price;
 
-                    if (isChecked) totalPriceReceipt += price;
+                    if (!isExport)
+                    {
+                        totalPriceReceipt += price;
+                        count++;
+                    }
+                    else
+                    {
+                        string serviceHistoryGUID = row["ServiceHistoryGUID"].ToString();
+                        Result result = ReceiptBus.GetReceiptByServiceHistoryGUID(serviceHistoryGUID);
+                        if (result.IsOK)
+                        {
+                            Receipt receipt = result.QueryResult as Receipt;
+                            if (receipt == null || receipt.Status == (byte)Status.Deactived)
+                            {
+                                totalPriceReceipt += price;
+                                count++;
+                            }
+                            else if (receipt.ChuaThuTien)
+                            {
+                                totalPriceReceipt += price;
+                                count++;
+                            }
+                        }
+                        else
+                        {
+                            MsgBox.Show(this.Text, result.GetErrorAsString("ReceiptBus.GetReceiptByServiceHistoryGUID"), IconType.Error);
+                            Utility.WriteToTraceLog(result.GetErrorAsString("ReceiptBus.GetReceiptByServiceHistoryGUID"));
+                            return;
+                        }
+                    }
                 }
 
                 lbTotalPrice.Text = string.Format("Tổng tiền: {0:#,###} (VNĐ)", totalPrice);
 
                 if (totalPriceReceipt > 0)
-                    lbTotalReceipt.Text = string.Format("Tổng tiền thu: {0:#,###} (VNĐ)", totalPriceReceipt);
+                {
+                    lbTotalReceipt.Text = string.Format("Tổng tiền thu (dịch vụ chưa thu tiền): {0:#,###} (VNĐ)", totalPriceReceipt);
+                    lbCount.Text = string.Format("Còn lại {0} dịch vụ chưa thu tiền", count);
+                }
                 else
-                    lbTotalReceipt.Text = "Tổng tiền thu: 0 (VNĐ)";
+                {
+                    lbTotalReceipt.Text = "Tổng tiền thu (dịch vụ chưa thu tiền): 0 (VNĐ)";
+                    lbCount.Text = "Còn lại 0 dịch vụ chưa thu tiền";
+                }
             }
         }
 

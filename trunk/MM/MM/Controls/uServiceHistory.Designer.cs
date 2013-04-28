@@ -72,8 +72,8 @@
             this.btnExportReceipt = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
             this.btnChuyen = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
             this.pFilter = new System.Windows.Forms.Panel();
             this.btnSearch = new System.Windows.Forms.Button();
             this.dtpkToDate = new System.Windows.Forms.DateTimePicker();
@@ -84,6 +84,7 @@
             this._printDialog = new System.Windows.Forms.PrintDialog();
             this.ctmAction2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.chuyenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.lbCount = new System.Windows.Forms.Label();
             this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgServiceHistory)).BeginInit();
             this.ctmAction.SuspendLayout();
@@ -382,6 +383,7 @@
             // 
             // pTotal
             // 
+            this.pTotal.Controls.Add(this.lbCount);
             this.pTotal.Controls.Add(this.lbTotalReceipt);
             this.pTotal.Controls.Add(this.lbTotalPrice);
             this.pTotal.Dock = System.Windows.Forms.DockStyle.Bottom;
@@ -397,9 +399,9 @@
             this.lbTotalReceipt.ForeColor = System.Drawing.Color.Red;
             this.lbTotalReceipt.Location = new System.Drawing.Point(17, 30);
             this.lbTotalReceipt.Name = "lbTotalReceipt";
-            this.lbTotalReceipt.Size = new System.Drawing.Size(73, 13);
+            this.lbTotalReceipt.Size = new System.Drawing.Size(182, 13);
             this.lbTotalReceipt.TabIndex = 9;
-            this.lbTotalReceipt.Text = "Tổng tiền thu:";
+            this.lbTotalReceipt.Text = "Tổng tiền thu (dịch vụ chưa thu tiền):";
             // 
             // lbTotalPrice
             // 
@@ -461,18 +463,6 @@
             this.btnEdit.UseVisualStyleBackColor = true;
             this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
             // 
-            // btnAdd
-            // 
-            this.btnAdd.Image = global::MM.Properties.Resources.add;
-            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(6, 6);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 25);
-            this.btnAdd.TabIndex = 3;
-            this.btnAdd.Text = "    &Thêm";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
             // btnChuyen
             // 
             this.btnChuyen.Image = ((System.Drawing.Image)(resources.GetObject("btnChuyen.Image")));
@@ -485,6 +475,18 @@
             this.btnChuyen.UseVisualStyleBackColor = true;
             this.btnChuyen.Visible = false;
             this.btnChuyen.Click += new System.EventHandler(this.btnChuyen_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Image = global::MM.Properties.Resources.add;
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdd.Location = new System.Drawing.Point(6, 6);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(75, 25);
+            this.btnAdd.TabIndex = 3;
+            this.btnAdd.Text = "    &Thêm";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
             // pFilter
             // 
@@ -583,6 +585,17 @@
             this.chuyenToolStripMenuItem.Text = "Chuyển";
             this.chuyenToolStripMenuItem.Click += new System.EventHandler(this.chuyenToolStripMenuItem_Click);
             // 
+            // lbCount
+            // 
+            this.lbCount.AutoSize = true;
+            this.lbCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCount.ForeColor = System.Drawing.Color.Red;
+            this.lbCount.Location = new System.Drawing.Point(333, 30);
+            this.lbCount.Name = "lbCount";
+            this.lbCount.Size = new System.Drawing.Size(151, 13);
+            this.lbCount.TabIndex = 10;
+            this.lbCount.Text = "Còn lại 0 dịch vụ chưa thu tiền";
+            // 
             // uServiceHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -657,5 +670,6 @@
         private System.Windows.Forms.Button btnChuyen;
         protected System.Windows.Forms.ContextMenuStrip ctmAction2;
         private System.Windows.Forms.ToolStripMenuItem chuyenToolStripMenuItem;
+        private System.Windows.Forms.Label lbCount;
     }
 }
