@@ -490,7 +490,7 @@
             // NguoiTao
             // 
             this.NguoiTao.DataPropertyName = "NguoiTao";
-            this.NguoiTao.HeaderText = "Người tạo";
+            this.NguoiTao.HeaderText = "Người xuất";
             this.NguoiTao.Name = "NguoiTao";
             this.NguoiTao.ReadOnly = true;
             this.NguoiTao.Width = 200;
