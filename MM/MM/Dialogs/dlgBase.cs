@@ -7,16 +7,19 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using MM.Controls;
+using MM.Databasae;
 
 namespace MM.Dialogs
 {
     public delegate void AddMemberHandler(List<DataRow> checkedMembers, List<string> addedServices, DataTable serviceDataSource);
+    public delegate void AddChiDinhHandler(ChiDinh chiDinh, string tenBacSiChiDinh);
 
     public partial class dlgBase : Form
     {
         #region Events
         public event AddMemberHandler OnAddMemberEvent = null;
-        public event OpenPatientHandler OnOpenPatientEvent;
+        public event OpenPatientHandler OnOpenPatientEvent = null;
+        public event AddChiDinhHandler OnAddChiDinhEvent = null;
         #endregion
 
         #region Members
@@ -44,6 +47,12 @@ namespace MM.Dialogs
         {
             if (OnOpenPatientEvent != null)
                 OnOpenPatientEvent(patientRow);
+        }
+
+        public void RaiseAddChiDinh(ChiDinh chiDinh, string tenBacSiChiDinh)
+        {
+            if (OnAddChiDinhEvent != null)
+                OnAddChiDinhEvent(chiDinh, tenBacSiChiDinh);
         }
         #endregion
 
