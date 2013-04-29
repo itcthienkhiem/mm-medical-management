@@ -255,6 +255,7 @@ namespace MM.Controls
         private void OnAddChiDinh()
         {
             dlgAddChiDinh dlg = new dlgAddChiDinh(_patientRow);
+            dlg.OnAddChiDinhEvent += new AddChiDinhHandler(dlg_OnAddChiDinhEvent);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 DataTable dt = dgChiDinh.DataSource as DataTable;
@@ -294,6 +295,8 @@ namespace MM.Controls
                 //SelectLastedRow();
             }
         }
+
+        
 
         private void SelectLastedRow()
         {
@@ -473,6 +476,43 @@ namespace MM.Controls
         #endregion
 
         #region Window Event Handlers
+        private void dlg_OnAddChiDinhEvent(ChiDinh chiDinh, string tenBacSiChiDinh)
+        {
+            DataTable dt = dgChiDinh.DataSource as DataTable;
+            DataRow newRow = dt.NewRow();
+            newRow["Checked"] = false;
+            newRow["ChiDinhGUID"] = chiDinh.ChiDinhGUID.ToString();
+            newRow["MaChiDinh"] = chiDinh.MaChiDinh;
+            newRow["NgayChiDinh"] = chiDinh.NgayChiDinh;
+            newRow["BacSiChiDinhGUID"] = chiDinh.BacSiChiDinhGUID.ToString();
+            newRow["FullName"] = tenBacSiChiDinh;
+            newRow["BenhNhanGUID"] = chiDinh.BenhNhanGUID.ToString();
+
+            if (chiDinh.CreatedDate.HasValue)
+                newRow["CreatedDate"] = chiDinh.CreatedDate;
+
+            if (chiDinh.CreatedBy.HasValue)
+                newRow["CreatedBy"] = chiDinh.CreatedBy.ToString();
+
+            if (chiDinh.UpdatedDate.HasValue)
+                newRow["UpdatedDate"] = chiDinh.UpdatedDate;
+
+            if (chiDinh.UpdatedBy.HasValue)
+                newRow["UpdatedBy"] = chiDinh.UpdatedBy.ToString();
+
+            if (chiDinh.DeletedDate.HasValue)
+                newRow["DeletedDate"] = chiDinh.DeletedDate;
+
+            if (chiDinh.DeletedBy.HasValue)
+                newRow["DeletedBy"] = chiDinh.DeletedBy.ToString();
+
+            newRow["Status"] = chiDinh.Status;
+
+            dt.Rows.Add(newRow);
+
+            _htDichVuChiDinh.Add(chiDinh.ChiDinhGUID.ToString(), new List<DichVuChiDinhView>());
+        }
+
         private void dgChiDinh_SelectionChanged(object sender, EventArgs e)
         {
             if (!_flag) return;

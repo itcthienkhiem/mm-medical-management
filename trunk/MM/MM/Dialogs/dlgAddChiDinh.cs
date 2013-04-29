@@ -307,6 +307,7 @@ namespace MM.Dialogs
             {
                 if (_isNew)
                 {
+                    _chiDinh = new Databasae.ChiDinh();
                     _chiDinh.CreatedDate = DateTime.Now;
                     _chiDinh.CreatedBy = Guid.Parse(Global.UserGUID);
                 }
@@ -374,6 +375,26 @@ namespace MM.Dialogs
                 Utility.WriteToTraceLog(e.Message);
             }
 
+        }
+
+        private void ClearAllCheck()
+        {
+            if (dgService.RowCount <= 0) return;
+            foreach (DataGridViewRow row in dgService.Rows)
+            {
+                DataRow r = (row.DataBoundItem as DataRowView).Row;
+                r["Checked"] = chkChecked.Checked;
+                string serviceGUID = r["ServiceGUID"].ToString();
+
+                if (_dictService.ContainsKey(serviceGUID))
+                {
+                    _dictService.Remove(serviceGUID);
+
+                    DataRow[] rows = _dtTemp.Select(string.Format("ServiceGUID='{0}'", serviceGUID));
+                    if (rows != null && rows.Length > 0)
+                        _dtTemp.Rows.Remove(rows[0]);
+                }
+            }
         }
         #endregion
 
@@ -494,7 +515,18 @@ namespace MM.Dialogs
             if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
                 if (CheckInfo())
+                {
                     SaveInfoAsThread();
+
+                    if (_isNew)
+                    {
+                        MsgBox.Show(this.Text, "Đã thêm chỉ định thành công.", IconType.Information);
+                        base.RaiseAddChiDinh(_chiDinh, TenBacSiChiDinh);
+                        GenerateCode();
+                        ClearAllCheck();
+                        e.Cancel = true;
+                    }
+                }
                 else
                     e.Cancel = true;
             }
