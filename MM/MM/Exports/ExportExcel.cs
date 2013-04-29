@@ -1363,6 +1363,9 @@ namespace MM.Exports
                     range = workSheet.Cells["C4"];
                     range.Value = toaThuoc.Address;
 
+                    range = workSheet.Cells["G4"];
+                    range.Value = string.Format("Tel: {0}", toaThuoc.Mobile);
+
                     range = workSheet.Cells["C6"];
                     range.Value = toaThuoc.ChanDoan.Replace("\r", "").Replace("\t", "");
 
