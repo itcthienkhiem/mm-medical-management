@@ -20,9 +20,8 @@ namespace MM.Controls
         #region Members
         private DataRow _patientRow = null;
         private DataRow _patientRow2 = null;
-        private Hashtable _htDichVuChiDinh = null;
-        private bool _flag = true;
         private bool _isChuyenBenhAn = false;
+        private DataTable _dtDichVuChiDinh = null;
         #endregion
 
         #region Constructor
@@ -100,32 +99,18 @@ namespace MM.Controls
             }
         }
 
-        public void ClearChiDinhData()
-        {
-            DataTable dt = dgChiDinh.DataSource as DataTable;
-            if (dt != null)
-            {
-                dt.Rows.Clear();
-                dt.Clear();
-                dt = null;
-                dgChiDinh.DataSource = null;
-            }
-        }
-
         private void OnDisplayChiDinhList()
         {
             if (_patientRow == null) return;
             string patientGUID = _patientRow["PatientGUID"].ToString();
-            Result result = ChiDinhBus.GetChiDinhList(patientGUID);
+            Result result = ChiDinhBus.GetChiTietChiDinhList2(patientGUID);
             if (result.IsOK)
             {
                 MethodInvoker method = delegate
                 {
-                    _flag = false;
-                    ClearChiDinhData();
-                    dgChiDinh.DataSource = result.QueryResult;
-                    _flag = true;
-                    OnGetDichVuChiDinh();
+                    ClearChiTietChiDinh();
+                    dgChiTiet.DataSource = result.QueryResult;
+                    OnGetDichVuChiDinh(patientGUID);
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -133,41 +118,46 @@ namespace MM.Controls
             }
             else
             {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("ChiDinhBus.GetChiDinhList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("ChiDinhBus.GetChiDinhList"));
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("ChiDinhBus.GetChiTietChiDinhList2"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("ChiDinhBus.GetChiTietChiDinhList2"));
             }
         }
 
-        public void OnGetDichVuChiDinh()
+        public void OnGetDichVuChiDinh(string patientGUID)
         {
-            if (_htDichVuChiDinh == null) _htDichVuChiDinh = new Hashtable();
-            else _htDichVuChiDinh.Clear();
-
-            foreach (DataGridViewRow row in dgChiDinh.Rows)
+            Result result = ChiDinhBus.GetDichVuChiDinhList2(patientGUID);
+            if (result.IsOK)
             {
-                DataRow r = (row.DataBoundItem as DataRowView).Row;
-                string chiDinhGUID = r["ChiDinhGUID"].ToString();
-                Result result = ChiDinhBus.GetDichVuChiDinhList(chiDinhGUID);
-                if (result.IsOK)
+                if (_dtDichVuChiDinh != null)
                 {
-                    List<DichVuChiDinhView> dichVuChiDinhList = (List<DichVuChiDinhView>)result.QueryResult;
-                    _htDichVuChiDinh.Add(chiDinhGUID, dichVuChiDinhList);
+                    _dtDichVuChiDinh.Rows.Clear();
+                    _dtDichVuChiDinh.Clear();
+                    _dtDichVuChiDinh = null;
+                }
 
-                    if (dichVuChiDinhList != null && dichVuChiDinhList.Count > 0)
+                _dtDichVuChiDinh = result.QueryResult as DataTable;
+                if (_dtDichVuChiDinh == null && _dtDichVuChiDinh.Rows.Count <= 0) return;
+
+                foreach (DataGridViewRow row in dgChiTiet.Rows)
+                {
+                    DataRow r = (row.DataBoundItem as DataRowView).Row;
+                    string chiTietChiDinhGUID = r["ChiTietChiDinhGUID"].ToString();
+
+                    DataRow[] rows = _dtDichVuChiDinh.Select(string.Format("ChiTietChiDinhGUID='{0}'", chiTietChiDinhGUID));
+                    if (rows != null && rows.Length > 0)
                     {
                         (row.Cells["Checked"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                         row.DefaultCellStyle.BackColor = Color.LightSeaGreen;
                     }
-                }
-                else
-                {
-                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("ChiDinhBus.GetDichVuChiDinhList"), IconType.Error);
-                    Utility.WriteToTraceLog(result.GetErrorAsString("ChiDinhBus.GetDichVuChiDinhList"));
-                    return;
+
+                    r["Checked"] = false;
                 }
             }
-
-            OnDisplayChiTietChiDinh();
+            else
+            {
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("ChiDinhBus.GetDichVuChiDinhList2"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("ChiDinhBus.GetDichVuChiDinhList2"));
+            }
         }
 
         public void ClearChiTietChiDinh()
@@ -182,73 +172,23 @@ namespace MM.Controls
             }
         }
 
-        private void OnDisplayChiTietChiDinh()
-        {
-            string chiDinhGUID = string.Empty;
-            if (dgChiDinh.SelectedRows == null || dgChiDinh.SelectedRows.Count <= 0)
-                chiDinhGUID = Guid.Empty.ToString();
-            else
-            {
-                DataRow row = (dgChiDinh.SelectedRows[0].DataBoundItem as DataRowView).Row;
-                chiDinhGUID = row["ChiDinhGUID"].ToString();
-            }
-
-            Result result = ChiDinhBus.GetChiTietChiDinhList(chiDinhGUID);
-            if (result.IsOK)
-            {
-                ClearChiTietChiDinh();
-                dgChiTiet.DataSource = result.QueryResult;
-
-                if (_htDichVuChiDinh.ContainsKey(chiDinhGUID))
-                {
-                    List<DichVuChiDinhView> dichVuChiDinhList = (List<DichVuChiDinhView>)_htDichVuChiDinh[chiDinhGUID];
-                    foreach (DataGridViewRow row in dgChiTiet.Rows)
-                    {
-                        DataRow r = (row.DataBoundItem as DataRowView).Row;
-                        string serviceGUID = r["ServiceGUID"].ToString();
-                        foreach (var dvcd in dichVuChiDinhList)
-                        {
-                            if (serviceGUID == dvcd.ServiceGUID.ToString())
-                            {
-                                (row.Cells["ChiTietChiDinhChecked"] as DataGridViewDisableCheckBoxCell).Enabled = false;
-                                row.DefaultCellStyle.BackColor = Color.LightSeaGreen;
-                                break;
-                            }
-                        }
-                    }
-                }
-            }
-            else
-            {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("ChiDinhBus.GetChiTietChiDinhList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("ChiDinhBus.GetChiTietChiDinhList"));
-            }
-        }
-
         private void UpdateDichVuChiDinh()
         {
-            if (dgChiDinh.SelectedRows == null || dgChiDinh.SelectedRows.Count <= 0)
-                return;
-            DataRow dr = (dgChiDinh.SelectedRows[0].DataBoundItem as DataRowView).Row;
-            string chiDinhGUID = dr["ChiDinhGUID"].ToString();
+            if (_dtDichVuChiDinh == null && _dtDichVuChiDinh.Rows.Count <= 0) return;
 
-            if (_htDichVuChiDinh.ContainsKey(chiDinhGUID))
+            foreach (DataGridViewRow row in dgChiTiet.Rows)
             {
-                List<DichVuChiDinhView> dichVuChiDinhList = (List<DichVuChiDinhView>)_htDichVuChiDinh[chiDinhGUID];
-                foreach (DataGridViewRow row in dgChiTiet.Rows)
+                DataRow r = (row.DataBoundItem as DataRowView).Row;
+                string chiTietChiDinhGUID = r["ChiTietChiDinhGUID"].ToString();
+
+                DataRow[] rows = _dtDichVuChiDinh.Select(string.Format("ChiTietChiDinhGUID='{0}'", chiTietChiDinhGUID));
+                if (rows != null && rows.Length > 0)
                 {
-                    DataRow r = (row.DataBoundItem as DataRowView).Row;
-                    string serviceGUID = r["ServiceGUID"].ToString();
-                    foreach (var dvcd in dichVuChiDinhList)
-                    {
-                        if (serviceGUID == dvcd.ServiceGUID.ToString())
-                        {
-                            (row.Cells["ChiTietChiDinhChecked"] as DataGridViewDisableCheckBoxCell).Enabled = false;
-                            row.DefaultCellStyle.BackColor = Color.LightSeaGreen;
-                            break;
-                        }
-                    }
+                    (row.Cells["Checked"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    row.DefaultCellStyle.BackColor = Color.LightSeaGreen;
                 }
+
+                r["Checked"] = false;
             }
         }
 
@@ -256,95 +196,32 @@ namespace MM.Controls
         {
             dlgAddChiDinh dlg = new dlgAddChiDinh(_patientRow);
             dlg.OnAddChiDinhEvent += new AddChiDinhHandler(dlg_OnAddChiDinhEvent);
-            if (dlg.ShowDialog(this) == DialogResult.OK)
-            {
-                DataTable dt = dgChiDinh.DataSource as DataTable;
-                DataRow newRow = dt.NewRow();
-                newRow["Checked"] = false;
-                newRow["ChiDinhGUID"] = dlg.ChiDinh.ChiDinhGUID.ToString();
-                newRow["MaChiDinh"] = dlg.ChiDinh.MaChiDinh;
-                newRow["NgayChiDinh"] = dlg.ChiDinh.NgayChiDinh;
-                newRow["BacSiChiDinhGUID"] = dlg.ChiDinh.BacSiChiDinhGUID.ToString();
-                newRow["FullName"] = dlg.TenBacSiChiDinh;
-                newRow["BenhNhanGUID"] = dlg.ChiDinh.BenhNhanGUID.ToString();
-
-                if (dlg.ChiDinh.CreatedDate.HasValue)
-                    newRow["CreatedDate"] = dlg.ChiDinh.CreatedDate;
-
-                if (dlg.ChiDinh.CreatedBy.HasValue)
-                    newRow["CreatedBy"] = dlg.ChiDinh.CreatedBy.ToString();
-
-                if (dlg.ChiDinh.UpdatedDate.HasValue)
-                    newRow["UpdatedDate"] = dlg.ChiDinh.UpdatedDate;
-
-                if (dlg.ChiDinh.UpdatedBy.HasValue)
-                    newRow["UpdatedBy"] = dlg.ChiDinh.UpdatedBy.ToString();
-
-                if (dlg.ChiDinh.DeletedDate.HasValue)
-                    newRow["DeletedDate"] = dlg.ChiDinh.DeletedDate;
-
-                if (dlg.ChiDinh.DeletedBy.HasValue)
-                    newRow["DeletedBy"] = dlg.ChiDinh.DeletedBy.ToString();
-
-                newRow["Status"] = dlg.ChiDinh.Status;
-
-                dt.Rows.Add(newRow);
-
-                _htDichVuChiDinh.Add(dlg.ChiDinh.ChiDinhGUID.ToString(), new List<DichVuChiDinhView>());
-
-                //SelectLastedRow();
-            }
-        }
-
-        
-
-        private void SelectLastedRow()
-        {
-            dgChiDinh.CurrentCell = dgChiDinh[1, dgChiDinh.RowCount - 1];
-            dgChiDinh.Rows[dgChiDinh.RowCount - 1].Selected = true;
+            dlg.ShowDialog(this);
         }
 
         private void OnEditChiDinh()
         {
             if (_isChuyenBenhAn) return;
-            if (dgChiDinh.SelectedRows == null || dgChiDinh.SelectedRows.Count <= 0)
+            if (dgChiTiet.SelectedRows == null || dgChiTiet.SelectedRows.Count <= 0)
             {
                 MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 chỉ định.", IconType.Information);
                 return;
             }
 
-            DataRow drChiDinh = (dgChiDinh.SelectedRows[0].DataBoundItem as DataRowView).Row;
-            List<DichVuChiDinhView> dichVuChiDinhList = (List<DichVuChiDinhView>)_htDichVuChiDinh[drChiDinh["ChiDinhGUID"].ToString()];
-            DataTable dtChiTiet = dgChiTiet.DataSource as DataTable;
-            dlgAddChiDinh dlg = new dlgAddChiDinh(_patientRow, drChiDinh, dtChiTiet, dichVuChiDinhList);
-            if (dlg.ShowDialog(this) == DialogResult.OK)
+            DataRow drChiDinh = (dgChiTiet.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            Result result = ChiDinhBus.GetChiTietChiDinhList(drChiDinh["ChiDinhGUID"].ToString());
+            if (result.IsOK)
             {
-                drChiDinh["MaChiDinh"] = dlg.ChiDinh.MaChiDinh;
-                drChiDinh["NgayChiDinh"] = dlg.ChiDinh.NgayChiDinh;
-                drChiDinh["BacSiChiDinhGUID"] = dlg.ChiDinh.BacSiChiDinhGUID.ToString();
-                drChiDinh["FullName"] = dlg.TenBacSiChiDinh;
-                drChiDinh["BenhNhanGUID"] = dlg.ChiDinh.BenhNhanGUID.ToString();
-
-                if (dlg.ChiDinh.CreatedDate.HasValue)
-                    drChiDinh["CreatedDate"] = dlg.ChiDinh.CreatedDate;
-
-                if (dlg.ChiDinh.CreatedBy.HasValue)
-                    drChiDinh["CreatedBy"] = dlg.ChiDinh.CreatedBy.ToString();
-
-                if (dlg.ChiDinh.UpdatedDate.HasValue)
-                    drChiDinh["UpdatedDate"] = dlg.ChiDinh.UpdatedDate;
-
-                if (dlg.ChiDinh.UpdatedBy.HasValue)
-                    drChiDinh["UpdatedBy"] = dlg.ChiDinh.UpdatedBy.ToString();
-
-                if (dlg.ChiDinh.DeletedDate.HasValue)
-                    drChiDinh["DeletedDate"] = dlg.ChiDinh.DeletedDate;
-
-                if (dlg.ChiDinh.DeletedBy.HasValue)
-                    drChiDinh["DeletedBy"] = dlg.ChiDinh.DeletedBy.ToString();
-
-                drChiDinh["Status"] = dlg.ChiDinh.Status;
-                OnDisplayChiTietChiDinh();
+                DataTable dtChiTiet = result.QueryResult as DataTable;
+                dlgAddChiDinh dlg = new dlgAddChiDinh(_patientRow, drChiDinh, dtChiTiet, _dtDichVuChiDinh);
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                    DisplayAsThread();
+            }
+            else
+            {
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("ChiDinhBus.GetChiTietChiDinhList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("ChiDinhBus.GetChiTietChiDinhList"));
+                return;
             }
         }
 
@@ -352,12 +229,12 @@ namespace MM.Controls
         {
             List<string> deletedChiDinhList = new List<string>();
             List<DataRow> deletedRows = new List<DataRow>();
-            DataTable dt = dgChiDinh.DataSource as DataTable;
+            DataTable dt = dgChiTiet.DataSource as DataTable;
             foreach (DataRow row in dt.Rows)
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
                 {
-                    deletedChiDinhList.Add(row["ChiDinhGUID"].ToString());
+                    deletedChiDinhList.Add(row["ChiTietChiDinhGUID"].ToString());
                     deletedRows.Add(row);
                 }
             }
@@ -366,7 +243,7 @@ namespace MM.Controls
             {
                 if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những chỉ định mà bạn đã đánh dấu ?") == DialogResult.Yes)
                 {
-                    Result result = ChiDinhBus.DeleteChiDinhs(deletedChiDinhList);
+                    Result result = ChiDinhBus.DeleteChiTietChiDinhs(deletedChiDinhList);
                     if (result.IsOK)
                     {
                         foreach (DataRow row in deletedRows)
@@ -376,8 +253,8 @@ namespace MM.Controls
                     }
                     else
                     {
-                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("ChiDinhBus.DeleteChiDinhs"), IconType.Error);
-                        Utility.WriteToTraceLog(result.GetErrorAsString("ChiDinhBus.DeleteChiDinhs"));
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("ChiDinhBus.DeleteChiTietChiDinhs"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("ChiDinhBus.DeleteChiTietChiDinhs"));
                     }
                 }
             }
@@ -401,19 +278,16 @@ namespace MM.Controls
             {
                 if (MsgBox.Question(Application.ProductName, "Bạn có muốn xác nhận những dịch vụ chỉ định mà bạn đánh dấu ?") == DialogResult.Yes)
                 {
-                    DataRow drChiDinh = (dgChiDinh.SelectedRows[0].DataBoundItem as DataRowView).Row;
-
                     foreach (DataRow row in checkedRows)
                     {
                         dlgAddServiceHistory dlg = new dlgAddServiceHistory(_patientRow["PatientGUID"].ToString());
                         dlg.ServiceGUID = row["ServiceGUID"].ToString();
-                        dlg.BacSiChiDinhGUID = drChiDinh["BacSiChiDinhGUID"].ToString();
+                        dlg.BacSiChiDinhGUID = row["BacSiChiDinhGUID"].ToString();
                         if (dlg.ShowDialog(this) == DialogResult.OK)
                         {
                             if (dlg.ServiceHistory.ServiceHistoryGUID == Guid.Empty) return;
 
                             DichVuChiDinh dichVuChiDinh = new DichVuChiDinh();
-                            //(dgChiDinh.SelectedRows[0].DataBoundItem as DataRowView).Row["ChiDinhGUID"].ToString();
                             dichVuChiDinh.ServiceHistoryGUID = dlg.ServiceHistory.ServiceHistoryGUID;
                             dichVuChiDinh.ChiTietChiDinhGUID = Guid.Parse(row["ChiTietChiDinhGUID"].ToString());
                             dichVuChiDinh.CreatedDate = DateTime.Now;
@@ -430,7 +304,7 @@ namespace MM.Controls
                         }
                     }
 
-                    OnGetDichVuChiDinh();
+                    OnGetDichVuChiDinh(_patientRow["PatientGUID"].ToString());
                 }
             }
             else
@@ -442,14 +316,14 @@ namespace MM.Controls
             if (!_isChuyenBenhAn) return;
 
             List<DataRow> deletedRows = new List<DataRow>();
-            DataTable dt = dgChiDinh.DataSource as DataTable;
+            DataTable dt = dgChiTiet.DataSource as DataTable;
             foreach (DataRow row in dt.Rows)
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
                     deletedRows.Add(row);
             }
 
-            if (dgChiDinh.RowCount <= 0 || deletedRows == null || deletedRows.Count <= 0)
+            if (dgChiTiet.RowCount <= 0 || deletedRows == null || deletedRows.Count <= 0)
             {
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu ít nhất 1 chỉ định cần chuyển.", IconType.Information);
                 return;
@@ -478,59 +352,7 @@ namespace MM.Controls
         #region Window Event Handlers
         private void dlg_OnAddChiDinhEvent(ChiDinh chiDinh, string tenBacSiChiDinh)
         {
-            DataTable dt = dgChiDinh.DataSource as DataTable;
-            DataRow newRow = dt.NewRow();
-            newRow["Checked"] = false;
-            newRow["ChiDinhGUID"] = chiDinh.ChiDinhGUID.ToString();
-            newRow["MaChiDinh"] = chiDinh.MaChiDinh;
-            newRow["NgayChiDinh"] = chiDinh.NgayChiDinh;
-            newRow["BacSiChiDinhGUID"] = chiDinh.BacSiChiDinhGUID.ToString();
-            newRow["FullName"] = tenBacSiChiDinh;
-            newRow["BenhNhanGUID"] = chiDinh.BenhNhanGUID.ToString();
-
-            if (chiDinh.CreatedDate.HasValue)
-                newRow["CreatedDate"] = chiDinh.CreatedDate;
-
-            if (chiDinh.CreatedBy.HasValue)
-                newRow["CreatedBy"] = chiDinh.CreatedBy.ToString();
-
-            if (chiDinh.UpdatedDate.HasValue)
-                newRow["UpdatedDate"] = chiDinh.UpdatedDate;
-
-            if (chiDinh.UpdatedBy.HasValue)
-                newRow["UpdatedBy"] = chiDinh.UpdatedBy.ToString();
-
-            if (chiDinh.DeletedDate.HasValue)
-                newRow["DeletedDate"] = chiDinh.DeletedDate;
-
-            if (chiDinh.DeletedBy.HasValue)
-                newRow["DeletedBy"] = chiDinh.DeletedBy.ToString();
-
-            newRow["Status"] = chiDinh.Status;
-
-            dt.Rows.Add(newRow);
-
-            _htDichVuChiDinh.Add(chiDinh.ChiDinhGUID.ToString(), new List<DichVuChiDinhView>());
-        }
-
-        private void dgChiDinh_SelectionChanged(object sender, EventArgs e)
-        {
-            if (!_flag) return;
-            OnDisplayChiTietChiDinh();
-        }
-
-        private void chkChecked_CheckedChanged(object sender, EventArgs e)
-        {
-            if (dgChiDinh.RowCount <= 0) return;
-            foreach (DataGridViewRow row in dgChiDinh.Rows)
-            {
-                DataGridViewDisableCheckBoxCell cell = row.Cells["Checked"] as DataGridViewDisableCheckBoxCell;
-                if (cell.Enabled)
-                {
-                    DataRow r = (row.DataBoundItem as DataRowView).Row;
-                    r["Checked"] = chkChecked.Checked;
-                }
-            }
+            DisplayAsThread();
         }
 
         private void chkChiTietChecked_CheckedChanged(object sender, EventArgs e)
@@ -542,7 +364,7 @@ namespace MM.Controls
                 if (cell.Enabled)
                 {
                     DataRow r = (row.DataBoundItem as DataRowView).Row;
-                    r["Checked"] = chkChiTietChecked.Checked;
+                    r["Checked"] = chkChecked.Checked;
                 }
             }
         }
@@ -565,17 +387,6 @@ namespace MM.Controls
         private void btnConfirm_Click(object sender, EventArgs e)
         {
             OnConfirmDichVuChiDinh();
-        }
-
-        private void dgChiDinh_DoubleClick(object sender, EventArgs e)
-        {
-            if (!AllowEdit) return;
-            OnEditChiDinh();
-        }
-
-        private void dgChiDinh_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            OnGetDichVuChiDinh();
         }
 
         private void dgChiTiet_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
@@ -612,6 +423,12 @@ namespace MM.Controls
         {
             OnChuyenKetQuaKham();
         }
+
+        private void dgChiTiet_DoubleClick(object sender, EventArgs e)
+        {
+            if (!AllowEdit) return;
+            OnEditChiDinh();
+        }
         #endregion
 
         #region Working Thread
@@ -633,5 +450,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }
