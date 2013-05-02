@@ -51,6 +51,35 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetChiTietChiDinhList2(string patientGUID)
+        {
+            Result result = null;
+
+            try
+            {
+                DateTime fromDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+                DateTime toDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 59, 59);
+                string query = string.Empty;
+
+                query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ChiTietChiDinhView WITH(NOLOCK) WHERE Archived='False' AND CTCDStatus={0} AND ChiDinhStatus={0} AND BenhNhanGUID='{1}' AND NgayChiDinh BETWEEN '{2}' AND '{3}' ORDER BY NgayChiDinh DESC, MaChiDinh ASC, FullName ASC, [Name] ASC",
+                        (byte)Status.Actived, patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
+
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetChiTietChiDinhList(string chiDinhGUID)
         {
             Result result = null;
@@ -155,14 +184,14 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-                List<DichVuChiDinhView> dichVuChiDinhList = (from cd in db.ChiTietChiDinhs
+                List<DichVuChiDinhView> dichVuChiDinhList = (from cd in db.ChiDinhs
                                                              join ct in db.ChiTietChiDinhs on cd.ChiDinhGUID equals ct.ChiDinhGUID
                                                              join dv in db.DichVuChiDinhViews on ct.ChiTietChiDinhGUID equals dv.ChiTietChiDinhGUID
                                                              where cd.ChiDinhGUID.ToString() == chiDinhGUID &&
                                                              cd.Status == (byte)Status.Actived &&
                                                              ct.Status == (byte)Status.Actived &&
                                                              dv.Status == (byte)Status.Actived
-                                                             select dv).Distinct().ToList();
+                                                             select dv).ToList();
 
                 result.QueryResult = dichVuChiDinhList;
             }
@@ -188,7 +217,34 @@ namespace MM.Bussiness
             return result;
         }
 
-        
+        public static Result GetDichVuChiDinhList2(string patientGUID)
+        {
+            Result result = null;
+
+            try
+            {
+                DateTime fromDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 0, 0, 0);
+                DateTime toDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, DateTime.Now.Day, 23, 59, 59);
+                string query = string.Empty;
+
+                query = string.Format("SELECT DV.*, CD.ChiDinhGUID FROM ChiDinh CD, ChiTietChiDinh CT, DichVuChiDinhView DV WHERE CD.ChiDinhGUID = CT.ChiDinhGUID AND CT.ChiTietChiDinhGUID = DV.ChiTietChiDinhGUID AND CD.Status = {0} AND CT.Status = {0} AND DV.Status = {0} AND DV.PatientGUID = '{1}' AND CD.NgayChiDinh BETWEEN '{2}' AND '{3}'",
+                        (byte)Status.Actived, patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
+
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
 
         public static Result DeleteChiDinhs(List<string> chiDinhKeys)
         {
@@ -224,6 +280,68 @@ namespace MM.Bussiness
                     tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
                     tk.ActionType = (byte)ActionType.Delete;
                     tk.Action = "Xóa thông tin chỉ định";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.None;
+                    db.Trackings.InsertOnSubmit(tk);
+
+                    db.SubmitChanges();
+                    t.Complete();
+                }
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result DeleteChiTietChiDinhs(List<string> keys)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    string desc = string.Empty;
+                    foreach (string key in keys)
+                    {
+                        ChiTietChiDinh ctcd = db.ChiTietChiDinhs.SingleOrDefault<ChiTietChiDinh>(c => c.ChiTietChiDinhGUID.ToString() == key);
+                        if (ctcd != null)
+                        {
+                            ctcd.DeletedDate = DateTime.Now;
+                            ctcd.DeletedBy = Guid.Parse(Global.UserGUID);
+                            ctcd.Status = (byte)Status.Deactived;
+
+                            desc += string.Format("- GUID: '{0}', Dịch vụ: '{1}'\n", ctcd.ChiTietChiDinhGUID.ToString(), ctcd.Service.Name);
+                        }
+                    }
+
+                    //Tracking
+                    desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Delete;
+                    tk.Action = "Xóa chi tiết chỉ định";
                     tk.Description = desc;
                     tk.TrackingType = (byte)TrackingType.None;
                     db.Trackings.InsertOnSubmit(tk);
@@ -433,8 +551,8 @@ namespace MM.Bussiness
 
             try
             {
-            db = new MMOverride();
-            string desc = string.Empty;
+                db = new MMOverride();
+                string desc = string.Empty;
                 ChiDinh cd = db.ChiDinhs.SingleOrDefault<ChiDinh>(c => c.ChiDinhGUID.ToString() == chiDinh.ChiDinhGUID.ToString());
                 if (cd != null)
                 {
@@ -546,10 +664,10 @@ namespace MM.Bussiness
             {
                 db = new MMOverride();
                 DichVuChiDinh dvcd = (from d in db.DichVuChiDinhs
-                                                where d.ServiceHistoryGUID.ToString() == serviceHistoryGUID &&
-                                                d.Status == (byte)Status.Actived
-                                                orderby d.CreatedDate descending
-                                               select d).FirstOrDefault<DichVuChiDinh>();
+                                        where d.ServiceHistoryGUID.ToString() == serviceHistoryGUID &&
+                                        d.Status == (byte)Status.Actived
+                                        orderby d.CreatedDate descending
+                                        select d).FirstOrDefault<DichVuChiDinh>();
 
                 if (dvcd != null)
                 {

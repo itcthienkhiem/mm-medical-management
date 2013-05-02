@@ -94,7 +94,6 @@ namespace MM.Controls
         {
             _uServiceHistory.ClearData();
             _uToaThuocList.ClearData();
-            _uChiDinhList.ClearChiDinhData();
             _uChiDinhList.ClearChiTietChiDinh();
             _uCanDoList.ClearData();
             _uKetQuaLamSangList.ClearData();

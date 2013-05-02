@@ -19,7 +19,7 @@ namespace MM.Dialogs
         #region Members
         private bool _isNew = true;
         private DataTable _dtTemp = null;
-        private List<DichVuChiDinhView> _dichVuChiDinhList = null;
+        private DataTable _dtDichVuChiDinh = null;
         private DataRow _drChiDinh = null;
         private DataTable _dtChiTietChiDinh = null;
         private ChiDinh _chiDinh = new ChiDinh();
@@ -36,12 +36,12 @@ namespace MM.Dialogs
             GenerateCode();
         }
 
-        public dlgAddChiDinh(DataRow patientRow, DataRow drChiDinh, DataTable dtChiTietChiDinh, List<DichVuChiDinhView> dichVuChiDinhList)
+        public dlgAddChiDinh(DataRow patientRow, DataRow drChiDinh, DataTable dtChiTietChiDinh, DataTable dtDichVuChiDinh)
         {
             InitializeComponent();
             _patientRow = patientRow;
             _drChiDinh = drChiDinh;
-            _dichVuChiDinhList = dichVuChiDinhList;
+            _dtDichVuChiDinh = dtDichVuChiDinh;
             _dtChiTietChiDinh = dtChiTietChiDinh;
             _isNew = false;
             this.Text = "Sua chi dinh";
@@ -214,20 +214,19 @@ namespace MM.Dialogs
 
         private void UpdateDichVuChiDinh()
         {
-            if (_dichVuChiDinhList == null || _dichVuChiDinhList.Count <= 0) return;
+            if (_dtDichVuChiDinh == null || _dtDichVuChiDinh.Rows.Count <= 0) return;
+            string chiDinhGUID = _drChiDinh["ChiDinhGUID"].ToString();
+
             foreach (DataGridViewRow row in dgService.Rows)
             {
                 DataRow r = (row.DataBoundItem as DataRowView).Row;
                 string serviceGUID = r["ServiceGUID"].ToString();
 
-                foreach (var dvcd in _dichVuChiDinhList)
+                DataRow[] rows = _dtDichVuChiDinh.Select(string.Format("ChiDinhGUID='{0}' AND ServiceGUID='{1}'" , chiDinhGUID, serviceGUID));
+                if (rows != null && rows.Length > 0)
                 {
-                    if (serviceGUID == dvcd.ServiceGUID.ToString())
-                    {
-                        (row.Cells["Checked"] as DataGridViewDisableCheckBoxCell).Enabled = false;
-                        row.DefaultCellStyle.BackColor = Color.LightSeaGreen;
-                        break;
-                    }
+                    (row.Cells["Checked"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    row.DefaultCellStyle.BackColor = Color.LightSeaGreen;
                 }
             }
         }
@@ -530,19 +529,19 @@ namespace MM.Dialogs
                 else
                     e.Cancel = true;
             }
-            else
-            {
-                if (MsgBox.Question(this.Text, "Bạn có muốn lưu thông tin chỉ định ?") == System.Windows.Forms.DialogResult.Yes)
-                {
-                    if (CheckInfo())
-                    {
-                        this.DialogResult = System.Windows.Forms.DialogResult.OK;
-                        SaveInfoAsThread();
-                    }
-                    else
-                        e.Cancel = true;
-                }
-            }
+            //else
+            //{
+            //    if (MsgBox.Question(this.Text, "Bạn có muốn lưu thông tin chỉ định ?") == System.Windows.Forms.DialogResult.Yes)
+            //    {
+            //        if (CheckInfo())
+            //        {
+            //            this.DialogResult = System.Windows.Forms.DialogResult.OK;
+            //            SaveInfoAsThread();
+            //        }
+            //        else
+            //            e.Cancel = true;
+            //    }
+            //}
         }
 
         private void btnOK_Click(object sender, EventArgs e)
