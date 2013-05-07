@@ -615,7 +615,7 @@ namespace MM.Bussiness
                 db = new MMOverride();
                 string desc = string.Empty;
 
-                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.Required, new TimeSpan(0, 30, 0)))
                 {
                     //Insert
                     if (contract.CompanyContractGUID == null || contract.CompanyContractGUID == Guid.Empty)
