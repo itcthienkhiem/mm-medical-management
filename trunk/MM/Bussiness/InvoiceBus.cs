@@ -354,7 +354,11 @@ namespace MM.Bussiness
                             invoice.DeletedDate = DateTime.Now;
                             invoice.DeletedBy = Guid.Parse(Global.UserGUID);
                             invoice.Status = (byte)Status.Deactived;
-                            invoice.Notes = nodeList[index];
+
+                            if (invoice.Notes == null || invoice.Notes.Trim() == string.Empty)
+                                invoice.Notes = nodeList[index];
+                            else
+                                invoice.Notes += string.Format(" - {0}", nodeList[index]);
 
                             //Update Exported Invoice
                             if (invoice.ReceiptGUIDList != null && invoice.ReceiptGUIDList.Trim() != string.Empty)

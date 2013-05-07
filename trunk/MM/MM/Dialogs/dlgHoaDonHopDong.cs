@@ -66,6 +66,7 @@ namespace MM.Dialogs
                 txtMaSoThue.ReadOnly = true;
                 txtAddress.ReadOnly = true;
                 txtSoTaiKhoan.ReadOnly = true;
+                txtGhiChu.ReadOnly = true;
                 numVAT.Enabled = false;
                 dtpkNgay.Enabled = false;
 
@@ -216,6 +217,7 @@ namespace MM.Dialogs
                 dtpkNgay.Value = Convert.ToDateTime(_drInvoice["NgayXuatHoaDon"]);
                 cboTenDonVi.Text = _drInvoice["TenDonVi"].ToString();
                 txtTenDonVi.Text = cboTenDonVi.Text;
+                txtGhiChu.Text = _drInvoice["Notes"] as string;
 
                 if (_drInvoice["MaSoThue"] != null && _drInvoice["MaSoThue"] != DBNull.Value)
                     txtMaSoThue.Text = _drInvoice["MaSoThue"].ToString();
@@ -579,6 +581,7 @@ namespace MM.Dialogs
                 invoice.MauSo = Global.MauSoSauCung;
                 invoice.KiHieu = Global.KiHieuSauCung;
                 invoice.HinhThucNhanHoaDon = raKhachTuLay.Checked ? "Khách tự lấy" : "Gởi qua bưu điện";
+                invoice.Notes = txtGhiChu.Text;
 
                 List<ChiTietHoaDonHopDong> addedDetails = new List<ChiTietHoaDonHopDong>();
                 for (int i = 0; i < dgDetail.RowCount - 1; i++)

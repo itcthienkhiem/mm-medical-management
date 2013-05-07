@@ -63,6 +63,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.raGuiQuaBuuDien = new System.Windows.Forms.RadioButton();
+            this.raKhachTuLay = new System.Windows.Forms.RadioButton();
             this.txtHinhThucThanhToan = new System.Windows.Forms.TextBox();
             this.txtTenDonVi = new System.Windows.Forms.TextBox();
             this.txtTenNguoiMuaHang = new System.Windows.Forms.TextBox();
@@ -104,8 +106,8 @@
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.raGuiQuaBuuDien = new System.Windows.Forms.RadioButton();
-            this.raKhachTuLay = new System.Windows.Forms.RadioButton();
+            this.txtGhiChu = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -126,7 +128,7 @@
             this.panel1.Controls.Add(this.btnExportInvoice);
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 663);
+            this.panel1.Location = new System.Drawing.Point(0, 655);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(708, 38);
             this.panel1.TabIndex = 7;
@@ -352,6 +354,8 @@
             // panel6
             // 
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel6.Controls.Add(this.txtGhiChu);
+            this.panel6.Controls.Add(this.label3);
             this.panel6.Controls.Add(this.raGuiQuaBuuDien);
             this.panel6.Controls.Add(this.raKhachTuLay);
             this.panel6.Controls.Add(this.txtHinhThucThanhToan);
@@ -373,8 +377,30 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(0, 190);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(708, 144);
+            this.panel6.Size = new System.Drawing.Size(708, 165);
             this.panel6.TabIndex = 0;
+            // 
+            // raGuiQuaBuuDien
+            // 
+            this.raGuiQuaBuuDien.AutoSize = true;
+            this.raGuiQuaBuuDien.Location = new System.Drawing.Point(534, 118);
+            this.raGuiQuaBuuDien.Name = "raGuiQuaBuuDien";
+            this.raGuiQuaBuuDien.Size = new System.Drawing.Size(107, 17);
+            this.raGuiQuaBuuDien.TabIndex = 30;
+            this.raGuiQuaBuuDien.Text = "Gởi qua bưu điện";
+            this.raGuiQuaBuuDien.UseVisualStyleBackColor = true;
+            // 
+            // raKhachTuLay
+            // 
+            this.raKhachTuLay.AutoSize = true;
+            this.raKhachTuLay.Checked = true;
+            this.raKhachTuLay.Location = new System.Drawing.Point(430, 118);
+            this.raKhachTuLay.Name = "raKhachTuLay";
+            this.raKhachTuLay.Size = new System.Drawing.Size(84, 17);
+            this.raKhachTuLay.TabIndex = 29;
+            this.raKhachTuLay.TabStop = true;
+            this.raKhachTuLay.Text = "Khách tự lấy";
+            this.raKhachTuLay.UseVisualStyleBackColor = true;
             // 
             // txtHinhThucThanhToan
             // 
@@ -533,7 +559,7 @@
             // 
             this.panel7.Controls.Add(this.dgDetail);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(0, 334);
+            this.panel7.Location = new System.Drawing.Point(0, 355);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(708, 187);
             this.panel7.TabIndex = 18;
@@ -662,9 +688,9 @@
             this.panel8.Controls.Add(this.label13);
             this.panel8.Controls.Add(this.label12);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel8.Location = new System.Drawing.Point(0, 521);
+            this.panel8.Location = new System.Drawing.Point(0, 542);
             this.panel8.Name = "panel8";
-            this.panel8.Size = new System.Drawing.Size(708, 142);
+            this.panel8.Size = new System.Drawing.Size(708, 113);
             this.panel8.TabIndex = 6;
             // 
             // lbTotalPayment
@@ -827,27 +853,22 @@
             this.dataGridViewTextBoxColumn6.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewTextBoxColumn6.Width = 120;
             // 
-            // raGuiQuaBuuDien
+            // txtGhiChu
             // 
-            this.raGuiQuaBuuDien.AutoSize = true;
-            this.raGuiQuaBuuDien.Location = new System.Drawing.Point(534, 118);
-            this.raGuiQuaBuuDien.Name = "raGuiQuaBuuDien";
-            this.raGuiQuaBuuDien.Size = new System.Drawing.Size(107, 17);
-            this.raGuiQuaBuuDien.TabIndex = 30;
-            this.raGuiQuaBuuDien.Text = "Gởi qua bưu điện";
-            this.raGuiQuaBuuDien.UseVisualStyleBackColor = true;
+            this.txtGhiChu.Location = new System.Drawing.Point(143, 138);
+            this.txtGhiChu.Name = "txtGhiChu";
+            this.txtGhiChu.Size = new System.Drawing.Size(542, 20);
+            this.txtGhiChu.TabIndex = 32;
             // 
-            // raKhachTuLay
+            // label3
             // 
-            this.raKhachTuLay.AutoSize = true;
-            this.raKhachTuLay.Checked = true;
-            this.raKhachTuLay.Location = new System.Drawing.Point(430, 118);
-            this.raKhachTuLay.Name = "raKhachTuLay";
-            this.raKhachTuLay.Size = new System.Drawing.Size(84, 17);
-            this.raKhachTuLay.TabIndex = 29;
-            this.raKhachTuLay.TabStop = true;
-            this.raKhachTuLay.Text = "Khách tự lấy";
-            this.raKhachTuLay.UseVisualStyleBackColor = true;
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(5, 141);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(48, 15);
+            this.label3.TabIndex = 31;
+            this.label3.Text = "Ghi chú";
             // 
             // dlgHoaDonHopDong
             // 
@@ -855,7 +876,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(708, 701);
+            this.ClientSize = new System.Drawing.Size(708, 693);
             this.Controls.Add(this.panel8);
             this.Controls.Add(this.panel7);
             this.Controls.Add(this.panel6);
@@ -957,6 +978,8 @@
         private System.Windows.Forms.TextBox txtTenNguoiMuaHang;
         private System.Windows.Forms.RadioButton raGuiQuaBuuDien;
         private System.Windows.Forms.RadioButton raKhachTuLay;
+        private System.Windows.Forms.TextBox txtGhiChu;
+        private System.Windows.Forms.Label label3;
 
 
     }
