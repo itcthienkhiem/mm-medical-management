@@ -65,6 +65,10 @@
             this.label1 = new System.Windows.Forms.Label();
             this.tabPatient = new DevComponents.DotNetBar.TabControl();
             this.tabControlPanel1 = new DevComponents.DotNetBar.TabControlPanel();
+            this.raKhac = new System.Windows.Forms.RadioButton();
+            this.raCoGiaDinh = new System.Windows.Forms.RadioButton();
+            this.raDocThan = new System.Windows.Forms.RadioButton();
+            this.label21 = new System.Windows.Forms.Label();
             this.barCode = new DSBarCode.BarCodeCtrl();
             this.dtpkNgayKham = new System.Windows.Forms.DateTimePicker();
             this.chkNgayKham = new System.Windows.Forms.CheckBox();
@@ -102,10 +106,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.chkDiUngThuoc = new System.Windows.Forms.CheckBox();
             this.pagePatientHistory = new DevComponents.DotNetBar.TabItem(this.components);
-            this.raKhac = new System.Windows.Forms.RadioButton();
-            this.raCoGiaDinh = new System.Windows.Forms.RadioButton();
-            this.raDocThan = new System.Windows.Forms.RadioButton();
-            this.label21 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.tabPatient)).BeginInit();
             this.tabPatient.SuspendLayout();
             this.tabControlPanel1.SuspendLayout();
@@ -117,7 +117,7 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(146, 522);
+            this.btnOK.Location = new System.Drawing.Point(144, 465);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 25;
@@ -129,7 +129,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(225, 522);
+            this.btnCancel.Location = new System.Drawing.Point(223, 465);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 26;
@@ -198,61 +198,67 @@
             // 
             // txtOccupation
             // 
-            this.txtOccupation.Location = new System.Drawing.Point(110, 269);
+            this.txtOccupation.Location = new System.Drawing.Point(673, 193);
             this.txtOccupation.MaxLength = 255;
             this.txtOccupation.Name = "txtOccupation";
             this.txtOccupation.Size = new System.Drawing.Size(157, 20);
             this.txtOccupation.TabIndex = 11;
+            this.txtOccupation.Visible = false;
             // 
             // label18
             // 
             this.label18.AutoSize = true;
             this.label18.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label18.Location = new System.Drawing.Point(32, 272);
+            this.label18.Location = new System.Drawing.Point(595, 196);
             this.label18.Name = "label18";
             this.label18.Size = new System.Drawing.Size(71, 13);
             this.label18.TabIndex = 34;
             this.label18.Text = "Nghề nghiệp:";
+            this.label18.Visible = false;
             // 
             // txtPreferredName
             // 
-            this.txtPreferredName.Location = new System.Drawing.Point(110, 221);
+            this.txtPreferredName.Location = new System.Drawing.Point(673, 145);
             this.txtPreferredName.MaxLength = 50;
             this.txtPreferredName.Name = "txtPreferredName";
             this.txtPreferredName.Size = new System.Drawing.Size(104, 20);
             this.txtPreferredName.TabIndex = 8;
+            this.txtPreferredName.Visible = false;
             // 
             // label17
             // 
             this.label17.AutoSize = true;
             this.label17.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label17.Location = new System.Drawing.Point(21, 224);
+            this.label17.Location = new System.Drawing.Point(584, 148);
             this.label17.Name = "label17";
             this.label17.Size = new System.Drawing.Size(82, 13);
             this.label17.TabIndex = 32;
             this.label17.Text = "Tên thường gọi:";
+            this.label17.Visible = false;
             // 
             // txtKnownAs
             // 
-            this.txtKnownAs.Location = new System.Drawing.Point(110, 197);
+            this.txtKnownAs.Location = new System.Drawing.Point(673, 121);
             this.txtKnownAs.MaxLength = 50;
             this.txtKnownAs.Name = "txtKnownAs";
             this.txtKnownAs.Size = new System.Drawing.Size(104, 20);
             this.txtKnownAs.TabIndex = 7;
+            this.txtKnownAs.Visible = false;
             // 
             // label16
             // 
             this.label16.AutoSize = true;
             this.label16.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label16.Location = new System.Drawing.Point(55, 200);
+            this.label16.Location = new System.Drawing.Point(618, 124);
             this.label16.Name = "label16";
             this.label16.Size = new System.Drawing.Size(48, 13);
             this.label16.TabIndex = 30;
             this.label16.Text = "Bí danh:";
+            this.label16.Visible = false;
             // 
             // txtEmail
             // 
-            this.txtEmail.Location = new System.Drawing.Point(110, 413);
+            this.txtEmail.Location = new System.Drawing.Point(110, 245);
             this.txtEmail.MaxLength = 100;
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(223, 20);
@@ -262,7 +268,7 @@
             // 
             this.label15.AutoSize = true;
             this.label15.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label15.Location = new System.Drawing.Point(68, 416);
+            this.label15.Location = new System.Drawing.Point(68, 248);
             this.label15.Name = "label15";
             this.label15.Size = new System.Drawing.Size(35, 13);
             this.label15.TabIndex = 28;
@@ -270,28 +276,30 @@
             // 
             // txtFax
             // 
-            this.txtFax.Location = new System.Drawing.Point(110, 389);
+            this.txtFax.Location = new System.Drawing.Point(673, 313);
             this.txtFax.MaxLength = 50;
             this.txtFax.Name = "txtFax";
             this.txtFax.Size = new System.Drawing.Size(157, 20);
             this.txtFax.TabIndex = 16;
+            this.txtFax.Visible = false;
             this.txtFax.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHomePhone_KeyPress);
             // 
             // label14
             // 
             this.label14.AutoSize = true;
             this.label14.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label14.Location = new System.Drawing.Point(76, 392);
+            this.label14.Location = new System.Drawing.Point(639, 316);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(27, 13);
             this.label14.TabIndex = 26;
             this.label14.Text = "Fax:";
+            this.label14.Visible = false;
             // 
             // label13
             // 
             this.label13.AutoSize = true;
             this.label13.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label13.Location = new System.Drawing.Point(46, 368);
+            this.label13.Location = new System.Drawing.Point(46, 224);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(57, 13);
             this.label13.TabIndex = 25;
@@ -299,7 +307,7 @@
             // 
             // txtMobile
             // 
-            this.txtMobile.Location = new System.Drawing.Point(110, 365);
+            this.txtMobile.Location = new System.Drawing.Point(110, 221);
             this.txtMobile.MaxLength = 50;
             this.txtMobile.Name = "txtMobile";
             this.txtMobile.Size = new System.Drawing.Size(157, 20);
@@ -310,57 +318,63 @@
             // 
             this.label12.AutoSize = true;
             this.label12.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label12.Location = new System.Drawing.Point(20, 344);
+            this.label12.Location = new System.Drawing.Point(583, 268);
             this.label12.Name = "label12";
             this.label12.Size = new System.Drawing.Size(83, 13);
             this.label12.TabIndex = 23;
             this.label12.Text = "Số ĐT làm việc:";
+            this.label12.Visible = false;
             // 
             // txtHomePhone
             // 
-            this.txtHomePhone.Location = new System.Drawing.Point(110, 317);
+            this.txtHomePhone.Location = new System.Drawing.Point(673, 241);
             this.txtHomePhone.MaxLength = 50;
             this.txtHomePhone.Name = "txtHomePhone";
             this.txtHomePhone.Size = new System.Drawing.Size(156, 20);
             this.txtHomePhone.TabIndex = 13;
+            this.txtHomePhone.Visible = false;
             this.txtHomePhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHomePhone_KeyPress);
             // 
             // label11
             // 
             this.label11.AutoSize = true;
             this.label11.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label11.Location = new System.Drawing.Point(41, 320);
+            this.label11.Location = new System.Drawing.Point(604, 244);
             this.label11.Name = "label11";
             this.label11.Size = new System.Drawing.Size(62, 13);
             this.label11.TabIndex = 21;
             this.label11.Text = "Số ĐT nhà:";
+            this.label11.Visible = false;
             // 
             // txtIdentityCard
             // 
-            this.txtIdentityCard.Location = new System.Drawing.Point(110, 245);
+            this.txtIdentityCard.Location = new System.Drawing.Point(673, 169);
             this.txtIdentityCard.MaxLength = 15;
             this.txtIdentityCard.Name = "txtIdentityCard";
             this.txtIdentityCard.Size = new System.Drawing.Size(157, 20);
             this.txtIdentityCard.TabIndex = 9;
+            this.txtIdentityCard.Visible = false;
             this.txtIdentityCard.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtIdentityCard_KeyPress);
             // 
             // label10
             // 
             this.label10.AutoSize = true;
             this.label10.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label10.Location = new System.Drawing.Point(61, 248);
+            this.label10.Location = new System.Drawing.Point(624, 172);
             this.label10.Name = "label10";
             this.label10.Size = new System.Drawing.Size(42, 13);
             this.label10.TabIndex = 19;
             this.label10.Text = "CMND:";
+            this.label10.Visible = false;
             // 
             // txtWorkPhone
             // 
-            this.txtWorkPhone.Location = new System.Drawing.Point(110, 341);
+            this.txtWorkPhone.Location = new System.Drawing.Point(673, 265);
             this.txtWorkPhone.MaxLength = 50;
             this.txtWorkPhone.Name = "txtWorkPhone";
             this.txtWorkPhone.Size = new System.Drawing.Size(156, 20);
             this.txtWorkPhone.TabIndex = 14;
+            this.txtWorkPhone.Visible = false;
             this.txtWorkPhone.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtHomePhone_KeyPress);
             // 
             // label9
@@ -401,7 +415,7 @@
             // 
             // txtAddress
             // 
-            this.txtAddress.Location = new System.Drawing.Point(110, 437);
+            this.txtAddress.Location = new System.Drawing.Point(110, 269);
             this.txtAddress.MaxLength = 255;
             this.txtAddress.Name = "txtAddress";
             this.txtAddress.Size = new System.Drawing.Size(322, 20);
@@ -411,7 +425,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label4.Location = new System.Drawing.Point(60, 440);
+            this.label4.Location = new System.Drawing.Point(60, 272);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(43, 13);
             this.label4.TabIndex = 6;
@@ -445,7 +459,7 @@
             this.tabPatient.Name = "tabPatient";
             this.tabPatient.SelectedTabFont = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold);
             this.tabPatient.SelectedTabIndex = 0;
-            this.tabPatient.Size = new System.Drawing.Size(446, 516);
+            this.tabPatient.Size = new System.Drawing.Size(443, 459);
             this.tabPatient.Style = DevComponents.DotNetBar.eTabStripStyle.VS2005;
             this.tabPatient.TabIndex = 0;
             this.tabPatient.TabLayoutType = DevComponents.DotNetBar.eTabLayoutType.FixedWithNavigationBox;
@@ -503,7 +517,7 @@
             this.tabControlPanel1.Location = new System.Drawing.Point(0, 25);
             this.tabControlPanel1.Name = "tabControlPanel1";
             this.tabControlPanel1.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel1.Size = new System.Drawing.Size(446, 491);
+            this.tabControlPanel1.Size = new System.Drawing.Size(443, 434);
             this.tabControlPanel1.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.tabControlPanel1.Style.BackColor2.Color = System.Drawing.Color.White;
             this.tabControlPanel1.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
@@ -513,6 +527,52 @@
             this.tabControlPanel1.Style.GradientAngle = 90;
             this.tabControlPanel1.TabIndex = 1;
             this.tabControlPanel1.TabItem = this.pagePatientInfo;
+            // 
+            // raKhac
+            // 
+            this.raKhac.AutoSize = true;
+            this.raKhac.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.raKhac.Location = new System.Drawing.Point(300, 295);
+            this.raKhac.Name = "raKhac";
+            this.raKhac.Size = new System.Drawing.Size(50, 17);
+            this.raKhac.TabIndex = 84;
+            this.raKhac.TabStop = true;
+            this.raKhac.Text = "Khác";
+            this.raKhac.UseVisualStyleBackColor = false;
+            // 
+            // raCoGiaDinh
+            // 
+            this.raCoGiaDinh.AutoSize = true;
+            this.raCoGiaDinh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.raCoGiaDinh.Location = new System.Drawing.Point(201, 295);
+            this.raCoGiaDinh.Name = "raCoGiaDinh";
+            this.raCoGiaDinh.Size = new System.Drawing.Size(79, 17);
+            this.raCoGiaDinh.TabIndex = 83;
+            this.raCoGiaDinh.TabStop = true;
+            this.raCoGiaDinh.Text = "Có gia đình";
+            this.raCoGiaDinh.UseVisualStyleBackColor = false;
+            // 
+            // raDocThan
+            // 
+            this.raDocThan.AutoSize = true;
+            this.raDocThan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.raDocThan.Location = new System.Drawing.Point(110, 295);
+            this.raDocThan.Name = "raDocThan";
+            this.raDocThan.Size = new System.Drawing.Size(69, 17);
+            this.raDocThan.TabIndex = 82;
+            this.raDocThan.TabStop = true;
+            this.raDocThan.Text = "Độc thân";
+            this.raDocThan.UseVisualStyleBackColor = false;
+            // 
+            // label21
+            // 
+            this.label21.AutoSize = true;
+            this.label21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
+            this.label21.Location = new System.Drawing.Point(4, 297);
+            this.label21.Name = "label21";
+            this.label21.Size = new System.Drawing.Size(99, 13);
+            this.label21.TabIndex = 81;
+            this.label21.Text = "Tình trạng gia đình:";
             // 
             // barCode
             // 
@@ -566,7 +626,7 @@
             // 
             // txtTenCongTy
             // 
-            this.txtTenCongTy.Location = new System.Drawing.Point(110, 293);
+            this.txtTenCongTy.Location = new System.Drawing.Point(110, 197);
             this.txtTenCongTy.MaxLength = 255;
             this.txtTenCongTy.Name = "txtTenCongTy";
             this.txtTenCongTy.Size = new System.Drawing.Size(303, 20);
@@ -576,7 +636,7 @@
             // 
             this.label24.AutoSize = true;
             this.label24.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label24.Location = new System.Drawing.Point(32, 296);
+            this.label24.Location = new System.Drawing.Point(32, 200);
             this.label24.Name = "label24";
             this.label24.Size = new System.Drawing.Size(67, 13);
             this.label24.TabIndex = 59;
@@ -632,7 +692,7 @@
             this.tabControlPanel2.Location = new System.Drawing.Point(0, 25);
             this.tabControlPanel2.Name = "tabControlPanel2";
             this.tabControlPanel2.Padding = new System.Windows.Forms.Padding(1);
-            this.tabControlPanel2.Size = new System.Drawing.Size(446, 491);
+            this.tabControlPanel2.Size = new System.Drawing.Size(443, 434);
             this.tabControlPanel2.Style.BackColor1.Color = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
             this.tabControlPanel2.Style.BackColor2.Color = System.Drawing.Color.White;
             this.tabControlPanel2.Style.Border = DevComponents.DotNetBar.eBorderType.SingleLine;
@@ -940,59 +1000,13 @@
             this.pagePatientHistory.Name = "pagePatientHistory";
             this.pagePatientHistory.Text = "Bệnh sử";
             // 
-            // raKhac
-            // 
-            this.raKhac.AutoSize = true;
-            this.raKhac.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.raKhac.Location = new System.Drawing.Point(300, 463);
-            this.raKhac.Name = "raKhac";
-            this.raKhac.Size = new System.Drawing.Size(50, 17);
-            this.raKhac.TabIndex = 84;
-            this.raKhac.TabStop = true;
-            this.raKhac.Text = "Khác";
-            this.raKhac.UseVisualStyleBackColor = false;
-            // 
-            // raCoGiaDinh
-            // 
-            this.raCoGiaDinh.AutoSize = true;
-            this.raCoGiaDinh.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.raCoGiaDinh.Location = new System.Drawing.Point(201, 463);
-            this.raCoGiaDinh.Name = "raCoGiaDinh";
-            this.raCoGiaDinh.Size = new System.Drawing.Size(79, 17);
-            this.raCoGiaDinh.TabIndex = 83;
-            this.raCoGiaDinh.TabStop = true;
-            this.raCoGiaDinh.Text = "Có gia đình";
-            this.raCoGiaDinh.UseVisualStyleBackColor = false;
-            // 
-            // raDocThan
-            // 
-            this.raDocThan.AutoSize = true;
-            this.raDocThan.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.raDocThan.Location = new System.Drawing.Point(110, 463);
-            this.raDocThan.Name = "raDocThan";
-            this.raDocThan.Size = new System.Drawing.Size(69, 17);
-            this.raDocThan.TabIndex = 82;
-            this.raDocThan.TabStop = true;
-            this.raDocThan.Text = "Độc thân";
-            this.raDocThan.UseVisualStyleBackColor = false;
-            // 
-            // label21
-            // 
-            this.label21.AutoSize = true;
-            this.label21.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(244)))), ((int)(((byte)(242)))), ((int)(((byte)(232)))));
-            this.label21.Location = new System.Drawing.Point(4, 465);
-            this.label21.Name = "label21";
-            this.label21.Size = new System.Drawing.Size(99, 13);
-            this.label21.TabIndex = 81;
-            this.label21.Text = "Tình trạng gia đình:";
-            // 
             // dlgAddPatient
             // 
             this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(446, 551);
+            this.ClientSize = new System.Drawing.Size(443, 494);
             this.Controls.Add(this.tabPatient);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
