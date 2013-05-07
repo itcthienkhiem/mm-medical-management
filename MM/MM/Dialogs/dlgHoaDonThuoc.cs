@@ -69,6 +69,7 @@ namespace MM.Dialogs
                 txtMaSoThue.ReadOnly = true;
                 txtAddress.ReadOnly = true;
                 txtSoTaiKhoan.ReadOnly = true;
+                txtGhiChu.ReadOnly = true;
                 
                 numVAT.Enabled = false;
                 dtpkNgay.Enabled = false;
@@ -266,6 +267,7 @@ namespace MM.Dialogs
                 cboHinhThucThanhToan.SelectedIndex = Convert.ToInt32(_drInvoice["HinhThucThanhToan"]);
                 txtHinhThucThanhToan.Text = cboHinhThucThanhToan.Text;
                 numVAT.Value = (Decimal)Convert.ToDouble(_drInvoice["VAT"]);
+                txtGhiChu.Text = _drInvoice["Notes"] as string;
 
                 if (_drInvoice["TenNguoiMuaHang"] != null && _drInvoice["TenNguoiMuaHang"] != DBNull.Value &&
                     _drInvoice["TenNguoiMuaHang"].ToString().Trim() != string.Empty)
@@ -816,6 +818,7 @@ namespace MM.Dialogs
                 invoice.MauSo = Global.MauSoSauCung;
                 invoice.KiHieu = Global.KiHieuSauCung;
                 invoice.HinhThucNhanHoaDon = raKhachTuLay.Checked ? "Khách tự lấy" : "Gởi qua bưu điện";
+                invoice.Notes = txtGhiChu.Text;
 
                 List<ChiTietHoaDonThuoc> addedDetails = new List<ChiTietHoaDonThuoc>();
                 for (int i = 0; i < dgDetail.RowCount - 1; i++)

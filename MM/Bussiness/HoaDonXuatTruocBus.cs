@@ -279,7 +279,10 @@ namespace MM.Bussiness
                             hdt.DeletedDate = DateTime.Now;
                             hdt.DeletedBy = Guid.Parse(Global.UserGUID);
                             hdt.Status = (byte)Status.Deactived;
-                            hdt.Notes = noteList[index];
+                            if (hdt.Notes == null || hdt.Notes.Trim() == string.Empty)
+                                hdt.Notes = noteList[index];
+                            else
+                                hdt.Notes += string.Format(" - {0}", noteList[index]);
 
                             int soHoaDon = Convert.ToInt32(hdt.SoHoaDon);
                             QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon &&
