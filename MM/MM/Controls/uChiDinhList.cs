@@ -360,7 +360,7 @@ namespace MM.Controls
             if (dgChiTiet.RowCount <= 0) return;
             foreach (DataGridViewRow row in dgChiTiet.Rows)
             {
-                DataGridViewDisableCheckBoxCell cell = row.Cells["ChiTietChiDinhChecked"] as DataGridViewDisableCheckBoxCell;
+                DataGridViewDisableCheckBoxCell cell = row.Cells["Checked"] as DataGridViewDisableCheckBoxCell;
                 if (cell.Enabled)
                 {
                     DataRow r = (row.DataBoundItem as DataRowView).Row;
