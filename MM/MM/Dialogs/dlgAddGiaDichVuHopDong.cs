@@ -21,6 +21,7 @@ namespace MM.Dialogs
         private DataRow _drGiaDichVu = null;
         private CompanyInfo _companyInfo = null;
         private List<string> _deletedDichVuCons = new List<string>();
+        private bool _onlyEditGia = false;
         #endregion
 
         #region Constructor
@@ -31,14 +32,22 @@ namespace MM.Dialogs
             _dataSource = companyInfo.GiaDichVuDataSource;
         }
 
-        public dlgAddGiaDichVuHopDong(CompanyInfo companyInfo, DataRow drGiaDichVu)
+        public dlgAddGiaDichVuHopDong(CompanyInfo companyInfo, DataRow drGiaDichVu, bool onlyEditGia)
         {
             InitializeComponent();
             _companyInfo = companyInfo;
             _dataSource = companyInfo.GiaDichVuDataSource;
             _drGiaDichVu = drGiaDichVu;
             _isNew = false;
+            _onlyEditGia = onlyEditGia;
             this.Text = "Sua dich vu hop dong";
+
+            cboService.Enabled = !_onlyEditGia;
+            btnChonDichVu.Enabled = !_onlyEditGia;
+            chkChecked.Enabled = !_onlyEditGia;
+            dgDichVuCon.ReadOnly = _onlyEditGia;
+            btnAdd.Enabled = !_onlyEditGia;
+            btnDelete.Enabled = !_onlyEditGia;
         }
         #endregion
 

@@ -365,6 +365,21 @@ namespace MM.Dialogs
                         Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.InsertContract"));
                         this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
                     }
+                    else if (!_isNew && _selectedCompanyInfo.GiaDichVuDataSource != null && 
+                        _selectedCompanyInfo.GiaDichVuDataSource.Rows.Count > 0)
+                    {
+                        foreach (DataRow row in _selectedCompanyInfo.GiaDichVuDataSource.Rows)
+                        {
+                            result = CompanyContractBus.UpdateGiaDichVu2ServiceHistory(_contract.CompanyContractGUID.ToString(), row["ServiceGUID"].ToString(), Convert.ToDouble(row["Gia"]));
+                            if (!result.IsOK)
+                            {
+                                MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.UpdateGiaDichVu2ServiceHistory"), IconType.Error);
+                                Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.UpdateGiaDichVu2ServiceHistory"));
+                                this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                                return;
+                            }
+                        }
+                    }
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -1041,6 +1056,7 @@ namespace MM.Dialogs
 
             DataRow drGiaDichVu = (dgGiaDichVu.SelectedRows[0].DataBoundItem as DataRowView).Row;
 
+            bool onlyEditPrice = false;
             if (!_isNew)
             {
                 string hopDongGUID = _drContract["CompanyContractGUID"].ToString();
@@ -1050,9 +1066,10 @@ namespace MM.Dialogs
                 {
                     if (result.Error.Code == ErrorCode.EXIST)
                     {
-                        MsgBox.Show(this.Text, string.Format("Dịch vụ: '{0}' đã được sử dụng trong hợp đồng, nên không thể sửa.", drGiaDichVu["Name"].ToString()),
+                        MsgBox.Show(this.Text, string.Format("Dịch vụ: '{0}' đã được sử dụng trong hợp đồng, chỉ có thể sửa giá.", drGiaDichVu["Name"].ToString()),
                             IconType.Information);
-                        return;
+
+                        onlyEditPrice = true;
                     }
                 }
                 else
@@ -1063,8 +1080,8 @@ namespace MM.Dialogs
                 }
             }
 
-           
-            dlgAddGiaDichVuHopDong dlg = new dlgAddGiaDichVuHopDong(_selectedCompanyInfo, drGiaDichVu);
+            
+            dlgAddGiaDichVuHopDong dlg = new dlgAddGiaDichVuHopDong(_selectedCompanyInfo, drGiaDichVu, onlyEditPrice);
             if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
                 drGiaDichVu["ServiceGUID"] = dlg.ServiceGUID;

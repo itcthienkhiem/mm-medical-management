@@ -1536,5 +1536,41 @@ namespace MM.Bussiness
 
             return result;
         }
+
+        public static Result UpdateGiaDichVu2ServiceHistory(string hopDongGUID, string serviceGUID, double gia)
+        {
+            Result result = null;
+
+            try
+            {
+                string spName = "spUpdateGiaHopDong2ServiceHistory";
+                List<SqlParameter> sqlParams = new List<SqlParameter>();
+                SqlParameter param = new SqlParameter("@ContractGUID", hopDongGUID);
+                param.Direction = ParameterDirection.Input;
+                sqlParams.Add(param);
+
+                param = new SqlParameter("@ServiceGUID", serviceGUID);
+                param.Direction = ParameterDirection.Input;
+                sqlParams.Add(param);
+
+                param = new SqlParameter("@Gia", gia);
+                param.Direction = ParameterDirection.Input;
+                sqlParams.Add(param);
+
+                result = ExcuteNonQuery(spName, sqlParams);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
     }
 }
