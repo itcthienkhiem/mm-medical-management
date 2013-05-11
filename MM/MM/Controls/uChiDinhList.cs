@@ -12,6 +12,7 @@ using MM.Common;
 using MM.Bussiness;
 using MM.Databasae;
 using MM.Dialogs;
+using MM.Exports;
 
 namespace MM.Controls
 {
@@ -347,6 +348,69 @@ namespace MM.Controls
                 Utility.WriteToTraceLog(result.GetErrorAsString("ChiDinhBus.ChuyenBenhAn"));
             }
         }
+
+        private List<DataRow> GetChiDinhDuocXacNhan()
+        {
+            List<DataRow> chiDinhs = new List<DataRow>();
+
+            foreach (DataGridViewRow row in dgChiTiet.Rows)
+            {
+                if (!(row.Cells["Checked"] as DataGridViewDisableCheckBoxCell).Enabled)
+                {
+                    DataRow r = (row.DataBoundItem as DataRowView).Row;
+                    chiDinhs.Add(r);
+                }
+            }
+
+            return chiDinhs;
+        }
+
+        private void OnPrint(bool isPreview)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            List<DataRow> checkedRows = GetChiDinhDuocXacNhan();
+            if (checkedRows.Count > 0)
+            {
+                string exportFileName = string.Format("{0}\\Temp\\ChiDinh.xls", Application.StartupPath);
+                if (isPreview)
+                {
+                    if (!ExportExcel.ExportChiDinhToExcel(exportFileName, _patientRow, checkedRows))
+                        return;
+                    else
+                    {
+                        try
+                        {
+                            ExcelPrintPreview.PrintPreview(exportFileName, Global.PageSetupConfig.GetPageSetup(Const.ChiDinhTemplate));
+                        }
+                        catch (Exception ex)
+                        {
+                            MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                        }
+                    }
+                }
+                else
+                {
+                    if (_printDialog.ShowDialog() == DialogResult.OK)
+                    {
+                        if (!ExportExcel.ExportChiDinhToExcel(exportFileName, _patientRow, checkedRows))
+                            return;
+                        else
+                        {
+                            try
+                            {
+                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.ChiDinhTemplate));
+                            }
+                            catch (Exception ex)
+                            {
+                                MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                            }
+                        }
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Không tồn tại chỉ định nào được xác nhận.", IconType.Information);
+        }
         #endregion
 
         #region Window Event Handlers
@@ -429,6 +493,26 @@ namespace MM.Controls
             if (!AllowEdit) return;
             OnEditChiDinh();
         }
+
+        private void xemBanInToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnPrint(true);
+        }
+
+        private void inToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnPrint(false);
+        }
+
+        private void btnPrintPreview_Click(object sender, EventArgs e)
+        {
+            OnPrint(true);
+        }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            OnPrint(false);
+        }
         #endregion
 
         #region Working Thread
@@ -450,6 +534,10 @@ namespace MM.Controls
             }
         }
         #endregion
+
+       
+
+       
 
         
     }

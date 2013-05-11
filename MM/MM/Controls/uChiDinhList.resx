@@ -172,4 +172,10 @@
         6f7z6ou0/7svJfwMbxevJFozTGFUh3jzpC0uv0PbxJpJ1kxIAwAkVvq2iwLm9gAAAABJRU5ErkJggg==
 </value>
   </data>
+  <metadata name="_printDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>734, 18</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>104</value>
+  </metadata>
 </root>

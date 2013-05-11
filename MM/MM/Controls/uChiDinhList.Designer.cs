@@ -31,8 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uChiDinhList));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uChiDinhList));
             this.chiTietChiDinhViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.chiDinhViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
@@ -43,11 +43,22 @@
             this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.xacNhanDVChiDinhToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.xemBanInToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.inToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgChiTiet = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.Checked = new MM.Controls.DataGridViewDisableCheckBoxColumn();
+            this.MaChiDinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.NgayChiDinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.FullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnPrintPreview = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
             this.btnChuyen = new System.Windows.Forms.Button();
             this.btnConfirm = new System.Windows.Forms.Button();
             this.btnDelete = new System.Windows.Forms.Button();
@@ -55,12 +66,7 @@
             this.btnAdd = new System.Windows.Forms.Button();
             this.ctmAction2 = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.chuyenToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.Checked = new MM.Controls.DataGridViewDisableCheckBoxColumn();
-            this.MaChiDinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NgayChiDinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.FullName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this._printDialog = new System.Windows.Forms.PrintDialog();
             ((System.ComponentModel.ISupportInitialize)(this.chiTietChiDinhViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.chiDinhViewBindingSource)).BeginInit();
             this.ctmAction.SuspendLayout();
@@ -88,9 +94,12 @@
             this.toolStripSeparator2,
             this.deleteToolStripMenuItem,
             this.toolStripSeparator3,
-            this.xacNhanDVChiDinhToolStripMenuItem});
+            this.xacNhanDVChiDinhToolStripMenuItem,
+            this.toolStripSeparator4,
+            this.xemBanInToolStripMenuItem,
+            this.inToolStripMenuItem});
             this.ctmAction.Name = "cmtAction";
-            this.ctmAction.Size = new System.Drawing.Size(185, 110);
+            this.ctmAction.Size = new System.Drawing.Size(188, 160);
             // 
             // addToolStripMenuItem
             // 
@@ -138,6 +147,27 @@
             this.xacNhanDVChiDinhToolStripMenuItem.Size = new System.Drawing.Size(184, 22);
             this.xacNhanDVChiDinhToolStripMenuItem.Text = "Xác nhận DV chỉ định";
             this.xacNhanDVChiDinhToolStripMenuItem.Click += new System.EventHandler(this.xacNhanDVChiDinhToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(184, 6);
+            // 
+            // xemBanInToolStripMenuItem
+            // 
+            this.xemBanInToolStripMenuItem.Image = global::MM.Properties.Resources.Actions_print_preview_icon;
+            this.xemBanInToolStripMenuItem.Name = "xemBanInToolStripMenuItem";
+            this.xemBanInToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.xemBanInToolStripMenuItem.Text = "Xem bản in";
+            this.xemBanInToolStripMenuItem.Click += new System.EventHandler(this.xemBanInToolStripMenuItem_Click);
+            // 
+            // inToolStripMenuItem
+            // 
+            this.inToolStripMenuItem.Image = global::MM.Properties.Resources.Printer_icon__1_;
+            this.inToolStripMenuItem.Name = "inToolStripMenuItem";
+            this.inToolStripMenuItem.Size = new System.Drawing.Size(187, 22);
+            this.inToolStripMenuItem.Text = "In";
+            this.inToolStripMenuItem.Click += new System.EventHandler(this.inToolStripMenuItem_Click);
             // 
             // panel2
             // 
@@ -213,8 +243,64 @@
             this.dgChiTiet.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgChiTiet_ColumnHeaderMouseClick);
             this.dgChiTiet.DoubleClick += new System.EventHandler(this.dgChiTiet_DoubleClick);
             // 
+            // Checked
+            // 
+            this.Checked.DataPropertyName = "Checked";
+            this.Checked.Frozen = true;
+            this.Checked.HeaderText = "";
+            this.Checked.Name = "Checked";
+            this.Checked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.Checked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
+            this.Checked.Width = 40;
+            // 
+            // MaChiDinh
+            // 
+            this.MaChiDinh.DataPropertyName = "MaChiDinh";
+            this.MaChiDinh.HeaderText = "Mã chỉ định";
+            this.MaChiDinh.Name = "MaChiDinh";
+            this.MaChiDinh.ReadOnly = true;
+            this.MaChiDinh.Width = 120;
+            // 
+            // NgayChiDinh
+            // 
+            this.NgayChiDinh.DataPropertyName = "NgayChiDinh";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Format = "dd/MM/yyyy HH:mm:ss";
+            dataGridViewCellStyle2.NullValue = null;
+            this.NgayChiDinh.DefaultCellStyle = dataGridViewCellStyle2;
+            this.NgayChiDinh.HeaderText = "Ngày chỉ định";
+            this.NgayChiDinh.Name = "NgayChiDinh";
+            this.NgayChiDinh.ReadOnly = true;
+            this.NgayChiDinh.Width = 140;
+            // 
+            // FullName
+            // 
+            this.FullName.DataPropertyName = "FullName";
+            this.FullName.HeaderText = "Bác sĩ chỉ định";
+            this.FullName.Name = "FullName";
+            this.FullName.ReadOnly = true;
+            this.FullName.Width = 200;
+            // 
+            // codeDataGridViewTextBoxColumn
+            // 
+            this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
+            this.codeDataGridViewTextBoxColumn.HeaderText = "Mã dịch vụ";
+            this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
+            this.codeDataGridViewTextBoxColumn.ReadOnly = true;
+            this.codeDataGridViewTextBoxColumn.Width = 120;
+            // 
+            // nameDataGridViewTextBoxColumn
+            // 
+            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
+            this.nameDataGridViewTextBoxColumn.HeaderText = "Tên dịch vụ";
+            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
+            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
+            this.nameDataGridViewTextBoxColumn.Width = 250;
+            // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnPrintPreview);
+            this.panel1.Controls.Add(this.btnPrint);
             this.panel1.Controls.Add(this.btnChuyen);
             this.panel1.Controls.Add(this.btnConfirm);
             this.panel1.Controls.Add(this.btnDelete);
@@ -225,6 +311,30 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(804, 38);
             this.panel1.TabIndex = 2;
+            // 
+            // btnPrintPreview
+            // 
+            this.btnPrintPreview.Image = global::MM.Properties.Resources.Actions_print_preview_icon;
+            this.btnPrintPreview.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrintPreview.Location = new System.Drawing.Point(497, 6);
+            this.btnPrintPreview.Name = "btnPrintPreview";
+            this.btnPrintPreview.Size = new System.Drawing.Size(93, 25);
+            this.btnPrintPreview.TabIndex = 9;
+            this.btnPrintPreview.Text = "      &Xem bản in";
+            this.btnPrintPreview.UseVisualStyleBackColor = true;
+            this.btnPrintPreview.Click += new System.EventHandler(this.btnPrintPreview_Click);
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Image = global::MM.Properties.Resources.Printer_icon__1_;
+            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrint.Location = new System.Drawing.Point(594, 6);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(64, 25);
+            this.btnPrint.TabIndex = 10;
+            this.btnPrint.Text = "   &In";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
             // 
             // btnChuyen
             // 
@@ -302,59 +412,13 @@
             this.chuyenToolStripMenuItem.Text = "Chuyển";
             this.chuyenToolStripMenuItem.Click += new System.EventHandler(this.chuyenToolStripMenuItem_Click);
             // 
-            // Checked
+            // _printDialog
             // 
-            this.Checked.DataPropertyName = "Checked";
-            this.Checked.Frozen = true;
-            this.Checked.HeaderText = "";
-            this.Checked.Name = "Checked";
-            this.Checked.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.Checked.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.Automatic;
-            this.Checked.Width = 40;
-            // 
-            // MaChiDinh
-            // 
-            this.MaChiDinh.DataPropertyName = "MaChiDinh";
-            this.MaChiDinh.HeaderText = "Mã chỉ định";
-            this.MaChiDinh.Name = "MaChiDinh";
-            this.MaChiDinh.ReadOnly = true;
-            this.MaChiDinh.Width = 120;
-            // 
-            // NgayChiDinh
-            // 
-            this.NgayChiDinh.DataPropertyName = "NgayChiDinh";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.Format = "dd/MM/yyyy HH:mm:ss";
-            dataGridViewCellStyle2.NullValue = null;
-            this.NgayChiDinh.DefaultCellStyle = dataGridViewCellStyle2;
-            this.NgayChiDinh.HeaderText = "Ngày chỉ định";
-            this.NgayChiDinh.Name = "NgayChiDinh";
-            this.NgayChiDinh.ReadOnly = true;
-            this.NgayChiDinh.Width = 140;
-            // 
-            // FullName
-            // 
-            this.FullName.DataPropertyName = "FullName";
-            this.FullName.HeaderText = "Bác sĩ chỉ định";
-            this.FullName.Name = "FullName";
-            this.FullName.ReadOnly = true;
-            this.FullName.Width = 200;
-            // 
-            // codeDataGridViewTextBoxColumn
-            // 
-            this.codeDataGridViewTextBoxColumn.DataPropertyName = "Code";
-            this.codeDataGridViewTextBoxColumn.HeaderText = "Mã dịch vụ";
-            this.codeDataGridViewTextBoxColumn.Name = "codeDataGridViewTextBoxColumn";
-            this.codeDataGridViewTextBoxColumn.ReadOnly = true;
-            this.codeDataGridViewTextBoxColumn.Width = 120;
-            // 
-            // nameDataGridViewTextBoxColumn
-            // 
-            this.nameDataGridViewTextBoxColumn.DataPropertyName = "Name";
-            this.nameDataGridViewTextBoxColumn.HeaderText = "Tên dịch vụ";
-            this.nameDataGridViewTextBoxColumn.Name = "nameDataGridViewTextBoxColumn";
-            this.nameDataGridViewTextBoxColumn.ReadOnly = true;
-            this.nameDataGridViewTextBoxColumn.Width = 250;
+            this._printDialog.AllowCurrentPage = true;
+            this._printDialog.AllowSelection = true;
+            this._printDialog.AllowSomePages = true;
+            this._printDialog.ShowHelp = true;
+            this._printDialog.UseEXDialog = true;
             // 
             // uChiDinhList
             // 
@@ -408,5 +472,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn FullName;
         private System.Windows.Forms.DataGridViewTextBoxColumn codeDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Button btnPrintPreview;
+        private System.Windows.Forms.Button btnPrint;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripMenuItem xemBanInToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem inToolStripMenuItem;
+        private System.Windows.Forms.PrintDialog _printDialog;
     }
 }
