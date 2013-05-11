@@ -473,6 +473,7 @@ namespace MM
                 Global.AllowEditChiDinh = false;
                 Global.AllowDeleteChiDinh = false;
                 Global.AllowConfirmChiDinh = false;
+                Global.AllowPrintChiDinh = false;
                 Global.AllowAddPhongCho = false;
                 Global.AllowViewDichVuDaSuDung = false;
                 Global.AllowAddDichVuDaSuDung = false;
@@ -844,6 +845,7 @@ namespace MM
                             Global.AllowEditChiDinh = isEdit;
                             Global.AllowDeleteChiDinh = isDelete;
                             Global.AllowConfirmChiDinh = isConfirm;
+                            Global.AllowPrintChiDinh = isPrint;
                         }
                         else if (functionCode == Const.Tracking)
                         {
@@ -1649,6 +1651,7 @@ namespace MM
                 Global.AllowEditChiDinh = true;
                 Global.AllowDeleteChiDinh = true;
                 Global.AllowConfirmChiDinh = true;
+                Global.AllowPrintChiDinh = true;
                 Global.AllowAddPhongCho = true;
                 Global.AllowViewDichVuDaSuDung = true;
                 Global.AllowAddDichVuDaSuDung = true;
