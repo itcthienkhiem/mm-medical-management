@@ -67,6 +67,7 @@ namespace MM.Common
         public static bool AllowEditChiDinh = true;
         public static bool AllowDeleteChiDinh = true;
         public static bool AllowConfirmChiDinh = true;
+        public static bool AllowPrintChiDinh = true;
         public static bool AllowAddPhongCho = true;
 
         //Dịch vụ đã sử dụng
