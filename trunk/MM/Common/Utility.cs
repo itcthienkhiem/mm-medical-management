@@ -1107,6 +1107,10 @@ namespace MM.Common
                     case "Báo cáo công nợ hợp đồng chi tiết":
                         fileName = string.Format("{0}\\Templates\\BaoCaoCongNoHopDongChiTietTemplate.xls", AppDomain.CurrentDomain.BaseDirectory);
                         break;
+
+                    case "Chỉ định":
+                        fileName = string.Format("{0}\\Templates\\ChiDinhTemplate.xls", AppDomain.CurrentDomain.BaseDirectory);
+                        break;
                 }
 
                 if (fileName != string.Empty && File.Exists(fileName))

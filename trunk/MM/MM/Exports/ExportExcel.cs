@@ -9384,5 +9384,75 @@ namespace MM.Exports
 
             return -1;
         }
+
+        public static bool ExportChiDinhToExcel(string exportFileName, DataRow patientRow, List<DataRow> chiDinhRows)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            IWorkbook workBook = null;
+
+            try
+            {
+                string excelTemplateName = string.Format("{0}\\Templates\\ChiDinhTemplate.xls", Application.StartupPath);
+
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+                workSheet.Cells["A2"].Value = string.Format("Tên bệnh nhân: {0}", patientRow["FullName"].ToString());
+                workSheet.Cells["D2"].Value = string.Format("Mã bệnh nhân: {0}", patientRow["FileNum"].ToString());
+                workSheet.Cells["A3"].Value = string.Format("Ngày sinh: {0}", patientRow["DobStr"].ToString());
+                workSheet.Cells["C3"].Value = string.Format("Giới tính: {0}", patientRow["GenderAsStr"].ToString());
+                workSheet.Cells["D3"].Value = string.Format("Điện thoại: {0}", patientRow["Mobile"].ToString());
+                workSheet.Cells["A4"].Value = string.Format("Địa chỉ {0}", patientRow["Address"].ToString());
+
+                int rowIndex = 5;
+                IRange range;
+                
+                foreach (DataRow row in chiDinhRows)
+                {
+                    string maChiDinh = row["MaChiDinh"].ToString();
+                    DateTime ngayChiDinh = Convert.ToDateTime(row["NgayChiDinh"]);
+                    string bacSiChiDinh = row["FullName"].ToString();
+                    string maDichVu = row["Code"].ToString();
+                    string tenDichVu = row["Name"].ToString();
+
+                    workSheet.Cells[rowIndex, 0].Value = maChiDinh;
+                    workSheet.Cells[rowIndex, 0].WrapText = true;
+                    workSheet.Cells[rowIndex, 1].Value = ngayChiDinh.ToString("dd/MM/yyyy HH:mm:ss");
+                    workSheet.Cells[rowIndex, 1].WrapText = true;
+                    workSheet.Cells[rowIndex, 2].Value = bacSiChiDinh;
+                    workSheet.Cells[rowIndex, 2].WrapText = true;
+                    workSheet.Cells[rowIndex, 3].Value = maDichVu;
+                    workSheet.Cells[rowIndex, 3].WrapText = true;
+                    workSheet.Cells[rowIndex, 4].Value = tenDichVu;
+                    workSheet.Cells[rowIndex, 4].WrapText = true;
+                    rowIndex++;
+                }
+
+                range = workSheet.Cells[string.Format("A6:E{0}", chiDinhRows.Count + 5)];
+                range.Borders.Color = Color.Black;
+                range.Borders.LineStyle = LineStyle.Continuous;
+
+                string path = string.Format("{0}\\Temp", Application.StartupPath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
     }
 }

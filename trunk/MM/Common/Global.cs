@@ -213,6 +213,7 @@ namespace MM.Common
             ExcelTemplates.Add(Const.ChiTietPhieuThuCapCuuTemplate);
             ExcelTemplates.Add(Const.BaoCaoCongNoHopDongTongHopTemplate);
             ExcelTemplates.Add(Const.BaoCaoCongNoHopDongChiTietTemplate);
+            ExcelTemplates.Add(Const.ChiDinhTemplate);
 
             ExcelTemplates.Sort();
         }
