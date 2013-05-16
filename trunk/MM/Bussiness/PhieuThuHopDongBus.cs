@@ -200,10 +200,10 @@ namespace MM.Bussiness
                             ptthd.Status = (byte)Status.Deactived;
                             ptthd.Notes = noteList[index];
 
-                            desc += string.Format("- GUID: '{0}', Mã hợp đồng: '{1}', Mã phiếu thu: '{2}', Ngày thu: '{3}', Tên khách hàng: '{4}', Công ty: '{5}', Địa chỉ: '{6}', Ghi chú: '{7}', Đã thu tiền: '{8}'\n",
+                            desc += string.Format("- GUID: '{0}', Mã hợp đồng: '{1}', Mã phiếu thu: '{2}', Ngày thu: '{3}', Tên khách hàng: '{4}', Công ty: '{5}', Địa chỉ: '{6}', Ghi chú: '{7}', Đã thu tiền: '{8}', Hình thức thanh toán: '{9}'\n",
                                 ptthd.PhieuThuHopDongGUID.ToString(), ptthd.CompanyContract.CompanyContractGUID.ToString(),
                                 ptthd.MaPhieuThuHopDong, ptthd.NgayThu.ToString("dd/MM/yyyy HH:mm:ss"),
-                                ptthd.TenNguoiNop, ptthd.TenCongTy, ptthd.DiaChi, noteList[index], !ptthd.ChuaThuTien);
+                                ptthd.TenNguoiNop, ptthd.TenCongTy, ptthd.DiaChi, noteList[index], !ptthd.ChuaThuTien, ptthd.HinhThucThanhToan);
                         }
 
                         index++;
@@ -307,9 +307,9 @@ namespace MM.Bussiness
                         db.PhieuThuHopDongs.InsertOnSubmit(ptthd);
                         db.SubmitChanges();
 
-                        desc += string.Format("- Phiếu thu hợp đồng: GUID: '{0}', Mã hợp đồng: '{1}', Mã phiếu thu: '{2}', Ngày thu: '{3}', Tên khách hàng: '{4}', Công ty: '{5}', Địa chỉ: '{6}', Ghi chú: '{7}', Đã thu tiền: '{8}', Đã xuất HĐ: '{9}'\n",
+                        desc += string.Format("- Phiếu thu hợp đồng: GUID: '{0}', Mã hợp đồng: '{1}', Mã phiếu thu: '{2}', Ngày thu: '{3}', Tên khách hàng: '{4}', Công ty: '{5}', Địa chỉ: '{6}', Ghi chú: '{7}', Đã thu tiền: '{8}', Đã xuất HĐ: '{9}', Hình thức thanh toán: '{10}'\n",
                             ptthd.PhieuThuHopDongGUID.ToString(), ptthd.CompanyContract.CompanyContractGUID, ptthd.MaPhieuThuHopDong, ptthd.NgayThu.ToString("dd/MM/yyyy HH:mm:ss"),
-                            ptthd.TenNguoiNop, ptthd.TenCongTy, ptthd.DiaChi, ptthd.Notes, !ptthd.ChuaThuTien, ptthd.IsExported);
+                            ptthd.TenNguoiNop, ptthd.TenCongTy, ptthd.DiaChi, ptthd.Notes, !ptthd.ChuaThuTien, ptthd.IsExported, ptthd.HinhThucThanhToan);
 
                         desc += "- Chi tiết phiếu thu hợp đồng được thêm:\n";
 
@@ -744,7 +744,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result CapNhatTrangThaiPhieuThu(string phieuThuHopDongGUID, bool daXuatHD, bool daThuTien)
+        public static Result CapNhatTrangThaiPhieuThu(string phieuThuHopDongGUID, bool daXuatHD, bool daThuTien, byte hinhThucThanhToan)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -762,10 +762,11 @@ namespace MM.Bussiness
                         pthd.UpdatedBy = Guid.Parse(Global.UserGUID);
                         pthd.ChuaThuTien = !daThuTien;
                         pthd.IsExported = daXuatHD;
+                        pthd.HinhThucThanhToan = hinhThucThanhToan;
 
-                        string desc = string.Format("Phiếu thu hợp đồng: GUID: '{0}', Mã hợp đồng: '{1}', Mã phiếu thu: '{2}', Ngày thu: '{3}', Tên khách hàng: '{4}', Công ty: '{5}', Địa chỉ: '{6}', Ghi chú: '{7}', Đã thu tiền: '{8}', Đã xuất HĐ: '{9}'\n",
+                        string desc = string.Format("Phiếu thu hợp đồng: GUID: '{0}', Mã hợp đồng: '{1}', Mã phiếu thu: '{2}', Ngày thu: '{3}', Tên khách hàng: '{4}', Công ty: '{5}', Địa chỉ: '{6}', Ghi chú: '{7}', Đã thu tiền: '{8}', Đã xuất HĐ: '{9}', Hình thức thanh toán: '{10}'\n",
                             pthd.PhieuThuHopDongGUID.ToString(), pthd.CompanyContract.CompanyContractGUID, pthd.MaPhieuThuHopDong, pthd.NgayThu.ToString("dd/MM/yyyy HH:mm:ss"),
-                            pthd.TenNguoiNop, pthd.TenCongTy, pthd.DiaChi, pthd.Notes, !pthd.ChuaThuTien, pthd.IsExported);
+                            pthd.TenNguoiNop, pthd.TenCongTy, pthd.DiaChi, pthd.Notes, !pthd.ChuaThuTien, pthd.IsExported, pthd.HinhThucThanhToan);
 
                         //Tracking
                         desc = desc.Substring(0, desc.Length - 1);

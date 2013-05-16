@@ -30,8 +30,9 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnExportExcel = new System.Windows.Forms.Button();
             this.btnExportInvoice = new System.Windows.Forms.Button();
@@ -52,6 +53,17 @@
             this.raTuNgayToiNgay = new System.Windows.Forms.RadioButton();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgReceipt = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
+            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
+            this.exportExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.xuatHoaDonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.receiptViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this._printDialog = new System.Windows.Forms.PrintDialog();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.ReceiptCode = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.receiptDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -62,25 +74,15 @@
             this.Notes = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.IsExportedInVoice = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.DaThuTien = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.HinhThucThanhToanStr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.NguoiTao = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.receiptViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this._printDialog = new System.Windows.Forms.PrintDialog();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.ctmAction = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.deleteToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.printToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
-            this.exportExcelToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
-            this.xuatHoaDonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgReceipt)).BeginInit();
+            this.ctmAction.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.receiptViewBindingSource)).BeginInit();
             this.panel3.SuspendLayout();
-            this.ctmAction.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -319,17 +321,18 @@
             this.Notes,
             this.IsExportedInVoice,
             this.DaThuTien,
+            this.HinhThucThanhToanStr,
             this.NguoiTao});
             this.dgReceipt.ContextMenuStrip = this.ctmAction;
             this.dgReceipt.DataSource = this.receiptViewBindingSource;
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle3.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle3.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle3.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle3.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle3.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgReceipt.DefaultCellStyle = dataGridViewCellStyle3;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgReceipt.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgReceipt.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgReceipt.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgReceipt.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -343,6 +346,84 @@
             this.dgReceipt.TabIndex = 2;
             this.dgReceipt.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgReceipt_ColumnHeaderMouseClick);
             this.dgReceipt.DoubleClick += new System.EventHandler(this.dgReceipt_DoubleClick);
+            // 
+            // ctmAction
+            // 
+            this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.deleteToolStripMenuItem,
+            this.toolStripSeparator3,
+            this.printToolStripMenuItem,
+            this.toolStripSeparator5,
+            this.exportExcelToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.xuatHoaDonToolStripMenuItem});
+            this.ctmAction.Name = "cmtAction";
+            this.ctmAction.Size = new System.Drawing.Size(153, 132);
+            // 
+            // deleteToolStripMenuItem
+            // 
+            this.deleteToolStripMenuItem.Image = global::MM.Properties.Resources.del;
+            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Text = "Xóa";
+            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
+            // 
+            // printToolStripMenuItem
+            // 
+            this.printToolStripMenuItem.Image = global::MM.Properties.Resources.Printer_icon__1_;
+            this.printToolStripMenuItem.Name = "printToolStripMenuItem";
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.printToolStripMenuItem.Text = "In phiếu thu";
+            this.printToolStripMenuItem.Click += new System.EventHandler(this.printToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(149, 6);
+            // 
+            // exportExcelToolStripMenuItem
+            // 
+            this.exportExcelToolStripMenuItem.Image = global::MM.Properties.Resources.page_excel_icon;
+            this.exportExcelToolStripMenuItem.Name = "exportExcelToolStripMenuItem";
+            this.exportExcelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.exportExcelToolStripMenuItem.Text = "Xuất Excel";
+            this.exportExcelToolStripMenuItem.Click += new System.EventHandler(this.exportExcelToolStripMenuItem_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            // 
+            // xuatHoaDonToolStripMenuItem
+            // 
+            this.xuatHoaDonToolStripMenuItem.Image = global::MM.Properties.Resources.invoice_icon;
+            this.xuatHoaDonToolStripMenuItem.Name = "xuatHoaDonToolStripMenuItem";
+            this.xuatHoaDonToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.xuatHoaDonToolStripMenuItem.Text = "Xuất hóa đơn";
+            this.xuatHoaDonToolStripMenuItem.Click += new System.EventHandler(this.xuatHoaDonToolStripMenuItem_Click);
+            // 
+            // receiptViewBindingSource
+            // 
+            this.receiptViewBindingSource.DataSource = typeof(MM.Databasae.ReceiptView);
+            // 
+            // _printDialog
+            // 
+            this._printDialog.UseEXDialog = true;
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.chkChecked);
+            this.panel3.Controls.Add(this.dgReceipt);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 111);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(1252, 306);
+            this.panel3.TabIndex = 4;
             // 
             // colChecked
             // 
@@ -427,6 +508,16 @@
             this.DaThuTien.ReadOnly = true;
             this.DaThuTien.Width = 80;
             // 
+            // HinhThucThanhToanStr
+            // 
+            this.HinhThucThanhToanStr.DataPropertyName = "HinhThucThanhToanStr";
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.HinhThucThanhToanStr.DefaultCellStyle = dataGridViewCellStyle3;
+            this.HinhThucThanhToanStr.HeaderText = "Hình thức thanh toán";
+            this.HinhThucThanhToanStr.Name = "HinhThucThanhToanStr";
+            this.HinhThucThanhToanStr.ReadOnly = true;
+            this.HinhThucThanhToanStr.Width = 130;
+            // 
             // NguoiTao
             // 
             this.NguoiTao.DataPropertyName = "NguoiTao";
@@ -434,84 +525,6 @@
             this.NguoiTao.Name = "NguoiTao";
             this.NguoiTao.ReadOnly = true;
             this.NguoiTao.Width = 200;
-            // 
-            // receiptViewBindingSource
-            // 
-            this.receiptViewBindingSource.DataSource = typeof(MM.Databasae.ReceiptView);
-            // 
-            // _printDialog
-            // 
-            this._printDialog.UseEXDialog = true;
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.chkChecked);
-            this.panel3.Controls.Add(this.dgReceipt);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 111);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(1252, 306);
-            this.panel3.TabIndex = 4;
-            // 
-            // ctmAction
-            // 
-            this.ctmAction.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.deleteToolStripMenuItem,
-            this.toolStripSeparator3,
-            this.printToolStripMenuItem,
-            this.toolStripSeparator5,
-            this.exportExcelToolStripMenuItem,
-            this.toolStripSeparator1,
-            this.xuatHoaDonToolStripMenuItem});
-            this.ctmAction.Name = "cmtAction";
-            this.ctmAction.Size = new System.Drawing.Size(153, 132);
-            // 
-            // deleteToolStripMenuItem
-            // 
-            this.deleteToolStripMenuItem.Image = global::MM.Properties.Resources.del;
-            this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.deleteToolStripMenuItem.Text = "Xóa";
-            this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator3
-            // 
-            this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
-            // 
-            // printToolStripMenuItem
-            // 
-            this.printToolStripMenuItem.Image = global::MM.Properties.Resources.Printer_icon__1_;
-            this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.printToolStripMenuItem.Text = "In phiếu thu";
-            this.printToolStripMenuItem.Click += new System.EventHandler(this.printToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator5
-            // 
-            this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(149, 6);
-            // 
-            // exportExcelToolStripMenuItem
-            // 
-            this.exportExcelToolStripMenuItem.Image = global::MM.Properties.Resources.page_excel_icon;
-            this.exportExcelToolStripMenuItem.Name = "exportExcelToolStripMenuItem";
-            this.exportExcelToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.exportExcelToolStripMenuItem.Text = "Xuất Excel";
-            this.exportExcelToolStripMenuItem.Click += new System.EventHandler(this.exportExcelToolStripMenuItem_Click);
-            // 
-            // toolStripSeparator1
-            // 
-            this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
-            // 
-            // xuatHoaDonToolStripMenuItem
-            // 
-            this.xuatHoaDonToolStripMenuItem.Image = global::MM.Properties.Resources.invoice_icon;
-            this.xuatHoaDonToolStripMenuItem.Name = "xuatHoaDonToolStripMenuItem";
-            this.xuatHoaDonToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.xuatHoaDonToolStripMenuItem.Text = "Xuất hóa đơn";
-            this.xuatHoaDonToolStripMenuItem.Click += new System.EventHandler(this.xuatHoaDonToolStripMenuItem_Click);
             // 
             // uReceiptList
             // 
@@ -528,10 +541,10 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgReceipt)).EndInit();
+            this.ctmAction.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.receiptViewBindingSource)).EndInit();
             this.panel3.ResumeLayout(false);
             this.panel3.PerformLayout();
-            this.ctmAction.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -564,6 +577,14 @@
         private System.Windows.Forms.RadioButton raTatCa;
         private System.Windows.Forms.Button btnExportExcel;
         private System.Windows.Forms.Label lbKetQuaTimDuoc;
+        protected System.Windows.Forms.ContextMenuStrip ctmAction;
+        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripMenuItem printToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
+        private System.Windows.Forms.ToolStripMenuItem exportExcelToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem xuatHoaDonToolStripMenuItem;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn ReceiptCode;
         private System.Windows.Forms.DataGridViewTextBoxColumn receiptDateDataGridViewTextBoxColumn;
@@ -574,14 +595,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn Notes;
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsExportedInVoice;
         private System.Windows.Forms.DataGridViewCheckBoxColumn DaThuTien;
+        private System.Windows.Forms.DataGridViewTextBoxColumn HinhThucThanhToanStr;
         private System.Windows.Forms.DataGridViewTextBoxColumn NguoiTao;
-        protected System.Windows.Forms.ContextMenuStrip ctmAction;
-        private System.Windows.Forms.ToolStripMenuItem deleteToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
-        private System.Windows.Forms.ToolStripMenuItem printToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
-        private System.Windows.Forms.ToolStripMenuItem exportExcelToolStripMenuItem;
-        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
-        private System.Windows.Forms.ToolStripMenuItem xuatHoaDonToolStripMenuItem;
     }
 }

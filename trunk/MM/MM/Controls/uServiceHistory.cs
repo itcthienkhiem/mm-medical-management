@@ -463,6 +463,7 @@ namespace MM.Controls
                     receipt.ChuaThuTien = !dlg.DaThuTien;
                     receipt.Notes = dlg.GhiChu;
                     receipt.LyDoGiam = dlg.LyDoGiam;
+                    receipt.HinhThucThanhToan = (byte)dlg.HinhThucThanhToan;
 
                     Result result = ReceiptBus.InsertReceipt(receipt, receiptDetails);
                     if (result.IsOK)

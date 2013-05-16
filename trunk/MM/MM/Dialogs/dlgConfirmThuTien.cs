@@ -16,6 +16,7 @@ namespace MM.Dialogs
         {
             InitializeComponent();
             dtpkNgayXuat.Value = DateTime.Now;
+            cboHinhThucThanhToan.SelectedIndex = 0;
         }
         #endregion
 
@@ -38,6 +39,11 @@ namespace MM.Dialogs
         public string LyDoGiam
         {
             get { return txtLyDoGiam.Text; }
+        }
+
+        public int HinhThucThanhToan
+        {
+            get { return cboHinhThucThanhToan.SelectedIndex; }
         }
         #endregion
 

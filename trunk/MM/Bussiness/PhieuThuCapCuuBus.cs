@@ -225,9 +225,10 @@ namespace MM.Bussiness
                                 }
                             }
 
-                            desc += string.Format("- GUID: '{0}', Mã phiếu thu: '{1}', Ngày thu: '{2}', Mã bệnh nhân: '{3}', Tên bệnh nhân: '{4}', Địa chỉ: '{5}', Ghi chú: '{6}', Đã thu tiền: '{7}', Lý do giảm: '{8}', Toa thuốc GUID: '{9}'\n",
+                            desc += string.Format("- GUID: '{0}', Mã phiếu thu: '{1}', Ngày thu: '{2}', Mã bệnh nhân: '{3}', Tên bệnh nhân: '{4}', Địa chỉ: '{5}', Ghi chú: '{6}', Đã thu tiền: '{7}', Lý do giảm: '{8}', Toa thuốc GUID: '{9}', Hình thức thanh toán: '{10}'\n",
                                 ptcc.PhieuThuCapCuuGUID.ToString(), ptcc.MaPhieuThuCapCuu, ptcc.NgayThu.ToString("dd/MM/yyyy HH:mm:ss"),
-                                ptcc.MaBenhNhan, ptcc.TenBenhNhan, ptcc.DiaChi, noteList[index], !ptcc.ChuaThuTien, ptcc.LyDoGiam, ptcc.ToaCapCuuGUID.ToString());
+                                ptcc.MaBenhNhan, ptcc.TenBenhNhan, ptcc.DiaChi, noteList[index], !ptcc.ChuaThuTien, ptcc.LyDoGiam, ptcc.ToaCapCuuGUID.ToString(),
+                                ptcc.HinhThucThanhToan);
                         }
 
                         index++;
@@ -331,9 +332,10 @@ namespace MM.Bussiness
                         db.PhieuThuCapCuus.InsertOnSubmit(ptcc);
                         db.SubmitChanges();
 
-                        desc += string.Format("- Phiếu thu cấp cứu: GUID: '{0}', Mã phiếu thu: '{1}', Ngày thu: '{2}', Mã bệnh nhân: '{3}', Tên bệnh nhân: '{4}', Địa chỉ: '{5}', Ghi chú: '{6}', Đã thu tiền: '{7}', Lý do giảm: '{8}', Toa thuốc GUID: '{9}'\n",
+                        desc += string.Format("- Phiếu thu cấp cứu: GUID: '{0}', Mã phiếu thu: '{1}', Ngày thu: '{2}', Mã bệnh nhân: '{3}', Tên bệnh nhân: '{4}', Địa chỉ: '{5}', Ghi chú: '{6}', Đã thu tiền: '{7}', Lý do giảm: '{8}', Toa thuốc GUID: '{9}', Hình thức thanh toán: '{10}'\n",
                             ptcc.PhieuThuCapCuuGUID.ToString(), ptcc.MaPhieuThuCapCuu, ptcc.NgayThu.ToString("dd/MM/yyyy HH:mm:ss"),
-                            ptcc.MaBenhNhan, ptcc.TenBenhNhan, ptcc.DiaChi, ptcc.Notes, !ptcc.ChuaThuTien, ptcc.LyDoGiam, ptcc.ToaCapCuuGUID.ToString());
+                            ptcc.MaBenhNhan, ptcc.TenBenhNhan, ptcc.DiaChi, ptcc.Notes, !ptcc.ChuaThuTien, ptcc.LyDoGiam, ptcc.ToaCapCuuGUID.ToString(),
+                            ptcc.HinhThucThanhToan);
 
                         desc += "- Chi tiết phiếu thu cấp cứu được thêm:\n";
 
@@ -437,7 +439,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result CapNhatTrangThaiPhieuThu(string phieuThuCapCuuGUID, bool daXuatHD, bool daThuTien)
+        public static Result CapNhatTrangThaiPhieuThu(string phieuThuCapCuuGUID, bool daXuatHD, bool daThuTien, byte hinhThucThanhToan)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -455,10 +457,11 @@ namespace MM.Bussiness
                         ptcc.UpdatedBy = Guid.Parse(Global.UserGUID);
                         ptcc.IsExported = daXuatHD;
                         ptcc.ChuaThuTien = !daThuTien;
+                        ptcc.HinhThucThanhToan = hinhThucThanhToan;
 
-                        string desc = string.Format("Phiếu thu cấp cứu: GUID: '{0}', Mã phiếu thu: '{1}', Ngày thu: '{2}', Mã bệnh nhân: '{3}', Tên bệnh nhân: '{4}', Địa chỉ: '{5}', Ghi chú: '{6}', Đã thu tiền: '{7}', Đã xuất HĐ: '{8}'",
+                        string desc = string.Format("Phiếu thu cấp cứu: GUID: '{0}', Mã phiếu thu: '{1}', Ngày thu: '{2}', Mã bệnh nhân: '{3}', Tên bệnh nhân: '{4}', Địa chỉ: '{5}', Ghi chú: '{6}', Đã thu tiền: '{7}', Đã xuất HĐ: '{8}', Hình thức thanh toán: '{9}'",
                             ptcc.PhieuThuCapCuuGUID.ToString(), ptcc.MaPhieuThuCapCuu, ptcc.NgayThu.ToString("dd/MM/yyyy HH:mm:ss"),
-                            ptcc.MaBenhNhan, ptcc.TenBenhNhan, ptcc.DiaChi, ptcc.Notes, !ptcc.ChuaThuTien, ptcc.IsExported);
+                            ptcc.MaBenhNhan, ptcc.TenBenhNhan, ptcc.DiaChi, ptcc.Notes, !ptcc.ChuaThuTien, ptcc.IsExported, ptcc.HinhThucThanhToan);
 
                         //Tracking
                         desc = desc.Substring(0, desc.Length - 1);

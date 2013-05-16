@@ -231,9 +231,9 @@ namespace MM.Bussiness
                             if (ptthuoc.ToaThuocGUID.Value != Guid.Empty)
                                 maToaThuoc = db.ToaThuocs.SingleOrDefault<ToaThuoc>(tt => tt.ToaThuocGUID == ptthuoc.ToaThuocGUID.Value).MaToaThuoc;
 
-                            desc += string.Format("- GUID: '{0}', Mã toa thuốc: '{1}', Mã phiếu thu: '{2}', Ngày thu: '{3}', Mã bệnh nhân: '{4}', Tên bệnh nhân: '{5}', Địa chỉ: '{6}', Ghi chú: '{7}', Đã thu tiền: '{8}', Lý do giảm: '{9}'\n",
+                            desc += string.Format("- GUID: '{0}', Mã toa thuốc: '{1}', Mã phiếu thu: '{2}', Ngày thu: '{3}', Mã bệnh nhân: '{4}', Tên bệnh nhân: '{5}', Địa chỉ: '{6}', Ghi chú: '{7}', Đã thu tiền: '{8}', Lý do giảm: '{9}', Hình thức thanh toán: '{10}'\n",
                                 ptthuoc.PhieuThuThuocGUID.ToString(), maToaThuoc, ptthuoc.MaPhieuThuThuoc, ptthuoc.NgayThu.ToString("dd/MM/yyyy HH:mm:ss"), 
-                                ptthuoc.MaBenhNhan, ptthuoc.TenBenhNhan, ptthuoc.DiaChi, noteList[index], !ptthuoc.ChuaThuTien, ptthuoc.LyDoGiam);
+                                ptthuoc.MaBenhNhan, ptthuoc.TenBenhNhan, ptthuoc.DiaChi, noteList[index], !ptthuoc.ChuaThuTien, ptthuoc.LyDoGiam, ptthuoc.HinhThucThanhToan);
                         }
 
                         index++;
@@ -341,9 +341,9 @@ namespace MM.Bussiness
                         if (ptthuoc.ToaThuocGUID.Value != Guid.Empty)
                             maToaThuoc = db.ToaThuocs.SingleOrDefault<ToaThuoc>(tt => tt.ToaThuocGUID == ptthuoc.ToaThuocGUID.Value).MaToaThuoc;
 
-                        desc += string.Format("- Phiếu thu thuốc: GUID: '{0}', Mã toa thuốc: '{1}', Mã phiếu thu: '{2}', Ngày thu: '{3}', Mã bệnh nhân: '{4}', Tên bệnh nhân: '{5}', Địa chỉ: '{6}', Ghi chú: '{7}', Đã thu tiền: '{8}', Lý do giảm: '{9}'\n",
+                        desc += string.Format("- Phiếu thu thuốc: GUID: '{0}', Mã toa thuốc: '{1}', Mã phiếu thu: '{2}', Ngày thu: '{3}', Mã bệnh nhân: '{4}', Tên bệnh nhân: '{5}', Địa chỉ: '{6}', Ghi chú: '{7}', Đã thu tiền: '{8}', Lý do giảm: '{9}', Hình thức thanh toán: '{10}'\n",
                             ptthuoc.PhieuThuThuocGUID.ToString(), maToaThuoc, ptthuoc.MaPhieuThuThuoc, ptthuoc.NgayThu.ToString("dd/MM/yyyy HH:mm:ss"),
-                            ptthuoc.MaBenhNhan, ptthuoc.TenBenhNhan, ptthuoc.DiaChi, ptthuoc.Notes, !ptthuoc.ChuaThuTien, ptthuoc.LyDoGiam);
+                            ptthuoc.MaBenhNhan, ptthuoc.TenBenhNhan, ptthuoc.DiaChi, ptthuoc.Notes, !ptthuoc.ChuaThuTien, ptthuoc.LyDoGiam, ptthuoc.HinhThucThanhToan);
 
                         desc += "- Chi tiết phiếu thu thuốc được thêm:\n";
 
@@ -454,7 +454,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result CapNhatTrangThaiPhieuThu(string phieuThuThuocGUID, bool daXuatHD, bool daThuTien)
+        public static Result CapNhatTrangThaiPhieuThu(string phieuThuThuocGUID, bool daXuatHD, bool daThuTien, byte hinhThucThanhToan)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -472,14 +472,15 @@ namespace MM.Bussiness
                         ptthuoc.UpdatedBy = Guid.Parse(Global.UserGUID);
                         ptthuoc.IsExported = daXuatHD;
                         ptthuoc.ChuaThuTien = !daThuTien;
+                        ptthuoc.HinhThucThanhToan = hinhThucThanhToan;
 
                         string maToaThuoc = string.Empty;
                         if (ptthuoc.ToaThuocGUID.Value != Guid.Empty)
                             maToaThuoc = db.ToaThuocs.SingleOrDefault<ToaThuoc>(tt => tt.ToaThuocGUID == ptthuoc.ToaThuocGUID.Value).MaToaThuoc;
 
-                        string desc = string.Format("Phiếu thu thuốc: GUID: '{0}', Mã toa thuốc: '{1}', Mã phiếu thu: '{2}', Ngày thu: '{3}', Mã bệnh nhân: '{4}', Tên bệnh nhân: '{5}', Địa chỉ: '{6}', Ghi chú: '{7}', Đã thu tiền: '{8}', Đã xuất HĐ: '{9}'",
+                        string desc = string.Format("Phiếu thu thuốc: GUID: '{0}', Mã toa thuốc: '{1}', Mã phiếu thu: '{2}', Ngày thu: '{3}', Mã bệnh nhân: '{4}', Tên bệnh nhân: '{5}', Địa chỉ: '{6}', Ghi chú: '{7}', Đã thu tiền: '{8}', Đã xuất HĐ: '{9}', Hình thức thanh toán: '{10}'",
                             ptthuoc.PhieuThuThuocGUID.ToString(), maToaThuoc, ptthuoc.MaPhieuThuThuoc, ptthuoc.NgayThu.ToString("dd/MM/yyyy HH:mm:ss"),
-                            ptthuoc.MaBenhNhan, ptthuoc.TenBenhNhan, ptthuoc.DiaChi, ptthuoc.Notes, !ptthuoc.ChuaThuTien, ptthuoc.IsExported);
+                            ptthuoc.MaBenhNhan, ptthuoc.TenBenhNhan, ptthuoc.DiaChi, ptthuoc.Notes, !ptthuoc.ChuaThuTien, ptthuoc.IsExported, ptthuoc.HinhThucThanhToan);
 
                         //Tracking
                         desc = desc.Substring(0, desc.Length - 1);

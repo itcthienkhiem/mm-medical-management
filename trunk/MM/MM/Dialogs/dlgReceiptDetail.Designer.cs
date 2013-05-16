@@ -44,6 +44,8 @@
             this.btnPrint = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.txtLyDoGiam = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
             this.chkDaThuTien = new System.Windows.Forms.CheckBox();
             this.chkDaXuatHD = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
@@ -70,8 +72,8 @@
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.label5 = new System.Windows.Forms.Label();
-            this.txtLyDoGiam = new System.Windows.Forms.TextBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.cboHinhThucThanhToan = new System.Windows.Forms.ComboBox();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel3.SuspendLayout();
@@ -144,6 +146,8 @@
             // panel2
             // 
             this.panel2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel2.Controls.Add(this.cboHinhThucThanhToan);
+            this.panel2.Controls.Add(this.label6);
             this.panel2.Controls.Add(this.txtLyDoGiam);
             this.panel2.Controls.Add(this.label5);
             this.panel2.Controls.Add(this.chkDaThuTien);
@@ -159,14 +163,31 @@
             this.panel2.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel2.Location = new System.Drawing.Point(0, 0);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(678, 152);
+            this.panel2.Size = new System.Drawing.Size(678, 134);
             this.panel2.TabIndex = 7;
+            // 
+            // txtLyDoGiam
+            // 
+            this.txtLyDoGiam.Location = new System.Drawing.Point(307, 58);
+            this.txtLyDoGiam.Name = "txtLyDoGiam";
+            this.txtLyDoGiam.ReadOnly = true;
+            this.txtLyDoGiam.Size = new System.Drawing.Size(340, 20);
+            this.txtLyDoGiam.TabIndex = 6;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(240, 61);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(61, 13);
+            this.label5.TabIndex = 9;
+            this.label5.Text = "Lý do giảm:";
             // 
             // chkDaThuTien
             // 
             this.chkDaThuTien.AutoSize = true;
             this.chkDaThuTien.Enabled = false;
-            this.chkDaThuTien.Location = new System.Drawing.Point(96, 125);
+            this.chkDaThuTien.Location = new System.Drawing.Point(223, 106);
             this.chkDaThuTien.Name = "chkDaThuTien";
             this.chkDaThuTien.Size = new System.Drawing.Size(78, 17);
             this.chkDaThuTien.TabIndex = 9;
@@ -177,7 +198,7 @@
             // 
             this.chkDaXuatHD.AutoSize = true;
             this.chkDaXuatHD.Enabled = false;
-            this.chkDaXuatHD.Location = new System.Drawing.Point(96, 105);
+            this.chkDaXuatHD.Location = new System.Drawing.Point(96, 106);
             this.chkDaXuatHD.Name = "chkDaXuatHD";
             this.chkDaXuatHD.Size = new System.Drawing.Size(106, 17);
             this.chkDaXuatHD.TabIndex = 8;
@@ -276,9 +297,9 @@
             // 
             this.panel4.Controls.Add(this.dgReceiptDetail);
             this.panel4.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel4.Location = new System.Drawing.Point(0, 152);
+            this.panel4.Location = new System.Drawing.Point(0, 134);
             this.panel4.Name = "panel4";
-            this.panel4.Size = new System.Drawing.Size(678, 322);
+            this.panel4.Size = new System.Drawing.Size(678, 340);
             this.panel4.TabIndex = 9;
             // 
             // dgReceiptDetail
@@ -321,7 +342,7 @@
             this.dgReceiptDetail.ReadOnly = true;
             this.dgReceiptDetail.RowHeadersWidth = 30;
             this.dgReceiptDetail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgReceiptDetail.Size = new System.Drawing.Size(678, 322);
+            this.dgReceiptDetail.Size = new System.Drawing.Size(678, 340);
             this.dgReceiptDetail.TabIndex = 10;
             // 
             // codeDataGridViewTextBoxColumn
@@ -426,22 +447,30 @@
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.ReadOnly = true;
             // 
-            // label5
+            // label6
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(240, 61);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(61, 13);
-            this.label5.TabIndex = 9;
-            this.label5.Text = "Lý do giảm:";
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(331, 107);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(110, 13);
+            this.label6.TabIndex = 10;
+            this.label6.Text = "Hình thức thanh toán:";
             // 
-            // txtLyDoGiam
+            // cboHinhThucThanhToan
             // 
-            this.txtLyDoGiam.Location = new System.Drawing.Point(307, 58);
-            this.txtLyDoGiam.Name = "txtLyDoGiam";
-            this.txtLyDoGiam.ReadOnly = true;
-            this.txtLyDoGiam.Size = new System.Drawing.Size(340, 20);
-            this.txtLyDoGiam.TabIndex = 6;
+            this.cboHinhThucThanhToan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboHinhThucThanhToan.Enabled = false;
+            this.cboHinhThucThanhToan.FormattingEnabled = true;
+            this.cboHinhThucThanhToan.Items.AddRange(new object[] {
+            "Tiền mặt",
+            "Chuyển khoản",
+            "Tiền mặt/Chuyển khoản",
+            "Bảo hiểm",
+            "Cà thẻ"});
+            this.cboHinhThucThanhToan.Location = new System.Drawing.Point(446, 104);
+            this.cboHinhThucThanhToan.Name = "cboHinhThucThanhToan";
+            this.cboHinhThucThanhToan.Size = new System.Drawing.Size(201, 21);
+            this.cboHinhThucThanhToan.TabIndex = 11;
             // 
             // dlgReceiptDetail
             // 
@@ -512,5 +541,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.TextBox txtLyDoGiam;
         private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.ComboBox cboHinhThucThanhToan;
     }
 }
