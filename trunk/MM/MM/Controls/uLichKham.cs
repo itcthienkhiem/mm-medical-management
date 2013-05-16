@@ -161,6 +161,16 @@ namespace MM.Controls
 
                 cell = NewCell("Chiều", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
                 dgLichKham[1, 10] = cell;
+
+                cell = NewCell("Bs Răng Hàm Mặt", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
+                dgLichKham[0, 11] = cell;
+                dgLichKham[0, 11].ColumnSpan = 2;
+
+                cell = NewCell("Sáng", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
+                dgLichKham[1, 11] = cell;
+
+                cell = NewCell("Chiều", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
+                dgLichKham[1, 12] = cell;
             }
         }
 
@@ -272,7 +282,7 @@ namespace MM.Controls
                     Utility.WriteToTraceLog(result.GetErrorAsString("BookingBus.GetBooking"));
                 }
 
-                for (int col = 0; col < 10; col++)
+                for (int col = 0; col < 12; col++)
                 {
                     if (col < 2)
                     {
@@ -321,7 +331,7 @@ namespace MM.Controls
                 MethodInvoker method = delegate
                 {
                     ClearData();
-                    int colCount = 11;
+                    int colCount = 13;
                     int rowCount = GetRowCount();
                     List<LichKham> lichKhams = result.QueryResult as List<LichKham>;
 

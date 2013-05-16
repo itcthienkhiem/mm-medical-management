@@ -335,4 +335,10 @@ ToaCapCuu
 ToaThuoc
 YKienKhachHang
 =================================================================================
-1). Chuyển bệnh án trong khám bệnh
+1.  trong cho lich kham cua bac si
+Hai Hoan: may cho them column de add bac si rang ham mat nua nha
+Hai Hoan: ben do moi mo khoa Rang Ham Mat (OK)
+
+2. Chức năng report dịch vụ xét nghiệm
+
+3. Thêm thông tin hình thức thanh toán trong Phiếu thu
