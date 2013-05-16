@@ -495,10 +495,11 @@ namespace MM.Bussiness
                             db.UserGroup_Logons.DeleteAllOnSubmit(permissions);
                             db.SubmitChanges();
 
-                            desc += string.Format("- GUID: '{0}', Nhân viên: '{1}'", l.LogonGUID.ToString(), l.DocStaff.Contact.FullName);
+                            desc += string.Format("- GUID: '{0}', Nhân viên: '{1}'\n", l.LogonGUID.ToString(), l.DocStaff.Contact.FullName);
                         }
 
                         //Permission
+                        desc += "- Permission:\n";
                         foreach (DataRow row in dtPermission.Rows)
                         {
                             bool use = Convert.ToBoolean(row["Checked"]);
@@ -508,6 +509,8 @@ namespace MM.Bussiness
                             p.LogonGUID = Guid.Parse(logonGUID);
                             p.UserGroupGUID = Guid.Parse(row["UserGroupGUID"].ToString());
                             db.UserGroup_Logons.InsertOnSubmit(p);
+                            db.SubmitChanges();
+                            desc += string.Format("   + {0}\n", p.UserGroup.GroupName);
                         }
 
                         //Tracking
@@ -534,7 +537,7 @@ namespace MM.Bussiness
                             l.UpdatedBy = logon.UpdatedBy;
                             l.Status = logon.Status;
 
-                            desc += string.Format("- GUID: '{0}', Nhân viên: '{1}'", l.LogonGUID.ToString(), l.DocStaff.Contact.FullName);
+                            desc += string.Format("- GUID: '{0}', Nhân viên: '{1}'\n", l.LogonGUID.ToString(), l.DocStaff.Contact.FullName);
 
                             var permissions = from p in db.UserGroup_Logons
                                               where p.LogonGUID == l.LogonGUID
@@ -544,6 +547,7 @@ namespace MM.Bussiness
                             db.SubmitChanges();
 
                             //Permission
+                            desc += "- Permission:\n";
                             foreach (DataRow row in dtPermission.Rows)
                             {
                                 bool use = Convert.ToBoolean(row["Checked"]);
@@ -553,6 +557,8 @@ namespace MM.Bussiness
                                 p.LogonGUID = l.LogonGUID;
                                 p.UserGroupGUID = Guid.Parse(row["UserGroupGUID"].ToString());
                                 db.UserGroup_Logons.InsertOnSubmit(p);
+                                db.SubmitChanges();
+                                desc += string.Format("   + {0}\n", p.UserGroup.GroupName);
                             }
 
                             //Tracking

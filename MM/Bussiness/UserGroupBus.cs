@@ -208,7 +208,7 @@ namespace MM.Bussiness
                             db.UserGroups.InsertOnSubmit(userGroup);
                             db.SubmitChanges();
 
-                            desc += string.Format("- GUID: '{0}', Tên nhóm người sử dụng: '{1}'", userGroup.UserGroupGUID.ToString(), userGroup.GroupName);
+                            desc += string.Format("- GUID: '{0}', Tên nhóm người sử dụng: '{1}'\n", userGroup.UserGroupGUID.ToString(), userGroup.GroupName);
                         }
                         else
                         {
@@ -225,9 +225,10 @@ namespace MM.Bussiness
                             db.UserGroup_Permissions.DeleteAllOnSubmit(permissions);
                             db.SubmitChanges();
 
-                            desc += string.Format("- GUID: '{0}', Tên nhóm người sử dụng: '{1}'", usrgr.UserGroupGUID.ToString(), usrgr.GroupName);
+                            desc += string.Format("- GUID: '{0}', Tên nhóm người sử dụng: '{1}'\n", usrgr.UserGroupGUID.ToString(), usrgr.GroupName);
                         }
 
+                        desc += string.Format("- Permission:\n");
                         //Permission
                         foreach (DataRow row in dtPermission.Rows)
                         {
@@ -251,6 +252,11 @@ namespace MM.Bussiness
                             p.CreatedDate = DateTime.Now;
                             p.CreatedBy = Guid.Parse(Global.UserGUID);
                             db.UserGroup_Permissions.InsertOnSubmit(p);
+                            db.SubmitChanges();
+
+                            desc += string.Format("   + {0}: Xem:{1}, Thêm:{2}, Sửa:{3}, Xóa:{4}, In:{5}, Xuất:{6}, Nhập:{7}, Duyệt:{8}, Khóa:{9}, Xuất hết:{10}, Tạo hồ sơ: {11}, Upload hồ sơ:{12}, Gửi SMS:{13}\n",
+                                p.Function.FunctionName, p.IsView, p.IsAdd, p.IsEdit, p.IsDelete, p.IsPrint, p.IsExport, p.IsImport, p.IsConfirm, p.IsLock, 
+                                p.IsExportAll, p.IsCreateReport, p.IsUpload, p.IsSendSMS);
                         }
                         
                         //Tracking
@@ -276,15 +282,17 @@ namespace MM.Bussiness
                             usrgr.UpdatedBy = userGroup.UpdatedBy;
                             usrgr.Status = userGroup.Status;
 
-                            desc += string.Format("- GUID: '{0}', Tên nhóm người sử dụng: '{1}'", usrgr.UserGroupGUID.ToString(), usrgr.GroupName);
-
+                            desc += string.Format("- GUID: '{0}', Tên nhóm người sử dụng: '{1}'\n", usrgr.UserGroupGUID.ToString(), usrgr.GroupName);
+                            
                             //Permission
+                            desc += string.Format("- Permission:\n");
                             foreach (DataRow row in dtPermission.Rows)
                             {
+                                UserGroup_Permission p = null;
                                 if (row["UserGroup_PermissionGUID"] != null && row["UserGroup_PermissionGUID"] != DBNull.Value)
                                 {
                                     string permissionGUID = row["UserGroup_PermissionGUID"].ToString();
-                                    UserGroup_Permission p = db.UserGroup_Permissions.SingleOrDefault<UserGroup_Permission>(pp => pp.UserGroup_PermissionGUID.ToString() == permissionGUID);
+                                    p = db.UserGroup_Permissions.SingleOrDefault<UserGroup_Permission>(pp => pp.UserGroup_PermissionGUID.ToString() == permissionGUID);
                                     if (p != null)
                                     {
                                         p.IsView = Convert.ToBoolean(row["IsView"]);
@@ -306,7 +314,7 @@ namespace MM.Bussiness
                                 }
                                 else
                                 {
-                                    UserGroup_Permission p = new UserGroup_Permission();
+                                    p = new UserGroup_Permission();
                                     p.UserGroup_PermissionGUID = Guid.NewGuid();
                                     p.UserGroupGUID = userGroup.UserGroupGUID;
                                     p.FunctionGUID = Guid.Parse(row["FunctionGUID"].ToString());
@@ -327,6 +335,12 @@ namespace MM.Bussiness
                                     p.CreatedBy = Guid.Parse(Global.UserGUID);
                                     db.UserGroup_Permissions.InsertOnSubmit(p);
                                 }
+
+                                db.SubmitChanges();
+
+                                desc += string.Format("   + {0}: Xem:{1}, Thêm:{2}, Sửa:{3}, Xóa:{4}, In:{5}, Xuất:{6}, Nhập:{7}, Duyệt:{8}, Khóa:{9}, Xuất hết:{10}, Tạo hồ sơ: {11}, Upload hồ sơ:{12}, Gửi SMS:{13}\n",
+                                p.Function.FunctionName, p.IsView, p.IsAdd, p.IsEdit, p.IsDelete, p.IsPrint, p.IsExport, p.IsImport, p.IsConfirm, p.IsLock,
+                                p.IsExportAll, p.IsCreateReport, p.IsUpload, p.IsSendSMS);
                             }
 
                             //Tracking
