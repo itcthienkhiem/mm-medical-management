@@ -117,7 +117,9 @@ namespace MM.Common
     {
         TienMat = 0,
         ChuyenKhoan,
-        TienMat_ChuyenKhoan
+        TienMat_ChuyenKhoan,
+        BaoHiem,
+        CaThe
     };
 
     public enum CoQuan : int
