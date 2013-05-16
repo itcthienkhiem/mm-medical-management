@@ -59,7 +59,7 @@
             // 
             this.dgLichKham.AutoSize = true;
             this.dgLichKham.AutoSizeMinHeight = 25;
-            this.dgLichKham.AutoSizeMinWidth = 105;
+            this.dgLichKham.AutoSizeMinWidth = 90;
             this.dgLichKham.AutoStretchColumnsToFitWidth = false;
             this.dgLichKham.AutoStretchRowsToFitHeight = false;
             this.dgLichKham.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
