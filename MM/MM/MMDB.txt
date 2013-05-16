@@ -341,4 +341,4 @@ Hai Hoan: ben do moi mo khoa Rang Ham Mat (OK)
 
 2. Chức năng report dịch vụ xét nghiệm
 
-3. Thêm thông tin hình thức thanh toán trong Phiếu thu
+3. Thêm thông tin hình thức thanh toán trong Phiếu thu (OK)
