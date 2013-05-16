@@ -40,6 +40,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddPhieuThuCapCuu));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cboHinhThucThanhToan = new System.Windows.Forms.ComboBox();
+            this.label10 = new System.Windows.Forms.Label();
             this.cboMaToaCapCuu = new System.Windows.Forms.ComboBox();
             this.toaCapCuuBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
@@ -62,6 +64,7 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.txtMaToaCapCuu = new System.Windows.Forms.TextBox();
             this.dgChiTiet = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.TenCapCuu = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -79,7 +82,6 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.lbTongTien = new System.Windows.Forms.Label();
             this.btnExportInvoice = new System.Windows.Forms.Button();
-            this.txtMaToaCapCuu = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.toaCapCuuBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgChiTiet)).BeginInit();
@@ -89,6 +91,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.cboHinhThucThanhToan);
+            this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.cboMaToaCapCuu);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.txtLyDoGiam);
@@ -117,6 +121,30 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin phiếu thu";
+            // 
+            // cboHinhThucThanhToan
+            // 
+            this.cboHinhThucThanhToan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboHinhThucThanhToan.FormattingEnabled = true;
+            this.cboHinhThucThanhToan.Items.AddRange(new object[] {
+            "Tiền mặt",
+            "Chuyển khoản",
+            "Tiền mặt/Chuyển khoản",
+            "Bảo hiểm",
+            "Cà thẻ"});
+            this.cboHinhThucThanhToan.Location = new System.Drawing.Point(312, 196);
+            this.cboHinhThucThanhToan.Name = "cboHinhThucThanhToan";
+            this.cboHinhThucThanhToan.Size = new System.Drawing.Size(201, 21);
+            this.cboHinhThucThanhToan.TabIndex = 55;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(197, 199);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(110, 13);
+            this.label10.TabIndex = 54;
+            this.label10.Text = "Hình thức thanh toán:";
             // 
             // cboMaToaCapCuu
             // 
@@ -183,7 +211,7 @@
             // 
             this.chkDaXuatHD.AutoSize = true;
             this.chkDaXuatHD.Enabled = false;
-            this.chkDaXuatHD.Location = new System.Drawing.Point(182, 198);
+            this.chkDaXuatHD.Location = new System.Drawing.Point(686, 198);
             this.chkDaXuatHD.Name = "chkDaXuatHD";
             this.chkDaXuatHD.Size = new System.Drawing.Size(106, 17);
             this.chkDaXuatHD.TabIndex = 14;
@@ -322,6 +350,16 @@
             this.label2.Size = new System.Drawing.Size(79, 13);
             this.label2.TabIndex = 1;
             this.label2.Text = "Mã bệnh nhân:";
+            // 
+            // txtMaToaCapCuu
+            // 
+            this.txtMaToaCapCuu.Location = new System.Drawing.Point(98, 47);
+            this.txtMaToaCapCuu.MaxLength = 50;
+            this.txtMaToaCapCuu.Name = "txtMaToaCapCuu";
+            this.txtMaToaCapCuu.ReadOnly = true;
+            this.txtMaToaCapCuu.Size = new System.Drawing.Size(165, 20);
+            this.txtMaToaCapCuu.TabIndex = 2;
+            this.txtMaToaCapCuu.Visible = false;
             // 
             // dgChiTiet
             // 
@@ -543,16 +581,6 @@
             this.btnExportInvoice.Visible = false;
             this.btnExportInvoice.Click += new System.EventHandler(this.btnExportInvoice_Click);
             // 
-            // txtMaToaCapCuu
-            // 
-            this.txtMaToaCapCuu.Location = new System.Drawing.Point(98, 47);
-            this.txtMaToaCapCuu.MaxLength = 50;
-            this.txtMaToaCapCuu.Name = "txtMaToaCapCuu";
-            this.txtMaToaCapCuu.ReadOnly = true;
-            this.txtMaToaCapCuu.Size = new System.Drawing.Size(165, 20);
-            this.txtMaToaCapCuu.TabIndex = 2;
-            this.txtMaToaCapCuu.Visible = false;
-            // 
             // dlgAddPhieuThuCapCuu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -628,5 +656,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn SoLuongTon;
         private System.Windows.Forms.DataGridViewTextBoxColumn KhoCapCuuGUID;
         private System.Windows.Forms.TextBox txtMaToaCapCuu;
+        private System.Windows.Forms.ComboBox cboHinhThucThanhToan;
+        private System.Windows.Forms.Label label10;
     }
 }

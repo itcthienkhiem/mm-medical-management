@@ -43,6 +43,7 @@ namespace MM.Dialogs
             {
                 btnOK.Enabled = false;
                 chkDaThuTien.Enabled = false;
+                cboHinhThucThanhToan.Enabled = false;
             }
 
             cboMaToaCapCuu.Visible = false;
@@ -113,6 +114,7 @@ namespace MM.Dialogs
 
         private void InitData()
         {
+            cboHinhThucThanhToan.SelectedIndex = 0;
             dtpkNgayThu.Value = DateTime.Now;
             OnDisplayKhoCapCuu();
             OnDisplayToaCapCuu();
@@ -154,6 +156,7 @@ namespace MM.Dialogs
                 txtLyDoGiam.Text = drPhieuThu["LyDoGiam"] as string;
                 chkDaThuTien.Checked = Convert.ToBoolean(drPhieuThu["DaThuTien"]);
                 chkDaXuatHD.Checked = Convert.ToBoolean(drPhieuThu["IsExported"]);
+                cboHinhThucThanhToan.SelectedIndex = Convert.ToInt32(drPhieuThu["HinhThucThanhToan"]);
 
                 _phieuThuCapCuu.PhieuThuCapCuuGUID = Guid.Parse(drPhieuThu["PhieuThuCapCuuGUID"].ToString());
 
@@ -566,6 +569,7 @@ namespace MM.Dialogs
                     _phieuThuCapCuu.ChuaThuTien = !chkDaThuTien.Checked;
                     _phieuThuCapCuu.Notes = txtGhiChu.Text;
                     _phieuThuCapCuu.LyDoGiam = txtLyDoGiam.Text;
+                    _phieuThuCapCuu.HinhThucThanhToan = (byte)cboHinhThucThanhToan.SelectedIndex;
 
                     if (_isNew)
                     {
@@ -692,7 +696,6 @@ namespace MM.Dialogs
         #region Window Event Handlers
         private void dlgAddPhieuThuThuoc_Load(object sender, EventArgs e)
         {
-
             if (_isNew)
             {
                 InitData();
@@ -717,7 +720,8 @@ namespace MM.Dialogs
                 }
                 else
                 {
-                    Result result = PhieuThuCapCuuBus.CapNhatTrangThaiPhieuThu(_phieuThuCapCuu.PhieuThuCapCuuGUID.ToString(), chkDaXuatHD.Checked, chkDaThuTien.Checked);
+                    Result result = PhieuThuCapCuuBus.CapNhatTrangThaiPhieuThu(_phieuThuCapCuu.PhieuThuCapCuuGUID.ToString(), 
+                        chkDaXuatHD.Checked, chkDaThuTien.Checked, (byte)cboHinhThucThanhToan.SelectedIndex);
                     if (!result.IsOK)
                     {
                         MsgBox.Show(Application.ProductName, result.GetErrorAsString("PhieuThuCapCuuBus.CapNhatTrangThaiPhieuThu"), IconType.Error);
@@ -728,6 +732,8 @@ namespace MM.Dialogs
                     {
                         _drPhieuThu["IsExported"] = chkDaXuatHD.Checked;
                         _drPhieuThu["DaThuTien"] = chkDaThuTien.Checked;
+                        _drPhieuThu["HinhThucThanhToan"] = (byte)cboHinhThucThanhToan.SelectedIndex;
+                        _drPhieuThu["HinhThucThanhToanStr"] = cboHinhThucThanhToan.Text;
                     }
                 }
             }

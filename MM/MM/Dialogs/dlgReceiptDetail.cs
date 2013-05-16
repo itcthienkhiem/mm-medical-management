@@ -26,6 +26,7 @@ namespace MM.Dialogs
         public dlgReceiptDetail(DataRow drReceipt)
         {
             InitializeComponent();
+            cboHinhThucThanhToan.SelectedIndex = 0;
             _drReceipt = drReceipt;
             UpdateGUI();
             DisplayInfo(drReceipt);
@@ -63,6 +64,8 @@ namespace MM.Dialogs
 
             if (drReceipt["LyDoGiam"] != null && drReceipt["LyDoGiam"] != DBNull.Value)
                 txtLyDoGiam.Text = drReceipt["LyDoGiam"].ToString();
+
+            cboHinhThucThanhToan.SelectedIndex = Convert.ToInt32(drReceipt["HinhThucThanhToan"]);
 
             lbTotalPrice.Text = "Tổng tiền: 0 (VNĐ)";
             
@@ -133,6 +136,7 @@ namespace MM.Dialogs
             {
                 chkDaXuatHD.Enabled = true;
                 chkDaThuTien.Enabled = true;
+                cboHinhThucThanhToan.Enabled = true;
                 btnOK.Enabled = true;
             }
         }
@@ -153,7 +157,8 @@ namespace MM.Dialogs
             {
                 if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
                 {
-                    Result result = ReceiptBus.CapNhatTrangThaiPhieuThu(_drReceipt["ReceiptGUID"].ToString(), chkDaXuatHD.Checked, chkDaThuTien.Checked);
+                    Result result = ReceiptBus.CapNhatTrangThaiPhieuThu(_drReceipt["ReceiptGUID"].ToString(), chkDaXuatHD.Checked, 
+                        chkDaThuTien.Checked, (byte)cboHinhThucThanhToan.SelectedIndex);
                     if (!result.IsOK)
                     {
                         MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReceiptBus.CapNhatTrangThaiPhieuThu"), IconType.Error);
@@ -164,6 +169,8 @@ namespace MM.Dialogs
                     {
                         _drReceipt["IsExportedInVoice"] = chkDaXuatHD.Checked;
                         _drReceipt["DaThuTien"] = chkDaThuTien.Checked;
+                        _drReceipt["HinhThucThanhToan"] = (byte)cboHinhThucThanhToan.SelectedIndex;
+                        _drReceipt["HinhThucThanhToanStr"] = cboHinhThucThanhToan.Text;
                     }
                 }
             }
