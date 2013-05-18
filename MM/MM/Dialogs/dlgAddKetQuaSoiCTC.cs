@@ -72,20 +72,27 @@ namespace MM.Dialogs
 
             if (_allowEdit)
             {
-                if (!Global.TVHomeConfig.SuDungSoiCTC)
-                {
-                    PlayCapFactory.RunPlayCapProcess(true);
-                    PlayCapFactory.OnCaptureCompletedEvent += new CaptureCompletedHandler(PlayCapFactory_OnCaptureCompletedEvent);
-                }
-                else
-                {
-                    _watchingFolder = new WatchingFolder();
-                    _watchingFolder.OnCreatedFileEvent += new CreatedFileEventHandler(_watchingFolder_OnCreatedFileEvent);
-                    _watchingFolder.StartMoritoring(Global.HinhChupPath);
+                _watchingFolder = new WatchingFolder();
+                _watchingFolder.OnCreatedFileEvent += new CreatedFileEventHandler(_watchingFolder_OnCreatedFileEvent);
+                _watchingFolder.StartMoritoring(Global.HinhChupPath);
 
-                    if (!Utility.CheckRunningProcess(Const.TVHomeProcessName))
-                        Utility.ExecuteFile(Global.TVHomeConfig.Path);
-                }
+                if (!Utility.CheckRunningProcess(Const.TVHomeProcessName))
+                    Utility.ExecuteFile(Global.TVHomeConfig.Path);
+
+                //if (!Global.TVHomeConfig.SuDungSoiCTC)
+                //{
+                //    PlayCapFactory.RunPlayCapProcess(true);
+                //    PlayCapFactory.OnCaptureCompletedEvent += new CaptureCompletedHandler(PlayCapFactory_OnCaptureCompletedEvent);
+                //}
+                //else
+                //{
+                //    _watchingFolder = new WatchingFolder();
+                //    _watchingFolder.OnCreatedFileEvent += new CreatedFileEventHandler(_watchingFolder_OnCreatedFileEvent);
+                //    _watchingFolder.StartMoritoring(Global.HinhChupPath);
+
+                //    if (!Utility.CheckRunningProcess(Const.TVHomeProcessName))
+                //        Utility.ExecuteFile(Global.TVHomeConfig.Path);
+                //}
             }
 
             Result result = PatientBus.GetPatient2(_patientGUID);
