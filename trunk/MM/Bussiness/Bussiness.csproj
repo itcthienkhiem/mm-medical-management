@@ -93,6 +93,7 @@
     <Compile Include="CongTacNgoaiGioBus.cs" />
     <Compile Include="DichVuLamThemBus.cs" />
     <Compile Include="SMSLogBus.cs" />
+    <Compile Include="ThucHienXetNghiemBus.cs" />
     <Compile Include="TinNhanMauBus.cs" />
     <Compile Include="KeToaCapCuuBus.cs" />
     <Compile Include="KetQuaCanLamSangBus.cs" />

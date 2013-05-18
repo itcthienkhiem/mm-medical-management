@@ -1625,6 +1625,20 @@ namespace MM
                             _uChuyenBenhAn.AllowExportAll = isExportAll;
                             _uChuyenBenhAn.AllowConfirm = isConfirm;
                         }
+                        else if (functionCode == Const.DichVuXetNghiem)
+                        {
+                            toolsToolStripMenuItem.Enabled = isLogin;
+                            dichVuXetNghiemToolStripMenuItem.Enabled = isView && isLogin;
+                            _uDichVuXetNghiem.AllowAdd = isAdd;
+                            _uDichVuXetNghiem.AllowEdit = isEdit;
+                            _uDichVuXetNghiem.AllowDelete = isDelete;
+                            _uDichVuXetNghiem.AllowPrint = isPrint;
+                            _uDichVuXetNghiem.AllowExport = isExport;
+                            _uDichVuXetNghiem.AllowImport = isImport;
+                            _uDichVuXetNghiem.AllowLock = isLock;
+                            _uDichVuXetNghiem.AllowExportAll = isExportAll;
+                            _uDichVuXetNghiem.AllowConfirm = isConfirm;
+                        }
                     }
                 }
                 else
@@ -1856,6 +1870,7 @@ namespace MM
                 toaThuocTrongNgayToolStripMenuItem.Enabled = isLogin;
                 nhanVienTrungLapToolStripMenuItem.Enabled = isLogin;
                 chuyenBenhAnToolStripMenuItem.Enabled = isLogin;
+                dichVuXetNghiemToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -2314,7 +2329,18 @@ namespace MM
                 case "ChuyenBenhAn":
                     OnChuyenBenhAn();
                     break;
+
+                case "DichVuXetNghiem":
+                    OnDichVuXetNghiem();
+                    break;
             }
+        }
+
+        private void OnDichVuXetNghiem()
+        {
+            this.Text = string.Format("{0} - Dich vu xet nghiem", Application.ProductName);
+            ViewControl(_uDichVuXetNghiem);
+            _uDichVuXetNghiem.DisplayAsThread();
         }
 
         private void OnChuyenBenhAn()
@@ -3318,6 +3344,7 @@ namespace MM
             _uToaThuocTrongNgayList.ClearData();
             _uNhanVienTrungLap.ClearData();
             _uChuyenBenhAn.ClearData();
+            _uDichVuXetNghiem.ClearData();
         }
         #endregion
 
