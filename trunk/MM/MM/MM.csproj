@@ -2506,6 +2506,7 @@
     <None Include="Templates\DanhSachThuocTemplate.xls" />
     <None Include="Templates\DichVuHopDongTemplate.xls" />
     <None Include="Templates\DichVuTuTucTemplate.xls" />
+    <None Include="Templates\DichVuXetNghiemTemplate.xls" />
     <None Include="Templates\DoanhThuTheoNgayTemplate.xls" />
     <None Include="Templates\GiaVonDichVuTemplate.xls" />
     <None Include="Templates\HDGTGTTemplate.xls" />
