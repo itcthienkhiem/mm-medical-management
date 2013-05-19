@@ -215,6 +215,7 @@ namespace MM.Common
             ExcelTemplates.Add(Const.BaoCaoCongNoHopDongTongHopTemplate);
             ExcelTemplates.Add(Const.BaoCaoCongNoHopDongChiTietTemplate);
             ExcelTemplates.Add(Const.ChiDinhTemplate);
+            ExcelTemplates.Add(Const.DichVuXetNghiemTemplate);
 
             ExcelTemplates.Sort();
         }

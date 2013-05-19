@@ -9454,5 +9454,122 @@ namespace MM.Exports
 
             return true;
         }
+
+        public static bool ExportDichVuXetNghiemToExcel(string exportFileName, DateTime tuNgay, DateTime denNgay, DataTable dtSource)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            IWorkbook workBook = null;
+
+            try
+            {
+                string excelTemplateName = string.Format("{0}\\Templates\\DichVuXetNghiemTemplate.xls", Application.StartupPath);
+
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+                workSheet.Cells["C4"].Value = string.Format("TỪ : {0} ĐẾN : {1}", tuNgay.ToString("dd/MM/yyyy"), denNgay.ToString("dd/MM/yyyy"));
+
+                int rowIndex = 7;
+                int no = 1;
+                IRange range;
+                double tongTien = 0;
+
+                foreach (DataRow row in dtSource.Rows)
+                {
+                    DateTime ngayThucHien = Convert.ToDateTime(row["NgayThucHien"]);
+                    string tenCongTy = row["TenCongTy"].ToString();
+                    string tenKhachHang = row["TenKhachHang"].ToString();
+                    string tenDichVu = row["TenDichVu"].ToString();
+                    double soTien = Convert.ToDouble(row["SoTien"]);
+
+                    range = workSheet.Cells[string.Format("B{0}:C{0}", rowIndex)];
+                    range.Merge();
+                    range.Value = no;
+                    range.RowHeight = 24;
+
+                    workSheet.Cells[string.Format("D{0}", rowIndex)].Value = ngayThucHien;
+                    range.HorizontalAlignment = HAlign.Center;
+                    range.VerticalAlignment = VAlign.Center;
+                    range.WrapText = true;
+
+                    workSheet.Cells[string.Format("E{0}", rowIndex)].Value = tenCongTy;
+                    range.HorizontalAlignment = HAlign.Left;
+                    range.VerticalAlignment = VAlign.Center;
+                    range.WrapText = true;
+
+                    range = workSheet.Cells[string.Format("F{0}:H{0}", rowIndex)];
+                    range.Merge();
+                    range = workSheet.Cells[string.Format("F{0}", rowIndex)];
+                    range.Value = tenKhachHang;
+                    range.HorizontalAlignment = HAlign.Left;
+                    range.VerticalAlignment = VAlign.Center;
+                    range.WrapText = true;
+                    
+                    workSheet.Cells[string.Format("I{0}", rowIndex)].Value = tenDichVu;
+                    range.HorizontalAlignment = HAlign.Left;
+                    range.VerticalAlignment = VAlign.Center;
+                    range.WrapText = true;
+
+                    range = workSheet.Cells[string.Format("J{0}:K{0}", rowIndex)];
+                    range.Merge();
+                    range = workSheet.Cells[string.Format("J{0}", rowIndex)];
+                    range.Value = soTien;
+                    range.HorizontalAlignment = HAlign.Right;
+                    range.VerticalAlignment = VAlign.Center;
+                    range.WrapText = true;
+                    
+                    tongTien += soTien;
+
+                    rowIndex++;
+                    no++;
+                }
+
+                range = workSheet.Cells[string.Format("J{0}:K{0}", rowIndex)];
+                range.Merge();
+                range = workSheet.Cells[string.Format("J{0}", rowIndex)];
+                range.Value = tongTien;
+                range.HorizontalAlignment = HAlign.Right;
+                range.VerticalAlignment = VAlign.Center;
+                range.WrapText = true;
+
+                range = workSheet.Cells[string.Format("B7:C{0}", rowIndex)];
+                range.HorizontalAlignment = HAlign.Center;
+
+                range = workSheet.Cells[string.Format("B{0}:I{0}", rowIndex)];
+                range.Merge();
+                range = workSheet.Cells[string.Format("B{0}", rowIndex)];
+                range.Value = "TỔNG";
+                range.HorizontalAlignment = HAlign.Right;
+                range.VerticalAlignment = VAlign.Center;
+                range.WrapText = true;
+                range.RowHeight = 24;
+
+                range = workSheet.Cells[string.Format("B7:K{0}", rowIndex)];
+                range.Borders.Color = Color.Black;
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Weight = BorderWeight.Thin;
+
+                string path = string.Format("{0}\\Temp", Application.StartupPath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
     }
 }
