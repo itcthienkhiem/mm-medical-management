@@ -2340,6 +2340,7 @@ namespace MM
         {
             this.Text = string.Format("{0} - Dich vu xet nghiem", Application.ProductName);
             ViewControl(_uDichVuXetNghiem);
+            _uDichVuXetNghiem.InitData();
             _uDichVuXetNghiem.DisplayAsThread();
         }
 

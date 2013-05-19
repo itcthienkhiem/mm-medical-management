@@ -2453,6 +2453,7 @@
     <None Include="Properties\DataSources\MM.Databasae.spThuocTonKhoResult.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Symptom.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ThongBaoView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.ThucHienXetNghiem.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.Thuoc.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.ThuocResult.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.TiemNguaView.datasource" />
