@@ -105,6 +105,41 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetTongTien(DateTime tuNgay, DateTime denNgay, string tenCongTy, string tenKhachHang, string tenDichVu)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Format("SELECT SUM(SoTien) AS TongTien FROM ThucHienXetNghiem WITH(NOLOCK) WHERE Status={0} AND NgayThucHien BETWEEN '{1}' AND '{2}' AND TenCongTy LIKE N'%{3}%' AND TenKhachHang LIKE N'%{4}%' AND TenDichVu LIKE N'%{5}%'",
+                    (byte)Status.Actived, tuNgay.ToString("yyyy-MM-dd 00:00:00"), denNgay.ToString("yyyy-MM-dd 23:59:59"), tenCongTy, tenKhachHang, tenDichVu);
+                result = ExcuteQuery(query);
+                if (!result.IsOK) return result;
+
+                DataTable dt = result.QueryResult as DataTable;
+                if (dt == null || dt.Rows.Count <= 0) result.QueryResult = 0;
+                else
+                {
+                    if (dt.Rows[0][0] != null && dt.Rows[0][0] != DBNull.Value)
+                        result.QueryResult = Convert.ToDouble(dt.Rows[0][0]);
+                    else
+                        result.QueryResult = 0;
+                }
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result DeleteDichVuXetNghiem(List<string> keys)
         {
             Result result = new Result();
@@ -234,6 +269,65 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result UpdateGiaDichVuXetNghiem(string key, double soTien)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.Required, new TimeSpan(0, 30, 0)))
+                {
+                    string desc = string.Empty;
+                    ThucHienXetNghiem thxn = db.ThucHienXetNghiems.SingleOrDefault<ThucHienXetNghiem>(x => x.ThucHienXetNghiemGUID.ToString() == key);
+                    if (thxn != null)
+                    {
+                        thxn.SoTien = soTien;
+                        thxn.UpdatedDate = DateTime.Now;
+                        thxn.UpdatedBy = Guid.Parse(Global.UserGUID);
+
+                        desc = string.Format("- GUID: '{0}', Ngày thực hiện: '{1}', Tên công ty: '{2}', Tên khách hàng: '{3}', Tên dịch vụ: '{4}', Số tiền: '{5}', Source: '{6}'",
+                            thxn.ThucHienXetNghiemGUID.ToString(), thxn.NgayThucHien.ToString("dd/MM/yyyy"), thxn.TenCongTy, thxn.TenKhachHang, thxn.TenDichVu, soTien, thxn.SourcePath);
+
+                        //Tracking
+                        Tracking tk = new Tracking();
+                        tk.TrackingGUID = Guid.NewGuid();
+                        tk.TrackingDate = DateTime.Now;
+                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                        tk.ActionType = (byte)ActionType.Delete;
+                        tk.Action = "Sửa giá dịch vụ xét nghiệm";
+                        tk.Description = desc;
+                        tk.TrackingType = (byte)TrackingType.Price;
+                        db.Trackings.InsertOnSubmit(tk);
+                    }
+
+                    db.SubmitChanges();
+                    t.Complete();
+                }
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
         public static Result InsertDichVuXetNghiem(ThucHienXetNghiem xn)
         {
             Result result = new Result();
@@ -245,12 +339,14 @@ namespace MM.Bussiness
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.Required, new TimeSpan(0, 30, 0)))
                 {
                     string desc = string.Empty;
-                    ThucHienXetNghiem thxn = db.ThucHienXetNghiems.FirstOrDefault<ThucHienXetNghiem>(x => x.NgayThucHien == xn.NgayThucHien &&
-                        x.TenCongTy.Trim().ToUpper() == xn.TenCongTy.Trim().ToUpper() &&
-                        x.TenKhachHang.Trim().ToUpper() == xn.TenKhachHang.Trim().ToUpper() &&
-                        x.TenDichVu.Trim().ToUpper() == xn.TenDichVu.Trim().ToUpper());
+                    //ThucHienXetNghiem thxn = db.ThucHienXetNghiems.FirstOrDefault<ThucHienXetNghiem>(x => x.NgayThucHien == xn.NgayThucHien &&
+                    //    x.TenCongTy.Trim().ToUpper() == xn.TenCongTy.Trim().ToUpper() &&
+                    //    x.TenKhachHang.Trim().ToUpper() == xn.TenKhachHang.Trim().ToUpper() &&
+                    //    x.TenDichVu.Trim().ToUpper() == xn.TenDichVu.Trim().ToUpper());
 
-                    if (thxn == null)
+                    //ThucHienXetNghiem thxn = db.ThucHienXetNghiems.FirstOrDefault<ThucHienXetNghiem>(x => x.SourcePath.Trim().ToLower() == xn.SourcePath.Trim().ToLower());
+
+                    //if (thxn == null)
                     {
                         xn.ThucHienXetNghiemGUID = Guid.NewGuid();
                         xn.CreatedDate = DateTime.Now;
@@ -273,29 +369,29 @@ namespace MM.Bussiness
                         tk.TrackingType = (byte)TrackingType.Price;
                         db.Trackings.InsertOnSubmit(tk);
                     }
-                    else
-                    {
-                        thxn.SoTien = xn.SoTien;
-                        thxn.SourcePath = xn.SourcePath;
-                        thxn.UpdatedBy = Guid.Parse(Global.UserGUID);
-                        thxn.UpdatedDate = DateTime.Now;
-                        thxn.Status = (byte)Status.Actived;
+                    //else
+                    //{
+                    //    thxn.SoTien = xn.SoTien;
+                    //    thxn.SourcePath = xn.SourcePath;
+                    //    thxn.UpdatedBy = Guid.Parse(Global.UserGUID);
+                    //    thxn.UpdatedDate = DateTime.Now;
+                    //    thxn.Status = (byte)Status.Actived;
 
-                        desc = string.Format("- GUID: '{0}', Ngày thực hiện: '{1}', Tên công ty: '{2}', Tên khách hàng: '{3}', Tên dịch vụ: '{4}', Số tiền: '{5}', Source: '{6}'",
-                            thxn.ThucHienXetNghiemGUID.ToString(), thxn.NgayThucHien.ToString("dd/MM/yyyy"), thxn.TenCongTy, thxn.TenKhachHang, thxn.TenDichVu, thxn.SoTien, thxn.SourcePath);
+                    //    desc = string.Format("- GUID: '{0}', Ngày thực hiện: '{1}', Tên công ty: '{2}', Tên khách hàng: '{3}', Tên dịch vụ: '{4}', Số tiền: '{5}', Source: '{6}'",
+                    //        thxn.ThucHienXetNghiemGUID.ToString(), thxn.NgayThucHien.ToString("dd/MM/yyyy"), thxn.TenCongTy, thxn.TenKhachHang, thxn.TenDichVu, thxn.SoTien, thxn.SourcePath);
 
-                        //Tracking
-                        desc = desc.Substring(0, desc.Length - 1);
-                        Tracking tk = new Tracking();
-                        tk.TrackingGUID = Guid.NewGuid();
-                        tk.TrackingDate = DateTime.Now;
-                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
-                        tk.ActionType = (byte)ActionType.Delete;
-                        tk.Action = "Sửa dịch vụ xét nghiệm";
-                        tk.Description = desc;
-                        tk.TrackingType = (byte)TrackingType.Price;
-                        db.Trackings.InsertOnSubmit(tk);
-                    }
+                    //    Tracking
+                    //    desc = desc.Substring(0, desc.Length - 1);
+                    //    Tracking tk = new Tracking();
+                    //    tk.TrackingGUID = Guid.NewGuid();
+                    //    tk.TrackingDate = DateTime.Now;
+                    //    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    //    tk.ActionType = (byte)ActionType.Delete;
+                    //    tk.Action = "Sửa dịch vụ xét nghiệm";
+                    //    tk.Description = desc;
+                    //    tk.TrackingType = (byte)TrackingType.Price;
+                    //    db.Trackings.InsertOnSubmit(tk);
+                    //}
 
                     db.SubmitChanges();
                     t.Complete();

@@ -1111,6 +1111,10 @@ namespace MM.Common
                     case "Chỉ định":
                         fileName = string.Format("{0}\\Templates\\ChiDinhTemplate.xls", AppDomain.CurrentDomain.BaseDirectory);
                         break;
+
+                    case "Dịch vụ xét nghiệm":
+                        fileName = string.Format("{0}\\Templates\\DichVuXetNghiemTemplate.xls", AppDomain.CurrentDomain.BaseDirectory);
+                        break;
                 }
 
                 if (fileName != string.Empty && File.Exists(fileName))
