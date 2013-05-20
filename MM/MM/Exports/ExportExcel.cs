@@ -3467,14 +3467,14 @@ namespace MM.Exports
             return true;
         }
 
-        public static bool ExportDoanhThuTheoNgayToExcel(string exportFileName, DateTime tuNgay, DateTime denNgay)
+        public static bool ExportDoanhThuTheoNgayToExcel(string exportFileName, DateTime tuNgay, DateTime denNgay, int type)
         {
             Cursor.Current = Cursors.WaitCursor;
             IWorkbook workBook = null;
 
             try
             {
-                Result result = ReportBus.GetChiTietPhieuThuDichVu(tuNgay, denNgay);
+                Result result = ReportBus.GetChiTietPhieuThuDichVu(tuNgay, denNgay, type);
                 if (!result.IsOK)
                 {
                     MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReportBus.GetChiTietPhieuThuDichVu"), IconType.Error);
@@ -3485,7 +3485,7 @@ namespace MM.Exports
                 List<ReceiptDetailView> receiptDetailList = (List<ReceiptDetailView>)result.QueryResult;
                 if (receiptDetailList == null) return false;
 
-                result = ReportBus.GetChiTietPhieuThuThuoc(tuNgay, denNgay);
+                result = ReportBus.GetChiTietPhieuThuThuoc(tuNgay, denNgay, type);
                 if (!result.IsOK)
                 {
                     MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReportBus.GetChiTietPhieuThuThuoc"), IconType.Error);
@@ -3496,7 +3496,7 @@ namespace MM.Exports
                 List<ChiTietPhieuThuThuocView> chiTietPhieuThuThuocList = (List<ChiTietPhieuThuThuocView>)result.QueryResult;
                 if (chiTietPhieuThuThuocList == null) return false;
 
-                result = ReportBus.GetChiTietPhieuThuCapCuu(tuNgay, denNgay);
+                result = ReportBus.GetChiTietPhieuThuCapCuu(tuNgay, denNgay, type);
                 if (!result.IsOK)
                 {
                     MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReportBus.GetChiTietPhieuThuCapCuu"), IconType.Error);
