@@ -271,7 +271,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetChiTietPhieuThuDichVu(DateTime tuNgay, DateTime denNgay)
+        public static Result GetChiTietPhieuThuDichVu(DateTime tuNgay, DateTime denNgay, int type)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -279,12 +279,34 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-                List<ReceiptDetailView> chiTietPhieuThuList = (from pt in db.Receipts
-                                                  join ctpt in db.ReceiptDetailViews on pt.ReceiptGUID equals ctpt.ReceiptGUID
-                                                  where pt.Status == (byte)Status.Actived && 
-                                                  pt.ReceiptDate >= tuNgay && pt.ReceiptDate <= denNgay &&
-                                                  pt.ChuaThuTien == false
-                                                  select ctpt).ToList<ReceiptDetailView>();
+                List<ReceiptDetailView> chiTietPhieuThuList = null;
+
+                if (type == 0)
+                {
+                    chiTietPhieuThuList = (from pt in db.Receipts
+                                           join ctpt in db.ReceiptDetailViews on pt.ReceiptGUID equals ctpt.ReceiptGUID
+                                           where pt.Status == (byte)Status.Actived &&
+                                           pt.ReceiptDate >= tuNgay && pt.ReceiptDate <= denNgay 
+                                           select ctpt).ToList<ReceiptDetailView>();
+                }
+                else if (type == 1)
+                {
+                    chiTietPhieuThuList = (from pt in db.Receipts
+                                           join ctpt in db.ReceiptDetailViews on pt.ReceiptGUID equals ctpt.ReceiptGUID
+                                           where pt.Status == (byte)Status.Actived &&
+                                           pt.ReceiptDate >= tuNgay && pt.ReceiptDate <= denNgay &&
+                                           pt.ChuaThuTien == false
+                                           select ctpt).ToList<ReceiptDetailView>();
+                }
+                else
+                {
+                    chiTietPhieuThuList = (from pt in db.Receipts
+                                           join ctpt in db.ReceiptDetailViews on pt.ReceiptGUID equals ctpt.ReceiptGUID
+                                           where pt.Status == (byte)Status.Actived &&
+                                           pt.ReceiptDate >= tuNgay && pt.ReceiptDate <= denNgay &&
+                                           pt.ChuaThuTien == true
+                                           select ctpt).ToList<ReceiptDetailView>();
+                }
 
                 result.QueryResult = chiTietPhieuThuList;
             }
@@ -310,7 +332,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetChiTietPhieuThuThuoc(DateTime tuNgay, DateTime denNgay)
+        public static Result GetChiTietPhieuThuThuoc(DateTime tuNgay, DateTime denNgay, int type)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -318,12 +340,34 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-                List<ChiTietPhieuThuThuocView> chiTietPhieuThuList = (from pt in db.PhieuThuThuocs
-                                                               join ctpt in db.ChiTietPhieuThuThuocViews on pt.PhieuThuThuocGUID equals ctpt.PhieuThuThuocGUID
-                                                               where pt.Status == (byte)Status.Actived &&
-                                                               pt.NgayThu >= tuNgay && pt.NgayThu <= denNgay &&
-                                                               pt.ChuaThuTien == false
-                                                               select ctpt).ToList<ChiTietPhieuThuThuocView>();
+                List<ChiTietPhieuThuThuocView> chiTietPhieuThuList = null;
+
+                if (type == 0)
+                {
+                    chiTietPhieuThuList = (from pt in db.PhieuThuThuocs
+                                           join ctpt in db.ChiTietPhieuThuThuocViews on pt.PhieuThuThuocGUID equals ctpt.PhieuThuThuocGUID
+                                           where pt.Status == (byte)Status.Actived &&
+                                           pt.NgayThu >= tuNgay && pt.NgayThu <= denNgay
+                                           select ctpt).ToList<ChiTietPhieuThuThuocView>();
+                }
+                else if (type == 1)
+                {
+                    chiTietPhieuThuList = (from pt in db.PhieuThuThuocs
+                                           join ctpt in db.ChiTietPhieuThuThuocViews on pt.PhieuThuThuocGUID equals ctpt.PhieuThuThuocGUID
+                                           where pt.Status == (byte)Status.Actived &&
+                                           pt.NgayThu >= tuNgay && pt.NgayThu <= denNgay &&
+                                           pt.ChuaThuTien == false
+                                           select ctpt).ToList<ChiTietPhieuThuThuocView>();
+                }
+                else
+                {
+                    chiTietPhieuThuList = (from pt in db.PhieuThuThuocs
+                                           join ctpt in db.ChiTietPhieuThuThuocViews on pt.PhieuThuThuocGUID equals ctpt.PhieuThuThuocGUID
+                                           where pt.Status == (byte)Status.Actived &&
+                                           pt.NgayThu >= tuNgay && pt.NgayThu <= denNgay &&
+                                           pt.ChuaThuTien == true
+                                           select ctpt).ToList<ChiTietPhieuThuThuocView>();
+                }
 
                 result.QueryResult = chiTietPhieuThuList;
             }
@@ -349,7 +393,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetChiTietPhieuThuCapCuu(DateTime tuNgay, DateTime denNgay)
+        public static Result GetChiTietPhieuThuCapCuu(DateTime tuNgay, DateTime denNgay, int type)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -357,12 +401,34 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-                List<ChiTietPhieuThuCapCuuView> chiTietPhieuThuList = (from pt in db.PhieuThuCapCuus
-                                                                       join ctpt in db.ChiTietPhieuThuCapCuuViews on pt.PhieuThuCapCuuGUID equals ctpt.PhieuThuCapCuuGUID
-                                                                      where pt.Status == (byte)Status.Actived &&
-                                                                      pt.NgayThu >= tuNgay && pt.NgayThu <= denNgay &&
-                                                                      pt.ChuaThuTien == false
-                                                                       select ctpt).ToList<ChiTietPhieuThuCapCuuView>();
+                List<ChiTietPhieuThuCapCuuView> chiTietPhieuThuList = null;
+
+                if (type == 0)
+                {
+                    chiTietPhieuThuList = (from pt in db.PhieuThuCapCuus
+                                           join ctpt in db.ChiTietPhieuThuCapCuuViews on pt.PhieuThuCapCuuGUID equals ctpt.PhieuThuCapCuuGUID
+                                           where pt.Status == (byte)Status.Actived &&
+                                           pt.NgayThu >= tuNgay && pt.NgayThu <= denNgay 
+                                           select ctpt).ToList<ChiTietPhieuThuCapCuuView>();
+                }
+                else if (type == 1)
+                {
+                    chiTietPhieuThuList = (from pt in db.PhieuThuCapCuus
+                                           join ctpt in db.ChiTietPhieuThuCapCuuViews on pt.PhieuThuCapCuuGUID equals ctpt.PhieuThuCapCuuGUID
+                                           where pt.Status == (byte)Status.Actived &&
+                                           pt.NgayThu >= tuNgay && pt.NgayThu <= denNgay &&
+                                           pt.ChuaThuTien == false
+                                           select ctpt).ToList<ChiTietPhieuThuCapCuuView>();
+                }
+                else
+                {
+                    chiTietPhieuThuList = (from pt in db.PhieuThuCapCuus
+                                           join ctpt in db.ChiTietPhieuThuCapCuuViews on pt.PhieuThuCapCuuGUID equals ctpt.PhieuThuCapCuuGUID
+                                           where pt.Status == (byte)Status.Actived &&
+                                           pt.NgayThu >= tuNgay && pt.NgayThu <= denNgay &&
+                                           pt.ChuaThuTien == true
+                                           select ctpt).ToList<ChiTietPhieuThuCapCuuView>();
+                }
 
                 result.QueryResult = chiTietPhieuThuList;
             }

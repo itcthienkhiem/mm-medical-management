@@ -35,7 +35,11 @@ namespace MM.Controls
             {
                 DateTime tuNgay = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
                 DateTime denNgay = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
-                if (ExportExcel.ExportDoanhThuTheoNgayToExcel(exportFileName, tuNgay, denNgay))
+                int type = 0;
+                if (raAll.Checked) type = 0;
+                else if (raDaThuTien.Checked) type = 1;
+                else type = 2;
+                if (ExportExcel.ExportDoanhThuTheoNgayToExcel(exportFileName, tuNgay, denNgay, type))
                 {
                     try
                     {
@@ -53,7 +57,10 @@ namespace MM.Controls
                 {
                     DateTime tuNgay = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
                     DateTime denNgay = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
-                    if (ExportExcel.ExportDoanhThuTheoNgayToExcel(exportFileName, tuNgay, denNgay))
+                    int type = 0;
+                    if (raAll.Checked) type = 0;
+                    else if (raDaThuTien.Checked) type = 1;
+                    if (ExportExcel.ExportDoanhThuTheoNgayToExcel(exportFileName, tuNgay, denNgay, type))
                     {
                         try
                         {
@@ -78,7 +85,10 @@ namespace MM.Controls
             {
                 DateTime tuNgay = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
                 DateTime denNgay = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
-                ExportExcel.ExportDoanhThuTheoNgayToExcel(dlg.FileName, tuNgay, denNgay);
+                int type = 0;
+                if (raAll.Checked) type = 0;
+                else if (raDaThuTien.Checked) type = 1;
+                ExportExcel.ExportDoanhThuTheoNgayToExcel(dlg.FileName, tuNgay, denNgay, type);
             }
         }
 
