@@ -12,29 +12,31 @@ namespace MM.Bussiness
 {
     public class ReceiptBus : BusBase
     {
-        public static Result GetReceiptList(bool isFromDateToDate, DateTime fromDate, DateTime toDate, string tenBenhNhan, int type)
+        public static Result GetReceiptList(bool isFromDateToDate, DateTime fromDate, DateTime toDate, string tenBenhNhan, int type, int type2)
         {
             Result result = new Result();
 
             try
             {
                 string query = string.Empty;
+                string subQuery = string.Empty;
+                if (type2 == 1 || type2 == 2) subQuery = type2 == 1 ? " AND ChuaThuTien = 0 " : " AND ChuaThuTien = 1 ";
                 if (isFromDateToDate)
                 {
                     if (type == 0) //Tất cả
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM ReceiptView WITH(NOLOCK) WHERE ReceiptDate BETWEEN '{0}' AND '{1}' ORDER BY ReceiptDate DESC",
-                        fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM ReceiptView WITH(NOLOCK) WHERE ReceiptDate BETWEEN '{0}' AND '{1}'{2} ORDER BY ReceiptDate DESC",
+                        fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), subQuery);
                     }
                     else if (type == 1) //Chưa xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM ReceiptView WITH(NOLOCK) WHERE Status={0} AND ReceiptDate BETWEEN '{1}' AND '{2}' ORDER BY ReceiptDate DESC",
-                        (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM ReceiptView WITH(NOLOCK) WHERE Status={0} AND ReceiptDate BETWEEN '{1}' AND '{2}'{3} ORDER BY ReceiptDate DESC",
+                        (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), subQuery);
                     }
                     else //Đã xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM ReceiptView WITH(NOLOCK) WHERE Status={0} AND ReceiptDate BETWEEN '{1}' AND '{2}' ORDER BY ReceiptDate DESC",
-                        (byte)Status.Deactived, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM ReceiptView WITH(NOLOCK) WHERE Status={0} AND ReceiptDate BETWEEN '{1}' AND '{2}'{3} ORDER BY ReceiptDate DESC",
+                        (byte)Status.Deactived, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), subQuery);
                     }
                     
                 }
@@ -42,17 +44,18 @@ namespace MM.Bussiness
                 {
                     if (type == 0) //Tất cả
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM ReceiptView WITH(NOLOCK) WHERE FullName LIKE N'%{0}%' ORDER BY ReceiptDate DESC", tenBenhNhan);
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM ReceiptView WITH(NOLOCK) WHERE FullName LIKE N'%{0}%'{1} ORDER BY ReceiptDate DESC", 
+                            tenBenhNhan, subQuery);
                     }
                     else if (type == 1) //Chưa xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM ReceiptView WITH(NOLOCK) WHERE Status={0} AND FullName LIKE N'%{1}%' ORDER BY ReceiptDate DESC",
-                        (byte)Status.Actived, tenBenhNhan);
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM ReceiptView WITH(NOLOCK) WHERE Status={0} AND FullName LIKE N'%{1}%'{2} ORDER BY ReceiptDate DESC",
+                        (byte)Status.Actived, tenBenhNhan, subQuery);
                     }
                     else //Đã xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM ReceiptView WITH(NOLOCK) WHERE Status={0} AND FullName LIKE N'%{1}%' ORDER BY ReceiptDate DESC",
-                        (byte)Status.Deactived, tenBenhNhan);
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM ReceiptView WITH(NOLOCK) WHERE Status={0} AND FullName LIKE N'%{1}%'{2} ORDER BY ReceiptDate DESC",
+                        (byte)Status.Deactived, tenBenhNhan, subQuery);
                     }
                     
                 }
