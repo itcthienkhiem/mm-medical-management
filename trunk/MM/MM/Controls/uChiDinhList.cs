@@ -358,7 +358,8 @@ namespace MM.Controls
                 if (!(row.Cells["Checked"] as DataGridViewDisableCheckBoxCell).Enabled)
                 {
                     DataRow r = (row.DataBoundItem as DataRowView).Row;
-                    chiDinhs.Add(r);
+                    //if (Convert.ToBoolean(r["Checked"])) 
+                        chiDinhs.Add(r);
                 }
             }
 
@@ -409,7 +410,7 @@ namespace MM.Controls
                 }
             }
             else
-                MsgBox.Show(Application.ProductName, "Không tồn tại chỉ định nào được xác nhận.", IconType.Information);
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những chỉ định cần in.", IconType.Information);
         }
         #endregion
 
