@@ -147,7 +147,7 @@ namespace MM.Controls
                     DataRow[] rows = _dtDichVuChiDinh.Select(string.Format("ChiTietChiDinhGUID='{0}'", chiTietChiDinhGUID));
                     if (rows != null && rows.Length > 0)
                     {
-                        (row.Cells["Checked"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                        //(row.Cells["Checked"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                         row.DefaultCellStyle.BackColor = Color.LightSeaGreen;
                     }
 
@@ -235,8 +235,26 @@ namespace MM.Controls
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
                 {
-                    deletedChiDinhList.Add(row["ChiTietChiDinhGUID"].ToString());
-                    deletedRows.Add(row);
+                    string chiTietChiDinhGUID = row["ChiTietChiDinhGUID"].ToString();
+                    if (_dtDichVuChiDinh == null && _dtDichVuChiDinh.Rows.Count <= 0)
+                    {
+                        deletedChiDinhList.Add(chiTietChiDinhGUID);
+                        deletedRows.Add(row);
+                    }
+                    else
+                    {
+                        DataRow[] rows = _dtDichVuChiDinh.Select(string.Format("ChiTietChiDinhGUID='{0}'", chiTietChiDinhGUID));
+                        if (rows != null && rows.Length > 0)
+                        {
+                            MsgBox.Show(Application.ProductName, "Không thể xóa vì có 1 số chỉ định đã được xác nhận.", IconType.Information);
+                            return;
+                        }
+                        else
+                        {
+                            deletedChiDinhList.Add(chiTietChiDinhGUID);
+                            deletedRows.Add(row);
+                        }
+                    }
                 }
             }
 
@@ -271,7 +289,20 @@ namespace MM.Controls
             {
                 if (Boolean.Parse(row["Checked"].ToString()))
                 {
-                    checkedRows.Add(row);
+                    string chiTietChiDinhGUID = row["ChiTietChiDinhGUID"].ToString();
+                    if (_dtDichVuChiDinh == null && _dtDichVuChiDinh.Rows.Count <= 0)
+                        checkedRows.Add(row);
+                    else
+                    {
+                         DataRow[] rows = _dtDichVuChiDinh.Select(string.Format("ChiTietChiDinhGUID='{0}'", chiTietChiDinhGUID));
+                         if (rows != null && rows.Length > 0)
+                         {
+                             MsgBox.Show(Application.ProductName, "Không thể xác nhận chỉ định vì có 1 số chỉ định đã được xác nhận rồi.", IconType.Information);
+                             return;
+                         }
+                         else
+                             checkedRows.Add(row);
+                    }
                 }
             }
 
@@ -369,7 +400,35 @@ namespace MM.Controls
         private void OnPrint(bool isPreview)
         {
             Cursor.Current = Cursors.WaitCursor;
-            List<DataRow> checkedRows = GetChiDinhDuocXacNhan();
+            //List<DataRow> checkedRows = GetChiDinhDuocXacNhan();
+            List<DataRow> checkedRows = new List<DataRow>();
+            DataTable dt = dgChiTiet.DataSource as DataTable;
+            foreach (DataRow row in dt.Rows)
+            {
+                if (Boolean.Parse(row["Checked"].ToString()))
+                {
+                    string chiTietChiDinhGUID = row["ChiTietChiDinhGUID"].ToString();
+                    if (_dtDichVuChiDinh == null && _dtDichVuChiDinh.Rows.Count <= 0)
+                    {
+                        MsgBox.Show(Application.ProductName, "Không thể in vì có 1 số chỉ định chưa được xác nhận.", IconType.Information);
+                        return;
+                    }
+                    else
+                    {
+                        DataRow[] rows = _dtDichVuChiDinh.Select(string.Format("ChiTietChiDinhGUID='{0}'", chiTietChiDinhGUID));
+                        if (rows != null && rows.Length > 0)
+                        {
+                            checkedRows.Add(row);
+                        }
+                        else
+                        {
+                            MsgBox.Show(Application.ProductName, "Không thể in vì có 1 số chỉ định chưa được xác nhận.", IconType.Information);
+                            return;
+                        }
+                    }
+                }
+            }
+
             if (checkedRows.Count > 0)
             {
                 string exportFileName = string.Format("{0}\\Temp\\ChiDinh.xls", Application.StartupPath);
