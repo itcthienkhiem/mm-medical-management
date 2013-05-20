@@ -13,29 +13,31 @@ namespace MM.Bussiness
 {
     public class PhieuThuHopDongBus : BusBase
     {
-        public static Result GetPhieuThuHopDongList(int filterType, DateTime fromDate, DateTime toDate, string tenKhacHang, string tenHopDong, int type)
+        public static Result GetPhieuThuHopDongList(int filterType, DateTime fromDate, DateTime toDate, string tenKhacHang, string tenHopDong, int type, int type2)
         {
             Result result = new Result();
 
             try
             {
                 string query = string.Empty;
+                string subQuery = string.Empty;
+                if (type2 == 1 || type2 == 2) subQuery = type2 == 1 ? " AND ChuaThuTien = 0 " : " AND ChuaThuTien = 1 ";
                 if (filterType == 0)
                 {
                     if (type == 0) //Tất cả
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuHopDongView WITH(NOLOCK) WHERE NgayThu BETWEEN '{0}' AND '{1}' ORDER BY NgayThu DESC",
-                           fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"));
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuHopDongView WITH(NOLOCK) WHERE NgayThu BETWEEN '{0}' AND '{1}'{2} ORDER BY NgayThu DESC",
+                           fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"), subQuery);
                     }
                     else if (type == 1) //Chưa xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuHopDongView WITH(NOLOCK) WHERE Status={0} AND NgayThu BETWEEN '{1}' AND '{2}' ORDER BY NgayThu DESC",
-                        (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"));
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuHopDongView WITH(NOLOCK) WHERE Status={0} AND NgayThu BETWEEN '{1}' AND '{2}'{3} ORDER BY NgayThu DESC",
+                        (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"), subQuery);
                     }
                     else //Đã xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuHopDongView WITH(NOLOCK) WHERE Status={0} AND NgayThu BETWEEN '{1}' AND '{2}' ORDER BY NgayThu DESC",
-                        (byte)Status.Deactived, fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"));
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuHopDongView WITH(NOLOCK) WHERE Status={0} AND NgayThu BETWEEN '{1}' AND '{2}'{3} ORDER BY NgayThu DESC",
+                        (byte)Status.Deactived, fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"), subQuery);
                     }
 
                 }
@@ -43,17 +45,17 @@ namespace MM.Bussiness
                 {
                     if (type == 0) //Tất cả
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuHopDongView WITH(NOLOCK) WHERE TenNguoiNop LIKE N'%{0}%' ORDER BY NgayThu DESC", tenKhacHang);
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuHopDongView WITH(NOLOCK) WHERE TenNguoiNop LIKE N'%{0}%'{1} ORDER BY NgayThu DESC", tenKhacHang, subQuery);
                     }
                     else if (type == 1) //Chưa xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuHopDongView WITH(NOLOCK) WHERE Status={0} AND TenNguoiNop LIKE N'%{1}%' ORDER BY NgayThu DESC",
-                        (byte)Status.Actived, tenKhacHang);
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuHopDongView WITH(NOLOCK) WHERE Status={0} AND TenNguoiNop LIKE N'%{1}%'{2} ORDER BY NgayThu DESC",
+                        (byte)Status.Actived, tenKhacHang, subQuery);
                     }
                     else //Đã xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuHopDongView WITH(NOLOCK) WHERE Status={0} AND TenNguoiNop LIKE N'%{1}%' ORDER BY NgayThu DESC",
-                        (byte)Status.Deactived, tenKhacHang);
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuHopDongView WITH(NOLOCK) WHERE Status={0} AND TenNguoiNop LIKE N'%{1}%'{2} ORDER BY NgayThu DESC",
+                        (byte)Status.Deactived, tenKhacHang, subQuery);
                     }
 
                 }
@@ -61,17 +63,17 @@ namespace MM.Bussiness
                 {
                     if (type == 0) //Tất cả
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuHopDongView WITH(NOLOCK) WHERE ContractName LIKE N'%{0}%' ORDER BY NgayThu DESC", tenHopDong);
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuHopDongView WITH(NOLOCK) WHERE ContractName LIKE N'%{0}%'{1} ORDER BY NgayThu DESC", tenHopDong, subQuery);
                     }
                     else if (type == 1) //Chưa xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuHopDongView WITH(NOLOCK) WHERE Status={0} AND ContractName LIKE N'%{1}%' ORDER BY NgayThu DESC",
-                        (byte)Status.Actived, tenHopDong);
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuHopDongView WITH(NOLOCK) WHERE Status={0} AND ContractName LIKE N'%{1}%'{2} ORDER BY NgayThu DESC",
+                        (byte)Status.Actived, tenHopDong, subQuery);
                     }
                     else //Đã xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuHopDongView WITH(NOLOCK) WHERE Status={0} AND ContractName LIKE N'%{1}%' ORDER BY NgayThu DESC",
-                        (byte)Status.Deactived, tenHopDong);
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuHopDongView WITH(NOLOCK) WHERE Status={0} AND ContractName LIKE N'%{1}%'{2} ORDER BY NgayThu DESC",
+                        (byte)Status.Deactived, tenHopDong, subQuery);
                     }
                 }
 

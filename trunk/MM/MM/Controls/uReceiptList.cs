@@ -25,6 +25,7 @@ namespace MM.Controls
         private DateTime _fromDate = DateTime.Now;
         private DateTime _toDate = DateTime.Now;
         private int _type = 1; //0: TatCa; 1: ChuaXoa; 2: DaXoa
+        private int _type2 = 0;//0: TatCa; 1: DaThuTien; 2: ChuaThuTien
         #endregion
 
         #region Constructor
@@ -95,6 +96,10 @@ namespace MM.Controls
                 if (raTatCa.Checked) _type = 0;
                 else if (raChuaXoa.Checked) _type = 1;
                 else _type = 2;
+
+                if (raAll.Checked) _type2 = 0;
+                else if (raDaThuTien.Checked) _type2 = 1;
+                else _type2 = 2;
                                
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayReceiptListProc));
                 base.ShowWaiting();
@@ -125,7 +130,7 @@ namespace MM.Controls
 
         private void OnDisplayReceiptList()
         {
-            Result result = ReceiptBus.GetReceiptList(_isFromDateToDate, _fromDate, _toDate, _tenBenhNhan, _type);
+            Result result = ReceiptBus.GetReceiptList(_isFromDateToDate, _fromDate, _toDate, _tenBenhNhan, _type, _type2);
             if (result.IsOK)
             {
                 MethodInvoker method = delegate
@@ -444,6 +449,36 @@ namespace MM.Controls
             }
 
             OnExportInvoice();
+        }
+
+        private void raChuaXoa_CheckedChanged(object sender, EventArgs e)
+        {
+            DisplayAsThread();
+        }
+
+        private void raTatCa_CheckedChanged(object sender, EventArgs e)
+        {
+            DisplayAsThread();
+        }
+
+        private void raDaXoa_CheckedChanged(object sender, EventArgs e)
+        {
+            DisplayAsThread();
+        }
+
+        private void raAll_CheckedChanged(object sender, EventArgs e)
+        {
+            DisplayAsThread();
+        }
+
+        private void raDaThuTien_CheckedChanged(object sender, EventArgs e)
+        {
+            DisplayAsThread();
+        }
+
+        private void raChuaThuTien_CheckedChanged(object sender, EventArgs e)
+        {
+            DisplayAsThread();
         }
         #endregion
 
