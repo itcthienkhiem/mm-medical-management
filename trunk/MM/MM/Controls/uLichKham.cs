@@ -142,7 +142,7 @@ namespace MM.Controls
                 cell = NewCell("Chiều", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
                 dgLichKham[1, 6] = cell;
 
-                cell = NewCell("Bs Siêu âm", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
+                cell = NewCell("Bs Răng Hàm Mặt", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
                 dgLichKham[0, 7] = cell;
                 dgLichKham[0, 7].ColumnSpan = 2;
 
@@ -152,7 +152,7 @@ namespace MM.Controls
                 cell = NewCell("Chiều", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
                 dgLichKham[1, 8] = cell;
 
-                cell = NewCell("Bs Sản Phụ Khoa", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
+                cell = NewCell("Bs Siêu Âm", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
                 dgLichKham[0, 9] = cell;
                 dgLichKham[0, 9].ColumnSpan = 2;
 
@@ -162,7 +162,7 @@ namespace MM.Controls
                 cell = NewCell("Chiều", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
                 dgLichKham[1, 10] = cell;
 
-                cell = NewCell("Bs Răng Hàm Mặt", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
+                cell = NewCell("Bs Sản Phụ Khoa", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
                 dgLichKham[0, 11] = cell;
                 dgLichKham[0, 11].ColumnSpan = 2;
 
@@ -254,6 +254,35 @@ namespace MM.Controls
             return count;
         }
 
+        private LoaiLichKham GetLoaiLichKham(int index)
+        {
+            switch (index)
+            {
+                case 2:
+                    return LoaiLichKham.BsNoiTongQuatSang;
+                case 3:
+                    return LoaiLichKham.BsNoiTongQuatChieu;
+                case 4:
+                    return LoaiLichKham.BsNgoaiTongQuatSang;
+                case 5:
+                    return LoaiLichKham.BsNgoaiTongQuatChieu;
+                case 6:
+                    return LoaiLichKham.BsRangHamMatSang;
+                case 7:
+                    return LoaiLichKham.BsRangHamMatChieu;
+                case 8:
+                    return LoaiLichKham.BsSieuAmSang;
+                case 9:
+                    return LoaiLichKham.BsSieuAmChieu;
+                case 10:
+                    return LoaiLichKham.BsSanPhuKhoaSang;
+                case 11:
+                    return LoaiLichKham.BsSanPhuKhoaChieu;
+            }
+
+            return LoaiLichKham.CongTySang;
+        }
+
         private void FillData(List<LichKham> lichKhams)
         {
             DateTime dt = new DateTime(_nam, _thang, 1);
@@ -298,7 +327,7 @@ namespace MM.Controls
                     }
                     else
                     {
-                        LichKham lichKham = GetLichKham(lichKhams, dt, (LoaiLichKham)col);
+                        LichKham lichKham = GetLichKham(lichKhams, dt, GetLoaiLichKham(col));
                         bool isEnable = AllowEdit;
                         object value = lichKham != null ? lichKham.Value : null;
                         cell = NewCell(value, Color.White, foreColor, ContentAlignment.MiddleCenter, fontNormal, isEnable, string.Empty);
@@ -411,6 +440,40 @@ namespace MM.Controls
         #region Window Event Handlers
         private void btnView_Click(object sender, EventArgs e)
         {
+            SourceGrid2.Cells.Real.Cell cell = dgLichKham.FocusCell as SourceGrid2.Cells.Real.Cell;
+            if (cell != null)
+            {
+                if (cell.Column < 3 || cell.Row < 2) return;
+                object value = cell.Value;
+                _currentValue = value == null ? string.Empty : value.ToString().Trim();
+
+                LichKham lichKham = cell.Tag as LichKham;
+                if (lichKham == null)
+                {
+                    lichKham = new LichKham();
+                    lichKham.Ngay = Convert.ToDateTime(dgLichKham[cell.Row, 0].Tag);
+                    lichKham.Type = (int)GetLoaiLichKham(cell.Column - 1);
+                    lichKham.Value = _currentValue;
+                    lichKham.CreatedDate = DateTime.Now;
+                    lichKham.CreatedBy = Guid.Parse(Global.UserGUID);
+                }
+                else
+                {
+                    lichKham.Value = _currentValue;
+                    lichKham.UpdatedDate = DateTime.Now;
+                    lichKham.UpdatedBy = Guid.Parse(Global.UserGUID);
+                }
+
+                Result result = LichKhamBus.InsertLichKham(lichKham);
+                if (result.IsOK)
+                    cell.Tag = lichKham;
+                else
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("LichKhamBus.InsertLichKham"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("LichKhamBus.InsertLichKham"));
+                }
+            }
+
             DisplayAsThread();
         }
 
@@ -470,7 +533,7 @@ namespace MM.Controls
             {
                 lichKham = new LichKham();
                 lichKham.Ngay = Convert.ToDateTime(dgLichKham[e.Position.Row, 0].Tag);
-                lichKham.Type = e.Position.Column - 1;
+                lichKham.Type = (int)GetLoaiLichKham(e.Position.Column - 1);
                 lichKham.Value = strValue;
                 lichKham.CreatedDate = DateTime.Now;
                 lichKham.CreatedBy = Guid.Parse(Global.UserGUID);
