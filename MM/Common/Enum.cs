@@ -289,7 +289,9 @@ namespace MM.Common
         BsSieuAmSang,
         BsSieuAmChieu,
         BsSanPhuKhoaSang,
-        BsSanPhuKhoaChieu
+        BsSanPhuKhoaChieu,
+        BsRangHamMatSang,
+        BsRangHamMatChieu
     }
 
     public enum PatientSearchType : int
