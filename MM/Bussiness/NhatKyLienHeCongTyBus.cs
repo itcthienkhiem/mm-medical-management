@@ -35,6 +35,54 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetNhatKyLienHeCongTyList(int type, DateTime fromDate, DateTime toDate, string tenCongTy, string tenNguoiTao, int thang, string mobile)
+        {
+            Result result = null;
+
+            try
+            {
+                tenCongTy = tenCongTy.Trim();
+                tenNguoiTao = tenNguoiTao.Trim();
+
+                string query = string.Empty;
+                if (type == 0)
+                {
+                    string monthStr1 = string.Empty;
+                    string monthStr2 = string.Empty;
+
+                    if (thang > 0)
+                    {
+                        DateTime date = new DateTime(2000, thang, 1);
+                        monthStr1 = date.ToString("MMM");
+                        monthStr2 = date.ToString("MMMM");
+                    }
+
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE WHEN datediff(month, NgayGioLienHe, getdate()) > 18 THEN '' ELSE FullName END AS NguoiTao FROM NhatKyLienHeCongTyView WITH(NOLOCK) WHERE Status={0} AND NgayGioLienHe BETWEEN '{1}' AND '{2}' AND CongTyLienHe LIKE N'%{3}%' AND FullName LIKE N'{4}%' AND (REPLACE(REPLACE(REPLACE(ThangKham, '11', 'Nov'), '12', 'Dec'), '10', 'Oct') LIKE N'%{5}%' OR REPLACE(REPLACE(REPLACE(ThangKham, '11', 'Nov'), '12', 'Dec'), '10', 'Oct') LIKE N'%{6}%') AND SoDienThoaiLienHe LIKE N'{7}%' ORDER BY NgayGioLienHe DESC",
+                        (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"),
+                        tenCongTy, tenNguoiTao, monthStr1, monthStr2, mobile);
+                }
+                else
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE WHEN datediff(month, NgayGioLienHe, getdate()) > 18 THEN '' ELSE FullName END AS NguoiTao FROM NhatKyLienHeCongTyView WITH(NOLOCK) WHERE Status={0} AND CongTyLienHe IN (SELECT CongTyLienHe FROM NhatKyLienHeCongTy WHERE Status = 0 GROUP BY CongTyLienHe HAVING Count(CongTyLienHe) >= 2) ORDER BY CongTyLienHe",
+                        (byte)Status.Actived);
+                }
+
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetNhatKyLienHeCongTyList(int type, DateTime fromDate, DateTime toDate, string tenBenhNhan, string tenNguoiTao, int thang)
         {
             Result result = null;
@@ -56,7 +104,7 @@ namespace MM.Bussiness
                         (byte)Status.Actived, tenNguoiTao);
                 else if (type == 3)
                     query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE WHEN datediff(month, NgayGioLienHe, getdate()) > 18 THEN '' ELSE FullName END AS NguoiTao FROM NhatKyLienHeCongTyView WITH(NOLOCK) WHERE Status={0} AND CongTyLienHe IN (SELECT CongTyLienHe FROM NhatKyLienHeCongTy WHERE Status = 0 GROUP BY CongTyLienHe HAVING Count(CongTyLienHe) >= 2) ORDER BY CongTyLienHe",
-                        (byte)Status.Actived, tenNguoiTao);
+                        (byte)Status.Actived);
                 else
                 {
                     DateTime date = new DateTime(2000, thang, 1);
