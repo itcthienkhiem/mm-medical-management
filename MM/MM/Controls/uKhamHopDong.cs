@@ -261,7 +261,8 @@ namespace MM.Controls
                 if (raAll.Checked) _doiTuong = 0;
                 else if (raNam.Checked) _doiTuong = 1;
                 else if (raNu.Checked) _doiTuong = 2;
-                else _doiTuong = 3;
+                else if (raNuCoGiaDinh.Checked) _doiTuong = 3;
+                else _doiTuong = 4;
 
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayDanhSachNhanVientProc));
             }
@@ -789,6 +790,11 @@ namespace MM.Controls
             if (raNuCoGiaDinh.Checked) SearchAsThread();
         }
 
+        private void raNamTren40_CheckedChanged(object sender, EventArgs e)
+        {
+            if (raNamTren40.Checked) SearchAsThread();
+        }
+
         private void txtSearchPatient_TextChanged(object sender, EventArgs e)
         {
             StartTimer();
@@ -986,6 +992,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+       
 
         
 

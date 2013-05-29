@@ -72,6 +72,7 @@
             this.txtSearchPatient = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.panel1 = new System.Windows.Forms.Panel();
+            this.raNamTren40 = new System.Windows.Forms.RadioButton();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).BeginInit();
             this.panel4.SuspendLayout();
@@ -375,6 +376,7 @@
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.raNamTren40);
             this.panel2.Controls.Add(this.raNuCoGiaDinh);
             this.panel2.Controls.Add(this.raNu);
             this.panel2.Controls.Add(this.raNam);
@@ -488,6 +490,17 @@
             this.panel1.Size = new System.Drawing.Size(681, 38);
             this.panel1.TabIndex = 4;
             // 
+            // raNamTren40
+            // 
+            this.raNamTren40.AutoSize = true;
+            this.raNamTren40.Location = new System.Drawing.Point(446, 36);
+            this.raNamTren40.Name = "raNamTren40";
+            this.raNamTren40.Size = new System.Drawing.Size(103, 17);
+            this.raNamTren40.TabIndex = 25;
+            this.raNamTren40.Text = "Nam trên 40 tuổi";
+            this.raNamTren40.UseVisualStyleBackColor = true;
+            this.raNamTren40.CheckedChanged += new System.EventHandler(this.raNamTren40_CheckedChanged);
+            // 
             // dlgMembers
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -560,5 +573,6 @@
         private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxXColumn2;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
+        private System.Windows.Forms.RadioButton raNamTren40;
     }
 }
