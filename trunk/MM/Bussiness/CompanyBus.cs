@@ -141,6 +141,11 @@ namespace MM.Bussiness
                         query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM CompanyMemberView WITH(NOLOCK) WHERE CompanyGUID='{0}' AND Status={1} AND Archived='False' AND CompanyMemberGUID NOT IN (SELECT CompanyMemberGUID FROM ContractMember WITH(NOLOCK) WHERE CompanyContractGUID = '{2}' AND Status = {1}) AND GenderAsStr = N'Nữ' AND Tinh_Trang_Gia_Dinh IS NOT NULL AND Tinh_Trang_Gia_Dinh = N'Có gia đình' ORDER BY FirstName, FullName",
                         companyGUID, (byte)Status.Actived, contractGUID);
                     }
+                    else if (doiTuong == 4)//Nam trên 40 tuổi
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM CompanyMemberView WITH(NOLOCK) WHERE CompanyGUID='{0}' AND Status={1} AND Archived='False' AND CompanyMemberGUID NOT IN (SELECT CompanyMemberGUID FROM ContractMember WITH(NOLOCK) WHERE CompanyContractGUID = '{2}' AND Status = {1}) AND GenderAsStr = N'Nam' ORDER BY FirstName, FullName",
+                        companyGUID, (byte)Status.Actived, contractGUID);
+                    }
                 }
                 else
                 {
@@ -169,9 +174,33 @@ namespace MM.Bussiness
                         query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM CompanyMemberView WITH(NOLOCK) WHERE CompanyGUID='{0}' AND Status={1} AND Archived='False' AND CompanyMemberGUID NOT IN (SELECT CompanyMemberGUID FROM ContractMember WITH(NOLOCK) WHERE CompanyContractGUID = '{2}' AND Status = {1}) AND GenderAsStr = N'Nữ' AND Tinh_Trang_Gia_Dinh IS NOT NULL AND Tinh_Trang_Gia_Dinh = N'Có gia đình' AND {3} LIKE N'%{4}%' ORDER BY FirstName, FullName",
                         companyGUID, (byte)Status.Actived, contractGUID, fieldName, tenBenhNhan);
                     }
+                    else if (doiTuong == 4)//Nam trên 40 tuổi
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM CompanyMemberView WITH(NOLOCK) WHERE CompanyGUID='{0}' AND Status={1} AND Archived='False' AND CompanyMemberGUID NOT IN (SELECT CompanyMemberGUID FROM ContractMember WITH(NOLOCK) WHERE CompanyContractGUID = '{2}' AND Status = {1}) AND GenderAsStr = N'Nam' AND {3} LIKE N'%{4}%' ORDER BY FirstName, FullName",
+                        companyGUID, (byte)Status.Actived, contractGUID, fieldName, tenBenhNhan);
+                    }
                 }
-                
-                return ExcuteQuery(query);
+
+                if (doiTuong != 4)
+                    return ExcuteQuery(query);
+                else
+                {
+                    result = ExcuteQuery(query);
+                    if (!result.IsOK) return result;
+
+                    DataTable dt = result.QueryResult as DataTable;
+                    DataTable dt2 = dt.Clone();
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        if (row["DobStr"] == null || row["DobStr"] == DBNull.Value || row["DobStr"].ToString().Trim() == string.Empty) continue;
+                        string dobStr = row["DobStr"].ToString().Trim();
+                        int age = Utility.GetAge(dobStr);
+                        if (age >= 40) dt2.ImportRow(row);
+                    }
+
+                    result.QueryResult = dt2;
+                }
             }
             catch (System.Data.SqlClient.SqlException se)
             {
