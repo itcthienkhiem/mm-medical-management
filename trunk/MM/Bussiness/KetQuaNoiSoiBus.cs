@@ -29,7 +29,7 @@ namespace MM.Bussiness
                 //    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM KetQuaNoiSoiView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND NgayKham BETWEEN '{1}' AND '{2}' AND Status = {3} AND BSCDArchived = 'False' AND BSNSArchived = 'False' AND BacSiSoi = '{4}' ORDER BY NgayKham DESC",
                 //        patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), (byte)Status.Actived, Global.UserGUID);
 
-                query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM KetQuaNoiSoiView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND NgayKham BETWEEN '{1}' AND '{2}' AND Status = {3} AND BSCDArchived = 'False' AND BSNSArchived = 'False' ORDER BY NgayKham DESC",
+                query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM KetQuaNoiSoiView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND NgayKham BETWEEN '{1}' AND '{2}' AND Status = {3} ORDER BY NgayKham DESC",
                         patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), (byte)Status.Actived);
 
                 return ExcuteQuery(query);
