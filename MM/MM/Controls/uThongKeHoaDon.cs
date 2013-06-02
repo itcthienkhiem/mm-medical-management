@@ -396,7 +396,9 @@ namespace MM.Controls
             string loaiHoaDonStr = drInvoice["LoaiHoaDon"].ToString();
             Common.LoaiHoaDon lhd = Common.LoaiHoaDon.HoaDonThuoc;
             if (loaiHoaDonStr == "Hóa đơn thuốc")
+            {
                 lhd = Common.LoaiHoaDon.HoaDonThuoc;
+            }
             else if (loaiHoaDonStr == "Hóa đơn dịch vụ")
                 lhd = Common.LoaiHoaDon.HoaDonDichVu;
             else if (loaiHoaDonStr == "Hóa đơn xuất trước")

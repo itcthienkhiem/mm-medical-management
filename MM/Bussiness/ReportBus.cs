@@ -790,5 +790,29 @@ namespace MM.Bussiness
 
             return result;
         }
+
+        public static Result GetThuocXuatHoaDon(DateTime tuNgay, DateTime denNgay)
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Format("SELECT TenThuoc, DonViTinh, SUM(SoLuong) AS SoLuong FROM (SELECT CT.TenThuoc, CT.DonViTinh, CT.SoLuong FROM ChiTietHoaDonThuoc CT WITH(NOLOCK), HoaDonThuoc HD WITH(NOLOCK) WHERE CT.HoaDonThuocGUID = HD.HoaDonThuocGUID AND CT.Status = 0 AND HD.Status = 0 AND HD.NgayXuatHoaDon BETWEEN '{0}' AND '{1}' UNION SELECT CT.TenDichVu As TenThuoc, CT.DonViTinh, CT.SoLuong FROM InvoiceDetail CT, Invoice HD WHERE CT.InvoiceGUID = HD.InvoiceGUID AND CT.Status = 0 AND HD.Status = 0 AND HD.InvoiceDate BETWEEN '{0}' AND '{1}' AND CT.Loai = 1) T GROUP BY TenThuoc, DonViTinh ORDER BY TenThuoc, DonViTinh",
+                    tuNgay.ToString("yyyy-MM-dd 00:00:00"), denNgay.ToString("yyyy-MM-dd 23:59:59"));
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
     }
 }

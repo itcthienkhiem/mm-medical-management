@@ -119,6 +119,12 @@
     <Compile Include="Controls\uNhanVienTrungLapList.Designer.cs">
       <DependentUpon>uNhanVienTrungLapList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uThongKeThuocXuatHoaDon.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uThongKeThuocXuatHoaDon.Designer.cs">
+      <DependentUpon>uThongKeThuocXuatHoaDon.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uToaThuocTrongNgayList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -142,6 +148,12 @@
     </Compile>
     <Compile Include="Controls\uSMSLog.Designer.cs">
       <DependentUpon>uSMSLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgInvoiceInfo2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgInvoiceInfo2.Designer.cs">
+      <DependentUpon>dlgInvoiceInfo2.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\dlgMergeNhanVien.cs">
       <SubType>Form</SubType>
@@ -1661,6 +1673,9 @@
     <EmbeddedResource Include="Controls\uNhanVienTrungLapList.resx">
       <DependentUpon>uNhanVienTrungLapList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uThongKeThuocXuatHoaDon.resx">
+      <DependentUpon>uThongKeThuocXuatHoaDon.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uToaThuocTrongNgayList.resx">
       <DependentUpon>uToaThuocTrongNgayList.cs</DependentUpon>
     </EmbeddedResource>
@@ -1672,6 +1687,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uSMSLog.resx">
       <DependentUpon>uSMSLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgInvoiceInfo2.resx">
+      <DependentUpon>dlgInvoiceInfo2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgMergeNhanVien.resx">
       <DependentUpon>dlgMergeNhanVien.cs</DependentUpon>
@@ -2548,6 +2566,7 @@
     <None Include="Templates\SieuAmTemplate\6.rtf" />
     <None Include="Templates\SieuAmTemplate\Cac bao cao.doc" />
     <None Include="Templates\SymptomTemplate.xls" />
+    <None Include="Templates\ThongKeThuocXuatHoaDonTemplate.xls" />
     <None Include="Templates\ThuocTonKhoTemplate.xls" />
     <None Include="Templates\ThuocTonKhoTheoKhoangThoiGianTemplate.xls" />
     <None Include="Templates\ToaThuocChungTemplate.xls" />
@@ -2616,6 +2635,7 @@
     <None Include="Resources\WhiteImage.PNG" />
     <None Include="Resources\email-alert-icon %282%29.png" />
     <None Include="Resources\email-alert-icon.png" />
+    <Content Include="Scripts\ScriptUpdate_KH_2013-06-02.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2013-05-31.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2013-05-10.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2013-04-28.sql" />

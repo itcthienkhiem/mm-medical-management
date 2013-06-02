@@ -63,6 +63,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.txtGhiChu = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
             this.raGuiQuaBuuDien = new System.Windows.Forms.RadioButton();
             this.raKhachTuLay = new System.Windows.Forms.RadioButton();
             this.txtHinhThucThanhToan = new System.Windows.Forms.TextBox();
@@ -94,8 +96,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this._printDialog = new System.Windows.Forms.PrintDialog();
-            this.txtGhiChu = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -379,6 +379,23 @@
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(708, 168);
             this.panel6.TabIndex = 0;
+            // 
+            // txtGhiChu
+            // 
+            this.txtGhiChu.Location = new System.Drawing.Point(143, 138);
+            this.txtGhiChu.Name = "txtGhiChu";
+            this.txtGhiChu.Size = new System.Drawing.Size(542, 20);
+            this.txtGhiChu.TabIndex = 29;
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label3.Location = new System.Drawing.Point(5, 141);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(48, 15);
+            this.label3.TabIndex = 35;
+            this.label3.Text = "Ghi chú";
             // 
             // raGuiQuaBuuDien
             // 
@@ -723,23 +740,6 @@
             // 
             this._printDialog.UseEXDialog = true;
             // 
-            // txtGhiChu
-            // 
-            this.txtGhiChu.Location = new System.Drawing.Point(143, 138);
-            this.txtGhiChu.Name = "txtGhiChu";
-            this.txtGhiChu.Size = new System.Drawing.Size(542, 20);
-            this.txtGhiChu.TabIndex = 29;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(5, 141);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(48, 15);
-            this.label3.TabIndex = 35;
-            this.label3.Text = "Ghi chú";
-            // 
             // dataGridViewTextBoxColumn1
             // 
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -823,6 +823,7 @@
             this.TenMatHang.HeaderText = "Tên hàng hóa, dịch vụ";
             this.TenMatHang.Name = "TenMatHang";
             this.TenMatHang.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.TenMatHang.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.TenMatHang.Width = 225;
             // 
             // DonViTinh
@@ -833,6 +834,7 @@
             this.DonViTinh.HeaderText = "Đơn vị tính";
             this.DonViTinh.Name = "DonViTinh";
             this.DonViTinh.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.DonViTinh.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.DonViTinh.Width = 85;
             // 
             // SoLuong
@@ -843,6 +845,7 @@
             this.SoLuong.HeaderText = "Số lượng";
             this.SoLuong.Name = "SoLuong";
             this.SoLuong.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.SoLuong.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.SoLuong.Width = 75;
             // 
             // DonGia
@@ -855,6 +858,7 @@
             this.DonGia.HeaderText = "Đơn giá";
             this.DonGia.Name = "DonGia";
             this.DonGia.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.DonGia.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.DonGia.Width = 110;
             // 
             // ThanhTien
@@ -868,6 +872,7 @@
             this.ThanhTien.Name = "ThanhTien";
             this.ThanhTien.ReadOnly = true;
             this.ThanhTien.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.ThanhTien.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.ThanhTien.Width = 120;
             // 
             // dlgHoaDonXuatTruoc
@@ -963,12 +968,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn6;
         private System.Windows.Forms.DateTimePicker dtpkNgay;
-        private System.Windows.Forms.DataGridViewTextBoxColumn STT;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TenMatHang;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DonViTinh;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SoLuong;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DonGia;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ThanhTien;
         private System.Windows.Forms.CheckBox chkDaThuTien;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.ComboBox cboTenNguoiMuaHang;
@@ -980,6 +979,12 @@
         private System.Windows.Forms.RadioButton raKhachTuLay;
         private System.Windows.Forms.TextBox txtGhiChu;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.DataGridViewTextBoxColumn STT;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenMatHang;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DonViTinh;
+        private System.Windows.Forms.DataGridViewTextBoxColumn SoLuong;
+        private System.Windows.Forms.DataGridViewTextBoxColumn DonGia;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ThanhTien;
 
 
     }

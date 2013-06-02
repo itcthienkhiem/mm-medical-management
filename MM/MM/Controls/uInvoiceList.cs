@@ -265,7 +265,7 @@ namespace MM.Controls
             }
 
             DataRow drInvoice = (dgInvoice.SelectedRows[0].DataBoundItem as DataRowView).Row;
-            dlgInvoiceInfo dlg = new dlgInvoiceInfo(drInvoice, true);
+            dlgInvoiceInfo2 dlg = new dlgInvoiceInfo2(drInvoice, true);
             dlg.ShowDialog();
         }
 

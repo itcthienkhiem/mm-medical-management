@@ -42,8 +42,16 @@ namespace MM.Controls
             }
         }
 
+        private void UpdateGUI()
+        {
+            btnPrintPreview.Enabled = AllowPrint;
+            btnPrint.Enabled = AllowPrint;
+            btnExportExcel.Enabled = AllowExport;
+        }
+
         public void DisplayAsThread()
         {
+            UpdateGUI();
             Result result = CompanyContractBus.GetContractList();
             if (result.IsOK)
             {

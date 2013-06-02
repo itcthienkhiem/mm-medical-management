@@ -456,8 +456,8 @@ namespace MM.Bussiness
                             detail.InvoiceGUID = invoice.InvoiceGUID;
                             db.InvoiceDetails.InsertOnSubmit(detail);
 
-                            desc += string.Format("  + GUID: '{0}', Dịch vụ: '{1}', ĐVT: '{2}', Số lượng: '{3}', Đơn giá: '{4}', Thành tiền: '{5}'\n",
-                                detail.InvoiceDetailGUID.ToString(), detail.TenDichVu, detail.DonViTinh, detail.SoLuong, detail.DonGia, detail.ThanhTien);
+                            desc += string.Format("  + GUID: '{0}', Dịch vụ: '{1}', ĐVT: '{2}', Số lượng: '{3}', Đơn giá: '{4}', Thành tiền: '{5}', Loại: '{6}'\n",
+                                detail.InvoiceDetailGUID.ToString(), detail.TenDichVu, detail.DonViTinh, detail.SoLuong, detail.DonGia, detail.ThanhTien, detail.Loai);
                         }
 
                         db.SubmitChanges();
