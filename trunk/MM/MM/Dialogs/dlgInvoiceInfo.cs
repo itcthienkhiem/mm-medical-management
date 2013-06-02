@@ -25,11 +25,13 @@ namespace MM.Dialogs
         private string _invoiceCode = string.Empty;
         private bool _isView = false;
         private bool _flag = true;
+        private bool _flag2 = true;
         private double _oldTotalPayment = 0;
         private double _totalPayment = 0;
         private List<DataRow> _receiptList = null;
         private Invoice _invoice = new Invoice();
         private DataTable _dtThongTinKhachHang = null;
+        private ComboBox _cboBox = null;
         #endregion
 
         #region Constructor
@@ -232,6 +234,15 @@ namespace MM.Dialogs
             }
         }
 
+        private void RefreshNo2()
+        {
+            int index = 1;
+            foreach (DataGridViewRow row in dgDetail2.Rows)
+            {
+                row.Cells["STT2"].Value = index++;
+            }
+        }
+
         private void DisplayInfo()
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -417,6 +428,34 @@ namespace MM.Dialogs
             CalculateTongTien();
         }
 
+        private void CalculateThanhTien2()
+        {
+            int rowIndex = dgDetail2.CurrentCell.RowIndex;
+            int colIndex = dgDetail2.CurrentCell.ColumnIndex;
+
+            if (rowIndex < 0 || colIndex < 0) return;
+
+            int soLuong = 1;
+            string strValue = dgDetail2[3, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
+            if (strValue != string.Empty && strValue != "System.Data.DataRowView")
+                soLuong = Convert.ToInt32(strValue);
+
+            strValue = dgDetail2[4, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
+            int donGia = 0;
+            if (strValue != string.Empty && strValue != "System.Data.DataRowView")
+                donGia = Convert.ToInt32(strValue);
+
+            strValue = dgDetail2[5, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
+            int giam = 0;
+            if (strValue != string.Empty && strValue != "System.Data.DataRowView")
+                giam = Convert.ToInt32(strValue);
+
+            double thanhTien = soLuong * donGia;
+            dgDetail2[5, rowIndex].Value = thanhTien;
+
+            CalculateTongTien();
+        }
+
         private void CalculateTongTien()
         {
             int rowCount = dgDetail.RowCount;//_isNew ? dgChiTiet.RowCount - 1 : dgChiTiet.RowCount;
@@ -426,6 +465,15 @@ namespace MM.Dialogs
                 double tt = 0;
                 if (dgDetail[5, i].Value != null && dgDetail[5, i].Value != DBNull.Value)
                     tt = Convert.ToDouble(dgDetail[5, i].Value);
+                _totalPrice += tt;
+            }
+
+            rowCount = dgDetail2.RowCount;//_isNew ? dgChiTiet.RowCount - 1 : dgChiTiet.RowCount;
+            for (int i = 0; i < rowCount; i++)
+            {
+                double tt = 0;
+                if (dgDetail2[5, i].Value != null && dgDetail2[5, i].Value != DBNull.Value)
+                    tt = Convert.ToDouble(dgDetail2[5, i].Value);
                 _totalPrice += tt;
             }
 
@@ -539,9 +587,9 @@ namespace MM.Dialogs
                 return false;
             }
 
-            if (dgDetail.RowCount <= 1)
+            if (dgDetail.RowCount <= 1 && dgDetail2.RowCount <= 1)
             {
-                MsgBox.Show(this.Text, "Vui lòng nhập ít nhất 1 dịch vụ để xuất hóa đơn.", IconType.Information);
+                MsgBox.Show(this.Text, "Vui lòng nhập ít nhất 1 dịch vụ hoặc thuốc để xuất hóa đơn.", IconType.Information);
                 return false;
             }
 
@@ -554,12 +602,14 @@ namespace MM.Dialogs
 
                 if (row.Cells[1].Value == null || row.Cells[1].Value == DBNull.Value || row.Cells[1].Value.ToString().Trim() == string.Empty)
                 {
+                    tabDetail.SelectedIndex = 0;
                     MsgBox.Show(this.Text, "Vui lòng nhập tên dịch vụ.", IconType.Information);
                     return false;
                 }
 
                 if (row.Cells[2].Value.ToString().Trim() == string.Empty)
                 {
+                    tabDetail.SelectedIndex = 0;
                     MsgBox.Show(this.Text, "Vui lòng nhập đơn vị tính.", IconType.Information);
                     return false;
                 }
@@ -570,6 +620,37 @@ namespace MM.Dialogs
 
                 if (donGia <= 0)
                 {
+                    tabDetail.SelectedIndex = 0;
+                    MsgBox.Show(this.Text, "Vui lòng nhập đơn giá.", IconType.Information);
+                    return false;
+                }
+            }
+
+            for (int i = 0; i < dgDetail2.RowCount - 1; i++)
+            {
+                DataGridViewRow row = dgDetail2.Rows[i];
+
+                if (row.Cells[1].Value == null || row.Cells[1].Value == DBNull.Value || row.Cells[1].Value.ToString().Trim() == string.Empty)
+                {
+                    tabDetail.SelectedIndex = 1;
+                    MsgBox.Show(this.Text, "Vui lòng nhập tên thuốc.", IconType.Information);
+                    return false;
+                }
+
+                if (row.Cells[2].Value.ToString().Trim() == string.Empty)
+                {
+                    tabDetail.SelectedIndex = 1;
+                    MsgBox.Show(this.Text, "Vui lòng nhập đơn vị tính.", IconType.Information);
+                    return false;
+                }
+
+                int donGia = 0;
+                if (row.Cells[4].Value != null && row.Cells[4].Value != DBNull.Value && row.Cells[4].Value.ToString().Trim() != string.Empty)
+                    donGia = Convert.ToInt32(row.Cells[4].Value);
+
+                if (donGia <= 0)
+                {
+                    tabDetail.SelectedIndex = 1;
                     MsgBox.Show(this.Text, "Vui lòng nhập đơn giá.", IconType.Information);
                     return false;
                 }
@@ -655,6 +736,37 @@ namespace MM.Dialogs
                         thanhTien = Convert.ToInt32(row.Cells["ThanhTien"].Value);
 
                     detail.ThanhTien = thanhTien;
+                    detail.Loai = 0;
+
+                    addedDetails.Add(detail);
+                }
+
+                for (int i = 0; i < dgDetail2.RowCount - 1; i++)
+                {
+                    DataGridViewRow row = dgDetail2.Rows[i];
+                    InvoiceDetail detail = new InvoiceDetail();
+                    detail.CreatedDate = DateTime.Now;
+                    detail.CreateBy = Guid.Parse(Global.UserGUID);
+                    detail.TenDichVu = row.Cells["TenThuoc"].Value.ToString();
+                    detail.DonViTinh = row.Cells["DonViTinh2"].Value.ToString();
+
+                    int soLuong = 1;
+                    if (row.Cells["SoLuong2"].Value != null && row.Cells["SoLuong2"].Value != DBNull.Value)
+                        soLuong = Convert.ToInt32(row.Cells["SoLuong2"].Value);
+                    detail.SoLuong = soLuong;
+
+                    int donGia = 0;
+                    if (row.Cells["DonGia2"].Value != null && row.Cells["DonGia2"].Value != DBNull.Value)
+                        donGia = Convert.ToInt32(row.Cells["DonGia2"].Value);
+
+                    detail.DonGia = donGia;
+
+                    int thanhTien = 0;
+                    if (row.Cells["ThanhTien2"].Value != null && row.Cells["ThanhTien2"].Value != DBNull.Value)
+                        thanhTien = Convert.ToInt32(row.Cells["ThanhTien2"].Value);
+
+                    detail.ThanhTien = thanhTien;
+                    detail.Loai = 1;
 
                     addedDetails.Add(detail);
                 }
@@ -696,11 +808,48 @@ namespace MM.Dialogs
 
             return false;
         }
+
+        private void InitData()
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            Result result = ThuocBus.GetThuocList();
+            if (result.IsOK)
+            {
+                DataTable dt = result.QueryResult as DataTable;
+                DataRow row = dt.NewRow();
+                row["ThuocGUID"] = Guid.Empty.ToString();
+                row["TenThuoc"] = " ";
+                dt.Rows.InsertAt(row, 0);
+
+                TenThuoc.DataSource = dt;
+                TenThuoc.DisplayMember = "TenThuoc";
+                TenThuoc.ValueMember = "TenThuoc";
+            }
+            else
+            {
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("ThuocBus.GetThuocList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("ThuocBus.GetThuocList"));
+                this.Close();
+            }
+        }
+
+        private string GetDonViTinh(string tenThuoc)
+        {
+            DataTable dt = TenThuoc.DataSource as DataTable;
+            if (dt == null || dt.Rows.Count <= 0) return string.Empty;
+
+            DataRow[] rows = dt.Select(string.Format("TenThuoc='{0}'", tenThuoc));
+            if (rows != null && rows.Length > 0)
+                return rows[0]["DonViTinh"].ToString();
+
+            return string.Empty;
+        }
         #endregion
 
         #region Window Event Handlers
         private void dlgInvoiceInfo_Load(object sender, EventArgs e)
         {
+            InitData();
             dtpkNgay.Value = DateTime.Now;
             DisplayThongTinKhachHang();
             DisplayTenDonVi();
@@ -741,7 +890,7 @@ namespace MM.Dialogs
 
         private void dgDetail_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            RefreshNo();
+            //RefreshNo();
         }
 
         private void numVAT_ValueChanged(object sender, EventArgs e)
@@ -813,7 +962,11 @@ namespace MM.Dialogs
                     _flag = true;
                 }
             }
+
+            
         }
+
+       
 
         private void textBox_TextChanged(object sender, EventArgs e)
         {
@@ -948,6 +1101,163 @@ namespace MM.Dialogs
             if (_isView || !_flag) return;
             RefreshThongTinDonVi(cboTenDonVi.Text);
         }
+
+        private void dgDetail2_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
+        {
+            if (e.ColumnIndex >= 3 && e.ColumnIndex <= 5)
+            {
+                if (e.Value == null || e.Value.ToString() == string.Empty || e.Value == DBNull.Value)
+                {
+                    if (e.ColumnIndex == 4 || e.ColumnIndex == 5)
+                        e.Value = "0";
+                    else if (e.ColumnIndex == 3)
+                        e.Value = "1";
+                }
+            }
+        }
+
+        private void dgDetail2_CellLeave(object sender, DataGridViewCellEventArgs e)
+        {
+            if (e.ColumnIndex < 0 || e.RowIndex < 0) return;
+            _flag2 = false;
+        }
+
+        private void dgDetail2_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            if (e.ColumnIndex < 0 || e.RowIndex < 0) return;
+            _flag2 = false;
+            try
+            {
+
+                if (e.RowIndex < 0) return;
+                dgDetail2.CurrentCell = dgDetail[e.ColumnIndex, e.RowIndex];
+                dgDetail2.Rows[e.RowIndex].Selected = true;
+            }
+            catch (Exception ex)
+            {
+
+            }
+
+            _flag2 = true;
+        }
+
+        private void dgDetail2_DataError(object sender, DataGridViewDataErrorEventArgs e)
+        {
+            e.Cancel = true;
+        }
+
+        private void dgDetail2_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            if (dgDetail2.CurrentCell.ColumnIndex >= 3 && dgDetail2.CurrentCell.ColumnIndex <= 4)
+            {
+                TextBox textBox = e.Control as TextBox;
+
+                if (textBox != null)
+                {
+                    textBox.KeyPress -= new KeyPressEventHandler(textBox_KeyPress2);
+                    textBox.TextChanged -= new EventHandler(textBox_TextChanged2);
+                    textBox.KeyPress += new KeyPressEventHandler(textBox_KeyPress2);
+                    textBox.TextChanged += new EventHandler(textBox_TextChanged2);
+                    _flag2 = true;
+                }
+            }
+
+            if (e.Control.GetType() == typeof(DataGridViewComboBoxEditingControl))
+            {
+                DataGridViewComboBoxEditingControl cbo = e.Control as DataGridViewComboBoxEditingControl;
+                cbo.DropDownStyle = ComboBoxStyle.DropDown;
+                cbo.AutoCompleteMode = AutoCompleteMode.Suggest;
+                _cboBox = e.Control as ComboBox;
+                _cboBox.SelectedValueChanged -= new EventHandler(cmbox_SelectedValueChanged);
+                _cboBox.SelectedValueChanged += new EventHandler(cmbox_SelectedValueChanged);
+            }
+        }
+
+        private void cmbox_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (!_flag2) return;
+
+            if (dgDetail2.CurrentCell.ColumnIndex == 1)
+            {
+                _flag2 = false;
+                DataGridViewComboBoxEditingControl cbo = (DataGridViewComboBoxEditingControl)sender;
+                if (cbo.SelectedValue == null || cbo.SelectedValue.ToString() == "System.Data.DataRowView") return;
+                string tenThuoc = cbo.SelectedValue.ToString();
+                string donViTinh = GetDonViTinh(tenThuoc);
+                dgDetail2.Rows[dgDetail2.CurrentRow.Index].Cells[2].Value = donViTinh;
+                _flag2 = true;
+            }
+        }
+
+        private void textBox_TextChanged2(object sender, EventArgs e)
+        {
+            if (!_flag2) return;
+            TextBox textBox = (TextBox)sender;
+            int colIndex = dgDetail2.CurrentCell.ColumnIndex;
+            if (colIndex < 3) return;
+
+            if (textBox.Text == null || textBox.Text.Trim() == string.Empty)
+            {
+                if (colIndex == 3)
+                    textBox.Text = "1";
+                else
+                    textBox.Text = "0";
+            }
+
+            string strValue = textBox.Text.Replace(",", "").Replace(".", "");
+
+            try
+            {
+                int value = int.Parse(strValue);
+
+                if (colIndex == 3 && value == 0)
+                    textBox.Text = "1";
+            }
+            catch
+            {
+                textBox.Text = int.MaxValue.ToString();
+            }
+
+            CalculateThanhTien2();
+        }
+
+        private void textBox_KeyPress2(object sender, KeyPressEventArgs e)
+        {
+            int colIndex = dgDetail2.CurrentCell.ColumnIndex;
+            if (colIndex != 3 && colIndex != 4) return;
+
+            DataGridViewTextBoxEditingControl textBox = (DataGridViewTextBoxEditingControl)sender;
+            if (!(char.IsDigit(e.KeyChar)))
+            {
+                if (e.KeyChar != '\b') //allow the backspace key
+                {
+                    e.Handled = true;
+                }
+            }
+        }
+
+        private void dgDetail2_Leave(object sender, EventArgs e)
+        {
+            //if (!_isView)
+            //{
+            //    int rowIndex = dgDetail2.CurrentRow.Index;
+            //    if (rowIndex < 0) return;
+            //    dgDetail2.CurrentCell = dgDetail[0, rowIndex];
+            //    dgDetail2.Rows[rowIndex].Selected = true;
+            //}
+        }
+
+        private void dgDetail2_UserAddedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            RefreshNo2();
+        }
+
+        private void dgDetail2_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
+        {
+            RefreshNo2();
+        }
         #endregion
+
+        
     }
 }

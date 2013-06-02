@@ -1639,6 +1639,20 @@ namespace MM
                             _uDichVuXetNghiem.AllowExportAll = isExportAll;
                             _uDichVuXetNghiem.AllowConfirm = isConfirm;
                         }
+                        else if (functionCode == Const.ThongKeThuocXuatHoaDon)
+                        {
+                            invoiceToolStripMenuItem.Enabled = isLogin;
+                            thongKeThuocXuatHoaDonToolStripMenuItem.Enabled = isView && isLogin;
+                            _uThongKeThuocXuatHoaDon.AllowAdd = isAdd;
+                            _uThongKeThuocXuatHoaDon.AllowEdit = isEdit;
+                            _uThongKeThuocXuatHoaDon.AllowDelete = isDelete;
+                            _uThongKeThuocXuatHoaDon.AllowPrint = isPrint;
+                            _uThongKeThuocXuatHoaDon.AllowExport = isExport;
+                            _uThongKeThuocXuatHoaDon.AllowImport = isImport;
+                            _uThongKeThuocXuatHoaDon.AllowLock = isLock;
+                            _uThongKeThuocXuatHoaDon.AllowExportAll = isExportAll;
+                            _uThongKeThuocXuatHoaDon.AllowConfirm = isConfirm;
+                        }
                     }
                 }
                 else
@@ -1871,6 +1885,7 @@ namespace MM
                 nhanVienTrungLapToolStripMenuItem.Enabled = isLogin;
                 chuyenBenhAnToolStripMenuItem.Enabled = isLogin;
                 dichVuXetNghiemToolStripMenuItem.Enabled = isLogin;
+                thongKeThuocXuatHoaDonToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -2333,7 +2348,18 @@ namespace MM
                 case "DichVuXetNghiem":
                     OnDichVuXetNghiem();
                     break;
+
+                case "ThongKeThuocXuatHoaDon":
+                    OnThongKeThuocXuatHoaDon();
+                    break;
             }
+        }
+
+        private void OnThongKeThuocXuatHoaDon()
+        {
+            this.Text = string.Format("{0} - Thon ke thuoc xuat hoa don", Application.ProductName);
+            ViewControl(_uThongKeThuocXuatHoaDon);
+            _uThongKeThuocXuatHoaDon.InitData();
         }
 
         private void OnDichVuXetNghiem()

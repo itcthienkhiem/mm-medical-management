@@ -18,6 +18,72 @@ namespace MM.Exports
 {
     public class ExportExcel
     {
+        public static bool ExportThuocXuatHoaDonToExcel(string exportFileName, DateTime tuNgay, DateTime denNgay)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            IWorkbook workBook = null;
+
+            try
+            {
+                Result result = ReportBus.GetThuocXuatHoaDon(tuNgay, denNgay);
+                if (!result.IsOK)
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReportBus.GetThuocXuatHoaDon"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("ReportBus.GetThuocXuatHoaDon"));
+                    return false;
+                }
+
+                DataTable dt = result.QueryResult as DataTable;
+                string excelTemplateName = string.Format("{0}\\Templates\\ThongKeThuocXuatHoaDonTemplate.xls", Application.StartupPath);
+
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+                workSheet.Cells["A2"].Value = string.Format("Từ ngày: {0} đến ngày: {1}", tuNgay.ToString("dd/MM/yyyy"), denNgay.ToString("dd/MM/yyyy"));
+
+                int rowIndex = 3;
+                IRange range;
+                foreach (DataRow row in dt.Rows)
+                {
+                    string tenThuoc = row["TenThuoc"].ToString();
+                    string donViTinh = row["DonViTinh"].ToString();
+                    int soLuong = Convert.ToInt32(row["SoLuong"].ToString());
+
+                    workSheet.Cells[rowIndex, 0].Value = tenThuoc;
+                    workSheet.Cells[rowIndex, 1].Value = donViTinh;
+                    workSheet.Cells[rowIndex, 2].Value = soLuong;
+
+                    rowIndex++;
+                }
+
+                range = workSheet.Cells[string.Format("A4:C{0}", rowIndex)];
+                range.Borders.Color = Color.Black;
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Weight = BorderWeight.Thin;
+
+                string path = string.Format("{0}\\Temp", Application.StartupPath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
+
         public static bool ExportReceiptToExcel(string exportFileName, string receiptGUID)
         {
             Cursor.Current = Cursors.WaitCursor;

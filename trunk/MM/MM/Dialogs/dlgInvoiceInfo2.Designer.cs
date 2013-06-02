@@ -1,6 +1,6 @@
 ﻿namespace MM.Dialogs
 {
-    partial class dlgHoaDonThuoc
+    partial class dlgInvoiceInfo2
     {
         /// <summary>
         /// Required designer variable.
@@ -35,14 +35,19 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle11 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle12 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgHoaDonThuoc));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgInvoiceInfo));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnOK = new System.Windows.Forms.Button();
+            this.btnClose2 = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.btnExportAndPrint = new System.Windows.Forms.Button();
+            this.btnExportInvoice = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lbMauSo = new System.Windows.Forms.Label();
             this.lbKiHieu = new System.Windows.Forms.Label();
@@ -91,12 +96,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this._printDialog = new System.Windows.Forms.PrintDialog();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnOK = new System.Windows.Forms.Button();
-            this.btnClose2 = new System.Windows.Forms.Button();
-            this.btnPrint = new System.Windows.Forms.Button();
-            this.btnExportAndPrint = new System.Windows.Forms.Button();
-            this.btnExportInvoice = new System.Windows.Forms.Button();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -104,8 +103,7 @@
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn6 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.TenThuoc = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.TenThuoc2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.TenDichVu = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DonViTinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.SoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DonGia = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -130,10 +128,85 @@
             this.panel1.Controls.Add(this.btnExportInvoice);
             this.panel1.Controls.Add(this.btnCancel);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 659);
+            this.panel1.Location = new System.Drawing.Point(0, 657);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(708, 38);
             this.panel1.TabIndex = 7;
+            // 
+            // btnOK
+            // 
+            this.btnOK.Image = global::MM.Properties.Resources.save;
+            this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOK.Location = new System.Drawing.Point(327, 6);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(75, 25);
+            this.btnOK.TabIndex = 18;
+            this.btnOK.Text = "   &Lưu";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Visible = false;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
+            // btnClose2
+            // 
+            this.btnClose2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose2.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
+            this.btnClose2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose2.Location = new System.Drawing.Point(406, 6);
+            this.btnClose2.Name = "btnClose2";
+            this.btnClose2.Size = new System.Drawing.Size(75, 25);
+            this.btnClose2.TabIndex = 19;
+            this.btnClose2.Text = "   &Đóng";
+            this.btnClose2.UseVisualStyleBackColor = true;
+            this.btnClose2.Visible = false;
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Image = global::MM.Properties.Resources.Printer_icon__1_;
+            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrint.Location = new System.Drawing.Point(226, 6);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(97, 25);
+            this.btnPrint.TabIndex = 17;
+            this.btnPrint.Text = "      &In hóa đơn";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Visible = false;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // btnExportAndPrint
+            // 
+            this.btnExportAndPrint.Image = global::MM.Properties.Resources.Apps_printer_icon;
+            this.btnExportAndPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportAndPrint.Location = new System.Drawing.Point(310, 6);
+            this.btnExportAndPrint.Name = "btnExportAndPrint";
+            this.btnExportAndPrint.Size = new System.Drawing.Size(80, 25);
+            this.btnExportAndPrint.TabIndex = 16;
+            this.btnExportAndPrint.Text = "      &Xuất && In";
+            this.btnExportAndPrint.UseVisualStyleBackColor = true;
+            this.btnExportAndPrint.Click += new System.EventHandler(this.btnExportAndPrint_Click);
+            // 
+            // btnExportInvoice
+            // 
+            this.btnExportInvoice.Image = global::MM.Properties.Resources.invoice_icon;
+            this.btnExportInvoice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportInvoice.Location = new System.Drawing.Point(237, 6);
+            this.btnExportInvoice.Name = "btnExportInvoice";
+            this.btnExportInvoice.Size = new System.Drawing.Size(68, 25);
+            this.btnExportInvoice.TabIndex = 15;
+            this.btnExportInvoice.Text = "      &Xuất";
+            this.btnExportInvoice.UseVisualStyleBackColor = true;
+            this.btnExportInvoice.Click += new System.EventHandler(this.btnExportInvoice_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
+            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancel.Location = new System.Drawing.Point(395, 6);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 25);
+            this.btnCancel.TabIndex = 14;
+            this.btnCancel.Text = "   &Đóng";
+            this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -193,10 +266,10 @@
             // 
             this.dtpkNgay.CustomFormat = "dd/MM/yyyy";
             this.dtpkNgay.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkNgay.Location = new System.Drawing.Point(281, 33);
+            this.dtpkNgay.Location = new System.Drawing.Point(280, 33);
             this.dtpkNgay.Name = "dtpkNgay";
             this.dtpkNgay.Size = new System.Drawing.Size(109, 20);
-            this.dtpkNgay.TabIndex = 14;
+            this.dtpkNgay.TabIndex = 13;
             // 
             // panel3
             // 
@@ -304,7 +377,7 @@
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(0, 190);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(708, 168);
+            this.panel6.Size = new System.Drawing.Size(708, 166);
             this.panel6.TabIndex = 0;
             // 
             // txtGhiChu
@@ -312,7 +385,7 @@
             this.txtGhiChu.Location = new System.Drawing.Point(143, 138);
             this.txtGhiChu.Name = "txtGhiChu";
             this.txtGhiChu.Size = new System.Drawing.Size(542, 20);
-            this.txtGhiChu.TabIndex = 29;
+            this.txtGhiChu.TabIndex = 30;
             // 
             // label3
             // 
@@ -321,13 +394,13 @@
             this.label3.Location = new System.Drawing.Point(5, 141);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(48, 15);
-            this.label3.TabIndex = 33;
+            this.label3.TabIndex = 29;
             this.label3.Text = "Ghi chú";
             // 
             // raGuiQuaBuuDien
             // 
             this.raGuiQuaBuuDien.AutoSize = true;
-            this.raGuiQuaBuuDien.Location = new System.Drawing.Point(532, 116);
+            this.raGuiQuaBuuDien.Location = new System.Drawing.Point(526, 118);
             this.raGuiQuaBuuDien.Name = "raGuiQuaBuuDien";
             this.raGuiQuaBuuDien.Size = new System.Drawing.Size(107, 17);
             this.raGuiQuaBuuDien.TabIndex = 28;
@@ -338,7 +411,7 @@
             // 
             this.raKhachTuLay.AutoSize = true;
             this.raKhachTuLay.Checked = true;
-            this.raKhachTuLay.Location = new System.Drawing.Point(428, 116);
+            this.raKhachTuLay.Location = new System.Drawing.Point(422, 118);
             this.raKhachTuLay.Name = "raKhachTuLay";
             this.raKhachTuLay.Size = new System.Drawing.Size(84, 17);
             this.raKhachTuLay.TabIndex = 27;
@@ -352,7 +425,7 @@
             this.txtHinhThucThanhToan.Name = "txtHinhThucThanhToan";
             this.txtHinhThucThanhToan.ReadOnly = true;
             this.txtHinhThucThanhToan.Size = new System.Drawing.Size(178, 20);
-            this.txtHinhThucThanhToan.TabIndex = 24;
+            this.txtHinhThucThanhToan.TabIndex = 26;
             this.txtHinhThucThanhToan.Visible = false;
             // 
             // txtTenDonVi
@@ -396,10 +469,10 @@
             this.chkDaThuTien.AutoSize = true;
             this.chkDaThuTien.Checked = true;
             this.chkDaThuTien.CheckState = System.Windows.Forms.CheckState.Checked;
-            this.chkDaThuTien.Location = new System.Drawing.Point(328, 119);
+            this.chkDaThuTien.Location = new System.Drawing.Point(331, 119);
             this.chkDaThuTien.Name = "chkDaThuTien";
             this.chkDaThuTien.Size = new System.Drawing.Size(78, 17);
-            this.chkDaThuTien.TabIndex = 26;
+            this.chkDaThuTien.TabIndex = 25;
             this.chkDaThuTien.Text = "Đã thu tiền";
             this.chkDaThuTien.UseVisualStyleBackColor = true;
             // 
@@ -503,7 +576,7 @@
             // 
             this.panel7.Controls.Add(this.dgDetail);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Top;
-            this.panel7.Location = new System.Drawing.Point(0, 358);
+            this.panel7.Location = new System.Drawing.Point(0, 356);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(708, 187);
             this.panel7.TabIndex = 18;
@@ -521,8 +594,7 @@
             this.dgDetail.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgDetail.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.STT,
-            this.TenThuoc,
-            this.TenThuoc2,
+            this.TenDichVu,
             this.DonViTinh,
             this.SoLuong,
             this.DonGia,
@@ -568,7 +640,7 @@
             this.panel8.Controls.Add(this.label13);
             this.panel8.Controls.Add(this.label12);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel8.Location = new System.Drawing.Point(0, 545);
+            this.panel8.Location = new System.Drawing.Point(0, 543);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(708, 114);
             this.panel8.TabIndex = 6;
@@ -668,81 +740,6 @@
             // 
             this._printDialog.UseEXDialog = true;
             // 
-            // btnCancel
-            // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
-            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(395, 6);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 25);
-            this.btnCancel.TabIndex = 14;
-            this.btnCancel.Text = "   &Đóng";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            // 
-            // btnOK
-            // 
-            this.btnOK.Image = global::MM.Properties.Resources.save;
-            this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(327, 6);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 25);
-            this.btnOK.TabIndex = 18;
-            this.btnOK.Text = "   &Lưu";
-            this.btnOK.UseVisualStyleBackColor = true;
-            this.btnOK.Visible = false;
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // btnClose2
-            // 
-            this.btnClose2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose2.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
-            this.btnClose2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose2.Location = new System.Drawing.Point(406, 6);
-            this.btnClose2.Name = "btnClose2";
-            this.btnClose2.Size = new System.Drawing.Size(75, 25);
-            this.btnClose2.TabIndex = 19;
-            this.btnClose2.Text = "   &Đóng";
-            this.btnClose2.UseVisualStyleBackColor = true;
-            this.btnClose2.Visible = false;
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Image = global::MM.Properties.Resources.Printer_icon__1_;
-            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(226, 6);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(97, 25);
-            this.btnPrint.TabIndex = 17;
-            this.btnPrint.Text = "      &In hóa đơn";
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Visible = false;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
-            // 
-            // btnExportAndPrint
-            // 
-            this.btnExportAndPrint.Image = global::MM.Properties.Resources.Apps_printer_icon;
-            this.btnExportAndPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportAndPrint.Location = new System.Drawing.Point(310, 6);
-            this.btnExportAndPrint.Name = "btnExportAndPrint";
-            this.btnExportAndPrint.Size = new System.Drawing.Size(80, 25);
-            this.btnExportAndPrint.TabIndex = 16;
-            this.btnExportAndPrint.Text = "      &Xuất && In";
-            this.btnExportAndPrint.UseVisualStyleBackColor = true;
-            this.btnExportAndPrint.Click += new System.EventHandler(this.btnExportAndPrint_Click);
-            // 
-            // btnExportInvoice
-            // 
-            this.btnExportInvoice.Image = global::MM.Properties.Resources.invoice_icon;
-            this.btnExportInvoice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportInvoice.Location = new System.Drawing.Point(237, 6);
-            this.btnExportInvoice.Name = "btnExportInvoice";
-            this.btnExportInvoice.Size = new System.Drawing.Size(68, 25);
-            this.btnExportInvoice.TabIndex = 15;
-            this.btnExportInvoice.Text = "      &Xuất";
-            this.btnExportInvoice.UseVisualStyleBackColor = true;
-            this.btnExportInvoice.Click += new System.EventHandler(this.btnExportInvoice_Click);
-            // 
             // dataGridViewTextBoxColumn1
             // 
             dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -758,58 +755,50 @@
             // dataGridViewTextBoxColumn2
             // 
             this.dataGridViewTextBoxColumn2.DataPropertyName = "TenDichVu";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn2.DefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridViewTextBoxColumn2.HeaderText = "Tên hàng hóa, dịch vụ";
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
-            this.dataGridViewTextBoxColumn2.ReadOnly = true;
             this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn2.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.dataGridViewTextBoxColumn2.Width = 225;
             // 
             // dataGridViewTextBoxColumn3
             // 
             this.dataGridViewTextBoxColumn3.DataPropertyName = "DonViTinh";
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn3.DefaultCellStyle = dataGridViewCellStyle9;
             this.dataGridViewTextBoxColumn3.HeaderText = "Đơn vị tính";
             this.dataGridViewTextBoxColumn3.Name = "dataGridViewTextBoxColumn3";
             this.dataGridViewTextBoxColumn3.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn3.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.dataGridViewTextBoxColumn3.Width = 85;
             // 
             // dataGridViewTextBoxColumn4
             // 
             this.dataGridViewTextBoxColumn4.DataPropertyName = "SoLuong";
-            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle11;
+            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            this.dataGridViewTextBoxColumn4.DefaultCellStyle = dataGridViewCellStyle10;
             this.dataGridViewTextBoxColumn4.HeaderText = "Số lượng";
             this.dataGridViewTextBoxColumn4.Name = "dataGridViewTextBoxColumn4";
             this.dataGridViewTextBoxColumn4.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn4.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.dataGridViewTextBoxColumn4.Width = 75;
             // 
             // dataGridViewTextBoxColumn5
             // 
             this.dataGridViewTextBoxColumn5.DataPropertyName = "DonGia";
-            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle12.Format = "N0";
-            dataGridViewCellStyle12.NullValue = null;
-            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle12;
+            dataGridViewCellStyle11.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle11.Format = "N0";
+            dataGridViewCellStyle11.NullValue = null;
+            this.dataGridViewTextBoxColumn5.DefaultCellStyle = dataGridViewCellStyle11;
             this.dataGridViewTextBoxColumn5.HeaderText = "Đơn giá";
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
-            this.dataGridViewTextBoxColumn5.ReadOnly = true;
             this.dataGridViewTextBoxColumn5.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.dataGridViewTextBoxColumn5.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.dataGridViewTextBoxColumn5.Width = 110;
             // 
             // dataGridViewTextBoxColumn6
             // 
             this.dataGridViewTextBoxColumn6.DataPropertyName = "ThanhTien";
-            dataGridViewCellStyle13.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle13.Format = "N0";
-            dataGridViewCellStyle13.NullValue = null;
-            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle13;
+            dataGridViewCellStyle12.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
+            dataGridViewCellStyle12.Format = "N0";
+            dataGridViewCellStyle12.NullValue = null;
+            this.dataGridViewTextBoxColumn6.DefaultCellStyle = dataGridViewCellStyle12;
             this.dataGridViewTextBoxColumn6.HeaderText = "Thành tiền";
             this.dataGridViewTextBoxColumn6.Name = "dataGridViewTextBoxColumn6";
             this.dataGridViewTextBoxColumn6.ReadOnly = true;
@@ -828,24 +817,14 @@
             this.STT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.STT.Width = 40;
             // 
-            // TenThuoc
+            // TenDichVu
             // 
-            this.TenThuoc.DataPropertyName = "TenThuoc";
-            this.TenThuoc.DisplayStyleForCurrentCellOnly = true;
-            this.TenThuoc.HeaderText = "Tên hàng hóa, dịch vụ";
-            this.TenThuoc.MaxDropDownItems = 12;
-            this.TenThuoc.Name = "TenThuoc";
-            this.TenThuoc.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.TenThuoc.Width = 225;
-            // 
-            // TenThuoc2
-            // 
-            this.TenThuoc2.DataPropertyName = "TenThuoc";
-            this.TenThuoc2.HeaderText = "Tên hàng hóa, dịch vụ";
-            this.TenThuoc2.Name = "TenThuoc2";
-            this.TenThuoc2.ReadOnly = true;
-            this.TenThuoc2.Visible = false;
-            this.TenThuoc2.Width = 225;
+            this.TenDichVu.DataPropertyName = "TenDichVu";
+            this.TenDichVu.HeaderText = "Tên hàng hóa, dịch vụ";
+            this.TenDichVu.Name = "TenDichVu";
+            this.TenDichVu.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.TenDichVu.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.TenDichVu.Width = 225;
             // 
             // DonViTinh
             // 
@@ -896,13 +875,13 @@
             this.ThanhTien.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.ThanhTien.Width = 120;
             // 
-            // dlgHoaDonThuoc
+            // dlgInvoiceInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.Color.White;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(708, 697);
+            this.ClientSize = new System.Drawing.Size(708, 695);
             this.Controls.Add(this.panel8);
             this.Controls.Add(this.panel7);
             this.Controls.Add(this.panel6);
@@ -915,7 +894,7 @@
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "dlgHoaDonThuoc";
+            this.Name = "dlgInvoiceInfo";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Thong tin hoa don";
@@ -993,16 +972,15 @@
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.ComboBox cboTenNguoiMuaHang;
         private System.Windows.Forms.ComboBox cboTenDonVi;
-        private System.Windows.Forms.TextBox txtTenNguoiMuaHang;
         private System.Windows.Forms.TextBox txtHinhThucThanhToan;
         private System.Windows.Forms.TextBox txtTenDonVi;
+        private System.Windows.Forms.TextBox txtTenNguoiMuaHang;
         private System.Windows.Forms.RadioButton raGuiQuaBuuDien;
         private System.Windows.Forms.RadioButton raKhachTuLay;
         private System.Windows.Forms.TextBox txtGhiChu;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.DataGridViewTextBoxColumn STT;
-        private System.Windows.Forms.DataGridViewComboBoxColumn TenThuoc;
-        private System.Windows.Forms.DataGridViewTextBoxColumn TenThuoc2;
+        private System.Windows.Forms.DataGridViewTextBoxColumn TenDichVu;
         private System.Windows.Forms.DataGridViewTextBoxColumn DonViTinh;
         private System.Windows.Forms.DataGridViewTextBoxColumn SoLuong;
         private System.Windows.Forms.DataGridViewTextBoxColumn DonGia;

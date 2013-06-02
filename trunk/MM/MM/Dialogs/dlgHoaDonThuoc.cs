@@ -31,6 +31,7 @@ namespace MM.Dialogs
         private HoaDonThuoc _hoaDonThuoc = new HoaDonThuoc();
         private LoaiHoaDon _loaiHoaDon = LoaiHoaDon.HoaDonThuoc;
         private DataTable _dtThongTinKhachHang = null;
+        private ComboBox _cboBox = null;
         #endregion
 
         #region Constructor
@@ -301,7 +302,7 @@ namespace MM.Dialogs
                     result = HoaDonThuocBus.GetChiTietHoaDonThuoc(_drInvoice["HoaDonThuocGUID"].ToString());
                 else if (_loaiHoaDon == Common.LoaiHoaDon.HoaDonDichVu)
                 {
-                    TenThuoc.DataPropertyName = "TenDichVu";
+                    TenThuoc2.DataPropertyName = "TenDichVu";
                     result = InvoiceBus.GetInvoiceDetail(_drInvoice["HoaDonThuocGUID"].ToString());
                 }
                 else if (_loaiHoaDon == Common.LoaiHoaDon.HoaDonXuatTruoc)
@@ -430,22 +431,22 @@ namespace MM.Dialogs
             if (rowIndex < 0 || colIndex < 0) return;
 
             int soLuong = 1;
-            string strValue = dgDetail[3, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
+            string strValue = dgDetail[4, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
             if (strValue != string.Empty && strValue != "System.Data.DataRowView")
                 soLuong = Convert.ToInt32(strValue);
 
-            strValue = dgDetail[4, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
+            strValue = dgDetail[5, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
             int donGia = 0;
             if (strValue != string.Empty && strValue != "System.Data.DataRowView")
                 donGia = Convert.ToInt32(strValue);
 
-            strValue = dgDetail[5, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
+            strValue = dgDetail[6, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
             int giam = 0;
             if (strValue != string.Empty && strValue != "System.Data.DataRowView")
                 giam = Convert.ToInt32(strValue);
             
             double thanhTien = soLuong * donGia;
-            dgDetail[5, rowIndex].Value = thanhTien;
+            dgDetail[6, rowIndex].Value = thanhTien;
 
             CalculateTongTien();
         }
@@ -457,8 +458,8 @@ namespace MM.Dialogs
             for (int i = 0; i < rowCount; i++)
             {
                 double tt = 0;
-                if (dgDetail[5, i].Value != null && dgDetail[5, i].Value != DBNull.Value)
-                    tt = Convert.ToDouble(dgDetail[5, i].Value);
+                if (dgDetail[6, i].Value != null && dgDetail[6, i].Value != DBNull.Value)
+                    tt = Convert.ToDouble(dgDetail[6, i].Value);
                 _totalPrice += tt;
             }
 
@@ -753,15 +754,15 @@ namespace MM.Dialogs
                     return false;
                 }
 
-                if (row.Cells[2].Value == null || row.Cells[2].Value == DBNull.Value || row.Cells[2].Value.ToString().Trim() == string.Empty)
+                if (row.Cells[3].Value == null || row.Cells[3].Value == DBNull.Value || row.Cells[3].Value.ToString().Trim() == string.Empty)
                 {
                     MsgBox.Show(this.Text, "Vui lòng nhập đơn vị tính.", IconType.Information);
                     return false;
                 }
 
                 int donGia = 0;
-                if (row.Cells[4].Value != null && row.Cells[4].Value != DBNull.Value && row.Cells[4].Value.ToString().Trim() != string.Empty)
-                    donGia = Convert.ToInt32(row.Cells[4].Value);
+                if (row.Cells[5].Value != null && row.Cells[5].Value != DBNull.Value && row.Cells[5].Value.ToString().Trim() != string.Empty)
+                    donGia = Convert.ToInt32(row.Cells[5].Value);
 
                 if (donGia <= 0)
                 {
@@ -888,12 +889,55 @@ namespace MM.Dialogs
             return false;
         }
 
-        
+        private void InitData()
+        {
+            if (!_isView)
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                Result result = ThuocBus.GetThuocList();
+                if (result.IsOK)
+                {
+                    DataTable dt = result.QueryResult as DataTable;
+                    DataRow row = dt.NewRow();
+                    row["ThuocGUID"] = Guid.Empty.ToString();
+                    row["TenThuoc"] = " ";
+                    dt.Rows.InsertAt(row, 0);
+
+                    TenThuoc.DataSource = dt;
+                    TenThuoc.DisplayMember = "TenThuoc";
+                    TenThuoc.ValueMember = "TenThuoc";
+                }
+                else
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("ThuocBus.GetThuocList"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("ThuocBus.GetThuocList"));
+                    this.Close();
+                }
+            }
+            else
+            {
+                TenThuoc.Visible = false;
+                TenThuoc2.Visible = true;
+            }
+        }
+
+        private string GetDonViTinh(string tenThuoc)
+        {
+            DataTable dt = TenThuoc.DataSource as DataTable;
+            if (dt == null || dt.Rows.Count <= 0) return string.Empty;
+
+            DataRow[] rows = dt.Select(string.Format("TenThuoc='{0}'", tenThuoc));
+            if (rows != null && rows.Length > 0)
+                return rows[0]["DonViTinh"].ToString();
+
+            return string.Empty;
+        }
         #endregion
 
         #region Window Event Handlers
         private void dlgInvoiceInfo_Load(object sender, EventArgs e)
         {
+            InitData();
             dtpkNgay.Value = DateTime.Now;
             DisplayThongTinKhachHang();
             DisplayTenDonVi();
@@ -952,7 +996,7 @@ namespace MM.Dialogs
 
         private void dgDetail_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            RefreshNo();
+            //RefreshNo();
         }
 
         private void numVAT_ValueChanged(object sender, EventArgs e)
@@ -1011,7 +1055,7 @@ namespace MM.Dialogs
 
         private void dgDetail_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            if (dgDetail.CurrentCell.ColumnIndex >= 3 && dgDetail.CurrentCell.ColumnIndex <= 4)
+            if (dgDetail.CurrentCell.ColumnIndex >= 4 && dgDetail.CurrentCell.ColumnIndex <= 5)
             {
                 TextBox textBox = e.Control as TextBox;
 
@@ -1024,6 +1068,32 @@ namespace MM.Dialogs
                     _flag = true;
                 }
             }
+
+            if (e.Control.GetType() == typeof(DataGridViewComboBoxEditingControl))
+            {
+                DataGridViewComboBoxEditingControl cbo = e.Control as DataGridViewComboBoxEditingControl;
+                cbo.DropDownStyle = ComboBoxStyle.DropDown;
+                cbo.AutoCompleteMode = AutoCompleteMode.Suggest;
+                _cboBox = e.Control as ComboBox;
+                _cboBox.SelectedValueChanged -= new EventHandler(cmbox_SelectedValueChanged);
+                _cboBox.SelectedValueChanged += new EventHandler(cmbox_SelectedValueChanged);
+            }
+        }
+
+        private void cmbox_SelectedValueChanged(object sender, EventArgs e)
+        {
+            if (!_flag) return;
+
+            if (dgDetail.CurrentCell.ColumnIndex == 1)
+            {
+                _flag = false;
+                DataGridViewComboBoxEditingControl cbo = (DataGridViewComboBoxEditingControl)sender;
+                if (cbo.SelectedValue == null || cbo.SelectedValue.ToString() == "System.Data.DataRowView") return;
+                string tenThuoc = cbo.SelectedValue.ToString();
+                string donViTinh = GetDonViTinh(tenThuoc);
+                dgDetail.Rows[dgDetail.CurrentRow.Index].Cells[3].Value = donViTinh;
+                _flag = true;
+            }
         }
 
         private void textBox_TextChanged(object sender, EventArgs e)
@@ -1031,11 +1101,11 @@ namespace MM.Dialogs
             if (!_flag) return;
             TextBox textBox = (TextBox)sender;
             int colIndex = dgDetail.CurrentCell.ColumnIndex;
-            if (colIndex < 3) return;
+            if (colIndex < 4) return;
 
             if (textBox.Text == null || textBox.Text.Trim() == string.Empty)
             {
-                if (colIndex == 3)
+                if (colIndex == 4)
                     textBox.Text = "1";
                 else
                     textBox.Text = "0";
@@ -1047,7 +1117,7 @@ namespace MM.Dialogs
             {
                 int value = int.Parse(strValue);
 
-                if (colIndex == 3 && value == 0)
+                if (colIndex == 4 && value == 0)
                     textBox.Text = "1";
             }
             catch
@@ -1061,7 +1131,7 @@ namespace MM.Dialogs
         private void textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             int colIndex = dgDetail.CurrentCell.ColumnIndex;
-            if (colIndex != 3 && colIndex != 4) return;
+            if (colIndex != 4 && colIndex != 5) return;
             
             DataGridViewTextBoxEditingControl textBox = (DataGridViewTextBoxEditingControl)sender;
             if (!(char.IsDigit(e.KeyChar)))
@@ -1110,11 +1180,11 @@ namespace MM.Dialogs
 
         private void dgDetail_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.ColumnIndex >= 3 && e.ColumnIndex <= 5)
+            if (e.ColumnIndex >= 4 && e.ColumnIndex <= 6)
             {
                 if (e.Value == null || e.Value.ToString() == string.Empty || e.Value == DBNull.Value)
                 {
-                    if (e.ColumnIndex == 4 || e.ColumnIndex == 5)
+                    if (e.ColumnIndex == 5 || e.ColumnIndex == 6)
                         e.Value = "0";
                     else
                         e.Value = "1";

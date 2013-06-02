@@ -680,7 +680,7 @@ namespace MM.Dialogs
 
         private void dgDetail_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            RefreshNo();
+            //RefreshNo();
         }
 
         private void numVAT_ValueChanged(object sender, EventArgs e)

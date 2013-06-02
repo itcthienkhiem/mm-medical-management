@@ -1115,6 +1115,10 @@ namespace MM.Common
                     case "Dịch vụ xét nghiệm":
                         fileName = string.Format("{0}\\Templates\\DichVuXetNghiemTemplate.xls", AppDomain.CurrentDomain.BaseDirectory);
                         break;
+
+                    case "Thống kế thuốc xuất hóa đơn":
+                        fileName = string.Format("{0}\\Templates\\ThongKeThuocXuatHoaDonTemplate.xls", AppDomain.CurrentDomain.BaseDirectory);
+                        break;
                 }
 
                 if (fileName != string.Empty && File.Exists(fileName))

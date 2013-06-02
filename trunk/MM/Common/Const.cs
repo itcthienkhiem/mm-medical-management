@@ -120,6 +120,7 @@ namespace MM.Common
         public static string NhanVienTrungLap = "NhanVienTrungLap";
         public static string ChuyenBenhAn = "ChuyenBenhAn";
         public static string DichVuXetNghiem = "DichVuXetNghiem";
+        public static string ThongKeThuocXuatHoaDon = "ThongKeThuocXuatHoaDon";
 
         public static string CheckListTemplate = "Theo dõi thực hiện";
         public static string ChiTietPhieuThuDichVuTemplate = "Chi tiết phiếu thu dịch vụ";
@@ -164,6 +165,7 @@ namespace MM.Common
         public static string BaoCaoCongNoHopDongChiTietTemplate = "Báo cáo công nợ hợp đồng chi tiết";
         public static string ChiDinhTemplate = "Chỉ định";
         public static string DichVuXetNghiemTemplate = "Dịch vụ xét nghiệm";
+        public static string ThongKeThuocXuatHoaDonTemplate = "Thống kê thuốc xuất hóa đơn";
         
         public static string TVHomeProcessName = "TVHome Media2";
     }
