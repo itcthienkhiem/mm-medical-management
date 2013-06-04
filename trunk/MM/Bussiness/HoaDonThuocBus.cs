@@ -437,8 +437,8 @@ namespace MM.Bussiness
                             detail.HoaDonThuocGUID = hdt.HoaDonThuocGUID;
                             db.ChiTietHoaDonThuocs.InsertOnSubmit(detail);
 
-                            desc += string.Format("  + GUID: '{0}', Dịch vụ: '{1}', ĐVT: '{2}', Số lượng: '{3}', Đơn giá: '{4}', Thành tiền: '{5}'\n",
-                                detail.ChiTietHoaDonThuocGUID.ToString(), detail.TenThuoc, detail.DonViTinh, detail.SoLuong, detail.DonGia, detail.ThanhTien);
+                            desc += string.Format("  + GUID: '{0}', Dịch vụ: '{1}', ĐVT: '{2}', Số lượng: '{3}', Đơn giá: '{4}', Thành tiền: '{5}', Loai: '{6}'\n",
+                                detail.ChiTietHoaDonThuocGUID.ToString(), detail.TenThuoc, detail.DonViTinh, detail.SoLuong, detail.DonGia, detail.ThanhTien, detail.Loai);
                         }
 
                         db.SubmitChanges();

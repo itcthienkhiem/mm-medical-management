@@ -797,7 +797,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT TenThuoc, DonViTinh, SUM(SoLuong) AS SoLuong FROM (SELECT CT.TenThuoc, CT.DonViTinh, CT.SoLuong FROM ChiTietHoaDonThuoc CT WITH(NOLOCK), HoaDonThuoc HD WITH(NOLOCK) WHERE CT.HoaDonThuocGUID = HD.HoaDonThuocGUID AND CT.Status = 0 AND HD.Status = 0 AND HD.NgayXuatHoaDon BETWEEN '{0}' AND '{1}' UNION SELECT CT.TenDichVu As TenThuoc, CT.DonViTinh, CT.SoLuong FROM InvoiceDetail CT, Invoice HD WHERE CT.InvoiceGUID = HD.InvoiceGUID AND CT.Status = 0 AND HD.Status = 0 AND HD.InvoiceDate BETWEEN '{0}' AND '{1}' AND CT.Loai = 1) T GROUP BY TenThuoc, DonViTinh ORDER BY TenThuoc, DonViTinh",
+                string query = string.Format("SELECT TenThuoc, DonViTinh, SUM(SoLuong) AS SoLuong FROM (SELECT CT.TenThuoc, CT.DonViTinh, CT.SoLuong FROM ChiTietHoaDonThuoc CT WITH(NOLOCK), HoaDonThuoc HD WITH(NOLOCK) WHERE CT.HoaDonThuocGUID = HD.HoaDonThuocGUID AND CT.Loai = 0 AND CT.Status = 0 AND HD.Status = 0 AND HD.NgayXuatHoaDon BETWEEN '{0}' AND '{1}' UNION SELECT CT.TenDichVu As TenThuoc, CT.DonViTinh, CT.SoLuong FROM InvoiceDetail CT, Invoice HD WHERE CT.InvoiceGUID = HD.InvoiceGUID AND CT.Status = 0 AND HD.Status = 0 AND HD.InvoiceDate BETWEEN '{0}' AND '{1}' AND CT.Loai = 1) T GROUP BY TenThuoc, DonViTinh ORDER BY TenThuoc, DonViTinh",
                     tuNgay.ToString("yyyy-MM-dd 00:00:00"), denNgay.ToString("yyyy-MM-dd 23:59:59"));
                 return ExcuteQuery(query);
             }
