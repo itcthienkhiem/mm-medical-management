@@ -120,7 +120,7 @@ namespace MM.Dialogs
         {
             List<DataRow> receiptList = new List<DataRow>();
             receiptList.Add(_drReceipt);
-            dlgInvoiceInfo dlg = new dlgInvoiceInfo(receiptList);
+            dlgInvoiceInfo2 dlg = new dlgInvoiceInfo2(receiptList);
             if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
             {
                 _isExportedInvoice = true;

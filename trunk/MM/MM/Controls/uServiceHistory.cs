@@ -436,16 +436,17 @@ namespace MM.Controls
 
             if (MsgBox.Question(Application.ProductName, "Bạn có muốn xuất phiếu thu ?") == DialogResult.No) return;
 
-            dlgConfirmThuTien dlg = new dlgConfirmThuTien();
+            dlgConfirmThuTien dlg = new dlgConfirmThuTien(noPaidServiceList);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 if (paidServiceList.Count <= 0)
                 {
                     List<ReceiptDetail> receiptDetails = new List<ReceiptDetail>();
-                    foreach (DataRow row in noPaidServiceList)
+                    foreach (DataGridViewRow row in dlg.DataGridViewDetail.Rows)
                     {
                         ReceiptDetail detail = new ReceiptDetail();
-                        detail.ServiceHistoryGUID = Guid.Parse(row["ServiceHistoryGUID"].ToString());
+                        detail.ServiceHistoryGUID = Guid.Parse(row.Tag.ToString());
+                        detail.SoLuong = Convert.ToInt32(row.Cells[2].Value);
                         detail.CreatedDate = DateTime.Now;
                         detail.CreatedBy = Guid.Parse(Global.UserGUID);
                         detail.Status = (byte)Status.Actived;

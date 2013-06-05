@@ -127,7 +127,7 @@ namespace MM.Bussiness
             MMOverride db = null;
             try
             {
-                string query = string.Format("SELECT S.*, P.FullName AS TenBenhNhan FROM ServiceHistoryView S WITH(NOLOCK), PatientView P WITH(NOLOCK) WHERE S.PatientGUID = P.PatientGUID AND S.ActivedDate BETWEEN '{0}' AND '{1}' AND S.IsExported = 'False' AND S.Status = {2} AND ServiceStatus = {2} AND KhamTuTuc = 'True' ORDER BY S.ActivedDate",
+                string query = string.Format("SELECT S.*, P.FullName AS TenBenhNhan, CAST((S.FixedPrice - (S.FixedPrice * S.Discount)/100) AS float) AS Amount FROM ServiceHistoryView S WITH(NOLOCK), PatientView P WITH(NOLOCK) WHERE S.PatientGUID = P.PatientGUID AND S.ActivedDate BETWEEN '{0}' AND '{1}' AND S.IsExported = 'False' AND S.Status = {2} AND ServiceStatus = {2} AND KhamTuTuc = 'True' ORDER BY S.ActivedDate",
                     fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), (byte)Status.Actived);
 
                 return ExcuteQuery(query);
