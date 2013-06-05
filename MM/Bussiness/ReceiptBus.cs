@@ -216,7 +216,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CAST((Price - (Price * Discount)/100) AS float) AS Amount FROM ReceiptDetailView WITH(NOLOCK) WHERE ReceiptGUID='{0}' AND ReceiptDetailStatus={1} ORDER BY Code", 
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CAST(((Price - (Price * Discount)/100) * SoLuong) AS float) AS Amount FROM ReceiptDetailView WITH(NOLOCK) WHERE ReceiptGUID='{0}' AND ReceiptDetailStatus={1} ORDER BY Code", 
                     receiptGUID, (byte)Status.Actived);
                 return ExcuteQuery(query);
             }

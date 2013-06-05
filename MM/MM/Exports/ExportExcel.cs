@@ -133,13 +133,14 @@ namespace MM.Exports
                     double price = Convert.ToDouble(row["Price"]);
                     double disCount = Convert.ToDouble(row["Discount"]);
                     double amount = Convert.ToDouble(row["Amount"]);
+                    int soLuong = Convert.ToInt32(row["SoLuong"]);
                     totalPrice += amount;
                     workSheet.Cells[rowIndex, 1].Value = no++;
                     workSheet.Cells[rowIndex, 1].HorizontalAlignment = HAlign.Center;
 
                     workSheet.Cells[rowIndex, 2].Value = serviceName;
 
-                    workSheet.Cells[rowIndex, 3].Value = 1;
+                    workSheet.Cells[rowIndex, 3].Value = soLuong;
                     workSheet.Cells[rowIndex, 3].HorizontalAlignment = HAlign.Right;
 
                     if (price > 0)

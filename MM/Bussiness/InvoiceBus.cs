@@ -264,7 +264,7 @@ namespace MM.Bussiness
                 foreach (DataRow row in receiptList)
                 {
                     string receiptGUID = row["ReceiptGUID"].ToString();
-                    string query = string.Format("SELECT Name AS TenDichVu, CAST(N'Lần' AS nvarchar(5)) AS DonViTinh, CAST(1 AS int) AS SoLuong, CAST((Price - (Price * Discount)/100) AS float) AS DonGia, CAST((Price - (Price * Discount)/100) AS float) AS ThanhTien FROM ReceiptDetailView WITH(NOLOCK) WHERE ReceiptGUID='{0}' AND ReceiptDetailStatus={1} ORDER BY Code",
+                    string query = string.Format("SELECT Name AS TenDichVu, CAST(N'Lần' AS nvarchar(5)) AS DonViTinh, SoLuong, CAST((Price - (Price * Discount)/100) AS float) AS DonGia, CAST(((Price - (Price * Discount)/100) * SoLuong) AS float) AS ThanhTien FROM ReceiptDetailView WITH(NOLOCK) WHERE ReceiptGUID='{0}' AND ReceiptDetailStatus={1} ORDER BY Code",
                         receiptGUID, (byte)Status.Actived);
                     result = ExcuteQuery(query);
 
