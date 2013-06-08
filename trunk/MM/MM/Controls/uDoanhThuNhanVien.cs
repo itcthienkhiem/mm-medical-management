@@ -70,8 +70,8 @@ namespace MM.Controls
             {
                 dt.Rows.Clear();
                 dt.Clear();
-                dt = null;
-                cboNhanVien.DataSource = null;
+                //dt = null;
+                //cboNhanVien.DataSource = null;
             }
         }
 
