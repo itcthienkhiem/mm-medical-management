@@ -3590,11 +3590,11 @@ namespace MM.Exports
                     string serviceName = detail.Name;
                     double price = detail.Price.Value;
                     double disCount = detail.Discount;
-                    double amount = price - (price * disCount) / 100;
+                    double amount = (price - (price * disCount) / 100) * detail.SoLuong;
                     double giaVon = detail.GiaVon;
-                    double laiLo = amount - giaVon;
+                    double laiLo = amount - (giaVon * detail.SoLuong);
 
-                    totalPrice += amount;
+                    totalPrice += amount; 
                     totalLaiLoDV += laiLo;
 
                     workSheet.Cells[rowIndex,0].Value = no++;
@@ -3602,7 +3602,7 @@ namespace MM.Exports
 
                     workSheet.Cells[rowIndex, 1].Value = serviceName;
 
-                    workSheet.Cells[rowIndex, 2].Value = 1;
+                    workSheet.Cells[rowIndex, 2].Value = detail.SoLuong;
                     workSheet.Cells[rowIndex, 2].HorizontalAlignment = HAlign.Right;
 
                     if (price > 0)
