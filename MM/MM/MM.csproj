@@ -107,6 +107,12 @@
     <Compile Include="Controls\uDichVuXetNghiem.Designer.cs">
       <DependentUpon>uDichVuXetNghiem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uMapMauHoSoVoiDichVu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uMapMauHoSoVoiDichVu.Designer.cs">
+      <DependentUpon>uMapMauHoSoVoiDichVu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uMergeDocStaff.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1673,6 +1679,9 @@
     <EmbeddedResource Include="Controls\uDichVuXetNghiem.resx">
       <DependentUpon>uDichVuXetNghiem.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uMapMauHoSoVoiDichVu.resx">
+      <DependentUpon>uMapMauHoSoVoiDichVu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uMergeDocStaff.resx">
       <DependentUpon>uMergeDocStaff.cs</DependentUpon>
     </EmbeddedResource>
@@ -2455,6 +2464,7 @@
     <None Include="Properties\DataSources\MM.Databasae.LoaiSieuAm1.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.LoiKhuyenView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.LoThuocView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.MauHoSo.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.NhapKhoCapCuuView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.NhatKyLienHeCongTyView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.NhomThuoc.datasource" />
@@ -2549,6 +2559,14 @@
     <None Include="Templates\KhoCapCuuTemplate.xls" />
     <None Include="Templates\LichHenTemplate.xls" />
     <None Include="Templates\LichKhamTemplate.xls" />
+    <None Include="Templates\MauHoSo\1 ABORATORY REQUEST FORM.doc" />
+    <None Include="Templates\MauHoSo\2 CHECK LIST.doc" />
+    <None Include="Templates\MauHoSo\3 GENERAL EXAMINATION REPORT NEW.doc" />
+    <None Include="Templates\MauHoSo\4 ECG FORM NEW.doc" />
+    <None Include="Templates\MauHoSo\5 X RAY.doc" />
+    <None Include="Templates\MauHoSo\6 AUDIOMETRY.doc" />
+    <None Include="Templates\MauHoSo\7 SO DO RANG.doc" />
+    <None Include="Templates\MauHoSo\8 TAT KUC XA.doc" />
     <None Include="Templates\NhatKyLienHeCongTyTemplate.xls" />
     <None Include="Templates\PhieuThuCapCuuTemplate.xls" />
     <None Include="Templates\PhieuThuThuocTemplate.xls" />
@@ -2644,6 +2662,7 @@
     <None Include="Resources\WhiteImage.PNG" />
     <None Include="Resources\email-alert-icon %282%29.png" />
     <None Include="Resources\email-alert-icon.png" />
+    <Content Include="Scripts\ScriptUpdate_KH_2013-06-13.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2013-06-05.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2013-06-03.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2013-06-02.sql" />

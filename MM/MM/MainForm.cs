@@ -408,6 +408,10 @@ namespace MM
                 _uNhanVienTrungLap.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uChuyenBenhAn))
                 _uChuyenBenhAn.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uDichVuXetNghiem))
+                _uDichVuXetNghiem.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uMapMauHoSoVoiDichVu))
+                _uMapMauHoSoVoiDichVu.DisplayInfo();
         }
 
         private void SaveAppConfig()
@@ -1653,6 +1657,20 @@ namespace MM
                             _uThongKeThuocXuatHoaDon.AllowExportAll = isExportAll;
                             _uThongKeThuocXuatHoaDon.AllowConfirm = isConfirm;
                         }
+                        else if (functionCode == Const.MapMauHoSoVoiDichVu)
+                        {
+                            companyToolStripMenuItem.Enabled = isLogin;
+                            mapMauHoSoVoiDichVuToolStripMenuItem.Enabled = isView && isLogin;
+                            _uMapMauHoSoVoiDichVu.AllowAdd = isAdd;
+                            _uMapMauHoSoVoiDichVu.AllowEdit = isEdit;
+                            _uMapMauHoSoVoiDichVu.AllowDelete = isDelete;
+                            _uMapMauHoSoVoiDichVu.AllowPrint = isPrint;
+                            _uMapMauHoSoVoiDichVu.AllowExport = isExport;
+                            _uMapMauHoSoVoiDichVu.AllowImport = isImport;
+                            _uMapMauHoSoVoiDichVu.AllowLock = isLock;
+                            _uMapMauHoSoVoiDichVu.AllowExportAll = isExportAll;
+                            _uMapMauHoSoVoiDichVu.AllowConfirm = isConfirm;
+                        }
                     }
                 }
                 else
@@ -1886,6 +1904,7 @@ namespace MM
                 chuyenBenhAnToolStripMenuItem.Enabled = isLogin;
                 dichVuXetNghiemToolStripMenuItem.Enabled = isLogin;
                 thongKeThuocXuatHoaDonToolStripMenuItem.Enabled = isLogin;
+                mapMauHoSoVoiDichVuToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -2352,12 +2371,23 @@ namespace MM
                 case "ThongKeThuocXuatHoaDon":
                     OnThongKeThuocXuatHoaDon();
                     break;
+
+                case "MapMauHoSoVoiDichVu":
+                    OnMapMauHoSoVoiDichVu();
+                    break;
             }
+        }
+
+        private void OnMapMauHoSoVoiDichVu()
+        {
+            this.Text = string.Format("{0} - Map mau hoa don voi dich vu", Application.ProductName);
+            ViewControl(_uMapMauHoSoVoiDichVu);
+            _uMapMauHoSoVoiDichVu.DisplayInfo();
         }
 
         private void OnThongKeThuocXuatHoaDon()
         {
-            this.Text = string.Format("{0} - Thon ke thuoc xuat hoa don", Application.ProductName);
+            this.Text = string.Format("{0} - Thong ke thuoc xuat hoa don", Application.ProductName);
             ViewControl(_uThongKeThuocXuatHoaDon);
             _uThongKeThuocXuatHoaDon.InitData();
         }
