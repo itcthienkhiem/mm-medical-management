@@ -126,6 +126,9 @@ namespace MM.Controls
 
             btnOpenPatient.Enabled = AllowOpenPatient;
             moBenhNhanToolStripMenuItem.Enabled = AllowOpenPatient;
+
+            btnPrint.Enabled = AllowPrint;
+            inHoSoToolStripMenuItem.Enabled = AllowPrint;
         }
 
         public void DisplayAsThread()
@@ -751,6 +754,29 @@ namespace MM.Controls
                 }
             }
         }
+
+        private void OnPrint()
+        {
+            if (dgPatient.SelectedRows == null || dgPatient.SelectedRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 bệnh nhân.", IconType.Information);
+                return;
+            }
+
+            DataRow patientRow = (dgPatient.SelectedRows[0].DataBoundItem as DataRowView).Row;
+
+            if (_printDialog.ShowDialog() == DialogResult.OK)
+            {
+                try
+                {
+                    
+                }
+                catch (Exception ex)
+                {
+                    MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                }
+            }
+        }
         #endregion
 
         #region Window Event Handlers
@@ -960,6 +986,17 @@ namespace MM.Controls
         {
             OnXuatPhieuThu();
         }
+
+        private void btnPrint_Click(object sender, EventArgs e)
+        {
+            OnPrint();
+        }
+
+        private void inHoSoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnPrint();
+        }
+
         #endregion
 
         #region Working Thread
@@ -994,6 +1031,7 @@ namespace MM.Controls
         }
         #endregion
 
+        
        
 
         
