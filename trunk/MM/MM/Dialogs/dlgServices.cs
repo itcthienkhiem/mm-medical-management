@@ -59,6 +59,13 @@ namespace MM.Dialogs
             _dtDichVuCon = dtDichVuCon;
             _isDichVuCon = true;
         }
+
+        public dlgServices(List<string> addedServices)
+        {
+            InitializeComponent();
+            _addedServices = addedServices;
+            _isDichVuCon = true;
+        }
         #endregion
 
         #region Properties

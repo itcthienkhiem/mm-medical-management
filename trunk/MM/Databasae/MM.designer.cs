@@ -339,7 +339,7 @@ namespace MM.Databasae
     #endregion
 		
 		public MMDataContext() : 
-				base(global::MM.Databasae.Properties.Settings.Default.MMConnectionString7, mappingSource)
+				base(global::MM.Databasae.Properties.Settings.Default.MMConnectionString5, mappingSource)
 		{
 			OnCreated();
 		}
@@ -1717,6 +1717,14 @@ namespace MM.Databasae
 			get
 			{
 				return this.GetTable<MauHoSo>();
+			}
+		}
+		
+		public System.Data.Linq.Table<ChiTietMauHoSoView> ChiTietMauHoSoViews
+		{
+			get
+			{
+				return this.GetTable<ChiTietMauHoSoView>();
 			}
 		}
 		
@@ -79991,6 +79999,105 @@ namespace MM.Databasae
 		{
 			this.SendPropertyChanging();
 			entity.MauHoSo = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ChiTietMauHoSoView")]
+	public partial class ChiTietMauHoSoView
+	{
+		
+		private System.Guid _ChiTietMauHoSoGUID;
+		
+		private System.Guid _MauHoSoGUID;
+		
+		private System.Guid _ServiceGUID;
+		
+		private string _Code;
+		
+		private string _Name;
+		
+		public ChiTietMauHoSoView()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ChiTietMauHoSoGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid ChiTietMauHoSoGUID
+		{
+			get
+			{
+				return this._ChiTietMauHoSoGUID;
+			}
+			set
+			{
+				if ((this._ChiTietMauHoSoGUID != value))
+				{
+					this._ChiTietMauHoSoGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_MauHoSoGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid MauHoSoGUID
+		{
+			get
+			{
+				return this._MauHoSoGUID;
+			}
+			set
+			{
+				if ((this._MauHoSoGUID != value))
+				{
+					this._MauHoSoGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid ServiceGUID
+		{
+			get
+			{
+				return this._ServiceGUID;
+			}
+			set
+			{
+				if ((this._ServiceGUID != value))
+				{
+					this._ServiceGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Code", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Code
+		{
+			get
+			{
+				return this._Code;
+			}
+			set
+			{
+				if ((this._Code != value))
+				{
+					this._Code = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
 		}
 	}
 	
