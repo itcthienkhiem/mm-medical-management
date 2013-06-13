@@ -135,6 +135,8 @@
             this.baoCaoCongNoTheoHopDongToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator74 = new System.Windows.Forms.ToolStripSeparator();
             this.capNhatNhanhChecklistToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator80 = new System.Windows.Forms.ToolStripSeparator();
+            this.mapMauHoSoVoiDichVuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.receiptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.receiptListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator24 = new System.Windows.Forms.ToolStripSeparator();
@@ -153,6 +155,8 @@
             this.hoaDonXuatTruocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator38 = new System.Windows.Forms.ToolStripSeparator();
             this.hoaDonHopDongToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator79 = new System.Windows.Forms.ToolStripSeparator();
+            this.thongKeThuocXuatHoaDonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thuocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.danhMucThuocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
@@ -288,6 +292,8 @@
             this.dockSite3 = new DevComponents.DotNetBar.DockSite();
             this._timerShowAlert = new System.Windows.Forms.Timer(this.components);
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uMapMauHoSoVoiDichVu = new MM.Controls.uMapMauHoSoVoiDichVu();
+            this._uThongKeThuocXuatHoaDon = new MM.Controls.uThongKeThuocXuatHoaDon();
             this._uDichVuXetNghiem = new MM.Controls.uDichVuXetNghiem();
             this._uChuyenBenhAn = new MM.Controls.uChuyenBenhAn();
             this._uNhanVienTrungLap = new MM.Controls.uNhanVienTrungLapList();
@@ -368,9 +374,6 @@
             this._uServicesList = new MM.Controls.uServicesList();
             this._timerCheckAlert = new System.Windows.Forms.Timer(this.components);
             this._timerPatient = new System.Windows.Forms.Timer(this.components);
-            this._uThongKeThuocXuatHoaDon = new MM.Controls.uThongKeThuocXuatHoaDon();
-            this.toolStripSeparator79 = new System.Windows.Forms.ToolStripSeparator();
-            this.thongKeThuocXuatHoaDonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -1056,7 +1059,9 @@
             this.toolStripSeparator72,
             this.baoCaoCongNoTheoHopDongToolStripMenuItem,
             this.toolStripSeparator74,
-            this.capNhatNhanhChecklistToolStripMenuItem});
+            this.capNhatNhanhChecklistToolStripMenuItem,
+            this.toolStripSeparator80,
+            this.mapMauHoSoVoiDichVuToolStripMenuItem});
             resources.ApplyResources(this.companyToolStripMenuItem, "companyToolStripMenuItem");
             this.companyToolStripMenuItem.Name = "companyToolStripMenuItem";
             // 
@@ -1116,6 +1121,18 @@
             this.capNhatNhanhChecklistToolStripMenuItem.Name = "capNhatNhanhChecklistToolStripMenuItem";
             this.capNhatNhanhChecklistToolStripMenuItem.Tag = "CapNhatNhanhChecklist";
             this.capNhatNhanhChecklistToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator80
+            // 
+            this.toolStripSeparator80.Name = "toolStripSeparator80";
+            resources.ApplyResources(this.toolStripSeparator80, "toolStripSeparator80");
+            // 
+            // mapMauHoSoVoiDichVuToolStripMenuItem
+            // 
+            resources.ApplyResources(this.mapMauHoSoVoiDichVuToolStripMenuItem, "mapMauHoSoVoiDichVuToolStripMenuItem");
+            this.mapMauHoSoVoiDichVuToolStripMenuItem.Name = "mapMauHoSoVoiDichVuToolStripMenuItem";
+            this.mapMauHoSoVoiDichVuToolStripMenuItem.Tag = "MapMauHoSoVoiDichVu";
+            this.mapMauHoSoVoiDichVuToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // receiptToolStripMenuItem
             // 
@@ -1252,6 +1269,18 @@
             this.hoaDonHopDongToolStripMenuItem.Name = "hoaDonHopDongToolStripMenuItem";
             this.hoaDonHopDongToolStripMenuItem.Tag = "HoaDonHopDong";
             this.hoaDonHopDongToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator79
+            // 
+            this.toolStripSeparator79.Name = "toolStripSeparator79";
+            resources.ApplyResources(this.toolStripSeparator79, "toolStripSeparator79");
+            // 
+            // thongKeThuocXuatHoaDonToolStripMenuItem
+            // 
+            resources.ApplyResources(this.thongKeThuocXuatHoaDonToolStripMenuItem, "thongKeThuocXuatHoaDonToolStripMenuItem");
+            this.thongKeThuocXuatHoaDonToolStripMenuItem.Name = "thongKeThuocXuatHoaDonToolStripMenuItem";
+            this.thongKeThuocXuatHoaDonToolStripMenuItem.Tag = "ThongKeThuocXuatHoaDon";
+            this.thongKeThuocXuatHoaDonToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // thuocToolStripMenuItem
             // 
@@ -2327,6 +2356,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uMapMauHoSoVoiDichVu);
             this._mainPanel.Controls.Add(this._uThongKeThuocXuatHoaDon);
             this._mainPanel.Controls.Add(this._uDichVuXetNghiem);
             this._mainPanel.Controls.Add(this._uChuyenBenhAn);
@@ -2407,6 +2437,16 @@
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uMapMauHoSoVoiDichVu
+            // 
+            resources.ApplyResources(this._uMapMauHoSoVoiDichVu, "_uMapMauHoSoVoiDichVu");
+            this._uMapMauHoSoVoiDichVu.Name = "_uMapMauHoSoVoiDichVu";
+            // 
+            // _uThongKeThuocXuatHoaDon
+            // 
+            resources.ApplyResources(this._uThongKeThuocXuatHoaDon, "_uThongKeThuocXuatHoaDon");
+            this._uThongKeThuocXuatHoaDon.Name = "_uThongKeThuocXuatHoaDon";
             // 
             // _uDichVuXetNghiem
             // 
@@ -2814,23 +2854,6 @@
             // 
             this._timerPatient.Interval = 5000;
             // 
-            // _uThongKeThuocXuatHoaDon
-            // 
-            resources.ApplyResources(this._uThongKeThuocXuatHoaDon, "_uThongKeThuocXuatHoaDon");
-            this._uThongKeThuocXuatHoaDon.Name = "_uThongKeThuocXuatHoaDon";
-            // 
-            // toolStripSeparator79
-            // 
-            this.toolStripSeparator79.Name = "toolStripSeparator79";
-            resources.ApplyResources(this.toolStripSeparator79, "toolStripSeparator79");
-            // 
-            // thongKeThuocXuatHoaDonToolStripMenuItem
-            // 
-            resources.ApplyResources(this.thongKeThuocXuatHoaDonToolStripMenuItem, "thongKeThuocXuatHoaDonToolStripMenuItem");
-            this.thongKeThuocXuatHoaDonToolStripMenuItem.Name = "thongKeThuocXuatHoaDonToolStripMenuItem";
-            this.thongKeThuocXuatHoaDonToolStripMenuItem.Tag = "ThongKeThuocXuatHoaDon";
-            this.thongKeThuocXuatHoaDonToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -3204,6 +3227,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator79;
         private System.Windows.Forms.ToolStripMenuItem thongKeThuocXuatHoaDonToolStripMenuItem;
         private Controls.uThongKeThuocXuatHoaDon _uThongKeThuocXuatHoaDon;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator80;
+        private System.Windows.Forms.ToolStripMenuItem mapMauHoSoVoiDichVuToolStripMenuItem;
+        private Controls.uMapMauHoSoVoiDichVu _uMapMauHoSoVoiDichVu;
 
     }
 }
