@@ -12,6 +12,7 @@ using MM.Databasae;
 using MM.Bussiness;
 using MM.Dialogs;
 using MM.Exports;
+using System.IO;
 
 namespace MM.Controls
 {
@@ -801,7 +802,10 @@ namespace MM.Controls
                         foreach (var mauHoSo in mauHoSoList)
                         {
                             object fileName = GetMauHoSoTemplate(mauHoSo);
-                            doc = word.Documents.Open(ref fileName,
+                            object reportFileName = string.Format("{0}\\Temp\\{1}", Application.StartupPath, Path.GetFileName(fileName.ToString()));
+                            File.Copy(fileName.ToString(), reportFileName.ToString(), true);
+
+                            doc = word.Documents.Open(ref reportFileName,
                                 ref missing, ref missing, ref missing, ref missing,
                                 ref missing, ref missing, ref missing, ref missing,
                                 ref missing, ref missing, ref missing, ref missing,
@@ -868,6 +872,9 @@ namespace MM.Controls
 
                             if (doc.Sections != null && doc.Sections.Count > 0)
                                 doc.Sections[1].Headers[Microsoft.Office.Interop.Word.WdHeaderFooterIndex.wdHeaderFooterPrimary].Range.Text = string.Format("CODE: {0}", fileNum);
+
+                            word.Visible = false;
+                            word.ActivePrinter = ExcelPrintPreview.ConvertToExcelPrinterFriendlyName(_printDialog.PrinterSettings.PrinterName);
 
                             doc.PrintOut(ref missing, ref missing, ref missing, ref missing, ref missing,
                                 ref missing, ref missing, ref missing, ref missing, ref missing, ref missing,
