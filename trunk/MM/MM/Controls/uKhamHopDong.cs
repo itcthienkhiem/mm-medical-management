@@ -765,17 +765,158 @@ namespace MM.Controls
 
             DataRow patientRow = (dgPatient.SelectedRows[0].DataBoundItem as DataRowView).Row;
 
-            if (_printDialog.ShowDialog() == DialogResult.OK)
+            DataTable dt = dgService.DataSource as DataTable;
+            if (dt == null || dt.Rows.Count <= 0)
             {
-                try
+                MsgBox.Show(Application.ProductName, "Không tồn tại dịch vụ nào trong checklist.", IconType.Information);
+                return;
+            }
+
+            List<string> serviceList = new List<string>();
+            foreach (DataRow row in dt.Rows)
+            {
+                serviceList.Add(row["ServiceGUID"].ToString());
+            }
+
+            Result result = MauHoSoBus.GetMauChayHoSo(serviceList);
+            if (result.IsOK)
+            {
+                if (_printDialog.ShowDialog() == DialogResult.OK)
                 {
-                    
-                }
-                catch (Exception ex)
-                {
-                    MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                    string fileNum = patientRow["FileNum"].ToString();
+                    string fullName = patientRow["FullName"].ToString();
+                    string dob = patientRow["DobStr"].ToString();
+                    string gender = patientRow["GenderAsStr"].ToString();
+                    string address = patientRow["Address"] as string;
+                    string mobile = patientRow["Mobile"] as string;
+                    string email = patientRow["Email"] as string;
+
+                    Microsoft.Office.Interop.Word.Application word = new Microsoft.Office.Interop.Word.Application();
+                    Microsoft.Office.Interop.Word.Document doc = new Microsoft.Office.Interop.Word.Document();
+                    object missing = System.Type.Missing;
+
+                    try
+                    {
+                        List<MauHoSo> mauHoSoList = result.QueryResult as List<MauHoSo>;
+                        foreach (var mauHoSo in mauHoSoList)
+                        {
+                            object fileName = GetMauHoSoTemplate(mauHoSo);
+                            doc = word.Documents.Open(ref fileName,
+                                ref missing, ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing);
+
+                            doc.Activate();
+
+                            foreach (Microsoft.Office.Interop.Word.Range tmpRange in doc.StoryRanges)
+                            {
+                                tmpRange.Find.Text = "#N";
+                                tmpRange.Find.Replacement.Text = fullName;
+                                tmpRange.Find.Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue;
+                                object replaceAll = Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll;
+                                tmpRange.Find.Execute(ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing, ref replaceAll,
+                                    ref missing, ref missing, ref missing, ref missing);
+
+                                tmpRange.Find.Text = "#S";
+                                tmpRange.Find.Replacement.Text = gender;
+                                tmpRange.Find.Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue;
+                                replaceAll = Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll;
+                                tmpRange.Find.Execute(ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing, ref replaceAll,
+                                    ref missing, ref missing, ref missing, ref missing);
+
+                                tmpRange.Find.Text = "#D";
+                                tmpRange.Find.Replacement.Text = dob;
+                                tmpRange.Find.Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue;
+                                replaceAll = Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll;
+                                tmpRange.Find.Execute(ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing, ref replaceAll,
+                                    ref missing, ref missing, ref missing, ref missing);
+
+                                tmpRange.Find.Text = "#A";
+                                tmpRange.Find.Replacement.Text = address;
+                                tmpRange.Find.Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue;
+                                replaceAll = Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll;
+                                tmpRange.Find.Execute(ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing, ref replaceAll,
+                                    ref missing, ref missing, ref missing, ref missing);
+
+                                tmpRange.Find.Text = "#T";
+                                tmpRange.Find.Replacement.Text = mobile;
+                                tmpRange.Find.Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue;
+                                replaceAll = Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll;
+                                tmpRange.Find.Execute(ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing, ref replaceAll,
+                                    ref missing, ref missing, ref missing, ref missing);
+
+                                tmpRange.Find.Text = "#E";
+                                tmpRange.Find.Replacement.Text = email;
+                                tmpRange.Find.Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue;
+                                replaceAll = Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll;
+                                tmpRange.Find.Execute(ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing, ref missing,
+                                    ref missing, ref missing, ref missing, ref replaceAll,
+                                    ref missing, ref missing, ref missing, ref missing);
+                            }
+
+                            if (doc.Sections != null && doc.Sections.Count > 0)
+                                doc.Sections[1].Headers[Microsoft.Office.Interop.Word.WdHeaderFooterIndex.wdHeaderFooterPrimary].Range.Text = string.Format("CODE: {0}", fileNum);
+
+                            doc.PrintOut(ref missing, ref missing, ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing, ref missing, ref missing, ref missing,
+                                ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing);
+
+                            if (doc != null) doc.Close(ref missing, ref missing, ref missing);
+                        }
+                    }
+                    catch (Exception ex)
+                    {
+                        MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                        Utility.WriteToTraceLog(ex.Message);
+                    }
+                    finally
+                    {
+                        if (word != null) word.Application.Quit(ref missing, ref missing, ref missing);
+                    }
                 }
             }
+            else
+            {
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("MauHoSoBus.GetMauChayHoSo"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("MauHoSoBus.GetMauChayHoSo"));
+            }
+        }
+
+        private string GetMauHoSoTemplate(MauHoSo mauHoSo)
+        {
+            switch (mauHoSo.Loai)
+            {
+                case 1:
+                    return string.Format("{0}\\Templates\\1 ABORATORY REQUEST FORM.doc", Application.StartupPath);
+                case 2:
+                    return string.Format("{0}\\Templates\\2 CHECK LIST.doc", Application.StartupPath);
+                case 3:
+                    return string.Format("{0}\\Templates\\3 GENERAL EXAMINATION REPORT NEW.doc", Application.StartupPath);
+                case 4:
+                    return string.Format("{0}\\Templates\\4 ECG FORM NEW.doc", Application.StartupPath);
+                case 5:
+                    return string.Format("{0}\\Templates\\5 X RAY.doc", Application.StartupPath);
+                case 6:
+                    return string.Format("{0}\\Templates\\6 AUDIOMETRY.doc", Application.StartupPath);
+                case 7:
+                    return string.Format("{0}\\Templates\\7 SO DO RANG.doc", Application.StartupPath);
+                case 8:
+                    return string.Format("{0}\\Templates\\8 TAT KUC XA.doc", Application.StartupPath);
+            }
+
+            return string.Empty;
         }
         #endregion
 

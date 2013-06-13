@@ -178,5 +178,43 @@ namespace MM.Bussiness
 
             return result;
         }
+
+        public static Result GetMauChayHoSo(List<string> serviceList)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                List<MauHoSo> mauHoSoList = (from m in db.MauHoSos
+                                             join c in db.ChiTietMauHoSos on m.MauHoSoGUID equals c.MauHoSoGUID
+                                             where serviceList.Contains(c.ServiceGUID.ToString())
+                                             orderby m.Loai ascending
+                                             select m).Distinct().ToList();
+
+                result.QueryResult = mauHoSoList;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
     }
 }
