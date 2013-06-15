@@ -54,6 +54,12 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle13 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgInvoiceInfo));
             this.panel1 = new System.Windows.Forms.Panel();
+            this.btnOK = new System.Windows.Forms.Button();
+            this.btnClose2 = new System.Windows.Forms.Button();
+            this.btnPrint = new System.Windows.Forms.Button();
+            this.btnExportAndPrint = new System.Windows.Forms.Button();
+            this.btnExportInvoice = new System.Windows.Forms.Button();
+            this.btnCancel = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             this.lbMauSo = new System.Windows.Forms.Label();
             this.lbKiHieu = new System.Windows.Forms.Label();
@@ -90,7 +96,12 @@
             this.label9 = new System.Windows.Forms.Label();
             this.lbPatientName = new System.Windows.Forms.Label();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.tabDetail = new System.Windows.Forms.TabControl();
+            this.pageDichVu = new System.Windows.Forms.TabPage();
             this.dgDetail = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.pageThuoc = new System.Windows.Forms.TabPage();
+            this.dgDetail2 = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.TenThuoc = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.panel8 = new System.Windows.Forms.Panel();
             this.lbTotalPayment = new System.Windows.Forms.Label();
             this.lbVAT = new System.Windows.Forms.Label();
@@ -102,17 +113,6 @@
             this.label13 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this._printDialog = new System.Windows.Forms.PrintDialog();
-            this.btnCancel = new System.Windows.Forms.Button();
-            this.btnOK = new System.Windows.Forms.Button();
-            this.btnClose2 = new System.Windows.Forms.Button();
-            this.btnPrint = new System.Windows.Forms.Button();
-            this.btnExportAndPrint = new System.Windows.Forms.Button();
-            this.btnExportInvoice = new System.Windows.Forms.Button();
-            this.tabDetail = new System.Windows.Forms.TabControl();
-            this.pageDichVu = new System.Windows.Forms.TabPage();
-            this.pageThuoc = new System.Windows.Forms.TabPage();
-            this.dgDetail2 = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.TenThuoc = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -140,13 +140,13 @@
             this.panel4.SuspendLayout();
             this.panel6.SuspendLayout();
             this.panel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.dgDetail)).BeginInit();
-            this.panel8.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.numVAT)).BeginInit();
             this.tabDetail.SuspendLayout();
             this.pageDichVu.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgDetail)).BeginInit();
             this.pageThuoc.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgDetail2)).BeginInit();
+            this.panel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.numVAT)).BeginInit();
             this.SuspendLayout();
             // 
             // panel1
@@ -163,6 +163,81 @@
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(708, 38);
             this.panel1.TabIndex = 7;
+            // 
+            // btnOK
+            // 
+            this.btnOK.Image = global::MM.Properties.Resources.save;
+            this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnOK.Location = new System.Drawing.Point(327, 6);
+            this.btnOK.Name = "btnOK";
+            this.btnOK.Size = new System.Drawing.Size(75, 25);
+            this.btnOK.TabIndex = 18;
+            this.btnOK.Text = "   &Lưu";
+            this.btnOK.UseVisualStyleBackColor = true;
+            this.btnOK.Visible = false;
+            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
+            // 
+            // btnClose2
+            // 
+            this.btnClose2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose2.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
+            this.btnClose2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnClose2.Location = new System.Drawing.Point(406, 6);
+            this.btnClose2.Name = "btnClose2";
+            this.btnClose2.Size = new System.Drawing.Size(75, 25);
+            this.btnClose2.TabIndex = 19;
+            this.btnClose2.Text = "   &Đóng";
+            this.btnClose2.UseVisualStyleBackColor = true;
+            this.btnClose2.Visible = false;
+            // 
+            // btnPrint
+            // 
+            this.btnPrint.Image = global::MM.Properties.Resources.Printer_icon__1_;
+            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnPrint.Location = new System.Drawing.Point(226, 6);
+            this.btnPrint.Name = "btnPrint";
+            this.btnPrint.Size = new System.Drawing.Size(97, 25);
+            this.btnPrint.TabIndex = 17;
+            this.btnPrint.Text = "      &In hóa đơn";
+            this.btnPrint.UseVisualStyleBackColor = true;
+            this.btnPrint.Visible = false;
+            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
+            // 
+            // btnExportAndPrint
+            // 
+            this.btnExportAndPrint.Image = global::MM.Properties.Resources.Apps_printer_icon;
+            this.btnExportAndPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportAndPrint.Location = new System.Drawing.Point(310, 6);
+            this.btnExportAndPrint.Name = "btnExportAndPrint";
+            this.btnExportAndPrint.Size = new System.Drawing.Size(80, 25);
+            this.btnExportAndPrint.TabIndex = 16;
+            this.btnExportAndPrint.Text = "      &Xuất && In";
+            this.btnExportAndPrint.UseVisualStyleBackColor = true;
+            this.btnExportAndPrint.Click += new System.EventHandler(this.btnExportAndPrint_Click);
+            // 
+            // btnExportInvoice
+            // 
+            this.btnExportInvoice.Image = global::MM.Properties.Resources.invoice_icon;
+            this.btnExportInvoice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportInvoice.Location = new System.Drawing.Point(237, 6);
+            this.btnExportInvoice.Name = "btnExportInvoice";
+            this.btnExportInvoice.Size = new System.Drawing.Size(68, 25);
+            this.btnExportInvoice.TabIndex = 15;
+            this.btnExportInvoice.Text = "      &Xuất";
+            this.btnExportInvoice.UseVisualStyleBackColor = true;
+            this.btnExportInvoice.Click += new System.EventHandler(this.btnExportInvoice_Click);
+            // 
+            // btnCancel
+            // 
+            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
+            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnCancel.Location = new System.Drawing.Point(395, 6);
+            this.btnCancel.Name = "btnCancel";
+            this.btnCancel.Size = new System.Drawing.Size(75, 25);
+            this.btnCancel.TabIndex = 14;
+            this.btnCancel.Text = "   &Đóng";
+            this.btnCancel.UseVisualStyleBackColor = true;
             // 
             // label1
             // 
@@ -537,6 +612,28 @@
             this.panel7.Size = new System.Drawing.Size(708, 206);
             this.panel7.TabIndex = 18;
             // 
+            // tabDetail
+            // 
+            this.tabDetail.Controls.Add(this.pageDichVu);
+            this.tabDetail.Controls.Add(this.pageThuoc);
+            this.tabDetail.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabDetail.Location = new System.Drawing.Point(0, 0);
+            this.tabDetail.Name = "tabDetail";
+            this.tabDetail.SelectedIndex = 0;
+            this.tabDetail.Size = new System.Drawing.Size(708, 206);
+            this.tabDetail.TabIndex = 5;
+            // 
+            // pageDichVu
+            // 
+            this.pageDichVu.Controls.Add(this.dgDetail);
+            this.pageDichVu.Location = new System.Drawing.Point(4, 22);
+            this.pageDichVu.Name = "pageDichVu";
+            this.pageDichVu.Padding = new System.Windows.Forms.Padding(3);
+            this.pageDichVu.Size = new System.Drawing.Size(700, 180);
+            this.pageDichVu.TabIndex = 0;
+            this.pageDichVu.Text = "Dịch vụ";
+            this.pageDichVu.UseVisualStyleBackColor = true;
+            // 
             // dgDetail
             // 
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
@@ -583,6 +680,73 @@
             this.dgDetail.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgDetail_UserAddedRow);
             this.dgDetail.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgDetail_UserDeletedRow);
             this.dgDetail.Leave += new System.EventHandler(this.dgDetail_Leave);
+            // 
+            // pageThuoc
+            // 
+            this.pageThuoc.Controls.Add(this.dgDetail2);
+            this.pageThuoc.Location = new System.Drawing.Point(4, 22);
+            this.pageThuoc.Name = "pageThuoc";
+            this.pageThuoc.Padding = new System.Windows.Forms.Padding(3);
+            this.pageThuoc.Size = new System.Drawing.Size(700, 180);
+            this.pageThuoc.TabIndex = 1;
+            this.pageThuoc.Text = "Thuốc";
+            this.pageThuoc.UseVisualStyleBackColor = true;
+            // 
+            // dgDetail2
+            // 
+            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgDetail2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
+            this.dgDetail2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgDetail2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.STT2,
+            this.TenThuoc,
+            this.DonViTinh2,
+            this.SoLuong2,
+            this.DonGia2,
+            this.ThanhTien2});
+            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgDetail2.DefaultCellStyle = dataGridViewCellStyle14;
+            this.dgDetail2.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.dgDetail2.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
+            this.dgDetail2.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
+            this.dgDetail2.HighlightSelectedColumnHeaders = false;
+            this.dgDetail2.Location = new System.Drawing.Point(3, 3);
+            this.dgDetail2.Name = "dgDetail2";
+            this.dgDetail2.RowHeadersWidth = 30;
+            this.dgDetail2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
+            this.dgDetail2.Size = new System.Drawing.Size(694, 174);
+            this.dgDetail2.TabIndex = 5;
+            this.dgDetail2.TabStop = false;
+            this.dgDetail2.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgDetail2_CellFormatting);
+            this.dgDetail2.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgDetail2_CellLeave);
+            this.dgDetail2.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgDetail2_CellMouseDown);
+            this.dgDetail2.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgDetail2_DataError);
+            this.dgDetail2.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgDetail2_EditingControlShowing);
+            this.dgDetail2.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgDetail2_UserAddedRow);
+            this.dgDetail2.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgDetail2_UserDeletedRow);
+            this.dgDetail2.Leave += new System.EventHandler(this.dgDetail2_Leave);
+            // 
+            // TenThuoc
+            // 
+            this.TenThuoc.DataPropertyName = "TenThuoc";
+            this.TenThuoc.DisplayStyleForCurrentCellOnly = true;
+            this.TenThuoc.HeaderText = "Tên hàng hóa, dịch vụ";
+            this.TenThuoc.MaxDropDownItems = 12;
+            this.TenThuoc.Name = "TenThuoc";
+            this.TenThuoc.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.TenThuoc.Width = 225;
             // 
             // panel8
             // 
@@ -695,170 +859,6 @@
             // _printDialog
             // 
             this._printDialog.UseEXDialog = true;
-            // 
-            // btnCancel
-            // 
-            this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
-            this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(395, 6);
-            this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(75, 25);
-            this.btnCancel.TabIndex = 14;
-            this.btnCancel.Text = "   &Đóng";
-            this.btnCancel.UseVisualStyleBackColor = true;
-            // 
-            // btnOK
-            // 
-            this.btnOK.Image = global::MM.Properties.Resources.save;
-            this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(327, 6);
-            this.btnOK.Name = "btnOK";
-            this.btnOK.Size = new System.Drawing.Size(75, 25);
-            this.btnOK.TabIndex = 18;
-            this.btnOK.Text = "   &Lưu";
-            this.btnOK.UseVisualStyleBackColor = true;
-            this.btnOK.Visible = false;
-            this.btnOK.Click += new System.EventHandler(this.btnOK_Click);
-            // 
-            // btnClose2
-            // 
-            this.btnClose2.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose2.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
-            this.btnClose2.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnClose2.Location = new System.Drawing.Point(406, 6);
-            this.btnClose2.Name = "btnClose2";
-            this.btnClose2.Size = new System.Drawing.Size(75, 25);
-            this.btnClose2.TabIndex = 19;
-            this.btnClose2.Text = "   &Đóng";
-            this.btnClose2.UseVisualStyleBackColor = true;
-            this.btnClose2.Visible = false;
-            // 
-            // btnPrint
-            // 
-            this.btnPrint.Image = global::MM.Properties.Resources.Printer_icon__1_;
-            this.btnPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnPrint.Location = new System.Drawing.Point(226, 6);
-            this.btnPrint.Name = "btnPrint";
-            this.btnPrint.Size = new System.Drawing.Size(97, 25);
-            this.btnPrint.TabIndex = 17;
-            this.btnPrint.Text = "      &In hóa đơn";
-            this.btnPrint.UseVisualStyleBackColor = true;
-            this.btnPrint.Visible = false;
-            this.btnPrint.Click += new System.EventHandler(this.btnPrint_Click);
-            // 
-            // btnExportAndPrint
-            // 
-            this.btnExportAndPrint.Image = global::MM.Properties.Resources.Apps_printer_icon;
-            this.btnExportAndPrint.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportAndPrint.Location = new System.Drawing.Point(310, 6);
-            this.btnExportAndPrint.Name = "btnExportAndPrint";
-            this.btnExportAndPrint.Size = new System.Drawing.Size(80, 25);
-            this.btnExportAndPrint.TabIndex = 16;
-            this.btnExportAndPrint.Text = "      &Xuất && In";
-            this.btnExportAndPrint.UseVisualStyleBackColor = true;
-            this.btnExportAndPrint.Click += new System.EventHandler(this.btnExportAndPrint_Click);
-            // 
-            // btnExportInvoice
-            // 
-            this.btnExportInvoice.Image = global::MM.Properties.Resources.invoice_icon;
-            this.btnExportInvoice.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportInvoice.Location = new System.Drawing.Point(237, 6);
-            this.btnExportInvoice.Name = "btnExportInvoice";
-            this.btnExportInvoice.Size = new System.Drawing.Size(68, 25);
-            this.btnExportInvoice.TabIndex = 15;
-            this.btnExportInvoice.Text = "      &Xuất";
-            this.btnExportInvoice.UseVisualStyleBackColor = true;
-            this.btnExportInvoice.Click += new System.EventHandler(this.btnExportInvoice_Click);
-            // 
-            // tabDetail
-            // 
-            this.tabDetail.Controls.Add(this.pageDichVu);
-            this.tabDetail.Controls.Add(this.pageThuoc);
-            this.tabDetail.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabDetail.Location = new System.Drawing.Point(0, 0);
-            this.tabDetail.Name = "tabDetail";
-            this.tabDetail.SelectedIndex = 0;
-            this.tabDetail.Size = new System.Drawing.Size(708, 206);
-            this.tabDetail.TabIndex = 5;
-            // 
-            // pageDichVu
-            // 
-            this.pageDichVu.Controls.Add(this.dgDetail);
-            this.pageDichVu.Location = new System.Drawing.Point(4, 22);
-            this.pageDichVu.Name = "pageDichVu";
-            this.pageDichVu.Padding = new System.Windows.Forms.Padding(3);
-            this.pageDichVu.Size = new System.Drawing.Size(700, 180);
-            this.pageDichVu.TabIndex = 0;
-            this.pageDichVu.Text = "Dịch vụ";
-            this.pageDichVu.UseVisualStyleBackColor = true;
-            // 
-            // pageThuoc
-            // 
-            this.pageThuoc.Controls.Add(this.dgDetail2);
-            this.pageThuoc.Location = new System.Drawing.Point(4, 22);
-            this.pageThuoc.Name = "pageThuoc";
-            this.pageThuoc.Padding = new System.Windows.Forms.Padding(3);
-            this.pageThuoc.Size = new System.Drawing.Size(700, 180);
-            this.pageThuoc.TabIndex = 1;
-            this.pageThuoc.Text = "Thuốc";
-            this.pageThuoc.UseVisualStyleBackColor = true;
-            // 
-            // dgDetail2
-            // 
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle8.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle8.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle8.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle8.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle8.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgDetail2.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle8;
-            this.dgDetail2.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgDetail2.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.STT2,
-            this.TenThuoc,
-            this.DonViTinh2,
-            this.SoLuong2,
-            this.DonGia2,
-            this.ThanhTien2});
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle14.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle14.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle14.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle14.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle14.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle14.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgDetail2.DefaultCellStyle = dataGridViewCellStyle14;
-            this.dgDetail2.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.dgDetail2.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dgDetail2.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.dgDetail2.HighlightSelectedColumnHeaders = false;
-            this.dgDetail2.Location = new System.Drawing.Point(3, 3);
-            this.dgDetail2.Name = "dgDetail2";
-            this.dgDetail2.RowHeadersWidth = 30;
-            this.dgDetail2.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgDetail2.Size = new System.Drawing.Size(694, 174);
-            this.dgDetail2.TabIndex = 5;
-            this.dgDetail2.TabStop = false;
-            this.dgDetail2.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgDetail2_CellFormatting);
-            this.dgDetail2.CellLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgDetail2_CellLeave);
-            this.dgDetail2.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgDetail2_CellMouseDown);
-            this.dgDetail2.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgDetail2_DataError);
-            this.dgDetail2.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgDetail2_EditingControlShowing);
-            this.dgDetail2.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgDetail2_UserAddedRow);
-            this.dgDetail2.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgDetail2_UserDeletedRow);
-            this.dgDetail2.Leave += new System.EventHandler(this.dgDetail2_Leave);
-            // 
-            // TenThuoc
-            // 
-            this.TenThuoc.DataPropertyName = "TenThuoc";
-            this.TenThuoc.DisplayStyleForCurrentCellOnly = true;
-            this.TenThuoc.HeaderText = "Tên hàng hóa, dịch vụ";
-            this.TenThuoc.MaxDropDownItems = 12;
-            this.TenThuoc.Name = "TenThuoc";
-            this.TenThuoc.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.TenThuoc.Width = 225;
             // 
             // dataGridViewTextBoxColumn1
             // 
@@ -1155,14 +1155,14 @@
             this.panel6.ResumeLayout(false);
             this.panel6.PerformLayout();
             this.panel7.ResumeLayout(false);
+            this.tabDetail.ResumeLayout(false);
+            this.pageDichVu.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgDetail)).EndInit();
+            this.pageThuoc.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.dgDetail2)).EndInit();
             this.panel8.ResumeLayout(false);
             this.panel8.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numVAT)).EndInit();
-            this.tabDetail.ResumeLayout(false);
-            this.pageDichVu.ResumeLayout(false);
-            this.pageThuoc.ResumeLayout(false);
-            ((System.ComponentModel.ISupportInitialize)(this.dgDetail2)).EndInit();
             this.ResumeLayout(false);
 
         }

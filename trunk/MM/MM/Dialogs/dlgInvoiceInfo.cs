@@ -32,6 +32,7 @@ namespace MM.Dialogs
         private Invoice _invoice = new Invoice();
         private DataTable _dtThongTinKhachHang = null;
         private ComboBox _cboBox = null;
+        private DataTable _dtServices = null;
         #endregion
 
         #region Constructor
@@ -844,6 +845,18 @@ namespace MM.Dialogs
 
             return string.Empty;
         }
+
+        private void GetDanhSachDichVu()
+        {
+            Result result = ServicesBus.GetServicesList();
+            if (result.IsOK)
+                _dtServices = result.QueryResult as DataTable;
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("ServicesBus.GetServicesList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("ServicesBus.GetServicesList"));
+            }
+        }
         #endregion
 
         #region Window Event Handlers
@@ -854,6 +867,8 @@ namespace MM.Dialogs
             DisplayThongTinKhachHang();
             DisplayTenDonVi();
             DisplayInfo();
+
+            if (!_isView) GetDanhSachDichVu();
         }
 
         private void dlgInvoiceInfo_FormClosing(object sender, FormClosingEventArgs e)
@@ -963,7 +978,26 @@ namespace MM.Dialogs
                 }
             }
 
-            
+            if (dgDetail.CurrentCell.ColumnIndex == 1 && !_isView)
+            {
+                TextBox textBox = e.Control as TextBox;
+                if (textBox != null)
+                {
+                    textBox.DoubleClick -= new EventHandler(textBox_DoubleClick);
+                    textBox.DoubleClick += new EventHandler(textBox_DoubleClick);
+                }
+            }
+        }
+
+        private void textBox_DoubleClick(object sender, EventArgs e)
+        {
+            TextBox textBox = sender as TextBox;
+
+            dlgSelectSingleDichVu dlg = new dlgSelectSingleDichVu(_dtServices);
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                textBox.Text = dlg.ServiceName;
+            }
         }
 
         private void textBox_TextChanged(object sender, EventArgs e)
@@ -1255,7 +1289,5 @@ namespace MM.Dialogs
             RefreshNo2();
         }
         #endregion
-
-        
     }
 }

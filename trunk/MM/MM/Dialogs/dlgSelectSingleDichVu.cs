@@ -36,6 +36,16 @@ namespace MM.Dialogs
                 return drService["ServiceGUID"].ToString();
             }
         }
+
+        public string ServiceName
+        {
+            get
+            {
+                DataRow drService = (dgService.SelectedRows[0].DataBoundItem as DataRowView).Row;
+                if (drService == null) return string.Empty;
+                return drService["Name"].ToString();
+            }
+        }
         #endregion
 
         #region UI Command
