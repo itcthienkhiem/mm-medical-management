@@ -44,10 +44,12 @@ namespace MM.Controls
         {
             btnDelete.Enabled = AllowDelete;
             btnPrint.Enabled = AllowPrint;
+            btnPrintPreview.Enabled = AllowPrint;
             btnExportInvoice.Enabled = AllowExport;
 
             deleteToolStripMenuItem.Enabled = AllowDelete;
             printToolStripMenuItem.Enabled = AllowPrint;
+            xemBanInToolStripMenuItem.Enabled = AllowPrint;
             xuatHoaDonToolStripMenuItem.Enabled = AllowExport;
         }
 
@@ -170,7 +172,7 @@ namespace MM.Controls
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những hóa đơn cần xóa.", IconType.Information);
         }
 
-        private void OnPrint()
+        private void OnPrint(bool isPreview)
         {
             List<string> checkedInvoicetList = new List<string>();
             DataTable dt = dgInvoice.DataSource as DataTable;
@@ -189,9 +191,9 @@ namespace MM.Controls
                     dlgPrintType dlg = new dlgPrintType();
                     if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
                     {
-                        if (_printDialog.ShowDialog() == DialogResult.OK)
+                        string exportFileName = string.Format("{0}\\Temp\\HDGTGT.xls", Application.StartupPath);
+                        if (isPreview)
                         {
-                            string exportFileName = string.Format("{0}\\Temp\\HDGTGT.xls", Application.StartupPath);
                             foreach (string hoaDonHopDongGUID in checkedInvoicetList)
                             {
                                 if (dlg.Lien1)
@@ -200,7 +202,7 @@ namespace MM.Controls
                                     {
                                         try
                                         {
-                                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.HDGTGTTemplate));
+                                            ExcelPrintPreview.PrintPreview(exportFileName, Global.PageSetupConfig.GetPageSetup(Const.HDGTGTTemplate));
                                         }
                                         catch (Exception ex)
                                         {
@@ -217,7 +219,7 @@ namespace MM.Controls
                                     {
                                         try
                                         {
-                                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.HDGTGTTemplate));
+                                            ExcelPrintPreview.PrintPreview(exportFileName, Global.PageSetupConfig.GetPageSetup(Const.HDGTGTTemplate));
                                         }
                                         catch (Exception ex)
                                         {
@@ -234,7 +236,7 @@ namespace MM.Controls
                                     {
                                         try
                                         {
-                                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.HDGTGTTemplate));
+                                            ExcelPrintPreview.PrintPreview(exportFileName, Global.PageSetupConfig.GetPageSetup(Const.HDGTGTTemplate));
                                         }
                                         catch (Exception ex)
                                         {
@@ -243,6 +245,65 @@ namespace MM.Controls
                                         }
                                     }
                                     else return;
+                                }
+                            }
+                        }
+                        else
+                        {
+                            if (_printDialog.ShowDialog() == DialogResult.OK)
+                            {
+                                foreach (string hoaDonHopDongGUID in checkedInvoicetList)
+                                {
+                                    if (dlg.Lien1)
+                                    {
+                                        if (ExportExcel.ExportHoaDonHopDongToExcel(exportFileName, hoaDonHopDongGUID, "                                   Liên 1: Lưu"))
+                                        {
+                                            try
+                                            {
+                                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.HDGTGTTemplate));
+                                            }
+                                            catch (Exception ex)
+                                            {
+                                                MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                                                return;
+                                            }
+                                        }
+                                        else return;
+                                    }
+
+                                    if (dlg.Lien2)
+                                    {
+                                        if (ExportExcel.ExportHoaDonHopDongToExcel(exportFileName, hoaDonHopDongGUID, "                                   Liên 2: Giao người mua"))
+                                        {
+                                            try
+                                            {
+                                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.HDGTGTTemplate));
+                                            }
+                                            catch (Exception ex)
+                                            {
+                                                MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                                                return;
+                                            }
+                                        }
+                                        else return;
+                                    }
+
+                                    if (dlg.Lien3)
+                                    {
+                                        if (ExportExcel.ExportHoaDonHopDongToExcel(exportFileName, hoaDonHopDongGUID, "                                   Liên 3: Nội bộ"))
+                                        {
+                                            try
+                                            {
+                                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.HDGTGTTemplate));
+                                            }
+                                            catch (Exception ex)
+                                            {
+                                                MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                                                return;
+                                            }
+                                        }
+                                        else return;
+                                    }
                                 }
                             }
                         }
@@ -330,7 +391,7 @@ namespace MM.Controls
 
         private void btnPrint_Click(object sender, EventArgs e)
         {
-            OnPrint();
+            OnPrint(false);
         }
 
         private void dgInvoice_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -350,7 +411,17 @@ namespace MM.Controls
 
         private void printToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OnPrint();
+            OnPrint(false);
+        }
+
+        private void xemBanInToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnPrint(true);
+        }
+
+        private void btnPrintPreview_Click(object sender, EventArgs e)
+        {
+            OnPrint(true);
         }
         #endregion
 
@@ -373,6 +444,10 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
+
+        
 
         
     }
