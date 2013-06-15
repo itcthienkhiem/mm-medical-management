@@ -28,6 +28,7 @@ namespace MM.Dialogs
         private bool _isDichVuCon = false;
         private string _serviceGUID = string.Empty;
         private DataTable _dtDichVuCon = null;
+        private bool _isDichVuHopDong = false;
         #endregion
 
         #region Constructor
@@ -60,11 +61,13 @@ namespace MM.Dialogs
             _isDichVuCon = true;
         }
 
-        public dlgServices(List<string> addedServices)
+        public dlgServices(List<string> addedServices, string hopDongGUID)
         {
             InitializeComponent();
             _addedServices = addedServices;
+            _contractGUID = hopDongGUID;
             _isDichVuCon = true;
+            _isDichVuHopDong = true;
         }
         #endregion
 
@@ -212,6 +215,10 @@ namespace MM.Dialogs
                         result = ServicesBus.GetServicesListNotInCheckList(_contractGUID, _companyMemberGUID, _name);
                     else
                         result = ServiceGroupBus.GetServiceListNotInGroup(_name);
+                }
+                else if (_isDichVuHopDong)
+                {
+                    result = ServicesBus.GetDichVuHopDongList(_name, _contractGUID);
                 }
                 else
                     result = ServicesBus.GetServicesList(_name);

@@ -33,6 +33,7 @@ namespace MM.Dialogs
             InitializeComponent();
             _drNhatKyLienHeCongTy = drNhatKyLienHeCongTy;
             _isNew = false;
+            dtpkNgayGioLienHe.Enabled = false;
             this.Text = "Sua nhat ky lien he cong ty";
         }
         #endregion

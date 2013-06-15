@@ -35,14 +35,14 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetChiTietMauHoSoList(string mauHoSoGUID)
+        public static Result GetChiTietMauHoSoList(string mauHoSoGUID, string hopDongGUID)
         {
             Result result = null;
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ChiTietMauHoSoView WITH(NOLOCK) WHERE MauHoSoGUID = '{0}' ORDER BY [Name]",
-                    mauHoSoGUID);
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ChiTietMauHoSoView WITH(NOLOCK) WHERE MauHoSoGUID = '{0}' AND HopDongGUID = '{1}' ORDER BY [Name]",
+                    mauHoSoGUID, hopDongGUID);
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -59,7 +59,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result DeleteServices(string mauHoSoGUID, List<string> serviceKeys)
+        public static Result DeleteServices(string mauHoSoGUID, string hopDongGUID, List<string> serviceKeys)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -72,11 +72,13 @@ namespace MM.Bussiness
                     string desc = string.Empty;
                     foreach (string key in serviceKeys)
                     {
-                        ChiTietMauHoSo s = db.ChiTietMauHoSos.FirstOrDefault<ChiTietMauHoSo>(ss => ss.MauHoSoGUID.ToString() == mauHoSoGUID && ss.ServiceGUID.ToString() == key);
+                        ChiTietMauHoSo s = db.ChiTietMauHoSos.FirstOrDefault<ChiTietMauHoSo>(ss => ss.MauHoSoGUID.ToString() == mauHoSoGUID && 
+                            ss.ServiceGUID.ToString() == key && ss.HopDongGUID.ToString() == hopDongGUID);
                         if (s != null)
                         {
                             db.ChiTietMauHoSos.DeleteOnSubmit(s);
-                            desc += string.Format("- GUID: '{0}', ServiceGUID: '{1}', Mã mẫu hồ sơ: '{2}'\n", s.ChiTietMauHoSoGUID.ToString(), s.ServiceGUID.ToString(), mauHoSoGUID);
+                            desc += string.Format("- GUID: '{0}', ServiceGUID: '{1}', Mã mẫu hồ sơ: '{2}', HopDongGUID: '{3}'\n", 
+                                s.ChiTietMauHoSoGUID.ToString(), s.ServiceGUID.ToString(), mauHoSoGUID, hopDongGUID);
                         }
                     }
 
@@ -118,7 +120,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result AddServices(string mauHoSoGUID, List<DataRow> addedServices)
+        public static Result AddServices(string mauHoSoGUID, string hopDongGUID, List<DataRow> addedServices)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -134,11 +136,12 @@ namespace MM.Bussiness
                         ChiTietMauHoSo ct = new ChiTietMauHoSo();
                         ct.ChiTietMauHoSoGUID = Guid.NewGuid();
                         ct.MauHoSoGUID = Guid.Parse(mauHoSoGUID);
+                        ct.HopDongGUID = Guid.Parse(hopDongGUID);
                         ct.ServiceGUID = Guid.Parse(row["ServiceGUID"].ToString());
                         db.ChiTietMauHoSos.InsertOnSubmit(ct);
                         db.SubmitChanges();
-                        desc += string.Format("- GUID: '{0}', ServiceGUID: '{1}', Mã mẫu hồ sơ: '{2}'\n", ct.ChiTietMauHoSoGUID.ToString(), 
-                            ct.ServiceGUID.ToString(), mauHoSoGUID);
+                        desc += string.Format("- GUID: '{0}', ServiceGUID: '{1}', Mã mẫu hồ sơ: '{2}', HopDongGUID: '{3}'\n", ct.ChiTietMauHoSoGUID.ToString(), 
+                            ct.ServiceGUID.ToString(), mauHoSoGUID, hopDongGUID);
                     }
 
                     //Tracking
@@ -179,7 +182,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetMauChayHoSo(List<string> serviceList)
+        public static Result GetMauChayHoSo(List<string> serviceList, string hopDongGUID)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -189,7 +192,7 @@ namespace MM.Bussiness
                 db = new MMOverride();
                 List<MauHoSo> mauHoSoList = (from m in db.MauHoSos
                                              join c in db.ChiTietMauHoSos on m.MauHoSoGUID equals c.MauHoSoGUID
-                                             where serviceList.Contains(c.ServiceGUID.ToString())
+                                             where serviceList.Contains(c.ServiceGUID.ToString()) && c.HopDongGUID.ToString() == hopDongGUID
                                              orderby m.Loai ascending
                                              select m).Distinct().ToList();
 
