@@ -18,7 +18,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, S.*, CAST((S.FixedPrice - (S.FixedPrice * S.Discount)/100) AS float) AS Amount, CASE ISNULL(R.ChuaThuTien, CAST(1 AS bit)) WHEN 1 THEN 0 ELSE 1 END AS DaThuTien FROM ReceiptDetail D WITH(NOLOCK) INNER JOIN Receipt R WITH(NOLOCK) ON D.ReceiptGUID = R.ReceiptGUID RIGHT OUTER JOIN ServiceHistoryView S WITH(NOLOCK) ON D.ServiceHistoryGUID = S.ServiceHistoryGUID WHERE S.PatientGUID = '{0}' AND S.Status = {1} AND S.ServiceStatus = {1} AND S.HopDongGUID='{2}' AND (R.Status IS NULL OR R.Status={1}) AND (D.Status IS NULL OR D.Status={1}) ORDER BY S.[Name]",
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, S.*, CAST(((S.FixedPrice - (S.FixedPrice * S.Discount)/100) * S.SoLuong) AS float) AS Amount, CASE ISNULL(R.ChuaThuTien, CAST(1 AS bit)) WHEN 1 THEN 0 ELSE 1 END AS DaThuTien FROM ReceiptDetail D WITH(NOLOCK) INNER JOIN Receipt R WITH(NOLOCK) ON D.ReceiptGUID = R.ReceiptGUID RIGHT OUTER JOIN ServiceHistoryView S WITH(NOLOCK) ON D.ServiceHistoryGUID = S.ServiceHistoryGUID WHERE S.PatientGUID = '{0}' AND S.Status = {1} AND S.ServiceStatus = {1} AND S.HopDongGUID='{2}' AND (R.Status IS NULL OR R.Status={1}) AND (D.Status IS NULL OR D.Status={1}) ORDER BY S.[Name]",
                             patientGUID, (byte)Status.Actived, hopDongGUID);
 
                 return ExcuteQuery(query);
@@ -49,10 +49,10 @@ namespace MM.Bussiness
                     if (Global.StaffType != StaffType.BacSi && Global.StaffType != StaffType.BacSiSieuAm &&
                         Global.StaffType != StaffType.BacSiNgoaiTongQuat && Global.StaffType != StaffType.BacSiNoiTongQuat &&
                         Global.StaffType != StaffType.BacSiPhuKhoa && Global.StaffType != StaffType.XetNghiem)
-                        query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, CAST((FixedPrice - (FixedPrice * Discount)/100) AS float) AS Amount FROM ServiceHistoryView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Status = {1} AND ServiceStatus = {1} ORDER BY Name", 
+                        query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, CAST(((FixedPrice - (FixedPrice * Discount)/100) * SoLuong) AS float) AS Amount FROM ServiceHistoryView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Status = {1} AND ServiceStatus = {1} ORDER BY Name", 
                             patientGUID, (byte)Status.Actived);
                     else
-                        query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, CAST((FixedPrice - (FixedPrice * Discount)/100) AS float) AS Amount FROM ServiceHistoryView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Status = {1} AND ServiceStatus = {1} AND (DocStaffGUID = '{2}' OR DocStaffGUID IS NULL) ORDER BY Name", 
+                        query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, CAST(((FixedPrice - (FixedPrice * Discount)/100) * SoLuong) AS float) AS Amount FROM ServiceHistoryView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND Status = {1} AND ServiceStatus = {1} AND (DocStaffGUID = '{2}' OR DocStaffGUID IS NULL) ORDER BY Name", 
                             patientGUID, (byte)Status.Actived, Global.UserGUID);
                 }
                 else
@@ -60,10 +60,10 @@ namespace MM.Bussiness
                     if (Global.StaffType != StaffType.BacSi && Global.StaffType != StaffType.BacSiSieuAm &&
                         Global.StaffType != StaffType.BacSiNgoaiTongQuat && Global.StaffType != StaffType.BacSiNoiTongQuat &&
                         Global.StaffType != StaffType.BacSiPhuKhoa && Global.StaffType != StaffType.XetNghiem)
-                        query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, CAST((FixedPrice - (FixedPrice * Discount)/100) AS float) AS Amount FROM ServiceHistoryView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND ActivedDate BETWEEN '{1}' AND '{2}' AND Status = {3} AND ServiceStatus = {3} ORDER BY Name",
+                        query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, CAST(((FixedPrice - (FixedPrice * Discount)/100) * SoLuong) AS float) AS Amount FROM ServiceHistoryView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND ActivedDate BETWEEN '{1}' AND '{2}' AND Status = {3} AND ServiceStatus = {3} ORDER BY Name",
                             patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), (byte)Status.Actived);
                     else
-                        query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, CAST((FixedPrice - (FixedPrice * Discount)/100) AS float) AS Amount FROM ServiceHistoryView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND ActivedDate BETWEEN '{1}' AND '{2}' AND Status = {3} AND ServiceStatus = {3} AND (DocStaffGUID = '{4}' OR DocStaffGUID IS NULL) ORDER BY Name",
+                        query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, CAST(((FixedPrice - (FixedPrice * Discount)/100) * SoLuong) AS float) AS Amount FROM ServiceHistoryView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND ActivedDate BETWEEN '{1}' AND '{2}' AND Status = {3} AND ServiceStatus = {3} AND (DocStaffGUID = '{4}' OR DocStaffGUID IS NULL) ORDER BY Name",
                             patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), (byte)Status.Actived, Global.UserGUID);
                 }
 
@@ -127,7 +127,7 @@ namespace MM.Bussiness
             MMOverride db = null;
             try
             {
-                string query = string.Format("SELECT S.*, P.FullName AS TenBenhNhan, CAST((S.FixedPrice - (S.FixedPrice * S.Discount)/100) AS float) AS Amount FROM ServiceHistoryView S WITH(NOLOCK), PatientView P WITH(NOLOCK) WHERE S.PatientGUID = P.PatientGUID AND S.ActivedDate BETWEEN '{0}' AND '{1}' AND S.IsExported = 'False' AND S.Status = {2} AND ServiceStatus = {2} AND KhamTuTuc = 'True' ORDER BY S.ActivedDate",
+                string query = string.Format("SELECT S.*, P.FullName AS TenBenhNhan, CAST(((S.FixedPrice - (S.FixedPrice * S.Discount)/100) * SoLuong) AS float) AS Amount FROM ServiceHistoryView S WITH(NOLOCK), PatientView P WITH(NOLOCK) WHERE S.PatientGUID = P.PatientGUID AND S.ActivedDate BETWEEN '{0}' AND '{1}' AND S.IsExported = 'False' AND S.Status = {2} AND ServiceStatus = {2} AND KhamTuTuc = 'True' ORDER BY S.ActivedDate",
                     fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), (byte)Status.Actived);
 
                 return ExcuteQuery(query);
@@ -250,9 +250,9 @@ namespace MM.Bussiness
                             if (srvHistory.HopDongGUID != null && srvHistory.HopDongGUID.HasValue)
                                 hopDongGUID = srvHistory.HopDongGUID.Value.ToString();
 
-                            desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Dịch vụ: '{3}', Giá: '{4}', Giảm: '{5}', Giá vốn: '{6}', Nguuời chuyển nhượng: '{7}', Khám tự túc: '{8}', Hợp đồng GUID: '{9}'\n",
+                            desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Dịch vụ: '{3}', Giá: '{4}', Giảm: '{5}', Giá vốn: '{6}', Nguuời chuyển nhượng: '{7}', Khám tự túc: '{8}', Hợp đồng GUID: '{9}', Số lượng: '{10}'\n",
                                 srvHistory.ServiceHistoryGUID.ToString(), srvHistory.Patient.Contact.FullName, bacSiThucHien,
-                                srvHistory.Service.Name, srvHistory.Price.Value, srvHistory.Discount, srvHistory.GiaVon, nguoiChuyenNhuong, srvHistory.KhamTuTuc, hopDongGUID);
+                                srvHistory.Service.Name, srvHistory.Price.Value, srvHistory.Discount, srvHistory.GiaVon, nguoiChuyenNhuong, srvHistory.KhamTuTuc, hopDongGUID, srvHistory.SoLuong);
                         }
                     }
 
@@ -328,10 +328,10 @@ namespace MM.Bussiness
                         if (serviceHistory.HopDongGUID != null && serviceHistory.HopDongGUID.HasValue)
                             hopDongGUID = serviceHistory.HopDongGUID.Value.ToString();
 
-                        desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Dịch vụ: '{3}', Giá: '{4}', Giảm: '{5}', Giá vốn: '{6}', Người chuyển nhượng: '{7}', Khám tự túc: '{8}', Hợp đồng GUID: '{9}'",
+                        desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Dịch vụ: '{3}', Giá: '{4}', Giảm: '{5}', Giá vốn: '{6}', Người chuyển nhượng: '{7}', Khám tự túc: '{8}', Hợp đồng GUID: '{9}', Số lượng: '{10}'",
                                 serviceHistory.ServiceHistoryGUID.ToString(), serviceHistory.Patient.Contact.FullName, bacSiThucHien,
                                 serviceHistory.Service.Name, serviceHistory.Price.Value, serviceHistory.Discount, serviceHistory.GiaVon, 
-                                nguoiChuyenNhuong, serviceHistory.KhamTuTuc, hopDongGUID);
+                                nguoiChuyenNhuong, serviceHistory.KhamTuTuc, hopDongGUID, serviceHistory.SoLuong);
 
                         Tracking tk = new Tracking();
                         tk.TrackingGUID = Guid.NewGuid();
@@ -376,6 +376,7 @@ namespace MM.Bussiness
                             srvHistory.RootPatientGUID = serviceHistory.RootPatientGUID;
                             srvHistory.KhamTuTuc = serviceHistory.KhamTuTuc;
                             srvHistory.HopDongGUID = serviceHistory.HopDongGUID;
+                            srvHistory.SoLuong = serviceHistory.SoLuong;
 
                             string bacSiThucHien = string.Empty;
                             if (srvHistory.DocStaff != null)
@@ -393,9 +394,9 @@ namespace MM.Bussiness
                             if (serviceHistory.HopDongGUID != null && serviceHistory.HopDongGUID.HasValue)
                                 hopDongGUID = serviceHistory.HopDongGUID.Value.ToString();
 
-                            desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Dịch vụ: '{3}', Giá: cũ: '{4}' - mới: '{5}', Giảm: cũ: '{6}' - mới: '{7}', Giá vốn cũ: '{8}' - mới: '{9}', Người chuyển nhượng: '{10}', Khám tự túc: '{11}', Hợp đồng GUID: '{12}'",
+                            desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Dịch vụ: '{3}', Giá: cũ: '{4}' - mới: '{5}', Giảm: cũ: '{6}' - mới: '{7}', Giá vốn cũ: '{8}' - mới: '{9}', Người chuyển nhượng: '{10}', Khám tự túc: '{11}', Hợp đồng GUID: '{12}', Số lượng: '{13}'",
                                     srvHistory.ServiceHistoryGUID.ToString(), srvHistory.Patient.Contact.FullName, bacSiThucHien,
-                                    srvHistory.Service.Name, giaCu, srvHistory.Price.Value, giamCu, srvHistory.Discount, giaVonCu, srvHistory.GiaVon, nguoiChuyenNhuong, srvHistory.KhamTuTuc, hopDongGUID);
+                                    srvHistory.Service.Name, giaCu, srvHistory.Price.Value, giamCu, srvHistory.Discount, giaVonCu, srvHistory.GiaVon, nguoiChuyenNhuong, srvHistory.KhamTuTuc, hopDongGUID, srvHistory.SoLuong);
 
                             Tracking tk = new Tracking();
                             tk.TrackingGUID = Guid.NewGuid();
@@ -516,9 +517,9 @@ namespace MM.Bussiness
                                         if (patient != null) nguoiChuyenNhuong = patient.FullName;
                                     }
 
-                                    desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Dịch vụ: '{3}', Giá: '{4}', Giảm: '{5}', Giá vốn: '{6}', Nguuời chuyển nhượng: '{7}', Khám tự túc: '{8}'\n",
+                                    desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Dịch vụ: '{3}', Giá: '{4}', Giảm: '{5}', Giá vốn: '{6}', Nguuời chuyển nhượng: '{7}', Khám tự túc: '{8}', Số lượng: '{9}'\n",
                                         srvHistory.ServiceHistoryGUID.ToString(), srvHistory.Patient.Contact.FullName, bacSiThucHien,
-                                        srvHistory.Service.Name, srvHistory.Price.Value, srvHistory.Discount, srvHistory.GiaVon, nguoiChuyenNhuong, srvHistory.KhamTuTuc);
+                                        srvHistory.Service.Name, srvHistory.Price.Value, srvHistory.Discount, srvHistory.GiaVon, nguoiChuyenNhuong, srvHistory.KhamTuTuc, srvHistory.SoLuong);
                                 }
 
 
@@ -567,6 +568,7 @@ namespace MM.Bussiness
                                     srv.Discount = 0;
                                     srv.Price = 0;
                                     srv.GiaVon = 0;
+                                    srv.SoLuong = 1;
 
                                     GiaDichVuHopDong giaDichVuHopDong = db.GiaDichVuHopDongs.SingleOrDefault(g => g.HopDongGUID.ToString() == hopDongGUID &&
                                                                         g.ServiceGUID.ToString() == serviceGUID && g.Status == 0);
@@ -596,9 +598,9 @@ namespace MM.Bussiness
                                     }
 
                                     //Tracking
-                                    desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Dịch vụ: '{3}', Giá: '{4}', Giảm: '{5}', Giá vốn: '{6}', Người chuyển nhượng: '{7}', Khám tự túc: '{8}'",
+                                    desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Dịch vụ: '{3}', Giá: '{4}', Giảm: '{5}', Giá vốn: '{6}', Người chuyển nhượng: '{7}', Khám tự túc: '{8}', Số lượng: '{9}'",
                                             srv.ServiceHistoryGUID.ToString(), srv.Patient.Contact.FullName, bacSiThucHien, srv.Service.Name, srv.Price.Value, 
-                                            srv.Discount, srv.GiaVon, nguoiChuyenNhuong, srv.KhamTuTuc);
+                                            srv.Discount, srv.GiaVon, nguoiChuyenNhuong, srv.KhamTuTuc, srv.SoLuong);
 
                                     Tracking tk = new Tracking();
                                     tk.TrackingGUID = Guid.NewGuid();

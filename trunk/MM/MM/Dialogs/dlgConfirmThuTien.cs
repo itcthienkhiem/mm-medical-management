@@ -66,10 +66,10 @@ namespace MM.Dialogs
             {
                 string maDichVu = row["Code"].ToString();
                 string tenDichVu = row["Name"].ToString();
-                int soLuong = 1;
+                int soLuong = Convert.ToInt32(row["SoLuong"]);
                 double gia = Convert.ToDouble(row["FixedPrice"]);
                 double giam = Convert.ToDouble(row["Discount"]);
-                double thanhTien = gia - ((gia * giam) / 100);
+                double thanhTien = (gia - ((gia * giam) / 100)) * soLuong;
                 string serviceHistoryGUID = row["ServiceHistoryGUID"].ToString();
 
                 object[] objs = new object[6];
@@ -114,21 +114,6 @@ namespace MM.Dialogs
         {
             DisplayInfo();
         }
-        #endregion
-
-        private void dgReceiptDetail_CellValueChanged(object sender, DataGridViewCellEventArgs e)
-        {
-            //if (e.ColumnIndex != 2) return;
-            //if (e.RowIndex < 0) return;
-
-            //int soLuong = Convert.ToInt32(dgReceiptDetail[e.ColumnIndex, e.RowIndex].Value);
-            //double gia = Convert.ToDouble(dgReceiptDetail[3, e.RowIndex].Value);
-            //double giam = Convert.ToDouble(dgReceiptDetail[4, e.RowIndex].Value);
-            //double thanhTien = (gia - ((gia * giam) / 100)) * soLuong;
-            //dgReceiptDetail[5, e.RowIndex].Value = thanhTien;
-
-            
-        }
 
         private void dgReceiptDetail_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
@@ -152,5 +137,6 @@ namespace MM.Dialogs
 
             CalculateTongTien();
         }
+        #endregion
     }
 }

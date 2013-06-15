@@ -67,6 +67,8 @@
             this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
+            this.numSoLuong = new System.Windows.Forms.NumericUpDown();
+            this.label7 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
             this.gbNormal.SuspendLayout();
@@ -76,10 +78,13 @@
             ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrice)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSoLuong)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.numSoLuong);
+            this.groupBox1.Controls.Add(this.label7);
             this.groupBox1.Controls.Add(this.txtDescription);
             this.groupBox1.Controls.Add(this.label4);
             this.groupBox1.Controls.Add(this.panel1);
@@ -105,14 +110,14 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(6, 6);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(532, 318);
+            this.groupBox1.Size = new System.Drawing.Size(532, 341);
             this.groupBox1.TabIndex = 7;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin dịch vụ";
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(135, 209);
+            this.txtDescription.Location = new System.Drawing.Point(135, 232);
             this.txtDescription.MaxLength = 4000;
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
@@ -122,7 +127,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(76, 212);
+            this.label4.Location = new System.Drawing.Point(76, 235);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(53, 13);
             this.label4.TabIndex = 3;
@@ -134,7 +139,7 @@
             this.panel1.Controls.Add(this.raNegative);
             this.panel1.Controls.Add(this.gbNormal);
             this.panel1.Controls.Add(this.gbNegative);
-            this.panel1.Location = new System.Drawing.Point(117, 210);
+            this.panel1.Location = new System.Drawing.Point(117, 233);
             this.panel1.Name = "panel1";
             this.panel1.Size = new System.Drawing.Size(360, 108);
             this.panel1.TabIndex = 13;
@@ -470,7 +475,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(274, 330);
+            this.btnCancel.Location = new System.Drawing.Point(267, 351);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 11;
@@ -482,19 +487,51 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(195, 330);
+            this.btnOK.Location = new System.Drawing.Point(188, 351);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 10;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
+            // numSoLuong
+            // 
+            this.numSoLuong.Location = new System.Drawing.Point(135, 208);
+            this.numSoLuong.Maximum = new decimal(new int[] {
+            999999,
+            0,
+            0,
+            0});
+            this.numSoLuong.Minimum = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.numSoLuong.Name = "numSoLuong";
+            this.numSoLuong.Size = new System.Drawing.Size(69, 20);
+            this.numSoLuong.TabIndex = 13;
+            this.numSoLuong.ThousandsSeparator = true;
+            this.numSoLuong.Value = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            // 
+            // label7
+            // 
+            this.label7.AutoSize = true;
+            this.label7.Location = new System.Drawing.Point(77, 211);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(52, 13);
+            this.label7.TabIndex = 18;
+            this.label7.Text = "Số lượng:";
+            // 
             // dlgAddServiceHistory
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(545, 362);
+            this.ClientSize = new System.Drawing.Size(545, 379);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
@@ -520,6 +557,7 @@
             ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.numPrice)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.patientViewBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numSoLuong)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -563,5 +601,7 @@
         private System.Windows.Forms.RadioButton raKhamTheoHopDong;
         private System.Windows.Forms.RadioButton raKhamTuTuc;
         private System.Windows.Forms.Panel panel1;
+        private System.Windows.Forms.NumericUpDown numSoLuong;
+        private System.Windows.Forms.Label label7;
     }
 }
