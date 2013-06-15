@@ -92,6 +92,40 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetDichVuHopDongList(string name, string hopDongGUID)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Empty;
+                if (name.Trim() == string.Empty)
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE Type WHEN 1 THEN N'Lâm sàng' WHEN 0 THEN N'Cận lâm sàng' END AS TypeStr FROM GiaDichVuHopDongView WITH(NOLOCK) WHERE ServiceStatus={0} AND GiaDVHDStatus={0} AND HopDongGUID='{1}' ORDER BY Name",
+                    (byte)Status.Actived, hopDongGUID);
+                }
+                else
+                {
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE Type WHEN 1 THEN N'Lâm sàng' WHEN 0 THEN N'Cận lâm sàng' END AS TypeStr FROM GiaDichVuHopDongView WITH(NOLOCK) WHERE Name LIKE N'%{0}%' AND ServiceStatus={1} AND GiaDVHDStatus={1} AND HopDongGUID='{2}' ORDER BY Name",
+                    name, (byte)Status.Actived, hopDongGUID);
+                }
+
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetServicesList(ServiceType type)
         {
             Result result = null;

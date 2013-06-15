@@ -31,32 +31,38 @@
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel5 = new System.Windows.Forms.Panel();
             this.dgMauHoSo = new DevComponents.DotNetBar.Controls.DataGridViewX();
+            this.colNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tenMauHoSoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.mauHoSoBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.label1 = new System.Windows.Forms.Label();
             this.splitter1 = new System.Windows.Forms.Splitter();
             this.panel2 = new System.Windows.Forms.Panel();
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
-            this.label2 = new System.Windows.Forms.Label();
-            this.btnDelete = new System.Windows.Forms.Button();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.panel7 = new System.Windows.Forms.Panel();
-            this.serviceBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel9 = new System.Windows.Forms.Panel();
             this.chkChecked = new System.Windows.Forms.CheckBox();
             this.dgService = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.codeDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tenMauHoSoDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.serviceBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.panel8 = new System.Windows.Forms.Panel();
+            this.txtTenHopDong = new System.Windows.Forms.TextBox();
+            this.cboMaHopDong = new System.Windows.Forms.ComboBox();
+            this.companyContractViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.label3 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.label2 = new System.Windows.Forms.Label();
             this.panel1.SuspendLayout();
             this.panel5.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgMauHoSo)).BeginInit();
@@ -64,10 +70,13 @@
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
             this.panel6.SuspendLayout();
-            this.panel3.SuspendLayout();
             this.panel7.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).BeginInit();
+            this.panel9.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgService)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).BeginInit();
+            this.panel8.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.companyContractViewBindingSource)).BeginInit();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
@@ -130,6 +139,26 @@
             this.dgMauHoSo.TabIndex = 4;
             this.dgMauHoSo.SelectionChanged += new System.EventHandler(this.dgMauHoSo_SelectionChanged);
             // 
+            // colNo
+            // 
+            this.colNo.DataPropertyName = "Loai";
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.colNo.DefaultCellStyle = dataGridViewCellStyle2;
+            this.colNo.HeaderText = "STT";
+            this.colNo.Name = "colNo";
+            this.colNo.ReadOnly = true;
+            this.colNo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.colNo.Width = 35;
+            // 
+            // tenMauHoSoDataGridViewTextBoxColumn
+            // 
+            this.tenMauHoSoDataGridViewTextBoxColumn.DataPropertyName = "TenMauHoSo";
+            this.tenMauHoSoDataGridViewTextBoxColumn.HeaderText = "Mẫu hồ sơ";
+            this.tenMauHoSoDataGridViewTextBoxColumn.Name = "tenMauHoSoDataGridViewTextBoxColumn";
+            this.tenMauHoSoDataGridViewTextBoxColumn.ReadOnly = true;
+            this.tenMauHoSoDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.tenMauHoSoDataGridViewTextBoxColumn.Width = 220;
+            // 
             // mauHoSoBindingSource
             // 
             this.mauHoSoBindingSource.DataSource = typeof(MM.Databasae.MauHoSo);
@@ -185,71 +214,30 @@
             this.panel6.Size = new System.Drawing.Size(609, 532);
             this.panel6.TabIndex = 2;
             // 
-            // label2
-            // 
-            this.label2.BackColor = System.Drawing.Color.Blue;
-            this.label2.Dock = System.Windows.Forms.DockStyle.Top;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
-            this.label2.Location = new System.Drawing.Point(0, 0);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(609, 27);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "Dịch vụ";
-            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // btnDelete
-            // 
-            this.btnDelete.Image = global::MM.Properties.Resources.del;
-            this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnDelete.Location = new System.Drawing.Point(84, 4);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 25);
-            this.btnDelete.TabIndex = 4;
-            this.btnDelete.Text = "    &Xóa";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnAdd
-            // 
-            this.btnAdd.Image = global::MM.Properties.Resources.add;
-            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnAdd.Location = new System.Drawing.Point(5, 4);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 25);
-            this.btnAdd.TabIndex = 3;
-            this.btnAdd.Text = "    &Thêm";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.btnAdd);
-            this.panel3.Controls.Add(this.btnDelete);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel3.Location = new System.Drawing.Point(0, 498);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(609, 34);
-            this.panel3.TabIndex = 5;
-            // 
             // panel7
             // 
-            this.panel7.Controls.Add(this.chkChecked);
-            this.panel7.Controls.Add(this.dgService);
+            this.panel7.Controls.Add(this.panel9);
+            this.panel7.Controls.Add(this.panel8);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel7.Location = new System.Drawing.Point(0, 0);
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(609, 498);
             this.panel7.TabIndex = 6;
             // 
-            // serviceBindingSource
+            // panel9
             // 
-            this.serviceBindingSource.DataSource = typeof(MM.Databasae.Service);
+            this.panel9.Controls.Add(this.chkChecked);
+            this.panel9.Controls.Add(this.dgService);
+            this.panel9.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel9.Location = new System.Drawing.Point(0, 38);
+            this.panel9.Name = "panel9";
+            this.panel9.Size = new System.Drawing.Size(609, 460);
+            this.panel9.TabIndex = 5;
             // 
             // chkChecked
             // 
             this.chkChecked.AutoSize = true;
-            this.chkChecked.Location = new System.Drawing.Point(44, 5);
+            this.chkChecked.Location = new System.Drawing.Point(44, 4);
             this.chkChecked.Name = "chkChecked";
             this.chkChecked.Size = new System.Drawing.Size(15, 14);
             this.chkChecked.TabIndex = 3;
@@ -293,7 +281,7 @@
             this.dgService.Name = "dgService";
             this.dgService.RowHeadersWidth = 30;
             this.dgService.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgService.Size = new System.Drawing.Size(609, 498);
+            this.dgService.Size = new System.Drawing.Size(609, 460);
             this.dgService.TabIndex = 2;
             // 
             // colChecked
@@ -324,25 +312,102 @@
             this.nameDataGridViewTextBoxColumn.ReadOnly = true;
             this.nameDataGridViewTextBoxColumn.Width = 300;
             // 
-            // colNo
+            // serviceBindingSource
             // 
-            this.colNo.DataPropertyName = "Loai";
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.colNo.DefaultCellStyle = dataGridViewCellStyle2;
-            this.colNo.HeaderText = "STT";
-            this.colNo.Name = "colNo";
-            this.colNo.ReadOnly = true;
-            this.colNo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.colNo.Width = 35;
+            this.serviceBindingSource.DataSource = typeof(MM.Databasae.Service);
             // 
-            // tenMauHoSoDataGridViewTextBoxColumn
+            // panel8
             // 
-            this.tenMauHoSoDataGridViewTextBoxColumn.DataPropertyName = "TenMauHoSo";
-            this.tenMauHoSoDataGridViewTextBoxColumn.HeaderText = "Mẫu hồ sơ";
-            this.tenMauHoSoDataGridViewTextBoxColumn.Name = "tenMauHoSoDataGridViewTextBoxColumn";
-            this.tenMauHoSoDataGridViewTextBoxColumn.ReadOnly = true;
-            this.tenMauHoSoDataGridViewTextBoxColumn.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.tenMauHoSoDataGridViewTextBoxColumn.Width = 220;
+            this.panel8.Controls.Add(this.txtTenHopDong);
+            this.panel8.Controls.Add(this.cboMaHopDong);
+            this.panel8.Controls.Add(this.label3);
+            this.panel8.Dock = System.Windows.Forms.DockStyle.Top;
+            this.panel8.Location = new System.Drawing.Point(0, 0);
+            this.panel8.Name = "panel8";
+            this.panel8.Size = new System.Drawing.Size(609, 38);
+            this.panel8.TabIndex = 4;
+            // 
+            // txtTenHopDong
+            // 
+            this.txtTenHopDong.Location = new System.Drawing.Point(251, 9);
+            this.txtTenHopDong.Name = "txtTenHopDong";
+            this.txtTenHopDong.ReadOnly = true;
+            this.txtTenHopDong.Size = new System.Drawing.Size(339, 20);
+            this.txtTenHopDong.TabIndex = 12;
+            // 
+            // cboMaHopDong
+            // 
+            this.cboMaHopDong.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cboMaHopDong.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboMaHopDong.DataSource = this.companyContractViewBindingSource;
+            this.cboMaHopDong.DisplayMember = "ContractCode";
+            this.cboMaHopDong.FormattingEnabled = true;
+            this.cboMaHopDong.Location = new System.Drawing.Point(69, 8);
+            this.cboMaHopDong.Name = "cboMaHopDong";
+            this.cboMaHopDong.Size = new System.Drawing.Size(179, 21);
+            this.cboMaHopDong.TabIndex = 11;
+            this.cboMaHopDong.ValueMember = "CompanyContractGUID";
+            this.cboMaHopDong.SelectedIndexChanged += new System.EventHandler(this.cboMaHopDong_SelectedIndexChanged);
+            // 
+            // companyContractViewBindingSource
+            // 
+            this.companyContractViewBindingSource.DataSource = typeof(MM.Databasae.CompanyContractView);
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(7, 11);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(58, 13);
+            this.label3.TabIndex = 10;
+            this.label3.Text = "Hợp đồng:";
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.btnAdd);
+            this.panel3.Controls.Add(this.btnDelete);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.panel3.Location = new System.Drawing.Point(0, 498);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(609, 34);
+            this.panel3.TabIndex = 5;
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Image = global::MM.Properties.Resources.add;
+            this.btnAdd.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnAdd.Location = new System.Drawing.Point(5, 4);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(75, 25);
+            this.btnAdd.TabIndex = 3;
+            this.btnAdd.Text = "    &Thêm";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Image = global::MM.Properties.Resources.del;
+            this.btnDelete.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnDelete.Location = new System.Drawing.Point(84, 4);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 25);
+            this.btnDelete.TabIndex = 4;
+            this.btnDelete.Text = "    &Xóa";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // label2
+            // 
+            this.label2.BackColor = System.Drawing.Color.Blue;
+            this.label2.Dock = System.Windows.Forms.DockStyle.Top;
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.SystemColors.ActiveCaptionText;
+            this.label2.Location = new System.Drawing.Point(0, 0);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(609, 27);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "Dịch vụ";
+            this.label2.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
             // uMapMauHoSoVoiDichVu
             // 
@@ -360,11 +425,15 @@
             this.panel2.ResumeLayout(false);
             this.panel4.ResumeLayout(false);
             this.panel6.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
             this.panel7.ResumeLayout(false);
-            this.panel7.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).EndInit();
+            this.panel9.ResumeLayout(false);
+            this.panel9.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgService)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.serviceBindingSource)).EndInit();
+            this.panel8.ResumeLayout(false);
+            this.panel8.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.companyContractViewBindingSource)).EndInit();
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -393,5 +462,11 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNo;
         private System.Windows.Forms.DataGridViewTextBoxColumn tenMauHoSoDataGridViewTextBoxColumn;
+        private System.Windows.Forms.Panel panel9;
+        private System.Windows.Forms.Panel panel8;
+        private System.Windows.Forms.TextBox txtTenHopDong;
+        private System.Windows.Forms.ComboBox cboMaHopDong;
+        private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.BindingSource companyContractViewBindingSource;
     }
 }

@@ -16,7 +16,8 @@ namespace MM.Controls
     public partial class uMapMauHoSoVoiDichVu : uBase
     {
         #region Members
-        private string _mauHoSoGUID = string.Empty; 
+        private string _mauHoSoGUID = string.Empty;
+        private string _hopDongGUID = string.Empty;
         #endregion
 
         #region Constructor
@@ -37,9 +38,47 @@ namespace MM.Controls
             btnDelete.Enabled = AllowEdit;
         }
 
+        private void OnDisplayHopDongList()
+        {
+            Result result = CompanyContractBus.GetContractList();
+            if (result.IsOK)
+            {
+                MethodInvoker method = delegate
+                {
+                    cboMaHopDong.DataSource = result.QueryResult;
+                };
+
+                if (InvokeRequired) BeginInvoke(method);
+                else method.Invoke();
+            }
+            else
+            {
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyContractBus.GetNoCompletedContractList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.GetNoCompletedContractList"));
+            }
+        }
+
+        private string GetTenHopDong(string hopDongGUID)
+        {
+            string tenHopDong = string.Empty;
+
+            DataTable dt = cboMaHopDong.DataSource as DataTable;
+            if (dt != null && dt.Rows.Count > 0)
+            {
+                DataRow[] rows = dt.Select(string.Format("CompanyContractGUID='{0}'", hopDongGUID));
+                if (rows == null || rows.Length <= 0) return string.Empty;
+
+                tenHopDong = rows[0]["ContractName"].ToString();
+            }
+
+            return tenHopDong;
+        }
+
         public void DisplayInfo()
         {
             UpdateGUI();
+
+            OnDisplayHopDongList();
 
             Result result = MauHoSoBus.GetMauHoSoList();
             if (result.IsOK)
@@ -82,7 +121,7 @@ namespace MM.Controls
 
         private void DisplayChiTietMauHoSo(string mauHoSoGUID)
         {
-            Result result = MauHoSoBus.GetChiTietMauHoSoList(mauHoSoGUID);
+            Result result = MauHoSoBus.GetChiTietMauHoSoList(mauHoSoGUID, _hopDongGUID);
             if (result.IsOK)
             {
                 ClearDetailData();
@@ -114,13 +153,14 @@ namespace MM.Controls
         private void OnAddService()
         {
             if (dgMauHoSo.SelectedRows == null || dgMauHoSo.SelectedRows.Count <= 0) return;
+            if (cboMaHopDong.SelectedValue == null) return;
 
             List<string> addedServices = GetAddedServices();
-            dlgServices dlg = new dlgServices(addedServices);
+            dlgServices dlg = new dlgServices(addedServices, _hopDongGUID);
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 List<DataRow> rows = dlg.Services;
-                Result result = MauHoSoBus.AddServices(_mauHoSoGUID, rows);
+                Result result = MauHoSoBus.AddServices(_mauHoSoGUID, _hopDongGUID, rows);
                 if (result.IsOK)
                 {
                     DisplayChiTietMauHoSo(_mauHoSoGUID);
@@ -136,6 +176,8 @@ namespace MM.Controls
         private void OnDeleteService()
         {
             if (dgMauHoSo.SelectedRows == null || dgMauHoSo.SelectedRows.Count <= 0) return;
+            if (cboMaHopDong.SelectedValue == null) return;
+
             List<string> keys = new List<string>();
             List<DataRow> deletedRows = new List<DataRow>();
             DataTable dt = dgService.DataSource as DataTable;
@@ -152,7 +194,7 @@ namespace MM.Controls
             {
                 if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những dịch vụ mà bạn đã đánh dấu ?") == DialogResult.Yes)
                 {
-                    Result result = MauHoSoBus.DeleteServices(_mauHoSoGUID, keys);
+                    Result result = MauHoSoBus.DeleteServices(_mauHoSoGUID, _hopDongGUID, keys);
                     if (result.IsOK)
                     {
                         foreach (DataRow row in deletedRows)
@@ -198,6 +240,18 @@ namespace MM.Controls
             if (dgMauHoSo.SelectedRows == null || dgMauHoSo.SelectedRows.Count <= 0) return;
             DataRow row = (dgMauHoSo.SelectedRows[0].DataBoundItem as DataRowView).Row;
             _mauHoSoGUID = row["MauHoSoGUID"].ToString();
+
+            if (cboMaHopDong.SelectedValue == null || cboMaHopDong.SelectedValue == DBNull.Value) return;
+            DisplayChiTietMauHoSo(_mauHoSoGUID);
+        }
+
+        private void cboMaHopDong_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboMaHopDong.SelectedValue == null || cboMaHopDong.SelectedValue == DBNull.Value) return;
+            _hopDongGUID = cboMaHopDong.SelectedValue.ToString();
+            txtTenHopDong.Text = GetTenHopDong(_hopDongGUID);
+
+            if (dgMauHoSo.SelectedRows == null || dgMauHoSo.SelectedRows.Count <= 0) return;
             DisplayChiTietMauHoSo(_mauHoSoGUID);
         }
         #endregion

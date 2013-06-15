@@ -779,7 +779,7 @@ namespace MM.Controls
                 serviceList.Add(row["ServiceGUID"].ToString());
             }
 
-            Result result = MauHoSoBus.GetMauChayHoSo(serviceList);
+            Result result = MauHoSoBus.GetMauChayHoSo(serviceList, _hopDongGUID);
             if (result.IsOK)
             {
                 if (_printDialog.ShowDialog() == DialogResult.OK)
