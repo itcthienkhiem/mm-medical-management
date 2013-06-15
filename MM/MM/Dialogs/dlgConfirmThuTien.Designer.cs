@@ -231,7 +231,6 @@
             this.dgReceiptDetail.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgReceiptDetail.Size = new System.Drawing.Size(751, 256);
             this.dgReceiptDetail.TabIndex = 17;
-            this.dgReceiptDetail.CellValueChanged += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgReceiptDetail_CellValueChanged);
             this.dgReceiptDetail.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgReceiptDetail_EditingControlShowing);
             // 
             // MaDichVu

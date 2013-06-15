@@ -269,6 +269,7 @@ namespace MM.Dialogs
 
                 numPrice.Value = (decimal)Double.Parse(drServiceHistory["FixedPrice"].ToString());
                 numDiscount.Value = (decimal)Double.Parse(drServiceHistory["Discount"].ToString());
+                numSoLuong.Value = (decimal)Int32.Parse(drServiceHistory["SoLuong"].ToString());
                 txtDescription.Text = drServiceHistory["Note"] as string;
                 _serviceHistory.ServiceHistoryGUID = Guid.Parse(drServiceHistory["ServiceHistoryGUID"].ToString());
 
@@ -352,6 +353,7 @@ namespace MM.Dialogs
                 MsgBox.Show(this.Text, result.GetErrorAsString("ServiceHistoryBus.CheckDichVuExist"), IconType.Error);
                 return false;
             }
+
             //if (cboDocStaff.SelectedValue == null || cboDocStaff.Text == string.Empty)
             //{
             //    string serverName = cboService.Text;
@@ -439,6 +441,7 @@ namespace MM.Dialogs
 
                     _serviceHistory.Price = (double)numPrice.Value;
                     _serviceHistory.Discount = (double)numDiscount.Value;
+                    _serviceHistory.SoLuong = Convert.ToInt32(numSoLuong.Value);
 
                     _serviceHistory.IsNormalOrNegative = raNormal.Checked;
                     if (raNormal.Checked)
