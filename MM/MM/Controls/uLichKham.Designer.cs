@@ -167,6 +167,7 @@
             this.cboNam.Name = "cboNam";
             this.cboNam.Size = new System.Drawing.Size(86, 21);
             this.cboNam.TabIndex = 3;
+            this.cboNam.SelectedIndexChanged += new System.EventHandler(this.cboNam_SelectedIndexChanged);
             // 
             // label2
             // 
@@ -202,6 +203,7 @@
             this.cboThang.Name = "cboThang";
             this.cboThang.Size = new System.Drawing.Size(46, 21);
             this.cboThang.TabIndex = 1;
+            this.cboThang.SelectedIndexChanged += new System.EventHandler(this.cboThang_SelectedIndexChanged);
             // 
             // label1
             // 
