@@ -22,6 +22,7 @@ namespace MM.Controls
         private string _thangStr = string.Empty;
         private string _namStr = string.Empty;
         private string _currentValue = string.Empty;
+        private bool _flag = false;
         #endregion
 
         #region Constructor
@@ -35,6 +36,7 @@ namespace MM.Controls
         #region UI Command
         private void InitData()
         {
+            _flag = true;
             cboThang.SelectedIndex = DateTime.Now.Month - 1;
 
             for (int i = 2000; i < 2100; i++)
@@ -43,6 +45,8 @@ namespace MM.Controls
             }
 
             cboNam.Text = DateTime.Now.Year.ToString();
+
+            _flag = false;
 
             dgLichKham.KeyUp += new KeyEventHandler(dgLichKham_KeyUp);
         }
@@ -58,6 +62,7 @@ namespace MM.Controls
         {
             try
             {
+                if (cboThang.Text == string.Empty || cboNam.Text == string.Empty) return;
                 UpdateGUI();
                 _thang = Convert.ToInt32(cboThang.Text);
                 _nam = Convert.ToInt32(cboNam.Text);
@@ -435,10 +440,8 @@ namespace MM.Controls
                 }
             }
         }
-        #endregion
 
-        #region Window Event Handlers
-        private void btnView_Click(object sender, EventArgs e)
+        private void OnView()
         {
             SourceGrid2.Cells.Real.Cell cell = dgLichKham.FocusCell as SourceGrid2.Cells.Real.Cell;
             if (cell != null)
@@ -475,6 +478,25 @@ namespace MM.Controls
             }
 
             DisplayAsThread();
+        }
+        #endregion
+
+        #region Window Event Handlers
+        private void btnView_Click(object sender, EventArgs e)
+        {
+            OnView();
+        }
+
+        private void cboThang_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_flag) return;
+            OnView();
+        }
+
+        private void cboNam_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_flag) return;
+            OnView();
         }
 
         private void dgLichKham_KeyUp(object sender, KeyEventArgs e)
@@ -590,5 +612,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }
