@@ -414,12 +414,5 @@ namespace MM.Controls
             }
         }
         #endregion
-
-        private void dgService_CellContentClick(object sender, DataGridViewCellEventArgs e)
-        {
-
-        }
-
-       
     }
 }

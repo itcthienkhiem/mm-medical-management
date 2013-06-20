@@ -336,6 +336,9 @@ namespace MM.Databasae
     partial void InsertServiceHistory(ServiceHistory instance);
     partial void UpdateServiceHistory(ServiceHistory instance);
     partial void DeleteServiceHistory(ServiceHistory instance);
+    partial void InsertCauHinhDichVuXetNghiem(CauHinhDichVuXetNghiem instance);
+    partial void UpdateCauHinhDichVuXetNghiem(CauHinhDichVuXetNghiem instance);
+    partial void DeleteCauHinhDichVuXetNghiem(CauHinhDichVuXetNghiem instance);
     #endregion
 		
 		public MMDataContext() : 
@@ -1725,6 +1728,22 @@ namespace MM.Databasae
 			get
 			{
 				return this.GetTable<ServiceHistoryView>();
+			}
+		}
+		
+		public System.Data.Linq.Table<CauHinhDichVuXetNghiem> CauHinhDichVuXetNghiems
+		{
+			get
+			{
+				return this.GetTable<CauHinhDichVuXetNghiem>();
+			}
+		}
+		
+		public System.Data.Linq.Table<CauHinhDichVuXetNghiemView> CauHinhDichVuXetNghiemViews
+		{
+			get
+			{
+				return this.GetTable<CauHinhDichVuXetNghiemView>();
 			}
 		}
 		
@@ -80180,6 +80199,293 @@ namespace MM.Databasae
 				if ((this._SoLuong != value))
 				{
 					this._SoLuong = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CauHinhDichVuXetNghiem")]
+	public partial class CauHinhDichVuXetNghiem : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _CauHinhDichVuXetNghiemGUID;
+		
+		private System.Guid _ServiceGUID;
+		
+		private bool _Normal_Abnormal;
+		
+		private bool _Negative_Positive;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnCauHinhDichVuXetNghiemGUIDChanging(System.Guid value);
+    partial void OnCauHinhDichVuXetNghiemGUIDChanged();
+    partial void OnServiceGUIDChanging(System.Guid value);
+    partial void OnServiceGUIDChanged();
+    partial void OnNormal_AbnormalChanging(bool value);
+    partial void OnNormal_AbnormalChanged();
+    partial void OnNegative_PositiveChanging(bool value);
+    partial void OnNegative_PositiveChanged();
+    #endregion
+		
+		public CauHinhDichVuXetNghiem()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CauHinhDichVuXetNghiemGUID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid CauHinhDichVuXetNghiemGUID
+		{
+			get
+			{
+				return this._CauHinhDichVuXetNghiemGUID;
+			}
+			set
+			{
+				if ((this._CauHinhDichVuXetNghiemGUID != value))
+				{
+					this.OnCauHinhDichVuXetNghiemGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._CauHinhDichVuXetNghiemGUID = value;
+					this.SendPropertyChanged("CauHinhDichVuXetNghiemGUID");
+					this.OnCauHinhDichVuXetNghiemGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid ServiceGUID
+		{
+			get
+			{
+				return this._ServiceGUID;
+			}
+			set
+			{
+				if ((this._ServiceGUID != value))
+				{
+					this.OnServiceGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._ServiceGUID = value;
+					this.SendPropertyChanged("ServiceGUID");
+					this.OnServiceGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Normal_Abnormal", DbType="Bit NOT NULL")]
+		public bool Normal_Abnormal
+		{
+			get
+			{
+				return this._Normal_Abnormal;
+			}
+			set
+			{
+				if ((this._Normal_Abnormal != value))
+				{
+					this.OnNormal_AbnormalChanging(value);
+					this.SendPropertyChanging();
+					this._Normal_Abnormal = value;
+					this.SendPropertyChanged("Normal_Abnormal");
+					this.OnNormal_AbnormalChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Negative_Positive", DbType="Bit NOT NULL")]
+		public bool Negative_Positive
+		{
+			get
+			{
+				return this._Negative_Positive;
+			}
+			set
+			{
+				if ((this._Negative_Positive != value))
+				{
+					this.OnNegative_PositiveChanging(value);
+					this.SendPropertyChanging();
+					this._Negative_Positive = value;
+					this.SendPropertyChanged("Negative_Positive");
+					this.OnNegative_PositiveChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.CauHinhDichVuXetNghiemView")]
+	public partial class CauHinhDichVuXetNghiemView
+	{
+		
+		private System.Nullable<System.Guid> _CauHinhDichVuXetNghiemGUID;
+		
+		private bool _Normal_Abnormal;
+		
+		private bool _Negative_Positive;
+		
+		private string _Code;
+		
+		private string _Name;
+		
+		private string _EnglishName;
+		
+		private byte _Status;
+		
+		private System.Guid _ServiceGUID;
+		
+		public CauHinhDichVuXetNghiemView()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_CauHinhDichVuXetNghiemGUID", DbType="UniqueIdentifier")]
+		public System.Nullable<System.Guid> CauHinhDichVuXetNghiemGUID
+		{
+			get
+			{
+				return this._CauHinhDichVuXetNghiemGUID;
+			}
+			set
+			{
+				if ((this._CauHinhDichVuXetNghiemGUID != value))
+				{
+					this._CauHinhDichVuXetNghiemGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Normal_Abnormal", DbType="Bit NOT NULL")]
+		public bool Normal_Abnormal
+		{
+			get
+			{
+				return this._Normal_Abnormal;
+			}
+			set
+			{
+				if ((this._Normal_Abnormal != value))
+				{
+					this._Normal_Abnormal = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Negative_Positive", DbType="Bit NOT NULL")]
+		public bool Negative_Positive
+		{
+			get
+			{
+				return this._Negative_Positive;
+			}
+			set
+			{
+				if ((this._Negative_Positive != value))
+				{
+					this._Negative_Positive = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Code", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Code
+		{
+			get
+			{
+				return this._Code;
+			}
+			set
+			{
+				if ((this._Code != value))
+				{
+					this._Code = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(200) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_EnglishName", DbType="NVarChar(200)")]
+		public string EnglishName
+		{
+			get
+			{
+				return this._EnglishName;
+			}
+			set
+			{
+				if ((this._EnglishName != value))
+				{
+					this._EnglishName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="TinyInt NOT NULL")]
+		public byte Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this._Status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ServiceGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid ServiceGUID
+		{
+			get
+			{
+				return this._ServiceGUID;
+			}
+			set
+			{
+				if ((this._ServiceGUID != value))
+				{
+					this._ServiceGUID = value;
 				}
 			}
 		}

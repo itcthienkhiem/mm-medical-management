@@ -412,6 +412,10 @@ namespace MM
                 _uDichVuXetNghiem.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uMapMauHoSoVoiDichVu))
                 _uMapMauHoSoVoiDichVu.DisplayInfo();
+            else if (ctrl.GetType() == typeof(uInMauHoSo))
+                _uInMauHoSo.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uCauHinhDichVuXetNghiem))
+                _uCauHinhDichVuXetNghiem.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -1671,6 +1675,34 @@ namespace MM
                             _uMapMauHoSoVoiDichVu.AllowExportAll = isExportAll;
                             _uMapMauHoSoVoiDichVu.AllowConfirm = isConfirm;
                         }
+                        else if (functionCode == Const.InMauHoSo)
+                        {
+                            companyToolStripMenuItem.Enabled = isLogin;
+                            inMauHoSoToolStripMenuItem.Enabled = isView && isLogin;
+                            _uInMauHoSo.AllowAdd = isAdd;
+                            _uInMauHoSo.AllowEdit = isEdit;
+                            _uInMauHoSo.AllowDelete = isDelete;
+                            _uInMauHoSo.AllowPrint = isPrint;
+                            _uInMauHoSo.AllowExport = isExport;
+                            _uInMauHoSo.AllowImport = isImport;
+                            _uInMauHoSo.AllowLock = isLock;
+                            _uInMauHoSo.AllowExportAll = isExportAll;
+                            _uInMauHoSo.AllowConfirm = isConfirm;
+                        }
+                        else if (functionCode == Const.CauHinhDichVuXetNghiem)
+                        {
+                            companyToolStripMenuItem.Enabled = isLogin;
+                            cauHinhDichVuXetNghiemToolStripMenuItem.Enabled = isView && isLogin;
+                            _uCauHinhDichVuXetNghiem.AllowAdd = isAdd;
+                            _uCauHinhDichVuXetNghiem.AllowEdit = isEdit;
+                            _uCauHinhDichVuXetNghiem.AllowDelete = isDelete;
+                            _uCauHinhDichVuXetNghiem.AllowPrint = isPrint;
+                            _uCauHinhDichVuXetNghiem.AllowExport = isExport;
+                            _uCauHinhDichVuXetNghiem.AllowImport = isImport;
+                            _uCauHinhDichVuXetNghiem.AllowLock = isLock;
+                            _uCauHinhDichVuXetNghiem.AllowExportAll = isExportAll;
+                            _uCauHinhDichVuXetNghiem.AllowConfirm = isConfirm;
+                        }
                     }
                 }
                 else
@@ -1905,6 +1937,8 @@ namespace MM
                 dichVuXetNghiemToolStripMenuItem.Enabled = isLogin;
                 thongKeThuocXuatHoaDonToolStripMenuItem.Enabled = isLogin;
                 mapMauHoSoVoiDichVuToolStripMenuItem.Enabled = isLogin;
+                inMauHoSoToolStripMenuItem.Enabled = isLogin;
+                cauHinhDichVuXetNghiemToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -2375,7 +2409,29 @@ namespace MM
                 case "MapMauHoSoVoiDichVu":
                     OnMapMauHoSoVoiDichVu();
                     break;
+
+                case "InMauHoSo":
+                    OnInMauHoSo();
+                    break;
+
+                case "CauHinhDichVuXetNghiem":
+                    OnCauHinhDichVuXetNghiem();
+                    break;
             }
+        }
+
+        private void OnCauHinhDichVuXetNghiem()
+        {
+            this.Text = string.Format("{0} - Cau hinh dich vu xet nghiem", Application.ProductName);
+            ViewControl(_uCauHinhDichVuXetNghiem);
+            _uCauHinhDichVuXetNghiem.DisplayAsThread();
+        }
+
+        private void OnInMauHoSo()
+        {
+            this.Text = string.Format("{0} - In mau ho so", Application.ProductName);
+            ViewControl(_uInMauHoSo);
+            _uInMauHoSo.DisplayAsThread();
         }
 
         private void OnMapMauHoSoVoiDichVu()
@@ -3402,6 +3458,10 @@ namespace MM
             _uNhanVienTrungLap.ClearData();
             _uChuyenBenhAn.ClearData();
             _uDichVuXetNghiem.ClearData();
+            _uMapMauHoSoVoiDichVu.ClearData();
+            _uCauHinhDichVuXetNghiem.ClearData();
+            _uMapMauHoSoVoiDichVu.ClearData();
+            _uInMauHoSo.ClearData();
         }
         #endregion
 

@@ -127,9 +127,6 @@ namespace MM.Controls
 
             btnOpenPatient.Enabled = AllowOpenPatient;
             moBenhNhanToolStripMenuItem.Enabled = AllowOpenPatient;
-
-            btnPrint.Enabled = AllowPrint;
-            inHoSoToolStripMenuItem.Enabled = AllowPrint;
         }
 
         public void DisplayAsThread()
@@ -755,176 +752,6 @@ namespace MM.Controls
                 }
             }
         }
-
-        private void OnPrint()
-        {
-            if (dgPatient.SelectedRows == null || dgPatient.SelectedRows.Count <= 0)
-            {
-                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 bệnh nhân.", IconType.Information);
-                return;
-            }
-
-            DataRow patientRow = (dgPatient.SelectedRows[0].DataBoundItem as DataRowView).Row;
-
-            DataTable dt = dgService.DataSource as DataTable;
-            if (dt == null || dt.Rows.Count <= 0)
-            {
-                MsgBox.Show(Application.ProductName, "Không tồn tại dịch vụ nào trong checklist.", IconType.Information);
-                return;
-            }
-
-            List<string> serviceList = new List<string>();
-            foreach (DataRow row in dt.Rows)
-            {
-                serviceList.Add(row["ServiceGUID"].ToString());
-            }
-
-            Result result = MauHoSoBus.GetMauChayHoSo(serviceList, _hopDongGUID);
-            if (result.IsOK)
-            {
-                if (_printDialog.ShowDialog() == DialogResult.OK)
-                {
-                    string fileNum = patientRow["FileNum"].ToString();
-                    string fullName = patientRow["FullName"].ToString();
-                    string dob = patientRow["DobStr"].ToString();
-                    string gender = patientRow["GenderAsStr"].ToString();
-                    string address = patientRow["Address"] as string;
-                    string mobile = patientRow["Mobile"] as string;
-                    string email = patientRow["Email"] as string;
-
-                    Microsoft.Office.Interop.Word.Application word = new Microsoft.Office.Interop.Word.Application();
-                    Microsoft.Office.Interop.Word.Document doc = new Microsoft.Office.Interop.Word.Document();
-                    object missing = System.Type.Missing;
-
-                    try
-                    {
-                        List<MauHoSo> mauHoSoList = result.QueryResult as List<MauHoSo>;
-                        foreach (var mauHoSo in mauHoSoList)
-                        {
-                            object fileName = GetMauHoSoTemplate(mauHoSo);
-                            object reportFileName = string.Format("{0}\\Temp\\{1}", Application.StartupPath, Path.GetFileName(fileName.ToString()));
-                            File.Copy(fileName.ToString(), reportFileName.ToString(), true);
-
-                            doc = word.Documents.Open(ref reportFileName,
-                                ref missing, ref missing, ref missing, ref missing,
-                                ref missing, ref missing, ref missing, ref missing,
-                                ref missing, ref missing, ref missing, ref missing,
-                                ref missing, ref missing, ref missing);
-
-                            doc.Activate();
-
-                            foreach (Microsoft.Office.Interop.Word.Range tmpRange in doc.StoryRanges)
-                            {
-                                tmpRange.Find.Text = "#N";
-                                tmpRange.Find.Replacement.Text = fullName;
-                                tmpRange.Find.Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue;
-                                object replaceAll = Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll;
-                                tmpRange.Find.Execute(ref missing, ref missing, ref missing,
-                                    ref missing, ref missing, ref missing, ref missing,
-                                    ref missing, ref missing, ref missing, ref replaceAll,
-                                    ref missing, ref missing, ref missing, ref missing);
-
-                                tmpRange.Find.Text = "#S";
-                                tmpRange.Find.Replacement.Text = gender;
-                                tmpRange.Find.Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue;
-                                replaceAll = Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll;
-                                tmpRange.Find.Execute(ref missing, ref missing, ref missing,
-                                    ref missing, ref missing, ref missing, ref missing,
-                                    ref missing, ref missing, ref missing, ref replaceAll,
-                                    ref missing, ref missing, ref missing, ref missing);
-
-                                tmpRange.Find.Text = "#D";
-                                tmpRange.Find.Replacement.Text = dob;
-                                tmpRange.Find.Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue;
-                                replaceAll = Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll;
-                                tmpRange.Find.Execute(ref missing, ref missing, ref missing,
-                                    ref missing, ref missing, ref missing, ref missing,
-                                    ref missing, ref missing, ref missing, ref replaceAll,
-                                    ref missing, ref missing, ref missing, ref missing);
-
-                                tmpRange.Find.Text = "#A";
-                                tmpRange.Find.Replacement.Text = address;
-                                tmpRange.Find.Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue;
-                                replaceAll = Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll;
-                                tmpRange.Find.Execute(ref missing, ref missing, ref missing,
-                                    ref missing, ref missing, ref missing, ref missing,
-                                    ref missing, ref missing, ref missing, ref replaceAll,
-                                    ref missing, ref missing, ref missing, ref missing);
-
-                                tmpRange.Find.Text = "#T";
-                                tmpRange.Find.Replacement.Text = mobile;
-                                tmpRange.Find.Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue;
-                                replaceAll = Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll;
-                                tmpRange.Find.Execute(ref missing, ref missing, ref missing,
-                                    ref missing, ref missing, ref missing, ref missing,
-                                    ref missing, ref missing, ref missing, ref replaceAll,
-                                    ref missing, ref missing, ref missing, ref missing);
-
-                                tmpRange.Find.Text = "#E";
-                                tmpRange.Find.Replacement.Text = email;
-                                tmpRange.Find.Wrap = Microsoft.Office.Interop.Word.WdFindWrap.wdFindContinue;
-                                replaceAll = Microsoft.Office.Interop.Word.WdReplace.wdReplaceAll;
-                                tmpRange.Find.Execute(ref missing, ref missing, ref missing,
-                                    ref missing, ref missing, ref missing, ref missing,
-                                    ref missing, ref missing, ref missing, ref replaceAll,
-                                    ref missing, ref missing, ref missing, ref missing);
-                            }
-
-                            if (doc.Sections != null && doc.Sections.Count > 0)
-                                doc.Sections[1].Headers[Microsoft.Office.Interop.Word.WdHeaderFooterIndex.wdHeaderFooterPrimary].Range.Text = string.Format("CODE: {0}", fileNum);
-
-                            word.Visible = false;
-                            word.ActivePrinter = ExcelPrintPreview.ConvertToExcelPrinterFriendlyName(_printDialog.PrinterSettings.PrinterName);
-
-                            doc.PrintOut(ref missing, ref missing, ref missing, ref missing, ref missing,
-                                ref missing, ref missing, ref missing, ref missing, ref missing, ref missing,
-                                ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing);
-
-                            if (doc != null) doc.Close(ref missing, ref missing, ref missing);
-                        }
-                    }
-                    catch (Exception ex)
-                    {
-                        MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
-                        Utility.WriteToTraceLog(ex.Message);
-                    }
-                    finally
-                    {
-                        if (word != null) word.Application.Quit(ref missing, ref missing, ref missing);
-                    }
-                }
-            }
-            else
-            {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("MauHoSoBus.GetMauChayHoSo"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("MauHoSoBus.GetMauChayHoSo"));
-            }
-        }
-
-        private string GetMauHoSoTemplate(MauHoSo mauHoSo)
-        {
-            switch (mauHoSo.Loai)
-            {
-                case 1:
-                    return string.Format("{0}\\Templates\\1 ABORATORY REQUEST FORM.doc", Application.StartupPath);
-                case 2:
-                    return string.Format("{0}\\Templates\\2 CHECK LIST.doc", Application.StartupPath);
-                case 3:
-                    return string.Format("{0}\\Templates\\3 GENERAL EXAMINATION REPORT NEW.doc", Application.StartupPath);
-                case 4:
-                    return string.Format("{0}\\Templates\\4 ECG FORM NEW.doc", Application.StartupPath);
-                case 5:
-                    return string.Format("{0}\\Templates\\5 X RAY.doc", Application.StartupPath);
-                case 6:
-                    return string.Format("{0}\\Templates\\6 AUDIOMETRY.doc", Application.StartupPath);
-                case 7:
-                    return string.Format("{0}\\Templates\\7 SO DO RANG.doc", Application.StartupPath);
-                case 8:
-                    return string.Format("{0}\\Templates\\8 TAT KUC XA.doc", Application.StartupPath);
-            }
-
-            return string.Empty;
-        }
         #endregion
 
         #region Window Event Handlers
@@ -1134,17 +961,6 @@ namespace MM.Controls
         {
             OnXuatPhieuThu();
         }
-
-        private void btnPrint_Click(object sender, EventArgs e)
-        {
-            OnPrint();
-        }
-
-        private void inHoSoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            OnPrint();
-        }
-
         #endregion
 
         #region Working Thread
