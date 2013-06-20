@@ -92,6 +92,40 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetCauHinhDichVuXetNghiem(string name)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Empty;
+                if (name.Trim() == string.Empty)
+                {
+                    query = string.Format("SELECT * FROM CauHinhDichVuXetNghiemView WITH(NOLOCK) WHERE Status={0} ORDER BY Name",
+                    (byte)Status.Actived);
+                }
+                else
+                {
+                    query = string.Format("SELECT * FROM CauHinhDichVuXetNghiemView WITH(NOLOCK) WHERE Name LIKE N'%{0}%' AND Status={1} ORDER BY Name",
+                    name, (byte)Status.Actived);
+                }
+
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetDichVuHopDongList(string name, string hopDongGUID)
         {
             Result result = null;
@@ -444,6 +478,61 @@ namespace MM.Bussiness
                     t.Complete();
                 }
                 
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result UpdateCauHinhDichVuXetNghiem(string serviceGUID, bool normal_abnormal, bool negative_positive)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    CauHinhDichVuXetNghiem xn = (from x in db.CauHinhDichVuXetNghiems
+                                                 where x.ServiceGUID.ToString() == serviceGUID
+                                                 select x).FirstOrDefault();
+
+                    if (xn == null)
+                    {
+                        xn = new CauHinhDichVuXetNghiem();
+                        xn.CauHinhDichVuXetNghiemGUID = Guid.NewGuid();
+                        xn.ServiceGUID = Guid.Parse(serviceGUID);
+                        xn.Normal_Abnormal = normal_abnormal;
+                        xn.Negative_Positive = negative_positive;
+                        db.CauHinhDichVuXetNghiems.InsertOnSubmit(xn);
+                    }
+                    else
+                    {
+                        xn.Normal_Abnormal = normal_abnormal;
+                        xn.Negative_Positive = negative_positive;
+                    }
+
+                    db.SubmitChanges();
+                    t.Complete();
+                }
             }
             catch (System.Data.SqlClient.SqlException se)
             {

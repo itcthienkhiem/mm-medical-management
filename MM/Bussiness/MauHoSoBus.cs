@@ -182,7 +182,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetMauChayHoSo(List<string> serviceList, string hopDongGUID)
+        public static Result GetMauChayHoSo(string contractMemberGUID, string hopDongGUID)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -192,9 +192,10 @@ namespace MM.Bussiness
                 db = new MMOverride();
                 List<MauHoSo> mauHoSoList = (from m in db.MauHoSos
                                              join c in db.ChiTietMauHoSos on m.MauHoSoGUID equals c.MauHoSoGUID
-                                             where serviceList.Contains(c.ServiceGUID.ToString()) && c.HopDongGUID.ToString() == hopDongGUID
-                                             orderby m.Loai ascending
-                                             select m).Distinct().ToList();
+                                             join l in db.CompanyCheckLists on c.ServiceGUID equals l.ServiceGUID
+                                             where l.Status == 0 && c.HopDongGUID.ToString() == hopDongGUID &&
+                                             l.ContractMemberGUID.ToString() == contractMemberGUID
+                                             select m).Distinct().OrderBy(x => x.Loai).ToList();
 
                 result.QueryResult = mauHoSoList;
             }
@@ -219,5 +220,31 @@ namespace MM.Bussiness
 
             return result;
         }
+
+        public static Result GetDichVuChayMauHoSo(string contractMemberGUID, string hopDongGUID)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Format("SELECT M.Loai, S.ServiceGUID, S.[Name], S.EnglishName, ISNULL(Normal_Abnormal, CAST(0 AS bit)) AS Normal_Abnormal, ISNULL(Negative_Positive, CAST(0 AS bit)) AS Negative_Positive FROM  dbo.Services S WITH(NOLOCK) INNER JOIN dbo.CompanyCheckList L WITH(NOLOCK) ON S.ServiceGUID = L.ServiceGUID INNER JOIN dbo.MauHoSo M WITH(NOLOCK) INNER JOIN dbo.ChiTietMauHoSo C WITH(NOLOCK) ON M.MauHoSoGUID = C.MauHoSoGUID ON  L.ServiceGUID = C.ServiceGUID LEFT OUTER JOIN dbo.CauHinhDichVuXetNghiem X WITH(NOLOCK) ON S.ServiceGUID = X.ServiceGUID WHERE L.ContractMemberGUID = '{0}' AND C.HopDongGUID = '{1}' AND L.Status = 0 AND M.Loai IN (1, 2, 3) ORDER BY M.Loai, S.[Name]",
+                    contractMemberGUID, hopDongGUID);
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
+        
     }
 }
