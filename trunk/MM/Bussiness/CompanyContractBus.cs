@@ -637,225 +637,75 @@ namespace MM.Bussiness
         public static Result InsertContract(CompanyContract contract, CompanyInfo companyInfo)
         {
             Result result = new Result();
-            MMOverride db = null;
 
             try
             {
-                db = new MMOverride();
                 string desc = string.Empty;
+                OverrideTransactionScopeMaximumTimeout(new TimeSpan(1, 0, 0));
 
-                using (TransactionScope t = new TransactionScope(TransactionScopeOption.Required, new TimeSpan(0, 30, 0)))
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.Required, new TimeSpan(0, 45, 0)))
                 {
-                    //Insert
-                    if (contract.CompanyContractGUID == null || contract.CompanyContractGUID == Guid.Empty)
+                    using (MMOverride db = new MMOverride())
                     {
-                        contract.CompanyContractGUID = Guid.NewGuid();
-                        db.CompanyContracts.InsertOnSubmit(contract);
-                        db.SubmitChanges();
-
-                        string strNgayDatCoc = string.Empty;
-                        if (contract.NgayDatCoc != null && contract.NgayDatCoc.HasValue)
-                            strNgayDatCoc = contract.NgayDatCoc.Value.ToString("dd/MM/yyyy HH:mm:ss");
-                        if (contract.EndDate.HasValue)
+                        //Insert
+                        if (contract.CompanyContractGUID == null || contract.CompanyContractGUID == Guid.Empty)
                         {
-                            desc += string.Format("- Hợp đồng: GUID: '{0}', Mã hợp đồng: '{1}', Tên hợp đồng: '{2}', Cty: '{3}', Ngày bắt đầu: '{4}', Ngày kết thúc: '{5}', Số tiền: '{6}', Đặt cọc: '{7}', Nhân sự phụ trách: '{8}', Số điện thoại: '{9}', Ngày đặt cọc: '{10}', Giảm giá nam: '{11}', Giảm giá nữ: '{12}', Giảm giá nữ có gđ: '{13}\n",
-                                contract.CompanyContractGUID.ToString(), contract.ContractCode, contract.ContractName, contract.Company.TenCty,
-                                contract.BeginDate.ToString("dd/MM/yyyy HH:mm:ss"), contract.EndDate.Value.ToString("dd/MM/yyyy HH:mm:ss"), contract.SoTien, contract.DatCoc, contract.NhanSuPhuTrach, contract.SoDienThoai, strNgayDatCoc,
-                                contract.GiamGiaNam, contract.GiamGiaNu, contract.GiamGiaNuCoGD);
-                        }
-                        else
-                        {
-                            desc += string.Format("- Hợp đồng: GUID: '{0}', Mã hợp đồng: '{1}', Tên hợp đồng: '{2}', Cty: '{3}', Ngày bắt đầu: '{4}', Số tiền: '{5}', Đặt cọc: '{6}', Nhân sự phụ trách: '{7}', Số điện thoại: '{8}', Ngày đặt cọc: '{9}', Giảm giá nam: '{10}', Giảm giá nữ: '{11}', Giảm giá nữ có gđ: '{12}\n",
-                                contract.CompanyContractGUID.ToString(), contract.ContractCode, contract.ContractName, contract.Company.TenCty,
-                                contract.BeginDate.ToString("dd/MM/yyyy HH:mm:ss"), contract.SoTien, contract.DatCoc, contract.NhanSuPhuTrach, contract.SoDienThoai, strNgayDatCoc,
-                                contract.GiamGiaNam, contract.GiamGiaNu, contract.GiamGiaNuCoGD);
-                        }
-
-                        //Giá dịch vụ hợp đồng
-                        if (companyInfo.GiaDichVuDataSource != null && companyInfo.GiaDichVuDataSource.Rows.Count > 0)
-                        {
-                            foreach (DataRow row in companyInfo.GiaDichVuDataSource.Rows)
-                            {
-                                GiaDichVuHopDong giaDichVuHopDong = new GiaDichVuHopDong();
-                                giaDichVuHopDong.GiaDichVuHopDongGUID = Guid.NewGuid();
-                                giaDichVuHopDong.HopDongGUID = contract.CompanyContractGUID;
-                                giaDichVuHopDong.ServiceGUID = Guid.Parse(row["ServiceGUID"].ToString());
-                                giaDichVuHopDong.Gia = Convert.ToDouble(row["Gia"]);
-                                giaDichVuHopDong.CreatedBy = Guid.Parse(Global.UserGUID);
-                                giaDichVuHopDong.CreatedDate = DateTime.Now;
-                                db.GiaDichVuHopDongs.InsertOnSubmit(giaDichVuHopDong);
-                                db.SubmitChanges();
-
-                                //Dịch vụ con
-                                if (!companyInfo.DictDichVuCon.ContainsKey(giaDichVuHopDong.ServiceGUID.ToString())) continue;
-                                DataTable dtDichVuCon = companyInfo.DictDichVuCon[giaDichVuHopDong.ServiceGUID.ToString()];
-                                if (dtDichVuCon == null || dtDichVuCon.Rows.Count <= 0) continue;
-                                foreach (DataRow drDichVuCon in dtDichVuCon.Rows)
-	                            {
-                                    DichVuCon dvc = new DichVuCon();
-                                    dvc.DichVuConGUID = Guid.NewGuid();
-                                    dvc.GiaDichVuHopDongGUID = giaDichVuHopDong.GiaDichVuHopDongGUID;
-                                    dvc.ServiceGUID = Guid.Parse(drDichVuCon["ServiceGUID"].ToString());
-                                    dvc.CreatedDate = DateTime.Now;
-                                    dvc.CreatedBy = Guid.Parse(Global.UserGUID);
-                                    dvc.Status = (byte)Status.Actived;
-                                    db.DichVuCons.InsertOnSubmit(dvc);
-	                            }
-                            }
-                        }
-
-                        //Members
-                        if (companyInfo.AddedMembers != null && companyInfo.AddedMembers.Count > 0)
-                        {
-                            desc += "- Danh sách nhân viên được thêm:\n";
-                            foreach (Member member in companyInfo.AddedMembers.Values)
-                            {
-                                ContractMember m = db.ContractMembers.SingleOrDefault<ContractMember>(mm => mm.CompanyMemberGUID.ToString() == member.CompanyMemberGUID &&
-                                                                                                    mm.CompanyContractGUID.ToString() == contract.CompanyContractGUID.ToString());
-                                if (m == null)
-                                {
-                                    m = new ContractMember();
-                                    m.ContractMemberGUID = Guid.NewGuid();
-                                    m.CompanyContractGUID = contract.CompanyContractGUID;
-                                    m.CompanyMemberGUID = Guid.Parse(member.CompanyMemberGUID);
-                                    m.CreatedDate = DateTime.Now;
-                                    m.CreatedBy = Guid.Parse(Global.UserGUID);
-                                    m.Status = (byte)Status.Actived;
-                                    db.ContractMembers.InsertOnSubmit(m);
-                                    
-                                }
-                                else
-                                {
-                                    m.Status = (byte)Status.Actived;
-                                    m.UpdatedDate = DateTime.Now;
-                                    m.UpdatedBy = Guid.Parse(Global.UserGUID);
-                                }
-
-                                db.SubmitChanges();
-
-                                var companyMember = db.CompanyMembers.SingleOrDefault<CompanyMember>(cm => cm.CompanyMemberGUID == m.CompanyMemberGUID);
-                                string tenNhanVien = string.Empty;
-                                if (companyMember != null) tenNhanVien = companyMember.Patient.Contact.FullName;
-                                desc += string.Format("  + GUID: '{0}', Nhân viên: '{1}'\n", m.ContractMemberGUID.ToString(), tenNhanVien);
-
-                                //Check List
-                                if (member.AddedServices != null && member.AddedServices.Count > 0)
-                                {
-                                    desc += string.Format("     Danh sách dịch vụ được thêm:\n");
-                                    foreach (string key in member.AddedServices)
-                                    {
-                                        CompanyCheckList c = db.CompanyCheckLists.SingleOrDefault<CompanyCheckList>(cc => cc.ServiceGUID.ToString() == key &&
-                                                                                                            cc.ContractMemberGUID.ToString() == m.ContractMemberGUID.ToString());
-                                        if (c == null)
-                                        {
-                                            c = new CompanyCheckList();
-                                            c.CompanyCheckListGUID = Guid.NewGuid();
-                                            c.ContractMemberGUID = m.ContractMemberGUID;
-                                            c.ServiceGUID = Guid.Parse(key);
-                                            c.CreatedDate = DateTime.Now;
-                                            c.CreatedBy = Guid.Parse(Global.UserGUID);
-                                            c.Status = (byte)Status.Actived;
-                                            db.CompanyCheckLists.InsertOnSubmit(c);
-                                            db.SubmitChanges();
-                                        }
-                                        else
-                                        {
-                                            c.Status = (byte)Status.Actived;
-                                            c.UpdatedDate = DateTime.Now;
-                                            c.UpdatedBy = Guid.Parse(Global.UserGUID);
-                                            db.SubmitChanges();
-                                        }
-
-                                        desc += string.Format("     * GUID: '{0}', Dịch vụ: {1}\n", c.CompanyCheckListGUID.ToString(), c.Service.Name);
-                                    }
-                                }
-                            }
-                        }
-
-                        //Tracking
-                        desc = desc.Substring(0, desc.Length - 1);
-                        Tracking tk = new Tracking();
-                        tk.TrackingGUID = Guid.NewGuid();
-                        tk.TrackingDate = DateTime.Now;
-                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
-                        tk.ActionType = (byte)ActionType.Add;
-                        tk.Action = "Thêm thông tin hợp đồng";
-                        tk.Description = desc;
-                        tk.TrackingType = (byte)TrackingType.None;
-                        db.Trackings.InsertOnSubmit(tk);
-                        db.SubmitChanges();
-                    }
-                    else //Update
-                    {
-                        CompanyContract con = db.CompanyContracts.SingleOrDefault<CompanyContract>(c => c.CompanyContractGUID.ToString() == contract.CompanyContractGUID.ToString());
-                        if (con != null)
-                        {
-                            con.CompanyGUID = contract.CompanyGUID;
-                            con.ContractCode = contract.ContractCode;
-                            con.ContractName = contract.ContractName;
-                            con.BeginDate = contract.BeginDate;
-                            con.EndDate = contract.EndDate;
-                            con.Completed = contract.Completed;
-                            con.CreatedDate = contract.CreatedDate;
-                            con.CreatedBy = contract.CreatedBy;
-                            con.UpdatedDate = contract.UpdatedDate;
-                            con.UpdatedBy = contract.UpdatedBy;
-                            con.DeletedDate = contract.DeletedDate;
-                            con.DeletedBy = contract.DeletedBy;
-                            con.Status = contract.Status;
-                            con.SoTien = contract.SoTien;
-                            con.DatCoc = contract.DatCoc;
-                            con.NhanSuPhuTrach = contract.NhanSuPhuTrach;
-                            con.SoDienThoai = contract.SoDienThoai;
-                            con.NgayDatCoc = contract.NgayDatCoc;
-                            con.GiamGiaNam = contract.GiamGiaNam;
-                            con.GiamGiaNu = contract.GiamGiaNu;
-                            con.GiamGiaNuCoGD = contract.GiamGiaNuCoGD;
+                            contract.CompanyContractGUID = Guid.NewGuid();
+                            db.CompanyContracts.InsertOnSubmit(contract);
                             db.SubmitChanges();
 
                             string strNgayDatCoc = string.Empty;
-                            if (con.NgayDatCoc != null && con.NgayDatCoc.HasValue)
-                                strNgayDatCoc = con.NgayDatCoc.Value.ToString("dd/MM/yyyy");
-
-                            if (con.EndDate.HasValue)
+                            if (contract.NgayDatCoc != null && contract.NgayDatCoc.HasValue)
+                                strNgayDatCoc = contract.NgayDatCoc.Value.ToString("dd/MM/yyyy HH:mm:ss");
+                            if (contract.EndDate.HasValue)
                             {
-                                desc += string.Format("- Hợp đồng: GUID: '{0}', Mã hợp đồng: '{1}', Tên hợp đồng: '{2}', Cty: '{3}', Ngày bắt đầu: '{4}', Ngày kết thúc: '{5}', Số tiền: '{6}', Đặt cọc: '{7}', Nhân sự phụ trách: '{8}', Số điện thoại: '{9}', Ngày đặt cọc: '{10}', Giảm giá nam: '{11}', Giảm giá nữ: '{12}', Giảm giá nữ có gđ: '{13}'\n",
-                                    con.CompanyContractGUID.ToString(), con.ContractCode, con.ContractName, con.Company.TenCty,
-                                    con.BeginDate.ToString("dd/MM/yyyy HH:mm:ss"), con.EndDate.Value.ToString("dd/MM/yyyy HH:mm:ss"), con.SoTien, con.DatCoc, con.NhanSuPhuTrach, con.SoDienThoai, strNgayDatCoc,
-                                    con.GiamGiaNam, con.GiamGiaNu, con.GiamGiaNuCoGD);
+                                desc += string.Format("- Hợp đồng: GUID: '{0}', Mã hợp đồng: '{1}', Tên hợp đồng: '{2}', Cty: '{3}', Ngày bắt đầu: '{4}', Ngày kết thúc: '{5}', Số tiền: '{6}', Đặt cọc: '{7}', Nhân sự phụ trách: '{8}', Số điện thoại: '{9}', Ngày đặt cọc: '{10}', Giảm giá nam: '{11}', Giảm giá nữ: '{12}', Giảm giá nữ có gđ: '{13}\n",
+                                    contract.CompanyContractGUID.ToString(), contract.ContractCode, contract.ContractName, contract.Company.TenCty,
+                                    contract.BeginDate.ToString("dd/MM/yyyy HH:mm:ss"), contract.EndDate.Value.ToString("dd/MM/yyyy HH:mm:ss"), contract.SoTien, contract.DatCoc, contract.NhanSuPhuTrach, contract.SoDienThoai, strNgayDatCoc,
+                                    contract.GiamGiaNam, contract.GiamGiaNu, contract.GiamGiaNuCoGD);
                             }
                             else
                             {
-                                desc += string.Format("- Hợp đồng: GUID: '{0}', Mã hợp đồng: '{1}', Tên hợp đồng: '{2}', Cty: '{3}', Ngày bắt đầu: '{4}', Số tiền: '{5}', Đặt cọc: '{6}', Nhân sự phụ trách: '{7}', Số điện thoại: '{8}', Ngày đặt cọc: '{9}', Giảm giá nam: '{10}', Giảm giá nữ: '{11}', Giảm giá nữ có gđ: '{12}'\n",
-                                    con.CompanyContractGUID.ToString(), con.ContractCode, con.ContractName, con.Company.TenCty,
-                                    con.BeginDate.ToString("dd/MM/yyyy HH:mm:ss"), con.SoTien, con.DatCoc, con.NhanSuPhuTrach, con.SoDienThoai, strNgayDatCoc,
-                                    con.GiamGiaNam, con.GiamGiaNu, con.GiamGiaNuCoGD);
+                                desc += string.Format("- Hợp đồng: GUID: '{0}', Mã hợp đồng: '{1}', Tên hợp đồng: '{2}', Cty: '{3}', Ngày bắt đầu: '{4}', Số tiền: '{5}', Đặt cọc: '{6}', Nhân sự phụ trách: '{7}', Số điện thoại: '{8}', Ngày đặt cọc: '{9}', Giảm giá nam: '{10}', Giảm giá nữ: '{11}', Giảm giá nữ có gđ: '{12}\n",
+                                    contract.CompanyContractGUID.ToString(), contract.ContractCode, contract.ContractName, contract.Company.TenCty,
+                                    contract.BeginDate.ToString("dd/MM/yyyy HH:mm:ss"), contract.SoTien, contract.DatCoc, contract.NhanSuPhuTrach, contract.SoDienThoai, strNgayDatCoc,
+                                    contract.GiamGiaNam, contract.GiamGiaNu, contract.GiamGiaNuCoGD);
+                            }
+
+                            //Giá dịch vụ hợp đồng
+                            if (companyInfo.GiaDichVuDataSource != null && companyInfo.GiaDichVuDataSource.Rows.Count > 0)
+                            {
+                                foreach (DataRow row in companyInfo.GiaDichVuDataSource.Rows)
+                                {
+                                    GiaDichVuHopDong giaDichVuHopDong = new GiaDichVuHopDong();
+                                    giaDichVuHopDong.GiaDichVuHopDongGUID = Guid.NewGuid();
+                                    giaDichVuHopDong.HopDongGUID = contract.CompanyContractGUID;
+                                    giaDichVuHopDong.ServiceGUID = Guid.Parse(row["ServiceGUID"].ToString());
+                                    giaDichVuHopDong.Gia = Convert.ToDouble(row["Gia"]);
+                                    giaDichVuHopDong.CreatedBy = Guid.Parse(Global.UserGUID);
+                                    giaDichVuHopDong.CreatedDate = DateTime.Now;
+                                    db.GiaDichVuHopDongs.InsertOnSubmit(giaDichVuHopDong);
+                                    db.SubmitChanges();
+
+                                    //Dịch vụ con
+                                    if (!companyInfo.DictDichVuCon.ContainsKey(giaDichVuHopDong.ServiceGUID.ToString())) continue;
+                                    DataTable dtDichVuCon = companyInfo.DictDichVuCon[giaDichVuHopDong.ServiceGUID.ToString()];
+                                    if (dtDichVuCon == null || dtDichVuCon.Rows.Count <= 0) continue;
+                                    foreach (DataRow drDichVuCon in dtDichVuCon.Rows)
+                                    {
+                                        DichVuCon dvc = new DichVuCon();
+                                        dvc.DichVuConGUID = Guid.NewGuid();
+                                        dvc.GiaDichVuHopDongGUID = giaDichVuHopDong.GiaDichVuHopDongGUID;
+                                        dvc.ServiceGUID = Guid.Parse(drDichVuCon["ServiceGUID"].ToString());
+                                        dvc.CreatedDate = DateTime.Now;
+                                        dvc.CreatedBy = Guid.Parse(Global.UserGUID);
+                                        dvc.Status = (byte)Status.Actived;
+                                        db.DichVuCons.InsertOnSubmit(dvc);
+                                    }
+                                }
                             }
 
                             //Members
-                            if (companyInfo.DeletedMembers != null && companyInfo.DeletedMembers.Count > 0)
-                            {
-                                desc += "- Danh sách nhân viên được xóa:\n";
-                                foreach (string key in companyInfo.DeletedMembers)
-                                {
-                                    ContractMember m = db.ContractMembers.SingleOrDefault<ContractMember>(mm => mm.CompanyMemberGUID.ToString() == key &&
-                                                                            mm.CompanyContractGUID.ToString() == contract.CompanyContractGUID.ToString());
-                                    if (m != null)
-                                    {
-                                        m.Status = (byte)Status.Deactived;
-                                        m.DeletedDate = DateTime.Now;
-                                        m.DeletedBy = Guid.Parse(Global.UserGUID);
-
-                                        var companyMember = db.CompanyMembers.SingleOrDefault<CompanyMember>(cm => cm.CompanyMemberGUID == m.CompanyMemberGUID);
-                                        string tenNhanVien = string.Empty;
-                                        if (companyMember != null) tenNhanVien = companyMember.Patient.Contact.FullName;
-                                        desc += string.Format("  + GUID: '{0}', Nhân viên: '{1}'\n", m.ContractMemberGUID.ToString(), tenNhanVien);
-                                    }
-                                }
-
-                                db.SubmitChanges();
-                            }
-
                             if (companyInfo.AddedMembers != null && companyInfo.AddedMembers.Count > 0)
                             {
                                 desc += "- Danh sách nhân viên được thêm:\n";
@@ -873,6 +723,7 @@ namespace MM.Bussiness
                                         m.CreatedBy = Guid.Parse(Global.UserGUID);
                                         m.Status = (byte)Status.Actived;
                                         db.ContractMembers.InsertOnSubmit(m);
+
                                     }
                                     else
                                     {
@@ -888,30 +739,7 @@ namespace MM.Bussiness
                                     if (companyMember != null) tenNhanVien = companyMember.Patient.Contact.FullName;
                                     desc += string.Format("  + GUID: '{0}', Nhân viên: '{1}'\n", m.ContractMemberGUID.ToString(), tenNhanVien);
 
-
-                                    //Delete Service
-                                    if (member.DeletedServices != null && member.DeletedServices.Count > 0)
-                                    {
-                                        desc += string.Format("     Danh sách dịch vụ được xóa:\n");
-
-                                        foreach (string key in member.DeletedServices)
-                                        {
-                                            CompanyCheckList c = db.CompanyCheckLists.SingleOrDefault<CompanyCheckList>(cc => cc.ServiceGUID.ToString() == key &&
-                                                                                                                cc.ContractMemberGUID.ToString() == m.ContractMemberGUID.ToString());
-                                            if (c != null)
-                                            {
-                                                c.Status = (byte)Status.Deactived;
-                                                c.DeletedDate = DateTime.Now;
-                                                c.DeletedBy = Guid.Parse(Global.UserGUID);
-
-                                                desc += string.Format("     * GUID: '{0}', Dịch vụ: {1}\n", c.CompanyCheckListGUID.ToString(), c.Service.Name);
-                                            }
-                                        }
-
-                                        db.SubmitChanges();
-                                    }
-
-                                    //Add Service
+                                    //Check List
                                     if (member.AddedServices != null && member.AddedServices.Count > 0)
                                     {
                                         desc += string.Format("     Danh sách dịch vụ được thêm:\n");
@@ -945,136 +773,310 @@ namespace MM.Bussiness
                                 }
                             }
 
-                            //Delete Gia dịch vụ hợp đồng
-                            if (companyInfo.DeletedGiaDichVus != null && companyInfo.DeletedGiaDichVus.Count > 0)
-                            {
-                                foreach (string key in companyInfo.DeletedGiaDichVus)
-                                {
-                                    GiaDichVuHopDong gdvhd = db.GiaDichVuHopDongs.SingleOrDefault(g => g.GiaDichVuHopDongGUID.ToString() == key);
-                                    if (gdvhd != null)
-                                    {
-                                        gdvhd.Status = (byte)Status.Deactived;
-                                        gdvhd.DeletedBy = Guid.Parse(Global.UserGUID);
-                                        gdvhd.DeletedDate = DateTime.Now;
-
-                                        var checkList = from c in db.CompanyContracts
-                                                        join m in db.ContractMembers on c.CompanyContractGUID equals m.CompanyContractGUID
-                                                        join l in db.CompanyCheckLists on m.ContractMemberGUID equals l.ContractMemberGUID
-                                                        where c.Status == 0 && m.Status == 0 && l.Status == 0 && c.CompanyContractGUID == gdvhd.HopDongGUID &&
-                                                        l.ServiceGUID == gdvhd.ServiceGUID
-                                                        select l;
-
-                                        foreach (var cl in checkList)
-                                        {
-                                            cl.Status = 1;
-                                        }
-                                    }
-                                }
-
-                                db.SubmitChanges();
-                            }
-
-                            //Add giá dịch vụ hợp đồng
-                            if (companyInfo.GiaDichVuDataSource != null && companyInfo.GiaDichVuDataSource.Rows.Count > 0)
-                            {
-                                foreach (DataRow row in companyInfo.GiaDichVuDataSource.Rows)
-                                {
-                                    GiaDichVuHopDong gdvhd = null;
-                                    if (row["GiaDichVuHopDongGUID"] == null || row["GiaDichVuHopDongGUID"] == DBNull.Value)
-                                    {
-                                        gdvhd = new GiaDichVuHopDong();
-                                        gdvhd.GiaDichVuHopDongGUID = Guid.NewGuid();
-                                        gdvhd.HopDongGUID = contract.CompanyContractGUID;
-                                        gdvhd.ServiceGUID = Guid.Parse(row["ServiceGUID"].ToString());
-                                        gdvhd.Gia = Convert.ToDouble(row["Gia"]);
-                                        gdvhd.CreatedBy = Guid.Parse(Global.UserGUID);
-                                        gdvhd.CreatedDate = DateTime.Now;
-                                        db.GiaDichVuHopDongs.InsertOnSubmit(gdvhd);
-                                        db.SubmitChanges();
-                                    }
-                                    else
-                                    {
-                                        string giaDichVuHopDongGUID = row["GiaDichVuHopDongGUID"].ToString();
-                                        gdvhd = db.GiaDichVuHopDongs.SingleOrDefault(g => g.GiaDichVuHopDongGUID.ToString() == giaDichVuHopDongGUID);
-                                        if (gdvhd != null)
-                                        {
-                                            gdvhd.Gia = Convert.ToDouble(row["Gia"]);
-                                            gdvhd.ServiceGUID = Guid.Parse(row["ServiceGUID"].ToString());
-                                            gdvhd.UpdatedBy = Guid.Parse(Global.UserGUID);
-                                            gdvhd.UpdatedDate = DateTime.Now;
-                                            gdvhd.Status = (byte)Status.Actived;
-                                        }
-                                    }
-
-                                    //Delete Dịch vụ con
-                                    if (companyInfo.DictDeletedDichVuCons != null &&
-                                        companyInfo.DictDeletedDichVuCons.ContainsKey(gdvhd.ServiceGUID.ToString()))
-                                    {
-                                        List<string> deletedDichVuConList = companyInfo.DictDeletedDichVuCons[gdvhd.ServiceGUID.ToString()];
-                                        foreach (string servicecGUID in deletedDichVuConList)
-                                        {
-                                            DichVuCon dvc = (from d in db.DichVuCons
-                                                            where d.GiaDichVuHopDongGUID == gdvhd.GiaDichVuHopDongGUID &&
-                                                            d.ServiceGUID.ToString() == servicecGUID
-                                                            select d).FirstOrDefault();
-
-                                            if (dvc != null)
-                                            {
-                                                dvc.DeletedDate = DateTime.Now;
-                                                dvc.DeletedBy = Guid.Parse(Global.UserGUID);
-                                                dvc.Status = (byte)Status.Deactived;
-                                            }
-                                        }
-                                    }
-
-                                    //Add dịch vụ con
-                                    if (companyInfo.DictDichVuCon.ContainsKey(gdvhd.ServiceGUID.ToString()))
-                                    {
-                                        DataTable dtDichVuCon = companyInfo.DictDichVuCon[gdvhd.ServiceGUID.ToString()];
-                                        if (dtDichVuCon != null && dtDichVuCon.Rows.Count > 0)
-                                        {
-                                            foreach (DataRow drDichVuCon in dtDichVuCon.Rows)
-                                            {
-                                                string serviceGUID = drDichVuCon["ServiceGUID"].ToString();
-                                                DichVuCon dvc = (from d in db.DichVuCons
-                                                                 where d.GiaDichVuHopDongGUID == gdvhd.GiaDichVuHopDongGUID &&
-                                                                 d.ServiceGUID.ToString() == serviceGUID
-                                                                 select d).FirstOrDefault();
-                                                if (dvc == null)
-                                                {
-                                                    dvc = new DichVuCon();
-                                                    dvc.DichVuConGUID = Guid.NewGuid();
-                                                    dvc.GiaDichVuHopDongGUID = gdvhd.GiaDichVuHopDongGUID;
-                                                    dvc.ServiceGUID = Guid.Parse(serviceGUID);
-                                                    dvc.CreatedDate = DateTime.Now;
-                                                    dvc.CreatedBy = Guid.Parse(Global.UserGUID);
-                                                    dvc.Status = (byte)Status.Actived;
-                                                    db.DichVuCons.InsertOnSubmit(dvc);
-                                                }
-                                                else
-                                                {
-                                                    dvc.UpdatedDate = DateTime.Now;
-                                                    dvc.UpdatedBy = Guid.Parse(Global.UserGUID);
-                                                    dvc.Status = (byte)Status.Actived;
-                                                }
-                                            }
-                                        }
-                                    }
-                                }
-                            }
-
                             //Tracking
                             desc = desc.Substring(0, desc.Length - 1);
                             Tracking tk = new Tracking();
                             tk.TrackingGUID = Guid.NewGuid();
                             tk.TrackingDate = DateTime.Now;
                             tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
-                            tk.ActionType = (byte)ActionType.Edit;
-                            tk.Action = "Sửa thông tin hợp đồng";
+                            tk.ActionType = (byte)ActionType.Add;
+                            tk.Action = "Thêm thông tin hợp đồng";
                             tk.Description = desc;
                             tk.TrackingType = (byte)TrackingType.None;
                             db.Trackings.InsertOnSubmit(tk);
                             db.SubmitChanges();
+                        }
+                        else //Update
+                        {
+                            CompanyContract con = db.CompanyContracts.SingleOrDefault<CompanyContract>(c => c.CompanyContractGUID.ToString() == contract.CompanyContractGUID.ToString());
+                            if (con != null)
+                            {
+                                con.CompanyGUID = contract.CompanyGUID;
+                                con.ContractCode = contract.ContractCode;
+                                con.ContractName = contract.ContractName;
+                                con.BeginDate = contract.BeginDate;
+                                con.EndDate = contract.EndDate;
+                                con.Completed = contract.Completed;
+                                con.CreatedDate = contract.CreatedDate;
+                                con.CreatedBy = contract.CreatedBy;
+                                con.UpdatedDate = contract.UpdatedDate;
+                                con.UpdatedBy = contract.UpdatedBy;
+                                con.DeletedDate = contract.DeletedDate;
+                                con.DeletedBy = contract.DeletedBy;
+                                con.Status = contract.Status;
+                                con.SoTien = contract.SoTien;
+                                con.DatCoc = contract.DatCoc;
+                                con.NhanSuPhuTrach = contract.NhanSuPhuTrach;
+                                con.SoDienThoai = contract.SoDienThoai;
+                                con.NgayDatCoc = contract.NgayDatCoc;
+                                con.GiamGiaNam = contract.GiamGiaNam;
+                                con.GiamGiaNu = contract.GiamGiaNu;
+                                con.GiamGiaNuCoGD = contract.GiamGiaNuCoGD;
+                                db.SubmitChanges();
+
+                                string strNgayDatCoc = string.Empty;
+                                if (con.NgayDatCoc != null && con.NgayDatCoc.HasValue)
+                                    strNgayDatCoc = con.NgayDatCoc.Value.ToString("dd/MM/yyyy");
+
+                                if (con.EndDate.HasValue)
+                                {
+                                    desc += string.Format("- Hợp đồng: GUID: '{0}', Mã hợp đồng: '{1}', Tên hợp đồng: '{2}', Cty: '{3}', Ngày bắt đầu: '{4}', Ngày kết thúc: '{5}', Số tiền: '{6}', Đặt cọc: '{7}', Nhân sự phụ trách: '{8}', Số điện thoại: '{9}', Ngày đặt cọc: '{10}', Giảm giá nam: '{11}', Giảm giá nữ: '{12}', Giảm giá nữ có gđ: '{13}'\n",
+                                        con.CompanyContractGUID.ToString(), con.ContractCode, con.ContractName, con.Company.TenCty,
+                                        con.BeginDate.ToString("dd/MM/yyyy HH:mm:ss"), con.EndDate.Value.ToString("dd/MM/yyyy HH:mm:ss"), con.SoTien, con.DatCoc, con.NhanSuPhuTrach, con.SoDienThoai, strNgayDatCoc,
+                                        con.GiamGiaNam, con.GiamGiaNu, con.GiamGiaNuCoGD);
+                                }
+                                else
+                                {
+                                    desc += string.Format("- Hợp đồng: GUID: '{0}', Mã hợp đồng: '{1}', Tên hợp đồng: '{2}', Cty: '{3}', Ngày bắt đầu: '{4}', Số tiền: '{5}', Đặt cọc: '{6}', Nhân sự phụ trách: '{7}', Số điện thoại: '{8}', Ngày đặt cọc: '{9}', Giảm giá nam: '{10}', Giảm giá nữ: '{11}', Giảm giá nữ có gđ: '{12}'\n",
+                                        con.CompanyContractGUID.ToString(), con.ContractCode, con.ContractName, con.Company.TenCty,
+                                        con.BeginDate.ToString("dd/MM/yyyy HH:mm:ss"), con.SoTien, con.DatCoc, con.NhanSuPhuTrach, con.SoDienThoai, strNgayDatCoc,
+                                        con.GiamGiaNam, con.GiamGiaNu, con.GiamGiaNuCoGD);
+                                }
+
+                                //Members
+                                if (companyInfo.DeletedMembers != null && companyInfo.DeletedMembers.Count > 0)
+                                {
+                                    desc += "- Danh sách nhân viên được xóa:\n";
+                                    foreach (string key in companyInfo.DeletedMembers)
+                                    {
+                                        ContractMember m = db.ContractMembers.SingleOrDefault<ContractMember>(mm => mm.CompanyMemberGUID.ToString() == key &&
+                                                                                mm.CompanyContractGUID.ToString() == contract.CompanyContractGUID.ToString());
+                                        if (m != null)
+                                        {
+                                            m.Status = (byte)Status.Deactived;
+                                            m.DeletedDate = DateTime.Now;
+                                            m.DeletedBy = Guid.Parse(Global.UserGUID);
+
+                                            var companyMember = db.CompanyMembers.SingleOrDefault<CompanyMember>(cm => cm.CompanyMemberGUID == m.CompanyMemberGUID);
+                                            string tenNhanVien = string.Empty;
+                                            if (companyMember != null) tenNhanVien = companyMember.Patient.Contact.FullName;
+                                            desc += string.Format("  + GUID: '{0}', Nhân viên: '{1}'\n", m.ContractMemberGUID.ToString(), tenNhanVien);
+                                        }
+                                    }
+
+                                    db.SubmitChanges();
+                                }
+
+                                if (companyInfo.AddedMembers != null && companyInfo.AddedMembers.Count > 0)
+                                {
+                                    desc += "- Danh sách nhân viên được thêm:\n";
+                                    foreach (Member member in companyInfo.AddedMembers.Values)
+                                    {
+                                        ContractMember m = db.ContractMembers.SingleOrDefault<ContractMember>(mm => mm.CompanyMemberGUID.ToString() == member.CompanyMemberGUID &&
+                                                                                                            mm.CompanyContractGUID.ToString() == contract.CompanyContractGUID.ToString());
+                                        if (m == null)
+                                        {
+                                            m = new ContractMember();
+                                            m.ContractMemberGUID = Guid.NewGuid();
+                                            m.CompanyContractGUID = contract.CompanyContractGUID;
+                                            m.CompanyMemberGUID = Guid.Parse(member.CompanyMemberGUID);
+                                            m.CreatedDate = DateTime.Now;
+                                            m.CreatedBy = Guid.Parse(Global.UserGUID);
+                                            m.Status = (byte)Status.Actived;
+                                            db.ContractMembers.InsertOnSubmit(m);
+                                        }
+                                        else
+                                        {
+                                            m.Status = (byte)Status.Actived;
+                                            m.UpdatedDate = DateTime.Now;
+                                            m.UpdatedBy = Guid.Parse(Global.UserGUID);
+                                        }
+
+                                        db.SubmitChanges();
+
+                                        var companyMember = db.CompanyMembers.SingleOrDefault<CompanyMember>(cm => cm.CompanyMemberGUID == m.CompanyMemberGUID);
+                                        string tenNhanVien = string.Empty;
+                                        if (companyMember != null) tenNhanVien = companyMember.Patient.Contact.FullName;
+                                        desc += string.Format("  + GUID: '{0}', Nhân viên: '{1}'\n", m.ContractMemberGUID.ToString(), tenNhanVien);
+
+
+                                        //Delete Service
+                                        if (member.DeletedServices != null && member.DeletedServices.Count > 0)
+                                        {
+                                            desc += string.Format("     Danh sách dịch vụ được xóa:\n");
+
+                                            foreach (string key in member.DeletedServices)
+                                            {
+                                                CompanyCheckList c = db.CompanyCheckLists.SingleOrDefault<CompanyCheckList>(cc => cc.ServiceGUID.ToString() == key &&
+                                                                                                                    cc.ContractMemberGUID.ToString() == m.ContractMemberGUID.ToString());
+                                                if (c != null)
+                                                {
+                                                    c.Status = (byte)Status.Deactived;
+                                                    c.DeletedDate = DateTime.Now;
+                                                    c.DeletedBy = Guid.Parse(Global.UserGUID);
+
+                                                    desc += string.Format("     * GUID: '{0}', Dịch vụ: {1}\n", c.CompanyCheckListGUID.ToString(), c.Service.Name);
+                                                }
+                                            }
+
+                                            db.SubmitChanges();
+                                        }
+
+                                        //Add Service
+                                        if (member.AddedServices != null && member.AddedServices.Count > 0)
+                                        {
+                                            desc += string.Format("     Danh sách dịch vụ được thêm:\n");
+                                            foreach (string key in member.AddedServices)
+                                            {
+                                                CompanyCheckList c = db.CompanyCheckLists.SingleOrDefault<CompanyCheckList>(cc => cc.ServiceGUID.ToString() == key &&
+                                                                                                                    cc.ContractMemberGUID.ToString() == m.ContractMemberGUID.ToString());
+                                                if (c == null)
+                                                {
+                                                    c = new CompanyCheckList();
+                                                    c.CompanyCheckListGUID = Guid.NewGuid();
+                                                    c.ContractMemberGUID = m.ContractMemberGUID;
+                                                    c.ServiceGUID = Guid.Parse(key);
+                                                    c.CreatedDate = DateTime.Now;
+                                                    c.CreatedBy = Guid.Parse(Global.UserGUID);
+                                                    c.Status = (byte)Status.Actived;
+                                                    db.CompanyCheckLists.InsertOnSubmit(c);
+                                                    db.SubmitChanges();
+                                                }
+                                                else
+                                                {
+                                                    c.Status = (byte)Status.Actived;
+                                                    c.UpdatedDate = DateTime.Now;
+                                                    c.UpdatedBy = Guid.Parse(Global.UserGUID);
+                                                    db.SubmitChanges();
+                                                }
+
+                                                desc += string.Format("     * GUID: '{0}', Dịch vụ: {1}\n", c.CompanyCheckListGUID.ToString(), c.Service.Name);
+                                            }
+                                        }
+                                    }
+                                }
+
+                                //Delete Gia dịch vụ hợp đồng
+                                if (companyInfo.DeletedGiaDichVus != null && companyInfo.DeletedGiaDichVus.Count > 0)
+                                {
+                                    foreach (string key in companyInfo.DeletedGiaDichVus)
+                                    {
+                                        GiaDichVuHopDong gdvhd = db.GiaDichVuHopDongs.SingleOrDefault(g => g.GiaDichVuHopDongGUID.ToString() == key);
+                                        if (gdvhd != null)
+                                        {
+                                            gdvhd.Status = (byte)Status.Deactived;
+                                            gdvhd.DeletedBy = Guid.Parse(Global.UserGUID);
+                                            gdvhd.DeletedDate = DateTime.Now;
+
+                                            var checkList = from c in db.CompanyContracts
+                                                            join m in db.ContractMembers on c.CompanyContractGUID equals m.CompanyContractGUID
+                                                            join l in db.CompanyCheckLists on m.ContractMemberGUID equals l.ContractMemberGUID
+                                                            where c.Status == 0 && m.Status == 0 && l.Status == 0 && c.CompanyContractGUID == gdvhd.HopDongGUID &&
+                                                            l.ServiceGUID == gdvhd.ServiceGUID
+                                                            select l;
+
+                                            foreach (var cl in checkList)
+                                            {
+                                                cl.Status = 1;
+                                            }
+                                        }
+                                    }
+
+                                    db.SubmitChanges();
+                                }
+
+                                //Add giá dịch vụ hợp đồng
+                                if (companyInfo.GiaDichVuDataSource != null && companyInfo.GiaDichVuDataSource.Rows.Count > 0)
+                                {
+                                    foreach (DataRow row in companyInfo.GiaDichVuDataSource.Rows)
+                                    {
+                                        GiaDichVuHopDong gdvhd = null;
+                                        if (row["GiaDichVuHopDongGUID"] == null || row["GiaDichVuHopDongGUID"] == DBNull.Value)
+                                        {
+                                            gdvhd = new GiaDichVuHopDong();
+                                            gdvhd.GiaDichVuHopDongGUID = Guid.NewGuid();
+                                            gdvhd.HopDongGUID = contract.CompanyContractGUID;
+                                            gdvhd.ServiceGUID = Guid.Parse(row["ServiceGUID"].ToString());
+                                            gdvhd.Gia = Convert.ToDouble(row["Gia"]);
+                                            gdvhd.CreatedBy = Guid.Parse(Global.UserGUID);
+                                            gdvhd.CreatedDate = DateTime.Now;
+                                            db.GiaDichVuHopDongs.InsertOnSubmit(gdvhd);
+                                            db.SubmitChanges();
+                                        }
+                                        else
+                                        {
+                                            string giaDichVuHopDongGUID = row["GiaDichVuHopDongGUID"].ToString();
+                                            gdvhd = db.GiaDichVuHopDongs.SingleOrDefault(g => g.GiaDichVuHopDongGUID.ToString() == giaDichVuHopDongGUID);
+                                            if (gdvhd != null)
+                                            {
+                                                gdvhd.Gia = Convert.ToDouble(row["Gia"]);
+                                                gdvhd.ServiceGUID = Guid.Parse(row["ServiceGUID"].ToString());
+                                                gdvhd.UpdatedBy = Guid.Parse(Global.UserGUID);
+                                                gdvhd.UpdatedDate = DateTime.Now;
+                                                gdvhd.Status = (byte)Status.Actived;
+                                            }
+                                        }
+
+                                        //Delete Dịch vụ con
+                                        if (companyInfo.DictDeletedDichVuCons != null &&
+                                            companyInfo.DictDeletedDichVuCons.ContainsKey(gdvhd.ServiceGUID.ToString()))
+                                        {
+                                            List<string> deletedDichVuConList = companyInfo.DictDeletedDichVuCons[gdvhd.ServiceGUID.ToString()];
+                                            foreach (string servicecGUID in deletedDichVuConList)
+                                            {
+                                                DichVuCon dvc = (from d in db.DichVuCons
+                                                                 where d.GiaDichVuHopDongGUID == gdvhd.GiaDichVuHopDongGUID &&
+                                                                 d.ServiceGUID.ToString() == servicecGUID
+                                                                 select d).FirstOrDefault();
+
+                                                if (dvc != null)
+                                                {
+                                                    dvc.DeletedDate = DateTime.Now;
+                                                    dvc.DeletedBy = Guid.Parse(Global.UserGUID);
+                                                    dvc.Status = (byte)Status.Deactived;
+                                                }
+                                            }
+                                        }
+
+                                        //Add dịch vụ con
+                                        if (companyInfo.DictDichVuCon.ContainsKey(gdvhd.ServiceGUID.ToString()))
+                                        {
+                                            DataTable dtDichVuCon = companyInfo.DictDichVuCon[gdvhd.ServiceGUID.ToString()];
+                                            if (dtDichVuCon != null && dtDichVuCon.Rows.Count > 0)
+                                            {
+                                                foreach (DataRow drDichVuCon in dtDichVuCon.Rows)
+                                                {
+                                                    string serviceGUID = drDichVuCon["ServiceGUID"].ToString();
+                                                    DichVuCon dvc = (from d in db.DichVuCons
+                                                                     where d.GiaDichVuHopDongGUID == gdvhd.GiaDichVuHopDongGUID &&
+                                                                     d.ServiceGUID.ToString() == serviceGUID
+                                                                     select d).FirstOrDefault();
+                                                    if (dvc == null)
+                                                    {
+                                                        dvc = new DichVuCon();
+                                                        dvc.DichVuConGUID = Guid.NewGuid();
+                                                        dvc.GiaDichVuHopDongGUID = gdvhd.GiaDichVuHopDongGUID;
+                                                        dvc.ServiceGUID = Guid.Parse(serviceGUID);
+                                                        dvc.CreatedDate = DateTime.Now;
+                                                        dvc.CreatedBy = Guid.Parse(Global.UserGUID);
+                                                        dvc.Status = (byte)Status.Actived;
+                                                        db.DichVuCons.InsertOnSubmit(dvc);
+                                                    }
+                                                    else
+                                                    {
+                                                        dvc.UpdatedDate = DateTime.Now;
+                                                        dvc.UpdatedBy = Guid.Parse(Global.UserGUID);
+                                                        dvc.Status = (byte)Status.Actived;
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }
+                                }
+
+                                //Tracking
+                                desc = desc.Substring(0, desc.Length - 1);
+                                Tracking tk = new Tracking();
+                                tk.TrackingGUID = Guid.NewGuid();
+                                tk.TrackingDate = DateTime.Now;
+                                tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                                tk.ActionType = (byte)ActionType.Edit;
+                                tk.Action = "Sửa thông tin hợp đồng";
+                                tk.Description = desc;
+                                tk.TrackingType = (byte)TrackingType.None;
+                                db.Trackings.InsertOnSubmit(tk);
+                                db.SubmitChanges();
+                            }
                         }
                     }
 
@@ -1090,14 +1092,6 @@ namespace MM.Bussiness
             {
                 result.Error.Code = ErrorCode.UNKNOWN_ERROR;
                 result.Error.Description = e.ToString();
-            }
-            finally
-            {
-                if (db != null)
-                {
-                    db.Dispose();
-                    db = null;
-                }
             }
 
             return result;

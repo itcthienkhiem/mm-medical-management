@@ -271,5 +271,15 @@ namespace MM.Bussiness
 
             return result;
         }
+
+        protected static void OverrideTransactionScopeMaximumTimeout(TimeSpan timeOut)
+        {
+            // 1. create a object of the type specified by the fully qualified name
+            Type oSystemType = typeof(global::System.Transactions.TransactionManager);
+            System.Reflection.FieldInfo oCachedMaxTimeout = oSystemType.GetField("_cachedMaxTimeout", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
+            System.Reflection.FieldInfo oMaximumTimeout = oSystemType.GetField("_maximumTimeout", System.Reflection.BindingFlags.NonPublic | System.Reflection.BindingFlags.Static);
+            oCachedMaxTimeout.SetValue(null, true);
+            oMaximumTimeout.SetValue(null, timeOut);
+        }
     }
 }
