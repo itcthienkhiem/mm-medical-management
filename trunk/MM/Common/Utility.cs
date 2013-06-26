@@ -1502,6 +1502,22 @@ namespace MM.Common
             var img = Image.FromStream(ms);
             return img;
         }
+
+        public static void CopyTemplates(string reportFileName)
+        {
+            try
+            {
+                if (File.Exists(reportFileName)) return;
+
+                string templateFileName = reportFileName.Replace("\\Templates", "\\Templates_Install");
+                File.Copy(templateFileName, reportFileName, true);
+                Thread.Sleep(1000);
+            }
+            catch (Exception e)
+            {
+                WriteToTraceLog(e.Message);
+            }
+        }
     }
 }
 
