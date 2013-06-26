@@ -35,6 +35,8 @@ namespace MM.Exports
 
             try
             {
+                Utility.CopyTemplates(reportFileName.ToString());
+
                 doc = word.Documents.Open(ref reportFileName,
                     ref missing, ref missing, ref missing, ref missing,
                     ref missing, ref missing, ref missing, ref missing,
@@ -152,6 +154,8 @@ namespace MM.Exports
 
             try
             {
+                Utility.CopyTemplates(reportFileName.ToString());
+
                 doc = word.Documents.Open(ref reportFileName,
                     ref missing, ref missing, ref missing, ref missing,
                     ref missing, ref missing, ref missing, ref missing,
@@ -273,6 +277,8 @@ namespace MM.Exports
 
             try
             {
+                Utility.CopyTemplates(reportFileName.ToString());
+
                 doc = word.Documents.Open(ref reportFileName,
                     ref missing, ref missing, ref missing, ref missing,
                     ref missing, ref missing, ref missing, ref missing,
@@ -445,6 +451,8 @@ namespace MM.Exports
 
             try
             {
+                Utility.CopyTemplates(reportFileName.ToString());
+
                 doc = word.Documents.Open(ref reportFileName,
                     ref missing, ref missing, ref missing, ref missing,
                     ref missing, ref missing, ref missing, ref missing,

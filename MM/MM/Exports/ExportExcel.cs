@@ -35,6 +35,7 @@ namespace MM.Exports
 
                 DataTable dt = result.QueryResult as DataTable;
                 string excelTemplateName = string.Format("{0}\\Templates\\ThongKeThuocXuatHoaDonTemplate.xls", Application.StartupPath);
+                Utility.CopyTemplates(excelTemplateName);
 
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
@@ -111,6 +112,7 @@ namespace MM.Exports
                 }
 
                 string excelTemplateName = string.Format("{0}\\Templates\\ReceiptTemplate.xls", Application.StartupPath);
+                Utility.CopyTemplates(excelTemplateName);
 
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
@@ -266,6 +268,7 @@ namespace MM.Exports
                 }
 
                 string excelTemplateName = string.Format("{0}\\Templates\\ReceiptTemplate.xls", Application.StartupPath);
+                Utility.CopyTemplates(excelTemplateName);
 
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
@@ -400,6 +403,8 @@ namespace MM.Exports
 
             try
             {
+                Utility.CopyTemplates(excelTemplateName);
+
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 int rowIndex = 1;
@@ -476,6 +481,7 @@ namespace MM.Exports
                 }
 
                 string excelTemplateName = string.Format("{0}\\Templates\\HDGTGTTemplate.xls", Application.StartupPath);
+                Utility.CopyTemplates(excelTemplateName);
                 IRange range = null;
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
@@ -686,6 +692,7 @@ namespace MM.Exports
                 }
 
                 string excelTemplateName = string.Format("{0}\\Templates\\HDGTGTTemplate.xls", Application.StartupPath);
+                Utility.CopyTemplates(excelTemplateName);
                 IRange range = null;
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
@@ -888,6 +895,7 @@ namespace MM.Exports
                 }
 
                 string excelTemplateName = string.Format("{0}\\Templates\\HDGTGTTemplate.xls", Application.StartupPath);
+                Utility.CopyTemplates(excelTemplateName);
                 IRange range = null;
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
@@ -1090,6 +1098,7 @@ namespace MM.Exports
                 }
 
                 string excelTemplateName = string.Format("{0}\\Templates\\HDGTGTTemplate.xls", Application.StartupPath);
+                Utility.CopyTemplates(excelTemplateName);
                 IRange range = null;
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
@@ -1294,6 +1303,7 @@ namespace MM.Exports
                 if (toaThuoc.Loai == (byte)LoaiToaThuoc.SanKhoa)
                 {
                     excelTemplateName = string.Format("{0}\\Templates\\ToaThuocSanKhoaTemplate.xls", Application.StartupPath);
+                    Utility.CopyTemplates(excelTemplateName);
                     workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                     IWorksheet workSheet = workBook.Worksheets[0];
 
@@ -1844,6 +1854,7 @@ namespace MM.Exports
                 }
 
                 string excelTemplateName = string.Format("{0}\\Templates\\PhieuThuThuocTemplate.xls", Application.StartupPath);
+                Utility.CopyTemplates(excelTemplateName);
 
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
@@ -2011,6 +2022,7 @@ namespace MM.Exports
                 }
 
                 string excelTemplateName = string.Format("{0}\\Templates\\PhieuThuCapCuuTemplate.xls", Application.StartupPath);
+                Utility.CopyTemplates(excelTemplateName);
 
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
@@ -2159,6 +2171,8 @@ namespace MM.Exports
 
             try
             {
+                Utility.CopyTemplates(excelTemplateName);
+
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 
@@ -2231,6 +2245,8 @@ namespace MM.Exports
 
             try
             {
+                Utility.CopyTemplates(excelTemplateName);
+
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
 
@@ -2297,6 +2313,8 @@ namespace MM.Exports
 
             try
             {
+                Utility.CopyTemplates(excelTemplateName);
+
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 int rowIndex = 2;
@@ -2377,6 +2395,8 @@ namespace MM.Exports
 
             try
             {
+                Utility.CopyTemplates(excelTemplateName);
+
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
 
@@ -2578,6 +2598,7 @@ namespace MM.Exports
             try
             {
                 string excelTemplateName = string.Format("{0}\\Templates\\ChiTietPhieuThuTemplate.xls", Application.StartupPath);
+                Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 int rowIndex = 2;
@@ -2724,6 +2745,7 @@ namespace MM.Exports
             try
             {
                 string excelTemplateName = string.Format("{0}\\Templates\\ChiTietPhieuThuThuocTemplate.xls", Application.StartupPath);
+                Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 int rowIndex = 2;
@@ -2820,6 +2842,7 @@ namespace MM.Exports
             try
             {
                 string excelTemplateName = string.Format("{0}\\Templates\\ChiTietPhieuThuCapCuuTemplate.xls", Application.StartupPath);
+                Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 int rowIndex = 2;
@@ -3004,6 +3027,7 @@ namespace MM.Exports
                 KetLuan ketLuan = result.QueryResult as KetLuan;
 
                 string excelTemplateName = string.Format("{0}\\Templates\\KhamSucKhoeTongQuatTemplate.xls", Application.StartupPath);
+                Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 IRange range;
@@ -3575,6 +3599,7 @@ namespace MM.Exports
                 if (chiTietPhieuThuCapCuuList == null) return false;
 
                 string excelTemplateName = string.Format("{0}\\Templates\\DoanhThuTheoNgayTemplate.xls", Application.StartupPath);
+                Utility.CopyTemplates(excelTemplateName);
 
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
@@ -4030,7 +4055,7 @@ namespace MM.Exports
             try
             {
                 string excelTemplateName = string.Format("{0}\\Templates\\KetQuaNoiSoiTaiTemplate.xls", Application.StartupPath);
-
+                Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 workSheet.Cells["A6"].Value = string.Format("Họ tên: {0}", patientRow["FullName"].ToString());
@@ -4180,7 +4205,7 @@ namespace MM.Exports
             try
             {
                 string excelTemplateName = string.Format("{0}\\Templates\\KetQuaNoiSoiMuiTemplate.xls", Application.StartupPath);
-
+                Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 workSheet.Cells["A6"].Value = string.Format("Họ tên: {0}", patientRow["FullName"].ToString());
@@ -4342,7 +4367,7 @@ namespace MM.Exports
             try
             {
                 string excelTemplateName = string.Format("{0}\\Templates\\KetQuaNoiSoiTongQuatTemplate.xls", Application.StartupPath);
-
+                Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 workSheet.Cells["A6"].Value = string.Format("Họ tên: {0}", patientRow["FullName"].ToString());
@@ -4489,7 +4514,7 @@ namespace MM.Exports
             try
             {
                 string excelTemplateName = string.Format("{0}\\Templates\\KetQuaNoiSoiHongThanhQuanTemplate.xls", Application.StartupPath);
-
+                Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 workSheet.Cells["A6"].Value = string.Format("Họ tên: {0}", patientRow["FullName"].ToString());
@@ -4632,7 +4657,7 @@ namespace MM.Exports
             try
             {
                 string excelTemplateName = string.Format("{0}\\Templates\\KetQuaNoiSoiTaiMuiHongTemplate.xls", Application.StartupPath);
-
+                Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 workSheet.Cells["A6"].Value = string.Format("Họ tên: {0}", patientRow["FullName"].ToString());
@@ -4778,6 +4803,7 @@ namespace MM.Exports
 
             try
             {
+                Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
 
@@ -4860,6 +4886,7 @@ namespace MM.Exports
 
             try
             {
+                Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
 
@@ -4910,6 +4937,7 @@ namespace MM.Exports
 
             try
             {
+                Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
 
@@ -4960,6 +4988,7 @@ namespace MM.Exports
             try
             {
                 string excelTemplateName = string.Format("{0}\\Templates\\YKienKhachHangTemplate.xls", Application.StartupPath);
+                Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 int rowIndex = 2;
@@ -5047,6 +5076,7 @@ namespace MM.Exports
             try
             {
                 string excelTemplateName = string.Format("{0}\\Templates\\NhatKyLienHeCongTyTemplate.xls", Application.StartupPath);
+                Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 int rowIndex = 2;
@@ -5152,7 +5182,7 @@ namespace MM.Exports
             try
             {
                 string excelTemplateName = string.Format("{0}\\Templates\\KetQuaSoiCTCTemplate.xls", Application.StartupPath);
-
+                Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 workSheet.Cells["A6"].Value = string.Format("Họ tên: {0}", patientRow["FullName"].ToString());
@@ -5234,6 +5264,7 @@ namespace MM.Exports
             try
             {
                 string excelTemplateName = string.Format("{0}\\Templates\\GiaVonDichVuTemplate.xls", Application.StartupPath);
+                Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 int rowIndex = 2;
@@ -5314,6 +5345,7 @@ namespace MM.Exports
                 }
 
                 string excelTemplateName = string.Format("{0}\\Templates\\KetQuaXetNghiemCellDyn3200Template.xls", Application.StartupPath);
+                Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 workSheet.Cells["B2"].Value = maBenhNhan;
@@ -5528,6 +5560,7 @@ namespace MM.Exports
                 }
 
                 string excelTemplateName = string.Format("{0}\\Templates\\KetQuaXetNghiemSinhHoaTemplate.xls", Application.StartupPath);
+                Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 workSheet.Cells["B2"].Value = maBenhNhan;
@@ -6145,6 +6178,7 @@ namespace MM.Exports
                 }
 
                 string excelTemplateName = string.Format("{0}\\Templates\\KetQuaXetNghiemSinhHoaTemplate.xls", Application.StartupPath);
+                Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 workSheet.Cells["B2"].Value = maBenhNhan;
@@ -6322,6 +6356,7 @@ namespace MM.Exports
             try
             {
                 string excelTemplateName = string.Format("{0}\\Templates\\DanhSachBenhNhanDenKhamTemplate.xls", Application.StartupPath);
+                Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 int rowIndex = 2;
@@ -6420,6 +6455,7 @@ namespace MM.Exports
             try
             {
                 string excelTemplateName = string.Format("{0}\\Templates\\DanhSachDichVuXuatPhieuThuTemplate.xls", Application.StartupPath);
+                Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 int rowIndex = 2;
@@ -6500,6 +6536,7 @@ namespace MM.Exports
         {
             Cursor.Current = Cursors.WaitCursor;
             string excelTemplateName = string.Format("{0}\\Templates\\DanhSachNhanVienTemplate.xls", Application.StartupPath);
+            Utility.CopyTemplates(excelTemplateName);
             IWorkbook workBook = null;
 
             try
@@ -6600,6 +6637,7 @@ namespace MM.Exports
         {
             Cursor.Current = Cursors.WaitCursor;
             string excelTemplateName = string.Format("{0}\\Templates\\DanhSachThuocTemplate.xls", Application.StartupPath);
+            Utility.CopyTemplates(excelTemplateName);
             IWorkbook workBook = null;
 
             try
@@ -6693,6 +6731,7 @@ namespace MM.Exports
 
             try
             {
+                Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 int rowIndex = 2;
@@ -6802,6 +6841,7 @@ namespace MM.Exports
 
             try
             {
+                Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 int rowIndex = 5;
@@ -6887,6 +6927,7 @@ namespace MM.Exports
 
             try
             {
+                Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 int rowIndex = 3;
@@ -6975,6 +7016,7 @@ namespace MM.Exports
 
             try
             {
+                Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 int rowIndex = 2;
@@ -7047,6 +7089,7 @@ namespace MM.Exports
 
             try
             {
+                Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 int rowIndex = 2;
@@ -7117,7 +7160,7 @@ namespace MM.Exports
             try
             {
                 string excelTemplateName = string.Format("{0}\\Templates\\LichHenTemplate.xls", Application.StartupPath);
-
+                Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 
@@ -7448,6 +7491,7 @@ namespace MM.Exports
                 }
 
                 string excelTemplateName = string.Format("{0}\\Templates\\KhamSucKhoeTongQuatTemplate.xls", Application.StartupPath);
+                Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 IRange range;
@@ -7993,6 +8037,7 @@ namespace MM.Exports
 
             try
             {
+                Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
 
@@ -8400,6 +8445,7 @@ namespace MM.Exports
 
             try
             {
+                Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
 
@@ -8839,6 +8885,7 @@ namespace MM.Exports
             try
             {
                 string excelTemplateName = string.Format("{0}\\Templates\\DanhSachBenhNhan2Template.xls", Application.StartupPath);
+                Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 int rowIndex = 2;
@@ -8924,6 +8971,7 @@ namespace MM.Exports
 
             try
             {
+                Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
 
@@ -9460,7 +9508,7 @@ namespace MM.Exports
             try
             {
                 string excelTemplateName = string.Format("{0}\\Templates\\ChiDinhTemplate.xls", Application.StartupPath);
-
+                Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 workSheet.Cells["A2"].Value = string.Format("Tên bệnh nhân: {0}", patientRow["FullName"].ToString());
@@ -9530,7 +9578,7 @@ namespace MM.Exports
             try
             {
                 string excelTemplateName = string.Format("{0}\\Templates\\DichVuXetNghiemTemplate.xls", Application.StartupPath);
-
+                Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 workSheet.Cells["C4"].Value = string.Format("TỪ : {0} ĐẾN : {1}", tuNgay.ToString("dd/MM/yyyy"), denNgay.ToString("dd/MM/yyyy"));

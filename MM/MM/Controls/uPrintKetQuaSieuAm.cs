@@ -41,6 +41,8 @@ namespace MM.Controls
             if (is2Page) _reportTemplate = string.Format("{0}\\Templates\\SieuAmTemplate2.rtf", Application.StartupPath);
             else _reportTemplate = string.Format("{0}\\Templates\\SieuAmTemplate.rtf", Application.StartupPath);
 
+            Utility.CopyTemplates(_reportTemplate);
+
             Cursor.Current = Cursors.WaitCursor;
             _textControl.Load(_reportTemplate, TXTextControl.StreamType.RichTextFormat);
             _textControl.Tables.GridLines = false;
