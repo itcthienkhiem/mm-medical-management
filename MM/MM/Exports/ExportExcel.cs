@@ -9512,10 +9512,10 @@ namespace MM.Exports
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
                 workSheet.Cells["A2"].Value = string.Format("Tên bệnh nhân: {0}", patientRow["FullName"].ToString());
-                workSheet.Cells["D2"].Value = string.Format("Mã bệnh nhân: {0}", patientRow["FileNum"].ToString());
+                workSheet.Cells["E2"].Value = string.Format("Mã bệnh nhân: {0}", patientRow["FileNum"].ToString());
                 workSheet.Cells["A3"].Value = string.Format("Ngày sinh: {0}", patientRow["DobStr"].ToString());
-                workSheet.Cells["C3"].Value = string.Format("Giới tính: {0}", patientRow["GenderAsStr"].ToString());
-                workSheet.Cells["D3"].Value = string.Format("Điện thoại: {0}", patientRow["Mobile"].ToString());
+                workSheet.Cells["D3"].Value = string.Format("Giới tính: {0}", patientRow["GenderAsStr"].ToString());
+                workSheet.Cells["E3"].Value = string.Format("Điện thoại: {0}", patientRow["Mobile"].ToString());
                 workSheet.Cells["A4"].Value = string.Format("Địa chỉ {0}", patientRow["Address"].ToString());
 
                 int rowIndex = 5;
@@ -9523,11 +9523,23 @@ namespace MM.Exports
                 
                 foreach (DataRow row in chiDinhRows)
                 {
+                    string chiTietChiDinhGUID = row["ChiTietChiDinhGUID"].ToString();
                     string maChiDinh = row["MaChiDinh"].ToString();
                     DateTime ngayChiDinh = Convert.ToDateTime(row["NgayChiDinh"]);
                     string bacSiChiDinh = row["FullName"].ToString();
                     string maDichVu = row["Code"].ToString();
                     string tenDichVu = row["Name"].ToString();
+                    Result result = ChiDinhBus.GetServiceHistory(chiTietChiDinhGUID);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("ChiDinhBus.GetServiceHistory"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("ChiDinhBus.GetServiceHistory"));
+                        return false;
+                    }
+
+                    string bacSiThucHien = string.Empty;
+                    ServiceHistoryView srvHistory = result.QueryResult as ServiceHistoryView;
+                    if (srvHistory != null) bacSiThucHien = srvHistory.FullName;
 
                     workSheet.Cells[rowIndex, 0].Value = maChiDinh;
                     workSheet.Cells[rowIndex, 0].WrapText = true;
@@ -9535,14 +9547,16 @@ namespace MM.Exports
                     workSheet.Cells[rowIndex, 1].WrapText = true;
                     workSheet.Cells[rowIndex, 2].Value = bacSiChiDinh;
                     workSheet.Cells[rowIndex, 2].WrapText = true;
-                    workSheet.Cells[rowIndex, 3].Value = maDichVu;
+                    workSheet.Cells[rowIndex, 3].Value = bacSiThucHien;
                     workSheet.Cells[rowIndex, 3].WrapText = true;
-                    workSheet.Cells[rowIndex, 4].Value = tenDichVu;
+                    workSheet.Cells[rowIndex, 4].Value = maDichVu;
                     workSheet.Cells[rowIndex, 4].WrapText = true;
+                    workSheet.Cells[rowIndex, 5].Value = tenDichVu;
+                    workSheet.Cells[rowIndex, 5].WrapText = true;
                     rowIndex++;
                 }
 
-                range = workSheet.Cells[string.Format("A6:E{0}", chiDinhRows.Count + 5)];
+                range = workSheet.Cells[string.Format("A6:F{0}", chiDinhRows.Count + 5)];
                 range.Borders.Color = Color.Black;
                 range.Borders.LineStyle = LineStyle.Continuous;
 
