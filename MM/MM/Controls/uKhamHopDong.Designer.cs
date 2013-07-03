@@ -86,7 +86,6 @@
             this.xuatPhieuThuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.serviceHistoryViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel10 = new System.Windows.Forms.Panel();
-            this.lbTongTienLamThem = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.panelDichVuLamThem = new System.Windows.Forms.Panel();
             this.btnExportReceipt = new System.Windows.Forms.Button();
@@ -98,6 +97,7 @@
             this.btnLuu = new System.Windows.Forms.Button();
             this.label3 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
+            this.lbTongTienLamThem = new System.Windows.Forms.Label();
             this.panel3 = new System.Windows.Forms.Panel();
             this.panel14 = new System.Windows.Forms.Panel();
             this.dgPatient = new DevComponents.DotNetBar.Controls.DataGridViewX();
@@ -112,6 +112,7 @@
             this.panel8 = new System.Windows.Forms.Panel();
             this.btnOpenPatient = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.raNuTren40 = new System.Windows.Forms.RadioButton();
             this.raNamTren40 = new System.Windows.Forms.RadioButton();
             this.raNuCoGiaDinh = new System.Windows.Forms.RadioButton();
             this.raNu = new System.Windows.Forms.RadioButton();
@@ -138,6 +139,7 @@
             this.panel10.SuspendLayout();
             this.panelDichVuLamThem.SuspendLayout();
             this.panel9.SuspendLayout();
+            this.panel5.SuspendLayout();
             this.panel3.SuspendLayout();
             this.panel14.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).BeginInit();
@@ -591,7 +593,6 @@
             // 
             // panel10
             // 
-            this.panel10.Controls.Add(this.lbTongTienLamThem);
             this.panel10.Controls.Add(this.label4);
             this.panel10.Controls.Add(this.panelDichVuLamThem);
             this.panel10.Dock = System.Windows.Forms.DockStyle.Top;
@@ -599,17 +600,6 @@
             this.panel10.Name = "panel10";
             this.panel10.Size = new System.Drawing.Size(552, 32);
             this.panel10.TabIndex = 0;
-            // 
-            // lbTongTienLamThem
-            // 
-            this.lbTongTienLamThem.AutoSize = true;
-            this.lbTongTienLamThem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(163)));
-            this.lbTongTienLamThem.ForeColor = System.Drawing.Color.Blue;
-            this.lbTongTienLamThem.Location = new System.Drawing.Point(398, 7);
-            this.lbTongTienLamThem.Name = "lbTongTienLamThem";
-            this.lbTongTienLamThem.Size = new System.Drawing.Size(125, 15);
-            this.lbTongTienLamThem.TabIndex = 17;
-            this.lbTongTienLamThem.Text = "Tổng tiền: 0 (VNĐ)";
             // 
             // label4
             // 
@@ -730,12 +720,23 @@
             // panel5
             // 
             this.panel5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel5.Controls.Add(this.lbTongTienLamThem);
             this.panel5.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel5.Location = new System.Drawing.Point(0, 526);
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(556, 38);
             this.panel5.TabIndex = 0;
-            this.panel5.Visible = false;
+            // 
+            // lbTongTienLamThem
+            // 
+            this.lbTongTienLamThem.AutoSize = true;
+            this.lbTongTienLamThem.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            this.lbTongTienLamThem.ForeColor = System.Drawing.Color.Blue;
+            this.lbTongTienLamThem.Location = new System.Drawing.Point(5, 7);
+            this.lbTongTienLamThem.Name = "lbTongTienLamThem";
+            this.lbTongTienLamThem.Size = new System.Drawing.Size(125, 15);
+            this.lbTongTienLamThem.TabIndex = 17;
+            this.lbTongTienLamThem.Text = "Tổng tiền: 0 (VNĐ)";
             // 
             // panel3
             // 
@@ -895,6 +896,7 @@
             // panel7
             // 
             this.panel7.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel7.Controls.Add(this.raNuTren40);
             this.panel7.Controls.Add(this.raNamTren40);
             this.panel7.Controls.Add(this.raNuCoGiaDinh);
             this.panel7.Controls.Add(this.raNu);
@@ -909,10 +911,21 @@
             this.panel7.Size = new System.Drawing.Size(565, 57);
             this.panel7.TabIndex = 0;
             // 
+            // raNuTren40
+            // 
+            this.raNuTren40.AutoSize = true;
+            this.raNuTren40.Location = new System.Drawing.Point(450, 32);
+            this.raNuTren40.Name = "raNuTren40";
+            this.raNuTren40.Size = new System.Drawing.Size(95, 17);
+            this.raNuTren40.TabIndex = 25;
+            this.raNuTren40.Text = "Nữ trên 40 tuổi";
+            this.raNuTren40.UseVisualStyleBackColor = true;
+            this.raNuTren40.CheckedChanged += new System.EventHandler(this.raNuTren40_CheckedChanged);
+            // 
             // raNamTren40
             // 
             this.raNamTren40.AutoSize = true;
-            this.raNamTren40.Location = new System.Drawing.Point(417, 32);
+            this.raNamTren40.Location = new System.Drawing.Point(339, 32);
             this.raNamTren40.Name = "raNamTren40";
             this.raNamTren40.Size = new System.Drawing.Size(103, 17);
             this.raNamTren40.TabIndex = 24;
@@ -923,7 +936,7 @@
             // raNuCoGiaDinh
             // 
             this.raNuCoGiaDinh.AutoSize = true;
-            this.raNuCoGiaDinh.Location = new System.Drawing.Point(313, 32);
+            this.raNuCoGiaDinh.Location = new System.Drawing.Point(235, 32);
             this.raNuCoGiaDinh.Name = "raNuCoGiaDinh";
             this.raNuCoGiaDinh.Size = new System.Drawing.Size(95, 17);
             this.raNuCoGiaDinh.TabIndex = 23;
@@ -934,7 +947,7 @@
             // raNu
             // 
             this.raNu.AutoSize = true;
-            this.raNu.Location = new System.Drawing.Point(215, 32);
+            this.raNu.Location = new System.Drawing.Point(137, 32);
             this.raNu.Name = "raNu";
             this.raNu.Size = new System.Drawing.Size(85, 17);
             this.raNu.TabIndex = 22;
@@ -945,7 +958,7 @@
             // raNam
             // 
             this.raNam.AutoSize = true;
-            this.raNam.Location = new System.Drawing.Point(155, 32);
+            this.raNam.Location = new System.Drawing.Point(77, 32);
             this.raNam.Name = "raNam";
             this.raNam.Size = new System.Drawing.Size(47, 17);
             this.raNam.TabIndex = 21;
@@ -957,7 +970,7 @@
             // 
             this.raAll.AutoSize = true;
             this.raAll.Checked = true;
-            this.raAll.Location = new System.Drawing.Point(89, 32);
+            this.raAll.Location = new System.Drawing.Point(11, 32);
             this.raAll.Name = "raAll";
             this.raAll.Size = new System.Drawing.Size(56, 17);
             this.raAll.TabIndex = 20;
@@ -1031,6 +1044,8 @@
             this.panelDichVuLamThem.ResumeLayout(false);
             this.panel9.ResumeLayout(false);
             this.panel9.PerformLayout();
+            this.panel5.ResumeLayout(false);
+            this.panel5.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.panel14.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgPatient)).EndInit();
@@ -1123,5 +1138,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn colThanhTien;
         private System.Windows.Forms.DataGridViewCheckBoxColumn isExportedDataGridViewCheckBoxColumn;
         private System.Windows.Forms.DataGridViewCheckBoxColumn DaThuTien;
+        private System.Windows.Forms.RadioButton raNuTren40;
     }
 }

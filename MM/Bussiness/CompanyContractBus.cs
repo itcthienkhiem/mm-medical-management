@@ -185,6 +185,11 @@ namespace MM.Bussiness
                         query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND GenderAsStr = N'Nam' AND Archived = 'False' ORDER BY FirstName, FullName",
                                 contractGUID, (byte)Status.Actived);
                     }
+                    else if (doiTuong == 5) //Nữ trên 40 tuổi
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND GenderAsStr = N'Nữ' AND Archived = 'False' ORDER BY FirstName, FullName",
+                                contractGUID, (byte)Status.Actived);
+                    }
                 }
                 else
                 {
@@ -218,9 +223,14 @@ namespace MM.Bussiness
                         query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND {2} LIKE N'%{3}%' AND GenderAsStr = N'Nam' AND Archived = 'False' ORDER BY FirstName, FullName",
                                 contractGUID, (byte)Status.Actived, fieldName, tenBenhNhan);
                     }
+                    else if (doiTuong == 5) //Nữ trên 40 tuổi
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND {2} LIKE N'%{3}%' AND GenderAsStr = N'Nữ' AND Archived = 'False' ORDER BY FirstName, FullName",
+                                contractGUID, (byte)Status.Actived, fieldName, tenBenhNhan);
+                    }
                 }
 
-                if (doiTuong != 4)
+                if (doiTuong != 4 && doiTuong != 5)
                     return ExcuteQuery(query);
                 else
                 {
