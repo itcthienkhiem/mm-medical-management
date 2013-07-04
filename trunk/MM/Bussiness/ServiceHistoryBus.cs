@@ -308,40 +308,156 @@ namespace MM.Bussiness
                     //Insert
                     if (serviceHistory.ServiceHistoryGUID == null || serviceHistory.ServiceHistoryGUID == Guid.Empty)
                     {
-                        serviceHistory.ServiceHistoryGUID = Guid.NewGuid();
-                        db.ServiceHistories.InsertOnSubmit(serviceHistory);
-                        db.SubmitChanges();
-
-                        string bacSiThucHien = string.Empty;
-                        if (serviceHistory.DocStaff != null)
-                            bacSiThucHien = serviceHistory.DocStaff.Contact.FullName;
-
-                        string nguoiChuyenNhuong = string.Empty;
-                        if (serviceHistory.RootPatientGUID != null && serviceHistory.RootPatientGUID.HasValue)
+                        if (serviceHistory.HopDongGUID == null || !serviceHistory.HopDongGUID.HasValue)
                         {
-                            PatientView patient = db.PatientViews.FirstOrDefault(p => p.PatientGUID == serviceHistory.RootPatientGUID.Value);
-                            if (patient != null) nguoiChuyenNhuong = patient.FullName;
+                            serviceHistory.ServiceHistoryGUID = Guid.NewGuid();
+                            db.ServiceHistories.InsertOnSubmit(serviceHistory);
+                            db.SubmitChanges();
+
+                            string bacSiThucHien = string.Empty;
+                            if (serviceHistory.DocStaff != null)
+                                bacSiThucHien = serviceHistory.DocStaff.Contact.FullName;
+
+                            string nguoiChuyenNhuong = string.Empty;
+                            if (serviceHistory.RootPatientGUID != null && serviceHistory.RootPatientGUID.HasValue)
+                            {
+                                PatientView patient = db.PatientViews.FirstOrDefault(p => p.PatientGUID == serviceHistory.RootPatientGUID.Value);
+                                if (patient != null) nguoiChuyenNhuong = patient.FullName;
+                            }
+
+                            //Tracking
+                            string hopDongGUID = string.Empty;
+                            if (serviceHistory.HopDongGUID != null && serviceHistory.HopDongGUID.HasValue)
+                                hopDongGUID = serviceHistory.HopDongGUID.Value.ToString();
+
+                            desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Dịch vụ: '{3}', Giá: '{4}', Giảm: '{5}', Giá vốn: '{6}', Người chuyển nhượng: '{7}', Khám tự túc: '{8}', Hợp đồng GUID: '{9}', Số lượng: '{10}'",
+                                    serviceHistory.ServiceHistoryGUID.ToString(), serviceHistory.Patient.Contact.FullName, bacSiThucHien,
+                                    serviceHistory.Service.Name, serviceHistory.Price.Value, serviceHistory.Discount, serviceHistory.GiaVon,
+                                    nguoiChuyenNhuong, serviceHistory.KhamTuTuc, hopDongGUID, serviceHistory.SoLuong);
+
+                            Tracking tk = new Tracking();
+                            tk.TrackingGUID = Guid.NewGuid();
+                            tk.TrackingDate = DateTime.Now;
+                            tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                            tk.ActionType = (byte)ActionType.Add;
+                            tk.Action = "Thêm thông tin dịch vụ sử dụng";
+                            tk.Description = desc;
+                            tk.TrackingType = (byte)TrackingType.Price;
+                            db.Trackings.InsertOnSubmit(tk);
                         }
+                        else
+                        {
+                            DateTime tuNgay = new DateTime(serviceHistory.ActivedDate.Value.Year, serviceHistory.ActivedDate.Value.Month, serviceHistory.ActivedDate.Value.Day, 0, 0, 0);
+                            DateTime denNgay = new DateTime(serviceHistory.ActivedDate.Value.Year, serviceHistory.ActivedDate.Value.Month, serviceHistory.ActivedDate.Value.Day, 23, 59, 59);
+                            ServiceHistory srvHistory = (from s in db.ServiceHistories
+                                                        where s.Status == (byte)Status.Actived &&
+                                                        s.ActivedDate.Value >= tuNgay &&
+                                                        s.ActivedDate.Value <= denNgay &&
+                                                        s.ServiceGUID.Value.ToString() == serviceHistory.ServiceGUID.Value.ToString() &&
+                                                        s.PatientGUID.Value.ToString() == serviceHistory.PatientGUID.Value.ToString() &&
+                                                        !s.IsExported
+                                                        select s).FirstOrDefault();
 
-                        //Tracking
-                        string hopDongGUID = string.Empty;
-                        if (serviceHistory.HopDongGUID != null && serviceHistory.HopDongGUID.HasValue)
-                            hopDongGUID = serviceHistory.HopDongGUID.Value.ToString();
+                            if (srvHistory == null)
+                            {
+                                serviceHistory.ServiceHistoryGUID = Guid.NewGuid();
+                                db.ServiceHistories.InsertOnSubmit(serviceHistory);
+                                db.SubmitChanges();
 
-                        desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Dịch vụ: '{3}', Giá: '{4}', Giảm: '{5}', Giá vốn: '{6}', Người chuyển nhượng: '{7}', Khám tự túc: '{8}', Hợp đồng GUID: '{9}', Số lượng: '{10}'",
-                                serviceHistory.ServiceHistoryGUID.ToString(), serviceHistory.Patient.Contact.FullName, bacSiThucHien,
-                                serviceHistory.Service.Name, serviceHistory.Price.Value, serviceHistory.Discount, serviceHistory.GiaVon, 
-                                nguoiChuyenNhuong, serviceHistory.KhamTuTuc, hopDongGUID, serviceHistory.SoLuong);
+                                string bacSiThucHien = string.Empty;
+                                if (serviceHistory.DocStaff != null)
+                                    bacSiThucHien = serviceHistory.DocStaff.Contact.FullName;
 
-                        Tracking tk = new Tracking();
-                        tk.TrackingGUID = Guid.NewGuid();
-                        tk.TrackingDate = DateTime.Now;
-                        tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
-                        tk.ActionType = (byte)ActionType.Add;
-                        tk.Action = "Thêm thông tin dịch vụ sử dụng";
-                        tk.Description = desc;
-                        tk.TrackingType = (byte)TrackingType.Price;
-                        db.Trackings.InsertOnSubmit(tk);
+                                string nguoiChuyenNhuong = string.Empty;
+                                if (serviceHistory.RootPatientGUID != null && serviceHistory.RootPatientGUID.HasValue)
+                                {
+                                    PatientView patient = db.PatientViews.FirstOrDefault(p => p.PatientGUID == serviceHistory.RootPatientGUID.Value);
+                                    if (patient != null) nguoiChuyenNhuong = patient.FullName;
+                                }
+
+                                //Tracking
+                                string hopDongGUID = string.Empty;
+                                if (serviceHistory.HopDongGUID != null && serviceHistory.HopDongGUID.HasValue)
+                                    hopDongGUID = serviceHistory.HopDongGUID.Value.ToString();
+
+                                desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Dịch vụ: '{3}', Giá: '{4}', Giảm: '{5}', Giá vốn: '{6}', Người chuyển nhượng: '{7}', Khám tự túc: '{8}', Hợp đồng GUID: '{9}', Số lượng: '{10}'",
+                                        serviceHistory.ServiceHistoryGUID.ToString(), serviceHistory.Patient.Contact.FullName, bacSiThucHien,
+                                        serviceHistory.Service.Name, serviceHistory.Price.Value, serviceHistory.Discount, serviceHistory.GiaVon,
+                                        nguoiChuyenNhuong, serviceHistory.KhamTuTuc, hopDongGUID, serviceHistory.SoLuong);
+
+                                Tracking tk = new Tracking();
+                                tk.TrackingGUID = Guid.NewGuid();
+                                tk.TrackingDate = DateTime.Now;
+                                tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                                tk.ActionType = (byte)ActionType.Add;
+                                tk.Action = "Thêm thông tin dịch vụ sử dụng";
+                                tk.Description = desc;
+                                tk.TrackingType = (byte)TrackingType.Price;
+                                db.Trackings.InsertOnSubmit(tk);
+                            }
+                            else
+                            {
+                                double giaCu = srvHistory.Price.Value;
+                                double giamCu = srvHistory.Discount;
+                                double giaVonCu = srvHistory.GiaVon;
+
+                                srvHistory.ActivedDate = serviceHistory.ActivedDate;
+                                srvHistory.CreatedBy = serviceHistory.CreatedBy;
+                                srvHistory.CreatedDate = serviceHistory.CreatedDate;
+                                srvHistory.DeletedBy = serviceHistory.DeletedBy;
+                                srvHistory.DeletedDate = serviceHistory.DeletedDate;
+                                srvHistory.DocStaffGUID = serviceHistory.DocStaffGUID;
+                                srvHistory.Note = serviceHistory.Note;
+                                srvHistory.Price = serviceHistory.Price;
+                                srvHistory.Discount = serviceHistory.Discount;
+                                srvHistory.GiaVon = serviceHistory.GiaVon;
+                                srvHistory.ServiceGUID = serviceHistory.ServiceGUID;
+                                srvHistory.UpdatedBy = serviceHistory.UpdatedBy;
+                                srvHistory.UpdatedDate = serviceHistory.UpdatedDate;
+                                srvHistory.Status = serviceHistory.Status;
+                                srvHistory.IsNormalOrNegative = serviceHistory.IsNormalOrNegative;
+                                srvHistory.Normal = serviceHistory.Normal;
+                                srvHistory.Abnormal = serviceHistory.Abnormal;
+                                srvHistory.Negative = serviceHistory.Negative;
+                                srvHistory.Positive = serviceHistory.Positive;
+                                srvHistory.RootPatientGUID = serviceHistory.RootPatientGUID;
+                                srvHistory.KhamTuTuc = serviceHistory.KhamTuTuc;
+                                srvHistory.HopDongGUID = serviceHistory.HopDongGUID;
+                                srvHistory.SoLuong = serviceHistory.SoLuong;
+
+                                string bacSiThucHien = string.Empty;
+                                if (srvHistory.DocStaff != null)
+                                    bacSiThucHien = srvHistory.DocStaff.Contact.FullName;
+
+                                string nguoiChuyenNhuong = string.Empty;
+                                if (srvHistory.RootPatientGUID != null && srvHistory.RootPatientGUID.HasValue)
+                                {
+                                    PatientView patient = db.PatientViews.FirstOrDefault(p => p.PatientGUID == srvHistory.RootPatientGUID.Value);
+                                    if (patient != null) nguoiChuyenNhuong = patient.FullName;
+                                }
+
+                                //Tracking
+                                string hopDongGUID = string.Empty;
+                                if (serviceHistory.HopDongGUID != null && serviceHistory.HopDongGUID.HasValue)
+                                    hopDongGUID = serviceHistory.HopDongGUID.Value.ToString();
+
+                                desc += string.Format("- GUID: '{0}', Bệnh nhân: '{1}', Bác sĩ: '{2}', Dịch vụ: '{3}', Giá: cũ: '{4}' - mới: '{5}', Giảm: cũ: '{6}' - mới: '{7}', Giá vốn cũ: '{8}' - mới: '{9}', Người chuyển nhượng: '{10}', Khám tự túc: '{11}', Hợp đồng GUID: '{12}', Số lượng: '{13}'",
+                                        srvHistory.ServiceHistoryGUID.ToString(), srvHistory.Patient.Contact.FullName, bacSiThucHien,
+                                        srvHistory.Service.Name, giaCu, srvHistory.Price.Value, giamCu, srvHistory.Discount, giaVonCu, srvHistory.GiaVon, nguoiChuyenNhuong, srvHistory.KhamTuTuc, hopDongGUID, srvHistory.SoLuong);
+
+                                Tracking tk = new Tracking();
+                                tk.TrackingGUID = Guid.NewGuid();
+                                tk.TrackingDate = DateTime.Now;
+                                tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                                tk.ActionType = (byte)ActionType.Edit;
+                                tk.Action = "Sửa thông tin dịch vụ sử dụng";
+                                tk.Description = desc;
+                                tk.TrackingType = (byte)TrackingType.Price;
+                                db.Trackings.InsertOnSubmit(tk);
+
+                                serviceHistory.ServiceHistoryGUID = srvHistory.ServiceHistoryGUID;
+                            }
+                        }
 
                         db.SubmitChanges();
                     }
