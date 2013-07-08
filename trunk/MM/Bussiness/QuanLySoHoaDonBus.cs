@@ -47,11 +47,11 @@ namespace MM.Bussiness
                     bool isExist = false;
 
                     //Hoa don dich vu
-                    Invoice hdhd = db.Invoices.SingleOrDefault<Invoice>(h => Convert.ToInt32(h.InvoiceCode) == soHoaDon && 
+                    Invoice hdhd = db.Invoices.FirstOrDefault<Invoice>(h => Convert.ToInt32(h.InvoiceCode) == soHoaDon && 
                         h.Status == (byte)Status.Actived && h.InvoiceDate >= Global.NgayThayDoiSoHoaDonSauCung);
                     if (hdhd != null)
                     {
-                        QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon && 
+                        QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.FirstOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon && 
                             q.NgayBatDau.Value >= Global.NgayThayDoiSoHoaDonSauCung);
                         if (qlshd == null)
                         {
@@ -73,11 +73,11 @@ namespace MM.Bussiness
                     //Hoa don thuoc
                     if (!isExist)
                     {
-                        HoaDonThuoc hdt = db.HoaDonThuocs.SingleOrDefault<HoaDonThuoc>(h => Convert.ToInt32(h.SoHoaDon) == soHoaDon && 
+                        HoaDonThuoc hdt = db.HoaDonThuocs.FirstOrDefault<HoaDonThuoc>(h => Convert.ToInt32(h.SoHoaDon) == soHoaDon && 
                             h.Status == (byte)Status.Actived && h.NgayXuatHoaDon >= Global.NgayThayDoiSoHoaDonSauCung);
                         if (hdt != null)
                         {
-                            QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon &&
+                            QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.FirstOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon &&
                                 q.NgayBatDau.Value >= Global.NgayThayDoiSoHoaDonSauCung);
                             if (qlshd == null)
                             {
@@ -101,11 +101,11 @@ namespace MM.Bussiness
                     //Hoa don xuat truoc
                     if (!isExist)
                     {
-                        HoaDonXuatTruoc hdxt = db.HoaDonXuatTruocs.SingleOrDefault<HoaDonXuatTruoc>(h => Convert.ToInt32(h.SoHoaDon) == soHoaDon && 
+                        HoaDonXuatTruoc hdxt = db.HoaDonXuatTruocs.FirstOrDefault<HoaDonXuatTruoc>(h => Convert.ToInt32(h.SoHoaDon) == soHoaDon && 
                             h.Status == (byte)Status.Actived && h.NgayXuatHoaDon >= Global.NgayThayDoiSoHoaDonSauCung);
                         if (hdxt != null)
                         {
-                            QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon &&
+                            QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.FirstOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon &&
                                 q.NgayBatDau.Value >= Global.NgayThayDoiSoHoaDonSauCung);
                             if (qlshd == null)
                             {
@@ -128,11 +128,11 @@ namespace MM.Bussiness
                     //Hoa don hop dong
                     if (!isExist)
                     {
-                        HoaDonHopDong hd = db.HoaDonHopDongs.SingleOrDefault<HoaDonHopDong>(h => Convert.ToInt32(h.SoHoaDon) == soHoaDon && 
+                        HoaDonHopDong hd = db.HoaDonHopDongs.FirstOrDefault<HoaDonHopDong>(h => Convert.ToInt32(h.SoHoaDon) == soHoaDon && 
                             h.Status == (byte)Status.Actived && h.NgayXuatHoaDon >= Global.NgayThayDoiSoHoaDonSauCung);
                         if (hd != null)
                         {
-                            QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon &&
+                            QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.FirstOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon &&
                                 q.NgayBatDau.Value >= Global.NgayThayDoiSoHoaDonSauCung);
                             if (qlshd == null)
                             {
