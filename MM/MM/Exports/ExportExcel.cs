@@ -506,12 +506,15 @@ namespace MM.Exports
                 range.Merge();
                 range.HorizontalAlignment = HAlign.Left;
                 range.WrapText = true;
+                double width1 = 0;
+                int col = 0;
+                for (int i = 0; i < range.Columns.ColumnCount; i++)
+                {
+                    width1 += range.Columns[10, col++].ColumnWidth;
+                }
 
-                workSheet.Cells["A11"].Value = string.Format("  Tên đơn vị: {0}", invoice.TenDonVi);
-                Font font = new Font("Times New Roman", 12);
-                Size size = TextRenderer.MeasureText(string.Format("  Tên đơn vị: {0}", invoice.TenDonVi), font);
-                double w = range.Width * 72 / 60;
-                if (size.Width > w) workSheet.Cells["A11"].RowHeight = 34.50;
+                string tenDonVi = string.Format("  Tên đơn vị: {0}", invoice.TenDonVi);
+                workSheet.Cells["A11"].Value = tenDonVi;
                                 
                 range.Borders[BordersIndex.EdgeRight].LineStyle = LineStyle.Continuous;
                 range.Borders[BordersIndex.EdgeRight].Color = Color.Black;
@@ -522,13 +525,18 @@ namespace MM.Exports
                 range.Merge();
                 range.HorizontalAlignment = HAlign.Left;
                 range.WrapText = true;
-                
+
+                double width2 = 0;
+                col = 0;
+                for (int i = 0; i < range.Columns.ColumnCount; i++)
+                {
+                    width2 += range.Columns[10, col++].ColumnWidth;
+                }
+
                 string diaChi = string.Empty;
                 if (invoice.DiaChi != null) diaChi = invoice.DiaChi;
-                workSheet.Cells["A13"].Value = string.Format("  Địa chỉ: {0}", diaChi);
-                size = TextRenderer.MeasureText(string.Format("  Địa chỉ: {0}", diaChi), font);
-                w = range.Width * 72 / 60;
-                if (size.Width > w) workSheet.Cells["A13"].RowHeight = 34.50;
+                diaChi = string.Format("  Địa chỉ: {0}", diaChi);
+                workSheet.Cells["A13"].Value = diaChi;
 
                 range.Borders[BordersIndex.EdgeRight].LineStyle = LineStyle.Continuous;
                 range.Borders[BordersIndex.EdgeRight].Color = Color.Black;
@@ -642,6 +650,26 @@ namespace MM.Exports
                 range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)];
                 range.Value = string.Format("  Số tiền viết bằng chữ: {0}", Utility.ReadNumberAsString((long)totalPayment));
 
+                range = workSheet.Cells[string.Format("H{0}", rowIndex + 12)];
+                range.ColumnWidth = width1;
+                range.HorizontalAlignment = HAlign.Left;
+                range.VerticalAlignment = VAlign.Center;
+                range.WrapText = true;
+                range.Value = tenDonVi;
+                double rowHeight = range.RowHeight;
+                workSheet.Cells["A11"].RowHeight = rowHeight;
+                range.Value = string.Empty;
+
+                range = workSheet.Cells[string.Format("H{0}", rowIndex + 13)];
+                range.ColumnWidth = width2;
+                range.HorizontalAlignment = HAlign.Left;
+                range.VerticalAlignment = VAlign.Center;
+                range.WrapText = true;
+                range.Value = diaChi;
+                rowHeight = range.RowHeight;
+                workSheet.Cells["A13"].RowHeight = rowHeight;
+                range.Value = string.Empty;
+
                 string path = string.Format("{0}\\Temp", Application.StartupPath);
                 if (!Directory.Exists(path))
                     Directory.CreateDirectory(path);
@@ -713,12 +741,16 @@ namespace MM.Exports
                 range.Merge();
                 range.HorizontalAlignment = HAlign.Left;
                 range.WrapText = true;
+                double width1 = 0;
+                int col = 0;
+                for (int i = 0; i < range.Columns.ColumnCount; i++)
+                {
+                    width1 += range.Columns[10, col++].ColumnWidth;
+                }
 
-                workSheet.Cells["A11"].Value = string.Format("  Tên đơn vị: {0}", hdt.TenDonVi);
-                Font font = new Font("Times New Roman", 12);
-                Size size = TextRenderer.MeasureText(string.Format("  Tên đơn vị: {0}", hdt.TenDonVi), font);
-                double w = range.Width * 72 / 60;
-                if (size.Width > w) workSheet.Cells["A11"].RowHeight = 34.50;
+                string tenDonVi = string.Format("  Tên đơn vị: {0}", hdt.TenDonVi);
+                workSheet.Cells["A11"].Value = tenDonVi;
+                
 
                 range.Borders[BordersIndex.EdgeRight].LineStyle = LineStyle.Continuous;
                 range.Borders[BordersIndex.EdgeRight].Color = Color.Black;
@@ -729,11 +761,16 @@ namespace MM.Exports
                 range.Merge();
                 range.HorizontalAlignment = HAlign.Left;
                 range.WrapText = true;
+                double width2 = 0;
+                col = 0;
+                for (int i = 0; i < range.Columns.ColumnCount; i++)
+                {
+                    width2 += range.Columns[10, col++].ColumnWidth;
+                }
 
-                workSheet.Cells["A13"].Value = string.Format("  Địa chỉ: {0}", hdt.DiaChi);
-                size = TextRenderer.MeasureText(string.Format("  Địa chỉ: {0}", hdt.DiaChi), font);
-                w = range.Width * 72 / 60;
-                if (size.Width > w) workSheet.Cells["A13"].RowHeight = 34.50;
+                string diaChi = string.Format("  Địa chỉ: {0}", hdt.DiaChi);
+                workSheet.Cells["A13"].Value = diaChi;
+               
 
                 range.Borders[BordersIndex.EdgeRight].LineStyle = LineStyle.Continuous;
                 range.Borders[BordersIndex.EdgeRight].Color = Color.Black;
@@ -845,6 +882,26 @@ namespace MM.Exports
                 range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)];
                 range.Value = string.Format("  Số tiền viết bằng chữ: {0}", Utility.ReadNumberAsString((long)totalPayment));
 
+                range = workSheet.Cells[string.Format("H{0}", rowIndex + 12)];
+                range.ColumnWidth = width1;
+                range.HorizontalAlignment = HAlign.Left;
+                range.VerticalAlignment = VAlign.Center;
+                range.WrapText = true;
+                range.Value = tenDonVi;
+                double rowHeight = range.RowHeight;
+                workSheet.Cells["A11"].RowHeight = rowHeight;
+                range.Value = string.Empty;
+
+                range = workSheet.Cells[string.Format("H{0}", rowIndex + 13)];
+                range.ColumnWidth = width2;
+                range.HorizontalAlignment = HAlign.Left;
+                range.VerticalAlignment = VAlign.Center;
+                range.WrapText = true;
+                range.Value = diaChi;
+                rowHeight = range.RowHeight;
+                workSheet.Cells["A13"].RowHeight = rowHeight;
+                range.Value = string.Empty;
+
                 string path = string.Format("{0}\\Temp", Application.StartupPath);
                 if (!Directory.Exists(path))
                     Directory.CreateDirectory(path);
@@ -916,12 +973,15 @@ namespace MM.Exports
                 range.Merge();
                 range.HorizontalAlignment = HAlign.Left;
                 range.WrapText = true;
+                double width1 = 0;
+                int col = 0;
+                for (int i = 0; i < range.Columns.ColumnCount; i++)
+                {
+                    width1 += range.Columns[10, col++].ColumnWidth;
+                }
 
-                workSheet.Cells["A11"].Value = string.Format("  Tên đơn vị: {0}", hdt.TenDonVi);
-                Font font = new Font("Times New Roman", 12);
-                Size size = TextRenderer.MeasureText(string.Format("  Tên đơn vị: {0}", hdt.TenDonVi), font);
-                double w = range.Width * 72 / 60;
-                if (size.Width > w) workSheet.Cells["A11"].RowHeight = 34.50;
+                string tenDonVi = string.Format("  Tên đơn vị: {0}", hdt.TenDonVi);
+                workSheet.Cells["A11"].Value = tenDonVi;
 
                 range.Borders[BordersIndex.EdgeRight].LineStyle = LineStyle.Continuous;
                 range.Borders[BordersIndex.EdgeRight].Color = Color.Black;
@@ -932,11 +992,15 @@ namespace MM.Exports
                 range.Merge();
                 range.HorizontalAlignment = HAlign.Left;
                 range.WrapText = true;
-                
-                workSheet.Cells["A13"].Value = string.Format("  Địa chỉ: {0}", hdt.DiaChi);
-                size = TextRenderer.MeasureText(string.Format("  Địa chỉ: {0}", hdt.DiaChi), font);
-                w = range.Width * 72 / 60;
-                if (size.Width > w) workSheet.Cells["A13"].RowHeight = 34.50;
+                double width2 = 0;
+                col = 0;
+                for (int i = 0; i < range.Columns.ColumnCount; i++)
+                {
+                    width2 += range.Columns[10, col++].ColumnWidth;
+                }
+
+                string diaChi = string.Format("  Địa chỉ: {0}", hdt.DiaChi);
+                workSheet.Cells["A13"].Value = diaChi;
 
                 range.Borders[BordersIndex.EdgeRight].LineStyle = LineStyle.Continuous;
                 range.Borders[BordersIndex.EdgeRight].Color = Color.Black;
@@ -1047,6 +1111,26 @@ namespace MM.Exports
                 rowIndex++;
                 range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)];
                 range.Value = string.Format("  Số tiền viết bằng chữ: {0}", Utility.ReadNumberAsString((long)totalPayment));
+
+                range = workSheet.Cells[string.Format("H{0}", rowIndex + 12)];
+                range.ColumnWidth = width1;
+                range.HorizontalAlignment = HAlign.Left;
+                range.VerticalAlignment = VAlign.Center;
+                range.WrapText = true;
+                range.Value = tenDonVi;
+                double rowHeight = range.RowHeight;
+                workSheet.Cells["A11"].RowHeight = rowHeight;
+                range.Value = string.Empty;
+
+                range = workSheet.Cells[string.Format("H{0}", rowIndex + 13)];
+                range.ColumnWidth = width2;
+                range.HorizontalAlignment = HAlign.Left;
+                range.VerticalAlignment = VAlign.Center;
+                range.WrapText = true;
+                range.Value = diaChi;
+                rowHeight = range.RowHeight;
+                workSheet.Cells["A13"].RowHeight = rowHeight;
+                range.Value = string.Empty;
 
                 string path = string.Format("{0}\\Temp", Application.StartupPath);
                 if (!Directory.Exists(path))
@@ -1119,12 +1203,15 @@ namespace MM.Exports
                 range.Merge();
                 range.HorizontalAlignment = HAlign.Left;
                 range.WrapText = true;
-                
-                workSheet.Cells["A11"].Value = string.Format("  Tên đơn vị: {0}", hdt.TenDonVi);
-                Font font = new Font("Times New Roman", 12);
-                Size size = TextRenderer.MeasureText(string.Format("  Tên đơn vị: {0}", hdt.TenDonVi), font);
-                double w = range.Width * 72 / 60;
-                if (size.Width > w) workSheet.Cells["A11"].RowHeight = 34.50;
+                double width1 = 0;
+                int col = 0;
+                for (int i = 0; i < range.Columns.ColumnCount; i++)
+                {
+                    width1 += range.Columns[10, col++].ColumnWidth;
+                }
+
+                string tenDonVi = string.Format("  Tên đơn vị: {0}", hdt.TenDonVi);
+                workSheet.Cells["A11"].Value = tenDonVi;
 
                 range.Borders[BordersIndex.EdgeRight].LineStyle = LineStyle.Continuous;
                 range.Borders[BordersIndex.EdgeRight].Color = Color.Black;
@@ -1135,11 +1222,16 @@ namespace MM.Exports
                 range.Merge();
                 range.HorizontalAlignment = HAlign.Left;
                 range.WrapText = true;
-                
-                workSheet.Cells["A13"].Value = string.Format("  Địa chỉ: {0}", hdt.DiaChi);
-                size = TextRenderer.MeasureText(string.Format("  Địa chỉ: {0}", hdt.DiaChi), font);
-                w = range.Width * 72 / 60;
-                if (size.Width > w) workSheet.Cells["A13"].RowHeight = 34.50;
+
+                double width2 = 0;
+                col = 0;
+                for (int i = 0; i < range.Columns.ColumnCount; i++)
+                {
+                    width2 += range.Columns[10, col++].ColumnWidth;
+                }
+
+                string diaChi = string.Format("  Địa chỉ: {0}", hdt.DiaChi);
+                workSheet.Cells["A13"].Value = diaChi;
 
                 range.Borders[BordersIndex.EdgeRight].LineStyle = LineStyle.Continuous;
                 range.Borders[BordersIndex.EdgeRight].Color = Color.Black;
@@ -1249,6 +1341,26 @@ namespace MM.Exports
                 rowIndex++;
                 range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)];
                 range.Value = string.Format("  Số tiền viết bằng chữ: {0}", Utility.ReadNumberAsString((long)totalPayment));
+
+                range = workSheet.Cells[string.Format("H{0}", rowIndex + 12)];
+                range.ColumnWidth = width1;
+                range.HorizontalAlignment = HAlign.Left;
+                range.VerticalAlignment = VAlign.Center;
+                range.WrapText = true;
+                range.Value = tenDonVi;
+                double rowHeight = range.RowHeight;
+                workSheet.Cells["A11"].RowHeight = rowHeight;
+                range.Value = string.Empty;
+
+                range = workSheet.Cells[string.Format("H{0}", rowIndex + 13)];
+                range.ColumnWidth = width2;
+                range.HorizontalAlignment = HAlign.Left;
+                range.VerticalAlignment = VAlign.Center;
+                range.WrapText = true;
+                range.Value = diaChi;
+                rowHeight = range.RowHeight;
+                workSheet.Cells["A13"].RowHeight = rowHeight;
+                range.Value = string.Empty;
 
                 string path = string.Format("{0}\\Temp", Application.StartupPath);
                 if (!Directory.Exists(path))
