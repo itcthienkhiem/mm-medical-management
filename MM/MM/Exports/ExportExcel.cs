@@ -2729,19 +2729,6 @@ namespace MM.Exports
                     ReceiptView receipt = result.QueryResult as ReceiptView;
                     if (receipt == null) continue;
 
-                    //result = CompanyBus.GetTenCongTy(key);
-                    //if (!result.IsOK)
-                    //{
-                    //    MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyBus.GetTenCongTy"), IconType.Error);
-                    //    Utility.WriteToTraceLog(result.GetErrorAsString("CompanyBus.GetTenCongTy"));
-                    //    return false;
-                    //}
-
-                    //string tenCongTy = string.Empty;
-                    //if (tenCongTy == null) tenCongTy = "Tự túc";
-                    //if (result.QueryResult != null && result.QueryResult.ToString() != string.Empty)
-                    //    tenCongTy = result.QueryResult.ToString();
-
                     string thuTien = receipt.ChuaThuTien == true ? "Chưa thu" : "Đã thu";
                     string tenCongTy = string.Empty;
                     tenCongTy = Utility.GetMaCongTy(receipt.FileNum);
@@ -2814,14 +2801,21 @@ namespace MM.Exports
                         range = workSheet.Cells[rowIndex, 7];
                         range.Value = bacSiChiDinh;
 
+                        string bsThucHien = string.Empty;
+                        if (row["FullName"] != null && row["FullName"] != DBNull.Value)
+                            bsThucHien = row["FullName"].ToString();
+
                         range = workSheet.Cells[rowIndex, 8];
+                        range.Value = bacSiChiDinh;
+
+                        range = workSheet.Cells[rowIndex, 9];
                         range.Value = thuTien;
 
                         rowIndex++;
                     }
                 }
 
-                range = workSheet.Cells[string.Format("A3:I{0}", rowIndex)];
+                range = workSheet.Cells[string.Format("A3:J{0}", rowIndex)];
                 range.Borders.Color = Color.Black;
                 range.Borders.LineStyle = LineStyle.Continuous;
                 range.Borders.Weight = BorderWeight.Thin;
