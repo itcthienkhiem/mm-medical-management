@@ -2806,7 +2806,7 @@ namespace MM.Exports
                             bsThucHien = row["FullName"].ToString();
 
                         range = workSheet.Cells[rowIndex, 8];
-                        range.Value = bacSiChiDinh;
+                        range.Value = bsThucHien;
 
                         range = workSheet.Cells[rowIndex, 9];
                         range.Value = thuTien;
