@@ -484,6 +484,7 @@ namespace MM.Controls
                 MsgBox.Show(this.Text, "Đã lưu thành công.", IconType.Information);
                 _isSaved = true;
                 OnTinhTongTienChecklist(_patientRow);
+                txtSearchPatient.Focus();
             }
         }
 
