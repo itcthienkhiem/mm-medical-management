@@ -293,6 +293,7 @@ namespace MM.Bussiness
                     tk.Action = "Xóa thông tin toa thuốc";
                     tk.Description = desc;
                     tk.TrackingType = (byte)TrackingType.None;
+                    tk.ComputerName = Utility.GetDNSHostName();
                     db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
@@ -361,6 +362,7 @@ namespace MM.Bussiness
                     tk.Action = "Tắt cảnh báo toa thuốc";
                     tk.Description = desc;
                     tk.TrackingType = (byte)TrackingType.None;
+                    tk.ComputerName = Utility.GetDNSHostName();
                     db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
@@ -489,6 +491,7 @@ namespace MM.Bussiness
                         tk.Action = "Thêm thông tin toa thuốc";
                         tk.Description = desc;
                         tk.TrackingType = (byte)TrackingType.None;
+                        tk.ComputerName = Utility.GetDNSHostName();
                         db.Trackings.InsertOnSubmit(tk);
 
                         db.SubmitChanges();
@@ -628,6 +631,7 @@ namespace MM.Bussiness
                             tk.Action = "Sửa thông tin toa thuốc";
                             tk.Description = desc;
                             tk.TrackingType = (byte)TrackingType.None;
+                            tk.ComputerName = Utility.GetDNSHostName();
                             db.Trackings.InsertOnSubmit(tk);
 
                             db.SubmitChanges();
@@ -693,6 +697,7 @@ namespace MM.Bussiness
                         tk.Action = "Chuyển bệnh án";
                         tk.Description = desc;
                         tk.TrackingType = (byte)TrackingType.None;
+                        tk.ComputerName = Utility.GetDNSHostName();
                         db.Trackings.InsertOnSubmit(tk);
                     }
 

@@ -282,6 +282,7 @@ namespace MM.Bussiness
                     tk.Action = "Xóa thông tin chỉ định";
                     tk.Description = desc;
                     tk.TrackingType = (byte)TrackingType.None;
+                    tk.ComputerName = Utility.GetDNSHostName();
                     db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
@@ -344,6 +345,7 @@ namespace MM.Bussiness
                     tk.Action = "Xóa chi tiết chỉ định";
                     tk.Description = desc;
                     tk.TrackingType = (byte)TrackingType.None;
+                    tk.ComputerName = Utility.GetDNSHostName();
                     db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
@@ -419,6 +421,7 @@ namespace MM.Bussiness
                     tk.Action = "Thêm thông tin chỉ định";
                     tk.Description = desc;
                     tk.TrackingType = (byte)TrackingType.None;
+                    tk.ComputerName = Utility.GetDNSHostName();
                     db.Trackings.InsertOnSubmit(tk);
                     db.SubmitChanges();
                 }
@@ -515,6 +518,7 @@ namespace MM.Bussiness
                         tk.Action = "Sửa thông tin chỉ định";
                         tk.Description = desc;
                         tk.TrackingType = (byte)TrackingType.None;
+                        tk.ComputerName = Utility.GetDNSHostName();
                         db.Trackings.InsertOnSubmit(tk);
                         db.SubmitChanges();
                     }
@@ -590,6 +594,7 @@ namespace MM.Bussiness
                     tk.Action = "Sửa thông tin chỉ định";
                     tk.Description = desc;
                     tk.TrackingType = (byte)TrackingType.None;
+                    tk.ComputerName = Utility.GetDNSHostName();
                     db.Trackings.InsertOnSubmit(tk);
                     db.SubmitChanges();
                 }
@@ -736,6 +741,7 @@ namespace MM.Bussiness
                         tk.Action = "Chuyển bệnh án";
                         tk.Description = desc;
                         tk.TrackingType = (byte)TrackingType.None;
+                        tk.ComputerName = Utility.GetDNSHostName();
                         db.Trackings.InsertOnSubmit(tk);
                     }
 

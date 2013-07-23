@@ -711,6 +711,7 @@ namespace MM.Bussiness
                         tk.Action = "Cập nhật bệnh nhân xét nghiệm hitachi 917";
                         tk.Description = desc;
                         tk.TrackingType = (byte)TrackingType.None;
+                        tk.ComputerName = Utility.GetDNSHostName();
                         db.Trackings.InsertOnSubmit(tk);
                     }
 
@@ -789,6 +790,7 @@ namespace MM.Bussiness
                     tk.Action = "Xóa xét nghiệm hitachi 917";
                     tk.Description = desc;
                     tk.TrackingType = (byte)TrackingType.None;
+                    tk.ComputerName = Utility.GetDNSHostName();
                     db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
@@ -973,6 +975,7 @@ namespace MM.Bussiness
                         tk.Action = "Cập nhật chỉ số kết quả xét nghiệm hitachi 917";
                         tk.Description = desc;
                         tk.TrackingType = (byte)TrackingType.None;
+                        tk.ComputerName = Utility.GetDNSHostName();
                         db.Trackings.InsertOnSubmit(tk);
 
                         db.SubmitChanges();
@@ -1053,6 +1056,7 @@ namespace MM.Bussiness
                     tk.Action = "Xóa chi tiết kết quả xét nghiệm hitachi 917";
                     tk.Description = desc;
                     tk.TrackingType = (byte)TrackingType.None;
+                    tk.ComputerName = Utility.GetDNSHostName();
                     db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
@@ -1169,6 +1173,7 @@ namespace MM.Bussiness
                         tk.Action = "Sửa thông tin xét nghiệm Hitachi917";
                         tk.Description = desc;
                         tk.TrackingType = (byte)TrackingType.None;
+                        tk.ComputerName = Utility.GetDNSHostName();
                         db.Trackings.InsertOnSubmit(tk);
 
                         db.SubmitChanges();

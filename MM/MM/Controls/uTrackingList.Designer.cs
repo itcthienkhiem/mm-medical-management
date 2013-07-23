@@ -51,6 +51,7 @@
             this.trackingDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.fullNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.actionDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.ComputerName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ActionTypeStr = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
@@ -214,6 +215,7 @@
             this.trackingDateDataGridViewTextBoxColumn,
             this.fullNameDataGridViewTextBoxColumn,
             this.actionDataGridViewTextBoxColumn,
+            this.ComputerName,
             this.ActionTypeStr});
             this.dgTracking.DataSource = this.trackingViewBindingSource;
             dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
@@ -270,6 +272,14 @@
             this.actionDataGridViewTextBoxColumn.ReadOnly = true;
             this.actionDataGridViewTextBoxColumn.Width = 350;
             // 
+            // ComputerName
+            // 
+            this.ComputerName.DataPropertyName = "ComputerName";
+            this.ComputerName.HeaderText = "Tên máy";
+            this.ComputerName.Name = "ComputerName";
+            this.ComputerName.ReadOnly = true;
+            this.ComputerName.Width = 150;
+            // 
             // ActionTypeStr
             // 
             this.ActionTypeStr.DataPropertyName = "ActionTypeStr";
@@ -318,6 +328,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn trackingDateDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn fullNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn actionDataGridViewTextBoxColumn;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ComputerName;
         private System.Windows.Forms.DataGridViewTextBoxColumn ActionTypeStr;
     }
 }

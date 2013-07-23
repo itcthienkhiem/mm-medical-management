@@ -175,6 +175,7 @@ namespace MM.Bussiness
                     tk.Action = "Xóa dịch vụ xét nghiệm";
                     tk.Description = desc;
                     tk.TrackingType = (byte)TrackingType.Price;
+                    tk.ComputerName = Utility.GetDNSHostName();
                     db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
@@ -237,6 +238,7 @@ namespace MM.Bussiness
                             tk.Action = "Sửa dịch vụ xét nghiệm";
                             tk.Description = desc;
                             tk.TrackingType = (byte)TrackingType.Price;
+                            tk.ComputerName = Utility.GetDNSHostName();
                             db.Trackings.InsertOnSubmit(tk);
                         }
                     }
@@ -299,6 +301,7 @@ namespace MM.Bussiness
                         tk.Action = "Sửa giá dịch vụ xét nghiệm";
                         tk.Description = desc;
                         tk.TrackingType = (byte)TrackingType.Price;
+                        tk.ComputerName = Utility.GetDNSHostName();
                         db.Trackings.InsertOnSubmit(tk);
                     }
 
@@ -367,6 +370,7 @@ namespace MM.Bussiness
                         tk.Action = "Thêm dịch vụ xét nghiệm";
                         tk.Description = desc;
                         tk.TrackingType = (byte)TrackingType.Price;
+                        tk.ComputerName = Utility.GetDNSHostName();
                         db.Trackings.InsertOnSubmit(tk);
                     }
                     //else
