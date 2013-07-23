@@ -187,6 +187,7 @@ namespace MM.Bussiness
                     tk.Action = "Xóa thông tin khám nội soi";
                     tk.Description = desc;
                     tk.TrackingType = (byte)TrackingType.None;
+                    tk.ComputerName = Utility.GetDNSHostName();
                     db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
@@ -296,6 +297,7 @@ namespace MM.Bussiness
                         tk.Action = "Thêm thông tin khám nội soi";
                         tk.Description = desc;
                         tk.TrackingType = (byte)TrackingType.None;
+                        tk.ComputerName = Utility.GetDNSHostName();
                         db.Trackings.InsertOnSubmit(tk);
 
                         db.SubmitChanges();
@@ -432,6 +434,7 @@ namespace MM.Bussiness
                             tk.Action = "Sửa thông tin khám nội soi";
                             tk.Description = desc;
                             tk.TrackingType = (byte)TrackingType.None;
+                            tk.ComputerName = Utility.GetDNSHostName();
                             db.Trackings.InsertOnSubmit(tk);
 
                             db.SubmitChanges();
@@ -496,6 +499,7 @@ namespace MM.Bussiness
                         tk.Action = "Chuyển bệnh án";
                         tk.Description = desc;
                         tk.TrackingType = (byte)TrackingType.None;
+                        tk.ComputerName = Utility.GetDNSHostName();
                         db.Trackings.InsertOnSubmit(tk);
                     }
 

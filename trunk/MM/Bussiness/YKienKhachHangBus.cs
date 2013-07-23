@@ -107,6 +107,7 @@ namespace MM.Bussiness
                     tk.Action = "Xóa ý kiến khách hàng";
                     tk.Description = desc;
                     tk.TrackingType = (byte)TrackingType.None;
+                    tk.ComputerName = Utility.GetDNSHostName();
                     db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
@@ -166,6 +167,7 @@ namespace MM.Bussiness
                         tk.Action = "Thêm ý kiến khách hàng";
                         tk.Description = desc;
                         tk.TrackingType = (byte)TrackingType.None;
+                        tk.ComputerName = Utility.GetDNSHostName();
                         db.Trackings.InsertOnSubmit(tk);
 
                         db.SubmitChanges();
@@ -208,6 +210,7 @@ namespace MM.Bussiness
                             tk.Action = "Sửa ý kiến khách hàng";
                             tk.Description = desc;
                             tk.TrackingType = (byte)TrackingType.None;
+                            tk.ComputerName = Utility.GetDNSHostName();
                             db.Trackings.InsertOnSubmit(tk);
 
                             db.SubmitChanges();
@@ -374,6 +377,7 @@ namespace MM.Bussiness
                         tk.Action = "Cập nhật kết luận ý kiến khách hàng";
                         tk.Description = desc;
                         tk.TrackingType = (byte)TrackingType.None;
+                        tk.ComputerName = Utility.GetDNSHostName();
                         db.Trackings.InsertOnSubmit(tk);
 
                         db.SubmitChanges();

@@ -1518,6 +1518,12 @@ namespace MM.Common
                 WriteToTraceLog(e.Message);
             }
         }
+
+        public static string GetDNSHostName()
+        {
+            System.Net.IPHostEntry host = System.Net.Dns.GetHostEntry(System.Net.Dns.GetHostName());
+            return host.HostName;
+        }
     }
 }
 

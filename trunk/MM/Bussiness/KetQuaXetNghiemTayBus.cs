@@ -1125,6 +1125,7 @@ namespace MM.Bussiness
                     tk.Action = "Xóa xét nghiệm tay";
                     tk.Description = desc;
                     tk.TrackingType = (byte)TrackingType.None;
+                    tk.ComputerName = Utility.GetDNSHostName();
                     db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
@@ -1204,6 +1205,7 @@ namespace MM.Bussiness
                     tk.Action = "Xóa chi tiết xét nghiệm tay";
                     tk.Description = desc;
                     tk.TrackingType = (byte)TrackingType.None;
+                    tk.ComputerName = Utility.GetDNSHostName();
                     db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
@@ -1291,6 +1293,7 @@ namespace MM.Bussiness
                         tk.Action = "Thêm kết quả xét nghiệm tay";
                         tk.Description = desc;
                         tk.TrackingType = (byte)TrackingType.None;
+                        tk.ComputerName = Utility.GetDNSHostName();
                         db.Trackings.InsertOnSubmit(tk);
 
                         db.SubmitChanges();
@@ -1398,6 +1401,7 @@ namespace MM.Bussiness
                             tk.Action = "Sửa kết quả xét nghiệm tay";
                             tk.Description = desc;
                             tk.TrackingType = (byte)TrackingType.None;
+                            tk.ComputerName = Utility.GetDNSHostName();
                             db.Trackings.InsertOnSubmit(tk);
 
                             db.SubmitChanges();
@@ -1462,6 +1466,7 @@ namespace MM.Bussiness
                     tk.Action = "Thêm kết quả xét nghiệm tay";
                     tk.Description = desc;
                     tk.TrackingType = (byte)TrackingType.None;
+                    tk.ComputerName = Utility.GetDNSHostName();
                     db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
@@ -1539,6 +1544,7 @@ namespace MM.Bussiness
                         tk.Action = "Sửa kết quả xét nghiệm tay";
                         tk.Description = desc;
                         tk.TrackingType = (byte)TrackingType.None;
+                        tk.ComputerName = Utility.GetDNSHostName();
                         db.Trackings.InsertOnSubmit(tk);
 
                         db.SubmitChanges();

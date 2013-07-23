@@ -81,9 +81,6 @@ namespace MM.Databasae
     partial void InsertChiDinh(ChiDinh instance);
     partial void UpdateChiDinh(ChiDinh instance);
     partial void DeleteChiDinh(ChiDinh instance);
-    partial void InsertTracking(Tracking instance);
-    partial void UpdateTracking(Tracking instance);
-    partial void DeleteTracking(Tracking instance);
     partial void InsertCanDo(CanDo instance);
     partial void UpdateCanDo(CanDo instance);
     partial void DeleteCanDo(CanDo instance);
@@ -339,6 +336,9 @@ namespace MM.Databasae
     partial void InsertCauHinhDichVuXetNghiem(CauHinhDichVuXetNghiem instance);
     partial void UpdateCauHinhDichVuXetNghiem(CauHinhDichVuXetNghiem instance);
     partial void DeleteCauHinhDichVuXetNghiem(CauHinhDichVuXetNghiem instance);
+    partial void InsertTracking(Tracking instance);
+    partial void UpdateTracking(Tracking instance);
+    partial void DeleteTracking(Tracking instance);
     #endregion
 		
 		public MMDataContext() : 
@@ -560,22 +560,6 @@ namespace MM.Databasae
 			get
 			{
 				return this.GetTable<ChiDinhView>();
-			}
-		}
-		
-		public System.Data.Linq.Table<Tracking> Trackings
-		{
-			get
-			{
-				return this.GetTable<Tracking>();
-			}
-		}
-		
-		public System.Data.Linq.Table<TrackingView> TrackingViews
-		{
-			get
-			{
-				return this.GetTable<TrackingView>();
 			}
 		}
 		
@@ -1744,6 +1728,22 @@ namespace MM.Databasae
 			get
 			{
 				return this.GetTable<ReceiptDetailView>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Tracking> Trackings
+		{
+			get
+			{
+				return this.GetTable<Tracking>();
+			}
+		}
+		
+		public System.Data.Linq.Table<TrackingView> TrackingViews
+		{
+			get
+			{
+				return this.GetTable<TrackingView>();
 			}
 		}
 		
@@ -12299,527 +12299,6 @@ namespace MM.Databasae
 				if ((this._MaChiDinh != value))
 				{
 					this._MaChiDinh = value;
-				}
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tracking")]
-	public partial class Tracking : INotifyPropertyChanging, INotifyPropertyChanged
-	{
-		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private System.Guid _TrackingGUID;
-		
-		private System.DateTime _TrackingDate;
-		
-		private System.Guid _DocStaffGUID;
-		
-		private byte _ActionType;
-		
-		private string _Action;
-		
-		private string _Description;
-		
-		private System.Nullable<byte> _TrackingType;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnTrackingGUIDChanging(System.Guid value);
-    partial void OnTrackingGUIDChanged();
-    partial void OnTrackingDateChanging(System.DateTime value);
-    partial void OnTrackingDateChanged();
-    partial void OnDocStaffGUIDChanging(System.Guid value);
-    partial void OnDocStaffGUIDChanged();
-    partial void OnActionTypeChanging(byte value);
-    partial void OnActionTypeChanged();
-    partial void OnActionChanging(string value);
-    partial void OnActionChanged();
-    partial void OnDescriptionChanging(string value);
-    partial void OnDescriptionChanged();
-    partial void OnTrackingTypeChanging(System.Nullable<byte> value);
-    partial void OnTrackingTypeChanged();
-    #endregion
-		
-		public Tracking()
-		{
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrackingGUID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
-		public System.Guid TrackingGUID
-		{
-			get
-			{
-				return this._TrackingGUID;
-			}
-			set
-			{
-				if ((this._TrackingGUID != value))
-				{
-					this.OnTrackingGUIDChanging(value);
-					this.SendPropertyChanging();
-					this._TrackingGUID = value;
-					this.SendPropertyChanged("TrackingGUID");
-					this.OnTrackingGUIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrackingDate", DbType="DateTime NOT NULL")]
-		public System.DateTime TrackingDate
-		{
-			get
-			{
-				return this._TrackingDate;
-			}
-			set
-			{
-				if ((this._TrackingDate != value))
-				{
-					this.OnTrackingDateChanging(value);
-					this.SendPropertyChanging();
-					this._TrackingDate = value;
-					this.SendPropertyChanged("TrackingDate");
-					this.OnTrackingDateChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DocStaffGUID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid DocStaffGUID
-		{
-			get
-			{
-				return this._DocStaffGUID;
-			}
-			set
-			{
-				if ((this._DocStaffGUID != value))
-				{
-					this.OnDocStaffGUIDChanging(value);
-					this.SendPropertyChanging();
-					this._DocStaffGUID = value;
-					this.SendPropertyChanged("DocStaffGUID");
-					this.OnDocStaffGUIDChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActionType", DbType="TinyInt NOT NULL")]
-		public byte ActionType
-		{
-			get
-			{
-				return this._ActionType;
-			}
-			set
-			{
-				if ((this._ActionType != value))
-				{
-					this.OnActionTypeChanging(value);
-					this.SendPropertyChanging();
-					this._ActionType = value;
-					this.SendPropertyChanged("ActionType");
-					this.OnActionTypeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Action", DbType="NVarChar(MAX)")]
-		public string Action
-		{
-			get
-			{
-				return this._Action;
-			}
-			set
-			{
-				if ((this._Action != value))
-				{
-					this.OnActionChanging(value);
-					this.SendPropertyChanging();
-					this._Action = value;
-					this.SendPropertyChanged("Action");
-					this.OnActionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(MAX)")]
-		public string Description
-		{
-			get
-			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this.OnDescriptionChanging(value);
-					this.SendPropertyChanging();
-					this._Description = value;
-					this.SendPropertyChanged("Description");
-					this.OnDescriptionChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrackingType", DbType="TinyInt")]
-		public System.Nullable<byte> TrackingType
-		{
-			get
-			{
-				return this._TrackingType;
-			}
-			set
-			{
-				if ((this._TrackingType != value))
-				{
-					this.OnTrackingTypeChanging(value);
-					this.SendPropertyChanging();
-					this._TrackingType = value;
-					this.SendPropertyChanged("TrackingType");
-					this.OnTrackingTypeChanged();
-				}
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TrackingView")]
-	public partial class TrackingView
-	{
-		
-		private System.Guid _TrackingGUID;
-		
-		private System.DateTime _TrackingDate;
-		
-		private System.Guid _DocStaffGUID;
-		
-		private byte _ActionType;
-		
-		private string _Description;
-		
-		private string _FirstName;
-		
-		private string _SurName;
-		
-		private string _FullName;
-		
-		private string _GenderAsStr;
-		
-		private string _Address;
-		
-		private string _DobStr;
-		
-		private System.Nullable<byte> _Status;
-		
-		private System.Nullable<bool> _AvailableToWork;
-		
-		private System.Nullable<bool> _Archived;
-		
-		private string _Action;
-		
-		private System.Nullable<byte> _TrackingType;
-		
-		private string _ActionTypeStr;
-		
-		public TrackingView()
-		{
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrackingGUID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid TrackingGUID
-		{
-			get
-			{
-				return this._TrackingGUID;
-			}
-			set
-			{
-				if ((this._TrackingGUID != value))
-				{
-					this._TrackingGUID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrackingDate", DbType="DateTime NOT NULL")]
-		public System.DateTime TrackingDate
-		{
-			get
-			{
-				return this._TrackingDate;
-			}
-			set
-			{
-				if ((this._TrackingDate != value))
-				{
-					this._TrackingDate = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DocStaffGUID", DbType="UniqueIdentifier NOT NULL")]
-		public System.Guid DocStaffGUID
-		{
-			get
-			{
-				return this._DocStaffGUID;
-			}
-			set
-			{
-				if ((this._DocStaffGUID != value))
-				{
-					this._DocStaffGUID = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActionType", DbType="TinyInt NOT NULL")]
-		public byte ActionType
-		{
-			get
-			{
-				return this._ActionType;
-			}
-			set
-			{
-				if ((this._ActionType != value))
-				{
-					this._ActionType = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(MAX)")]
-		public string Description
-		{
-			get
-			{
-				return this._Description;
-			}
-			set
-			{
-				if ((this._Description != value))
-				{
-					this._Description = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="NVarChar(100)")]
-		public string FirstName
-		{
-			get
-			{
-				return this._FirstName;
-			}
-			set
-			{
-				if ((this._FirstName != value))
-				{
-					this._FirstName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SurName", DbType="NVarChar(100)")]
-		public string SurName
-		{
-			get
-			{
-				return this._SurName;
-			}
-			set
-			{
-				if ((this._SurName != value))
-				{
-					this._SurName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
-		public string FullName
-		{
-			get
-			{
-				return this._FullName;
-			}
-			set
-			{
-				if ((this._FullName != value))
-				{
-					this._FullName = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GenderAsStr", DbType="NVarChar(3)")]
-		public string GenderAsStr
-		{
-			get
-			{
-				return this._GenderAsStr;
-			}
-			set
-			{
-				if ((this._GenderAsStr != value))
-				{
-					this._GenderAsStr = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(255)")]
-		public string Address
-		{
-			get
-			{
-				return this._Address;
-			}
-			set
-			{
-				if ((this._Address != value))
-				{
-					this._Address = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DobStr", DbType="NVarChar(50)")]
-		public string DobStr
-		{
-			get
-			{
-				return this._DobStr;
-			}
-			set
-			{
-				if ((this._DobStr != value))
-				{
-					this._DobStr = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="TinyInt")]
-		public System.Nullable<byte> Status
-		{
-			get
-			{
-				return this._Status;
-			}
-			set
-			{
-				if ((this._Status != value))
-				{
-					this._Status = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AvailableToWork", DbType="Bit")]
-		public System.Nullable<bool> AvailableToWork
-		{
-			get
-			{
-				return this._AvailableToWork;
-			}
-			set
-			{
-				if ((this._AvailableToWork != value))
-				{
-					this._AvailableToWork = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Archived", DbType="Bit")]
-		public System.Nullable<bool> Archived
-		{
-			get
-			{
-				return this._Archived;
-			}
-			set
-			{
-				if ((this._Archived != value))
-				{
-					this._Archived = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Action", DbType="NVarChar(MAX)")]
-		public string Action
-		{
-			get
-			{
-				return this._Action;
-			}
-			set
-			{
-				if ((this._Action != value))
-				{
-					this._Action = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrackingType", DbType="TinyInt")]
-		public System.Nullable<byte> TrackingType
-		{
-			get
-			{
-				return this._TrackingType;
-			}
-			set
-			{
-				if ((this._TrackingType != value))
-				{
-					this._TrackingType = value;
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActionTypeStr", DbType="NVarChar(4)")]
-		public string ActionTypeStr
-		{
-			get
-			{
-				return this._ActionTypeStr;
-			}
-			set
-			{
-				if ((this._ActionTypeStr != value))
-				{
-					this._ActionTypeStr = value;
 				}
 			}
 		}
@@ -80504,6 +79983,569 @@ namespace MM.Databasae
 				if ((this._FullName != value))
 				{
 					this._FullName = value;
+				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Tracking")]
+	public partial class Tracking : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private System.Guid _TrackingGUID;
+		
+		private System.DateTime _TrackingDate;
+		
+		private System.Guid _DocStaffGUID;
+		
+		private byte _ActionType;
+		
+		private string _Action;
+		
+		private string _Description;
+		
+		private System.Nullable<byte> _TrackingType;
+		
+		private string _ComputerName;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnTrackingGUIDChanging(System.Guid value);
+    partial void OnTrackingGUIDChanged();
+    partial void OnTrackingDateChanging(System.DateTime value);
+    partial void OnTrackingDateChanged();
+    partial void OnDocStaffGUIDChanging(System.Guid value);
+    partial void OnDocStaffGUIDChanged();
+    partial void OnActionTypeChanging(byte value);
+    partial void OnActionTypeChanged();
+    partial void OnActionChanging(string value);
+    partial void OnActionChanged();
+    partial void OnDescriptionChanging(string value);
+    partial void OnDescriptionChanged();
+    partial void OnTrackingTypeChanging(System.Nullable<byte> value);
+    partial void OnTrackingTypeChanged();
+    partial void OnComputerNameChanging(string value);
+    partial void OnComputerNameChanged();
+    #endregion
+		
+		public Tracking()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrackingGUID", DbType="UniqueIdentifier NOT NULL", IsPrimaryKey=true)]
+		public System.Guid TrackingGUID
+		{
+			get
+			{
+				return this._TrackingGUID;
+			}
+			set
+			{
+				if ((this._TrackingGUID != value))
+				{
+					this.OnTrackingGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._TrackingGUID = value;
+					this.SendPropertyChanged("TrackingGUID");
+					this.OnTrackingGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrackingDate", DbType="DateTime NOT NULL")]
+		public System.DateTime TrackingDate
+		{
+			get
+			{
+				return this._TrackingDate;
+			}
+			set
+			{
+				if ((this._TrackingDate != value))
+				{
+					this.OnTrackingDateChanging(value);
+					this.SendPropertyChanging();
+					this._TrackingDate = value;
+					this.SendPropertyChanged("TrackingDate");
+					this.OnTrackingDateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DocStaffGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid DocStaffGUID
+		{
+			get
+			{
+				return this._DocStaffGUID;
+			}
+			set
+			{
+				if ((this._DocStaffGUID != value))
+				{
+					this.OnDocStaffGUIDChanging(value);
+					this.SendPropertyChanging();
+					this._DocStaffGUID = value;
+					this.SendPropertyChanged("DocStaffGUID");
+					this.OnDocStaffGUIDChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActionType", DbType="TinyInt NOT NULL")]
+		public byte ActionType
+		{
+			get
+			{
+				return this._ActionType;
+			}
+			set
+			{
+				if ((this._ActionType != value))
+				{
+					this.OnActionTypeChanging(value);
+					this.SendPropertyChanging();
+					this._ActionType = value;
+					this.SendPropertyChanged("ActionType");
+					this.OnActionTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Action", DbType="NVarChar(MAX)")]
+		public string Action
+		{
+			get
+			{
+				return this._Action;
+			}
+			set
+			{
+				if ((this._Action != value))
+				{
+					this.OnActionChanging(value);
+					this.SendPropertyChanging();
+					this._Action = value;
+					this.SendPropertyChanged("Action");
+					this.OnActionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(MAX)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this.OnDescriptionChanging(value);
+					this.SendPropertyChanging();
+					this._Description = value;
+					this.SendPropertyChanged("Description");
+					this.OnDescriptionChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrackingType", DbType="TinyInt")]
+		public System.Nullable<byte> TrackingType
+		{
+			get
+			{
+				return this._TrackingType;
+			}
+			set
+			{
+				if ((this._TrackingType != value))
+				{
+					this.OnTrackingTypeChanging(value);
+					this.SendPropertyChanging();
+					this._TrackingType = value;
+					this.SendPropertyChanged("TrackingType");
+					this.OnTrackingTypeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ComputerName", DbType="NVarChar(255)")]
+		public string ComputerName
+		{
+			get
+			{
+				return this._ComputerName;
+			}
+			set
+			{
+				if ((this._ComputerName != value))
+				{
+					this.OnComputerNameChanging(value);
+					this.SendPropertyChanging();
+					this._ComputerName = value;
+					this.SendPropertyChanged("ComputerName");
+					this.OnComputerNameChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.TrackingView")]
+	public partial class TrackingView
+	{
+		
+		private System.Guid _TrackingGUID;
+		
+		private System.DateTime _TrackingDate;
+		
+		private System.Guid _DocStaffGUID;
+		
+		private byte _ActionType;
+		
+		private string _Description;
+		
+		private string _FirstName;
+		
+		private string _SurName;
+		
+		private string _FullName;
+		
+		private string _GenderAsStr;
+		
+		private string _Address;
+		
+		private string _DobStr;
+		
+		private System.Nullable<byte> _Status;
+		
+		private System.Nullable<bool> _AvailableToWork;
+		
+		private System.Nullable<bool> _Archived;
+		
+		private string _Action;
+		
+		private System.Nullable<byte> _TrackingType;
+		
+		private string _ActionTypeStr;
+		
+		private string _ComputerName;
+		
+		public TrackingView()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrackingGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid TrackingGUID
+		{
+			get
+			{
+				return this._TrackingGUID;
+			}
+			set
+			{
+				if ((this._TrackingGUID != value))
+				{
+					this._TrackingGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrackingDate", DbType="DateTime NOT NULL")]
+		public System.DateTime TrackingDate
+		{
+			get
+			{
+				return this._TrackingDate;
+			}
+			set
+			{
+				if ((this._TrackingDate != value))
+				{
+					this._TrackingDate = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DocStaffGUID", DbType="UniqueIdentifier NOT NULL")]
+		public System.Guid DocStaffGUID
+		{
+			get
+			{
+				return this._DocStaffGUID;
+			}
+			set
+			{
+				if ((this._DocStaffGUID != value))
+				{
+					this._DocStaffGUID = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActionType", DbType="TinyInt NOT NULL")]
+		public byte ActionType
+		{
+			get
+			{
+				return this._ActionType;
+			}
+			set
+			{
+				if ((this._ActionType != value))
+				{
+					this._ActionType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Description", DbType="NVarChar(MAX)")]
+		public string Description
+		{
+			get
+			{
+				return this._Description;
+			}
+			set
+			{
+				if ((this._Description != value))
+				{
+					this._Description = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FirstName", DbType="NVarChar(100)")]
+		public string FirstName
+		{
+			get
+			{
+				return this._FirstName;
+			}
+			set
+			{
+				if ((this._FirstName != value))
+				{
+					this._FirstName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SurName", DbType="NVarChar(100)")]
+		public string SurName
+		{
+			get
+			{
+				return this._SurName;
+			}
+			set
+			{
+				if ((this._SurName != value))
+				{
+					this._SurName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_FullName", DbType="NVarChar(255) NOT NULL", CanBeNull=false)]
+		public string FullName
+		{
+			get
+			{
+				return this._FullName;
+			}
+			set
+			{
+				if ((this._FullName != value))
+				{
+					this._FullName = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GenderAsStr", DbType="NVarChar(3)")]
+		public string GenderAsStr
+		{
+			get
+			{
+				return this._GenderAsStr;
+			}
+			set
+			{
+				if ((this._GenderAsStr != value))
+				{
+					this._GenderAsStr = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Address", DbType="NVarChar(255)")]
+		public string Address
+		{
+			get
+			{
+				return this._Address;
+			}
+			set
+			{
+				if ((this._Address != value))
+				{
+					this._Address = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DobStr", DbType="NVarChar(50)")]
+		public string DobStr
+		{
+			get
+			{
+				return this._DobStr;
+			}
+			set
+			{
+				if ((this._DobStr != value))
+				{
+					this._DobStr = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Status", DbType="TinyInt")]
+		public System.Nullable<byte> Status
+		{
+			get
+			{
+				return this._Status;
+			}
+			set
+			{
+				if ((this._Status != value))
+				{
+					this._Status = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_AvailableToWork", DbType="Bit")]
+		public System.Nullable<bool> AvailableToWork
+		{
+			get
+			{
+				return this._AvailableToWork;
+			}
+			set
+			{
+				if ((this._AvailableToWork != value))
+				{
+					this._AvailableToWork = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Archived", DbType="Bit")]
+		public System.Nullable<bool> Archived
+		{
+			get
+			{
+				return this._Archived;
+			}
+			set
+			{
+				if ((this._Archived != value))
+				{
+					this._Archived = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Action", DbType="NVarChar(MAX)")]
+		public string Action
+		{
+			get
+			{
+				return this._Action;
+			}
+			set
+			{
+				if ((this._Action != value))
+				{
+					this._Action = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_TrackingType", DbType="TinyInt")]
+		public System.Nullable<byte> TrackingType
+		{
+			get
+			{
+				return this._TrackingType;
+			}
+			set
+			{
+				if ((this._TrackingType != value))
+				{
+					this._TrackingType = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ActionTypeStr", DbType="NVarChar(4)")]
+		public string ActionTypeStr
+		{
+			get
+			{
+				return this._ActionTypeStr;
+			}
+			set
+			{
+				if ((this._ActionTypeStr != value))
+				{
+					this._ActionTypeStr = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ComputerName", DbType="NVarChar(255)")]
+		public string ComputerName
+		{
+			get
+			{
+				return this._ComputerName;
+			}
+			set
+			{
+				if ((this._ComputerName != value))
+				{
+					this._ComputerName = value;
 				}
 			}
 		}

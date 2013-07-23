@@ -448,6 +448,7 @@ namespace MM.Bussiness
                         tk.Action = "Cập nhật bệnh nhân xét nghiệm celldyn 3200";
                         tk.Description = desc;
                         tk.TrackingType = (byte)TrackingType.None;
+                        tk.ComputerName = Utility.GetDNSHostName();
                         db.Trackings.InsertOnSubmit(tk);
                     }
 
@@ -526,6 +527,7 @@ namespace MM.Bussiness
                     tk.Action = "Xóa xét nghiệm celldyn 3200";
                     tk.Description = desc;
                     tk.TrackingType = (byte)TrackingType.None;
+                    tk.ComputerName = Utility.GetDNSHostName();
                     db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
@@ -603,6 +605,7 @@ namespace MM.Bussiness
                     tk.Action = "Xóa chi tiết kết quả xét nghiệm celldyn 3200";
                     tk.Description = desc;
                     tk.TrackingType = (byte)TrackingType.None;
+                    tk.ComputerName = Utility.GetDNSHostName();
                     db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
@@ -787,6 +790,7 @@ namespace MM.Bussiness
                         tk.Action = "Cập nhật chỉ số kết quả xét nghiệm celldyn 3200";
                         tk.Description = desc;
                         tk.TrackingType = (byte)TrackingType.None;
+                        tk.ComputerName = Utility.GetDNSHostName();
                         db.Trackings.InsertOnSubmit(tk);
 
                         db.SubmitChanges();
@@ -852,6 +856,7 @@ namespace MM.Bussiness
                         tk.Action = "Cập nhật xét nghiệm CellDyn3200";
                         tk.Description = desc;
                         tk.TrackingType = (byte)TrackingType.None;
+                        tk.ComputerName = Utility.GetDNSHostName();
                         db.Trackings.InsertOnSubmit(tk);
 
                         db.SubmitChanges();

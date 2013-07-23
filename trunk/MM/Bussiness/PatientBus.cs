@@ -481,6 +481,7 @@ namespace MM.Bussiness
                             tk.Action = "Merge thông tin bệnh nhân";
                             tk.Description = desc;
                             tk.TrackingType = (byte)TrackingType.None;
+                            tk.ComputerName = Utility.GetDNSHostName();
                             db.Trackings.InsertOnSubmit(tk);
                         }
                     }
@@ -507,6 +508,7 @@ namespace MM.Bussiness
                             tk.Action = "Merge thông tin bệnh nhân";
                             tk.Description = desc;
                             tk.TrackingType = (byte)TrackingType.None;
+                            tk.ComputerName = Utility.GetDNSHostName();
                             db.Trackings.InsertOnSubmit(tk);
                         }
                     }
@@ -533,6 +535,7 @@ namespace MM.Bussiness
                             tk.Action = "Merge thông tin bệnh nhân";
                             tk.Description = desc;
                             tk.TrackingType = (byte)TrackingType.None;
+                            tk.ComputerName = Utility.GetDNSHostName();
                             db.Trackings.InsertOnSubmit(tk);
                         }
                     }
@@ -559,6 +562,7 @@ namespace MM.Bussiness
                             tk.Action = "Merge thông tin bệnh nhân";
                             tk.Description = desc;
                             tk.TrackingType = (byte)TrackingType.None;
+                            tk.ComputerName = Utility.GetDNSHostName();
                             db.Trackings.InsertOnSubmit(tk);
                         }
                     }
@@ -585,6 +589,7 @@ namespace MM.Bussiness
                             tk.Action = "Merge thông tin bệnh nhân";
                             tk.Description = desc;
                             tk.TrackingType = (byte)TrackingType.None;
+                            tk.ComputerName = Utility.GetDNSHostName();
                             db.Trackings.InsertOnSubmit(tk);
                         }
                     }
@@ -611,6 +616,7 @@ namespace MM.Bussiness
                             tk.Action = "Merge thông tin bệnh nhân";
                             tk.Description = desc;
                             tk.TrackingType = (byte)TrackingType.None;
+                            tk.ComputerName = Utility.GetDNSHostName();
                             db.Trackings.InsertOnSubmit(tk);
                         }
                     }
@@ -637,6 +643,7 @@ namespace MM.Bussiness
                             tk.Action = "Merge thông tin bệnh nhân";
                             tk.Description = desc;
                             tk.TrackingType = (byte)TrackingType.None;
+                            tk.ComputerName = Utility.GetDNSHostName();
                             db.Trackings.InsertOnSubmit(tk);
                         }
                     }
@@ -663,6 +670,7 @@ namespace MM.Bussiness
                             tk.Action = "Merge thông tin bệnh nhân";
                             tk.Description = desc;
                             tk.TrackingType = (byte)TrackingType.None;
+                            tk.ComputerName = Utility.GetDNSHostName();
                             db.Trackings.InsertOnSubmit(tk);
                         }
                     }
@@ -689,6 +697,7 @@ namespace MM.Bussiness
                             tk.Action = "Merge thông tin bệnh nhân";
                             tk.Description = desc;
                             tk.TrackingType = (byte)TrackingType.None;
+                            tk.ComputerName = Utility.GetDNSHostName();
                             db.Trackings.InsertOnSubmit(tk);
                         }
                     }
@@ -715,6 +724,7 @@ namespace MM.Bussiness
                             tk.Action = "Merge thông tin bệnh nhân";
                             tk.Description = desc;
                             tk.TrackingType = (byte)TrackingType.None;
+                            tk.ComputerName = Utility.GetDNSHostName();
                             db.Trackings.InsertOnSubmit(tk);
                         }
                     }
@@ -741,6 +751,7 @@ namespace MM.Bussiness
                             tk.Action = "Merge thông tin bệnh nhân";
                             tk.Description = desc;
                             tk.TrackingType = (byte)TrackingType.None;
+                            tk.ComputerName = Utility.GetDNSHostName();
                             db.Trackings.InsertOnSubmit(tk);
                         }
                     }
@@ -767,6 +778,7 @@ namespace MM.Bussiness
                             tk.Action = "Merge thông tin bệnh nhân";
                             tk.Description = desc;
                             tk.TrackingType = (byte)TrackingType.None;
+                            tk.ComputerName = Utility.GetDNSHostName();
                             db.Trackings.InsertOnSubmit(tk);
                         }
                     }
@@ -793,6 +805,7 @@ namespace MM.Bussiness
                             tk.Action = "Merge thông tin bệnh nhân";
                             tk.Description = desc;
                             tk.TrackingType = (byte)TrackingType.None;
+                            tk.ComputerName = Utility.GetDNSHostName();
                             db.Trackings.InsertOnSubmit(tk);
                         }
                     }
@@ -819,6 +832,7 @@ namespace MM.Bussiness
                             tk.Action = "Merge thông tin bệnh nhân";
                             tk.Description = desc;
                             tk.TrackingType = (byte)TrackingType.None;
+                            tk.ComputerName = Utility.GetDNSHostName();
                             db.Trackings.InsertOnSubmit(tk);
                         }
                     }
@@ -845,6 +859,7 @@ namespace MM.Bussiness
                             tk.Action = "Merge thông tin bệnh nhân";
                             tk.Description = desc;
                             tk.TrackingType = (byte)TrackingType.None;
+                            tk.ComputerName = Utility.GetDNSHostName();
                             db.Trackings.InsertOnSubmit(tk);
                         }
                     }
@@ -871,6 +886,7 @@ namespace MM.Bussiness
                             tk.Action = "Merge thông tin bệnh nhân";
                             tk.Description = desc;
                             tk.TrackingType = (byte)TrackingType.None;
+                            tk.ComputerName = Utility.GetDNSHostName();
                             db.Trackings.InsertOnSubmit(tk);
                         }
                     }
@@ -897,6 +913,7 @@ namespace MM.Bussiness
                             tk.Action = "Merge thông tin bệnh nhân";
                             tk.Description = desc;
                             tk.TrackingType = (byte)TrackingType.None;
+                            tk.ComputerName = Utility.GetDNSHostName();
                             db.Trackings.InsertOnSubmit(tk);
                         }
                     }
@@ -923,6 +940,7 @@ namespace MM.Bussiness
                             tk.Action = "Merge thông tin bệnh nhân";
                             tk.Description = desc;
                             tk.TrackingType = (byte)TrackingType.None;
+                            tk.ComputerName = Utility.GetDNSHostName();
                             db.Trackings.InsertOnSubmit(tk);
                         }
                     }
@@ -949,6 +967,7 @@ namespace MM.Bussiness
                             tk.Action = "Merge thông tin bệnh nhân";
                             tk.Description = desc;
                             tk.TrackingType = (byte)TrackingType.None;
+                            tk.ComputerName = Utility.GetDNSHostName();
                             db.Trackings.InsertOnSubmit(tk);
                         }
                     }
@@ -1002,6 +1021,7 @@ namespace MM.Bussiness
                                             tk.Action = "Merge thông tin bệnh nhân";
                                             tk.Description = desc;
                                             tk.TrackingType = (byte)TrackingType.None;
+                                            tk.ComputerName = Utility.GetDNSHostName();
                                             db.Trackings.InsertOnSubmit(tk);
                                         }
                                     }
@@ -1028,6 +1048,7 @@ namespace MM.Bussiness
                                             tk.Action = "Merge thông tin bệnh nhân";
                                             tk.Description = desc;
                                             tk.TrackingType = (byte)TrackingType.None;
+                                            tk.ComputerName = Utility.GetDNSHostName();
                                             db.Trackings.InsertOnSubmit(tk);
                                         }
                                     }
@@ -1298,6 +1319,7 @@ namespace MM.Bussiness
                     tk.Action = "Xóa thông tin bệnh nhân";
                     tk.Description = desc;
                     tk.TrackingType = (byte)TrackingType.None;
+                    tk.ComputerName = Utility.GetDNSHostName();
                     db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
@@ -1372,6 +1394,7 @@ namespace MM.Bussiness
                     tk.Action = "Xóa bệnh nhân thân thuộc";
                     tk.Description = desc;
                     tk.TrackingType = (byte)TrackingType.None;
+                    tk.ComputerName = Utility.GetDNSHostName();
                     db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
@@ -1447,6 +1470,7 @@ namespace MM.Bussiness
                     tk.Action = "Phục hồi thông tin bệnh nhân";
                     tk.Description = desc;
                     tk.TrackingType = (byte)TrackingType.None;
+                    tk.ComputerName = Utility.GetDNSHostName();
                     db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
@@ -1520,6 +1544,7 @@ namespace MM.Bussiness
                         tk.Action = "Thêm thông tin bệnh nhân";
                         tk.Description = desc;
                         tk.TrackingType = (byte)TrackingType.None;
+                        tk.ComputerName = Utility.GetDNSHostName();
                         db.Trackings.InsertOnSubmit(tk);
 
                         db.SubmitChanges();
@@ -1593,6 +1618,7 @@ namespace MM.Bussiness
                                 tk.Action = "Sữa thông tin bệnh nhân";
                                 tk.Description = desc;
                                 tk.TrackingType = (byte)TrackingType.None;
+                                tk.ComputerName = Utility.GetDNSHostName();
                                 db.Trackings.InsertOnSubmit(tk);
                             }
 
@@ -1696,6 +1722,7 @@ namespace MM.Bussiness
                         tk.Action = "Thêm bệnh nhân thân thuộc";
                         tk.Description = desc;
                         tk.TrackingType = (byte)TrackingType.None;
+                        tk.ComputerName = Utility.GetDNSHostName();
                         db.Trackings.InsertOnSubmit(tk);
                     }
 

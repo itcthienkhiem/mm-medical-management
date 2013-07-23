@@ -93,6 +93,7 @@ namespace MM.Bussiness
                     tk.Action = "Xóa tin nhắn mẫu";
                     tk.Description = desc;
                     tk.TrackingType = (byte)TrackingType.None;
+                    tk.ComputerName = Utility.GetDNSHostName();
                     db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
@@ -156,6 +157,7 @@ namespace MM.Bussiness
                     tk.Action = isDuyet ? "Duyệt tin nhắn mẫu" : "Bỏ duyệt tin nhắn mẫu";
                     tk.Description = desc;
                     tk.TrackingType = (byte)TrackingType.None;
+                    tk.ComputerName = Utility.GetDNSHostName();
                     db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
@@ -214,6 +216,7 @@ namespace MM.Bussiness
                         tk.Action = "Thêm tin nhắn mẫu";
                         tk.Description = desc;
                         tk.TrackingType = (byte)TrackingType.None;
+                        tk.ComputerName = Utility.GetDNSHostName();
                         db.Trackings.InsertOnSubmit(tk);
 
                         db.SubmitChanges();
@@ -246,6 +249,7 @@ namespace MM.Bussiness
                             tk.Action = "Sửa tin nhắn mẫu";
                             tk.Description = desc;
                             tk.TrackingType = (byte)TrackingType.None;
+                            tk.ComputerName = Utility.GetDNSHostName();
                             db.Trackings.InsertOnSubmit(tk);
 
                             db.SubmitChanges();

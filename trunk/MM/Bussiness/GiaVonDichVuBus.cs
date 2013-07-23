@@ -153,6 +153,7 @@ namespace MM.Bussiness
                     tk.Action = "Xóa thông tin giá vốn dịch vụ";
                     tk.Description = desc;
                     tk.TrackingType = (byte)TrackingType.Price;
+                    tk.ComputerName = Utility.GetDNSHostName();
                     db.Trackings.InsertOnSubmit(tk);
 
                     db.SubmitChanges();
@@ -213,6 +214,7 @@ namespace MM.Bussiness
                         tk.Action = "Thêm thông tin giá vốn dịch vụ";
                         tk.Description = desc;
                         tk.TrackingType = (byte)TrackingType.Price;
+                        tk.ComputerName = Utility.GetDNSHostName();
                         db.Trackings.InsertOnSubmit(tk);
 
                         db.SubmitChanges();
@@ -249,6 +251,7 @@ namespace MM.Bussiness
                             tk.Action = "Sửa thông tin giá vốn dịch vụ";
                             tk.Description = desc;
                             tk.TrackingType = (byte)TrackingType.Price;
+                            tk.ComputerName = Utility.GetDNSHostName();
                             db.Trackings.InsertOnSubmit(tk);
 
                             db.SubmitChanges();
