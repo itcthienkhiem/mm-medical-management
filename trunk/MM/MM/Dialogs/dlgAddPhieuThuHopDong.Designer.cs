@@ -34,6 +34,8 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cboHinhThucThanhToan = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.chkDaXuatHD = new System.Windows.Forms.CheckBox();
             this.txtGhiChu = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
@@ -64,8 +66,6 @@
             this.label22 = new System.Windows.Forms.Label();
             this.txtMaPhieuThu = new System.Windows.Forms.TextBox();
             this.label6 = new System.Windows.Forms.Label();
-            this.cboHinhThucThanhToan = new System.Windows.Forms.ComboBox();
-            this.label16 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numThu)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numCongNo)).BeginInit();
@@ -147,6 +147,30 @@
             this.groupBox1.TabIndex = 20;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin phiếu thu";
+            // 
+            // cboHinhThucThanhToan
+            // 
+            this.cboHinhThucThanhToan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboHinhThucThanhToan.FormattingEnabled = true;
+            this.cboHinhThucThanhToan.Items.AddRange(new object[] {
+            "Tiền mặt",
+            "Chuyển khoản",
+            "Tiền mặt/Chuyển khoản",
+            "Bảo hiểm",
+            "Cà thẻ"});
+            this.cboHinhThucThanhToan.Location = new System.Drawing.Point(125, 283);
+            this.cboHinhThucThanhToan.Name = "cboHinhThucThanhToan";
+            this.cboHinhThucThanhToan.Size = new System.Drawing.Size(201, 21);
+            this.cboHinhThucThanhToan.TabIndex = 78;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(10, 286);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(110, 13);
+            this.label16.TabIndex = 77;
+            this.label16.Text = "Hình thức thanh toán:";
             // 
             // chkDaXuatHD
             // 
@@ -435,6 +459,7 @@
             // 
             // txtMaPhieuThu
             // 
+            this.txtMaPhieuThu.Enabled = false;
             this.txtMaPhieuThu.Location = new System.Drawing.Point(125, 20);
             this.txtMaPhieuThu.MaxLength = 50;
             this.txtMaPhieuThu.Name = "txtMaPhieuThu";
@@ -449,30 +474,6 @@
             this.label6.Size = new System.Drawing.Size(72, 13);
             this.label6.TabIndex = 48;
             this.label6.Text = "Mã phiếu thu:";
-            // 
-            // cboHinhThucThanhToan
-            // 
-            this.cboHinhThucThanhToan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboHinhThucThanhToan.FormattingEnabled = true;
-            this.cboHinhThucThanhToan.Items.AddRange(new object[] {
-            "Tiền mặt",
-            "Chuyển khoản",
-            "Tiền mặt/Chuyển khoản",
-            "Bảo hiểm",
-            "Cà thẻ"});
-            this.cboHinhThucThanhToan.Location = new System.Drawing.Point(125, 283);
-            this.cboHinhThucThanhToan.Name = "cboHinhThucThanhToan";
-            this.cboHinhThucThanhToan.Size = new System.Drawing.Size(201, 21);
-            this.cboHinhThucThanhToan.TabIndex = 78;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(10, 286);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(110, 13);
-            this.label16.TabIndex = 77;
-            this.label16.Text = "Hình thức thanh toán:";
             // 
             // dlgAddPhieuThuHopDong
             // 

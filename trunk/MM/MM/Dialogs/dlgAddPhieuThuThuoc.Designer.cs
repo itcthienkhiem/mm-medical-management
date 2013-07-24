@@ -41,6 +41,8 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddPhieuThuThuoc));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.cboHinhThucThanhToan = new System.Windows.Forms.ComboBox();
+            this.label16 = new System.Windows.Forms.Label();
             this.txtLyDoGiam = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtGhiChu = new System.Windows.Forms.TextBox();
@@ -81,8 +83,6 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.lbTongTien = new System.Windows.Forms.Label();
             this.btnExportInvoice = new System.Windows.Forms.Button();
-            this.cboHinhThucThanhToan = new System.Windows.Forms.ComboBox();
-            this.label16 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.toaThuocViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dgChiTiet)).BeginInit();
@@ -122,6 +122,30 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin phiếu thu";
+            // 
+            // cboHinhThucThanhToan
+            // 
+            this.cboHinhThucThanhToan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboHinhThucThanhToan.FormattingEnabled = true;
+            this.cboHinhThucThanhToan.Items.AddRange(new object[] {
+            "Tiền mặt",
+            "Chuyển khoản",
+            "Tiền mặt/Chuyển khoản",
+            "Bảo hiểm",
+            "Cà thẻ"});
+            this.cboHinhThucThanhToan.Location = new System.Drawing.Point(424, 196);
+            this.cboHinhThucThanhToan.Name = "cboHinhThucThanhToan";
+            this.cboHinhThucThanhToan.Size = new System.Drawing.Size(201, 21);
+            this.cboHinhThucThanhToan.TabIndex = 80;
+            // 
+            // label16
+            // 
+            this.label16.AutoSize = true;
+            this.label16.Location = new System.Drawing.Point(309, 199);
+            this.label16.Name = "label16";
+            this.label16.Size = new System.Drawing.Size(110, 13);
+            this.label16.TabIndex = 79;
+            this.label16.Text = "Hình thức thanh toán:";
             // 
             // txtLyDoGiam
             // 
@@ -214,6 +238,7 @@
             // 
             // txtMaPhieuThu
             // 
+            this.txtMaPhieuThu.Enabled = false;
             this.txtMaPhieuThu.Location = new System.Drawing.Point(97, 22);
             this.txtMaPhieuThu.MaxLength = 50;
             this.txtMaPhieuThu.Name = "txtMaPhieuThu";
@@ -555,30 +580,6 @@
             this.btnExportInvoice.Text = "      &Xuất hóa đơn";
             this.btnExportInvoice.UseVisualStyleBackColor = true;
             this.btnExportInvoice.Click += new System.EventHandler(this.btnExportInvoice_Click);
-            // 
-            // cboHinhThucThanhToan
-            // 
-            this.cboHinhThucThanhToan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboHinhThucThanhToan.FormattingEnabled = true;
-            this.cboHinhThucThanhToan.Items.AddRange(new object[] {
-            "Tiền mặt",
-            "Chuyển khoản",
-            "Tiền mặt/Chuyển khoản",
-            "Bảo hiểm",
-            "Cà thẻ"});
-            this.cboHinhThucThanhToan.Location = new System.Drawing.Point(424, 196);
-            this.cboHinhThucThanhToan.Name = "cboHinhThucThanhToan";
-            this.cboHinhThucThanhToan.Size = new System.Drawing.Size(201, 21);
-            this.cboHinhThucThanhToan.TabIndex = 80;
-            // 
-            // label16
-            // 
-            this.label16.AutoSize = true;
-            this.label16.Location = new System.Drawing.Point(309, 199);
-            this.label16.Name = "label16";
-            this.label16.Size = new System.Drawing.Size(110, 13);
-            this.label16.TabIndex = 79;
-            this.label16.Text = "Hình thức thanh toán:";
             // 
             // dlgAddPhieuThuThuoc
             // 

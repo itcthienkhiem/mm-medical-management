@@ -264,6 +264,7 @@
             // 
             // txtMaPhieuThu
             // 
+            this.txtMaPhieuThu.Enabled = false;
             this.txtMaPhieuThu.Location = new System.Drawing.Point(98, 22);
             this.txtMaPhieuThu.MaxLength = 50;
             this.txtMaPhieuThu.Name = "txtMaPhieuThu";
