@@ -124,6 +124,7 @@ namespace MM.Common
         public static string MapMauHoSoVoiDichVu = "MapMauHoSoVoiDichVu";
         public static string InMauHoSo = "InMauHoSo";
         public static string CauHinhDichVuXetNghiem = "CauHinhDichVuXetNghiem";
+        public static string TraHoSo = "TraHoSo";
 
         public static string CheckListTemplate = "Theo dõi thực hiện";
         public static string ChiTietPhieuThuDichVuTemplate = "Chi tiết phiếu thu dịch vụ";
