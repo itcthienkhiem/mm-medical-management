@@ -95,6 +95,12 @@
     <Reference Include="TXTextControl, Version=15.1.800.500, Culture=neutral, PublicKeyToken=6b83fe9a75cfb638" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\uTraHoSo.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uTraHoSo.Designer.cs">
+      <DependentUpon>uTraHoSo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uCauHinhDichVuXetNghiem.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1686,6 +1692,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\uTraHoSo.resx">
+      <DependentUpon>uTraHoSo.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uCauHinhDichVuXetNghiem.resx">
       <DependentUpon>uCauHinhDichVuXetNghiem.cs</DependentUpon>
     </EmbeddedResource>
