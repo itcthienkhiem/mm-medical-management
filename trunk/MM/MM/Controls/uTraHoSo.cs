@@ -22,6 +22,7 @@ namespace MM.Controls
         private string _name = string.Empty;
         private int _type = 0;
         private int _doiTuong = 0;
+        private int _traHoSo = 0; //0: Tất cả; 1: Đã trả; 2: Chưa trả
         private string _hopDongGUID = string.Empty;
         private string _patientGUID = string.Empty;
         private string _tenNhanVien = string.Empty;
@@ -29,7 +30,6 @@ namespace MM.Controls
         private Dictionary<string, DataRow> _dictPatient = new Dictionary<string, DataRow>();
         private DataTable _dtTemp = null;
         private bool _isAscending = true;
-        private bool _isCheckAll = false;
         private bool _flag = false;
         #endregion
 
@@ -55,8 +55,35 @@ namespace MM.Controls
 
         private void UpdateGUI()
         {
-            btnPrint.Enabled = AllowPrint;
-            inHoSoToolStripMenuItem.Enabled = AllowPrint;
+            btnTraHoSo.Enabled = AllowEdit;
+            btnHuyTraHoSo.Enabled = AllowEdit;
+            traHoSoToolStripMenuItem.Enabled = AllowEdit;
+            huyTraHoSoToolStripMenuItem.Enabled = AllowEdit;
+
+            if (AllowEdit)
+            {
+                if (raTatCa2.Checked)
+                {
+                    btnTraHoSo.Enabled = true;
+                    btnHuyTraHoSo.Enabled = true;
+                    traHoSoToolStripMenuItem.Enabled = true;
+                    huyTraHoSoToolStripMenuItem.Enabled = true;
+                }
+                else if (raDaTra.Checked)
+                {
+                    btnTraHoSo.Enabled = true;
+                    btnHuyTraHoSo.Enabled = true;
+                    traHoSoToolStripMenuItem.Enabled = true;
+                    huyTraHoSoToolStripMenuItem.Enabled = true;
+                }
+                else
+                {
+                    btnTraHoSo.Enabled = true;
+                    btnHuyTraHoSo.Enabled = false;
+                    traHoSoToolStripMenuItem.Enabled = true;
+                    huyTraHoSoToolStripMenuItem.Enabled = false;
+                }
+            }
         }
 
         public void DisplayAsThread()
@@ -64,6 +91,7 @@ namespace MM.Controls
             try
             {
                 UpdateGUI();
+                chkChecked.Checked = false;
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayHopDongListProc));
                 base.ShowWaiting();
             }
@@ -128,7 +156,7 @@ namespace MM.Controls
         {
             lock (ThisLock)
             {
-                Result result = CompanyContractBus.GetContractMemberList(_hopDongGUID, _name, _type, _doiTuong);
+                Result result = CompanyContractBus.GetContractMemberList(_hopDongGUID, _name, _type, _doiTuong, _traHoSo);
 
                 if (result.IsOK)
                 {
@@ -140,17 +168,7 @@ namespace MM.Controls
                         if (_dtTemp == null) _dtTemp = dt.Clone();
                         
                         dgPatient.DataSource = dt;
-
-                        if (_isCheckAll)
-                        {
-                            _flag = true;
-                            chkChecked.Checked = true;
-                            _flag = false;
-                            OnCheckAll(true);
-                            _isCheckAll = false;
-                        }
-                        else
-                            UpdateChecked(dt);
+                        UpdateChecked(dt);
                     }));
                 }
                 else
@@ -173,7 +191,12 @@ namespace MM.Controls
                 else if (raNam.Checked) _doiTuong = 1;
                 else if (raNu.Checked) _doiTuong = 2;
                 else if (raNuCoGiaDinh.Checked) _doiTuong = 3;
-                else _doiTuong = 4;
+                else if (raNamTren40.Checked) _doiTuong = 4;
+                else _doiTuong = 5;
+
+                if (raTatCa2.Checked) _traHoSo = 0;
+                else if (raDaTra.Checked) _traHoSo = 1;
+                else _traHoSo = 2;
 
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnDisplayDanhSachNhanVientProc));
             }
@@ -182,123 +205,6 @@ namespace MM.Controls
                 MM.MsgBox.Show(Application.ProductName, e.Message, IconType.Error);
                 Utility.WriteToTraceLog(e.Message);
             }
-        }
-
-        private void OnPrint()
-        {
-            List<DataRow> checkedRows = _dictPatient.Values.ToList();
-            if (checkedRows.Count > 0)
-            {
-                if (_printDialog.ShowDialog() == DialogResult.OK)
-                {
-                    foreach (DataRow row in checkedRows)
-                    {
-                        string contractMemberGUID = row["ContractMemberGUID"].ToString();
-                        Result result = MauHoSoBus.GetMauChayHoSo(contractMemberGUID, _hopDongGUID);
-                        if (!result.IsOK)
-                        {
-                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("MauHoSoBus.GetMauChayHoSo"), IconType.Error);
-                            Utility.WriteToTraceLog(result.GetErrorAsString("MauHoSoBus.GetMauChayHoSo"));
-                            return;
-                        }
-
-                        List<MauHoSo> mauHoSoList = result.QueryResult as List<MauHoSo>;
-                        if (mauHoSoList == null || mauHoSoList.Count <= 0) continue;
-
-                        result = MauHoSoBus.GetDichVuChayMauHoSo(contractMemberGUID, _hopDongGUID);
-                        if (!result.IsOK)
-                        {
-                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("MauHoSoBus.GetDichVuChayMauHoSo"), IconType.Error);
-                            Utility.WriteToTraceLog(result.GetErrorAsString("MauHoSoBus.GetDichVuChayMauHoSo"));
-                            return;
-                        }
-
-                        DataTable dtAllService = result.QueryResult as DataTable;
-                        DataRow[] serviceRows3 = dtAllService.Select(string.Format("Loai=3"));
-                        if (serviceRows3 != null && serviceRows3.Length > 0)
-                        {
-                            foreach (DataRow r in serviceRows3)
-                            {
-                                string serviceName = r["Name"].ToString();
-                                bool isNormal_Abnormal = Convert.ToBoolean(r["Normal_Abnormal"]);
-                                bool isNegative_Positive = Convert.ToBoolean(r["Negative_Positive"]);
-                                if (!isNormal_Abnormal && !isNegative_Positive)
-                                {
-                                    MsgBox.Show(Application.ProductName, string.Format("Dịch vụ: '{0}' chưa được cấu hình. Vui lòng cấu hình cho dịch vụ này.", serviceName), 
-                                        IconType.Information);
-                                    return;
-                                }
-                            }
-                        }
-
-                        foreach (MauHoSo mauHoSo in mauHoSoList)
-                        {
-                            try
-                            {
-                                object fileName = GetMauHoSoTemplate(mauHoSo);
-                                object reportFileName = string.Format("{0}\\Temp\\{1}", Application.StartupPath, Path.GetFileName(fileName.ToString()));
-                                File.Copy(fileName.ToString(), reportFileName.ToString(), true);
-
-                                if (mauHoSo.Loai == 1)
-                                {
-                                    DataRow[] serviceRows = dtAllService.Select(string.Format("Loai=1"));
-                                    ExportWord.PrintXetNghiem(reportFileName, row, serviceRows,
-                                        ExcelPrintPreview.ConvertToExcelPrinterFriendlyName(_printDialog.PrinterSettings.PrinterName));
-                                }
-                                else if (mauHoSo.Loai == 2)
-                                {
-                                    DataRow[] serviceRows = dtAllService.Select(string.Format("Loai=2"));
-                                    ExportWord.PrintChecklist(reportFileName, row, serviceRows,
-                                        ExcelPrintPreview.ConvertToExcelPrinterFriendlyName(_printDialog.PrinterSettings.PrinterName));
-                                }
-                                else if (mauHoSo.Loai == 3)
-                                {
-                                    DataRow[] serviceRows = dtAllService.Select(string.Format("Loai=3"));
-                                    ExportWord.PrintKetQuaCanLamSang(reportFileName, row, serviceRows,
-                                        ExcelPrintPreview.ConvertToExcelPrinterFriendlyName(_printDialog.PrinterSettings.PrinterName));
-                                }
-                                else
-                                {
-                                    ExportWord.PrintMauHoSoChung(reportFileName, row,
-                                        ExcelPrintPreview.ConvertToExcelPrinterFriendlyName(_printDialog.PrinterSettings.PrinterName));
-                                }
-                            }
-                            catch (Exception ex)
-                            {
-                                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
-                                Utility.WriteToTraceLog(ex.Message);
-                            }
-                        }
-                    }
-                }
-            }
-            else
-                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân cần in.", IconType.Information);
-        }
-
-        private string GetMauHoSoTemplate(MauHoSo mauHoSo)
-        {
-            switch (mauHoSo.Loai)
-            {
-                case 1:
-                    return string.Format("{0}\\Templates\\1 ABORATORY REQUEST FORM.doc", Application.StartupPath);
-                case 2:
-                    return string.Format("{0}\\Templates\\2 CHECK LIST.doc", Application.StartupPath);
-                case 3:
-                    return string.Format("{0}\\Templates\\3 GENERAL EXAMINATION REPORT NEW.doc", Application.StartupPath);
-                case 4:
-                    return string.Format("{0}\\Templates\\4 ECG FORM NEW.doc", Application.StartupPath);
-                case 5:
-                    return string.Format("{0}\\Templates\\5 X RAY.doc", Application.StartupPath);
-                case 6:
-                    return string.Format("{0}\\Templates\\6 AUDIOMETRY.doc", Application.StartupPath);
-                case 7:
-                    return string.Format("{0}\\Templates\\7 SO DO RANG.doc", Application.StartupPath);
-                case 8:
-                    return string.Format("{0}\\Templates\\8 TAT KUC XA.doc", Application.StartupPath);
-            }
-
-            return string.Empty;
         }
 
         private void OnCheckAll(bool check)
@@ -330,6 +236,69 @@ namespace MM.Controls
                 }
             }
         }
+
+        private void OnTraHoSo()
+        {
+            List<DataRow> checkedRows = _dictPatient.Values.ToList();
+            if (checkedRows.Count > 0)
+            {
+                dlgNgayTraHoSo dlg = new dlgNgayTraHoSo();
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    Cursor.Current = Cursors.WaitCursor;
+                    foreach (DataRow row in checkedRows)
+                    {
+                        string contractMemberGUID = row["ContractMemberGUID"].ToString();
+                        string tenHopDong = cboMaHopDong.Text;
+                        string tenBenhNhan = row["FullName"].ToString();
+                        string patientGUID = row["PatientGUID"].ToString();
+                        Result result = CompanyContractBus.TraHoSo(contractMemberGUID, patientGUID, tenBenhNhan, _hopDongGUID, tenHopDong, true, dlg.NgayTra);
+                        if (!result.IsOK)
+                        {
+                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyContractBus.TraHoSo"), IconType.Error);
+                            Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.TraHoSo"));
+                            return;
+                        }
+                    }
+
+                    MsgBox.Show(Application.ProductName, "Đã trả hồ sơ hoàn tất.", IconType.Information);
+                    SearchAsThread();
+                }
+                
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân cần trả hồ sơ.", IconType.Information);
+        }
+
+        private void OnHuyTraHoSo()
+        {
+            List<DataRow> checkedRows = _dictPatient.Values.ToList();
+            if (checkedRows.Count > 0)
+            {
+                if (MsgBox.Question(Application.ProductName, "Bạn có muốn hủy trả hồ những bệnh nhân mà bạn đã đánh dấu ?") == DialogResult.Yes)
+                {
+                    foreach (DataRow row in checkedRows)
+                    {
+                        string contractMemberGUID = row["ContractMemberGUID"].ToString();
+                        string tenHopDong = cboMaHopDong.Text;
+                        string tenBenhNhan = row["FullName"].ToString();
+                        string patientGUID = row["PatientGUID"].ToString();
+                        Result result = CompanyContractBus.TraHoSo(contractMemberGUID, patientGUID, tenBenhNhan, _hopDongGUID, tenHopDong, false, DateTime.Now);
+                        if (!result.IsOK)
+                        {
+                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("CompanyContractBus.TraHoSo"), IconType.Error);
+                            Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.TraHoSo"));
+                            return;
+                        }
+                    }
+
+                    MsgBox.Show(Application.ProductName, "Đã hủy trả hồ sơ hoàn tất.", IconType.Information);
+                    SearchAsThread();
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân cần hủy trả hồ sơ.", IconType.Information);
+        }
         #endregion
 
         #region Window Event Handlers
@@ -342,7 +311,6 @@ namespace MM.Controls
 
             _dictPatient.Clear();
             if (_dtTemp != null) _dtTemp.Rows.Clear();
-            _isCheckAll = true;
             SearchAsThread();
         }
 
@@ -422,16 +390,6 @@ namespace MM.Controls
             OnCheckAll(chkChecked.Checked);
         }
 
-        private void btnPrint_Click(object sender, EventArgs e)
-        {
-            OnPrint();
-        }
-
-        private void inHoSoToolStripMenuItem_Click(object sender, EventArgs e)
-        {
-            OnPrint();
-        }
-
         private void dgPatient_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
             if (e.ColumnIndex == 2)
@@ -496,6 +454,79 @@ namespace MM.Controls
                 }
             }
         }
+
+        private void raNuTren40_CheckedChanged(object sender, EventArgs e)
+        {
+            if (raNuTren40.Checked) SearchAsThread();
+        }
+
+        private void radioButton3_CheckedChanged(object sender, EventArgs e)
+        {
+            if (raTatCa2.Checked)
+            {
+                SearchAsThread();
+
+                if (AllowEdit)
+                {
+                    btnTraHoSo.Enabled = true;
+                    btnHuyTraHoSo.Enabled = true;
+                    traHoSoToolStripMenuItem.Enabled = true;
+                    huyTraHoSoToolStripMenuItem.Enabled = true;
+                }
+            }
+        }
+
+        private void raDaTra_CheckedChanged(object sender, EventArgs e)
+        {
+            if (raDaTra.Checked)
+            {
+                SearchAsThread();
+
+                if (AllowEdit)
+                {
+                    btnTraHoSo.Enabled = true;
+                    btnHuyTraHoSo.Enabled = true;
+                    traHoSoToolStripMenuItem.Enabled = true;
+                    huyTraHoSoToolStripMenuItem.Enabled = true;
+                }
+            }
+        }
+
+        private void raChuaTra_CheckedChanged(object sender, EventArgs e)
+        {
+            if (raChuaTra.Checked)
+            {
+                SearchAsThread();
+
+                if (AllowEdit)
+                {
+                    btnTraHoSo.Enabled = true;
+                    btnHuyTraHoSo.Enabled = false;
+                    traHoSoToolStripMenuItem.Enabled = true;
+                    huyTraHoSoToolStripMenuItem.Enabled = false;
+                }
+            }
+        }
+
+        private void traHoSoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnTraHoSo();
+        }
+
+        private void huyTraHoSoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnHuyTraHoSo();
+        }
+
+        private void btnTraHoSo_Click(object sender, EventArgs e)
+        {
+            OnTraHoSo();
+        }
+
+        private void btnHuyTraHoSo_Click(object sender, EventArgs e)
+        {
+            OnHuyTraHoSo();
+        }
         #endregion
 
         #region Working Thread
@@ -529,5 +560,13 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
+
+        
+
+        
+
+        
     }
 }

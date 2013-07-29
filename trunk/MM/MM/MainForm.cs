@@ -416,6 +416,8 @@ namespace MM
                 _uInMauHoSo.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uCauHinhDichVuXetNghiem))
                 _uCauHinhDichVuXetNghiem.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uTraHoSo))
+                _uTraHoSo.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -1703,6 +1705,20 @@ namespace MM
                             _uCauHinhDichVuXetNghiem.AllowExportAll = isExportAll;
                             _uCauHinhDichVuXetNghiem.AllowConfirm = isConfirm;
                         }
+                        else if (functionCode == Const.TraHoSo)
+                        {
+                            companyToolStripMenuItem.Enabled = isLogin;
+                            traHoSoToolStripMenuItem.Enabled = isView && isLogin;
+                            _uTraHoSo.AllowAdd = isAdd;
+                            _uTraHoSo.AllowEdit = isEdit;
+                            _uTraHoSo.AllowDelete = isDelete;
+                            _uTraHoSo.AllowPrint = isPrint;
+                            _uTraHoSo.AllowExport = isExport;
+                            _uTraHoSo.AllowImport = isImport;
+                            _uTraHoSo.AllowLock = isLock;
+                            _uTraHoSo.AllowExportAll = isExportAll;
+                            _uTraHoSo.AllowConfirm = isConfirm;
+                        }
                     }
                 }
                 else
@@ -1939,6 +1955,7 @@ namespace MM
                 mapMauHoSoVoiDichVuToolStripMenuItem.Enabled = isLogin;
                 inMauHoSoToolStripMenuItem.Enabled = isLogin;
                 cauHinhDichVuXetNghiemToolStripMenuItem.Enabled = isLogin;
+                traHoSoToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -2417,7 +2434,18 @@ namespace MM
                 case "CauHinhDichVuXetNghiem":
                     OnCauHinhDichVuXetNghiem();
                     break;
+
+                case "TraHoSo":
+                    OnTraHoSo();
+                    break;
             }
+        }
+
+        private void OnTraHoSo()
+        {
+            this.Text = string.Format("{0} - Tra ho so", Application.ProductName);
+            ViewControl(_uTraHoSo);
+            _uTraHoSo.DisplayAsThread();
         }
 
         private void OnCauHinhDichVuXetNghiem()
@@ -3462,6 +3490,7 @@ namespace MM
             _uCauHinhDichVuXetNghiem.ClearData();
             _uMapMauHoSoVoiDichVu.ClearData();
             _uInMauHoSo.ClearData();
+            _uTraHoSo.ClearData();
         }
         #endregion
 

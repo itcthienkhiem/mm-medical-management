@@ -138,6 +138,8 @@
             this.toolStripSeparator80 = new System.Windows.Forms.ToolStripSeparator();
             this.mapMauHoSoVoiDichVuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator81 = new System.Windows.Forms.ToolStripSeparator();
+            this.cauHinhDichVuXetNghiemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator82 = new System.Windows.Forms.ToolStripSeparator();
             this.inMauHoSoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.receiptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.receiptListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -378,8 +380,9 @@
             this._uServicesList = new MM.Controls.uServicesList();
             this._timerCheckAlert = new System.Windows.Forms.Timer(this.components);
             this._timerPatient = new System.Windows.Forms.Timer(this.components);
-            this.cauHinhDichVuXetNghiemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator82 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripSeparator83 = new System.Windows.Forms.ToolStripSeparator();
+            this.traHoSoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this._uTraHoSo = new MM.Controls.uTraHoSo();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -1071,7 +1074,9 @@
             this.toolStripSeparator81,
             this.cauHinhDichVuXetNghiemToolStripMenuItem,
             this.toolStripSeparator82,
-            this.inMauHoSoToolStripMenuItem});
+            this.inMauHoSoToolStripMenuItem,
+            this.toolStripSeparator83,
+            this.traHoSoToolStripMenuItem});
             resources.ApplyResources(this.companyToolStripMenuItem, "companyToolStripMenuItem");
             this.companyToolStripMenuItem.Name = "companyToolStripMenuItem";
             // 
@@ -1148,6 +1153,18 @@
             // 
             this.toolStripSeparator81.Name = "toolStripSeparator81";
             resources.ApplyResources(this.toolStripSeparator81, "toolStripSeparator81");
+            // 
+            // cauHinhDichVuXetNghiemToolStripMenuItem
+            // 
+            resources.ApplyResources(this.cauHinhDichVuXetNghiemToolStripMenuItem, "cauHinhDichVuXetNghiemToolStripMenuItem");
+            this.cauHinhDichVuXetNghiemToolStripMenuItem.Name = "cauHinhDichVuXetNghiemToolStripMenuItem";
+            this.cauHinhDichVuXetNghiemToolStripMenuItem.Tag = "CauHinhDichVuXetNghiem";
+            this.cauHinhDichVuXetNghiemToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator82
+            // 
+            this.toolStripSeparator82.Name = "toolStripSeparator82";
+            resources.ApplyResources(this.toolStripSeparator82, "toolStripSeparator82");
             // 
             // inMauHoSoToolStripMenuItem
             // 
@@ -2378,6 +2395,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uTraHoSo);
             this._mainPanel.Controls.Add(this._uCauHinhDichVuXetNghiem);
             this._mainPanel.Controls.Add(this._uInMauHoSo);
             this._mainPanel.Controls.Add(this._uMapMauHoSoVoiDichVu);
@@ -2888,17 +2906,23 @@
             // 
             this._timerPatient.Interval = 5000;
             // 
-            // cauHinhDichVuXetNghiemToolStripMenuItem
+            // toolStripSeparator83
             // 
-            resources.ApplyResources(this.cauHinhDichVuXetNghiemToolStripMenuItem, "cauHinhDichVuXetNghiemToolStripMenuItem");
-            this.cauHinhDichVuXetNghiemToolStripMenuItem.Name = "cauHinhDichVuXetNghiemToolStripMenuItem";
-            this.cauHinhDichVuXetNghiemToolStripMenuItem.Tag = "CauHinhDichVuXetNghiem";
-            this.cauHinhDichVuXetNghiemToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            this.toolStripSeparator83.Name = "toolStripSeparator83";
+            resources.ApplyResources(this.toolStripSeparator83, "toolStripSeparator83");
             // 
-            // toolStripSeparator82
+            // traHoSoToolStripMenuItem
             // 
-            this.toolStripSeparator82.Name = "toolStripSeparator82";
-            resources.ApplyResources(this.toolStripSeparator82, "toolStripSeparator82");
+            resources.ApplyResources(this.traHoSoToolStripMenuItem, "traHoSoToolStripMenuItem");
+            this.traHoSoToolStripMenuItem.Image = global::MM.Properties.Resources.Freelance_icon;
+            this.traHoSoToolStripMenuItem.Name = "traHoSoToolStripMenuItem";
+            this.traHoSoToolStripMenuItem.Tag = "TraHoSo";
+            this.traHoSoToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // _uTraHoSo
+            // 
+            resources.ApplyResources(this._uTraHoSo, "_uTraHoSo");
+            this._uTraHoSo.Name = "_uTraHoSo";
             // 
             // MainForm
             // 
@@ -3282,6 +3306,9 @@
         private Controls.uCauHinhDichVuXetNghiem _uCauHinhDichVuXetNghiem;
         private System.Windows.Forms.ToolStripMenuItem cauHinhDichVuXetNghiemToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator82;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator83;
+        private System.Windows.Forms.ToolStripMenuItem traHoSoToolStripMenuItem;
+        private Controls.uTraHoSo _uTraHoSo;
 
     }
 }

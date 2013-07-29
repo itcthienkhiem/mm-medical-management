@@ -197,6 +197,12 @@
     <Compile Include="Dialogs\dlgAddDichVuLamThem.Designer.cs">
       <DependentUpon>dlgAddDichVuLamThem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgNgayTraHoSo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgNgayTraHoSo.Designer.cs">
+      <DependentUpon>dlgNgayTraHoSo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgSelectTinNhanMau.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1742,6 +1748,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddDichVuLamThem.resx">
       <DependentUpon>dlgAddDichVuLamThem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgNgayTraHoSo.resx">
+      <DependentUpon>dlgNgayTraHoSo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgSelectTinNhanMau.resx">
       <DependentUpon>dlgSelectTinNhanMau.cs</DependentUpon>
