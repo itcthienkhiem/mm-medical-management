@@ -265,6 +265,126 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetContractMemberList(string contractGUID, string tenBenhNhan, int type, int doiTuong, int traHoSo)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Empty;
+                string subQuery = "1=1";
+                if (traHoSo == 1)
+                    subQuery = "IsTraHoSo='True'";
+                else if (traHoSo == 2)
+                    subQuery = "IsTraHoSo='False'";
+
+                if (tenBenhNhan.Trim() == string.Empty)
+                {
+                    if (doiTuong == 0) //Tất cả
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND Archived = 'False' AND {2} ORDER BY FirstName, FullName",
+                                contractGUID, (byte)Status.Actived, subQuery);
+                    }
+                    else if (doiTuong == 1)//Nam
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND GenderAsStr = N'Nam' AND Archived = 'False' AND {2} ORDER BY FirstName, FullName",
+                                contractGUID, (byte)Status.Actived, subQuery);
+                    }
+                    else if (doiTuong == 2)//Nữ độc thân
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND GenderAsStr = N'Nữ' AND (Tinh_Trang_Gia_Dinh IS NULL OR Tinh_Trang_Gia_Dinh <> N'Có gia đình') AND Archived = 'False' AND {2} ORDER BY FirstName, FullName",
+                                contractGUID, (byte)Status.Actived, subQuery);
+                    }
+                    else if (doiTuong == 3)//Nữ có gia đình
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND GenderAsStr = N'Nữ' AND Tinh_Trang_Gia_Dinh IS NOT NULL AND Tinh_Trang_Gia_Dinh = N'Có gia đình' AND Archived = 'False' AND {2} ORDER BY FirstName, FullName",
+                                contractGUID, (byte)Status.Actived, subQuery);
+                    }
+                    else if (doiTuong == 4) //Nam trên 40 tuổi
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND GenderAsStr = N'Nam' AND Archived = 'False' AND {2} ORDER BY FirstName, FullName",
+                                contractGUID, (byte)Status.Actived, subQuery);
+                    }
+                    else if (doiTuong == 5) //Nữ trên 40 tuổi
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND GenderAsStr = N'Nữ' AND Archived = 'False' AND {2} ORDER BY FirstName, FullName",
+                                contractGUID, (byte)Status.Actived, subQuery);
+                    }
+                }
+                else
+                {
+                    string fieldName = string.Empty;
+                    if (type == 0) fieldName = "FullName";
+                    else if (type == 1) fieldName = "FileNum";
+                    else fieldName = "Mobile";
+
+                    if (doiTuong == 0) //Tất cả
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND {2} LIKE N'%{3}%' AND Archived = 'False' AND {4} ORDER BY FirstName, FullName",
+                                contractGUID, (byte)Status.Actived, fieldName, tenBenhNhan, subQuery);
+                    }
+                    else if (doiTuong == 1)//Nam
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND {2} LIKE N'%{3}%' AND GenderAsStr = N'Nam' AND Archived = 'False' AND {4} ORDER BY FirstName, FullName",
+                                contractGUID, (byte)Status.Actived, fieldName, tenBenhNhan, subQuery);
+                    }
+                    else if (doiTuong == 2)//Nữ độc thân
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND {2} LIKE N'%{3}%' AND GenderAsStr = N'Nữ' AND (Tinh_Trang_Gia_Dinh IS NULL OR Tinh_Trang_Gia_Dinh <> N'Có gia đình') AND Archived = 'False' AND {4} ORDER BY FirstName, FullName",
+                                contractGUID, (byte)Status.Actived, fieldName, tenBenhNhan, subQuery);
+                    }
+                    else if (doiTuong == 3)//Nữ có gia đình
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND {2} LIKE N'%{3}%' AND GenderAsStr = N'Nữ' AND Tinh_Trang_Gia_Dinh IS NOT NULL AND Tinh_Trang_Gia_Dinh = N'Có gia đình' AND Archived = 'False' AND {4} ORDER BY FirstName, FullName",
+                                contractGUID, (byte)Status.Actived, fieldName, tenBenhNhan, subQuery);
+                    }
+                    else if (doiTuong == 4) //Nam trên 40 tuổi
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND {2} LIKE N'%{3}%' AND GenderAsStr = N'Nam' AND Archived = 'False' AND {4} ORDER BY FirstName, FullName",
+                                contractGUID, (byte)Status.Actived, fieldName, tenBenhNhan, subQuery);
+                    }
+                    else if (doiTuong == 5) //Nữ trên 40 tuổi
+                    {
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM ContractMemberView WITH(NOLOCK) WHERE CompanyContractGUID='{0}' AND Status={1} AND {2} LIKE N'%{3}%' AND GenderAsStr = N'Nữ' AND Archived = 'False' AND {4} ORDER BY FirstName, FullName",
+                                contractGUID, (byte)Status.Actived, fieldName, tenBenhNhan, subQuery);
+                    }
+                }
+
+                if (doiTuong != 4 && doiTuong != 5)
+                    return ExcuteQuery(query);
+                else
+                {
+                    result = ExcuteQuery(query);
+                    if (!result.IsOK) return result;
+
+                    DataTable dt = result.QueryResult as DataTable;
+                    DataTable dt2 = dt.Clone();
+
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        if (row["DobStr"] == null || row["DobStr"] == DBNull.Value || row["DobStr"].ToString().Trim() == string.Empty) continue;
+                        string dobStr = row["DobStr"].ToString().Trim();
+                        int age = Utility.GetAge(dobStr);
+                        if (age >= 40) dt2.ImportRow(row);
+                    }
+
+                    result.QueryResult = dt2;
+                }
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetDanhSachGiaDichVuList(string contractGUID)
         {
             Result result = null;
@@ -1606,6 +1726,86 @@ namespace MM.Bussiness
             {
                 result.Error.Code = ErrorCode.UNKNOWN_ERROR;
                 result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
+        public static Result TraHoSo(string contractMemberGUID, string patientGUID, string patientName, string hopDongGUID, string hopDongName, 
+            bool isTraHoSo, DateTime ngayTra)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                string desc = string.Empty;
+                db = new MMOverride();
+
+                using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
+                {
+                    ContractMember cm = db.ContractMembers.FirstOrDefault(c => c.ContractMemberGUID.ToString() == contractMemberGUID);
+                    if (cm != null)
+                    {
+                        cm.IsTraHoSo = isTraHoSo;
+                        string trangThai = string.Empty;    
+                        string ngayTraStr = string.Empty;
+
+                        if (isTraHoSo)
+                        {
+                            cm.NgayTra = ngayTra;
+                            trangThai = "Đã trả";
+                            ngayTraStr = ngayTra.ToString("dd/MM/yyyy HH:mm:ss");
+                        }
+                        else
+                        {
+                            cm.NgayTra = null;
+                            trangThai = "Chưa trả";
+                        }
+
+                        cm.UpdatedBy = Guid.Parse(Global.UserGUID);
+                        cm.UpdatedDate = DateTime.Now;
+
+                        desc = string.Format("ContractMemberGUID: '{0}', PatientGUID: '{1}', Tên bệnh nhân: '{2}', HopDongGUID: '{3}', Tên hợp đồng: '{4}', Trạng thái: '{5}', Ngày trả: '{6}'",
+                            contractMemberGUID, patientGUID, patientName, hopDongGUID, hopDongName, trangThai, ngayTraStr);
+                    }
+
+                    //Tracking
+                    if (desc != string.Empty)
+                        desc = desc.Substring(0, desc.Length - 1);
+                    Tracking tk = new Tracking();
+                    tk.TrackingGUID = Guid.NewGuid();
+                    tk.TrackingDate = DateTime.Now;
+                    tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
+                    tk.ActionType = (byte)ActionType.Edit;
+                    tk.Action = isTraHoSo ? "Trả hồ sơ" : "Hủy trả hồ sơ";
+                    tk.Description = desc;
+                    tk.TrackingType = (byte)TrackingType.None;
+                    tk.ComputerName = Utility.GetDNSHostName();
+                    db.Trackings.InsertOnSubmit(tk);
+
+                    db.SubmitChanges();
+                    t.Complete();
+                }
+
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
             }
 
             return result;
