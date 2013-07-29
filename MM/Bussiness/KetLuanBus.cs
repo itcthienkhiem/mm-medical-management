@@ -27,7 +27,7 @@ namespace MM.Bussiness
                 //    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM KetLuanView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND NgayKetLuan BETWEEN '{1}' AND '{2}' AND Status = {3} AND Archived = 'False' AND DocStaffGUID = '{4}' ORDER BY NgayKetLuan DESC",
                 //        patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), (byte)Status.Actived, Global.UserGUID);
 
-                query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM KetLuanView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND NgayKetLuan BETWEEN '{1}' AND '{2}' AND Status = {3} AND Archived = 'False' ORDER BY NgayKetLuan DESC",
+                query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM KetLuanView WITH(NOLOCK) WHERE PatientGUID = '{0}' AND NgayKetLuan BETWEEN '{1}' AND '{2}' AND Status = {3} ORDER BY NgayKetLuan DESC",
                         patientGUID, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), (byte)Status.Actived);
 
                 return ExcuteQuery(query);

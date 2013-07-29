@@ -23,7 +23,7 @@ namespace MM.Bussiness
 
                 //if (Global.StaffType != StaffType.DieuDuong)
                 {
-                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, 'R(P): ' + MatPhai + '; L(T): ' + MatTrai + '; ' + CASE HieuChinh WHEN 'True' THEN N'Hiệu chỉnh' ELSE N'Không hiệu chỉnh' END AS ThiLuc FROM CanDoView WITH(NOLOCK) WHERE Status = {0} AND NgayCanDo BETWEEN '{1}' AND '{2}' AND PatientGUID = '{3}' AND Archived = 'False' ORDER BY NgayCanDo DESC",
+                    query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, *, 'R(P): ' + MatPhai + '; L(T): ' + MatTrai + '; ' + CASE HieuChinh WHEN 'True' THEN N'Hiệu chỉnh' ELSE N'Không hiệu chỉnh' END AS ThiLuc FROM CanDoView WITH(NOLOCK) WHERE Status = {0} AND NgayCanDo BETWEEN '{1}' AND '{2}' AND PatientGUID = '{3}' ORDER BY NgayCanDo DESC",
                             (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"), patientGUID);
                 }
                 //else
