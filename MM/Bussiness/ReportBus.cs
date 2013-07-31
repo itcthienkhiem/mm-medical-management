@@ -814,5 +814,33 @@ namespace MM.Bussiness
 
             return result;
         }
+
+        public static Result GetDoanhThuNhomDichVu(DateTime tuNgay, DateTime denNgay, int type)
+        {
+            Result result = new Result();
+
+            try
+            {
+                string subQuery = "1=1";
+                if (type == 1) subQuery = "ChuaThuTien='False'";
+                else if (type == 2) subQuery = "ChuaThuTien='True'";
+
+                string query = string.Format("SELECT dbo.ServiceGroup.[Name], SUM(CAST((dbo.ReceiptDetailView.Price - (dbo.ReceiptDetailView.Price * dbo.ReceiptDetailView.Discount)/100) AS float) * dbo.ReceiptDetailView.SoLuong) AS TongTien FROM  dbo.ReceiptDetailView INNER JOIN dbo.Receipt ON dbo.ReceiptDetailView.ReceiptGUID = dbo.Receipt.ReceiptGUID INNER JOIN dbo.Service_ServiceGroup INNER JOIN dbo.ServiceGroup ON dbo.Service_ServiceGroup.ServiceGroupGUID = dbo.ServiceGroup.ServiceGroupGUID ON dbo.ReceiptDetailView.ServiceGUID = dbo.Service_ServiceGroup.ServiceGUID WHERE dbo.Receipt.Status = 0 AND dbo.ReceiptDetailView.ReceiptDetailStatus = 0 AND dbo.ServiceGroup.Status = 0 AND ReceiptDate BETWEEN '{0}' AND '{1}' AND {2} GROUP BY dbo.ServiceGroup.[Name] ORDER BY dbo.ServiceGroup.[Name]",
+                    tuNgay.ToString("yyyy-MM-dd 00:00:00"), denNgay.ToString("yyyy-MM-dd 23:59:59"), subQuery);
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
     }
 }

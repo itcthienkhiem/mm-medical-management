@@ -50,10 +50,6 @@ namespace MM
             Utility.CreateFolder(Global.UsersPath);
 
             InitControl();
-
-            //string pass = "fy2p7fwk13MQfaRoBHjmbA==";
-            //RijndaelCrypto cryto = new RijndaelCrypto();
-            //pass = cryto.Decrypt(pass);
         }
         #endregion
 
