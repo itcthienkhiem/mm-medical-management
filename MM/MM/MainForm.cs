@@ -24,8 +24,6 @@ namespace MM
     {
         #region Members
         private bool _flag = true;
-        //private List<SerialPort> _ports = new List<SerialPort>();
-        //private Hashtable _htLastResult = new Hashtable();
         private bool _isStartTiemNgua = false;
         private bool _isStartCapCuuHetHSD = false;
         private bool _isStartCapCuuHetTonKho = false;
