@@ -9806,5 +9806,97 @@ namespace MM.Exports
 
             return true;
         }
+
+        public static bool ExportDoanhThuTheoNhomDichVuToExcel(string exportFileName, DateTime tuNgay, DateTime denNgay, int type)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            IWorkbook workBook = null;
+
+            try
+            {
+                Result result = ReportBus.GetDoanhThuNhomDichVu(tuNgay, denNgay, type);
+                if (!result.IsOK)
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReportBus.GetDoanhThuNhomDichVu"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("ReportBus.GetDoanhThuNhomDichVu"));
+                    return false;
+                }
+
+                DataTable dt = result.QueryResult as DataTable;
+                if (dt == null) return false;
+
+                string excelTemplateName = string.Format("{0}\\Templates\\DoanhThuTheoNhomDichVuTemplate.xls", Application.StartupPath);
+                Utility.CopyTemplates(excelTemplateName);
+
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+                workSheet.Cells["A2"].Value = string.Format("Từ ngày: {0} - Đến ngày: {1}", tuNgay.ToString("dd/MM/yyyy"), denNgay.ToString("dd/MM/yyyy"));
+
+                int rowIndex = 3;
+                IRange range;
+                double tongCong = 0.0;
+                
+                foreach (DataRow row in dt.Rows)
+                {
+                    string nhomDichVu = row["Name"].ToString();
+                    double tongTien = Convert.ToDouble(row["TongTien"]);
+                    tongCong += tongTien;    
+
+                    workSheet.Cells[rowIndex, 0].Value = nhomDichVu;
+
+                    if (tongTien > 0)
+                        workSheet.Cells[rowIndex, 1].Value = tongTien.ToString("#,###");
+                    else
+                        workSheet.Cells[rowIndex, 1].Value = tongTien.ToString();
+
+                    workSheet.Cells[rowIndex, 1].HorizontalAlignment = HAlign.Right;
+
+                    rowIndex++;
+                }
+
+                if (rowIndex > 3)
+                {
+                    range = workSheet.Cells[string.Format("A4:B{0}", rowIndex)];
+                    range.Borders.Color = Color.Black;
+                    range.Borders.LineStyle = LineStyle.Continuous;
+                    range.Borders.Weight = BorderWeight.Thin;
+                }
+
+                range = workSheet.Cells[string.Format("A{0}", rowIndex + 1)];
+                range.Value = "Tổng cộng:";
+                range.Font.Bold = true;
+                range.HorizontalAlignment = HAlign.Right;
+
+                range = workSheet.Cells[string.Format("B{0}", rowIndex + 1)];
+                if (tongCong > 0)
+                    range.Value = tongCong.ToString("#,###");
+                else
+                    range.Value = tongCong.ToString();
+
+                range.Font.Bold = true;
+                range.HorizontalAlignment = HAlign.Right;
+
+                string path = string.Format("{0}\\Temp", Application.StartupPath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
     }
 }

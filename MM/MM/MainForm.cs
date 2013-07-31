@@ -412,6 +412,10 @@ namespace MM
                 _uCauHinhDichVuXetNghiem.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uTraHoSo))
                 _uTraHoSo.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uDoanhThuTheoNgay))
+                _uDoanhThuTheoNgay.InitData();
+            else if (ctrl.GetType() == typeof(uDoanhThuTheoNhomDichVu))
+                _uDoanhThuTheoNhomDichVu.InitData();
         }
 
         private void SaveAppConfig()
@@ -889,11 +893,6 @@ namespace MM
                             _uGiaVonDichVuList.AllowExport = isExport;
                             _uGiaVonDichVuList.AllowImport = isImport;
                             _uGiaVonDichVuList.AllowLock = isLock;
-                        }
-                        else if (functionCode == Const.DoanhThuTheoNgay)
-                        {
-                            doanhThuTheoNgayToolStripMenuItem.Enabled = isView & isLogin;
-
                         }
                         else if (functionCode == Const.PhongCho)
                         {
@@ -1713,6 +1712,34 @@ namespace MM
                             _uTraHoSo.AllowExportAll = isExportAll;
                             _uTraHoSo.AllowConfirm = isConfirm;
                         }
+                        else if (functionCode == Const.DoanhThuTheoNhomDichVu)
+                        {
+                            reportToolStripMenuItem.Enabled = isLogin;
+                            doanhThuTheoNhomDichVuToolStripMenuItem.Enabled = isView && isLogin;
+                            _uDoanhThuTheoNhomDichVu.AllowAdd = isAdd;
+                            _uDoanhThuTheoNhomDichVu.AllowEdit = isEdit;
+                            _uDoanhThuTheoNhomDichVu.AllowDelete = isDelete;
+                            _uDoanhThuTheoNhomDichVu.AllowPrint = isPrint;
+                            _uDoanhThuTheoNhomDichVu.AllowExport = isExport;
+                            _uDoanhThuTheoNhomDichVu.AllowImport = isImport;
+                            _uDoanhThuTheoNhomDichVu.AllowLock = isLock;
+                            _uDoanhThuTheoNhomDichVu.AllowExportAll = isExportAll;
+                            _uDoanhThuTheoNhomDichVu.AllowConfirm = isConfirm;
+                        }
+                        else if (functionCode == Const.DoanhThuTheoNgay)
+                        {
+                            reportToolStripMenuItem.Enabled = isLogin;
+                            doanhThuTheoNgayToolStripMenuItem.Enabled = isView && isLogin;
+                            _uDoanhThuTheoNgay.AllowAdd = isAdd;
+                            _uDoanhThuTheoNgay.AllowEdit = isEdit;
+                            _uDoanhThuTheoNgay.AllowDelete = isDelete;
+                            _uDoanhThuTheoNgay.AllowPrint = isPrint;
+                            _uDoanhThuTheoNgay.AllowExport = isExport;
+                            _uDoanhThuTheoNgay.AllowImport = isImport;
+                            _uDoanhThuTheoNgay.AllowLock = isLock;
+                            _uDoanhThuTheoNgay.AllowExportAll = isExportAll;
+                            _uDoanhThuTheoNgay.AllowConfirm = isConfirm;
+                        }
                     }
                 }
                 else
@@ -1950,6 +1977,7 @@ namespace MM
                 inMauHoSoToolStripMenuItem.Enabled = isLogin;
                 cauHinhDichVuXetNghiemToolStripMenuItem.Enabled = isLogin;
                 traHoSoToolStripMenuItem.Enabled = isLogin;
+                doanhThuTheoNhomDichVuToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -2432,7 +2460,18 @@ namespace MM
                 case "TraHoSo":
                     OnTraHoSo();
                     break;
+
+                case "DoanhThuTheoNhomDichVu":
+                    OnDoanhThuTheoNhomDichVu();
+                    break;
             }
+        }
+
+        private void OnDoanhThuTheoNhomDichVu()
+        {
+            this.Text = string.Format("{0} - Doanh thu theo nhom dich vu", Application.ProductName);
+            ViewControl(_uDoanhThuTheoNhomDichVu);
+            _uDoanhThuTheoNhomDichVu.InitData();
         }
 
         private void OnTraHoSo()
@@ -2901,6 +2940,7 @@ namespace MM
         {
             this.Text = string.Format("{0} - Bao cao doanh thu theo ngay", Application.ProductName);
             ViewControl(_uDoanhThuTheoNgay);
+            _uDoanhThuTheoNgay.InitData();
         }
 
         private void OnGiaVonDichVu()

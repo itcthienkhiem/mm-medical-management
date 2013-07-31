@@ -141,6 +141,8 @@
             this.cauHinhDichVuXetNghiemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator82 = new System.Windows.Forms.ToolStripSeparator();
             this.inMauHoSoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator83 = new System.Windows.Forms.ToolStripSeparator();
+            this.traHoSoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.receiptToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.receiptListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator24 = new System.Windows.Forms.ToolStripSeparator();
@@ -178,6 +180,8 @@
             this.toolStripSeparator16 = new System.Windows.Forms.ToolStripSeparator();
             this.doanhThuTheoNgayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator31 = new System.Windows.Forms.ToolStripSeparator();
+            this.doanhThuTheoNhomDichVuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator84 = new System.Windows.Forms.ToolStripSeparator();
             this.dichVuHopDongToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator22 = new System.Windows.Forms.ToolStripSeparator();
             this.dichVuTuTucToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -296,6 +300,7 @@
             this.dockSite3 = new DevComponents.DotNetBar.DockSite();
             this._timerShowAlert = new System.Windows.Forms.Timer(this.components);
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uTraHoSo = new MM.Controls.uTraHoSo();
             this._uCauHinhDichVuXetNghiem = new MM.Controls.uCauHinhDichVuXetNghiem();
             this._uInMauHoSo = new MM.Controls.uInMauHoSo();
             this._uMapMauHoSoVoiDichVu = new MM.Controls.uMapMauHoSoVoiDichVu();
@@ -380,9 +385,7 @@
             this._uServicesList = new MM.Controls.uServicesList();
             this._timerCheckAlert = new System.Windows.Forms.Timer(this.components);
             this._timerPatient = new System.Windows.Forms.Timer(this.components);
-            this.toolStripSeparator83 = new System.Windows.Forms.ToolStripSeparator();
-            this.traHoSoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this._uTraHoSo = new MM.Controls.uTraHoSo();
+            this._uDoanhThuTheoNhomDichVu = new MM.Controls.uDoanhThuTheoNhomDichVu();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -1173,6 +1176,19 @@
             this.inMauHoSoToolStripMenuItem.Tag = "InMauHoSo";
             this.inMauHoSoToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
+            // toolStripSeparator83
+            // 
+            this.toolStripSeparator83.Name = "toolStripSeparator83";
+            resources.ApplyResources(this.toolStripSeparator83, "toolStripSeparator83");
+            // 
+            // traHoSoToolStripMenuItem
+            // 
+            resources.ApplyResources(this.traHoSoToolStripMenuItem, "traHoSoToolStripMenuItem");
+            this.traHoSoToolStripMenuItem.Image = global::MM.Properties.Resources.Freelance_icon;
+            this.traHoSoToolStripMenuItem.Name = "traHoSoToolStripMenuItem";
+            this.traHoSoToolStripMenuItem.Tag = "TraHoSo";
+            this.traHoSoToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
             // receiptToolStripMenuItem
             // 
             this.receiptToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -1417,6 +1433,8 @@
             this.toolStripSeparator16,
             this.doanhThuTheoNgayToolStripMenuItem,
             this.toolStripSeparator31,
+            this.doanhThuTheoNhomDichVuToolStripMenuItem,
+            this.toolStripSeparator84,
             this.dichVuHopDongToolStripMenuItem,
             this.toolStripSeparator22,
             this.dichVuTuTucToolStripMenuItem,
@@ -1463,6 +1481,18 @@
             // 
             this.toolStripSeparator31.Name = "toolStripSeparator31";
             resources.ApplyResources(this.toolStripSeparator31, "toolStripSeparator31");
+            // 
+            // doanhThuTheoNhomDichVuToolStripMenuItem
+            // 
+            resources.ApplyResources(this.doanhThuTheoNhomDichVuToolStripMenuItem, "doanhThuTheoNhomDichVuToolStripMenuItem");
+            this.doanhThuTheoNhomDichVuToolStripMenuItem.Name = "doanhThuTheoNhomDichVuToolStripMenuItem";
+            this.doanhThuTheoNhomDichVuToolStripMenuItem.Tag = "DoanhThuTheoNhomDichVu";
+            this.doanhThuTheoNhomDichVuToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator84
+            // 
+            this.toolStripSeparator84.Name = "toolStripSeparator84";
+            resources.ApplyResources(this.toolStripSeparator84, "toolStripSeparator84");
             // 
             // dichVuHopDongToolStripMenuItem
             // 
@@ -2161,7 +2191,7 @@
             this.dgPatient.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -2182,7 +2212,7 @@
             this.dgPatient.DataSource = this.patientViewBindingSource;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
             dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText;
@@ -2395,6 +2425,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uDoanhThuTheoNhomDichVu);
             this._mainPanel.Controls.Add(this._uTraHoSo);
             this._mainPanel.Controls.Add(this._uCauHinhDichVuXetNghiem);
             this._mainPanel.Controls.Add(this._uInMauHoSo);
@@ -2479,6 +2510,11 @@
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uTraHoSo
+            // 
+            resources.ApplyResources(this._uTraHoSo, "_uTraHoSo");
+            this._uTraHoSo.Name = "_uTraHoSo";
             // 
             // _uCauHinhDichVuXetNghiem
             // 
@@ -2906,23 +2942,10 @@
             // 
             this._timerPatient.Interval = 5000;
             // 
-            // toolStripSeparator83
+            // _uDoanhThuTheoNhomDichVu
             // 
-            this.toolStripSeparator83.Name = "toolStripSeparator83";
-            resources.ApplyResources(this.toolStripSeparator83, "toolStripSeparator83");
-            // 
-            // traHoSoToolStripMenuItem
-            // 
-            resources.ApplyResources(this.traHoSoToolStripMenuItem, "traHoSoToolStripMenuItem");
-            this.traHoSoToolStripMenuItem.Image = global::MM.Properties.Resources.Freelance_icon;
-            this.traHoSoToolStripMenuItem.Name = "traHoSoToolStripMenuItem";
-            this.traHoSoToolStripMenuItem.Tag = "TraHoSo";
-            this.traHoSoToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // _uTraHoSo
-            // 
-            resources.ApplyResources(this._uTraHoSo, "_uTraHoSo");
-            this._uTraHoSo.Name = "_uTraHoSo";
+            resources.ApplyResources(this._uDoanhThuTheoNhomDichVu, "_uDoanhThuTheoNhomDichVu");
+            this._uDoanhThuTheoNhomDichVu.Name = "_uDoanhThuTheoNhomDichVu";
             // 
             // MainForm
             // 
@@ -3309,6 +3332,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator83;
         private System.Windows.Forms.ToolStripMenuItem traHoSoToolStripMenuItem;
         private Controls.uTraHoSo _uTraHoSo;
+        private System.Windows.Forms.ToolStripMenuItem doanhThuTheoNhomDichVuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator84;
+        private Controls.uDoanhThuTheoNhomDichVu _uDoanhThuTheoNhomDichVu;
 
     }
 }
