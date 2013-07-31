@@ -2592,6 +2592,7 @@
     <None Include="Templates\DichVuXetNghiemTemplate.xls" />
     <None Include="Templates\DoanhThuTheoNgayTemplate.xls" />
     <None Include="Templates\DoanhThuTheoNhomDichVuTemplate.xls" />
+    <None Include="Templates\GiaThuocTemplate.xls" />
     <None Include="Templates\GiaVonDichVuTemplate.xls" />
     <None Include="Templates\HDGTGTTemplate.xls" />
     <None Include="Templates\KetQuaNoiSoiHongThanhQuanTemplate.xls" />
@@ -2606,6 +2607,7 @@
     <None Include="Templates\KhoCapCuuTemplate.xls" />
     <None Include="Templates\LichHenTemplate.xls" />
     <None Include="Templates\LichKhamTemplate.xls" />
+    <None Include="Templates\LoThuocTemplate.xls" />
     <None Include="Templates\MauHoSo\1 ABORATORY REQUEST FORM.doc" />
     <None Include="Templates\MauHoSo\2 CHECK LIST.doc" />
     <None Include="Templates\MauHoSo\3 GENERAL EXAMINATION REPORT NEW.doc" />

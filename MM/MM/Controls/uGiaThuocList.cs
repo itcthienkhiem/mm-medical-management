@@ -11,6 +11,7 @@ using MM.Common;
 using MM.Databasae;
 using MM.Bussiness;
 using MM.Dialogs;
+using MM.Exports;
 
 namespace MM.Controls
 {
@@ -204,7 +205,19 @@ namespace MM.Controls
 
         private void OnExportExcel()
         {
-
+            List<DataRow> checkedRows = _dictGiaThuoc.Values.ToList();
+            if (checkedRows.Count > 0)
+            {
+                SaveFileDialog dlg = new SaveFileDialog();
+                dlg.Title = "Export Excel";
+                dlg.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
+                if (dlg.ShowDialog() == DialogResult.OK)
+                {
+                    ExportExcel.ExportGiaThuocToExcel(dlg.FileName, checkedRows);
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những giá thuốc cần xuất Excel.", IconType.Information);
         }
         #endregion
 
