@@ -394,7 +394,6 @@ namespace MM.Exports
             return true;
         }
 
-
         public static bool ExportSymptomToExcel(string exportFileName, List<DataRow> checkedRows)
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -9875,6 +9874,166 @@ namespace MM.Exports
 
                 range.Font.Bold = true;
                 range.HorizontalAlignment = HAlign.Right;
+
+                string path = string.Format("{0}\\Temp", Application.StartupPath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
+
+        public static bool ExportGiaThuocToExcel(string exportFileName, List<DataRow> rows)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            IWorkbook workBook = null;
+
+            try
+            {
+                string excelTemplateName = string.Format("{0}\\Templates\\GiaThuocTemplate.xls", Application.StartupPath);
+                Utility.CopyTemplates(excelTemplateName);
+
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+
+                int rowIndex = 2;
+                IRange range;
+                int colIndex = 0;
+
+                foreach (DataRow row in rows)
+                {
+                    colIndex = 0;
+                    string tenThuoc = row["TenThuoc"].ToString();
+                    string bietDuoc = row["BietDuoc"] as string;
+                    double giaBan = Convert.ToDouble(row["GiaBan"]);
+                    string ngayApDung = Convert.ToDateTime(row["NgayApDung"]).ToString("dd/MM/yyyy");
+                    string donViTinh = row["DonViTinh"].ToString();
+
+                    workSheet.Cells[rowIndex, colIndex++].Value = tenThuoc;
+                    workSheet.Cells[rowIndex, colIndex++].Value = bietDuoc;
+
+                    if (giaBan > 0)
+                        workSheet.Cells[rowIndex, colIndex].Value = giaBan.ToString("#,###");
+                    else
+                        workSheet.Cells[rowIndex, colIndex].Value = giaBan.ToString();
+
+                    workSheet.Cells[rowIndex, colIndex++].HorizontalAlignment = HAlign.Right;
+
+                    workSheet.Cells[rowIndex, colIndex].Value = ngayApDung;
+                    workSheet.Cells[rowIndex, colIndex++].HorizontalAlignment = HAlign.Center;
+
+                    workSheet.Cells[rowIndex, colIndex].Value = donViTinh;
+                    workSheet.Cells[rowIndex, colIndex++].HorizontalAlignment = HAlign.Center;
+
+                    rowIndex++;
+                }
+
+                range = workSheet.Cells[string.Format("A3:E{0}", rowIndex)];
+                range.Borders.Color = Color.Black;
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Weight = BorderWeight.Thin;
+
+                string path = string.Format("{0}\\Temp", Application.StartupPath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
+
+        public static bool ExportLoThuocToExcel(string exportFileName, List<DataRow> rows)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            IWorkbook workBook = null;
+
+            try
+            {
+                string excelTemplateName = string.Format("{0}\\Templates\\LoThuocTemplate.xls", Application.StartupPath);
+                Utility.CopyTemplates(excelTemplateName);
+
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+
+                int rowIndex = 2;
+                IRange range;
+                int colIndex = 0;
+
+                foreach (DataRow row in rows)
+                {
+                    colIndex = 0;
+                    string maLoThuoc = row["MaLoThuoc"].ToString();
+                    string tenLoThuoc = row["TenLoThuoc"].ToString();
+                    string tenThuoc = row["TenThuoc"].ToString();
+                    string ngaySanXuat = Convert.ToDateTime(row["NgaySanXuat"]).ToString("dd/MM/yyyy");
+                    string ngayHetHan = Convert.ToDateTime(row["NgayHetHan"]).ToString("dd/MM/yyyy");
+                    int soLuongNhap = Convert.ToInt32(row["SoLuongNhap"]);
+                    double giaNhap = Convert.ToDouble(row["GiaNhap"]);
+                    string donViTinh = row["DonViTinhNhap"].ToString();
+
+                    workSheet.Cells[rowIndex, colIndex++].Value = maLoThuoc;
+                    workSheet.Cells[rowIndex, colIndex++].Value = tenLoThuoc;
+                    workSheet.Cells[rowIndex, colIndex++].Value = tenThuoc;
+
+                    workSheet.Cells[rowIndex, colIndex].Value = ngaySanXuat;
+                    workSheet.Cells[rowIndex, colIndex++].HorizontalAlignment = HAlign.Center;
+
+                    workSheet.Cells[rowIndex, colIndex].Value = ngayHetHan;
+                    workSheet.Cells[rowIndex, colIndex++].HorizontalAlignment = HAlign.Center;
+
+                    if (soLuongNhap > 0)
+                        workSheet.Cells[rowIndex, colIndex].Value = soLuongNhap.ToString("#,###");
+                    else
+                        workSheet.Cells[rowIndex, colIndex].Value = soLuongNhap.ToString();
+
+                    workSheet.Cells[rowIndex, colIndex++].HorizontalAlignment = HAlign.Right;
+
+                    if (giaNhap > 0)
+                        workSheet.Cells[rowIndex, colIndex].Value = giaNhap.ToString("#,###");
+                    else
+                        workSheet.Cells[rowIndex, colIndex].Value = giaNhap.ToString();
+
+                    workSheet.Cells[rowIndex, colIndex++].HorizontalAlignment = HAlign.Right;
+
+                    workSheet.Cells[rowIndex, colIndex].Value = donViTinh;
+                    workSheet.Cells[rowIndex, colIndex++].HorizontalAlignment = HAlign.Center;
+
+                    rowIndex++;
+                }
+
+                range = workSheet.Cells[string.Format("A3:H{0}", rowIndex)];
+                range.Borders.Color = Color.Black;
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Weight = BorderWeight.Thin;
 
                 string path = string.Format("{0}\\Temp", Application.StartupPath);
                 if (!Directory.Exists(path))

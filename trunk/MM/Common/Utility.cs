@@ -1123,6 +1123,14 @@ namespace MM.Common
                     case "Doanh thu theo nhóm dịch vụ":
                         fileName = string.Format("{0}\\Templates\\DoanhThuTheoNhomDichVuTemplate.xls", AppDomain.CurrentDomain.BaseDirectory);
                         break;
+
+                    case "Giá thuốc":
+                        fileName = string.Format("{0}\\Templates\\GiaThuocTemplate.xls", AppDomain.CurrentDomain.BaseDirectory);
+                        break;
+
+                    case "Lô thuốc":
+                        fileName = string.Format("{0}\\Templates\\LoThuocTemplate.xls", AppDomain.CurrentDomain.BaseDirectory);
+                        break;
                 }
 
                 if (fileName != string.Empty && File.Exists(fileName))
