@@ -215,6 +215,7 @@ namespace MM.Common
             ExcelTemplates.Add(Const.ChiDinhTemplate);
             ExcelTemplates.Add(Const.DichVuXetNghiemTemplate);
             ExcelTemplates.Add(Const.ThongKeThuocXuatHoaDonTemplate);
+            ExcelTemplates.Add(Const.DoanhThuTheoNhomDichVuTemplate);
 
             ExcelTemplates.Sort();
         }
