@@ -40,10 +40,12 @@ namespace MM.Controls
             btnAdd.Enabled = AllowAdd;
             btnEdit.Enabled = AllowEdit;
             btnDelete.Enabled = AllowDelete;
+            btnExportExcel.Enabled = AllowExport;
 
             addToolStripMenuItem.Enabled = AllowAdd;
             editToolStripMenuItem.Enabled = AllowEdit;
             deleteToolStripMenuItem.Enabled = AllowDelete;
+            exportExcelToolStripMenuItem.Enabled = AllowExport;
         }
 
         public void ClearData()
@@ -199,6 +201,11 @@ namespace MM.Controls
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những giá thuốc cần xóa.", IconType.Information);
         }
+
+        private void OnExportExcel()
+        {
+
+        }
         #endregion
 
         #region Window Event Handlers
@@ -343,6 +350,16 @@ namespace MM.Controls
         {
             SearchAsThread();
         }
+
+        private void exportExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnExportExcel();
+        }
+
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            OnExportExcel();
+        }
         #endregion
 
         #region Working Thread
@@ -376,5 +393,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+       
     }
 }

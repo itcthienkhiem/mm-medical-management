@@ -60,9 +60,11 @@ namespace MM.Controls
         {
             btnAdd.Enabled = AllowAdd;
             btnDelete.Enabled = AllowDelete;
+            btnExportExcel.Enabled = AllowExport;
 
             addToolStripMenuItem.Enabled = AllowAdd;
             deleteToolStripMenuItem.Enabled = AllowDelete;
+            exportExcelToolStripMenuItem.Enabled = AllowExport;
         }
 
         public void DisplayAsThread()
@@ -184,11 +186,6 @@ namespace MM.Controls
             List<string> deletedLoThuocList = new List<string>();
             List<DataRow> deletedRows = _dictLoThuoc.Values.ToList();
 
-            //foreach (DataRow row in deletedRows)
-            //{
-            //    deletedLoThuocList.Add(row["LoThuocGUID"].ToString());
-            //}
-
             if (deletedRows.Count > 0)
             {
                 foreach (DataRow row in deletedRows)
@@ -205,7 +202,7 @@ namespace MM.Controls
                     LoThuoc lt = rs.QueryResult as LoThuoc;
                     if (lt.SoLuongXuat > 0)
                     {
-                        MsgBox.Show(Application.ProductName, string.Format("Lô thuốc: '{0}' này đã xuất rồi không thể xóa.", lt.TenLoThuoc), 
+                        MsgBox.Show(Application.ProductName, string.Format("Lô thuốc: '{0}' này đã xuất rồi không thể xóa.", lt.TenLoThuoc),
                             IconType.Information);
                         return;
                     }
@@ -246,9 +243,6 @@ namespace MM.Controls
                                 if (rows != null && rows.Length > 0)
                                     _dtTemp.Rows.Remove(rows[0]);
                             }
-
-                            //_dictLoThuoc.Clear();
-                            //_dtTemp.Rows.Clear();
                         }
                         else
                         {
@@ -260,6 +254,11 @@ namespace MM.Controls
             }
             else
                 MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những lô thuốc cần xóa.", IconType.Information);
+        }
+
+        private void OnExportExcel()
+        {
+
         }
         #endregion
 
@@ -389,6 +388,16 @@ namespace MM.Controls
         {
             OnDeleteLoThuoc();
         }
+
+        private void btnExportExcel_Click(object sender, EventArgs e)
+        {
+            OnExportExcel();
+        }
+
+        private void exportExcelToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnExportExcel();
+        }
         #endregion
 
         #region Working Thread
@@ -422,6 +431,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
         
     }
