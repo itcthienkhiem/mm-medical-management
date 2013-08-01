@@ -342,3 +342,12 @@ Hai Hoan: ben do moi mo khoa Rang Ham Mat (OK)
 2. Chức năng report dịch vụ xét nghiệm
 
 3. Thêm thông tin hình thức thanh toán trong Phiếu thu (OK)
+
+1. BaoCaoCongNoHopDong		Báo cáo công nợ hợp đồng
+2. DoanhThuNhanVien			Báo cáo doanh thu nhân viên
+3. DoanhThuTheoNgay			Báo cáo doanh thu theo ngày
+4. DoanhThuTheoNhomDichVu	Doanh thu theo nhóm dịch vụ
+5. GiaCapCuu				Giá cấp cứu
+6. ServicePrice				Giá dịch vụ
+7. GiaThuoc					Giá thuốc
+8. GiaVonDichVu				Giá vốn dịch vụ
