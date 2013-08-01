@@ -217,7 +217,7 @@ namespace MM.Dialogs
             {
                 dgChiTiet.DataSource = result.QueryResult;
 
-                UpdateDataSourceDonGia();
+                if (_isNew) UpdateDataSourceDonGia();
                 UpdateNgayHetHanVaSoLuongTon();
 
                 RefreshNo();
@@ -679,7 +679,7 @@ namespace MM.Dialogs
                     dtChiTiet.Rows.Add(newRow);
                 }
 
-                UpdateDataSourceDonGia();
+                if (_isNew) UpdateDataSourceDonGia();
                 UpdateNgayHetHanVaSoLuongTon();
 
                 CalculateTongTien();
@@ -702,7 +702,18 @@ namespace MM.Dialogs
                 OnGetChiTietPhieuThuCapCuu(Guid.Empty.ToString());
             }
             else
+            {
+                dgChiTiet.Columns.RemoveAt(4);
+                DataGridViewTextBoxColumn col = new DataGridViewTextBoxColumn();
+                col.HeaderText = "Đơn giá";
+                col.DataPropertyName = "DonGia";
+                col.Width = 90;
+                col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
+                col.DefaultCellStyle.Format = "N0";
+                dgChiTiet.Columns.Insert(4, col);
+
                 DisplayInfo(_drPhieuThu);
+            }
 
             UpdateGUI();
         }
@@ -786,6 +797,7 @@ namespace MM.Dialogs
 
         private void dgChiTiet_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
+            if (!_isNew) return;
             if (dgChiTiet.CurrentCell.ColumnIndex == 5)
             {
                 TextBox textBox = e.Control as TextBox;
@@ -843,6 +855,7 @@ namespace MM.Dialogs
 
         private void dgChiTiet_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
+            if (!_isNew) return;
             if (e.ColumnIndex == 5)
             {
                 if (e.Value == null || e.Value.ToString() == string.Empty || e.Value == DBNull.Value)
@@ -852,7 +865,7 @@ namespace MM.Dialogs
 
         private void dgChiTiet_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
         {
-            RefreshNo();
+            //RefreshNo();
         }
 
         private void btnChonBenhNhan_Click(object sender, EventArgs e)
