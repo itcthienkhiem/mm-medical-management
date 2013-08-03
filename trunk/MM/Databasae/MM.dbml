@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="MM" Class="MMDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=VUNGUYEN764;Initial Catalog=MM;Persist Security Info=True;User ID=sa" SettingsObjectName="MM.Databasae.Properties.Settings" SettingsPropertyName="MMConnectionString11" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=VUNGUYEN764;Initial Catalog=MM;Persist Security Info=True;User ID=sa" SettingsObjectName="MM.Databasae.Properties.Settings" SettingsPropertyName="MMConnectionString12" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Symptom" Member="Symptoms">
     <Type Name="Symptom">
       <Column Name="SymptomGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -239,6 +239,7 @@
       <Association Name="Thuoc_LoThuoc" Member="LoThuocs" ThisKey="ThuocGUID" OtherKey="ThuocGUID" Type="LoThuoc" />
       <Association Name="Thuoc_ChiTietPhieuThuThuoc" Member="ChiTietPhieuThuThuocs" ThisKey="ThuocGUID" OtherKey="ThuocGUID" Type="ChiTietPhieuThuThuoc" />
       <Association Name="Thuoc_ChiTietToaThuoc" Member="ChiTietToaThuocs" ThisKey="ThuocGUID" OtherKey="ThuocGUID" Type="ChiTietToaThuoc" />
+      <Association Name="Thuoc_HuyThuoc" Member="HuyThuocs" ThisKey="ThuocGUID" OtherKey="ThuocGUID" Type="HuyThuoc" />
     </Type>
   </Table>
   <Table Name="dbo.GiaThuoc" Member="GiaThuocs">
@@ -284,6 +285,7 @@
       <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
       <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
       <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Association Name="LoThuoc_ChiTietHuyThuoc" Member="ChiTietHuyThuocs" ThisKey="LoThuocGUID" OtherKey="LoThuocGUID" Type="ChiTietHuyThuoc" />
       <Association Name="Thuoc_LoThuoc" Member="Thuoc" ThisKey="ThuocGUID" OtherKey="ThuocGUID" Type="Thuoc" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
     </Type>
   </Table>
@@ -4152,6 +4154,63 @@
       <Column Name="NgayTra" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
     </Type>
   </Table>
+  <Table Name="dbo.ChiTietHuyThuoc" Member="ChiTietHuyThuocs">
+    <Type Name="ChiTietHuyThuoc">
+      <Column Name="ChiTietHuyThuocGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="HuyThuocGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="LoThuocGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="SoLuong" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Association Name="LoThuoc_ChiTietHuyThuoc" Member="LoThuoc" ThisKey="LoThuocGUID" OtherKey="LoThuocGUID" Type="LoThuoc" IsForeignKey="true" />
+      <Association Name="HuyThuoc_ChiTietHuyThuoc" Member="HuyThuoc" ThisKey="HuyThuocGUID" OtherKey="HuyThuocGUID" Type="HuyThuoc" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HuyThuoc" Member="HuyThuocs">
+    <Type Name="HuyThuoc">
+      <Column Name="HuyThuocGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ThuocGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="NgayHuy" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="SoLuong" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Association Name="HuyThuoc_ChiTietHuyThuoc" Member="ChiTietHuyThuocs" ThisKey="HuyThuocGUID" OtherKey="HuyThuocGUID" Type="ChiTietHuyThuoc" />
+      <Association Name="Thuoc_HuyThuoc" Member="Thuoc" ThisKey="ThuocGUID" OtherKey="ThuocGUID" Type="Thuoc" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HuyThuocView" Member="HuyThuocViews">
+    <Type Name="HuyThuocView">
+      <Column Name="HuyThuocGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="ThuocGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="NgayHuy" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="SoLuong" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Note" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="MaThuoc" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="TenThuoc" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="DonViTinh" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="BietDuoc" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="HoatChat" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="HamLuong" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+    </Type>
+  </Table>
   <Function Name="dbo.spDoanhThuNhanVienTongHop" Method="spDoanhThuNhanVienTongHop">
     <Parameter Name="FromDate" Parameter="fromDate" Type="System.DateTime" DbType="DateTime" />
     <Parameter Name="ToDate" Parameter="toDate" Type="System.DateTime" DbType="DateTime" />
@@ -4206,6 +4265,20 @@
       <Column Name="Mobile" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
     </ElementType>
   </Function>
+  <Function Name="dbo.spCapCuuTonKho" Method="spCapCuuTonKho">
+    <Parameter Name="TuNgay" Parameter="tuNgay" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="DenNgay" Parameter="denNgay" Type="System.DateTime" DbType="DateTime" />
+    <Parameter Name="MaCapCuuList" Parameter="maCapCuuList" Type="System.String" DbType="NVarChar(4000)" />
+    <ElementType Name="spCapCuuTonKhoResult">
+      <Column Name="KhoCapCuuGUID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="TenCapCuu" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="DonViTinh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SoDu" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SLNhap" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SLXuat" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SLTon" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </ElementType>
+  </Function>
   <Function Name="dbo.spThuocTonKho" Method="spThuocTonKho">
     <Parameter Name="TuNgay" Parameter="tuNgay" Type="System.DateTime" DbType="DateTime" />
     <Parameter Name="DenNgay" Parameter="denNgay" Type="System.DateTime" DbType="DateTime" />
@@ -4218,20 +4291,7 @@
       <Column Name="SoDu" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="SLNhap" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="SLXuat" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SLTon" Type="System.Int32" DbType="Int" CanBeNull="true" />
-    </ElementType>
-  </Function>
-  <Function Name="dbo.spCapCuuTonKho" Method="spCapCuuTonKho">
-    <Parameter Name="TuNgay" Parameter="tuNgay" Type="System.DateTime" DbType="DateTime" />
-    <Parameter Name="DenNgay" Parameter="denNgay" Type="System.DateTime" DbType="DateTime" />
-    <Parameter Name="MaCapCuuList" Parameter="maCapCuuList" Type="System.String" DbType="NVarChar(4000)" />
-    <ElementType Name="spCapCuuTonKhoResult">
-      <Column Name="KhoCapCuuGUID" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="TenCapCuu" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="DonViTinh" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SoDu" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SLNhap" Type="System.Int32" DbType="Int" CanBeNull="true" />
-      <Column Name="SLXuat" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="SLHuy" Type="System.Int32" DbType="Int" CanBeNull="true" />
       <Column Name="SLTon" Type="System.Int32" DbType="Int" CanBeNull="true" />
     </ElementType>
   </Function>

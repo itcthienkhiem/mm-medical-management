@@ -416,6 +416,8 @@ namespace MM
                 _uDoanhThuTheoNgay.InitData();
             else if (ctrl.GetType() == typeof(uDoanhThuTheoNhomDichVu))
                 _uDoanhThuTheoNhomDichVu.InitData();
+            else if (ctrl.GetType() == typeof(uHuyThuocList))
+                _uHuyThuocList.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -1740,6 +1742,20 @@ namespace MM
                             _uDoanhThuTheoNgay.AllowExportAll = isExportAll;
                             _uDoanhThuTheoNgay.AllowConfirm = isConfirm;
                         }
+                        else if (functionCode == Const.HuyThuoc)
+                        {
+                            thuocToolStripMenuItem.Enabled = isLogin;
+                            huyThuocToolStripMenuItem.Enabled = isView && isLogin;
+                            _uHuyThuocList.AllowAdd = isAdd;
+                            _uHuyThuocList.AllowEdit = isEdit;
+                            _uHuyThuocList.AllowDelete = isDelete;
+                            _uHuyThuocList.AllowPrint = isPrint;
+                            _uHuyThuocList.AllowExport = isExport;
+                            _uHuyThuocList.AllowImport = isImport;
+                            _uHuyThuocList.AllowLock = isLock;
+                            _uHuyThuocList.AllowExportAll = isExportAll;
+                            _uHuyThuocList.AllowConfirm = isConfirm;
+                        }
                     }
                 }
                 else
@@ -1978,6 +1994,7 @@ namespace MM
                 cauHinhDichVuXetNghiemToolStripMenuItem.Enabled = isLogin;
                 traHoSoToolStripMenuItem.Enabled = isLogin;
                 doanhThuTheoNhomDichVuToolStripMenuItem.Enabled = isLogin;
+                huyThuocToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -2464,7 +2481,18 @@ namespace MM
                 case "DoanhThuTheoNhomDichVu":
                     OnDoanhThuTheoNhomDichVu();
                     break;
+
+                case "HuyThuoc":
+                    OnHuyThuoc();
+                    break;
             }
+        }
+
+        private void OnHuyThuoc()
+        {
+            this.Text = string.Format("{0} - Huy thuoc", Application.ProductName);
+            ViewControl(_uHuyThuocList);
+            _uHuyThuocList.DisplayAsThread();
         }
 
         private void OnDoanhThuTheoNhomDichVu()
@@ -3525,6 +3553,7 @@ namespace MM
             _uMapMauHoSoVoiDichVu.ClearData();
             _uInMauHoSo.ClearData();
             _uTraHoSo.ClearData();
+            _uHuyThuocList.ClearData();
         }
         #endregion
 

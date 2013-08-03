@@ -79,10 +79,10 @@ namespace MM.Dialogs
             results = (from p in dt.AsEnumerable()
                         where (p.Field<string>("TenThuoc") != null &&
                         p.Field<string>("TenThuoc").Trim() != string.Empty &&
-                        p.Field<string>("TenThuoc").ToLower().IndexOf(str) >= 0) ||
+                        p.Field<string>("TenThuoc").Trim().ToLower().IndexOf(str) >= 0) ||
                         (p.Field<string>("BietDuoc") != null &&
                         p.Field<string>("BietDuoc").Trim() != string.Empty &&
-                        p.Field<string>("BietDuoc").ToLower().IndexOf(str) >= 0)
+                        p.Field<string>("BietDuoc").Trim().ToLower().IndexOf(str) >= 0)
                         orderby p.Field<string>("TenThuoc")
                         select p).ToList<DataRow>();
 
