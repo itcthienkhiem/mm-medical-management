@@ -5006,11 +5006,12 @@ namespace MM.Exports
                     workSheet.Cells[rowIndex, 2].Value = row.SoDu;
                     workSheet.Cells[rowIndex, 3].Value = row.SLNhap;
                     workSheet.Cells[rowIndex, 4].Value = row.SLXuat;
-                    workSheet.Cells[rowIndex, 5].Value = row.SLTon;
+                    workSheet.Cells[rowIndex, 5].Value = row.SLHuy;
+                    workSheet.Cells[rowIndex, 6].Value = row.SLTon;
                     rowIndex++;
                 }
 
-                range = workSheet.Cells[string.Format("A4:F{0}", rowIndex)];
+                range = workSheet.Cells[string.Format("A4:G{0}", rowIndex)];
                 range.Borders.Color = Color.Black;
                 range.Borders.LineStyle = LineStyle.Continuous;
                 range.Borders.Weight = BorderWeight.Thin;

@@ -87,11 +87,11 @@ namespace MM.Bussiness
                 DateTime dt = DateTime.Now;
                 db = new MMOverride();
                 List<Thuoc> thuocResults = (from t in db.Thuocs
-                                                  join l in db.LoThuocs on t.ThuocGUID equals l.ThuocGUID
-                                                  where t.Status == (byte)Status.Actived && l.Status == (byte)Status.Actived &&
-                                                  l.SoLuongNhap * l.SoLuongQuiDoi - l.SoLuongXuat > 0 &&
-                                                  new DateTime(l.NgayHetHan.Year, l.NgayHetHan.Month, l.NgayHetHan.Day) > dt && t.ThuocGUID.ToString() == thuocGUID
-                                                  select t).ToList<Thuoc>();
+                                            join l in db.LoThuocs on t.ThuocGUID equals l.ThuocGUID
+                                            where t.Status == (byte)Status.Actived && l.Status == (byte)Status.Actived &&
+                                            l.SoLuongNhap * l.SoLuongQuiDoi - l.SoLuongXuat > 0 &&
+                                            new DateTime(l.NgayHetHan.Year, l.NgayHetHan.Month, l.NgayHetHan.Day) > dt && t.ThuocGUID.ToString() == thuocGUID
+                                            select t).ToList<Thuoc>();
 
                 if (thuocResults != null && thuocResults.Count > 0)
                     result.QueryResult = false;
@@ -247,11 +247,6 @@ namespace MM.Bussiness
                     else
                         result.QueryResult = false;
                 }
-
-                //if (thuocResults != null && thuocResults.Count > 0)
-                //    result.QueryResult = true;
-                //else
-                //    result.QueryResult = false;
             }
             catch (System.Data.SqlClient.SqlException se)
             {
