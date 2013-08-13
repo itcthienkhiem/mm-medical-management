@@ -57,6 +57,9 @@ namespace MM.Controls
         {
             btnPrint.Enabled = AllowPrint;
             inHoSoToolStripMenuItem.Enabled = AllowPrint;
+
+            btnExportWord.Enabled = AllowExport;
+            xuatHoSoToolStripMenuItem.Enabled = AllowExport;
         }
 
         public void DisplayAsThread()
@@ -237,6 +240,8 @@ namespace MM.Controls
                             try
                             {
                                 object fileName = GetMauHoSoTemplate(mauHoSo);
+                                Utility.CopyTemplates(fileName.ToString());
+
                                 object reportFileName = string.Format("{0}\\Temp\\{1}", Application.StartupPath, Path.GetFileName(fileName.ToString()));
                                 File.Copy(fileName.ToString(), reportFileName.ToString(), true);
 
@@ -244,24 +249,24 @@ namespace MM.Controls
                                 {
                                     DataRow[] serviceRows = dtAllService.Select(string.Format("Loai=1"));
                                     ExportWord.PrintXetNghiem(reportFileName, row, serviceRows,
-                                        ExcelPrintPreview.ConvertToExcelPrinterFriendlyName(_printDialog.PrinterSettings.PrinterName));
+                                        ExcelPrintPreview.ConvertToExcelPrinterFriendlyName(_printDialog.PrinterSettings.PrinterName), true);
                                 }
                                 else if (mauHoSo.Loai == 2)
                                 {
                                     DataRow[] serviceRows = dtAllService.Select(string.Format("Loai=2"));
                                     ExportWord.PrintChecklist(reportFileName, row, serviceRows,
-                                        ExcelPrintPreview.ConvertToExcelPrinterFriendlyName(_printDialog.PrinterSettings.PrinterName));
+                                        ExcelPrintPreview.ConvertToExcelPrinterFriendlyName(_printDialog.PrinterSettings.PrinterName), true);
                                 }
                                 else if (mauHoSo.Loai == 3)
                                 {
                                     DataRow[] serviceRows = dtAllService.Select(string.Format("Loai=3"));
                                     ExportWord.PrintKetQuaCanLamSang(reportFileName, row, serviceRows,
-                                        ExcelPrintPreview.ConvertToExcelPrinterFriendlyName(_printDialog.PrinterSettings.PrinterName));
+                                        ExcelPrintPreview.ConvertToExcelPrinterFriendlyName(_printDialog.PrinterSettings.PrinterName), true);
                                 }
                                 else
                                 {
                                     ExportWord.PrintMauHoSoChung(reportFileName, row,
-                                        ExcelPrintPreview.ConvertToExcelPrinterFriendlyName(_printDialog.PrinterSettings.PrinterName));
+                                        ExcelPrintPreview.ConvertToExcelPrinterFriendlyName(_printDialog.PrinterSettings.PrinterName), true);
                                 }
                             }
                             catch (Exception ex)
@@ -330,6 +335,101 @@ namespace MM.Controls
                     }
                 }
             }
+        }
+
+        private void OnExportToWord()
+        {
+            List<DataRow> checkedRows = _dictPatient.Values.ToList();
+            if (checkedRows.Count > 0)
+            {
+                FolderBrowserDialog dlg = new FolderBrowserDialog();
+                if (dlg.ShowDialog(this) == DialogResult.OK)
+                {
+                    foreach (DataRow row in checkedRows)
+                    {
+                        string contractMemberGUID = row["ContractMemberGUID"].ToString();
+                        string fileNum = row["FileNum"].ToString();
+                        string fullName = Utility.ConvertToUnSign2(row["FullName"].ToString());    
+                        Result result = MauHoSoBus.GetMauChayHoSo(contractMemberGUID, _hopDongGUID);
+                        if (!result.IsOK)
+                        {
+                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("MauHoSoBus.GetMauChayHoSo"), IconType.Error);
+                            Utility.WriteToTraceLog(result.GetErrorAsString("MauHoSoBus.GetMauChayHoSo"));
+                            return;
+                        }
+
+                        List<MauHoSo> mauHoSoList = result.QueryResult as List<MauHoSo>;
+                        if (mauHoSoList == null || mauHoSoList.Count <= 0) continue;
+
+                        result = MauHoSoBus.GetDichVuChayMauHoSo(contractMemberGUID, _hopDongGUID);
+                        if (!result.IsOK)
+                        {
+                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("MauHoSoBus.GetDichVuChayMauHoSo"), IconType.Error);
+                            Utility.WriteToTraceLog(result.GetErrorAsString("MauHoSoBus.GetDichVuChayMauHoSo"));
+                            return;
+                        }
+
+                        DataTable dtAllService = result.QueryResult as DataTable;
+                        DataRow[] serviceRows3 = dtAllService.Select(string.Format("Loai=3"));
+                        if (serviceRows3 != null && serviceRows3.Length > 0)
+                        {
+                            foreach (DataRow r in serviceRows3)
+                            {
+                                string serviceName = r["Name"].ToString();
+                                bool isNormal_Abnormal = Convert.ToBoolean(r["Normal_Abnormal"]);
+                                bool isNegative_Positive = Convert.ToBoolean(r["Negative_Positive"]);
+                                if (!isNormal_Abnormal && !isNegative_Positive)
+                                {
+                                    MsgBox.Show(Application.ProductName, string.Format("Dịch vụ: '{0}' chưa được cấu hình. Vui lòng cấu hình cho dịch vụ này.", serviceName),
+                                        IconType.Information);
+                                    return;
+                                }
+                            }
+                        }
+
+                        foreach (MauHoSo mauHoSo in mauHoSoList)
+                        {
+                            try
+                            {
+                                object fileName = GetMauHoSoTemplate(mauHoSo);
+                                Utility.CopyTemplates(fileName.ToString());
+
+                                object reportFileName = string.Format("{0}\\{1}_{2}_{3}.doc", dlg.SelectedPath, Path.GetFileNameWithoutExtension(fileName.ToString()),
+                                    fileNum, fullName);
+
+                                File.Copy(fileName.ToString(), reportFileName.ToString(), true);
+
+                                if (mauHoSo.Loai == 1)
+                                {
+                                    DataRow[] serviceRows = dtAllService.Select(string.Format("Loai=1"));
+                                    ExportWord.PrintXetNghiem(reportFileName, row, serviceRows, string.Empty, false);
+                                }
+                                else if (mauHoSo.Loai == 2)
+                                {
+                                    DataRow[] serviceRows = dtAllService.Select(string.Format("Loai=2"));
+                                    ExportWord.PrintChecklist(reportFileName, row, serviceRows, string.Empty, false);
+                                }
+                                else if (mauHoSo.Loai == 3)
+                                {
+                                    DataRow[] serviceRows = dtAllService.Select(string.Format("Loai=3"));
+                                    ExportWord.PrintKetQuaCanLamSang(reportFileName, row, serviceRows, string.Empty, false);
+                                }
+                                else
+                                {
+                                    ExportWord.PrintMauHoSoChung(reportFileName, row, string.Empty, false);
+                                }
+                            }
+                            catch (Exception ex)
+                            {
+                                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                                Utility.WriteToTraceLog(ex.Message);
+                            }
+                        }
+                    }
+                }
+            }
+            else
+                MsgBox.Show(Application.ProductName, "Vui lòng đánh dấu những bệnh nhân cần xuất.", IconType.Information);
         }
         #endregion
 
@@ -433,6 +533,11 @@ namespace MM.Controls
             OnPrint();
         }
 
+        private void btnExportWord_Click(object sender, EventArgs e)
+        {
+            OnExportToWord();
+        }
+
         private void inHoSoToolStripMenuItem_Click(object sender, EventArgs e)
         {
             OnPrint();
@@ -502,6 +607,11 @@ namespace MM.Controls
                 }
             }
         }
+
+        private void xuatHoSoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            OnExportToWord();
+        }
         #endregion
 
         #region Working Thread
@@ -535,6 +645,10 @@ namespace MM.Controls
             }
         }
         #endregion
+
+       
+
+        
 
         
 

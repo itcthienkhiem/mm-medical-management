@@ -29,11 +29,12 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uInMauHoSo));
             this.panel1 = new System.Windows.Forms.Panel();
             this.lbThongBao = new System.Windows.Forms.Label();
             this.txtTenHopDong = new System.Windows.Forms.TextBox();
@@ -54,8 +55,10 @@
             this.inHoSoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.patientViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.panel8 = new System.Windows.Forms.Panel();
+            this.btnExportWord = new System.Windows.Forms.Button();
             this.btnPrint = new System.Windows.Forms.Button();
             this.panel7 = new System.Windows.Forms.Panel();
+            this.raNuTren40 = new System.Windows.Forms.RadioButton();
             this.raNamTren40 = new System.Windows.Forms.RadioButton();
             this.raNuCoGiaDinh = new System.Windows.Forms.RadioButton();
             this.raNu = new System.Windows.Forms.RadioButton();
@@ -66,7 +69,8 @@
             this.label2 = new System.Windows.Forms.Label();
             this.serviceHistoryViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._printDialog = new System.Windows.Forms.PrintDialog();
-            this.raNuTren40 = new System.Windows.Forms.RadioButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.xuatHoSoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.companyContractViewBindingSource)).BeginInit();
             this.panel2.SuspendLayout();
@@ -185,14 +189,14 @@
             this.dgPatient.AllowUserToDeleteRows = false;
             this.dgPatient.AllowUserToOrderColumns = true;
             this.dgPatient.AutoGenerateColumns = false;
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle6.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle6.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle6.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle6.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle6.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle6.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgPatient.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle6;
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dgPatient.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             this.dgPatient.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dgPatient.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.colChecked,
@@ -202,14 +206,14 @@
             this.GenderAsStr});
             this.dgPatient.ContextMenuStrip = this.ctmAction3;
             this.dgPatient.DataSource = this.patientViewBindingSource;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgPatient.DefaultCellStyle = dataGridViewCellStyle10;
+            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle5.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle5.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle5.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle5.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle5.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgPatient.DefaultCellStyle = dataGridViewCellStyle5;
             this.dgPatient.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgPatient.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgPatient.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -237,8 +241,8 @@
             // fileNumDataGridViewTextBoxColumn
             // 
             this.fileNumDataGridViewTextBoxColumn.DataPropertyName = "FileNum";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.fileNumDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle7;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.fileNumDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.fileNumDataGridViewTextBoxColumn.HeaderText = "Mã bệnh nhân";
             this.fileNumDataGridViewTextBoxColumn.Name = "fileNumDataGridViewTextBoxColumn";
             this.fileNumDataGridViewTextBoxColumn.ReadOnly = true;
@@ -255,9 +259,9 @@
             // dobDataGridViewTextBoxColumn
             // 
             this.dobDataGridViewTextBoxColumn.DataPropertyName = "DobStr";
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.NullValue = null;
-            this.dobDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle8;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle3.NullValue = null;
+            this.dobDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.dobDataGridViewTextBoxColumn.HeaderText = "Ngày sinh";
             this.dobDataGridViewTextBoxColumn.Name = "dobDataGridViewTextBoxColumn";
             this.dobDataGridViewTextBoxColumn.ReadOnly = true;
@@ -266,8 +270,8 @@
             // GenderAsStr
             // 
             this.GenderAsStr.DataPropertyName = "GenderAsStr";
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.GenderAsStr.DefaultCellStyle = dataGridViewCellStyle9;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.GenderAsStr.DefaultCellStyle = dataGridViewCellStyle4;
             this.GenderAsStr.HeaderText = "Giới tính";
             this.GenderAsStr.Name = "GenderAsStr";
             this.GenderAsStr.ReadOnly = true;
@@ -276,15 +280,17 @@
             // ctmAction3
             // 
             this.ctmAction3.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.inHoSoToolStripMenuItem});
+            this.inHoSoToolStripMenuItem,
+            this.toolStripSeparator1,
+            this.xuatHoSoToolStripMenuItem});
             this.ctmAction3.Name = "ctmAction";
-            this.ctmAction3.Size = new System.Drawing.Size(117, 26);
+            this.ctmAction3.Size = new System.Drawing.Size(153, 76);
             // 
             // inHoSoToolStripMenuItem
             // 
             this.inHoSoToolStripMenuItem.Image = global::MM.Properties.Resources.Printer_icon__1_;
             this.inHoSoToolStripMenuItem.Name = "inHoSoToolStripMenuItem";
-            this.inHoSoToolStripMenuItem.Size = new System.Drawing.Size(116, 22);
+            this.inHoSoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
             this.inHoSoToolStripMenuItem.Text = "In hồ sơ";
             this.inHoSoToolStripMenuItem.Click += new System.EventHandler(this.inHoSoToolStripMenuItem_Click);
             // 
@@ -295,12 +301,25 @@
             // panel8
             // 
             this.panel8.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.panel8.Controls.Add(this.btnExportWord);
             this.panel8.Controls.Add(this.btnPrint);
             this.panel8.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.panel8.Location = new System.Drawing.Point(0, 526);
             this.panel8.Name = "panel8";
             this.panel8.Size = new System.Drawing.Size(1121, 38);
             this.panel8.TabIndex = 1;
+            // 
+            // btnExportWord
+            // 
+            this.btnExportWord.Image = ((System.Drawing.Image)(resources.GetObject("btnExportWord.Image")));
+            this.btnExportWord.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnExportWord.Location = new System.Drawing.Point(97, 4);
+            this.btnExportWord.Name = "btnExportWord";
+            this.btnExportWord.Size = new System.Drawing.Size(93, 25);
+            this.btnExportWord.TabIndex = 80;
+            this.btnExportWord.Text = "      &Xuất hồ sơ";
+            this.btnExportWord.UseVisualStyleBackColor = true;
+            this.btnExportWord.Click += new System.EventHandler(this.btnExportWord_Click);
             // 
             // btnPrint
             // 
@@ -331,6 +350,17 @@
             this.panel7.Name = "panel7";
             this.panel7.Size = new System.Drawing.Size(1121, 57);
             this.panel7.TabIndex = 0;
+            // 
+            // raNuTren40
+            // 
+            this.raNuTren40.AutoSize = true;
+            this.raNuTren40.Location = new System.Drawing.Point(532, 32);
+            this.raNuTren40.Name = "raNuTren40";
+            this.raNuTren40.Size = new System.Drawing.Size(95, 17);
+            this.raNuTren40.TabIndex = 26;
+            this.raNuTren40.Text = "Nữ trên 40 tuổi";
+            this.raNuTren40.UseVisualStyleBackColor = true;
+            this.raNuTren40.CheckedChanged += new System.EventHandler(this.raNuTren40_CheckedChanged);
             // 
             // raNamTren40
             // 
@@ -428,16 +458,18 @@
             // 
             this._printDialog.UseEXDialog = true;
             // 
-            // raNuTren40
+            // toolStripSeparator1
             // 
-            this.raNuTren40.AutoSize = true;
-            this.raNuTren40.Location = new System.Drawing.Point(532, 32);
-            this.raNuTren40.Name = "raNuTren40";
-            this.raNuTren40.Size = new System.Drawing.Size(95, 17);
-            this.raNuTren40.TabIndex = 26;
-            this.raNuTren40.Text = "Nữ trên 40 tuổi";
-            this.raNuTren40.UseVisualStyleBackColor = true;
-            this.raNuTren40.CheckedChanged += new System.EventHandler(this.raNuTren40_CheckedChanged);
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            // 
+            // xuatHoSoToolStripMenuItem
+            // 
+            this.xuatHoSoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("xuatHoSoToolStripMenuItem.Image")));
+            this.xuatHoSoToolStripMenuItem.Name = "xuatHoSoToolStripMenuItem";
+            this.xuatHoSoToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.xuatHoSoToolStripMenuItem.Text = "Xuất hồ sơ";
+            this.xuatHoSoToolStripMenuItem.Click += new System.EventHandler(this.xuatHoSoToolStripMenuItem_Click);
             // 
             // uInMauHoSo
             // 
@@ -500,5 +532,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dobDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn GenderAsStr;
         private System.Windows.Forms.RadioButton raNuTren40;
+        private System.Windows.Forms.Button btnExportWord;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripMenuItem xuatHoSoToolStripMenuItem;
     }
 }
