@@ -19,7 +19,7 @@ namespace MM.Exports
         private static List<string> alphab = new List<string> { "a", "b", "c", "d", "e", "f", "g", "h", "i", "j",
                                                                 "k", "l", "m", "n", "o", "p", "q", "r", "s", "t",
                                                                 "u", "v", "w", "x", "y", "z"};
-        public static void PrintMauHoSoChung(object reportFileName, DataRow patientRow, string printerName)
+        public static void PrintMauHoSoChung(object reportFileName, DataRow patientRow, string printerName, bool isPrint)
         {
             string fileNum = patientRow["FileNum"].ToString();
             string fullName = patientRow["FullName"].ToString();
@@ -35,8 +35,6 @@ namespace MM.Exports
 
             try
             {
-                Utility.CopyTemplates(reportFileName.ToString());
-
                 doc = word.Documents.Open(ref reportFileName,
                     ref missing, ref missing, ref missing, ref missing,
                     ref missing, ref missing, ref missing, ref missing,
@@ -106,11 +104,17 @@ namespace MM.Exports
                     doc.Sections[1].Headers[Microsoft.Office.Interop.Word.WdHeaderFooterIndex.wdHeaderFooterPrimary].Range.Text = string.Format("CODE: {0}", fileNum);
 
                 word.Visible = false;
-                word.ActivePrinter = printerName;
 
-                doc.PrintOut(ref missing, ref missing, ref missing, ref missing, ref missing,
-                    ref missing, ref missing, ref missing, ref missing, ref missing, ref missing,
-                    ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing);
+                if (isPrint)
+                {
+                    word.ActivePrinter = printerName;
+
+                    doc.PrintOut(ref missing, ref missing, ref missing, ref missing, ref missing,
+                        ref missing, ref missing, ref missing, ref missing, ref missing, ref missing,
+                        ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing);
+                }
+                else
+                    doc.Save();
             }
             catch (Exception ex)
             {
@@ -138,7 +142,7 @@ namespace MM.Exports
             return chr;
         }
 
-        public static void PrintXetNghiem(object reportFileName, DataRow patientRow, DataRow[] serviceRows, string printerName)
+        public static void PrintXetNghiem(object reportFileName, DataRow patientRow, DataRow[] serviceRows, string printerName, bool isPrint)
         {
             string fileNum = patientRow["FileNum"].ToString();
             string fullName = patientRow["FullName"].ToString();
@@ -154,8 +158,6 @@ namespace MM.Exports
 
             try
             {
-                Utility.CopyTemplates(reportFileName.ToString());
-
                 doc = word.Documents.Open(ref reportFileName,
                     ref missing, ref missing, ref missing, ref missing,
                     ref missing, ref missing, ref missing, ref missing,
@@ -244,11 +246,17 @@ namespace MM.Exports
                 SetNormalText(dr.Cells[1].Range);
 
                 word.Visible = false;
-                word.ActivePrinter = printerName;
 
-                doc.PrintOut(ref missing, ref missing, ref missing, ref missing, ref missing,
-                    ref missing, ref missing, ref missing, ref missing, ref missing, ref missing,
-                    ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing);
+                if (isPrint)
+                {
+                    word.ActivePrinter = printerName;
+
+                    doc.PrintOut(ref missing, ref missing, ref missing, ref missing, ref missing,
+                        ref missing, ref missing, ref missing, ref missing, ref missing, ref missing,
+                        ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing);
+                }
+                else
+                    doc.Save();
             }
             catch (Exception ex)
             {
@@ -261,7 +269,7 @@ namespace MM.Exports
             }
         }
 
-        public static void PrintChecklist(object reportFileName, DataRow patientRow, DataRow[] serviceRows, string printerName)
+        public static void PrintChecklist(object reportFileName, DataRow patientRow, DataRow[] serviceRows, string printerName, bool isPrint)
         {
             string fileNum = patientRow["FileNum"].ToString();
             string fullName = patientRow["FullName"].ToString();
@@ -277,8 +285,6 @@ namespace MM.Exports
 
             try
             {
-                Utility.CopyTemplates(reportFileName.ToString());
-
                 doc = word.Documents.Open(ref reportFileName,
                     ref missing, ref missing, ref missing, ref missing,
                     ref missing, ref missing, ref missing, ref missing,
@@ -426,11 +432,17 @@ namespace MM.Exports
                 SetNormalText(dr.Cells[1].Range);
 
                 word.Visible = false;
-                word.ActivePrinter = printerName;
 
-                doc.PrintOut(ref missing, ref missing, ref missing, ref missing, ref missing,
-                    ref missing, ref missing, ref missing, ref missing, ref missing, ref missing,
-                    ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing);
+                if (isPrint)
+                {
+                    word.ActivePrinter = printerName;
+
+                    doc.PrintOut(ref missing, ref missing, ref missing, ref missing, ref missing,
+                        ref missing, ref missing, ref missing, ref missing, ref missing, ref missing,
+                        ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing);
+                }
+                else
+                    doc.Save();
             }
             catch (Exception ex)
             {
@@ -443,7 +455,7 @@ namespace MM.Exports
             }
         }
 
-        public static void PrintKetQuaCanLamSang(object reportFileName, DataRow patientRow, DataRow[] serviceRows, string printerName)
+        public static void PrintKetQuaCanLamSang(object reportFileName, DataRow patientRow, DataRow[] serviceRows, string printerName, bool isPrint)
         {
             Microsoft.Office.Interop.Word.Application word = new Microsoft.Office.Interop.Word.Application();
             Microsoft.Office.Interop.Word.Document doc = new Microsoft.Office.Interop.Word.Document();
@@ -451,8 +463,6 @@ namespace MM.Exports
 
             try
             {
-                Utility.CopyTemplates(reportFileName.ToString());
-
                 doc = word.Documents.Open(ref reportFileName,
                     ref missing, ref missing, ref missing, ref missing,
                     ref missing, ref missing, ref missing, ref missing,
@@ -502,11 +512,17 @@ namespace MM.Exports
                 }
 
                 word.Visible = false;
-                word.ActivePrinter = printerName;
 
-                doc.PrintOut(ref missing, ref missing, ref missing, ref missing, ref missing,
-                    ref missing, ref missing, ref missing, ref missing, ref missing, ref missing,
-                    ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing);
+                if (isPrint)
+                {
+                    word.ActivePrinter = printerName;
+
+                    doc.PrintOut(ref missing, ref missing, ref missing, ref missing, ref missing,
+                        ref missing, ref missing, ref missing, ref missing, ref missing, ref missing,
+                        ref missing, ref missing, ref missing, ref missing, ref missing, ref missing, ref missing);
+                }
+                else
+                    doc.Save();
             }
             catch (Exception ex)
             {

@@ -120,9 +120,6 @@
   <metadata name="companyContractViewBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
   </metadata>
-  <metadata name="companyContractViewBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>17, 17</value>
-  </metadata>
   <metadata name="colChecked.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
@@ -135,9 +132,34 @@
   <metadata name="ctmAction3.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>873, 13</value>
   </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="xuatHoSoToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAFwSURBVDhPY1BNWfmfEsxAiWaQXrgBaqkr/9ctPvO/fdX5//VLzuDF07de+29dvBHscrgB/esv
+        /Qfhp2+//icEFu65+d++bDPCAIOctf9n77j+f8uph/8v3nsL13/uzuv/u88/gfMv3X/7f++Fp/8xDHCr
+        3gYUvPV/59nH/2uB3oCBsrkn/kd17YPzm5ad/b8DqAarAYuABnz+/uu/W822///+/fv/9++//2Fte/6H
+        tO7+//HrT7AhPvU7/n/69gu3ASBF8b37/99/8ek/yLmgwOxddwnsshfvvv6P6oS4BqcLQJLzd938v2jv
+        rf+TN10B+/fUzVdgb607ev8/KPQJGnAPaHvapENgv3/98fv/7z9///s17vxfMufE/6sP3xE2AKQioHnX
+        /8S+A/DAy5525L87NGwIugCkYNOJB/8PXHoGN+DY9Rf/Vx26C+fjDQNCiQirCxzKN//vA6bC8nknicIT
+        Nlz+b4WelMnNVBTnRgBE8uSVSp0/RwAAAABJRU5ErkJggg==
+</value>
+  </data>
   <metadata name="patientViewBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>250, 17</value>
   </metadata>
+  <data name="btnExportWord.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
+        YQUAAAFwSURBVDhPY1BNWfmfEsxAiWaQXrgBaqkr/9ctPvO/fdX5//VLzuDF07de+29dvBHscrgB/esv
+        /Qfhp2+//icEFu65+d++bDPCAIOctf9n77j+f8uph/8v3nsL13/uzuv/u88/gfMv3X/7f++Fp/8xDHCr
+        3gYUvPV/59nH/2uB3oCBsrkn/kd17YPzm5ad/b8DqAarAYuABnz+/uu/W822///+/fv/9++//2Fte/6H
+        tO7+//HrT7AhPvU7/n/69gu3ASBF8b37/99/8ek/yLmgwOxddwnsshfvvv6P6oS4BqcLQJLzd938v2jv
+        rf+TN10B+/fUzVdgb607ev8/KPQJGnAPaHvapENgv3/98fv/7z9///s17vxfMufE/6sP3xE2AKQioHnX
+        /8S+A/DAy5525L87NGwIugCkYNOJB/8PXHoGN+DY9Rf/Vx26C+fjDQNCiQirCxzKN//vA6bC8nknicIT
+        Nlz+b4WelMnNVBTnRgBE8uSVSp0/RwAAAABJRU5ErkJggg==
+</value>
+  </data>
   <metadata name="serviceHistoryViewBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 56</value>
   </metadata>

@@ -10009,9 +10009,9 @@ namespace MM.Exports
                     string tenThuoc = row["TenThuoc"].ToString();
                     string ngaySanXuat = Convert.ToDateTime(row["NgaySanXuat"]).ToString("dd/MM/yyyy");
                     string ngayHetHan = Convert.ToDateTime(row["NgayHetHan"]).ToString("dd/MM/yyyy");
-                    int soLuongNhap = Convert.ToInt32(row["SoLuongNhap"]);
-                    double giaNhap = Convert.ToDouble(row["GiaNhap"]);
-                    string donViTinh = row["DonViTinhNhap"].ToString();
+                    int soLuongNhap = Convert.ToInt32(row["SoLuongNhap"]) * Convert.ToInt32(row["SoLuongQuiDoi"]);
+                    double giaNhap = Convert.ToDouble(row["GiaNhapQuiDoi"]);
+                    string donViTinh = row["DonViTinhQuiDoi"].ToString();
 
                     workSheet.Cells[rowIndex, colIndex++].Value = maLoThuoc;
                     workSheet.Cells[rowIndex, colIndex++].Value = tenLoThuoc;
