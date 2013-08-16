@@ -288,6 +288,9 @@ namespace MM.Bussiness
                 obj = ds.Tables[5].Rows[0]["MaxDate"];
                 if (obj != null && obj != DBNull.Value && Convert.ToDateTime(obj) < maxDate)
                     maxDate = Convert.ToDateTime(obj);
+
+                minDate = new DateTime(minDate.Year, minDate.Month, minDate.Day, 0, 0, 0);
+                maxDate = new DateTime(maxDate.Year, maxDate.Month, maxDate.Day, 23, 59, 59);
             }
             catch (System.Data.SqlClient.SqlException se)
             {

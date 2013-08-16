@@ -344,7 +344,13 @@ namespace MM.Dialogs
                 if (result.IsOK)
                 {
                     if (result.QueryResult != null)
-                        dtpkNgay.Value = Convert.ToDateTime(result.QueryResult);
+                    {
+                        DateTime dt = Convert.ToDateTime(result.QueryResult);
+                        if (dt < dtpkNgay.MinDate) dt = dtpkNgay.MinDate;
+                        if (dt > dtpkNgay.MaxDate) dt = dtpkNgay.MaxDate;
+
+                        dtpkNgay.Value = dt;
+                    }
                 }
                 else
                 {
