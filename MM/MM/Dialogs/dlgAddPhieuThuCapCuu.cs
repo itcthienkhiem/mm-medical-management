@@ -598,7 +598,10 @@ namespace MM.Dialogs
                         else
                             ctptcc.Giam = 0;
 
-                        ctptcc.ThanhTien = Convert.ToDouble(row.Cells["ThanhTien"].Value);
+                        double tienGiam = Math.Round(((double)ctptcc.SoLuong * (double)ctptcc.DonGia * (double)ctptcc.Giam) / (double)100);
+                        double thanhTien = (double)ctptcc.SoLuong * (double)ctptcc.DonGia - tienGiam;
+
+                        ctptcc.ThanhTien = thanhTien;//Convert.ToDouble(row.Cells["ThanhTien"].Value);
                         ctptcc.Status = (byte)Status.Actived;
                         addedList.Add(ctptcc);
                     }
