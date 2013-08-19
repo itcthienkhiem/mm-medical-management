@@ -352,7 +352,7 @@
             // 
             // dgChiTiet
             // 
-            this.dgChiTiet.AllowUserToOrderColumns = true;
+            this.dgChiTiet.AllowUserToResizeRows = false;
             this.dgChiTiet.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
@@ -521,12 +521,12 @@
             this.ctmToaThuoc.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.thuocThayTheToolStripMenuItem});
             this.ctmToaThuoc.Name = "ctmToaThuoc";
-            this.ctmToaThuoc.Size = new System.Drawing.Size(159, 26);
+            this.ctmToaThuoc.Size = new System.Drawing.Size(155, 26);
             // 
             // thuocThayTheToolStripMenuItem
             // 
             this.thuocThayTheToolStripMenuItem.Name = "thuocThayTheToolStripMenuItem";
-            this.thuocThayTheToolStripMenuItem.Size = new System.Drawing.Size(158, 22);
+            this.thuocThayTheToolStripMenuItem.Size = new System.Drawing.Size(154, 22);
             this.thuocThayTheToolStripMenuItem.Text = "Thuốc thay thế";
             this.thuocThayTheToolStripMenuItem.Click += new System.EventHandler(this.thuocThayTheToolStripMenuItem_Click);
             // 

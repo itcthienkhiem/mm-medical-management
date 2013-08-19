@@ -22,6 +22,7 @@ namespace MM.Dialogs
         private DataRow _drPhieuThu = null;
         private string _tenCongTy = string.Empty;
         private ComboBox _cboBox = null;
+        private TextBox _textBox = null;
         private bool _isExportedInvoice = false;
         #endregion
 
@@ -402,23 +403,24 @@ namespace MM.Dialogs
 
             double soLuong = 1;
             string strValue = dgChiTiet[3, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
-            if (strValue != string.Empty && strValue != "System.Data.DataRowView")
+            if (strValue != string.Empty && strValue != "SystemDataDataRowView")
                 soLuong = Convert.ToDouble(strValue);
 
             strValue = dgChiTiet[4, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
             double donGia = 0;
-            if (strValue != string.Empty && strValue != "System.Data.DataRowView")
+            if (strValue != string.Empty && strValue != "SystemDataDataRowView")
                 donGia = Convert.ToDouble(strValue);
 
             double giam = 0;
             strValue = dgChiTiet[5, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
-            if (strValue != string.Empty && strValue != "System.Data.DataRowView")
+            if (strValue != string.Empty && strValue != "SystemDataDataRowView")
                 giam = Convert.ToDouble(strValue);
 
             double tienGiam = Math.Round(((double)soLuong * (double)donGia * (double)giam) / (double)100);
             double thanhTien = (double)soLuong * (double)donGia - tienGiam;
+            _flag = false;
             dgChiTiet[6, rowIndex].Value = thanhTien;
-
+            _flag = true;
             CalculateTongTien();
         }
 
@@ -836,20 +838,24 @@ namespace MM.Dialogs
             if (!_isNew) return;
             if (dgChiTiet.CurrentCell.ColumnIndex == 1 || dgChiTiet.CurrentCell.ColumnIndex == 4)
             {
+                if (_cboBox != null) _cboBox.SelectedValueChanged -= new EventHandler(cmbox_SelectedValueChanged);
                 _cboBox = e.Control as ComboBox;
-                _cboBox.SelectedValueChanged -= new EventHandler(cmbox_SelectedValueChanged);
                 _cboBox.SelectedValueChanged += new EventHandler(cmbox_SelectedValueChanged);
             }
             else if (dgChiTiet.CurrentCell.ColumnIndex == 3 || dgChiTiet.CurrentCell.ColumnIndex == 5)
             {
-                TextBox textBox = e.Control as TextBox;
-
-                if (textBox != null)
+                if (_textBox != null)
                 {
-                    textBox.KeyPress -= new KeyPressEventHandler(textBox_KeyPress);
-                    textBox.TextChanged -= new EventHandler(textBox_TextChanged);
-                    textBox.KeyPress += new KeyPressEventHandler(textBox_KeyPress);
-                    textBox.TextChanged += new EventHandler(textBox_TextChanged);
+                    _textBox.KeyPress -= new KeyPressEventHandler(textBox_KeyPress);
+                    _textBox.TextChanged -= new EventHandler(textBox_TextChanged);
+                }
+
+                _textBox = e.Control as TextBox;
+
+                if (_textBox != null)
+                {
+                    _textBox.KeyPress += new KeyPressEventHandler(textBox_KeyPress);
+                    _textBox.TextChanged += new EventHandler(textBox_TextChanged);
                 }
             }
         }
@@ -913,7 +919,12 @@ namespace MM.Dialogs
             {
                 _flag = false;
                 DataGridViewComboBoxEditingControl cbo = (DataGridViewComboBoxEditingControl)sender;
-                if (cbo.SelectedValue == null || cbo.SelectedValue.ToString() == "System.Data.DataRowView") return;
+                if (cbo.SelectedValue == null || cbo.SelectedValue.ToString() == "System.Data.DataRowView")
+                {
+                    _flag = true;
+                    return;
+                }
+
                 string thuocGUID = cbo.SelectedValue.ToString();
                 string donViTinh = GetDonViTinh(thuocGUID);
                 List<double> giaThuocList = GetGiaThuoc(thuocGUID);
@@ -990,10 +1001,11 @@ namespace MM.Dialogs
                 }
 
                 CalculateThanhTien();
-                _flag = true;
             }
             else
                 CalculateThanhTien();
+
+            _flag = true;
         }
 
         private void dgChiTiet_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)

@@ -357,17 +357,17 @@ namespace MM.Dialogs
 
             double soLuong = 1;
             string strValue = dgChiTiet[3, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
-            if (strValue != string.Empty && strValue != "System.Data.DataRowView")
+            if (strValue != string.Empty && strValue != "SystemDataDataRowView")
                 soLuong = Convert.ToDouble(strValue);
 
             strValue = dgChiTiet[4, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
             double donGia = 0;
-            if (strValue != string.Empty && strValue != "System.Data.DataRowView")
+            if (strValue != string.Empty && strValue != "SystemDataDataRowView")
                 donGia = Convert.ToDouble(strValue);
 
             double giam = 0;
             strValue = dgChiTiet[5, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
-            if (strValue != string.Empty && strValue != "System.Data.DataRowView")
+            if (strValue != string.Empty && strValue != "SystemDataDataRowView")
                 giam = Convert.ToDouble(strValue);
 
             double tienGiam = Math.Round(((double)soLuong * (double)donGia * (double)giam) / (double)100);
