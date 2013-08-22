@@ -95,6 +95,12 @@
     <Reference Include="TXTextControl, Version=15.1.800.500, Culture=neutral, PublicKeyToken=6b83fe9a75cfb638" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\uThongKeHoaDonDichVuVaThuoc.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uThongKeHoaDonDichVuVaThuoc.Designer.cs">
+      <DependentUpon>uThongKeHoaDonDichVuVaThuoc.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uDoanhThuTheoNhomDichVu.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -184,6 +190,12 @@
     </Compile>
     <Compile Include="Controls\uSMSLog.Designer.cs">
       <DependentUpon>uSMSLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddPhieuThuThuoc2.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddPhieuThuThuoc2.Designer.cs">
+      <DependentUpon>dlgAddPhieuThuThuoc2.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\dlgAddHuyThuoc.cs">
       <SubType>Form</SubType>
@@ -1716,6 +1728,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\uThongKeHoaDonDichVuVaThuoc.resx">
+      <DependentUpon>uThongKeHoaDonDichVuVaThuoc.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uDoanhThuTheoNhomDichVu.resx">
       <DependentUpon>uDoanhThuTheoNhomDichVu.cs</DependentUpon>
     </EmbeddedResource>
@@ -1760,6 +1775,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uSMSLog.resx">
       <DependentUpon>uSMSLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddPhieuThuThuoc2.resx">
+      <DependentUpon>dlgAddPhieuThuThuoc2.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddHuyThuoc.resx">
       <DependentUpon>dlgAddHuyThuoc.cs</DependentUpon>
@@ -2661,6 +2679,7 @@
     <None Include="Templates\SieuAmTemplate\6.rtf" />
     <None Include="Templates\SieuAmTemplate\Cac bao cao.doc" />
     <None Include="Templates\SymptomTemplate.xls" />
+    <None Include="Templates\ThongKeHoaDonDichVuVaThuocTemplate.xls" />
     <None Include="Templates\ThongKeThuocXuatHoaDonTemplate.xls" />
     <None Include="Templates\ThuocTonKhoTemplate.xls" />
     <None Include="Templates\ThuocTonKhoTheoKhoangThoiGianTemplate.xls" />
@@ -2730,6 +2749,7 @@
     <None Include="Resources\WhiteImage.PNG" />
     <None Include="Resources\email-alert-icon %282%29.png" />
     <None Include="Resources\email-alert-icon.png" />
+    <Content Include="Scripts\ScriptUpdate_KH_2013-08-22.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2013-08-02.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2013-07-31.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2013-07-23.sql" />

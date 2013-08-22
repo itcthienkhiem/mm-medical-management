@@ -10070,5 +10070,109 @@ namespace MM.Exports
 
             return true;
         }
+
+        public static bool ExportHoaDonDichVuVaThuocToExcel(string exportFileName, DateTime tuNgay, DateTime denNgay)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            IWorkbook workBook = null;
+
+            try
+            {
+                Result result = ReportBus.ThongKeHoaDonDichVuVaThuoc(tuNgay, denNgay);
+                if (!result.IsOK)
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReportBus.ThongKeHoaDonDichVuVaThuoc"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("ReportBus.ThongKeHoaDonDichVuVaThuoc"));
+                    return false;
+                }
+
+                DataTable dt = result.QueryResult as DataTable;
+                string excelTemplateName = string.Format("{0}\\Templates\\ThongKeHoaDonDichVuVaThuocTemplate.xls", Application.StartupPath);
+                Utility.CopyTemplates(excelTemplateName);
+
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+                workSheet.Cells["A2"].Value = string.Format("Từ ngày: {0} đến ngày: {1}", tuNgay.ToString("dd/MM/yyyy"), denNgay.ToString("dd/MM/yyyy"));
+
+                int rowIndex = 4;
+                IRange range;
+                int stt = 1;
+                foreach (DataRow row in dt.Rows)
+                {
+                    string kiHieu = row["KiHieu"].ToString();
+                    string soHoaDon = row["SoHoaDon"].ToString();
+                    DateTime ngayHoaDon = Convert.ToDateTime(row["NgayHoaDon"]);
+                    string tenKhachHang = row["TenNguoiMuaHang"].ToString();
+                    string maSoThue = row["MaSoThue"] as string;
+                    string diaChi = row["DiaChi"] as string;
+                    string tenHangHoa = row["TenHangHoa"].ToString();
+                    string donViTinh = row["DonViTinh"].ToString();
+                    int soLuong = Convert.ToInt32(row["SoLuong"]);
+                    double donGia = Convert.ToDouble(row["DonGia"]);
+                    double thanhTien = Convert.ToDouble(row["ThanhTien"]);
+                    string hinhThucThanhToan = row["HinhThucThanhToan"].ToString();
+
+                    workSheet.Cells[rowIndex, 0].Value = stt++;
+                    workSheet.Cells[rowIndex, 1].Value = kiHieu;
+                    workSheet.Cells[rowIndex, 2].Value = soHoaDon;
+                    workSheet.Cells[rowIndex, 3].Value = ngayHoaDon.ToString("dd/MM/yyyy");
+                    workSheet.Cells[rowIndex, 4].Value = tenKhachHang;
+                    workSheet.Cells[rowIndex, 5].Value = maSoThue;
+                    workSheet.Cells[rowIndex, 6].Value = diaChi;
+                    workSheet.Cells[rowIndex, 7].Value = tenHangHoa;
+                    workSheet.Cells[rowIndex, 8].Value = donViTinh;
+                    workSheet.Cells[rowIndex, 9].Value = soLuong;
+                    workSheet.Cells[rowIndex, 10].Value = donGia;
+                    workSheet.Cells[rowIndex, 11].Value = thanhTien;
+
+                    if (hinhThucThanhToan == "TM")
+                        workSheet.Cells[rowIndex, 12].Value = hinhThucThanhToan;
+                    else if (hinhThucThanhToan == "CK")
+                        workSheet.Cells[rowIndex, 13].Value = hinhThucThanhToan;
+                    else
+                        workSheet.Cells[rowIndex, 14].Value = hinhThucThanhToan;
+
+                    rowIndex++;
+                }
+
+                range = workSheet.Cells[string.Format("I{0}:K{0}", rowIndex + 1)];
+                range.Merge();
+                range.Font.Bold = true;
+                range.HorizontalAlignment = HAlign.Right;
+                range.Value = "Tổng Cộng:";
+
+                range = workSheet.Cells[string.Format("L{0}", rowIndex + 1)];
+                range.Font.Bold = true;
+
+                range.Value = string.Format("=SUM(L5:L{0})", rowIndex);
+
+                range = workSheet.Cells[string.Format("A5:O{0}", rowIndex + 1)];
+                range.Borders.Color = Color.Black;
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Weight = BorderWeight.Thin;
+
+                string path = string.Format("{0}\\Temp", Application.StartupPath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
     }
 }
