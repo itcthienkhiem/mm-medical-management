@@ -1756,6 +1756,20 @@ namespace MM
                             _uHuyThuocList.AllowExportAll = isExportAll;
                             _uHuyThuocList.AllowConfirm = isConfirm;
                         }
+                        else if (functionCode == Const.ThongKeHoaDonDichVuVaThuoc)
+                        {
+                            invoiceToolStripMenuItem.Enabled = isLogin;
+                            thongKeHoaDonDichVuVaThuocToolStripMenuItem.Enabled = isView && isLogin;
+                            _uThongKeHoaDonDichVuVaThuoc.AllowAdd = isAdd;
+                            _uThongKeHoaDonDichVuVaThuoc.AllowEdit = isEdit;
+                            _uThongKeHoaDonDichVuVaThuoc.AllowDelete = isDelete;
+                            _uThongKeHoaDonDichVuVaThuoc.AllowPrint = isPrint;
+                            _uThongKeHoaDonDichVuVaThuoc.AllowExport = isExport;
+                            _uThongKeHoaDonDichVuVaThuoc.AllowImport = isImport;
+                            _uThongKeHoaDonDichVuVaThuoc.AllowLock = isLock;
+                            _uThongKeHoaDonDichVuVaThuoc.AllowExportAll = isExportAll;
+                            _uThongKeHoaDonDichVuVaThuoc.AllowConfirm = isConfirm;
+                        }
                     }
                 }
                 else
@@ -1995,6 +2009,7 @@ namespace MM
                 traHoSoToolStripMenuItem.Enabled = isLogin;
                 doanhThuTheoNhomDichVuToolStripMenuItem.Enabled = isLogin;
                 huyThuocToolStripMenuItem.Enabled = isLogin;
+                thongKeHoaDonDichVuVaThuocToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -2485,7 +2500,17 @@ namespace MM
                 case "HuyThuoc":
                     OnHuyThuoc();
                     break;
+
+                case "ThongKeHoaDonDichVuVaThuoc":
+                    OnThongKeHoaDonDichVuVaThuoc();
+                    break;
             }
+        }
+
+        private void OnThongKeHoaDonDichVuVaThuoc()
+        {
+            this.Text = string.Format("{0} - Thong ke hoa don dich vu va thuoc", Application.ProductName);
+            ViewControl(_uThongKeHoaDonDichVuVaThuoc);
         }
 
         private void OnHuyThuoc()

@@ -163,6 +163,8 @@
             this.hoaDonHopDongToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator79 = new System.Windows.Forms.ToolStripSeparator();
             this.thongKeThuocXuatHoaDonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator86 = new System.Windows.Forms.ToolStripSeparator();
+            this.thongKeHoaDonDichVuVaThuocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.thuocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.danhMucThuocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator17 = new System.Windows.Forms.ToolStripSeparator();
@@ -174,6 +176,8 @@
             this.toolStripSeparator21 = new System.Windows.Forms.ToolStripSeparator();
             this.keToaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator75 = new System.Windows.Forms.ToolStripSeparator();
+            this.huyThuocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator85 = new System.Windows.Forms.ToolStripSeparator();
             this.toaThuocTrongNgayToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.reportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.doanhThuNhanVienToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -300,6 +304,7 @@
             this.dockSite3 = new DevComponents.DotNetBar.DockSite();
             this._timerShowAlert = new System.Windows.Forms.Timer(this.components);
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uHuyThuocList = new MM.Controls.uHuyThuocList();
             this._uDoanhThuTheoNhomDichVu = new MM.Controls.uDoanhThuTheoNhomDichVu();
             this._uTraHoSo = new MM.Controls.uTraHoSo();
             this._uCauHinhDichVuXetNghiem = new MM.Controls.uCauHinhDichVuXetNghiem();
@@ -386,9 +391,7 @@
             this._uServicesList = new MM.Controls.uServicesList();
             this._timerCheckAlert = new System.Windows.Forms.Timer(this.components);
             this._timerPatient = new System.Windows.Forms.Timer(this.components);
-            this.huyThuocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripSeparator85 = new System.Windows.Forms.ToolStripSeparator();
-            this._uHuyThuocList = new MM.Controls.uHuyThuocList();
+            this._uThongKeHoaDonDichVuVaThuoc = new MM.Controls.uThongKeHoaDonDichVuVaThuoc();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -1277,7 +1280,9 @@
             this.toolStripSeparator38,
             this.hoaDonHopDongToolStripMenuItem,
             this.toolStripSeparator79,
-            this.thongKeThuocXuatHoaDonToolStripMenuItem});
+            this.thongKeThuocXuatHoaDonToolStripMenuItem,
+            this.toolStripSeparator86,
+            this.thongKeHoaDonDichVuVaThuocToolStripMenuItem});
             resources.ApplyResources(this.invoiceToolStripMenuItem, "invoiceToolStripMenuItem");
             this.invoiceToolStripMenuItem.Name = "invoiceToolStripMenuItem";
             // 
@@ -1339,6 +1344,18 @@
             this.thongKeThuocXuatHoaDonToolStripMenuItem.Name = "thongKeThuocXuatHoaDonToolStripMenuItem";
             this.thongKeThuocXuatHoaDonToolStripMenuItem.Tag = "ThongKeThuocXuatHoaDon";
             this.thongKeThuocXuatHoaDonToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator86
+            // 
+            this.toolStripSeparator86.Name = "toolStripSeparator86";
+            resources.ApplyResources(this.toolStripSeparator86, "toolStripSeparator86");
+            // 
+            // thongKeHoaDonDichVuVaThuocToolStripMenuItem
+            // 
+            resources.ApplyResources(this.thongKeHoaDonDichVuVaThuocToolStripMenuItem, "thongKeHoaDonDichVuVaThuocToolStripMenuItem");
+            this.thongKeHoaDonDichVuVaThuocToolStripMenuItem.Name = "thongKeHoaDonDichVuVaThuocToolStripMenuItem";
+            this.thongKeHoaDonDichVuVaThuocToolStripMenuItem.Tag = "ThongKeHoaDonDichVuVaThuoc";
+            this.thongKeHoaDonDichVuVaThuocToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // thuocToolStripMenuItem
             // 
@@ -1423,6 +1440,18 @@
             // 
             this.toolStripSeparator75.Name = "toolStripSeparator75";
             resources.ApplyResources(this.toolStripSeparator75, "toolStripSeparator75");
+            // 
+            // huyThuocToolStripMenuItem
+            // 
+            resources.ApplyResources(this.huyThuocToolStripMenuItem, "huyThuocToolStripMenuItem");
+            this.huyThuocToolStripMenuItem.Name = "huyThuocToolStripMenuItem";
+            this.huyThuocToolStripMenuItem.Tag = "HuyThuoc";
+            this.huyThuocToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator85
+            // 
+            this.toolStripSeparator85.Name = "toolStripSeparator85";
+            resources.ApplyResources(this.toolStripSeparator85, "toolStripSeparator85");
             // 
             // toaThuocTrongNgayToolStripMenuItem
             // 
@@ -2196,7 +2225,7 @@
             this.dgPatient.AutoGenerateColumns = false;
             dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
             dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
             dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
@@ -2217,7 +2246,7 @@
             this.dgPatient.DataSource = this.patientViewBindingSource;
             dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
             dataGridViewCellStyle9.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(163)));
+            dataGridViewCellStyle9.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle9.ForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle9.SelectionBackColor = System.Drawing.SystemColors.Highlight;
             dataGridViewCellStyle9.SelectionForeColor = System.Drawing.SystemColors.ControlText;
@@ -2430,6 +2459,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uThongKeHoaDonDichVuVaThuoc);
             this._mainPanel.Controls.Add(this._uHuyThuocList);
             this._mainPanel.Controls.Add(this._uDoanhThuTheoNhomDichVu);
             this._mainPanel.Controls.Add(this._uTraHoSo);
@@ -2516,6 +2546,11 @@
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uHuyThuocList
+            // 
+            resources.ApplyResources(this._uHuyThuocList, "_uHuyThuocList");
+            this._uHuyThuocList.Name = "_uHuyThuocList";
             // 
             // _uDoanhThuTheoNhomDichVu
             // 
@@ -2953,22 +2988,10 @@
             // 
             this._timerPatient.Interval = 5000;
             // 
-            // huyThuocToolStripMenuItem
+            // _uThongKeHoaDonDichVuVaThuoc
             // 
-            resources.ApplyResources(this.huyThuocToolStripMenuItem, "huyThuocToolStripMenuItem");
-            this.huyThuocToolStripMenuItem.Name = "huyThuocToolStripMenuItem";
-            this.huyThuocToolStripMenuItem.Tag = "HuyThuoc";
-            this.huyThuocToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
-            // 
-            // toolStripSeparator85
-            // 
-            this.toolStripSeparator85.Name = "toolStripSeparator85";
-            resources.ApplyResources(this.toolStripSeparator85, "toolStripSeparator85");
-            // 
-            // _uHuyThuocList
-            // 
-            resources.ApplyResources(this._uHuyThuocList, "_uHuyThuocList");
-            this._uHuyThuocList.Name = "_uHuyThuocList";
+            resources.ApplyResources(this._uThongKeHoaDonDichVuVaThuoc, "_uThongKeHoaDonDichVuVaThuoc");
+            this._uThongKeHoaDonDichVuVaThuoc.Name = "_uThongKeHoaDonDichVuVaThuoc";
             // 
             // MainForm
             // 
@@ -3361,6 +3384,9 @@
         private System.Windows.Forms.ToolStripMenuItem huyThuocToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator85;
         private Controls.uHuyThuocList _uHuyThuocList;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator86;
+        private System.Windows.Forms.ToolStripMenuItem thongKeHoaDonDichVuVaThuocToolStripMenuItem;
+        private Controls.uThongKeHoaDonDichVuVaThuoc _uThongKeHoaDonDichVuVaThuoc;
 
     }
 }
