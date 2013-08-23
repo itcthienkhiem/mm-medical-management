@@ -843,14 +843,18 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result ThongKeHoaDonDichVuVaThuoc(DateTime tuNgay, DateTime denNgay)
+        public static Result ThongKeHoaDonDichVuVaThuoc(DateTime tuNgay, DateTime denNgay, int type)
         {
             Result result = new Result();
 
             try
             {
-                string query = string.Format("SELECT KiHieu, InvoiceCode AS SoHoaDon, InvoiceDate AS NgayHoaDon, TenNguoiMuaHang, MaSoThue, DiaChi, TenDichVu AS TenHangHoa, DonViTinh, SoLuong, DonGia, ThanhTien, CASE HinhThucThanhToan WHEN 0 THEN 'TM' WHEN 1 THEN 'CK' WHEN 2 THEN 'TM/CK' END AS HinhThucThanhToan FROM Invoice HD, InvoiceDetail CT WHERE HD.InvoiceGUID = CT.InvoiceGUID AND HD.Status = 0 AND CT.Status = 0 AND InvoiceDate BETWEEN '{0}' AND '{1}' UNION SELECT KiHieu, SoHoaDon, NgayXuatHoaDon AS NgayHoaDon, TenNguoiMuaHang, MaSoThue, DiaChi, TenThuoc AS TenHangHoa, DonViTinh, SoLuong, DonGia, ThanhTien, CASE HinhThucThanhToan WHEN 0 THEN 'TM' WHEN 1 THEN 'CK' WHEN 2 THEN 'TM/CK' END AS HinhThucThanhToan FROM HoaDonThuoc HD, ChiTietHoaDonThuoc CT WHERE HD.HoaDonThuocGUID = CT.HoaDonThuocGUID AND HD.Status = 0 AND CT.Status = 0 AND NgayXuatHoaDon BETWEEN '{0}' AND '{1}' ORDER BY SoHoaDon",
-                    tuNgay.ToString("yyyy-MM-dd 00:00:00"), denNgay.ToString("yyyy-MM-dd 23:59:59"));
+                string subQuery = "1 = 1";
+                if (type == 1) subQuery = "ChuaThuTien = 0";
+                else if (type == 2) subQuery = "ChuaThuTien = 1";
+
+                string query = string.Format("SELECT KiHieu, InvoiceCode AS SoHoaDon, InvoiceDate AS NgayHoaDon, TenNguoiMuaHang, MaSoThue, DiaChi, TenDichVu AS TenHangHoa, DonViTinh, SoLuong, DonGia, ThanhTien, CASE HinhThucThanhToan WHEN 0 THEN 'TM' WHEN 1 THEN 'CK' WHEN 2 THEN 'TM/CK' END AS HinhThucThanhToan FROM Invoice HD, InvoiceDetail CT WHERE HD.InvoiceGUID = CT.InvoiceGUID AND HD.Status = 0 AND CT.Status = 0 AND InvoiceDate BETWEEN '{0}' AND '{1}' AND {2} UNION SELECT KiHieu, SoHoaDon, NgayXuatHoaDon AS NgayHoaDon, TenNguoiMuaHang, MaSoThue, DiaChi, TenThuoc AS TenHangHoa, DonViTinh, SoLuong, DonGia, ThanhTien, CASE HinhThucThanhToan WHEN 0 THEN 'TM' WHEN 1 THEN 'CK' WHEN 2 THEN 'TM/CK' END AS HinhThucThanhToan FROM HoaDonThuoc HD, ChiTietHoaDonThuoc CT WHERE HD.HoaDonThuocGUID = CT.HoaDonThuocGUID AND HD.Status = 0 AND CT.Status = 0 AND NgayXuatHoaDon BETWEEN '{0}' AND '{1}' AND {2} ORDER BY SoHoaDon",
+                    tuNgay.ToString("yyyy-MM-dd 00:00:00"), denNgay.ToString("yyyy-MM-dd 23:59:59"), subQuery);
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)

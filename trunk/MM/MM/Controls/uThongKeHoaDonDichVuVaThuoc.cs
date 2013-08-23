@@ -40,7 +40,11 @@ namespace MM.Controls
             dlg.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                ExportExcel.ExportHoaDonDichVuVaThuocToExcel(dlg.FileName, dtpkTuNgay.Value, dtpkDenNgay.Value);
+                int type = 0;
+                if (raAll.Checked) type = 0;
+                else if (raDaThuTien.Checked) type = 1;
+                else type = 2;
+                ExportExcel.ExportHoaDonDichVuVaThuocToExcel(dlg.FileName, dtpkTuNgay.Value, dtpkDenNgay.Value, type);
             }
         }
         #endregion
