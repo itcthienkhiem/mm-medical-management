@@ -10071,14 +10071,14 @@ namespace MM.Exports
             return true;
         }
 
-        public static bool ExportHoaDonDichVuVaThuocToExcel(string exportFileName, DateTime tuNgay, DateTime denNgay)
+        public static bool ExportHoaDonDichVuVaThuocToExcel(string exportFileName, DateTime tuNgay, DateTime denNgay, int type)
         {
             Cursor.Current = Cursors.WaitCursor;
             IWorkbook workBook = null;
 
             try
             {
-                Result result = ReportBus.ThongKeHoaDonDichVuVaThuoc(tuNgay, denNgay);
+                Result result = ReportBus.ThongKeHoaDonDichVuVaThuoc(tuNgay, denNgay, type);
                 if (!result.IsOK)
                 {
                     MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReportBus.ThongKeHoaDonDichVuVaThuoc"), IconType.Error);

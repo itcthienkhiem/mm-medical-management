@@ -35,18 +35,24 @@
             this.label5 = new System.Windows.Forms.Label();
             this.btnExportExcel = new System.Windows.Forms.Button();
             this._printDialog = new System.Windows.Forms.PrintDialog();
+            this.raChuaThuTien = new System.Windows.Forms.RadioButton();
+            this.raDaThuTien = new System.Windows.Forms.RadioButton();
+            this.raAll = new System.Windows.Forms.RadioButton();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.raChuaThuTien);
+            this.groupBox1.Controls.Add(this.raDaThuTien);
+            this.groupBox1.Controls.Add(this.raAll);
             this.groupBox1.Controls.Add(this.dtpkDenNgay);
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.dtpkTuNgay);
             this.groupBox1.Controls.Add(this.label5);
             this.groupBox1.Location = new System.Drawing.Point(7, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(367, 52);
+            this.groupBox1.Size = new System.Drawing.Size(367, 81);
             this.groupBox1.TabIndex = 1;
             this.groupBox1.TabStop = false;
             // 
@@ -90,7 +96,7 @@
             // 
             this.btnExportExcel.Image = global::MM.Properties.Resources.page_excel_icon;
             this.btnExportExcel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnExportExcel.Location = new System.Drawing.Point(7, 61);
+            this.btnExportExcel.Location = new System.Drawing.Point(7, 90);
             this.btnExportExcel.Name = "btnExportExcel";
             this.btnExportExcel.Size = new System.Drawing.Size(93, 25);
             this.btnExportExcel.TabIndex = 84;
@@ -106,6 +112,38 @@
             this._printDialog.ShowHelp = true;
             this._printDialog.UseEXDialog = true;
             // 
+            // raChuaThuTien
+            // 
+            this.raChuaThuTien.AutoSize = true;
+            this.raChuaThuTien.Location = new System.Drawing.Point(260, 49);
+            this.raChuaThuTien.Name = "raChuaThuTien";
+            this.raChuaThuTien.Size = new System.Drawing.Size(88, 17);
+            this.raChuaThuTien.TabIndex = 30;
+            this.raChuaThuTien.Text = "Chưa thu tiền";
+            this.raChuaThuTien.UseVisualStyleBackColor = true;
+            // 
+            // raDaThuTien
+            // 
+            this.raDaThuTien.AutoSize = true;
+            this.raDaThuTien.Location = new System.Drawing.Point(128, 49);
+            this.raDaThuTien.Name = "raDaThuTien";
+            this.raDaThuTien.Size = new System.Drawing.Size(77, 17);
+            this.raDaThuTien.TabIndex = 29;
+            this.raDaThuTien.Text = "Đã thu tiền";
+            this.raDaThuTien.UseVisualStyleBackColor = true;
+            // 
+            // raAll
+            // 
+            this.raAll.AutoSize = true;
+            this.raAll.Checked = true;
+            this.raAll.Location = new System.Drawing.Point(19, 49);
+            this.raAll.Name = "raAll";
+            this.raAll.Size = new System.Drawing.Size(56, 17);
+            this.raAll.TabIndex = 28;
+            this.raAll.TabStop = true;
+            this.raAll.Text = "Tất cả";
+            this.raAll.UseVisualStyleBackColor = true;
+            // 
             // uThongKeHoaDonDichVuVaThuoc
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -113,7 +151,7 @@
             this.Controls.Add(this.btnExportExcel);
             this.Controls.Add(this.groupBox1);
             this.Name = "uThongKeHoaDonDichVuVaThuoc";
-            this.Size = new System.Drawing.Size(384, 97);
+            this.Size = new System.Drawing.Size(384, 121);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
@@ -129,5 +167,8 @@
         private System.Windows.Forms.DateTimePicker dtpkTuNgay;
         private System.Windows.Forms.Button btnExportExcel;
         private System.Windows.Forms.PrintDialog _printDialog;
+        private System.Windows.Forms.RadioButton raChuaThuTien;
+        private System.Windows.Forms.RadioButton raDaThuTien;
+        private System.Windows.Forms.RadioButton raAll;
     }
 }
