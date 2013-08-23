@@ -3324,6 +3324,12 @@ namespace MM
             {
                 if (dlg.IsChangeConnectionInfo)
                 {
+                    if (dlg.IsDefaultConfig)
+                    {
+                        if (!System.Diagnostics.Debugger.IsAttached)
+                            AutoDetectUpdateAsThread();
+                    }
+
                     dlg.SetAppConfig();
                     SaveAppConfig();
                     //Utility.ResetMMSerivice();

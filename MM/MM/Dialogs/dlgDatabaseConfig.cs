@@ -38,6 +38,19 @@ namespace MM.Dialogs
                 return false;
             }
         }
+
+        public bool IsDefaultConfig
+        {
+            get
+            {
+                if (cboServerName.Text == "Vigor-srv01" && txtDatabaseName.Text == "MM" &&
+                    cboAuthentication.SelectedIndex == 1 && txtUserName.Text == "sa" &&
+                    txtPassword.Text == "vghpassword") 
+                    return true;
+
+                return false;
+            }
+        }
         #endregion
 
         #region UI Command
