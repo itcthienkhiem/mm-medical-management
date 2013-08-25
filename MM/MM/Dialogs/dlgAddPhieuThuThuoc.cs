@@ -209,7 +209,7 @@ namespace MM.Dialogs
 
         private void RefreshNo()
         {
-            for (int i = 0; i < dgChiTiet.RowCount - 1; i++)
+            for (int i = 0; i < dgChiTiet.RowCount; i++)
             {
                 dgChiTiet[0, i].Value = i + 1;
             }

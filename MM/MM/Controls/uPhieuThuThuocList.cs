@@ -163,43 +163,10 @@ namespace MM.Controls
 
         private void OnAddPhieuThu()
         {
-            dlgAddPhieuThuThuoc dlg = new dlgAddPhieuThuThuoc();
+            dlgAddPhieuThuThuoc2 dlg = new dlgAddPhieuThuThuoc2();
             if (dlg.ShowDialog(this) == DialogResult.OK)
             {
                 DisplayAsThread();
-                /*DataTable dt = dgPhieuThu.DataSource as DataTable;
-                if (dt == null) return;
-                DataRow newRow = dt.NewRow();
-                newRow["Checked"] = false;
-                newRow["PhieuThuThuocGUID"] = dlg.PhieuThuThuoc.PhieuThuThuocGUID.ToString();
-                newRow["MaPhieuThuThuoc"] = dlg.PhieuThuThuoc.MaPhieuThuThuoc;
-                newRow["NgayThu"] = dlg.PhieuThuThuoc.NgayThu;
-                newRow["MaBenhNhan"] = dlg.PhieuThuThuoc.MaBenhNhan;
-                newRow["TenBenhNhan"] = dlg.PhieuThuThuoc.TenBenhNhan;
-                newRow["DiaChi"] = dlg.PhieuThuThuoc.DiaChi;
-
-                if (dlg.PhieuThuThuoc.CreatedDate.HasValue)
-                    newRow["CreatedDate"] = dlg.PhieuThuThuoc.CreatedDate;
-
-                if (dlg.PhieuThuThuoc.CreatedBy.HasValue)
-                    newRow["CreatedBy"] = dlg.PhieuThuThuoc.CreatedBy.ToString();
-
-                if (dlg.PhieuThuThuoc.UpdatedDate.HasValue)
-                    newRow["UpdatedDate"] = dlg.PhieuThuThuoc.UpdatedDate;
-
-                if (dlg.PhieuThuThuoc.UpdatedBy.HasValue)
-                    newRow["UpdatedBy"] = dlg.PhieuThuThuoc.UpdatedBy.ToString();
-
-                if (dlg.PhieuThuThuoc.DeletedDate.HasValue)
-                    newRow["DeletedDate"] = dlg.PhieuThuThuoc.DeletedDate;
-
-                if (dlg.PhieuThuThuoc.DeletedBy.HasValue)
-                    newRow["DeletedBy"] = dlg.PhieuThuThuoc.DeletedBy.ToString();
-
-                newRow["Status"] = dlg.PhieuThuThuoc.Status;
-                newRow["IsExported"] = false;
-                dt.Rows.Add(newRow);
-                //SelectLastedRow();*/
             }
         }
 
@@ -332,7 +299,7 @@ namespace MM.Controls
                 return;
 
             DataRow drPhieuThu = (dgPhieuThu.SelectedRows[0].DataBoundItem as DataRowView).Row;
-            dlgAddPhieuThuThuoc dlg = new dlgAddPhieuThuThuoc(drPhieuThu);
+            dlgAddPhieuThuThuoc2 dlg = new dlgAddPhieuThuThuoc2(drPhieuThu);
             if (dlg.ShowDialog(this) == DialogResult.Cancel)
             {
                 if (dlg.IsExportedInvoice)

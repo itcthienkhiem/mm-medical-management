@@ -81,7 +81,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT * FROM ChiTietPhieuThuThuocView WITH(NOLOCK) WHERE CTPTTStatus={0} AND ThuocStatus={0} AND PhieuThuThuocGUID='{1}' ORDER BY TenThuoc", 
+                string query = string.Format("SELECT ROW_NUMBER() OVER (ORDER BY TenThuoc) AS STT, *, '' AS NgayHetHan, CAST(0 AS float) AS SLTon  FROM ChiTietPhieuThuThuocView WITH(NOLOCK) WHERE CTPTTStatus={0} AND ThuocStatus={0} AND PhieuThuThuocGUID='{1}' ORDER BY TenThuoc", 
                     (byte)Status.Actived, phieuThuThuocGUID);
                 return ExcuteQuery(query);
             }

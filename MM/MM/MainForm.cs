@@ -3606,7 +3606,7 @@ namespace MM
         private void MainForm_Load(object sender, EventArgs e)
         {
             InitConfigAsThread();
-            
+
 
             if (!System.Diagnostics.Debugger.IsAttached)
                 AutoDetectUpdateAsThread();

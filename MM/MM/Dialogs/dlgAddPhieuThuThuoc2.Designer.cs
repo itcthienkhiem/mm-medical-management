@@ -29,17 +29,7 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle10 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle5 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle6 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle8 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle9 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddPhieuThuThuoc));
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddPhieuThuThuoc2));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.cboHinhThucThanhToan = new System.Windows.Forms.ComboBox();
             this.label16 = new System.Windows.Forms.Label();
@@ -65,17 +55,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.dgChiTiet = new DevComponents.DotNetBar.Controls.DataGridViewX();
-            this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ThuocGUID = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.thuocBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.DonViTinh = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SoLuong = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.DonGia = new System.Windows.Forms.DataGridViewComboBoxColumn();
-            this.Giam = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.ThanhTien = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.NgayHetHan = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.SoLuongTon = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ctmToaThuoc = new System.Windows.Forms.ContextMenuStrip(this.components);
             this.thuocThayTheToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.chiTietPhieuThuThuocViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
@@ -83,12 +63,36 @@
             this.btnOK = new System.Windows.Forms.Button();
             this.lbTongTien = new System.Windows.Forms.Label();
             this.btnExportInvoice = new System.Windows.Forms.Button();
+            this.gridPTT = new DevExpress.XtraGrid.GridControl();
+            this.gridViewPTT = new DevExpress.XtraGrid.Views.Grid.GridView();
+            this.colSTT = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colTenThuoc = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemLookUpEditTenThuoc = new DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit();
+            this.colDVT = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSoLuong = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemSpinEditSoLuong = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.colDonGia = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemComboBoxDonGia = new DevExpress.XtraEditors.Repository.RepositoryItemComboBox();
+            this.colGiam = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemSpinEditGiam = new DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit();
+            this.colThanhTien = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemTextEditThanhTien = new DevExpress.XtraEditors.Repository.RepositoryItemTextEdit();
+            this.colNgayHetHan = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.colSLTon = new DevExpress.XtraGrid.Columns.GridColumn();
+            this.repositoryItemCalcEditSoLuong = new DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.toaThuocViewBindingSource)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgChiTiet)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.thuocBindingSource)).BeginInit();
             this.ctmToaThuoc.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.chiTietPhieuThuThuocViewBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridPTT)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewPTT)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditTenThuoc)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditSoLuong)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxDonGia)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditGiam)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEditThanhTien)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCalcEditSoLuong)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -350,171 +354,9 @@
             this.label1.TabIndex = 0;
             this.label1.Text = "Mã toa thuốc:";
             // 
-            // dgChiTiet
-            // 
-            this.dgChiTiet.AllowUserToResizeRows = false;
-            this.dgChiTiet.AutoGenerateColumns = false;
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.SystemColors.Control;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.WindowText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.HighlightText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dgChiTiet.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
-            this.dgChiTiet.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgChiTiet.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.STT,
-            this.ThuocGUID,
-            this.DonViTinh,
-            this.SoLuong,
-            this.DonGia,
-            this.Giam,
-            this.ThanhTien,
-            this.NgayHetHan,
-            this.SoLuongTon});
-            this.dgChiTiet.ContextMenuStrip = this.ctmToaThuoc;
-            this.dgChiTiet.DataSource = this.chiTietPhieuThuThuocViewBindingSource;
-            dataGridViewCellStyle10.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle10.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle10.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle10.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle10.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle10.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgChiTiet.DefaultCellStyle = dataGridViewCellStyle10;
-            this.dgChiTiet.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
-            this.dgChiTiet.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
-            this.dgChiTiet.HighlightSelectedColumnHeaders = false;
-            this.dgChiTiet.Location = new System.Drawing.Point(7, 233);
-            this.dgChiTiet.Name = "dgChiTiet";
-            this.dgChiTiet.RowHeadersWidth = 30;
-            this.dgChiTiet.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgChiTiet.Size = new System.Drawing.Size(870, 277);
-            this.dgChiTiet.TabIndex = 15;
-            this.dgChiTiet.CellFormatting += new System.Windows.Forms.DataGridViewCellFormattingEventHandler(this.dgChiTiet_CellFormatting);
-            this.dgChiTiet.CellMouseDown += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgChiTiet_CellMouseDown);
-            this.dgChiTiet.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgChiTiet_ColumnHeaderMouseClick);
-            this.dgChiTiet.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.dgChiTiet_DataError);
-            this.dgChiTiet.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.dgChiTiet_EditingControlShowing);
-            this.dgChiTiet.RowLeave += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgChiTiet_RowLeave);
-            this.dgChiTiet.UserAddedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgChiTiet_UserAddedRow);
-            this.dgChiTiet.UserDeletedRow += new System.Windows.Forms.DataGridViewRowEventHandler(this.dgChiTiet_UserDeletedRow);
-            this.dgChiTiet.UserDeletingRow += new System.Windows.Forms.DataGridViewRowCancelEventHandler(this.dgChiTiet_UserDeletingRow);
-            this.dgChiTiet.Leave += new System.EventHandler(this.dgChiTiet_Leave);
-            // 
-            // STT
-            // 
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.STT.DefaultCellStyle = dataGridViewCellStyle2;
-            this.STT.Frozen = true;
-            this.STT.HeaderText = "STT";
-            this.STT.Name = "STT";
-            this.STT.ReadOnly = true;
-            this.STT.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.STT.Width = 40;
-            // 
-            // ThuocGUID
-            // 
-            this.ThuocGUID.DataPropertyName = "ThuocGUID";
-            this.ThuocGUID.DataSource = this.thuocBindingSource;
-            this.ThuocGUID.DisplayMember = "TenThuoc";
-            this.ThuocGUID.DisplayStyleForCurrentCellOnly = true;
-            this.ThuocGUID.HeaderText = "Tên thuốc";
-            this.ThuocGUID.Name = "ThuocGUID";
-            this.ThuocGUID.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ThuocGUID.ValueMember = "ThuocGUID";
-            this.ThuocGUID.Width = 200;
-            // 
             // thuocBindingSource
             // 
             this.thuocBindingSource.DataSource = typeof(MM.Databasae.Thuoc);
-            // 
-            // DonViTinh
-            // 
-            this.DonViTinh.DataPropertyName = "DonViTinh";
-            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.DonViTinh.DefaultCellStyle = dataGridViewCellStyle3;
-            this.DonViTinh.HeaderText = "ĐVT";
-            this.DonViTinh.Name = "DonViTinh";
-            this.DonViTinh.ReadOnly = true;
-            this.DonViTinh.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.DonViTinh.Width = 80;
-            // 
-            // SoLuong
-            // 
-            this.SoLuong.DataPropertyName = "SoLuong";
-            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle4.Format = "N0";
-            dataGridViewCellStyle4.NullValue = null;
-            this.SoLuong.DefaultCellStyle = dataGridViewCellStyle4;
-            this.SoLuong.HeaderText = "Số lượng";
-            this.SoLuong.Name = "SoLuong";
-            this.SoLuong.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.SoLuong.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.SoLuong.Width = 75;
-            // 
-            // DonGia
-            // 
-            this.DonGia.DataPropertyName = "DonGia";
-            dataGridViewCellStyle5.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle5.Format = "N0";
-            this.DonGia.DefaultCellStyle = dataGridViewCellStyle5;
-            this.DonGia.DisplayStyleForCurrentCellOnly = true;
-            this.DonGia.HeaderText = "Đơn giá";
-            this.DonGia.Name = "DonGia";
-            this.DonGia.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.DonGia.Width = 90;
-            // 
-            // Giam
-            // 
-            this.Giam.DataPropertyName = "Giam";
-            dataGridViewCellStyle6.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle6.Format = "N0";
-            dataGridViewCellStyle6.NullValue = null;
-            this.Giam.DefaultCellStyle = dataGridViewCellStyle6;
-            this.Giam.HeaderText = "Giảm (%)";
-            this.Giam.Name = "Giam";
-            this.Giam.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Giam.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.Giam.Width = 80;
-            // 
-            // ThanhTien
-            // 
-            this.ThanhTien.DataPropertyName = "ThanhTien";
-            dataGridViewCellStyle7.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle7.Format = "N0";
-            dataGridViewCellStyle7.NullValue = null;
-            this.ThanhTien.DefaultCellStyle = dataGridViewCellStyle7;
-            this.ThanhTien.HeaderText = "Thành tiền";
-            this.ThanhTien.Name = "ThanhTien";
-            this.ThanhTien.ReadOnly = true;
-            this.ThanhTien.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.ThanhTien.Width = 120;
-            // 
-            // NgayHetHan
-            // 
-            dataGridViewCellStyle8.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle8.Format = "dd/MM/yyyy";
-            dataGridViewCellStyle8.NullValue = null;
-            this.NgayHetHan.DefaultCellStyle = dataGridViewCellStyle8;
-            this.NgayHetHan.HeaderText = "Ngày hết hạn";
-            this.NgayHetHan.Name = "NgayHetHan";
-            this.NgayHetHan.ReadOnly = true;
-            this.NgayHetHan.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.NgayHetHan.Width = 80;
-            // 
-            // SoLuongTon
-            // 
-            dataGridViewCellStyle9.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleRight;
-            dataGridViewCellStyle9.Format = "N0";
-            dataGridViewCellStyle9.NullValue = null;
-            this.SoLuongTon.DefaultCellStyle = dataGridViewCellStyle9;
-            this.SoLuongTon.HeaderText = "SL tồn";
-            this.SoLuongTon.Name = "SoLuongTon";
-            this.SoLuongTon.ReadOnly = true;
-            this.SoLuongTon.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
-            this.SoLuongTon.Width = 70;
             // 
             // ctmToaThuoc
             // 
@@ -581,23 +423,333 @@
             this.btnExportInvoice.UseVisualStyleBackColor = true;
             this.btnExportInvoice.Click += new System.EventHandler(this.btnExportInvoice_Click);
             // 
-            // dlgAddPhieuThuThuoc
+            // gridPTT
+            // 
+            this.gridPTT.ContextMenuStrip = this.ctmToaThuoc;
+            this.gridPTT.Location = new System.Drawing.Point(7, 233);
+            this.gridPTT.MainView = this.gridViewPTT;
+            this.gridPTT.Name = "gridPTT";
+            this.gridPTT.RepositoryItems.AddRange(new DevExpress.XtraEditors.Repository.RepositoryItem[] {
+            this.repositoryItemLookUpEditTenThuoc,
+            this.repositoryItemCalcEditSoLuong,
+            this.repositoryItemSpinEditSoLuong,
+            this.repositoryItemComboBoxDonGia,
+            this.repositoryItemSpinEditGiam,
+            this.repositoryItemTextEditThanhTien});
+            this.gridPTT.Size = new System.Drawing.Size(870, 277);
+            this.gridPTT.TabIndex = 19;
+            this.gridPTT.ViewCollection.AddRange(new DevExpress.XtraGrid.Views.Base.BaseView[] {
+            this.gridViewPTT});
+            // 
+            // gridViewPTT
+            // 
+            this.gridViewPTT.Columns.AddRange(new DevExpress.XtraGrid.Columns.GridColumn[] {
+            this.colSTT,
+            this.colTenThuoc,
+            this.colDVT,
+            this.colSoLuong,
+            this.colDonGia,
+            this.colGiam,
+            this.colThanhTien,
+            this.colNgayHetHan,
+            this.colSLTon});
+            this.gridViewPTT.GridControl = this.gridPTT;
+            this.gridViewPTT.Name = "gridViewPTT";
+            this.gridViewPTT.OptionsBehavior.AllowAddRows = DevExpress.Utils.DefaultBoolean.True;
+            this.gridViewPTT.OptionsBehavior.AllowDeleteRows = DevExpress.Utils.DefaultBoolean.True;
+            this.gridViewPTT.OptionsMenu.EnableColumnMenu = false;
+            this.gridViewPTT.OptionsMenu.EnableFooterMenu = false;
+            this.gridViewPTT.OptionsMenu.EnableGroupPanelMenu = false;
+            this.gridViewPTT.OptionsMenu.ShowAutoFilterRowItem = false;
+            this.gridViewPTT.OptionsMenu.ShowDateTimeGroupIntervalItems = false;
+            this.gridViewPTT.OptionsMenu.ShowGroupSortSummaryItems = false;
+            this.gridViewPTT.OptionsMenu.ShowSplitItem = false;
+            this.gridViewPTT.OptionsNavigation.AutoFocusNewRow = true;
+            this.gridViewPTT.OptionsNavigation.AutoMoveRowFocus = false;
+            this.gridViewPTT.OptionsNavigation.UseOfficePageNavigation = false;
+            this.gridViewPTT.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.Bottom;
+            this.gridViewPTT.OptionsView.ShowGroupPanel = false;
+            this.gridViewPTT.CustomRowCellEditForEditing += new DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventHandler(this.gridViewPTT_CustomRowCellEditForEditing);
+            this.gridViewPTT.InitNewRow += new DevExpress.XtraGrid.Views.Grid.InitNewRowEventHandler(this.gridViewPTT_InitNewRow);
+            this.gridViewPTT.CellValueChanged += new DevExpress.XtraGrid.Views.Base.CellValueChangedEventHandler(this.gridViewPTT_CellValueChanged);
+            this.gridViewPTT.KeyUp += new System.Windows.Forms.KeyEventHandler(this.gridViewPTT_KeyUp);
+            // 
+            // colSTT
+            // 
+            this.colSTT.AppearanceCell.Options.UseTextOptions = true;
+            this.colSTT.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colSTT.AppearanceHeader.Options.UseTextOptions = true;
+            this.colSTT.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colSTT.Caption = "STT";
+            this.colSTT.FieldName = "STT";
+            this.colSTT.Name = "colSTT";
+            this.colSTT.OptionsColumn.AllowEdit = false;
+            this.colSTT.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.colSTT.OptionsColumn.FixedWidth = true;
+            this.colSTT.OptionsColumn.ReadOnly = true;
+            this.colSTT.OptionsFilter.AllowAutoFilter = false;
+            this.colSTT.OptionsFilter.AllowFilter = false;
+            this.colSTT.Visible = true;
+            this.colSTT.VisibleIndex = 0;
+            this.colSTT.Width = 42;
+            // 
+            // colTenThuoc
+            // 
+            this.colTenThuoc.AppearanceHeader.Options.UseTextOptions = true;
+            this.colTenThuoc.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colTenThuoc.Caption = "Tên thuốc";
+            this.colTenThuoc.ColumnEdit = this.repositoryItemLookUpEditTenThuoc;
+            this.colTenThuoc.FieldName = "ThuocGUID";
+            this.colTenThuoc.Name = "colTenThuoc";
+            this.colTenThuoc.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.colTenThuoc.OptionsColumn.FixedWidth = true;
+            this.colTenThuoc.OptionsFilter.AllowAutoFilter = false;
+            this.colTenThuoc.OptionsFilter.AllowFilter = false;
+            this.colTenThuoc.Visible = true;
+            this.colTenThuoc.VisibleIndex = 1;
+            this.colTenThuoc.Width = 212;
+            // 
+            // repositoryItemLookUpEditTenThuoc
+            // 
+            this.repositoryItemLookUpEditTenThuoc.AutoHeight = false;
+            this.repositoryItemLookUpEditTenThuoc.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemLookUpEditTenThuoc.Columns.AddRange(new DevExpress.XtraEditors.Controls.LookUpColumnInfo[] {
+            new DevExpress.XtraEditors.Controls.LookUpColumnInfo("TenThuoc", "Tên thuốc", 200, DevExpress.Utils.FormatType.None, "", true, DevExpress.Utils.HorzAlignment.Default, DevExpress.Data.ColumnSortOrder.Ascending)});
+            this.repositoryItemLookUpEditTenThuoc.DisplayMember = "TenThuoc";
+            this.repositoryItemLookUpEditTenThuoc.Name = "repositoryItemLookUpEditTenThuoc";
+            this.repositoryItemLookUpEditTenThuoc.NullText = "[Chọn thuốc]";
+            this.repositoryItemLookUpEditTenThuoc.ShowHeader = false;
+            this.repositoryItemLookUpEditTenThuoc.ValueMember = "ThuocGUID";
+            this.repositoryItemLookUpEditTenThuoc.CloseUp += new DevExpress.XtraEditors.Controls.CloseUpEventHandler(this.repositoryItemLookUpEditTenThuoc_CloseUp);
+            // 
+            // colDVT
+            // 
+            this.colDVT.AppearanceCell.Options.UseTextOptions = true;
+            this.colDVT.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colDVT.AppearanceHeader.Options.UseTextOptions = true;
+            this.colDVT.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colDVT.Caption = "ĐVT";
+            this.colDVT.FieldName = "DonViTinh";
+            this.colDVT.Name = "colDVT";
+            this.colDVT.OptionsColumn.AllowEdit = false;
+            this.colDVT.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.colDVT.OptionsColumn.FixedWidth = true;
+            this.colDVT.OptionsFilter.AllowAutoFilter = false;
+            this.colDVT.OptionsFilter.AllowFilter = false;
+            this.colDVT.Visible = true;
+            this.colDVT.VisibleIndex = 2;
+            this.colDVT.Width = 80;
+            // 
+            // colSoLuong
+            // 
+            this.colSoLuong.AppearanceCell.Options.UseTextOptions = true;
+            this.colSoLuong.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.colSoLuong.AppearanceHeader.Options.UseTextOptions = true;
+            this.colSoLuong.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colSoLuong.Caption = "Số lượng";
+            this.colSoLuong.ColumnEdit = this.repositoryItemSpinEditSoLuong;
+            this.colSoLuong.DisplayFormat.FormatString = "N0";
+            this.colSoLuong.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colSoLuong.FieldName = "SoLuong";
+            this.colSoLuong.Name = "colSoLuong";
+            this.colSoLuong.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.colSoLuong.OptionsColumn.FixedWidth = true;
+            this.colSoLuong.OptionsFilter.AllowAutoFilter = false;
+            this.colSoLuong.OptionsFilter.AllowFilter = false;
+            this.colSoLuong.Visible = true;
+            this.colSoLuong.VisibleIndex = 3;
+            // 
+            // repositoryItemSpinEditSoLuong
+            // 
+            this.repositoryItemSpinEditSoLuong.AutoHeight = false;
+            this.repositoryItemSpinEditSoLuong.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.repositoryItemSpinEditSoLuong.DisplayFormat.FormatString = "N0";
+            this.repositoryItemSpinEditSoLuong.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.repositoryItemSpinEditSoLuong.EditFormat.FormatString = "N0";
+            this.repositoryItemSpinEditSoLuong.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.repositoryItemSpinEditSoLuong.MaxValue = new decimal(new int[] {
+            999999,
+            0,
+            0,
+            0});
+            this.repositoryItemSpinEditSoLuong.MinValue = new decimal(new int[] {
+            1,
+            0,
+            0,
+            0});
+            this.repositoryItemSpinEditSoLuong.Name = "repositoryItemSpinEditSoLuong";
+            this.repositoryItemSpinEditSoLuong.NullText = "1";
+            this.repositoryItemSpinEditSoLuong.NullValuePrompt = "1";
+            this.repositoryItemSpinEditSoLuong.NullValuePromptShowForEmptyValue = true;
+            // 
+            // colDonGia
+            // 
+            this.colDonGia.AppearanceCell.Options.UseTextOptions = true;
+            this.colDonGia.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.colDonGia.AppearanceHeader.Options.UseTextOptions = true;
+            this.colDonGia.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colDonGia.Caption = "Đơn Giá";
+            this.colDonGia.ColumnEdit = this.repositoryItemComboBoxDonGia;
+            this.colDonGia.DisplayFormat.FormatString = "N0";
+            this.colDonGia.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colDonGia.FieldName = "DonGia";
+            this.colDonGia.Name = "colDonGia";
+            this.colDonGia.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.colDonGia.OptionsColumn.FixedWidth = true;
+            this.colDonGia.OptionsFilter.AllowAutoFilter = false;
+            this.colDonGia.OptionsFilter.AllowFilter = false;
+            this.colDonGia.Visible = true;
+            this.colDonGia.VisibleIndex = 4;
+            this.colDonGia.Width = 90;
+            // 
+            // repositoryItemComboBoxDonGia
+            // 
+            this.repositoryItemComboBoxDonGia.AutoHeight = false;
+            this.repositoryItemComboBoxDonGia.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemComboBoxDonGia.DisplayFormat.FormatString = "N0";
+            this.repositoryItemComboBoxDonGia.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.repositoryItemComboBoxDonGia.EditFormat.FormatString = "N0";
+            this.repositoryItemComboBoxDonGia.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.repositoryItemComboBoxDonGia.Name = "repositoryItemComboBoxDonGia";
+            this.repositoryItemComboBoxDonGia.NullText = "0";
+            this.repositoryItemComboBoxDonGia.NullValuePrompt = "0";
+            this.repositoryItemComboBoxDonGia.NullValuePromptShowForEmptyValue = true;
+            // 
+            // colGiam
+            // 
+            this.colGiam.AppearanceCell.Options.UseTextOptions = true;
+            this.colGiam.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.colGiam.AppearanceHeader.Options.UseTextOptions = true;
+            this.colGiam.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colGiam.Caption = "Giảm (%)";
+            this.colGiam.ColumnEdit = this.repositoryItemSpinEditGiam;
+            this.colGiam.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colGiam.FieldName = "Giam";
+            this.colGiam.Name = "colGiam";
+            this.colGiam.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.colGiam.OptionsColumn.FixedWidth = true;
+            this.colGiam.OptionsFilter.AllowAutoFilter = false;
+            this.colGiam.OptionsFilter.AllowFilter = false;
+            this.colGiam.Visible = true;
+            this.colGiam.VisibleIndex = 5;
+            this.colGiam.Width = 80;
+            // 
+            // repositoryItemSpinEditGiam
+            // 
+            this.repositoryItemSpinEditGiam.AutoHeight = false;
+            this.repositoryItemSpinEditGiam.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton()});
+            this.repositoryItemSpinEditGiam.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.repositoryItemSpinEditGiam.EditFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.repositoryItemSpinEditGiam.MaxValue = new decimal(new int[] {
+            100,
+            0,
+            0,
+            0});
+            this.repositoryItemSpinEditGiam.Name = "repositoryItemSpinEditGiam";
+            this.repositoryItemSpinEditGiam.NullText = "0";
+            this.repositoryItemSpinEditGiam.NullValuePrompt = "0";
+            this.repositoryItemSpinEditGiam.NullValuePromptShowForEmptyValue = true;
+            // 
+            // colThanhTien
+            // 
+            this.colThanhTien.AppearanceCell.Options.UseTextOptions = true;
+            this.colThanhTien.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.colThanhTien.AppearanceHeader.Options.UseTextOptions = true;
+            this.colThanhTien.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colThanhTien.Caption = "Thành tiền";
+            this.colThanhTien.ColumnEdit = this.repositoryItemTextEditThanhTien;
+            this.colThanhTien.DisplayFormat.FormatString = "N0";
+            this.colThanhTien.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colThanhTien.FieldName = "ThanhTien";
+            this.colThanhTien.Name = "colThanhTien";
+            this.colThanhTien.OptionsColumn.AllowEdit = false;
+            this.colThanhTien.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.colThanhTien.OptionsColumn.FixedWidth = true;
+            this.colThanhTien.OptionsFilter.AllowAutoFilter = false;
+            this.colThanhTien.OptionsFilter.AllowFilter = false;
+            this.colThanhTien.ShowUnboundExpressionMenu = true;
+            this.colThanhTien.UnboundExpression = "[DonGia] + [SoLuong]";
+            this.colThanhTien.UnboundType = DevExpress.Data.UnboundColumnType.Decimal;
+            this.colThanhTien.Visible = true;
+            this.colThanhTien.VisibleIndex = 6;
+            this.colThanhTien.Width = 120;
+            // 
+            // repositoryItemTextEditThanhTien
+            // 
+            this.repositoryItemTextEditThanhTien.AutoHeight = false;
+            this.repositoryItemTextEditThanhTien.Name = "repositoryItemTextEditThanhTien";
+            this.repositoryItemTextEditThanhTien.NullText = "0";
+            this.repositoryItemTextEditThanhTien.NullValuePrompt = "0";
+            this.repositoryItemTextEditThanhTien.NullValuePromptShowForEmptyValue = true;
+            this.repositoryItemTextEditThanhTien.ReadOnly = true;
+            // 
+            // colNgayHetHan
+            // 
+            this.colNgayHetHan.AppearanceCell.Options.UseTextOptions = true;
+            this.colNgayHetHan.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colNgayHetHan.AppearanceHeader.Options.UseTextOptions = true;
+            this.colNgayHetHan.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colNgayHetHan.Caption = "Ngày hết hạn";
+            this.colNgayHetHan.DisplayFormat.FormatString = "dd/MM/yyyy";
+            this.colNgayHetHan.DisplayFormat.FormatType = DevExpress.Utils.FormatType.DateTime;
+            this.colNgayHetHan.FieldName = "NgayHetHan";
+            this.colNgayHetHan.Name = "colNgayHetHan";
+            this.colNgayHetHan.OptionsColumn.AllowEdit = false;
+            this.colNgayHetHan.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.colNgayHetHan.OptionsColumn.FixedWidth = true;
+            this.colNgayHetHan.OptionsFilter.AllowAutoFilter = false;
+            this.colNgayHetHan.OptionsFilter.AllowFilter = false;
+            this.colNgayHetHan.Visible = true;
+            this.colNgayHetHan.VisibleIndex = 7;
+            this.colNgayHetHan.Width = 80;
+            // 
+            // colSLTon
+            // 
+            this.colSLTon.AppearanceCell.Options.UseTextOptions = true;
+            this.colSLTon.AppearanceCell.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Far;
+            this.colSLTon.AppearanceHeader.Options.UseTextOptions = true;
+            this.colSLTon.AppearanceHeader.TextOptions.HAlignment = DevExpress.Utils.HorzAlignment.Center;
+            this.colSLTon.Caption = "SL tồn";
+            this.colSLTon.DisplayFormat.FormatString = "N0";
+            this.colSLTon.DisplayFormat.FormatType = DevExpress.Utils.FormatType.Numeric;
+            this.colSLTon.FieldName = "SLTon";
+            this.colSLTon.Name = "colSLTon";
+            this.colSLTon.OptionsColumn.AllowEdit = false;
+            this.colSLTon.OptionsColumn.AllowSort = DevExpress.Utils.DefaultBoolean.False;
+            this.colSLTon.OptionsFilter.AllowAutoFilter = false;
+            this.colSLTon.OptionsFilter.AllowFilter = false;
+            this.colSLTon.Visible = true;
+            this.colSLTon.VisibleIndex = 8;
+            this.colSLTon.Width = 73;
+            // 
+            // repositoryItemCalcEditSoLuong
+            // 
+            this.repositoryItemCalcEditSoLuong.AutoHeight = false;
+            this.repositoryItemCalcEditSoLuong.Buttons.AddRange(new DevExpress.XtraEditors.Controls.EditorButton[] {
+            new DevExpress.XtraEditors.Controls.EditorButton(DevExpress.XtraEditors.Controls.ButtonPredefines.Combo)});
+            this.repositoryItemCalcEditSoLuong.Name = "repositoryItemCalcEditSoLuong";
+            // 
+            // dlgAddPhieuThuThuoc2
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
             this.ClientSize = new System.Drawing.Size(880, 568);
+            this.Controls.Add(this.gridPTT);
             this.Controls.Add(this.btnExportInvoice);
             this.Controls.Add(this.lbTongTien);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
-            this.Controls.Add(this.dgChiTiet);
             this.Controls.Add(this.groupBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.MinimizeBox = false;
-            this.Name = "dlgAddPhieuThuThuoc";
+            this.Name = "dlgAddPhieuThuThuoc2";
             this.ShowInTaskbar = false;
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Them phieu thu";
@@ -606,10 +758,17 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.toaThuocViewBindingSource)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dgChiTiet)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.thuocBindingSource)).EndInit();
             this.ctmToaThuoc.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.chiTietPhieuThuThuocViewBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridPTT)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.gridViewPTT)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemLookUpEditTenThuoc)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditSoLuong)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemComboBoxDonGia)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemSpinEditGiam)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemTextEditThanhTien)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.repositoryItemCalcEditSoLuong)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -628,7 +787,6 @@
         private System.Windows.Forms.DateTimePicker dtpkNgayThu;
         private System.Windows.Forms.ComboBox cboMaToaThuoc;
         private System.Windows.Forms.BindingSource toaThuocViewBindingSource;
-        private DevComponents.DotNetBar.Controls.DataGridViewX dgChiTiet;
         private System.Windows.Forms.Button btnCancel;
         private System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.BindingSource chiTietPhieuThuThuocViewBindingSource;
@@ -642,15 +800,6 @@
         private System.Windows.Forms.ToolStripMenuItem thuocThayTheToolStripMenuItem;
         private System.Windows.Forms.Button btnChonBenhNhan;
         private System.Windows.Forms.Button btnExportInvoice;
-        private System.Windows.Forms.DataGridViewTextBoxColumn STT;
-        private System.Windows.Forms.DataGridViewComboBoxColumn ThuocGUID;
-        private System.Windows.Forms.DataGridViewTextBoxColumn DonViTinh;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SoLuong;
-        private System.Windows.Forms.DataGridViewComboBoxColumn DonGia;
-        private System.Windows.Forms.DataGridViewTextBoxColumn Giam;
-        private System.Windows.Forms.DataGridViewTextBoxColumn ThanhTien;
-        private System.Windows.Forms.DataGridViewTextBoxColumn NgayHetHan;
-        private System.Windows.Forms.DataGridViewTextBoxColumn SoLuongTon;
         private System.Windows.Forms.CheckBox chkDaThuTien;
         private System.Windows.Forms.CheckBox chkDaXuatHD;
         private System.Windows.Forms.TextBox txtGhiChu;
@@ -659,5 +808,22 @@
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.ComboBox cboHinhThucThanhToan;
         private System.Windows.Forms.Label label16;
+        private DevExpress.XtraGrid.GridControl gridPTT;
+        private DevExpress.XtraGrid.Views.Grid.GridView gridViewPTT;
+        private DevExpress.XtraGrid.Columns.GridColumn colSTT;
+        private DevExpress.XtraGrid.Columns.GridColumn colTenThuoc;
+        private DevExpress.XtraEditors.Repository.RepositoryItemLookUpEdit repositoryItemLookUpEditTenThuoc;
+        private DevExpress.XtraGrid.Columns.GridColumn colDVT;
+        private DevExpress.XtraGrid.Columns.GridColumn colSoLuong;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEditSoLuong;
+        private DevExpress.XtraGrid.Columns.GridColumn colDonGia;
+        private DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryItemComboBoxDonGia;
+        private DevExpress.XtraGrid.Columns.GridColumn colGiam;
+        private DevExpress.XtraEditors.Repository.RepositoryItemSpinEdit repositoryItemSpinEditGiam;
+        private DevExpress.XtraGrid.Columns.GridColumn colThanhTien;
+        private DevExpress.XtraEditors.Repository.RepositoryItemCalcEdit repositoryItemCalcEditSoLuong;
+        private DevExpress.XtraGrid.Columns.GridColumn colNgayHetHan;
+        private DevExpress.XtraGrid.Columns.GridColumn colSLTon;
+        private DevExpress.XtraEditors.Repository.RepositoryItemTextEdit repositoryItemTextEditThanhTien;
     }
 }
