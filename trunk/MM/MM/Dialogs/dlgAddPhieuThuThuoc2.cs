@@ -24,6 +24,7 @@ namespace MM.Dialogs
         private ComboBox _cboBox = null;
         private TextBox _textBox = null;
         private bool _isExportedInvoice = false;
+        private double _donGia = 0;
         #endregion
 
         #region Constructor
@@ -52,9 +53,8 @@ namespace MM.Dialogs
                 cboHinhThucThanhToan.Enabled = true;
             }
 
-            dgChiTiet.AllowUserToAddRows = false;
-            dgChiTiet.AllowUserToDeleteRows = false;
-            dgChiTiet.ReadOnly = true;
+            gridViewPTT.OptionsBehavior.Editable = false;
+            gridViewPTT.OptionsView.NewItemRowPosition = DevExpress.XtraGrid.Views.Grid.NewItemRowPosition.None;
             txtMaPhieuThu.ReadOnly = true;
             cboMaToaThuoc.Enabled = false;
             dtpkNgayThu.Enabled = false;
@@ -157,7 +157,6 @@ namespace MM.Dialogs
                 _phieuThuThuoc.Status = Convert.ToByte(drPhieuThu["Status"]);
 
                 OnGetChiTietPhieuThuThuoc(_phieuThuThuoc.PhieuThuThuocGUID.ToString());
-                CalculateTongTien();
             }
             catch (Exception e)
             {
@@ -170,7 +169,9 @@ namespace MM.Dialogs
         {
             Result result = ThuocBus.GetThuocList();
             if (result.IsOK)
-                ThuocGUID.DataSource = result.QueryResult;
+            {
+                repositoryItemLookUpEditTenThuoc.DataSource = result.QueryResult;
+            }
             else
             {
                 MsgBox.Show(this.Text, result.GetErrorAsString("ThuocBus.GetThuocList"), IconType.Error);
@@ -209,9 +210,12 @@ namespace MM.Dialogs
 
         private void RefreshNo()
         {
-            for (int i = 0; i < dgChiTiet.RowCount - 1; i++)
+            gridViewPTT.UpdateCurrentRow();
+            for (int i = 0; i < gridViewPTT.RowCount; i++)
             {
-                dgChiTiet[0, i].Value = i + 1;
+                DataRow row = gridViewPTT.GetDataRow(i);
+                if (row != null)
+                    row["STT"] = i + 1;
             }
         }
 
@@ -220,12 +224,22 @@ namespace MM.Dialogs
             Result result = PhieuThuThuocBus.GetChiTietPhieuThuThuoc(phieuThuThuocGUID);
             if (result.IsOK)
             {
-                dgChiTiet.DataSource = result.QueryResult;
+                DataTable dt = result.QueryResult as DataTable;
 
-                if (_isNew) UpdateDataSourceDonGia();
-                UpdateNgayHetHanVaSoLuongTon();
+                if (!_isNew)
+                {
+                    foreach (DataRow row in dt.Rows)
+                    {
+                        UpdateNgayHetHan(row);
+                        UpdateSLTon(row);
 
-                RefreshNo();
+                    }
+
+                    gridPTT.DataSource = dt;
+                    UpdateTongTien();
+                }
+                else
+                    gridPTT.DataSource = dt;
             }
             else
             {
@@ -234,84 +248,26 @@ namespace MM.Dialogs
             }
         }
 
-        private void UpdateDataSourceDonGia()
-        {
-            foreach (DataGridViewRow row in dgChiTiet.Rows)
-            {
-                if (row.DataBoundItem == null) continue;
-                DataRow dr = (row.DataBoundItem as DataRowView).Row;
-
-                DataGridViewComboBoxCell cell = (DataGridViewComboBoxCell)row.Cells[4];
-                DataTable dtDonGia = cell.DataSource as DataTable;
-                if (dtDonGia == null)
-                {
-                    dtDonGia = new DataTable();
-                    dtDonGia.Columns.Add("DonGia", typeof(double));
-                }
-                else
-                    dtDonGia.Rows.Clear();
-
-                string thuocGUID = dr["ThuocGUID"].ToString();
-                List<double> donGiaList = GetGiaThuoc(thuocGUID);
-                double donGia = 0;
-                if (donGiaList != null && donGiaList.Count > 0)
-                {
-                    donGia = donGiaList[donGiaList.Count - 1];
-                    foreach (double gt in donGiaList)
-                    {
-                        DataRow newRow = dtDonGia.NewRow();
-                        newRow[0] = gt;
-                        dtDonGia.Rows.Add(newRow);
-                    }
-                }
-                else
-                {
-                    DataRow newRow = dtDonGia.NewRow();
-                    newRow[0] = 0;
-                    dtDonGia.Rows.Add(newRow);
-                }
-                
-                cell.DataSource = dtDonGia;
-                cell.DisplayMember = "DonGia";
-                cell.ValueMember = "DonGia";
-
-                row.Cells[4].Value = dr["DonGia"];
-            }
-        }
-
         private void OnDisplayChiTietToaThuoc(string toaThuocGUID)
         {
             Result result = KeToaBus.GetChiTietToaThuocListWithoutThuocNgoai(toaThuocGUID);
             if (result.IsOK)
             {
-                DataTable dtChiTiet = dgChiTiet.DataSource as DataTable;
+                DataTable dtChiTiet = (gridViewPTT.DataSource as DataView).Table;
                 dtChiTiet.Rows.Clear();
                 DataTable dt = result.QueryResult as DataTable;
+                int stt = 1;
                 foreach (DataRow row in dt.Rows)
                 {
                     DataRow newRow = dtChiTiet.NewRow();
-                    string thuocGUID = row["ThuocGUID"].ToString();
-                    newRow["ThuocGUID"] = thuocGUID;
-                    string donViTinh = GetDonViTinh(thuocGUID);
-                    List<double> donGiaList = GetGiaThuoc(thuocGUID);
-                    double donGia = 0;
-                    if (donGiaList != null && donGiaList.Count > 0)
-                        donGia = donGiaList[donGiaList.Count - 1];
-
-                    int soLuong = Convert.ToInt32(row["SoLuong"]);
-                    newRow["DonViTinh"] = donViTinh;
-                    newRow["SoLuong"] = soLuong;
-                    newRow["DonGia"] = donGia;
-                    newRow["Giam"] = 0;
-                    newRow["ThanhTien"] = soLuong * donGia;
                     dtChiTiet.Rows.Add(newRow);
+                    string thuocGUID = row["ThuocGUID"].ToString();
+                    newRow["STT"] = stt++;
+                    newRow["ThuocGUID"] = thuocGUID;
+                    double soLuong = Convert.ToDouble(row["SoLuong"]);
+                    newRow["SoLuong"] = soLuong;
+                    UpdateThongTinThuoc(newRow);
                 }
-
-                if (_isNew) UpdateDataSourceDonGia();
-                UpdateNgayHetHanVaSoLuongTon();
-
-                CalculateTongTien();
-                RefreshNo();
             }
             else
             {
@@ -320,53 +276,9 @@ namespace MM.Dialogs
             }
         }
 
-        private void UpdateNgayHetHanVaSoLuongTon()
-        {
-            foreach (DataGridViewRow row in dgChiTiet.Rows)
-            {
-                if (row.Cells["ThuocGUID"].Value == null || row.Cells["ThuocGUID"].Value == DBNull.Value)
-                    continue;
-
-                string thuocGUID = row.Cells["ThuocGUID"].Value.ToString();
-                Result result = LoThuocBus.GetNgayHetHanCuaThuoc(thuocGUID);
-                if (result.IsOK)
-                {
-                    if (result.QueryResult != null)
-                    {
-                        DateTime ngayHetHan = Convert.ToDateTime(result.QueryResult);
-                        row.Cells[7].Value = ngayHetHan;
-                    }
-                    else
-                        row.Cells[7].Value = DBNull.Value;
-                }
-                else
-                {
-                    MsgBox.Show(this.Text, result.GetErrorAsString("LoThuocBus.GetNgayHetHanCuaThuoc"), IconType.Error);
-                    Utility.WriteToTraceLog(result.GetErrorAsString("LoThuocBus.GetNgayHetHanCuaThuoc"));
-                }
-
-                result = LoThuocBus.GetThuocTonKho(thuocGUID);
-                if (result.IsOK)
-                {
-                    if (result.QueryResult != null)
-                    {
-                        int soLuongTon = Convert.ToInt32(result.QueryResult);
-                        row.Cells[8].Value = soLuongTon;
-                    }
-                    else
-                        row.Cells[8].Value = DBNull.Value;
-                }
-                else
-                {
-                    MsgBox.Show(this.Text, result.GetErrorAsString("LoThuocBus.GetNgayHetHanCuaThuoc"), IconType.Error);
-                    Utility.WriteToTraceLog(result.GetErrorAsString("LoThuocBus.GetNgayHetHanCuaThuoc"));
-                }
-            }
-        }
-
         private string GetDonViTinh(string thuocGUID)
         {
-            DataTable dt = ThuocGUID.DataSource as DataTable;
+            DataTable dt = repositoryItemLookUpEditTenThuoc.DataSource as DataTable;
             if (dt == null || dt.Rows.Count <= 0) return string.Empty;
 
             DataRow[] rows = dt.Select(string.Format("ThuocGUID='{0}'", thuocGUID));
@@ -374,54 +286,6 @@ namespace MM.Dialogs
                 return rows[0]["DonViTinh"].ToString();
 
             return string.Empty;
-        }
-
-        private void CalculateTongTien()
-        {
-            int rowCount = dgChiTiet.RowCount;//_isNew ? dgChiTiet.RowCount - 1 : dgChiTiet.RowCount;
-            double tongTien = 0;
-            for (int i = 0; i < rowCount; i++)
-            {
-                double tt = 0;
-                if (dgChiTiet[6, i].Value != null && dgChiTiet[6, i].Value != DBNull.Value)
-                    tt = Convert.ToDouble(dgChiTiet[6, i].Value);
-                tongTien += tt;
-            }
-
-            if (tongTien == 0)
-                lbTongTien.Text = "Tổng tiền: 0 VNĐ";
-            else
-                lbTongTien.Text = string.Format("Tổng tiền: {0} VNĐ", tongTien.ToString("#,###"));
-        }
-
-        private void CalculateThanhTien()
-        {
-            int rowIndex = dgChiTiet.CurrentCell.RowIndex;
-            int colIndex = dgChiTiet.CurrentCell.ColumnIndex;
-
-            if (rowIndex < 0 || colIndex < 0) return;
-
-            double soLuong = 1;
-            string strValue = dgChiTiet[3, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
-            if (strValue != string.Empty && strValue != "SystemDataDataRowView")
-                soLuong = Convert.ToDouble(strValue);
-
-            strValue = dgChiTiet[4, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
-            double donGia = 0;
-            if (strValue != string.Empty && strValue != "SystemDataDataRowView")
-                donGia = Convert.ToDouble(strValue);
-
-            double giam = 0;
-            strValue = dgChiTiet[5, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
-            if (strValue != string.Empty && strValue != "SystemDataDataRowView")
-                giam = Convert.ToDouble(strValue);
-
-            double tienGiam = Math.Round(((double)soLuong * (double)donGia * (double)giam) / (double)100);
-            double thanhTien = (double)soLuong * (double)donGia - tienGiam;
-            _flag = false;
-            dgChiTiet[6, rowIndex].Value = thanhTien;
-            _flag = true;
-            CalculateTongTien();
         }
 
         private List<double> GetGiaThuoc(string thuocGUID)
@@ -484,32 +348,31 @@ namespace MM.Dialogs
                 return false;
             }
 
-            if (dgChiTiet.RowCount > 1)
+            gridViewPTT.UpdateCurrentRow();
+            DataTable dt = (gridViewPTT.DataSource as DataView).Table;
+
+            if (dt.Rows.Count > 0)
             {
-                for (int i = 0; i < dgChiTiet.RowCount - 1; i++)
+                foreach (DataRow row in dt.Rows)
                 {
-                    DataGridViewRow row = dgChiTiet.Rows[i];
-
-
-                    if (row.Cells[1].Value == null || row.Cells[1].Value == DBNull.Value || row.Cells[1].Value.ToString() == string.Empty)
+                    if (row["ThuocGUID"] == null || row["ThuocGUID"] == DBNull.Value)
                     {
                         MsgBox.Show(this.Text, "Vui lòng chọn thuốc để xuất phiếu thu.", IconType.Information);
                         return false;
                     }
 
-                    string thuocGUID = row.Cells[1].Value.ToString();
+                    string thuocGUID = row["ThuocGUID"].ToString();
                     string tenThuoc = GetTenThuoc(thuocGUID);
 
-                    if (row.Cells[4].Value.ToString() == "0")
+                    if (row["DonGia"] == null || row["DonGia"] == DBNull.Value || Convert.ToDouble(row["DonGia"]) == 0)
                     {
                         MsgBox.Show(this.Text, string.Format("Thuốc '{0}' chưa có nhập giá bán. Vui lòng chọn thuốc khác.", tenThuoc), IconType.Information);
                         return false;
                     }
 
-
                     int soLuong = 1;
-                    if (row.Cells[3].Value != null && row.Cells[3].Value != DBNull.Value)
-                        soLuong = Convert.ToInt32(row.Cells[3].Value);
+                    if (row["SoLuong"] != null && row["SoLuong"] != DBNull.Value)
+                        soLuong = Convert.ToInt32(row["SoLuong"]);
 
                     Result r = LoThuocBus.CheckThuocTonKho(thuocGUID, soLuong);
                     if (r.IsOK)
@@ -550,17 +413,17 @@ namespace MM.Dialogs
                 return false;
             }
 
-            if (dgChiTiet.RowCount > 2)
+            if (dt.Rows.Count > 1)
             {
-                for (int i = 0; i < dgChiTiet.RowCount - 2; i++)
+                for (int i = 0; i < dt.Rows.Count - 1; i++)
                 {
-                    DataGridViewRow row1 = dgChiTiet.Rows[i];
-                    for (int j = i + 1; j < dgChiTiet.RowCount - 1; j++)
+                    DataRow row1 = dt.Rows[i];
+                    for (int j = i + 1; j < dt.Rows.Count; j++)
                     {
-                        DataGridViewRow row2 = dgChiTiet.Rows[j];
-                        if (row1.Cells[1].Value.ToString() == row2.Cells[1].Value.ToString())
+                        DataRow row2 = dt.Rows[j];
+                        if (row1["ThuocGUID"].ToString() == row2["ThuocGUID"].ToString())
                         {
-                            string tenThuoc = GetTenThuoc(row1.Cells[1].Value.ToString());
+                            string tenThuoc = GetTenThuoc(row1["ThuocGUID"].ToString());
                             MsgBox.Show(this.Text, string.Format("Thuốc '{0}' đã tồn tại rồi. Vui lòng chọn thuốc khác", tenThuoc), IconType.Information);
                             return false;
                         }
@@ -573,7 +436,7 @@ namespace MM.Dialogs
 
         private string GetTenThuoc(string thuocGUID)
         {
-            DataTable dt = ThuocGUID.DataSource as DataTable;
+            DataTable dt = repositoryItemLookUpEditTenThuoc.DataSource as DataTable;
             if (dt == null || dt.Rows.Count <= 0) return string.Empty;
 
             DataRow[] rows = dt.Select(string.Format("ThuocGUID='{0}'", thuocGUID));
@@ -630,30 +493,32 @@ namespace MM.Dialogs
                     }
 
                     List<ChiTietPhieuThuThuoc> addedList = new List<ChiTietPhieuThuThuoc>();
-                    for (int i = 0; i < dgChiTiet.RowCount - 1; i++)
+                    gridViewPTT.UpdateCurrentRow();
+                    DataTable dt = (gridViewPTT.DataSource as DataView).Table;
+
+                    foreach (DataRow row in dt.Rows)
                     {
-                        DataGridViewRow row = dgChiTiet.Rows[i];    
                         ChiTietPhieuThuThuoc ctptt = new ChiTietPhieuThuThuoc();
                         ctptt.CreatedDate = DateTime.Now;
                         ctptt.CreatedBy = Guid.Parse(Global.UserGUID);
 
-                        ctptt.ThuocGUID = Guid.Parse(row.Cells["ThuocGUID"].Value.ToString());
-                        ctptt.DonGia = Convert.ToDouble(row.Cells["DonGia"].Value);
+                        ctptt.ThuocGUID = Guid.Parse(row["ThuocGUID"].ToString());
+                        ctptt.DonGia = Convert.ToDouble(row["DonGia"]);
 
-                        if (row.Cells["SoLuong"].Value != null && row.Cells["SoLuong"].Value != DBNull.Value)
-                            ctptt.SoLuong = Convert.ToDouble(row.Cells["SoLuong"].Value);
+                        if (row["SoLuong"] != null && row["SoLuong"] != DBNull.Value)
+                            ctptt.SoLuong = Convert.ToDouble(row["SoLuong"]);
                         else
                             ctptt.SoLuong = 1;
 
-                        if (row.Cells["Giam"].Value != null && row.Cells["Giam"].Value != DBNull.Value)
-                            ctptt.Giam = Convert.ToDouble(row.Cells["Giam"].Value);
+                        if (row["Giam"] != null && row["Giam"] != DBNull.Value)
+                            ctptt.Giam = Convert.ToDouble(row["Giam"]);
                         else
                             ctptt.Giam = 0;
 
                         double tienGiam = Math.Round(((double)ctptt.SoLuong * (double)ctptt.DonGia * (double)ctptt.Giam) / (double)100);
                         double thanhTien = (double)ctptt.SoLuong * (double)ctptt.DonGia - tienGiam;
 
-                        ctptt.ThanhTien = thanhTien;//Convert.ToDouble(row.Cells["ThanhTien"].Value);
+                        ctptt.ThanhTien = thanhTien;
                         ctptt.Status = (byte)Status.Actived;
                         addedList.Add(ctptt);
                     }
@@ -689,6 +554,118 @@ namespace MM.Dialogs
                 btnExportInvoice.Enabled = false;
             }
         }
+
+        private void UpdateThanhTien(DataRow row)
+        {
+            string thuocGUID = row["ThuocGUID"].ToString();
+
+            double donGia = 0;
+            if (row["DonGia"] != null && row["DonGia"] != DBNull.Value)
+                donGia = Convert.ToDouble(row["DonGia"]);
+
+            double soLuong = 1;
+            if (row["SoLuong"] != null && row["SoLuong"] != DBNull.Value)
+                soLuong = Convert.ToDouble(row["SoLuong"]);
+
+            double giam = 0;
+            if (row["Giam"] != null && row["Giam"] != DBNull.Value)
+                giam = Convert.ToDouble(row["Giam"]);
+
+            row["ThanhTien"] = Math.Round((soLuong * donGia - (soLuong * donGia * giam / 100)), 0);
+
+            UpdateTongTien();
+        }
+
+        private void UpdateTongTien()
+        {
+            gridViewPTT.UpdateCurrentRow();
+            DataTable dt = (gridViewPTT.DataSource as DataView).Table;
+
+            double tongTien = 0;
+            foreach (DataRow row in dt.Rows)
+            {
+                double thanhTien = 0;
+                if (row["ThanhTien"] != null && row["ThanhTien"] != DBNull.Value)
+                    thanhTien = Convert.ToDouble(row["ThanhTien"]);
+
+                tongTien += thanhTien;
+            }
+
+            if (tongTien == 0)
+                lbTongTien.Text = "Tổng tiền: 0 VNĐ";
+            else
+                lbTongTien.Text = string.Format("Tổng tiền: {0} VNĐ", tongTien.ToString("#,###"));
+        }
+
+        private void UpdateSLTon(DataRow row)
+        {
+            string thuocGUID = row["ThuocGUID"].ToString();
+            Result result = LoThuocBus.GetThuocTonKho(thuocGUID);
+            if (result.IsOK)
+            {
+                if (result.QueryResult != null)
+                {
+                    int soLuongTon = Convert.ToInt32(result.QueryResult);
+                    row["SLTon"] = soLuongTon;
+                }
+                else
+                    row["SLTon"] = DBNull.Value;
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("LoThuocBus.GetNgayHetHanCuaThuoc"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("LoThuocBus.GetNgayHetHanCuaThuoc"));
+            }
+        }
+
+        private void UpdateNgayHetHan(DataRow row)
+        {
+            string thuocGUID = row["ThuocGUID"].ToString();
+            Result result = LoThuocBus.GetNgayHetHanCuaThuoc(thuocGUID);
+            if (result.IsOK)
+            {
+                if (result.QueryResult != null)
+                {
+                    DateTime ngayHetHan = Convert.ToDateTime(result.QueryResult);
+                    row["NgayHetHan"] = ngayHetHan.ToString("dd/MM/yyyy");
+                }
+                else
+                    row["NgayHetHan"] = DBNull.Value;
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("LoThuocBus.GetNgayHetHanCuaThuoc"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("LoThuocBus.GetNgayHetHanCuaThuoc"));
+            }
+        }
+
+        private void UpdateThongTinThuoc(DataRow row)
+        {
+            string thuocGUID = row["ThuocGUID"].ToString();
+
+            //Đơn vị tính
+            string donViTinh = GetDonViTinh(thuocGUID);
+            row["DonViTinh"] = donViTinh;
+
+            //Đơn giá
+            List<double> donGiaList = GetGiaThuoc(thuocGUID);
+            double donGia = 0;
+            if (donGiaList != null && donGiaList.Count > 0)
+            {
+                donGia = donGiaList[donGiaList.Count - 1];
+            }
+
+            row["DonGia"] = donGia;
+
+            //Thành tiền
+            UpdateThanhTien(row);
+
+            //Ngày hết hạn
+            UpdateNgayHetHan(row);
+
+            //SL tồn
+            UpdateSLTon(row);
+        }
         #endregion
 
         #region Window Event Handlers
@@ -696,23 +673,9 @@ namespace MM.Dialogs
         {
             InitData();
             if (_isNew)
-            {
-                //OnGetSanhSachBenhNhan();
                 OnGetChiTietPhieuThuThuoc(Guid.Empty.ToString());
-            }
             else
-            {
-                dgChiTiet.Columns.RemoveAt(4);
-                DataGridViewTextBoxColumn col = new DataGridViewTextBoxColumn();
-                col.HeaderText = "Đơn giá";
-                col.DataPropertyName = "DonGia";
-                col.Width = 90;
-                col.DefaultCellStyle.Alignment = DataGridViewContentAlignment.MiddleRight;
-                col.DefaultCellStyle.Format = "N0";
-                dgChiTiet.Columns.Insert(4, col);
-
                 DisplayInfo(_drPhieuThu);
-            }
 
             UpdateGUI();
         }
@@ -799,329 +762,18 @@ namespace MM.Dialogs
             }
         }
 
-        private void dgChiTiet_UserAddedRow(object sender, DataGridViewRowEventArgs e)
-        {
-            RefreshNo();
-        }
-
-        private void dgChiTiet_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
-        {
-            RefreshNo();
-        }
-
-        private void dgChiTiet_UserDeletingRow(object sender, DataGridViewRowCancelEventArgs e)
-        {
-
-        }
-
-        private void dgChiTiet_CellMouseDown(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            if (e.ColumnIndex < 0 || e.RowIndex < 0) return;
-            _flag = false;    
-            try
-            {
-                
-                if (e.RowIndex < 0) return;
-                dgChiTiet.CurrentCell = dgChiTiet[e.ColumnIndex, e.RowIndex];
-                dgChiTiet.Rows[e.RowIndex].Selected = true;
-            }
-            catch (Exception ex)
-            {
-                
-            }
-
-            _flag = true;
-        }
-
-        private void dgChiTiet_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
-        {
-            if (!_isNew) return;
-            if (dgChiTiet.CurrentCell.ColumnIndex == 1 || dgChiTiet.CurrentCell.ColumnIndex == 4)
-            {
-                if (_cboBox != null) _cboBox.SelectedValueChanged -= new EventHandler(cmbox_SelectedValueChanged);
-                _cboBox = e.Control as ComboBox;
-                _cboBox.SelectedValueChanged += new EventHandler(cmbox_SelectedValueChanged);
-            }
-            else if (dgChiTiet.CurrentCell.ColumnIndex == 3 || dgChiTiet.CurrentCell.ColumnIndex == 5)
-            {
-                if (_textBox != null)
-                {
-                    _textBox.KeyPress -= new KeyPressEventHandler(textBox_KeyPress);
-                    _textBox.TextChanged -= new EventHandler(textBox_TextChanged);
-                }
-
-                _textBox = e.Control as TextBox;
-
-                if (_textBox != null)
-                {
-                    _textBox.KeyPress += new KeyPressEventHandler(textBox_KeyPress);
-                    _textBox.TextChanged += new EventHandler(textBox_TextChanged);
-                }
-            }
-        }
-
-        private void textBox_TextChanged(object sender, EventArgs e)
-        {
-            if (!_flag) return;
-            TextBox textBox = (TextBox)sender;
-            
-            int colIndex = dgChiTiet.CurrentCell.ColumnIndex;
-            if (colIndex == 1 || colIndex == 4) return;
-
-
-            if (textBox.Text == string.Empty)
-            {
-                if (colIndex == 5 || colIndex == 6)
-                    textBox.Text = "0";
-                else
-                    textBox.Text = "1";
-            }
-
-            string strValue = textBox.Text.Replace(",", "").Replace(".", "");
-
-            try
-            {
-                int value = int.Parse(strValue);
-                if (colIndex == 5 && value > 100)
-                    textBox.Text = "100";
-            }
-            catch
-            {
-                if (colIndex == 5)
-                    textBox.Text = "100";
-                else
-                    textBox.Text = int.MaxValue.ToString();
-            }
-
-            CalculateThanhTien();
-        }
-
-        private void textBox_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            int colIndex = dgChiTiet.CurrentCell.ColumnIndex;
-            if (colIndex != 3 && colIndex != 5) return;
-
-            DataGridViewTextBoxEditingControl textBox = (DataGridViewTextBoxEditingControl)sender;
-            if (!(char.IsDigit(e.KeyChar)))
-            {
-                if (e.KeyChar != '\b') //allow the backspace key
-                {
-                    e.Handled = true;
-                }
-            }
-        }
-
-        private void cmbox_SelectedValueChanged(object sender, EventArgs e)
-        {
-            if (!_flag) return;
-
-            if (dgChiTiet.CurrentCell.ColumnIndex == 1)
-            {
-                _flag = false;
-                DataGridViewComboBoxEditingControl cbo = (DataGridViewComboBoxEditingControl)sender;
-                if (cbo.SelectedValue == null || cbo.SelectedValue.ToString() == "System.Data.DataRowView")
-                {
-                    _flag = true;
-                    return;
-                }
-
-                string thuocGUID = cbo.SelectedValue.ToString();
-                string donViTinh = GetDonViTinh(thuocGUID);
-                List<double> giaThuocList = GetGiaThuoc(thuocGUID);
-                double giaThuoc = 0;
-                if (giaThuocList != null && giaThuocList.Count > 0)
-                    giaThuoc = giaThuocList[giaThuocList.Count - 1];
-
-                dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[2].Value = donViTinh;
-
-                DataGridViewComboBoxCell cell = (DataGridViewComboBoxCell)dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[4];
-                DataTable dt = cell.DataSource as DataTable;
-                if (dt == null)
-                {
-                    dt = new DataTable();
-                    dt.Columns.Add("DonGia", typeof(double));
-                }
-                else
-                    dt.Rows.Clear();
-
-                if (giaThuocList != null && giaThuocList.Count > 0)
-                {
-                    foreach (double gt in giaThuocList)
-                    {
-                        DataRow newRow = dt.NewRow();
-                        newRow[0] = gt;
-                        dt.Rows.Add(newRow);
-                    }
-                }
-                else
-                {
-                    DataRow newRow = dt.NewRow();
-                    newRow[0] = giaThuoc;
-                    dt.Rows.Add(newRow);
-                }
-
-                cell.DataSource = dt;
-                cell.DisplayMember = "DonGia";
-                cell.ValueMember = "DonGia";
-
-                dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[4].Value = giaThuoc;
-
-                Result result = LoThuocBus.GetNgayHetHanCuaThuoc(thuocGUID);
-                if (result.IsOK)
-                {
-                    if (result.QueryResult != null)
-                    {
-                        DateTime ngayHetHan = Convert.ToDateTime(result.QueryResult);
-                        dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[7].Value = ngayHetHan;
-                    }
-                    else
-                        dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[7].Value = DBNull.Value;
-                }
-                else
-                {
-                    MsgBox.Show(this.Text, result.GetErrorAsString("LoThuocBus.GetNgayHetHanCuaThuoc"), IconType.Error);
-                    Utility.WriteToTraceLog(result.GetErrorAsString("LoThuocBus.GetNgayHetHanCuaThuoc"));
-                }
-
-                result = LoThuocBus.GetThuocTonKho(thuocGUID);
-                if (result.IsOK)
-                {
-                    if (result.QueryResult != null)
-                    {
-                        int soLuongTon = Convert.ToInt32(result.QueryResult);
-                        dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[8].Value = soLuongTon;
-                    }
-                    else
-                        dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[8].Value = DBNull.Value;
-                }
-                else
-                {
-                    MsgBox.Show(this.Text, result.GetErrorAsString("LoThuocBus.GetNgayHetHanCuaThuoc"), IconType.Error);
-                    Utility.WriteToTraceLog(result.GetErrorAsString("LoThuocBus.GetNgayHetHanCuaThuoc"));
-                }
-
-                CalculateThanhTien();
-            }
-            else
-                CalculateThanhTien();
-
-            _flag = true;
-        }
-
-        private void dgChiTiet_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
-        {
-            if (!_isNew) return;
-            if (e.ColumnIndex >= 3 && e.ColumnIndex <= 6)
-            {
-                if (e.Value == null || e.Value.ToString() == string.Empty || e.Value == DBNull.Value)
-                {
-                    if (e.ColumnIndex == 4 || e.ColumnIndex == 5 || e.ColumnIndex == 6)
-                        e.Value = "0";
-                    else
-                        e.Value = "1";
-                }
-            }
-        }
-
         private void thuocThayTheToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            if (dgChiTiet.SelectedRows == null || dgChiTiet.SelectedRows.Count <= 0) return;
-            int rowIndex = dgChiTiet.SelectedRows[0].Index;
-            if (rowIndex == dgChiTiet.RowCount - 1) return;
-
-            dgChiTiet.EndEdit();
-            if (dgChiTiet.SelectedRows[0].Cells[1].Value == null || dgChiTiet.SelectedRows[0].Cells[1].Value == DBNull.Value) return;
-            string thuocGUID = dgChiTiet.SelectedRows[0].Cells[1].Value.ToString();
+            DataRow row = gridViewPTT.GetFocusedDataRow();
+            if (row == null || row["ThuocGUID"] == null || row["ThuocGUID"] == DBNull.Value) return;
+            string thuocGUID = row["ThuocGUID"].ToString();
             dlgThuocThayThe dlg = new dlgThuocThayThe(thuocGUID);
             if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
-                dgChiTiet.SelectedRows[0].Cells[1].Value = dlg.ThuocThayThe;
-                dgChiTiet.RefreshEdit();
-
-                _flag = false;
-                thuocGUID = dlg.ThuocThayThe;
-                string donViTinh = GetDonViTinh(thuocGUID);
-                List<double> giaThuocList = GetGiaThuoc(thuocGUID);
-                double giaThuoc = 0;
-                if (giaThuocList != null && giaThuocList.Count > 0)
-                    giaThuoc = giaThuocList[giaThuocList.Count - 1];
-
-                dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[2].Value = donViTinh;
-
-                DataGridViewComboBoxCell cell = (DataGridViewComboBoxCell)dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[4];
-                DataTable dt = cell.DataSource as DataTable;
-                if (dt == null)
-                {
-                    dt = new DataTable();
-                    dt.Columns.Add("DonGia", typeof(double));
-                }
-                else
-                    dt.Rows.Clear();
-
-                if (giaThuocList != null && giaThuocList.Count > 0)
-                {
-                    foreach (double gt in giaThuocList)
-                    {
-                        DataRow newRow = dt.NewRow();
-                        newRow[0] = gt;
-                        dt.Rows.Add(newRow);
-                    }
-                }
-                else
-                {
-                    DataRow newRow = dt.NewRow();
-                    newRow[0] = giaThuoc;
-                    dt.Rows.Add(newRow);
-                }
-
-                cell.DataSource = dt;
-                cell.DisplayMember = "DonGia";
-                cell.ValueMember = "DonGia";
-
-                dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[4].Value = giaThuoc;
-
-                Result result = LoThuocBus.GetNgayHetHanCuaThuoc(thuocGUID);
-                if (result.IsOK)
-                {
-                    if (result.QueryResult != null)
-                    {
-                        DateTime ngayHetHan = Convert.ToDateTime(result.QueryResult);
-                        dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[7].Value = ngayHetHan;
-                    }
-                    else
-                        dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[7].Value = DBNull.Value;
-                }
-                else
-                {
-                    MsgBox.Show(this.Text, result.GetErrorAsString("LoThuocBus.GetNgayHetHanCuaThuoc"), IconType.Error);
-                    Utility.WriteToTraceLog(result.GetErrorAsString("LoThuocBus.GetNgayHetHanCuaThuoc"));
-                }
-
-                result = LoThuocBus.GetThuocTonKho(thuocGUID);
-                if (result.IsOK)
-                {
-                    if (result.QueryResult != null)
-                    {
-                        int soLuongTon = Convert.ToInt32(result.QueryResult);
-                        dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[8].Value = soLuongTon;
-                    }
-                    else
-                        dgChiTiet.Rows[dgChiTiet.CurrentRow.Index].Cells[8].Value = DBNull.Value;
-                }
-                else
-                {
-                    MsgBox.Show(this.Text, result.GetErrorAsString("LoThuocBus.GetNgayHetHanCuaThuoc"), IconType.Error);
-                    Utility.WriteToTraceLog(result.GetErrorAsString("LoThuocBus.GetNgayHetHanCuaThuoc"));
-                }
-
-                CalculateThanhTien();
-                _flag = true;
+                row["ThuocGUID"] = dlg.ThuocThayThe;
+                UpdateThongTinThuoc(row);
+                gridViewPTT.UpdateCurrentRow();
             }
-        }
-
-        private void dgChiTiet_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
-        {
-            //RefreshNo();
         }
 
         private void btnChonBenhNhan_Click(object sender, EventArgs e)
@@ -1139,32 +791,114 @@ namespace MM.Dialogs
             }
         }
 
-        private void dgChiTiet_DataError(object sender, DataGridViewDataErrorEventArgs e)
-        {
-            e.Cancel = true;
-        }
-
-        private void dgChiTiet_RowLeave(object sender, DataGridViewCellEventArgs e)
-        {
-            //int i = 0;
-        }
-
-        private void dgChiTiet_Leave(object sender, EventArgs e)
-        {
-            if (_isNew)
-            {
-                if (dgChiTiet.CurrentRow == null) return;
-                int rowIndex = dgChiTiet.CurrentRow.Index;
-                if (rowIndex < 0) return;
-                dgChiTiet.CurrentCell = dgChiTiet[0, rowIndex];
-                dgChiTiet.Rows[rowIndex].Selected = true;
-
-            }
-        }
-
         private void btnExportInvoice_Click(object sender, EventArgs e)
         {
             OnExportInvoice();
+        }
+
+        private void gridViewPTT_KeyUp(object sender, KeyEventArgs e)
+        {
+            if (!_isNew) return;
+            if (e.KeyCode == Keys.Delete)
+            {
+                gridViewPTT.DeleteSelectedRows();
+                UpdateTongTien();
+            }
+        }
+
+        private void repositoryItemLookUpEditTenThuoc_CloseUp(object sender, DevExpress.XtraEditors.Controls.CloseUpEventArgs e)
+        {
+            if (e.Value == null) return;
+
+            bool isNewRow = gridViewPTT.IsNewItemRow(gridViewPTT.FocusedRowHandle);
+            if (isNewRow)
+            {
+                if (gridViewPTT.GetFocusedDataRow() == null)
+                    gridViewPTT.AddNewRow();
+            }
+
+            DataRow row = gridViewPTT.GetFocusedDataRow();
+            string thuocGUID = string.Empty;
+            if (row["ThuocGUID"] != null && row["ThuocGUID"] != DBNull.Value) thuocGUID = row["ThuocGUID"].ToString();
+            if (thuocGUID == e.Value.ToString()) return;
+
+            row["ThuocGUID"] = e.Value;
+            UpdateThongTinThuoc(row);
+            gridViewPTT.UpdateCurrentRow();
+            RefreshNo();
+        }
+
+        private void gridViewPTT_InitNewRow(object sender, DevExpress.XtraGrid.Views.Grid.InitNewRowEventArgs e)
+        {
+            //RefreshNo();
+        }
+
+        private void gridViewPTT_CustomRowCellEditForEditing(object sender, DevExpress.XtraGrid.Views.Grid.CustomRowCellEditEventArgs e)
+        {
+            if (e.Column.ColumnHandle == 4)
+            {
+                if (e.CellValue != null)
+                    _donGia = Convert.ToDouble(e.CellValue);
+                else
+                    _donGia = 0;
+
+                colDonGia.ColumnEdit.BeginUpdate();
+                DevExpress.XtraEditors.Repository.RepositoryItemComboBox repositoryComboBox = (e.RepositoryItem as DevExpress.XtraEditors.Repository.RepositoryItemComboBox);
+                repositoryComboBox.Items.Clear();
+                DataRow row = gridViewPTT.GetFocusedDataRow();
+                if (row != null && row["ThuocGUID"] != null && row["ThuocGUID"] != DBNull.Value)
+                {
+                    string thuocGUID = row["ThuocGUID"].ToString();
+                    List<double> donGiaList = GetGiaThuoc(thuocGUID);
+                    if (donGiaList != null && donGiaList.Count > 0)
+                    {
+                        foreach (double donGia in donGiaList)
+                        {
+                            repositoryComboBox.Items.Add(donGia);
+                        }
+                    }
+                }
+                colDonGia.ColumnEdit.CancelUpdate();
+            }
+        }
+
+        private void gridViewPTT_CellValueChanged(object sender, DevExpress.XtraGrid.Views.Base.CellValueChangedEventArgs e)
+        {
+            if (e.Column.AbsoluteIndex == 4) //Đơn giá
+            {
+                DataRow row = gridViewPTT.GetFocusedDataRow();
+                if (row == null) return;
+                double oldDonGia = Convert.ToDouble(row["DonGia"]);
+
+                colDonGia.ColumnEdit.BeginUpdate();
+                bool isCancel = true;
+                for (int i = 0; i < repositoryItemComboBoxDonGia.Items.Count; i++)
+                {
+                    double value = Convert.ToDouble(repositoryItemComboBoxDonGia.Items[i]);
+                    if (value == oldDonGia)
+                    {
+                        isCancel = false;
+                        break;
+                    }
+                }
+                colDonGia.ColumnEdit.CancelUpdate();
+
+                if (isCancel)
+                {
+                    row["DonGia"] = _donGia;
+                    gridViewPTT.UpdateCurrentRow();
+                }
+
+                UpdateThanhTien(row);
+            }
+            else if (e.Column.AbsoluteIndex == 3 || e.Column.AbsoluteIndex == 5) //Số lượng & Giảm
+            {
+                DataRow row = gridViewPTT.GetFocusedDataRow();
+                if (row == null) return;
+                UpdateThanhTien(row);
+            }
+
+            RefreshNo();
         }
         #endregion
 
@@ -1186,9 +920,5 @@ namespace MM.Dialogs
             }
         }
         #endregion
-
-        
-
-        
     }
 }
