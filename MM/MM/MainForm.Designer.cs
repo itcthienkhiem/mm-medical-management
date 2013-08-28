@@ -153,6 +153,8 @@
             this.phieuThuCapCuuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator65 = new System.Windows.Forms.ToolStripSeparator();
             this.chiTietPhieuThuDichVuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator87 = new System.Windows.Forms.ToolStripSeparator();
+            this.thongKePhieuThuDichVuVaThuocToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.invoiceToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.invoiceListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator33 = new System.Windows.Forms.ToolStripSeparator();
@@ -304,6 +306,7 @@
             this.dockSite3 = new DevComponents.DotNetBar.DockSite();
             this._timerShowAlert = new System.Windows.Forms.Timer(this.components);
             this._mainPanel = new System.Windows.Forms.Panel();
+            this._uThongKeHoaDonDichVuVaThuoc = new MM.Controls.uThongKeHoaDonDichVuVaThuoc();
             this._uHuyThuocList = new MM.Controls.uHuyThuocList();
             this._uDoanhThuTheoNhomDichVu = new MM.Controls.uDoanhThuTheoNhomDichVu();
             this._uTraHoSo = new MM.Controls.uTraHoSo();
@@ -391,7 +394,7 @@
             this._uServicesList = new MM.Controls.uServicesList();
             this._timerCheckAlert = new System.Windows.Forms.Timer(this.components);
             this._timerPatient = new System.Windows.Forms.Timer(this.components);
-            this._uThongKeHoaDonDichVuVaThuoc = new MM.Controls.uThongKeHoaDonDichVuVaThuoc();
+            this._uThongKePhieuThuDichVuVaThuoc = new MM.Controls.uThongKePhieuThuDichVuVaThuoc();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -1206,7 +1209,9 @@
             this.toolStripSeparator53,
             this.phieuThuCapCuuToolStripMenuItem,
             this.toolStripSeparator65,
-            this.chiTietPhieuThuDichVuToolStripMenuItem});
+            this.chiTietPhieuThuDichVuToolStripMenuItem,
+            this.toolStripSeparator87,
+            this.thongKePhieuThuDichVuVaThuocToolStripMenuItem});
             resources.ApplyResources(this.receiptToolStripMenuItem, "receiptToolStripMenuItem");
             this.receiptToolStripMenuItem.Name = "receiptToolStripMenuItem";
             // 
@@ -1268,6 +1273,18 @@
             this.chiTietPhieuThuDichVuToolStripMenuItem.Name = "chiTietPhieuThuDichVuToolStripMenuItem";
             this.chiTietPhieuThuDichVuToolStripMenuItem.Tag = "ChiTietPhieuThuDichVu";
             this.chiTietPhieuThuDichVuToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator87
+            // 
+            this.toolStripSeparator87.Name = "toolStripSeparator87";
+            resources.ApplyResources(this.toolStripSeparator87, "toolStripSeparator87");
+            // 
+            // thongKePhieuThuDichVuVaThuocToolStripMenuItem
+            // 
+            resources.ApplyResources(this.thongKePhieuThuDichVuVaThuocToolStripMenuItem, "thongKePhieuThuDichVuVaThuocToolStripMenuItem");
+            this.thongKePhieuThuDichVuVaThuocToolStripMenuItem.Name = "thongKePhieuThuDichVuVaThuocToolStripMenuItem";
+            this.thongKePhieuThuDichVuVaThuocToolStripMenuItem.Tag = "ThongKePhieuThuDichVuVaThuoc";
+            this.thongKePhieuThuDichVuVaThuocToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // invoiceToolStripMenuItem
             // 
@@ -2459,6 +2476,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uThongKePhieuThuDichVuVaThuoc);
             this._mainPanel.Controls.Add(this._uThongKeHoaDonDichVuVaThuoc);
             this._mainPanel.Controls.Add(this._uHuyThuocList);
             this._mainPanel.Controls.Add(this._uDoanhThuTheoNhomDichVu);
@@ -2546,6 +2564,11 @@
             this._mainPanel.Controls.Add(this._uDocStaffList);
             this._mainPanel.Controls.Add(this._uServicesList);
             this._mainPanel.Name = "_mainPanel";
+            // 
+            // _uThongKeHoaDonDichVuVaThuoc
+            // 
+            resources.ApplyResources(this._uThongKeHoaDonDichVuVaThuoc, "_uThongKeHoaDonDichVuVaThuoc");
+            this._uThongKeHoaDonDichVuVaThuoc.Name = "_uThongKeHoaDonDichVuVaThuoc";
             // 
             // _uHuyThuocList
             // 
@@ -2988,10 +3011,10 @@
             // 
             this._timerPatient.Interval = 5000;
             // 
-            // _uThongKeHoaDonDichVuVaThuoc
+            // _uThongKePhieuThuDichVuVaThuoc
             // 
-            resources.ApplyResources(this._uThongKeHoaDonDichVuVaThuoc, "_uThongKeHoaDonDichVuVaThuoc");
-            this._uThongKeHoaDonDichVuVaThuoc.Name = "_uThongKeHoaDonDichVuVaThuoc";
+            resources.ApplyResources(this._uThongKePhieuThuDichVuVaThuoc, "_uThongKePhieuThuDichVuVaThuoc");
+            this._uThongKePhieuThuDichVuVaThuoc.Name = "_uThongKePhieuThuDichVuVaThuoc";
             // 
             // MainForm
             // 
@@ -3387,6 +3410,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator86;
         private System.Windows.Forms.ToolStripMenuItem thongKeHoaDonDichVuVaThuocToolStripMenuItem;
         private Controls.uThongKeHoaDonDichVuVaThuoc _uThongKeHoaDonDichVuVaThuoc;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator87;
+        private System.Windows.Forms.ToolStripMenuItem thongKePhieuThuDichVuVaThuocToolStripMenuItem;
+        private Controls.uThongKePhieuThuDichVuVaThuoc _uThongKePhieuThuDichVuVaThuoc;
 
     }
 }
