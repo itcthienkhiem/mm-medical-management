@@ -853,7 +853,35 @@ namespace MM.Bussiness
                 if (type == 1) subQuery = "ChuaThuTien = 0";
                 else if (type == 2) subQuery = "ChuaThuTien = 1";
 
-                string query = string.Format("SELECT KiHieu, InvoiceCode AS SoHoaDon, InvoiceDate AS NgayHoaDon, TenNguoiMuaHang, MaSoThue, DiaChi, TenDichVu AS TenHangHoa, DonViTinh, SoLuong, DonGia, ThanhTien, CASE HinhThucThanhToan WHEN 0 THEN 'TM' WHEN 1 THEN 'CK' WHEN 2 THEN 'TM/CK' END AS HinhThucThanhToan FROM Invoice HD, InvoiceDetail CT WHERE HD.InvoiceGUID = CT.InvoiceGUID AND HD.Status = 0 AND CT.Status = 0 AND InvoiceDate BETWEEN '{0}' AND '{1}' AND {2} UNION SELECT KiHieu, SoHoaDon, NgayXuatHoaDon AS NgayHoaDon, TenNguoiMuaHang, MaSoThue, DiaChi, TenThuoc AS TenHangHoa, DonViTinh, SoLuong, DonGia, ThanhTien, CASE HinhThucThanhToan WHEN 0 THEN 'TM' WHEN 1 THEN 'CK' WHEN 2 THEN 'TM/CK' END AS HinhThucThanhToan FROM HoaDonThuoc HD, ChiTietHoaDonThuoc CT WHERE HD.HoaDonThuocGUID = CT.HoaDonThuocGUID AND HD.Status = 0 AND CT.Status = 0 AND NgayXuatHoaDon BETWEEN '{0}' AND '{1}' AND {2} ORDER BY SoHoaDon",
+                string query = string.Format("SELECT KiHieu, InvoiceCode AS SoHoaDon, InvoiceDate AS NgayHoaDon, TenNguoiMuaHang, TenDonVi, MaSoThue, DiaChi, TenDichVu AS TenHangHoa, DonViTinh, SoLuong, DonGia, ThanhTien, CASE HinhThucThanhToan WHEN 0 THEN 'TM' WHEN 1 THEN 'CK' WHEN 2 THEN 'TM/CK' END AS HinhThucThanhToan FROM Invoice HD, InvoiceDetail CT WHERE HD.InvoiceGUID = CT.InvoiceGUID AND HD.Status = 0 AND CT.Status = 0 AND InvoiceDate BETWEEN '{0}' AND '{1}' AND {2} UNION SELECT KiHieu, SoHoaDon, NgayXuatHoaDon AS NgayHoaDon, TenNguoiMuaHang, TenDonVi, MaSoThue, DiaChi, TenThuoc AS TenHangHoa, DonViTinh, SoLuong, DonGia, ThanhTien, CASE HinhThucThanhToan WHEN 0 THEN 'TM' WHEN 1 THEN 'CK' WHEN 2 THEN 'TM/CK' END AS HinhThucThanhToan FROM HoaDonThuoc HD, ChiTietHoaDonThuoc CT WHERE HD.HoaDonThuocGUID = CT.HoaDonThuocGUID AND HD.Status = 0 AND CT.Status = 0 AND NgayXuatHoaDon BETWEEN '{0}' AND '{1}' AND {2} ORDER BY SoHoaDon",
+                    tuNgay.ToString("yyyy-MM-dd 00:00:00"), denNgay.ToString("yyyy-MM-dd 23:59:59"), subQuery);
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
+        public static Result ThongKePhieuThuDichVuVaThuoc(DateTime tuNgay, DateTime denNgay, int type)
+        {
+            Result result = new Result();
+
+            try
+            {
+                string subQuery = "1 = 1";
+                if (type == 1) subQuery = "ChuaThuTien = 0";
+                else if (type == 2) subQuery = "ChuaThuTien = 1";
+
+                string query = string.Format("SELECT PT.ReceiptCode AS SoPhieuThu, PT.ReceiptDate AS NgayPhieuThu, PT.FullName AS TenKhachHang, PT.Address AS DiaChi, CT.[Name] AS TenHangHoa, N'Lần' AS DonViTinh, CT.SoLuong, CT.Price AS DonGia, CT.Discount AS Giam, CAST(((CT.Price - (CT.Price * CT.Discount)/100) * CT.SoLuong) AS float) AS ThanhTien, CASE HinhThucThanhToan WHEN 0 THEN 'TM' WHEN 1 THEN 'CK' WHEN 2 THEN 'TM/CK' WHEN 3 THEN 'BH' WHEN 4 THEN 'CT' END AS HinhThucThanhToan FROM ReceiptView PT, ReceiptDetailView CT WHERE PT.ReceiptGUID = CT.ReceiptGUID AND PT.Status = 0 AND CT.ReceiptDetailStatus = 0 AND PT.ReceiptDate BETWEEN '{0}' AND '{1}' AND {2} UNION SELECT PT.MaPhieuThuThuoc AS SoPhieuThu, PT.NgayThu AS NgayPhieuThu, PT.TenBenhNhan AS TenKhachHang, PT.DiaChi, CT.TenThuoc AS TenHangHoa, CT.DonViTinh, CT.SoLuong, CT.DonGia, CT.Giam, CAST(((CT.DonGia - (CT.DonGia * CT.Giam)/100) * CT.SoLuong) AS float) AS ThanhTien, CASE HinhThucThanhToan WHEN 0 THEN 'TM' WHEN 1 THEN 'CK' WHEN 2 THEN 'TM/CK' WHEN 3 THEN 'BH' WHEN 4 THEN 'CT' END AS HinhThucThanhToan FROM PhieuThuThuoc PT, ChiTietPhieuThuThuocView CT WHERE PT.PhieuThuThuocGUID = CT.PhieuThuThuocGUID AND PT.Status = 0 AND CT.CTPTTStatus = 0 AND PT.NgayThu BETWEEN '{0}' AND '{1}' AND {2} ORDER BY SoPhieuThu",
                     tuNgay.ToString("yyyy-MM-dd 00:00:00"), denNgay.ToString("yyyy-MM-dd 23:59:59"), subQuery);
                 return ExcuteQuery(query);
             }

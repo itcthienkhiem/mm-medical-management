@@ -128,6 +128,7 @@ namespace MM.Common
         public static string DoanhThuTheoNhomDichVu = "DoanhThuTheoNhomDichVu";
         public static string HuyThuoc = "HuyThuoc";
         public static string ThongKeHoaDonDichVuVaThuoc = "ThongKeHoaDonDichVuVaThuoc";
+        public static string ThongKePhieuThuDichVuVaThuoc = "ThongKePhieuThuDichVuVaThuoc";
 
         public static string CheckListTemplate = "Theo dõi thực hiện";
         public static string ChiTietPhieuThuDichVuTemplate = "Chi tiết phiếu thu dịch vụ";
