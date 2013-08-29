@@ -836,24 +836,24 @@ namespace MM.Dialogs
         private void dgChiTiet_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             if (!_isNew) return;
+           
             if (dgChiTiet.CurrentCell.ColumnIndex == 1 || dgChiTiet.CurrentCell.ColumnIndex == 4)
             {
-                if (_cboBox != null) _cboBox.SelectedValueChanged -= new EventHandler(cmbox_SelectedValueChanged);
                 _cboBox = e.Control as ComboBox;
-                _cboBox.SelectedValueChanged += new EventHandler(cmbox_SelectedValueChanged);
+                if (_cboBox != null)
+                {
+                    _cboBox.SelectedValueChanged -= new EventHandler(cmbox_SelectedValueChanged);
+                    _cboBox.SelectedValueChanged += new EventHandler(cmbox_SelectedValueChanged);
+                }
             }
             else if (dgChiTiet.CurrentCell.ColumnIndex == 3 || dgChiTiet.CurrentCell.ColumnIndex == 5)
             {
-                if (_textBox != null)
-                {
-                    _textBox.KeyPress -= new KeyPressEventHandler(textBox_KeyPress);
-                    _textBox.TextChanged -= new EventHandler(textBox_TextChanged);
-                }
-
                 _textBox = e.Control as TextBox;
 
                 if (_textBox != null)
                 {
+                    _textBox.KeyPress -= new KeyPressEventHandler(textBox_KeyPress);
+                    _textBox.TextChanged -= new EventHandler(textBox_TextChanged);
                     _textBox.KeyPress += new KeyPressEventHandler(textBox_KeyPress);
                     _textBox.TextChanged += new EventHandler(textBox_TextChanged);
                 }
