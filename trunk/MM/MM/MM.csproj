@@ -101,6 +101,12 @@
     <Reference Include="TXTextControl, Version=15.1.800.500, Culture=neutral, PublicKeyToken=6b83fe9a75cfb638" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\uHoaDonXetNghiemList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uHoaDonXetNghiemList.Designer.cs">
+      <DependentUpon>uHoaDonXetNghiemList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uThongKePhieuThuDichVuVaThuoc.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -202,6 +208,18 @@
     </Compile>
     <Compile Include="Controls\uSMSLog.Designer.cs">
       <DependentUpon>uSMSLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgHoaDonXetNghiem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgHoaDonXetNghiem.Designer.cs">
+      <DependentUpon>dlgHoaDonXetNghiem.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgLamMoiSoHoaDonXetNghiem.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgLamMoiSoHoaDonXetNghiem.Designer.cs">
+      <DependentUpon>dlgLamMoiSoHoaDonXetNghiem.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\dlgAddPhieuThuThuoc2.cs">
       <SubType>Form</SubType>
@@ -1740,6 +1758,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\uHoaDonXetNghiemList.resx">
+      <DependentUpon>uHoaDonXetNghiemList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uThongKePhieuThuDichVuVaThuoc.resx">
       <DependentUpon>uThongKePhieuThuDichVuVaThuoc.cs</DependentUpon>
     </EmbeddedResource>
@@ -1790,6 +1811,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uSMSLog.resx">
       <DependentUpon>uSMSLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgHoaDonXetNghiem.resx">
+      <DependentUpon>dlgHoaDonXetNghiem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgLamMoiSoHoaDonXetNghiem.resx">
+      <DependentUpon>dlgLamMoiSoHoaDonXetNghiem.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddPhieuThuThuoc2.resx">
       <DependentUpon>dlgAddPhieuThuThuoc2.cs</DependentUpon>
@@ -2546,6 +2573,7 @@
     <None Include="Properties\DataSources\MM.Databasae.GiaVonDichVuView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.HoaDonHopDongView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.HoaDonThuocView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.HoaDonXetNghiemView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.HuyThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.InvoiceView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.KetLuanView.datasource" />
@@ -2765,6 +2793,7 @@
     <None Include="Resources\WhiteImage.PNG" />
     <None Include="Resources\email-alert-icon %282%29.png" />
     <None Include="Resources\email-alert-icon.png" />
+    <Content Include="Scripts\ScriptUpdate_KH_2013-09-01.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2013-08-28.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2013-08-22.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2013-08-02.sql" />

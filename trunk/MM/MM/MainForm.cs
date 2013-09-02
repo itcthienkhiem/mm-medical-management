@@ -204,6 +204,7 @@ namespace MM
 
                 InitPageSetup();
 
+                //Thay đổi số hóa đơn
                 Result result = QuanLySoHoaDonBus.GetThayDoiSoHoaSonSauCung();
                 if (result.IsOK)
                 {
@@ -213,6 +214,7 @@ namespace MM
                         Global.NgayThayDoiSoHoaDonSauCung = thayDoiSauCung.NgayBatDau;
                         Global.MauSoSauCung = thayDoiSauCung.MauSo;
                         Global.KiHieuSauCung = thayDoiSauCung.KiHieu;
+                        Global.SoHoaDonBatDau = thayDoiSauCung.SoHoaDonBatDau;
                     }
                     
                 }
@@ -220,6 +222,25 @@ namespace MM
                 {
                     MsgBox.Show(Application.ProductName, result.GetErrorAsString("QuanLySoHoaDonBus.GetThayDoiSoHoaSonSauCung"), IconType.Error);
                     Utility.WriteToTraceLog(result.GetErrorAsString("QuanLySoHoaDonBus.GetThayDoiSoHoaSonSauCung"));
+                }
+
+                //Thay đổi số hóa đơn xét nghiệm
+                result = QuanLySoHoaDonXetNghiemBus.GetThayDoiSoHoaSonSauCung();
+                if (result.IsOK)
+                {
+                    if (result.QueryResult != null)
+                    {
+                        NgayBatDauLamMoiSoHoaDonXetNghiemYKhoa thayDoiSauCung = result.QueryResult as NgayBatDauLamMoiSoHoaDonXetNghiemYKhoa;
+                        Global.NgayThayDoiSoHoaDonXetNghiemSauCung = thayDoiSauCung.NgayBatDau;
+                        Global.MauSoXetNghiemSauCung = thayDoiSauCung.MauSo;
+                        Global.KiHieuXetNghiemSauCung = thayDoiSauCung.KiHieu;
+                        Global.SoHoaDonXetNghiemBatDau = thayDoiSauCung.SoHoaDonBatDau;
+                    }
+                }
+                else
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("QuanLySoHoaDonXetNghiemBus.GetThayDoiSoHoaSonSauCung"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("QuanLySoHoaDonXetNghiemBus.GetThayDoiSoHoaSonSauCung"));
                 }
 
                 if (!Directory.Exists(Global.HinhChupPath))
@@ -418,6 +439,8 @@ namespace MM
                 _uDoanhThuTheoNhomDichVu.InitData();
             else if (ctrl.GetType() == typeof(uHuyThuocList))
                 _uHuyThuocList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uHoaDonXetNghiemList))
+                _uHoaDonXetNghiemList.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -474,10 +497,12 @@ namespace MM
                 Global.AllowExportHoaDonThuoc = false;
                 Global.AllowExportHoaDonHopDong = false;
                 Global.AllowExportHoaDonXuatTruoc = false;
+                Global.AllowExportHoaDonXetNghiem = false;
                 Global.AllowPrintHoaDonDichVu = false;
                 Global.AllowPrintHoaDonThuoc = false;
                 Global.AllowPrintHoaDonHopDong = false;
                 Global.AllowPrintHoaDonXuatTruoc = false;
+                Global.AllowPrintHoaDonXetNghiem = false;
                 Global.AllowViewChiDinh = false;
                 Global.AllowAddChiDinh = false;
                 Global.AllowEditChiDinh = false;
@@ -541,6 +566,8 @@ namespace MM
                 Global.AllowUploadHoSo = false;
                 Global.AllowAddMatKhauHoSo = false;
                 Global.AllowAddDichVu = false;
+                Global.AllowEditThayDoiSoHoaDon = false;
+                Global.AllowEditThayDoiSoHoaDonXetNghiem = false;
 
                 Result result = LogonBus.GetPermission2(Global.LogonGUID);
                 if (result.IsOK)
@@ -1784,6 +1811,35 @@ namespace MM
                             _uThongKePhieuThuDichVuVaThuoc.AllowExportAll = isExportAll;
                             _uThongKePhieuThuDichVuVaThuoc.AllowConfirm = isConfirm;
                         }
+                        else if (functionCode == Const.HoaDonXetNghiem)
+                        {
+                            invoiceToolStripMenuItem.Enabled = isLogin;
+                            hoaDonXetNghiemToolStripMenuItem.Enabled = isView && isLogin;
+                            _uHoaDonXetNghiemList.AllowAdd = isAdd;
+                            _uHoaDonXetNghiemList.AllowEdit = isEdit;
+                            _uHoaDonXetNghiemList.AllowDelete = isDelete;
+                            _uHoaDonXetNghiemList.AllowPrint = isPrint;
+                            _uHoaDonXetNghiemList.AllowExport = isExport;
+                            _uHoaDonXetNghiemList.AllowImport = isImport;
+                            _uHoaDonXetNghiemList.AllowLock = isLock;
+                            _uHoaDonXetNghiemList.AllowExportAll = isExportAll;
+                            _uHoaDonXetNghiemList.AllowConfirm = isConfirm;
+
+                            Global.AllowPrintHoaDonXetNghiem = isPrint;
+                            Global.AllowExportHoaDonXetNghiem = isExport;
+                        }
+                        else if (functionCode == Const.ThayDoiSoHoaDon)
+                        {
+                            toolsToolStripMenuItem.Enabled = isLogin;
+                            thayDoiSoHoaDonToolStripMenuItem.Enabled = isView && isLogin;
+                            Global.AllowEditThayDoiSoHoaDon = isEdit;
+                        }
+                        else if (functionCode == Const.ThayDoiSoHoaDonXetNghiem)
+                        {
+                            toolsToolStripMenuItem.Enabled = isLogin;
+                            thayDoiSoHoaDonXetNghiemToolStripMenuItem.Enabled = isView && isLogin;
+                            Global.AllowEditThayDoiSoHoaDonXetNghiem = isEdit;
+                        }
                     }
                 }
                 else
@@ -1868,6 +1924,10 @@ namespace MM
                 Global.AllowTaoHoSo = true;
                 Global.AllowUploadHoSo = true;
                 Global.AllowAddMatKhauHoSo = true;
+                Global.AllowEditThayDoiSoHoaDon = true;
+                Global.AllowEditThayDoiSoHoaDonXetNghiem = true;
+                Global.AllowPrintHoaDonXetNghiem = true;
+                Global.AllowExportHoaDonXetNghiem = true;
 
                 foreach (Control ctrl in this._mainPanel.Controls)
                 {   
@@ -2025,6 +2085,9 @@ namespace MM
                 huyThuocToolStripMenuItem.Enabled = isLogin;
                 thongKeHoaDonDichVuVaThuocToolStripMenuItem.Enabled = isLogin;
                 thongKePhieuThuDichVuVaThuocToolStripMenuItem.Enabled = isLogin;
+                thayDoiSoHoaDonToolStripMenuItem.Enabled = isLogin;
+                thayDoiSoHoaDonXetNghiemToolStripMenuItem.Enabled = isLogin;
+                hoaDonXetNghiemToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -2523,6 +2586,30 @@ namespace MM
                 case "ThongKePhieuThuDichVuVaThuoc":
                     OnThongKePhieuThuDichVuVaThuoc();
                     break;
+
+                case "ThayDoiSoHoaDonXetNghiem":
+                    OnThayDoiSoHoaDonXetNghiem();
+                    break;
+
+                case "HoaDonXetNghiem":
+                    OnHoaDonXetNghiem();
+                    break;
+            }
+        }
+
+        private void OnHoaDonXetNghiem()
+        {
+            this.Text = string.Format("{0} - Hoa don xet nghiem", Application.ProductName);
+            ViewControl(_uHoaDonXetNghiemList);
+            _uHoaDonXetNghiemList.DisplayAsThread();
+        }
+
+        private void OnThayDoiSoHoaDonXetNghiem()
+        {
+            dlgLamMoiSoHoaDonXetNghiem dlg = new dlgLamMoiSoHoaDonXetNghiem();
+            if (dlg.ShowDialog() == System.Windows.Forms.DialogResult.OK)
+            {
+                RefreshData();
             }
         }
 
@@ -3610,6 +3697,7 @@ namespace MM
             _uInMauHoSo.ClearData();
             _uTraHoSo.ClearData();
             _uHuyThuocList.ClearData();
+            _uHoaDonXetNghiemList.ClearData();
         }
         #endregion
 

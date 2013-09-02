@@ -12,14 +12,14 @@ using MM.Bussiness;
 
 namespace MM.Dialogs
 {
-    public partial class dlgLamMoiSoHoaDon : dlgBase
+    public partial class dlgLamMoiSoHoaDonXetNghiem : dlgBase
     {
         #region Members
 
         #endregion
 
         #region Constructor
-        public dlgLamMoiSoHoaDon()
+        public dlgLamMoiSoHoaDonXetNghiem()
         {
             InitializeComponent();
         }
@@ -32,12 +32,12 @@ namespace MM.Dialogs
         #region Window Event Handlers
         private void dlgLamMoiSoHoaDon_Load(object sender, EventArgs e)
         {
-            Result result = QuanLySoHoaDonBus.GetThayDoiSoHoaSonSauCung();
+            Result result = QuanLySoHoaDonXetNghiemBus.GetThayDoiSoHoaSonSauCung();
             if (result.IsOK)
             {
                 if (result.QueryResult != null)
                 {
-                    NgayBatDauLamMoiSoHoaDon thayDoiSauCung = result.QueryResult as NgayBatDauLamMoiSoHoaDon;
+                    NgayBatDauLamMoiSoHoaDonXetNghiemYKhoa thayDoiSauCung = result.QueryResult as NgayBatDauLamMoiSoHoaDonXetNghiemYKhoa;
                     dtpkNgayThayDoiSauCung.Value = thayDoiSauCung.NgayBatDau;
                     txtMauSoCu.Text = thayDoiSauCung.MauSo;
                     txtKiHieuCu.Text = thayDoiSauCung.KiHieu;
@@ -50,8 +50,8 @@ namespace MM.Dialogs
             }
             else
             {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("QuanLySoHoaDonBus.GetThayDoiSoHoaSonSauCung"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("QuanLySoHoaDonBus.GetThayDoiSoHoaSonSauCung"));
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("QuanLySoHoaDonXetNghiemBus.GetThayDoiSoHoaSonSauCung"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("QuanLySoHoaDonXetNghiemBus.GetThayDoiSoHoaSonSauCung"));
             }
 
             dtpkNgayThayDoiMoi.Value = DateTime.Now;
@@ -86,20 +86,20 @@ namespace MM.Dialogs
                     {
                         if (CheckInfo())
                         {
-                            Result result = QuanLySoHoaDonBus.SetThayDoiSoHoaSon(dtpkNgayThayDoiMoi.Value, txtMauSoMoi.Text, 
+                            Result result = QuanLySoHoaDonXetNghiemBus.SetThayDoiSoHoaSon(dtpkNgayThayDoiMoi.Value, txtMauSoMoi.Text, 
                                 txtKiHieuMoi.Text, (int)numSoHDBatDauMoi.Value);
                             if (!result.IsOK)
                             {
-                                MsgBox.Show(Application.ProductName, result.GetErrorAsString("QuanLySoHoaDonBus.SetThayDoiSoHoaSon"), IconType.Error);
-                                Utility.WriteToTraceLog(result.GetErrorAsString("QuanLySoHoaDonBus.SetThayDoiSoHoaSon"));
+                                MsgBox.Show(Application.ProductName, result.GetErrorAsString("QuanLySoHoaDonXetNghiemBus.SetThayDoiSoHoaSon"), IconType.Error);
+                                Utility.WriteToTraceLog(result.GetErrorAsString("QuanLySoHoaDonXetNghiemBus.SetThayDoiSoHoaSon"));
                                 e.Cancel = true;
                             }
                             else
                             {
-                                Global.MauSoSauCung = txtMauSoMoi.Text;
-                                Global.KiHieuSauCung = txtKiHieuMoi.Text;
-                                Global.NgayThayDoiSoHoaDonSauCung = dtpkNgayThayDoiMoi.Value;
-                                Global.SoHoaDonBatDau = (int)numSoHDBatDauMoi.Value;
+                                Global.MauSoXetNghiemSauCung = txtMauSoMoi.Text;
+                                Global.KiHieuXetNghiemSauCung = txtKiHieuMoi.Text;
+                                Global.NgayThayDoiSoHoaDonXetNghiemSauCung = dtpkNgayThayDoiMoi.Value;
+                                Global.SoHoaDonXetNghiemBatDau = (int)numSoHDBatDauMoi.Value;
                             }
                         }
                         else

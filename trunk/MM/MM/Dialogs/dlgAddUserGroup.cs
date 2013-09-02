@@ -1270,6 +1270,45 @@ namespace MM.Dialogs
                     (row.Cells["IsLock"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                     (row.Cells["IsExportAll"] as DataGridViewDisableCheckBoxCell).Enabled = false;
                 }
+                else if (functionCode == Const.HoaDonXetNghiem)
+                {
+                    (row.Cells["IsView"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsAdd"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsEdit"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsDelete"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsLock"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsExportAll"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                }
+                else if (functionCode == Const.ThayDoiSoHoaDon)
+                {
+                    (row.Cells["IsView"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsAdd"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsEdit"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsDelete"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsLock"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsExportAll"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                }
+                else if (functionCode == Const.ThayDoiSoHoaDonXetNghiem)
+                {
+                    (row.Cells["IsView"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsAdd"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsEdit"] as DataGridViewDisableCheckBoxCell).Enabled = true;
+                    (row.Cells["IsDelete"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsImport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsExport"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsPrint"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsConfirm"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsLock"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                    (row.Cells["IsExportAll"] as DataGridViewDisableCheckBoxCell).Enabled = false;
+                }
             }
         }
 
@@ -1529,7 +1568,8 @@ namespace MM.Dialogs
                 dgPermission.Columns[e.ColumnIndex].Name != "IsPrint" && dgPermission.Columns[e.ColumnIndex].Name != "IsImport" &&
                 dgPermission.Columns[e.ColumnIndex].Name != "IsExport" && dgPermission.Columns[e.ColumnIndex].Name != "IsConfirm" &&
                 dgPermission.Columns[e.ColumnIndex].Name != "IsLock" && dgPermission.Columns[e.ColumnIndex].Name != "IsExportAll" &&
-                dgPermission.Columns[e.ColumnIndex].Name != "IsCreateReport" && dgPermission.Columns[e.ColumnIndex].Name != "IsUpload")
+                dgPermission.Columns[e.ColumnIndex].Name != "IsCreateReport" && dgPermission.Columns[e.ColumnIndex].Name != "IsUpload" &&
+                dgPermission.Columns[e.ColumnIndex].Name != "IsSendSMS")
             {
                 dgPermission.ContextMenuStrip = null;
                 return;

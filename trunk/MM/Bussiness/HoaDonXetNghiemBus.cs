@@ -10,32 +10,9 @@ using MM.Databasae;
 
 namespace MM.Bussiness
 {
-    public class HoaDonThuocBus : BusBase
+    public class HoaDonXetNghiemBus : BusBase
     {
-        public static Result GetHoaDonThuocList()
-        {
-            Result result = new Result();
-
-            try
-            {
-                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM HoaDonThuocView WITH(NOLOCK) WHERE Status={0} ORDER BY NgayXuatHoaDon DESC", (byte)Status.Actived);
-                return ExcuteQuery(query);
-            }
-            catch (System.Data.SqlClient.SqlException se)
-            {
-                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
-                result.Error.Description = se.ToString();
-            }
-            catch (Exception e)
-            {
-                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
-                result.Error.Description = e.ToString();
-            }
-
-            return result;
-        }
-
-        public static Result GetHoaDonThuocList(bool isFromDateToDate, DateTime fromDate, DateTime toDate, string tenBenhNhan, int type)
+        public static Result GetHoaDonXetNghiemList(bool isFromDateToDate, DateTime fromDate, DateTime toDate, string tenBenhNhan, int type)
         {
             Result result = new Result();
 
@@ -46,17 +23,17 @@ namespace MM.Bussiness
                 {
                     if (type == 0) //Tất cả
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM HoaDonThuocView WITH(NOLOCK) WHERE NgayXuatHoaDon BETWEEN '{0}' AND '{1}' ORDER BY NgayXuatHoaDon DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM HoaDonXetNghiemView WITH(NOLOCK) WHERE NgayXuatHoaDon BETWEEN '{0}' AND '{1}' ORDER BY NgayXuatHoaDon DESC",
                            fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"));
                     }
                     else if (type == 1) //Chưa xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM HoaDonThuocView WITH(NOLOCK) WHERE Status={0} AND NgayXuatHoaDon BETWEEN '{1}' AND '{2}' ORDER BY NgayXuatHoaDon DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM HoaDonXetNghiemView WITH(NOLOCK) WHERE Status={0} AND NgayXuatHoaDon BETWEEN '{1}' AND '{2}' ORDER BY NgayXuatHoaDon DESC",
                         (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"));
                     }
                     else //Đã xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM HoaDonThuocView WITH(NOLOCK) WHERE Status={0} AND NgayXuatHoaDon BETWEEN '{1}' AND '{2}' ORDER BY NgayXuatHoaDon DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM HoaDonXetNghiemView WITH(NOLOCK) WHERE Status={0} AND NgayXuatHoaDon BETWEEN '{1}' AND '{2}' ORDER BY NgayXuatHoaDon DESC",
                         (byte)Status.Deactived, fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"));
                     }
 
@@ -65,16 +42,16 @@ namespace MM.Bussiness
                 {
                     if (type == 0) //Tất cả
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM HoaDonThuocView WITH(NOLOCK) WHERE TenNguoiMuaHang LIKE N'%{0}%' ORDER BY NgayXuatHoaDon DESC", tenBenhNhan);
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM HoaDonXetNghiemView WITH(NOLOCK) WHERE TenNguoiMuaHang LIKE N'%{0}%' ORDER BY NgayXuatHoaDon DESC", tenBenhNhan);
                     }
                     else if (type == 1) //Chưa xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM HoaDonThuocView WITH(NOLOCK) WHERE Status={0} AND TenNguoiMuaHang LIKE N'%{1}%' ORDER BY NgayXuatHoaDon DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM HoaDonXetNghiemView WITH(NOLOCK) WHERE Status={0} AND TenNguoiMuaHang LIKE N'%{1}%' ORDER BY NgayXuatHoaDon DESC",
                         (byte)Status.Actived, tenBenhNhan);
                     }
                     else //Đã xóa
                     {
-                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM HoaDonThuocView WITH(NOLOCK) WHERE Status={0} AND TenNguoiMuaHang LIKE N'%{1}%' ORDER BY NgayXuatHoaDon DESC",
+                        query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM HoaDonXetNghiemView WITH(NOLOCK) WHERE Status={0} AND TenNguoiMuaHang LIKE N'%{1}%' ORDER BY NgayXuatHoaDon DESC",
                         (byte)Status.Deactived, tenBenhNhan);
                     }
 
@@ -96,14 +73,14 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetChiTietHoaDonThuoc(string hoaDonThuocGUID)
+        public static Result GetChiTietHoaDonXetNghiem(string hoaDonXetNghiemGUID)
         {
             Result result = null;
 
             try
             {
-                string query = string.Format("SELECT TenThuoc, SoLuong, DonViTinh, DonGia, ThanhTien FROM ChiTietHoaDonThuoc WITH(NOLOCK) WHERE HoaDonThuocGUID='{0}' AND Status={1} ORDER BY TenThuoc",
-                    hoaDonThuocGUID, (byte)Status.Actived);
+                string query = string.Format("SELECT TenHangHoa, SoLuong, DonViTinh, DonGia, ThanhTien FROM ChiTietHoaDonXetNghiem WITH(NOLOCK) WHERE HoaDonXetNghiemGUID='{0}' AND Status={1} ORDER BY TenHangHoa",
+                    hoaDonXetNghiemGUID, (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -120,81 +97,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetChiTietPhieuThuThuoc(string phieuThuThuocGUID)
-        {
-            Result result = new Result();
-
-            try
-            {
-                string query = string.Format("SELECT TenThuoc, DonViTinh, SoLuong, DonGia, ThanhTien FROM ChiTietPhieuThuThuocView WITH(NOLOCK) WHERE PhieuThuThuocGUID='{0}' AND CTPTTStatus={1} ORDER BY TenThuoc",
-                    phieuThuThuocGUID, (byte)Status.Actived);
-                return ExcuteQuery(query);
-            }
-            catch (System.Data.SqlClient.SqlException se)
-            {
-                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
-                result.Error.Description = se.ToString();
-            }
-            catch (Exception e)
-            {
-                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
-                result.Error.Description = e.ToString();
-            }
-
-            return result;
-        }
-
-        public static Result GetChiTietPhieuThuThuoc(List<DataRow> phieuThuThuocList)
-        {
-            Result result = new Result();
-
-            try
-            {
-                if (phieuThuThuocList == null || phieuThuThuocList.Count <= 0) return result;
-                DataTable dtAll = null;
-
-                foreach (DataRow row in phieuThuThuocList)
-                {
-                    string phieuThuThuocGUID = row["PhieuThuThuocGUID"].ToString();
-                    string query = string.Format("SELECT TenThuoc, DonViTinh, SoLuong, DonGia, ThanhTien FROM ChiTietPhieuThuThuocView WITH(NOLOCK) WHERE PhieuThuThuocGUID='{0}' AND CTPTTStatus={1} ORDER BY TenThuoc",
-                    phieuThuThuocGUID, (byte)Status.Actived);
-
-                    result = ExcuteQuery(query);
-
-                    if (!result.IsOK) return result;
-
-                    DataTable dt = result.QueryResult as DataTable;
-                    if (dtAll == null)
-                    {
-                        dtAll = new DataTable();
-                        dtAll = dt;
-                    }
-                    else
-                    {
-                        foreach (DataRow dr in dt.Rows)
-                        {
-                            dtAll.ImportRow(dr);
-                        }
-                    }
-                }
-
-                result.QueryResult = dtAll;
-            }
-            catch (System.Data.SqlClient.SqlException se)
-            {
-                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
-                result.Error.Description = se.ToString();
-            }
-            catch (Exception e)
-            {
-                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
-                result.Error.Description = e.ToString();
-            }
-
-            return result;
-        }
-
-        public static Result GetHoaDonThuoc(string hoaDonThuocGUID)
+        public static Result GetHoaDonXetNghiem(string hoaDonXetNghiemGUID)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -202,7 +105,7 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-                HoaDonThuocView hdt = db.HoaDonThuocViews.SingleOrDefault<HoaDonThuocView>(h => h.HoaDonThuocGUID.ToString() == hoaDonThuocGUID && 
+                HoaDonXetNghiemView hdt = db.HoaDonXetNghiemViews.SingleOrDefault<HoaDonXetNghiemView>(h => h.HoaDonXetNghiemGUID.ToString() == hoaDonXetNghiemGUID && 
                     h.Status == (byte)Status.Actived);
                 result.QueryResult = hdt;
             }
@@ -236,15 +139,15 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-                HoaDonThuoc hdt = (from i in db.HoaDonThuocs
-                                   where i.SoHoaDon == soHoaDon &&
-                                   i.Status == (byte)Status.Deactived &&
-                                   i.NgayXuatHoaDon >= Global.NgayThayDoiSoHoaDonSauCung
-                                   orderby i.NgayXuatHoaDon descending
-                                   select i).FirstOrDefault();
+                HoaDonXetNghiem hdxn = (from i in db.HoaDonXetNghiems
+                                        where i.SoHoaDon == soHoaDon &&
+                                        i.Status == (byte)Status.Deactived &&
+                                        i.NgayXuatHoaDon >= Global.NgayThayDoiSoHoaDonXetNghiemSauCung
+                                        orderby i.NgayXuatHoaDon descending
+                                        select i).FirstOrDefault();
 
-                if (hdt != null)
-                    result.QueryResult = hdt.NgayXuatHoaDon.Value;
+                if (hdxn != null)
+                    result.QueryResult = hdxn.NgayXuatHoaDon.Value;
             }
             catch (System.Data.SqlClient.SqlException se)
             {
@@ -268,7 +171,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result CheckHoaDonThuocExistCode(int soHoaDon)
+        public static Result CheckHoaDonXetNghiemExistCode(int soHoaDon)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -276,8 +179,8 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-                QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon &&
-                   (q.DaXuat == true || q.XuatTruoc == true) && q.NgayBatDau.Value >= Global.NgayThayDoiSoHoaDonSauCung);
+                QuanLySoHoaDonXetNghiemYKhoa qlshd = db.QuanLySoHoaDonXetNghiemYKhoas.SingleOrDefault<QuanLySoHoaDonXetNghiemYKhoa>(q => q.SoHoaDon == soHoaDon &&
+                   (q.DaXuat == true || q.XuatTruoc == true) && q.NgayBatDau.Value >= Global.NgayThayDoiSoHoaDonXetNghiemSauCung);
 
                 if (qlshd == null)
                     result.Error.Code = ErrorCode.NOT_EXIST;
@@ -306,7 +209,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result DeleteHoaDonThuoc(List<string> keys, List<string> noteList)
+        public static Result DeleteHoaDonXetNghiem(List<string> keys, List<string> noteList)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -320,49 +223,37 @@ namespace MM.Bussiness
                     int index = 0;
                     foreach (string key in keys)
                     {
-                        HoaDonThuoc hdt = db.HoaDonThuocs.SingleOrDefault<HoaDonThuoc>(i => i.HoaDonThuocGUID.ToString() == key);
-                        if (hdt != null)
+                        HoaDonXetNghiem hdxn = db.HoaDonXetNghiems.SingleOrDefault<HoaDonXetNghiem>(i => i.HoaDonXetNghiemGUID.ToString() == key);
+                        if (hdxn != null)
                         {
-                            hdt.DeletedDate = DateTime.Now;
-                            hdt.DeletedBy = Guid.Parse(Global.UserGUID);
-                            hdt.Status = (byte)Status.Deactived;
-                            if (hdt.Notes == null || hdt.Notes.Trim() == string.Empty)
-                                hdt.Notes = noteList[index];
+                            hdxn.DeletedDate = DateTime.Now;
+                            hdxn.DeletedBy = Guid.Parse(Global.UserGUID);
+                            hdxn.Status = (byte)Status.Deactived;
+                            if (hdxn.Notes == null || hdxn.Notes.Trim() == string.Empty)
+                                hdxn.Notes = noteList[index];
                             else
-                                hdt.Notes += string.Format(" - {0}", noteList[index]);
+                                hdxn.Notes += string.Format(" - {0}", noteList[index]);
 
-                            //Update Exported Invoice
-                            if (hdt.PhieuThuThuocGUIDList != null && hdt.PhieuThuThuocGUIDList.Trim() != string.Empty)
-                            {
-                                string[] pttkeys = hdt.PhieuThuThuocGUIDList.Split(',');
-                                foreach (string pttKey in pttkeys)
-                                {
-                                    PhieuThuThuoc ptt = db.PhieuThuThuocs.SingleOrDefault<PhieuThuThuoc>(r => r.PhieuThuThuocGUID.ToString() == pttKey);
-                                    if (ptt != null) ptt.IsExported = false;
-                                }
-
-                            }
-
-                            int soHoaDon = Convert.ToInt32(hdt.SoHoaDon);
-                            QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon &&
-                                q.NgayBatDau.Value >= Global.NgayThayDoiSoHoaDonSauCung);
+                            int soHoaDon = Convert.ToInt32(hdxn.SoHoaDon);
+                            QuanLySoHoaDonXetNghiemYKhoa qlshd = db.QuanLySoHoaDonXetNghiemYKhoas.SingleOrDefault<QuanLySoHoaDonXetNghiemYKhoa>(q => q.SoHoaDon == soHoaDon &&
+                                q.NgayBatDau.Value >= Global.NgayThayDoiSoHoaDonXetNghiemSauCung);
                             if (qlshd != null) qlshd.DaXuat = false;
                             else
                             {
-                                qlshd = new QuanLySoHoaDon();
+                                qlshd = new QuanLySoHoaDonXetNghiemYKhoa();
                                 qlshd.QuanLySoHoaDonGUID = Guid.NewGuid();
                                 qlshd.SoHoaDon = soHoaDon;
                                 qlshd.DaXuat = false;
                                 qlshd.XuatTruoc = false;
-                                qlshd.NgayBatDau = Global.NgayThayDoiSoHoaDonSauCung;
-                                db.QuanLySoHoaDons.InsertOnSubmit(qlshd);
+                                qlshd.NgayBatDau = Global.NgayThayDoiSoHoaDonXetNghiemSauCung;
+                                db.QuanLySoHoaDonXetNghiemYKhoas.InsertOnSubmit(qlshd);
                             }
 
-                            string htttStr = Utility.ParseHinhThucThanhToanToStr((PaymentType)hdt.HinhThucThanhToan);
+                            string htttStr = Utility.ParseHinhThucThanhToanToStr((PaymentType)hdxn.HinhThucThanhToan);
 
                             desc += string.Format("- GUID: '{0}', Mã hóa đơn: '{1}', Ngày xuất HĐ: '{2}', Người mua hàng: '{3}', Tên đơn vị: '{4}', Địa chỉ: '{5}', STK: '{6}', Hình thức thanh toán: '{7}', Ghi chú: '{8}', Đã thu tiền: '{9}'\n",
-                                hdt.HoaDonThuocGUID.ToString(), hdt.SoHoaDon, hdt.NgayXuatHoaDon.Value.ToString("dd/MM/yyyy HH:mm:ss"),
-                                hdt.TenNguoiMuaHang, hdt.TenDonVi, hdt.DiaChi, hdt.SoTaiKhoan, htttStr, noteList[index], !hdt.ChuaThuTien);
+                                hdxn.HoaDonXetNghiemGUID.ToString(), hdxn.SoHoaDon, hdxn.NgayXuatHoaDon.Value.ToString("dd/MM/yyyy HH:mm:ss"),
+                                hdxn.TenNguoiMuaHang, hdxn.TenDonVi, hdxn.DiaChi, hdxn.SoTaiKhoan, htttStr, noteList[index], !hdxn.ChuaThuTien);
                         }
 
                         index++;
@@ -375,7 +266,7 @@ namespace MM.Bussiness
                     tk.TrackingDate = DateTime.Now;
                     tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
                     tk.ActionType = (byte)ActionType.Delete;
-                    tk.Action = "Xóa thông tin hóa đơn thuốc";
+                    tk.Action = "Xóa thông tin hóa đơn xét nghiệm";
                     tk.Description = desc;
                     tk.TrackingType = (byte)TrackingType.Price;
                     tk.ComputerName = Utility.GetDNSHostName();
@@ -407,7 +298,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result InsertHoaDonThuoc(HoaDonThuoc hdt, List<ChiTietHoaDonThuoc> addedDetails)
+        public static Result InsertHoaDonXetNghiem(HoaDonXetNghiem hdxn, List<ChiTietHoaDonXetNghiem> addedDetails)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -418,58 +309,46 @@ namespace MM.Bussiness
                 string desc = string.Empty;
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
-                    hdt.HoaDonThuocGUID = Guid.NewGuid();
-                    db.HoaDonThuocs.InsertOnSubmit(hdt);
+                    hdxn.HoaDonXetNghiemGUID = Guid.NewGuid();
+                    db.HoaDonXetNghiems.InsertOnSubmit(hdxn);
                     db.SubmitChanges();
 
-                    string htttStr = Utility.ParseHinhThucThanhToanToStr((PaymentType)hdt.HinhThucThanhToan);
+                    string htttStr = Utility.ParseHinhThucThanhToanToStr((PaymentType)hdxn.HinhThucThanhToan);
 
-                    desc += string.Format("- Hóa đơn thuốc: GUID: '{0}', Mã hóa đơn: '{1}', Ngày xuất HĐ: '{2}', Người mua hàng: '{3}', Tên đơn vị: '{4}', Địa chỉ: '{5}', STK: '{6}', Hình thức thanh toán: '{7}', Ghi chú: '{8}', Đã thu tiền: '{9}'\n",
-                                hdt.HoaDonThuocGUID.ToString(), hdt.SoHoaDon, hdt.NgayXuatHoaDon.Value.ToString("dd/MM/yyyy HH:mm:ss"),
-                                hdt.TenNguoiMuaHang, hdt.TenDonVi, hdt.DiaChi, hdt.SoTaiKhoan, htttStr, hdt.Notes, !hdt.ChuaThuTien);
+                    desc += string.Format("- Hóa đơn xét nghiệm GUID: '{0}', Mã hóa đơn: '{1}', Ngày xuất HĐ: '{2}', Người mua hàng: '{3}', Tên đơn vị: '{4}', Địa chỉ: '{5}', STK: '{6}', Hình thức thanh toán: '{7}', Ghi chú: '{8}', Đã thu tiền: '{9}'\n",
+                                hdxn.HoaDonXetNghiemGUID.ToString(), hdxn.SoHoaDon, hdxn.NgayXuatHoaDon.Value.ToString("dd/MM/yyyy HH:mm:ss"),
+                                hdxn.TenNguoiMuaHang, hdxn.TenDonVi, hdxn.DiaChi, hdxn.SoTaiKhoan, htttStr, hdxn.Notes, !hdxn.ChuaThuTien);
 
                     if (addedDetails != null && addedDetails.Count > 0)
                     {
                         desc += "- Chi tiết hóa đơn:\n";
 
-                        foreach (ChiTietHoaDonThuoc detail in addedDetails)
+                        foreach (ChiTietHoaDonXetNghiem detail in addedDetails)
                         {
-                            detail.ChiTietHoaDonThuocGUID = Guid.NewGuid();
-                            detail.HoaDonThuocGUID = hdt.HoaDonThuocGUID;
-                            db.ChiTietHoaDonThuocs.InsertOnSubmit(detail);
+                            detail.ChiTietHoaDonXetNghiemGUID = Guid.NewGuid();
+                            detail.HoaDonXetNghiemGUID = hdxn.HoaDonXetNghiemGUID;
+                            db.ChiTietHoaDonXetNghiems.InsertOnSubmit(detail);
 
-                            desc += string.Format("  + GUID: '{0}', Dịch vụ: '{1}', ĐVT: '{2}', Số lượng: '{3}', Đơn giá: '{4}', Thành tiền: '{5}', Loai: '{6}'\n",
-                                detail.ChiTietHoaDonThuocGUID.ToString(), detail.TenThuoc, detail.DonViTinh, detail.SoLuong, detail.DonGia, detail.ThanhTien, detail.Loai);
+                            desc += string.Format("  + GUID: '{0}', Mặt hàng: '{1}', ĐVT: '{2}', Số lượng: '{3}', Đơn giá: '{4}', Thành tiền: '{5}'\n",
+                                detail.ChiTietHoaDonXetNghiemGUID.ToString(), detail.TenHangHoa, detail.DonViTinh, detail.SoLuong, detail.DonGia, detail.ThanhTien);
                         }
 
                         db.SubmitChanges();
                     }
 
-                    //Update Exported Invoice
-                    if (hdt.PhieuThuThuocGUIDList != null && hdt.PhieuThuThuocGUIDList.Trim() != string.Empty)
-                    {
-                        string[] pttkeys = hdt.PhieuThuThuocGUIDList.Split(',');
-                        foreach (string pttKey in pttkeys)
-                        {
-                            PhieuThuThuoc ptt = db.PhieuThuThuocs.SingleOrDefault<PhieuThuThuoc>(r => r.PhieuThuThuocGUID.ToString() == pttKey);
-                            if (ptt != null) ptt.IsExported = true;
-                        }
-
-                    }
-
-                    int soHoaDon = Convert.ToInt32(hdt.SoHoaDon);
-                    QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon && 
-                        q.NgayBatDau.Value >= Global.NgayThayDoiSoHoaDonSauCung);
+                    int soHoaDon = Convert.ToInt32(hdxn.SoHoaDon);
+                    QuanLySoHoaDonXetNghiemYKhoa qlshd = db.QuanLySoHoaDonXetNghiemYKhoas.SingleOrDefault<QuanLySoHoaDonXetNghiemYKhoa>(q => q.SoHoaDon == soHoaDon && 
+                        q.NgayBatDau.Value >= Global.NgayThayDoiSoHoaDonXetNghiemSauCung);
                     if (qlshd != null) qlshd.DaXuat = true;
                     else
                     {
-                        qlshd = new QuanLySoHoaDon();
+                        qlshd = new QuanLySoHoaDonXetNghiemYKhoa();
                         qlshd.QuanLySoHoaDonGUID = Guid.NewGuid();
                         qlshd.SoHoaDon = soHoaDon;
                         qlshd.DaXuat = true;
                         qlshd.XuatTruoc = false;
-                        qlshd.NgayBatDau = Global.NgayThayDoiSoHoaDonSauCung;
-                        db.QuanLySoHoaDons.InsertOnSubmit(qlshd);
+                        qlshd.NgayBatDau = Global.NgayThayDoiSoHoaDonXetNghiemSauCung;
+                        db.QuanLySoHoaDonXetNghiemYKhoas.InsertOnSubmit(qlshd);
                     }
 
                     //Tracking
@@ -479,7 +358,7 @@ namespace MM.Bussiness
                     tk.TrackingDate = DateTime.Now;
                     tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
                     tk.ActionType = (byte)ActionType.Add;
-                    tk.Action = "Thêm thông tin hóa đơn thuốc";
+                    tk.Action = "Thêm thông tin hóa đơn xét nghiệm";
                     tk.Description = desc;
                     tk.TrackingType = (byte)TrackingType.Price;
                     tk.ComputerName = Utility.GetDNSHostName();
@@ -512,7 +391,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result UpdateDaThuTienInvoice(string hoaDonThuocGUID, bool daThuTien)
+        public static Result UpdateDaThuTienInvoice(string hoaDonXetNghiemGUID, bool daThuTien)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -523,7 +402,7 @@ namespace MM.Bussiness
                 string desc = string.Empty;
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
-                    HoaDonThuoc invoice = db.HoaDonThuocs.SingleOrDefault<HoaDonThuoc>(i => i.HoaDonThuocGUID.ToString() == hoaDonThuocGUID);
+                    HoaDonXetNghiem invoice = db.HoaDonXetNghiems.SingleOrDefault<HoaDonXetNghiem>(i => i.HoaDonXetNghiemGUID.ToString() == hoaDonXetNghiemGUID);
                     if (invoice != null)
                     {
                         invoice.UpdatedDate = DateTime.Now;
@@ -532,8 +411,8 @@ namespace MM.Bussiness
 
                         string htttStr = Utility.ParseHinhThucThanhToanToStr((PaymentType)invoice.HinhThucThanhToan);
 
-                        desc += string.Format("- Hóa đơn thuốc: GUID: '{0}', Mã hóa đơn: '{1}', Ngày xuất HĐ: '{2}', Người mua hàng: '{3}', Tên đơn vị: '{4}', Địa chỉ: '{5}', STK: '{6}', Hình thức thanh toán: '{7}', Ghi chú: '{8}', Đã thu tiền: '{9}'\n",
-                                    invoice.HoaDonThuocGUID.ToString(), invoice.SoHoaDon, invoice.NgayXuatHoaDon.Value.ToString("dd/MM/yyyy HH:mm:ss"),
+                        desc += string.Format("- Hóa đơn xét nghiệm: GUID: '{0}', Mã hóa đơn: '{1}', Ngày xuất HĐ: '{2}', Người mua hàng: '{3}', Tên đơn vị: '{4}', Địa chỉ: '{5}', STK: '{6}', Hình thức thanh toán: '{7}', Ghi chú: '{8}', Đã thu tiền: '{9}'\n",
+                                    invoice.HoaDonXetNghiemGUID.ToString(), invoice.SoHoaDon, invoice.NgayXuatHoaDon.Value.ToString("dd/MM/yyyy HH:mm:ss"),
                                     invoice.TenNguoiMuaHang, invoice.TenDonVi, invoice.DiaChi, invoice.SoTaiKhoan, htttStr, invoice.Notes, !invoice.ChuaThuTien);
 
                         //Tracking
@@ -543,7 +422,7 @@ namespace MM.Bussiness
                         tk.TrackingDate = DateTime.Now;
                         tk.DocStaffGUID = Guid.Parse(Global.UserGUID);
                         tk.ActionType = (byte)ActionType.Add;
-                        tk.Action = "Cập nhật thông tin hóa đơn thuốc";
+                        tk.Action = "Cập nhật thông tin hóa đơn xét nghiệm";
                         tk.Description = desc;
                         tk.TrackingType = (byte)TrackingType.None;
                         tk.ComputerName = Utility.GetDNSHostName();
