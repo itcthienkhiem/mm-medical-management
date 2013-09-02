@@ -1,6 +1,6 @@
 ﻿namespace MM.Dialogs
 {
-    partial class dlgLamMoiSoHoaDon
+    partial class dlgLamMoiSoHoaDonXetNghiem
     {
         /// <summary>
         /// Required designer variable.

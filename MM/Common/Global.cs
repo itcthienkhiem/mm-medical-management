@@ -60,6 +60,10 @@ namespace MM.Common
         public static bool AllowExportHoaDonXuatTruoc = true;
         public static bool AllowPrintHoaDonXuatTruoc = true;
 
+        //Hóa đơn xét nghiệm
+        public static bool AllowExportHoaDonXetNghiem = true;
+        public static bool AllowPrintHoaDonXetNghiem = true;
+
         public static string PrintLabelConfigPath = string.Format("{0}\\PrintLabelConfig.xml", AppDomain.CurrentDomain.BaseDirectory);
         public static PrintLabelConfig PrintLabelConfig = new PrintLabelConfig();
         public static bool AllowViewChiDinh = true;
@@ -157,6 +161,10 @@ namespace MM.Common
         //Dịch vụ
         public static bool AllowAddDichVu = true;
 
+        //Thay đổi số hóa đơn
+        public static bool AllowEditThayDoiSoHoaDon = true;
+        public static bool AllowEditThayDoiSoHoaDonXetNghiem = true;
+
         public static DateTime MinDateTime = new DateTime(1753, 1, 1);
         public static DateTime MaxDateTime = new DateTime(9997, 12, 31);
 
@@ -167,9 +175,15 @@ namespace MM.Common
         public static DateTime NgayThayDoiSoHoaDonSauCung = MinDateTime;
         public static string MauSoSauCung = "01GTKT3/002";
         public static string KiHieuSauCung = "AA/12T";
+        public static int SoHoaDonBatDau = 1;
         public static PageSetupConfig PageSetupConfig = new PageSetupConfig();
         public static string PageSetupConfigPath = string.Format("{0}\\PageSetupConfig.xml", AppDomain.CurrentDomain.BaseDirectory);
         public static List<string> ExcelTemplates = new List<string>();
+
+        public static DateTime NgayThayDoiSoHoaDonXetNghiemSauCung = MinDateTime;
+        public static string MauSoXetNghiemSauCung = "01GTKT2/001";
+        public static string KiHieuXetNghiemSauCung = "VG/13T";
+        public static int SoHoaDonXetNghiemBatDau = 1;
 
         public static DataTable dtOpenPatient = null;
 

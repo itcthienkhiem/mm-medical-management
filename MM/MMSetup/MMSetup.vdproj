@@ -657,6 +657,12 @@
         }
         "Entry"
         {
+        "MsmKey" = "8:_C4DEA8159F814770AC836B29449B0E37"
+        "OwnerKey" = "8:_UNDEFINED"
+        "MsmSig" = "8:_UNDEFINED"
+        }
+        "Entry"
+        {
         "MsmKey" = "8:_C7E2CD66480F42D091631D113101066B"
         "OwnerKey" = "8:_UNDEFINED"
         "MsmSig" = "8:_UNDEFINED"
@@ -2759,6 +2765,26 @@
             {
             "SourcePath" = "8:..\\MM\\Templates\\ToaThuocChungTemplate.xls"
             "TargetName" = "8:ToaThuocChungTemplate.xls"
+            "Tag" = "8:"
+            "Folder" = "8:_BF893B4E17C94D5BB077F11B0830CDC6"
+            "Condition" = "8:"
+            "Transitive" = "11:FALSE"
+            "Vital" = "11:TRUE"
+            "ReadOnly" = "11:FALSE"
+            "Hidden" = "11:FALSE"
+            "System" = "11:FALSE"
+            "Permanent" = "11:FALSE"
+            "SharedLegacy" = "11:FALSE"
+            "PackageAs" = "3:1"
+            "Register" = "3:1"
+            "Exclude" = "11:FALSE"
+            "IsDependency" = "11:FALSE"
+            "IsolateTo" = "8:"
+            }
+            "{1FB2D0AE-D3B9-43D4-B9DD-F88EC61E35DE}:_C4DEA8159F814770AC836B29449B0E37"
+            {
+            "SourcePath" = "8:..\\MM\\Templates\\HoaDonXetNghiemYKhoaTemplate.xls"
+            "TargetName" = "8:HoaDonXetNghiemYKhoaTemplate.xls"
             "Tag" = "8:"
             "Folder" = "8:_BF893B4E17C94D5BB077F11B0830CDC6"
             "Condition" = "8:"
