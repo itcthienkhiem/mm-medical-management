@@ -356,7 +356,7 @@ namespace MM.Controls
 
                                 if (dlg.Lien2)
                                 {
-                                    if (ExportExcel.ExportHoaDonXuatTruocToExcel(exportFileName, hoaDonXuatTruocGUID, "                                   Liên 2: Giao người mua"))
+                                    if (ExportExcel.ExportHoaDonXuatTruocToExcel(exportFileName, hoaDonXuatTruocGUID, "                               Liên 2: Giao cho người mua"))
                                     {
                                         try
                                         {
@@ -414,7 +414,7 @@ namespace MM.Controls
 
                                     if (dlg.Lien2)
                                     {
-                                        if (ExportExcel.ExportHoaDonXuatTruocToExcel(exportFileName, hoaDonXuatTruocGUID, "                                   Liên 2: Giao người mua"))
+                                        if (ExportExcel.ExportHoaDonXuatTruocToExcel(exportFileName, hoaDonXuatTruocGUID, "                               Liên 2: Giao cho người mua"))
                                         {
                                             try
                                             {

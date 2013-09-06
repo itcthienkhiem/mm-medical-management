@@ -571,7 +571,7 @@ namespace MM.Dialogs
                     {
                         if (_loaiHoaDon == Common.LoaiHoaDon.HoaDonThuoc)
                         {
-                            if (ExportExcel.ExportHoaDonThuocToExcel(exportFileName, hoaDonThuocGUID, "                                   Liên 2: Giao người mua"))
+                            if (ExportExcel.ExportHoaDonThuocToExcel(exportFileName, hoaDonThuocGUID, "                               Liên 2: Giao cho người mua"))
                             {
                                 try
                                 {
@@ -588,7 +588,7 @@ namespace MM.Dialogs
                         }
                         else if (_loaiHoaDon == Common.LoaiHoaDon.HoaDonDichVu)
                         {
-                            if (ExportExcel.ExportInvoiceToExcel(exportFileName, hoaDonThuocGUID, "                                   Liên 2: Giao người mua"))
+                            if (ExportExcel.ExportInvoiceToExcel(exportFileName, hoaDonThuocGUID, "                               Liên 2: Giao cho người mua"))
                             {
                                 try
                                 {
@@ -605,7 +605,7 @@ namespace MM.Dialogs
                         }
                         else if (_loaiHoaDon == Common.LoaiHoaDon.HoaDonXuatTruoc)
                         {
-                            if (ExportExcel.ExportHoaDonXuatTruocToExcel(exportFileName, hoaDonThuocGUID, "                                   Liên 2: Giao người mua"))
+                            if (ExportExcel.ExportHoaDonXuatTruocToExcel(exportFileName, hoaDonThuocGUID, "                               Liên 2: Giao cho người mua"))
                             {
                                 try
                                 {
@@ -622,7 +622,7 @@ namespace MM.Dialogs
                         }
                         else
                         {
-                            if (ExportExcel.ExportHoaDonHopDongToExcel(exportFileName, hoaDonThuocGUID, "                                   Liên 2: Giao người mua"))
+                            if (ExportExcel.ExportHoaDonHopDongToExcel(exportFileName, hoaDonThuocGUID, "                               Liên 2: Giao cho người mua"))
                             {
                                 try
                                 {
