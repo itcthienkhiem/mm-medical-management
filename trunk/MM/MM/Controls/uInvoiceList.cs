@@ -219,7 +219,7 @@ namespace MM.Controls
 
                                 if (dlg.Lien2)
                                 {
-                                    if (ExportExcel.ExportInvoiceToExcel(exportFileName, invoiceGUID, "                                   Liên 2: Giao người mua"))
+                                    if (ExportExcel.ExportInvoiceToExcel(exportFileName, invoiceGUID, "                               Liên 2: Giao cho người mua"))
                                     {
                                         try
                                         {
@@ -277,7 +277,7 @@ namespace MM.Controls
 
                                     if (dlg.Lien2)
                                     {
-                                        if (ExportExcel.ExportInvoiceToExcel(exportFileName, invoiceGUID, "                                   Liên 2: Giao người mua"))
+                                        if (ExportExcel.ExportInvoiceToExcel(exportFileName, invoiceGUID, "                               Liên 2: Giao cho người mua"))
                                         {
                                             try
                                             {
