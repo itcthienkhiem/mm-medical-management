@@ -255,6 +255,8 @@ namespace MM
                 }
                 else
                     Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
+
+                Global.InitIgnorePermissions();
             };
 
             if (InvokeRequired) BeginInvoke(method);

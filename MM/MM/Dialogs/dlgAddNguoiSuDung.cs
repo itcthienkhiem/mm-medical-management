@@ -208,6 +208,11 @@ namespace MM.Dialogs
                             Utility.WriteToTraceLog(result.GetErrorAsString("UserGroupBus.GetNhomNguoiSuDung"));
                         }
                     }
+
+                    if (Global.UserGUID != Guid.Empty.ToString())
+                    {
+                        UpdateIgnorePermission();
+                    }
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -217,6 +222,28 @@ namespace MM.Dialogs
             {
                 MsgBox.Show(this.Text, result.GetErrorAsString("UserGroupBus.GetUserGroupList"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("UserGroupBus.GetUserGroupList"));
+            }
+        }
+
+        private void UpdateIgnorePermission()
+        {
+            foreach (DataGridViewRow row in dgPermission.Rows)
+            {
+                DataRow dr = (row.DataBoundItem as DataRowView).Row;
+                string userGroupGUID = dr["UserGroupGUID"].ToString();
+                Result result = UserGroupBus.CheckIgnorePermission(userGroupGUID);
+                DataGridViewDisableCheckBoxCell cell = row.Cells[1] as DataGridViewDisableCheckBoxCell;
+                if (result.IsOK)
+                {
+                    bool isOK = Convert.ToBoolean(result.QueryResult);
+                    cell.Enabled = isOK;
+                }
+                else
+                {
+                    MsgBox.Show(this.Text, result.GetErrorAsString("UserGroupBus.CheckIgnorePermission"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("UserGroupBus.CheckIgnorePermission"));
+                    cell.Enabled = false;
+                }
             }
         }
 

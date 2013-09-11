@@ -423,5 +423,50 @@ namespace MM.Bussiness
 
             return result;
         }
+
+        public static Result CheckIgnorePermission(string userGroupdGUID)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+
+                db = new MMOverride();
+                UserGroup_Permission userGroup = (from g in db.UserGroup_Permissions
+                                                 where g.UserGroupGUID.ToString() == userGroupdGUID &&
+                                                 Global.IgnorePermissions.Contains(g.FunctionGUID.ToString().ToUpper()) &&
+                                                 (g.IsView == true || g.IsAdd == true || g.IsEdit == true ||
+                                                 g.IsDelete == true || g.IsPrint == true || g.IsImport == true ||
+                                                 g.IsExport == true || g.IsConfirm == true || g.IsLock == true ||
+                                                 g.IsExportAll == true)
+                                                 select g).FirstOrDefault();
+
+                if (userGroup == null)
+                    result.QueryResult = true;
+                else
+                    result.QueryResult = false;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
     }
 }
