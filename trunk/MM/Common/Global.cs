@@ -187,6 +187,8 @@ namespace MM.Common
 
         public static DataTable dtOpenPatient = null;
 
+        public static List<string> IgnorePermissions = new List<string>();
+
         public static void InitExcelTempates()
         {
             ExcelTemplates.Add(Const.CheckListTemplate);
@@ -232,6 +234,36 @@ namespace MM.Common
             ExcelTemplates.Add(Const.DoanhThuTheoNhomDichVuTemplate);
 
             ExcelTemplates.Sort();
+        }
+
+        public static void InitIgnorePermissions()
+        {
+            IgnorePermissions.Add("7ED3B385-1985-4F0D-9A08-139FC27D01F5");
+            IgnorePermissions.Add("F413879E-46FF-448B-A9AE-2C5C647D5374");
+            IgnorePermissions.Add("DDEACD98-AF98-4461-B9C6-00532F2B837C");
+            IgnorePermissions.Add("AD62CAF9-BF02-4285-9198-07A7C5A7C535");
+            IgnorePermissions.Add("D9EB1168-A84B-4FE8-9FBF-07C4172DBBC5");
+            IgnorePermissions.Add("011BD492-2879-487F-9959-1338364D1FF8");
+            IgnorePermissions.Add("A7B7DA37-278B-44AC-8974-284CC68D8485");
+            IgnorePermissions.Add("32CBF46D-DDA9-49A1-9ABE-2BD18F911516");
+            IgnorePermissions.Add("2AE953E4-E23A-4A43-8A81-312D80117244");
+            IgnorePermissions.Add("34295971-43C4-4A9D-BE85-364C24DAD998");
+            IgnorePermissions.Add("DAB2005C-7EB0-4228-882C-4D9E7042E095");
+            IgnorePermissions.Add("71C67741-4D3C-445D-8E2F-575BDF32BEE3");
+            IgnorePermissions.Add("F4EEC3A1-7177-4531-A279-8140D12CE1E3");
+            IgnorePermissions.Add("CCCB6998-6FC3-4EEC-A66A-888FABFF1811");
+            IgnorePermissions.Add("8536D855-34C6-4D5E-8E3D-922D97E19602");
+            IgnorePermissions.Add("30F15859-92F7-415F-A8BB-9A4AF1883980");
+            IgnorePermissions.Add("6AD340C1-476C-41D7-B4E2-A4F8639473B3");
+            IgnorePermissions.Add("18D1087A-76D8-40E8-B7E5-B0AF2130CB1C");
+            IgnorePermissions.Add("1C0268F0-0A47-4193-B54F-CDC5B2E24A92");
+            IgnorePermissions.Add("5E902CAA-8C27-417B-9A27-CDDB9DE608CE");
+            IgnorePermissions.Add("2A43B652-1227-4B1C-8BC2-CE63BF90DE95");
+            IgnorePermissions.Add("7977F594-FBC9-4CEE-A8A0-D18B768F24C4");
+            IgnorePermissions.Add("D9D6F20D-40ED-41FA-9D4E-E2D4F41E29A2");
+            IgnorePermissions.Add("0763C052-318A-4198-B7F7-E9929B42C2F9");
+            IgnorePermissions.Add("E1F9F5D1-4239-4B4A-82D3-FCE1CB025152");
+            IgnorePermissions.Add("2BDDF71D-8B33-4778-93A6-FF43BC13E2EA");
         }
     }
 }
