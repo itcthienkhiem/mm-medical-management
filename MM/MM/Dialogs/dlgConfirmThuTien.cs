@@ -56,6 +56,11 @@ namespace MM.Dialogs
         {
             get { return dgReceiptDetail; }
         }
+
+        public bool TrongGoiKham
+        {
+            get { return chkTrongGoiKham.Checked; }
+        }
         #endregion
 
         #region UI Command

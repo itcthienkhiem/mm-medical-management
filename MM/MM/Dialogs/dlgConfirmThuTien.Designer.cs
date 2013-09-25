@@ -62,6 +62,7 @@
             this.dataGridViewTextBoxColumn3 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn4 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn5 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.chkTrongGoiKham = new System.Windows.Forms.CheckBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgReceiptDetail)).BeginInit();
             this.SuspendLayout();
@@ -80,6 +81,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.chkTrongGoiKham);
             this.groupBox1.Controls.Add(this.cboHinhThucThanhToan);
             this.groupBox1.Controls.Add(this.label6);
             this.groupBox1.Controls.Add(this.txtLyDoGiam);
@@ -347,6 +349,16 @@
             this.dataGridViewTextBoxColumn5.Name = "dataGridViewTextBoxColumn5";
             this.dataGridViewTextBoxColumn5.ReadOnly = true;
             // 
+            // chkTrongGoiKham
+            // 
+            this.chkTrongGoiKham.AutoSize = true;
+            this.chkTrongGoiKham.Location = new System.Drawing.Point(205, 41);
+            this.chkTrongGoiKham.Name = "chkTrongGoiKham";
+            this.chkTrongGoiKham.Size = new System.Drawing.Size(100, 17);
+            this.chkTrongGoiKham.TabIndex = 23;
+            this.chkTrongGoiKham.Text = "Trong gói khám";
+            this.chkTrongGoiKham.UseVisualStyleBackColor = true;
+            // 
             // dlgConfirmThuTien
             // 
             this.AcceptButton = this.btnOK;
@@ -405,5 +417,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn3;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn4;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn5;
+        private System.Windows.Forms.CheckBox chkTrongGoiKham;
     }
 }
