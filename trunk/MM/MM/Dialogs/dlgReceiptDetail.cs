@@ -61,6 +61,7 @@ namespace MM.Dialogs
 
             chkDaXuatHD.Checked = Convert.ToBoolean(drReceipt["IsExportedInVoice"]);
             chkDaThuTien.Checked = Convert.ToBoolean(drReceipt["DaThuTien"]);
+            chkTrongGoiKham.Checked = Convert.ToBoolean(drReceipt["TrongGoiKham"]);
 
             if (drReceipt["LyDoGiam"] != null && drReceipt["LyDoGiam"] != DBNull.Value)
                 txtLyDoGiam.Text = drReceipt["LyDoGiam"].ToString();
@@ -137,6 +138,7 @@ namespace MM.Dialogs
                 chkDaXuatHD.Enabled = true;
                 chkDaThuTien.Enabled = true;
                 cboHinhThucThanhToan.Enabled = true;
+                chkTrongGoiKham.Enabled = true;
                 btnOK.Enabled = true;
             }
         }
@@ -158,7 +160,7 @@ namespace MM.Dialogs
                 if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
                 {
                     Result result = ReceiptBus.CapNhatTrangThaiPhieuThu(_drReceipt["ReceiptGUID"].ToString(), chkDaXuatHD.Checked, 
-                        chkDaThuTien.Checked, (byte)cboHinhThucThanhToan.SelectedIndex);
+                        chkDaThuTien.Checked, (byte)cboHinhThucThanhToan.SelectedIndex, chkTrongGoiKham.Checked);
                     if (!result.IsOK)
                     {
                         MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReceiptBus.CapNhatTrangThaiPhieuThu"), IconType.Error);
@@ -171,6 +173,7 @@ namespace MM.Dialogs
                         _drReceipt["DaThuTien"] = chkDaThuTien.Checked;
                         _drReceipt["HinhThucThanhToan"] = (byte)cboHinhThucThanhToan.SelectedIndex;
                         _drReceipt["HinhThucThanhToanStr"] = cboHinhThucThanhToan.Text;
+                        _drReceipt["TrongGoiKham"] = chkTrongGoiKham.Checked;
                     }
                 }
             }

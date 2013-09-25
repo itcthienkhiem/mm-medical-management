@@ -465,6 +465,7 @@ namespace MM.Controls
                     receipt.Notes = dlg.GhiChu;
                     receipt.LyDoGiam = dlg.LyDoGiam;
                     receipt.HinhThucThanhToan = (byte)dlg.HinhThucThanhToan;
+                    receipt.TrongGoiKham = dlg.TrongGoiKham;
 
                     Result result = ReceiptBus.InsertReceipt(receipt, receiptDetails);
                     if (result.IsOK)
