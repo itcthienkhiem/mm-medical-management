@@ -10112,43 +10112,68 @@ namespace MM.Exports
                     double donGia = Convert.ToDouble(row["DonGia"]);
                     double thanhTien = Convert.ToDouble(row["ThanhTien"]);
                     string hinhThucThanhToan = row["HinhThucThanhToan"].ToString();
-
+                    string phieuThuGUIDList = row["PhieuThuGUIDList"] as string;
                     workSheet.Cells[rowIndex, 0].Value = stt++;
-                    workSheet.Cells[rowIndex, 1].Value = kiHieu;
-                    workSheet.Cells[rowIndex, 2].Value = soHoaDon;
-                    workSheet.Cells[rowIndex, 3].Value = ngayHoaDon.ToString("dd/MM/yyyy");
-                    workSheet.Cells[rowIndex, 4].Value = tenKhachHang;
-                    workSheet.Cells[rowIndex, 5].Value = tenDonVi;
-                    workSheet.Cells[rowIndex, 6].Value = maSoThue;
-                    workSheet.Cells[rowIndex, 7].Value = diaChi;
-                    workSheet.Cells[rowIndex, 8].Value = tenHangHoa;
-                    workSheet.Cells[rowIndex, 9].Value = donViTinh;
-                    workSheet.Cells[rowIndex, 10].Value = soLuong;
-                    workSheet.Cells[rowIndex, 11].Value = donGia;
-                    workSheet.Cells[rowIndex, 12].Value = thanhTien;
+
+                    if (phieuThuGUIDList != null)
+                    {
+                        DateTime ngayPhieuThu = Global.MaxDateTime;
+                        result = ReportBus.GetSoPhieuThuStr(phieuThuGUIDList, ref ngayPhieuThu);
+                        if (!result.IsOK)
+                        {
+                            MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReportBus.GetSoPhieuThuStr"), IconType.Error);
+                            Utility.WriteToTraceLog(result.GetErrorAsString("ReportBus.GetSoPhieuThuStr"));
+                            return false;
+                        }
+
+                        workSheet.Cells[rowIndex, 1].Value = result.QueryResult as string;
+                        workSheet.Cells[rowIndex, 2].Value = ngayPhieuThu.ToString("dd/MM/yyyy");
+                    }
+
+                    result = ReportBus.GetMaThuocDichVu(tenHangHoa);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReportBus.GetMaThuocDichVu"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("ReportBus.GetMaThuocDichVu"));
+                        return false;
+                    }
+
+                    workSheet.Cells[rowIndex, 3].Value = kiHieu;
+                    workSheet.Cells[rowIndex, 4].Value = soHoaDon;
+                    workSheet.Cells[rowIndex, 5].Value = ngayHoaDon.ToString("dd/MM/yyyy");
+                    workSheet.Cells[rowIndex, 6].Value = tenKhachHang;
+                    workSheet.Cells[rowIndex, 7].Value = tenDonVi;
+                    workSheet.Cells[rowIndex, 9].Value = maSoThue;
+                    workSheet.Cells[rowIndex, 10].Value = diaChi;
+                    workSheet.Cells[rowIndex, 11].Value = tenHangHoa;
+                    workSheet.Cells[rowIndex, 12].Value = result.QueryResult as string;
+                    workSheet.Cells[rowIndex, 13].Value = donViTinh;
+                    workSheet.Cells[rowIndex, 14].Value = soLuong;
+                    workSheet.Cells[rowIndex, 15].Value = donGia;
+                    workSheet.Cells[rowIndex, 16].Value = thanhTien;
 
                     if (hinhThucThanhToan == "TM")
-                        workSheet.Cells[rowIndex, 13].Value = hinhThucThanhToan;
+                        workSheet.Cells[rowIndex, 17].Value = hinhThucThanhToan;
                     else if (hinhThucThanhToan == "CK")
-                        workSheet.Cells[rowIndex, 14].Value = hinhThucThanhToan;
+                        workSheet.Cells[rowIndex, 18].Value = hinhThucThanhToan;
                     else
-                        workSheet.Cells[rowIndex, 15].Value = hinhThucThanhToan;
+                        workSheet.Cells[rowIndex, 19].Value = hinhThucThanhToan;
 
                     rowIndex++;
                 }
 
-                range = workSheet.Cells[string.Format("J{0}:L{0}", rowIndex + 1)];
+                range = workSheet.Cells[string.Format("N{0}:P{0}", rowIndex + 1)];
                 range.Merge();
                 range.Font.Bold = true;
                 range.HorizontalAlignment = HAlign.Right;
                 range.Value = "Tổng Cộng:";
 
-                range = workSheet.Cells[string.Format("M{0}", rowIndex + 1)];
+                range = workSheet.Cells[string.Format("Q{0}", rowIndex + 1)];
                 range.Font.Bold = true;
 
-                range.Value = string.Format("=SUM(M5:M{0})", rowIndex);
+                range.Value = string.Format("=SUM(Q5:Q{0})", rowIndex);
 
-                range = workSheet.Cells[string.Format("A5:P{0}", rowIndex + 1)];
+                range = workSheet.Cells[string.Format("A5:T{0}", rowIndex + 1)];
                 range.Borders.Color = Color.Black;
                 range.Borders.LineStyle = LineStyle.Continuous;
                 range.Borders.Weight = BorderWeight.Thin;
@@ -10208,8 +10233,10 @@ namespace MM.Exports
                     string soPhieuThu = row["SoPhieuThu"].ToString();
                     DateTime ngayPhieuThu = Convert.ToDateTime(row["NgayPhieuThu"]);
                     string tenKhachHang = row["TenKhachHang"].ToString();
+                    string maKhachHang = row["MaKhachHang"].ToString();
                     string diaChi = row["DiaChi"] as string;
                     string tenHangHoa = row["TenHangHoa"].ToString();
+                    string maHangHoa = row["MaHangHoa"].ToString();
                     string donViTinh = row["DonViTinh"].ToString();
                     int soLuong = Convert.ToInt32(row["SoLuong"]);
                     double donGia = Convert.ToDouble(row["DonGia"]);
@@ -10221,29 +10248,31 @@ namespace MM.Exports
                     workSheet.Cells[rowIndex, 1].Value = soPhieuThu;
                     workSheet.Cells[rowIndex, 2].Value = ngayPhieuThu.ToString("dd/MM/yyyy");
                     workSheet.Cells[rowIndex, 3].Value = tenKhachHang;
-                    workSheet.Cells[rowIndex, 4].Value = diaChi;
-                    workSheet.Cells[rowIndex, 5].Value = tenHangHoa;
-                    workSheet.Cells[rowIndex, 6].Value = donViTinh;
-                    workSheet.Cells[rowIndex, 7].Value = soLuong;
-                    workSheet.Cells[rowIndex, 8].Value = donGia;
+                    workSheet.Cells[rowIndex, 4].Value = maKhachHang;
+                    workSheet.Cells[rowIndex, 5].Value = diaChi;
+                    workSheet.Cells[rowIndex, 6].Value = tenHangHoa;
+                    workSheet.Cells[rowIndex, 7].Value = maHangHoa;
+                    workSheet.Cells[rowIndex, 8].Value = donViTinh;
+                    workSheet.Cells[rowIndex, 9].Value = soLuong;
+                    workSheet.Cells[rowIndex, 10].Value = donGia;
                     //workSheet.Cells[rowIndex, 9].Value = giam;
-                    workSheet.Cells[rowIndex, 9].Value = thanhTien;
-                    workSheet.Cells[rowIndex, 10].Value = hinhThucThanhToan;
+                    workSheet.Cells[rowIndex, 11].Value = thanhTien;
+                    workSheet.Cells[rowIndex, 12].Value = hinhThucThanhToan;
                     rowIndex++;
                 }
 
-                range = workSheet.Cells[string.Format("G{0}:I{0}", rowIndex + 1)];
+                range = workSheet.Cells[string.Format("I{0}:K{0}", rowIndex + 1)];
                 range.Merge();
                 range.Font.Bold = true;
                 range.HorizontalAlignment = HAlign.Right;
                 range.Value = "Tổng Cộng:";
 
-                range = workSheet.Cells[string.Format("J{0}", rowIndex + 1)];
+                range = workSheet.Cells[string.Format("L{0}", rowIndex + 1)];
                 range.Font.Bold = true;
 
-                range.Value = string.Format("=SUM(J5:J{0})", rowIndex);
+                range.Value = string.Format("=SUM(L5:L{0})", rowIndex);
 
-                range = workSheet.Cells[string.Format("A5:K{0}", rowIndex + 1)];
+                range = workSheet.Cells[string.Format("A5:M{0}", rowIndex + 1)];
                 range.Borders.Color = Color.Black;
                 range.Borders.LineStyle = LineStyle.Continuous;
                 range.Borders.Weight = BorderWeight.Thin;
