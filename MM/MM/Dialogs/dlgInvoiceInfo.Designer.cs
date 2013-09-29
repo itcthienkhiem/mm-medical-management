@@ -407,10 +407,10 @@
             this.panel6.Controls.Add(this.lbAddress);
             this.panel6.Controls.Add(this.label9);
             this.panel6.Controls.Add(this.lbPatientName);
-            this.panel6.Controls.Add(this.txtTenDonVi);
-            this.panel6.Controls.Add(this.cboTenDonVi);
             this.panel6.Controls.Add(this.txtMaDonVi);
             this.panel6.Controls.Add(this.cboMaDonVi);
+            this.panel6.Controls.Add(this.txtTenDonVi);
+            this.panel6.Controls.Add(this.cboTenDonVi);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(0, 190);
             this.panel6.Name = "panel6";
@@ -421,7 +421,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(5, 52);
+            this.label4.Location = new System.Drawing.Point(5, 29);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(65, 15);
             this.label4.TabIndex = 31;
@@ -585,7 +585,7 @@
             // 
             this.label9.AutoSize = true;
             this.label9.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label9.Location = new System.Drawing.Point(5, 28);
+            this.label9.Location = new System.Drawing.Point(5, 53);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(68, 15);
             this.label9.TabIndex = 16;
@@ -603,7 +603,7 @@
             // 
             // txtTenDonVi
             // 
-            this.txtTenDonVi.Location = new System.Drawing.Point(143, 26);
+            this.txtTenDonVi.Location = new System.Drawing.Point(143, 51);
             this.txtTenDonVi.Name = "txtTenDonVi";
             this.txtTenDonVi.ReadOnly = true;
             this.txtTenDonVi.Size = new System.Drawing.Size(342, 20);
@@ -613,15 +613,15 @@
             // cboTenDonVi
             // 
             this.cboTenDonVi.FormattingEnabled = true;
-            this.cboTenDonVi.Location = new System.Drawing.Point(143, 26);
+            this.cboTenDonVi.Location = new System.Drawing.Point(143, 51);
             this.cboTenDonVi.Name = "cboTenDonVi";
             this.cboTenDonVi.Size = new System.Drawing.Size(342, 21);
-            this.cboTenDonVi.TabIndex = 18;
+            this.cboTenDonVi.TabIndex = 19;
             this.cboTenDonVi.SelectedIndexChanged += new System.EventHandler(this.cboTenDonVi_SelectedIndexChanged);
             // 
             // txtMaDonVi
             // 
-            this.txtMaDonVi.Location = new System.Drawing.Point(143, 50);
+            this.txtMaDonVi.Location = new System.Drawing.Point(143, 27);
             this.txtMaDonVi.Name = "txtMaDonVi";
             this.txtMaDonVi.ReadOnly = true;
             this.txtMaDonVi.Size = new System.Drawing.Size(342, 20);
@@ -631,10 +631,10 @@
             // cboMaDonVi
             // 
             this.cboMaDonVi.FormattingEnabled = true;
-            this.cboMaDonVi.Location = new System.Drawing.Point(143, 50);
+            this.cboMaDonVi.Location = new System.Drawing.Point(143, 27);
             this.cboMaDonVi.Name = "cboMaDonVi";
             this.cboMaDonVi.Size = new System.Drawing.Size(342, 21);
-            this.cboMaDonVi.TabIndex = 19;
+            this.cboMaDonVi.TabIndex = 18;
             this.cboMaDonVi.SelectedIndexChanged += new System.EventHandler(this.cboMaDonVi_SelectedIndexChanged);
             // 
             // panel7
