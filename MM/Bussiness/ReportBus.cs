@@ -913,6 +913,7 @@ namespace MM.Bussiness
 
                 List<Receipt> phieuThuDVList = (from p in db.Receipts
                                                 where phieuThuGUIDs.Contains(p.ReceiptGUID.ToString())
+                                                orderby p.ReceiptCode ascending
                                                 select p).ToList();
 
                 string soPhieuThuStr = string.Empty;
@@ -929,6 +930,7 @@ namespace MM.Bussiness
                 {
                     List<PhieuThuThuoc> phieuThuThuocList = (from p in db.PhieuThuThuocs
                                                             where phieuThuGUIDs.Contains(p.PhieuThuThuocGUID.ToString())
+                                                            orderby p.MaPhieuThuThuoc ascending
                                                             select p).ToList();
 
                     if (phieuThuThuocList != null && phieuThuThuocList.Count > 0)
