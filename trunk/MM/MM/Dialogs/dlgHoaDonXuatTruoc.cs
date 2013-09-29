@@ -555,9 +555,10 @@ namespace MM.Dialogs
             {
                 if (result.Error.Code == ErrorCode.EXIST)
                 {
-                    MsgBox.Show(this.Text, "Số hóa đơn này đã được xuất rồi. Vui lòng xuất lại.", IconType.Information);
-                    this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-                    this.Close();
+                    MsgBox.Show(this.Text, "Số hóa đơn này đã được xuất rồi. Chương trình sẽ tạo lại số hóa đơn khác.", IconType.Information);
+                    GenerateCode();
+                    //this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                    //this.Close();
                     return false;
                 }
             }
