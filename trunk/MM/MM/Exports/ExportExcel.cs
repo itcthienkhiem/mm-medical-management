@@ -10104,6 +10104,7 @@ namespace MM.Exports
                     DateTime ngayHoaDon = Convert.ToDateTime(row["NgayHoaDon"]);
                     string tenKhachHang = row["TenNguoiMuaHang"].ToString();
                     string tenDonVi = row["TenDonVi"] as string;
+                    string maDonVi = row["MaDonVi"] as string;
                     string maSoThue = row["MaSoThue"] as string;
                     string diaChi = row["DiaChi"] as string;
                     string tenHangHoa = row["TenHangHoa"].ToString();
@@ -10143,6 +10144,7 @@ namespace MM.Exports
                     workSheet.Cells[rowIndex, 5].Value = ngayHoaDon.ToString("dd/MM/yyyy");
                     workSheet.Cells[rowIndex, 6].Value = tenKhachHang;
                     workSheet.Cells[rowIndex, 7].Value = tenDonVi;
+                    workSheet.Cells[rowIndex, 8].Value = maDonVi;
                     workSheet.Cells[rowIndex, 9].Value = maSoThue;
                     workSheet.Cells[rowIndex, 10].Value = diaChi;
                     workSheet.Cells[rowIndex, 11].Value = tenHangHoa;

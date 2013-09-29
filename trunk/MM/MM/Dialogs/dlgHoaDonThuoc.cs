@@ -26,6 +26,7 @@ namespace MM.Dialogs
         private bool _isView = false;
         private bool _flag = true;
         private bool _flag2 = true;
+        private bool _flag3 = true;
         private double _oldTotalPayment = 0;
         private double _totalPayment = 0;
         private List<DataRow> _phieuThuThuocList = null;
@@ -58,9 +59,11 @@ namespace MM.Dialogs
                 cboHinhThucThanhToan.Visible = false;
                 cboTenNguoiMuaHang.Visible = false;
                 cboTenDonVi.Visible = false;
+                cboMaDonVi.Visible = false;
 
                 txtHinhThucThanhToan.Visible = true;
                 txtTenDonVi.Visible = true;
+                txtMaDonVi.Visible = true;
                 txtTenNguoiMuaHang.Visible = true;
 
                 btnExportInvoice.Visible = false;
@@ -112,6 +115,7 @@ namespace MM.Dialogs
         #region UI Command
         private void DisplayThongTinKhachHang()
         {
+            _flag3 = false;
             Result result = ThongTinKhachHangBus.GetThongTinKhachHangList();
             if (result.IsOK)
             {
@@ -126,10 +130,12 @@ namespace MM.Dialogs
                 MsgBox.Show(this.Text, result.GetErrorAsString("ThongTinKhachHangBus.GetThongTinKhachHangList"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("ThongTinKhachHangBus.GetThongTinKhachHangList"));
             }
+            _flag3 = true;
         }
 
         private void DisplayTenDonVi()
         {
+            _flag3 = false;
             Result result = ThongTinKhachHangBus.GetTenDonViList();
             if (result.IsOK)
             {
@@ -144,15 +150,37 @@ namespace MM.Dialogs
                 MsgBox.Show(this.Text, result.GetErrorAsString("ThongTinKhachHangBus.GetTenDonViList"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("ThongTinKhachHangBus.GetTenDonViList"));
             }
+            _flag3 = true;
+        }
+
+        private void DisplayMaDonVi()
+        {
+            _flag3 = false;
+            Result result = ThongTinKhachHangBus.GetMaDonViList();
+            if (result.IsOK)
+            {
+                DataTable dt = result.QueryResult as DataTable;
+                foreach (DataRow row in dt.Rows)
+                {
+                    cboMaDonVi.Items.Add(row["MaDonVi"].ToString());
+                }
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("ThongTinKhachHangBus.GetMaDonViList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("ThongTinKhachHangBus.GetMaDonViList"));
+            }
+            _flag3 = true;
         }
 
         private void RefreshThongTinKhachHang(string tenKhachHang)
         {
-            _flag = false;
+            _flag3 = false;
             cboTenDonVi.Text = string.Empty;
             txtMaSoThue.Text = string.Empty;
             txtAddress.Text = string.Empty;
             txtSoTaiKhoan.Text = string.Empty;
+            cboMaDonVi.Text = string.Empty;
 
             if (_dtThongTinKhachHang == null) return;
             List<DataRow> results = (from t in _dtThongTinKhachHang.AsEnumerable()
@@ -162,27 +190,35 @@ namespace MM.Dialogs
             if (results != null && results.Count > 0)
             {
                 cboTenDonVi.Text = results[0]["TenDonVi"] as string;
+                cboMaDonVi.Text = results[0]["MaDonVi"] as string;
                 txtMaSoThue.Text = results[0]["MaSoThue"] as string;
                 txtAddress.Text = results[0]["DiaChi"] as string;
                 txtSoTaiKhoan.Text = results[0]["SoTaiKhoan"] as string;
                 cboHinhThucThanhToan.SelectedIndex = Convert.ToByte(results[0]["HinhThucThanhToan"]);
             }
 
-            _flag = true;
+            _flag3 = true;
         }
 
         private void RefreshThongTinDonVi(string tenDonVi)
         {
+            _flag3 = false;
             txtMaSoThue.Text = string.Empty;
             txtAddress.Text = string.Empty;
             txtSoTaiKhoan.Text = string.Empty;
+            cboMaDonVi.Text = string.Empty;
 
             Result result = ThongTinKhachHangBus.GetThongTinDonVi(tenDonVi);
             if (result.IsOK)
             {
                 ThongTinKhachHang ttkh = result.QueryResult as ThongTinKhachHang;
-                if (ttkh == null) return;
+                if (ttkh == null)
+                {
+                    _flag3 = true;
+                    return;
+                }
 
+                cboMaDonVi.Text = ttkh.MaDonVi;
                 txtMaSoThue.Text = ttkh.MaSoThue;
                 txtAddress.Text = ttkh.DiaChi;
                 txtSoTaiKhoan.Text = ttkh.SoTaiKhoan;
@@ -193,6 +229,44 @@ namespace MM.Dialogs
                 MsgBox.Show(this.Text, result.GetErrorAsString("ThongTinKhachHangBus.GetThongTinDonVi"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("ThongTinKhachHangBus.GetThongTinDonVi"));
             }
+
+            _flag3 = true;
+        }
+
+        private void RefreshThongTinMaDonVi(string maDonVi)
+        {
+            _flag3 = false;
+            txtMaSoThue.Text = string.Empty;
+            txtAddress.Text = string.Empty;
+            txtSoTaiKhoan.Text = string.Empty;
+            cboTenDonVi.Text = string.Empty;
+
+            if (cboMaDonVi.Text.Trim() != string.Empty)
+            {
+                Result result = ThongTinKhachHangBus.GetThongTinMaDonVi(maDonVi);
+                if (result.IsOK)
+                {
+                    ThongTinKhachHang ttkh = result.QueryResult as ThongTinKhachHang;
+                    if (ttkh == null)
+                    {
+                        _flag3 = true;
+                        return;
+                    }
+
+                    cboTenDonVi.Text = ttkh.TenDonVi;
+                    txtMaSoThue.Text = ttkh.MaSoThue;
+                    txtAddress.Text = ttkh.DiaChi;
+                    txtSoTaiKhoan.Text = ttkh.SoTaiKhoan;
+                    cboHinhThucThanhToan.SelectedIndex = ttkh.HinhThucThanhToan.Value;
+                }
+                else
+                {
+                    MsgBox.Show(this.Text, result.GetErrorAsString("ThongTinKhachHangBus.GetThongTinMaDonVi"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("ThongTinKhachHangBus.GetThongTinMaDonVi"));
+                }
+            }
+
+            _flag3 = true;
         }
 
         private void GenerateCode()
@@ -271,6 +345,9 @@ namespace MM.Dialogs
                 
                 cboTenDonVi.Text = _drInvoice["TenDonVi"].ToString();
                 txtTenDonVi.Text = cboTenDonVi.Text;
+
+                cboMaDonVi.Text = _drInvoice["MaDonVi"] as string;
+                txtMaDonVi.Text = cboMaDonVi.Text;
 
                 if (_drInvoice["MaSoThue"] != null && _drInvoice["MaSoThue"] != DBNull.Value)
                     txtMaSoThue.Text = _drInvoice["MaSoThue"].ToString();
@@ -894,6 +971,7 @@ namespace MM.Dialogs
                 invoice.NgayXuatHoaDon = dtpkNgay.Value;
                 invoice.TenNguoiMuaHang = cboTenNguoiMuaHang.Text;
                 invoice.DiaChi = txtAddress.Text;
+                invoice.MaDonVi = cboMaDonVi.Text;
                 invoice.TenDonVi = cboTenDonVi.Text;
                 invoice.MaSoThue = txtMaSoThue.Text;
                 invoice.SoTaiKhoan = txtSoTaiKhoan.Text;
@@ -976,6 +1054,7 @@ namespace MM.Dialogs
                     ThongTinKhachHang thongTinKhachHang = new ThongTinKhachHang();
                     thongTinKhachHang.TenKhachHang = invoice.TenNguoiMuaHang;
                     thongTinKhachHang.TenDonVi = invoice.TenDonVi;
+                    thongTinKhachHang.MaDonVi = invoice.MaDonVi;
                     thongTinKhachHang.MaSoThue = invoice.MaSoThue;
                     thongTinKhachHang.DiaChi = invoice.DiaChi;
                     thongTinKhachHang.SoTaiKhoan = invoice.SoTaiKhoan;
@@ -1071,6 +1150,7 @@ namespace MM.Dialogs
             dtpkNgay.Value = DateTime.Now;
             DisplayThongTinKhachHang();
             DisplayTenDonVi();
+            DisplayMaDonVi();
             DisplayInfo();
 
             if (!_isView) GetDanhSachDichVu();
@@ -1332,14 +1412,20 @@ namespace MM.Dialogs
 
         private void cboTenNguoiMuaHang_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_isView) return;
+            if (_isView || !_flag3) return;
             RefreshThongTinKhachHang(cboTenNguoiMuaHang.Text);
         }
 
         private void cboTenDonVi_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_isView || !_flag) return;
+            if (_isView || !_flag3) return;
             RefreshThongTinDonVi(cboTenDonVi.Text);
+        }
+
+        private void cboMaDonVi_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_isView || !_flag3) return;
+            RefreshThongTinMaDonVi(cboMaDonVi.Text);
         }
 
         private void dgDetail2_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
@@ -1488,6 +1574,8 @@ namespace MM.Dialogs
             RefreshNo2();
         }
         #endregion
+
+        
 
         
     }
