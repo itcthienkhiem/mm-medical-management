@@ -1,5 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="MM" Class="MMDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
-  <Connection Mode="AppSettings" ConnectionString="Data Source=VUNGUYEN764;Initial Catalog=MM;Persist Security Info=True;User ID=sa" SettingsObjectName="MM.Databasae.Properties.Settings" SettingsPropertyName="MMConnectionString11" Provider="System.Data.SqlClient" />
+  <Connection Mode="AppSettings" ConnectionString="Data Source=vunguyen732\vunguyen;Initial Catalog=MM;Persist Security Info=True;User ID=sa" SettingsObjectName="MM.Databasae.Properties.Settings" SettingsPropertyName="MMConnectionString4" Provider="System.Data.SqlClient" />
   <Table Name="dbo.Symptom" Member="Symptoms">
     <Type Name="Symptom">
       <Column Name="SymptomGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -2460,17 +2460,6 @@
       <Association Name="KhoCapCuu_ChiTietToaCapCuu" Member="ChiTietToaCapCuus" ThisKey="KhoCapCuuGUID" OtherKey="KhoCapCuuGUID" Type="ChiTietToaCapCuu" />
     </Type>
   </Table>
-  <Table Name="dbo.ThongTinKhachHang" Member="ThongTinKhachHangs">
-    <Type Name="ThongTinKhachHang">
-      <Column Name="ThongTinKhachHangGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="TenKhachHang" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
-      <Column Name="TenDonVi" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="MaSoThue" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
-      <Column Name="SoTaiKhoan" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
-      <Column Name="HinhThucThanhToan" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.ThongBao" Member="ThongBaos">
     <Type Name="ThongBao">
       <Column Name="ThongBaoGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -3335,232 +3324,6 @@
       <Column Name="GiamGiaNuCoGD" Type="System.Double" DbType="Float NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.Invoice" Member="Invoices">
-    <Type Name="Invoice">
-      <Column Name="InvoiceGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="ReceiptGUIDList" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="InvoiceCode" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="InvoiceDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="TenNguoiMuaHang" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="TenDonVi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="MaSoThue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SoTaiKhoan" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="HinhThucThanhToan" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
-      <Column Name="VAT" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="ChuaThuTien" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="MauSo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="KiHieu" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="HinhThucNhanHoaDon" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Association Name="Invoice_InvoiceDetail" Member="InvoiceDetails" ThisKey="InvoiceGUID" OtherKey="InvoiceGUID" Type="InvoiceDetail" />
-    </Type>
-  </Table>
-  <Table Name="dbo.HoaDonHopDong" Member="HoaDonHopDongs">
-    <Type Name="HoaDonHopDong">
-      <Column Name="HoaDonHopDongGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="PhieuThuHopDongGUIDList" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="SoHoaDon" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="NgayXuatHoaDon" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="TenNguoiMuaHang" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="TenDonVi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="MaSoThue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SoTaiKhoan" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="HinhThucThanhToan" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
-      <Column Name="VAT" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="ChuaThuTien" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="MauSo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="KiHieu" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="HinhThucNhanHoaDon" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Association Name="HoaDonHopDong_ChiTietHoaDonHopDong" Member="ChiTietHoaDonHopDongs" ThisKey="HoaDonHopDongGUID" OtherKey="HoaDonHopDongGUID" Type="ChiTietHoaDonHopDong" />
-    </Type>
-  </Table>
-  <Table Name="dbo.HoaDonXuatTruoc" Member="HoaDonXuatTruocs">
-    <Type Name="HoaDonXuatTruoc">
-      <Column Name="HoaDonXuatTruocGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="SoHoaDon" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="NgayXuatHoaDon" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="TenNguoiMuaHang" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="TenDonVi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="MaSoThue" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="SoTaiKhoan" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="HinhThucThanhToan" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
-      <Column Name="VAT" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="ChuaThuTien" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="MauSo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="KiHieu" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="HinhThucNhanHoaDon" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Association Name="HoaDonXuatTruoc_ChiTietHoaDonXuatTruoc" Member="ChiTietHoaDonXuatTruocs" ThisKey="HoaDonXuatTruocGUID" OtherKey="HoaDonXuatTruocGUID" Type="ChiTietHoaDonXuatTruoc" />
-    </Type>
-  </Table>
-  <Table Name="dbo.HoaDonThuoc" Member="HoaDonThuocs">
-    <Type Name="HoaDonThuoc">
-      <Column Name="HoaDonThuocGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="PhieuThuThuocGUIDList" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="SoHoaDon" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="NgayXuatHoaDon" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="TenNguoiMuaHang" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="TenDonVi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="MaSoThue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SoTaiKhoan" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="HinhThucThanhToan" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
-      <Column Name="VAT" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="ChuaThuTien" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="MauSo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="KiHieu" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="HinhThucNhanHoaDon" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Association Name="HoaDonThuoc_ChiTietHoaDonThuoc" Member="ChiTietHoaDonThuocs" ThisKey="HoaDonThuocGUID" OtherKey="HoaDonThuocGUID" Type="ChiTietHoaDonThuoc" />
-    </Type>
-  </Table>
-  <Table Name="dbo.HoaDonHopDongView" Member="HoaDonHopDongViews">
-    <Type Name="HoaDonHopDongView">
-      <Column Name="HoaDonHopDongGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="PhieuThuHopDongGUIDList" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="SoHoaDon" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="NgayXuatHoaDon" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="TenNguoiMuaHang" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="TenDonVi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="MaSoThue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SoTaiKhoan" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="HinhThucThanhToan" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
-      <Column Name="VAT" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="HinhThucThanhToanStr" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
-      <Column Name="ChuaThuTien" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="MauSo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="KiHieu" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="HinhThucNhanHoaDon" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Column Name="NguoiTao" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.HoaDonThuocView" Member="HoaDonThuocViews">
-    <Type Name="HoaDonThuocView">
-      <Column Name="HoaDonThuocGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="SoHoaDon" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="NgayXuatHoaDon" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="TenNguoiMuaHang" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="TenDonVi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="MaSoThue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SoTaiKhoan" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="HinhThucThanhToan" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
-      <Column Name="VAT" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="HinhThucThanhToanStr" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
-      <Column Name="PhieuThuThuocGUIDList" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="ChuaThuTien" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="MauSo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="KiHieu" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="HinhThucNhanHoaDon" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Column Name="NguoiTao" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.HoaDonXuatTruocView" Member="HoaDonXuatTruocViews">
-    <Type Name="HoaDonXuatTruocView">
-      <Column Name="SoHoaDon" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="NgayXuatHoaDon" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="TenNguoiMuaHang" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="TenDonVi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="MaSoThue" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="SoTaiKhoan" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="HinhThucThanhToan" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
-      <Column Name="VAT" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="HinhThucThanhToanStr" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
-      <Column Name="HoaDonXuatTruocGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="ChuaThuTien" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="MauSo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="KiHieu" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="HinhThucNhanHoaDon" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Column Name="NguoiTao" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.InvoiceView" Member="InvoiceViews">
-    <Type Name="InvoiceView">
-      <Column Name="InvoiceGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="InvoiceCode" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
-      <Column Name="InvoiceDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
-      <Column Name="TenDonVi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="SoTaiKhoan" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="HinhThucThanhToan" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="VAT" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="HinhThucThanhToanStr" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
-      <Column Name="MaSoThue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="ReceiptGUIDList" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="TenNguoiMuaHang" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="ChuaThuTien" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="MauSo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="KiHieu" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="HinhThucNhanHoaDon" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Column Name="NguoiTao" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
   <Table Name="dbo.ChiTietChiDinhView" Member="ChiTietChiDinhViews">
     <Type Name="ChiTietChiDinhView">
       <Column Name="ChiTietChiDinhGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
@@ -4164,33 +3927,6 @@
       <Column Name="SoHoaDonBatDau" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
-  <Table Name="dbo.HoaDonXetNghiem" Member="HoaDonXetNghiems">
-    <Type Name="HoaDonXetNghiem">
-      <Column Name="HoaDonXetNghiemGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="SoHoaDon" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="NgayXuatHoaDon" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="TenNguoiMuaHang" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="TenDonVi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="MaSoThue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SoTaiKhoan" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="HinhThucThanhToan" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
-      <Column Name="VAT" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="ChuaThuTien" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="MauSo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="KiHieu" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="HinhThucNhanHoaDon" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Association Name="HoaDonXetNghiem_ChiTietHoaDonXetNghiem" Member="ChiTietHoaDonXetNghiems" ThisKey="HoaDonXetNghiemGUID" OtherKey="HoaDonXetNghiemGUID" Type="ChiTietHoaDonXetNghiem" />
-    </Type>
-  </Table>
   <Table Name="dbo.ChiTietHoaDonXetNghiem" Member="ChiTietHoaDonXetNghiems">
     <Type Name="ChiTietHoaDonXetNghiem">
       <Column Name="ChiTietHoaDonXetNghiemGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
@@ -4226,34 +3962,6 @@
       <Column Name="MauSo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="KiHieu" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
       <Column Name="SoHoaDonBatDau" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
-    </Type>
-  </Table>
-  <Table Name="dbo.HoaDonXetNghiemView" Member="HoaDonXetNghiemViews">
-    <Type Name="HoaDonXetNghiemView">
-      <Column Name="HoaDonXetNghiemGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
-      <Column Name="SoHoaDon" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="NgayXuatHoaDon" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="TenNguoiMuaHang" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="TenDonVi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
-      <Column Name="MaSoThue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="SoTaiKhoan" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="HinhThucThanhToan" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
-      <Column Name="VAT" Type="System.Double" DbType="Float" CanBeNull="true" />
-      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
-      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
-      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
-      <Column Name="HinhThucThanhToanStr" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
-      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
-      <Column Name="ChuaThuTien" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
-      <Column Name="MauSo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="KiHieu" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
-      <Column Name="HinhThucNhanHoaDon" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
-      <Column Name="NguoiTao" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
     </Type>
   </Table>
   <Table Name="dbo.Receipt" Member="Receipts">
@@ -4304,6 +4012,309 @@
       <Column Name="HinhThucThanhToanStr" Type="System.String" DbType="NVarChar(21)" CanBeNull="true" />
       <Column Name="HinhThucThanhToan" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
       <Column Name="TrongGoiKham" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HoaDonHopDong" Member="HoaDonHopDongs">
+    <Type Name="HoaDonHopDong">
+      <Column Name="HoaDonHopDongGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PhieuThuHopDongGUIDList" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SoHoaDon" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NgayXuatHoaDon" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TenNguoiMuaHang" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TenDonVi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="MaSoThue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SoTaiKhoan" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HinhThucThanhToan" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="VAT" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="ChuaThuTien" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="MauSo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="KiHieu" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HinhThucNhanHoaDon" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="MaDonVi" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Association Name="HoaDonHopDong_ChiTietHoaDonHopDong" Member="ChiTietHoaDonHopDongs" ThisKey="HoaDonHopDongGUID" OtherKey="HoaDonHopDongGUID" Type="ChiTietHoaDonHopDong" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HoaDonThuoc" Member="HoaDonThuocs">
+    <Type Name="HoaDonThuoc">
+      <Column Name="HoaDonThuocGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="PhieuThuThuocGUIDList" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SoHoaDon" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NgayXuatHoaDon" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TenNguoiMuaHang" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TenDonVi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="MaSoThue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SoTaiKhoan" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HinhThucThanhToan" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="VAT" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ChuaThuTien" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="MauSo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="KiHieu" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HinhThucNhanHoaDon" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="MaDonVi" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Association Name="HoaDonThuoc_ChiTietHoaDonThuoc" Member="ChiTietHoaDonThuocs" ThisKey="HoaDonThuocGUID" OtherKey="HoaDonThuocGUID" Type="ChiTietHoaDonThuoc" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HoaDonXetNghiem" Member="HoaDonXetNghiems">
+    <Type Name="HoaDonXetNghiem">
+      <Column Name="HoaDonXetNghiemGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SoHoaDon" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NgayXuatHoaDon" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TenNguoiMuaHang" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TenDonVi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="MaSoThue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SoTaiKhoan" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HinhThucThanhToan" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="VAT" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ChuaThuTien" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="MauSo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="KiHieu" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HinhThucNhanHoaDon" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="MaDonVi" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Association Name="HoaDonXetNghiem_ChiTietHoaDonXetNghiem" Member="ChiTietHoaDonXetNghiems" ThisKey="HoaDonXetNghiemGUID" OtherKey="HoaDonXetNghiemGUID" Type="ChiTietHoaDonXetNghiem" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HoaDonXuatTruoc" Member="HoaDonXuatTruocs">
+    <Type Name="HoaDonXuatTruoc">
+      <Column Name="HoaDonXuatTruocGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="SoHoaDon" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NgayXuatHoaDon" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TenNguoiMuaHang" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TenDonVi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="MaSoThue" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="SoTaiKhoan" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HinhThucThanhToan" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="VAT" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ChuaThuTien" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="MauSo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="KiHieu" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HinhThucNhanHoaDon" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="MaDonVi" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Association Name="HoaDonXuatTruoc_ChiTietHoaDonXuatTruoc" Member="ChiTietHoaDonXuatTruocs" ThisKey="HoaDonXuatTruocGUID" OtherKey="HoaDonXuatTruocGUID" Type="ChiTietHoaDonXuatTruoc" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Invoice" Member="Invoices">
+    <Type Name="Invoice">
+      <Column Name="InvoiceGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ReceiptGUIDList" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="InvoiceCode" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="InvoiceDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TenNguoiMuaHang" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TenDonVi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="MaSoThue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SoTaiKhoan" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HinhThucThanhToan" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="VAT" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ChuaThuTien" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="MauSo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="KiHieu" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HinhThucNhanHoaDon" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="MaDonVi" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Association Name="Invoice_InvoiceDetail" Member="InvoiceDetails" ThisKey="InvoiceGUID" OtherKey="InvoiceGUID" Type="InvoiceDetail" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ThongTinKhachHang" Member="ThongTinKhachHangs">
+    <Type Name="ThongTinKhachHang">
+      <Column Name="ThongTinKhachHangGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="TenKhachHang" Type="System.String" DbType="NVarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="TenDonVi" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="MaSoThue" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+      <Column Name="SoTaiKhoan" Type="System.String" DbType="NVarChar(100)" CanBeNull="true" />
+      <Column Name="HinhThucThanhToan" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="MaDonVi" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HoaDonHopDongView" Member="HoaDonHopDongViews">
+    <Type Name="HoaDonHopDongView">
+      <Column Name="HoaDonHopDongGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="PhieuThuHopDongGUIDList" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="SoHoaDon" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NgayXuatHoaDon" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TenNguoiMuaHang" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TenDonVi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="MaSoThue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SoTaiKhoan" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HinhThucThanhToan" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="VAT" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="HinhThucThanhToanStr" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="ChuaThuTien" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="MauSo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="KiHieu" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HinhThucNhanHoaDon" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="NguoiTao" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="MaDonVi" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HoaDonThuocView" Member="HoaDonThuocViews">
+    <Type Name="HoaDonThuocView">
+      <Column Name="HoaDonThuocGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="SoHoaDon" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NgayXuatHoaDon" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TenNguoiMuaHang" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TenDonVi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="MaSoThue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SoTaiKhoan" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HinhThucThanhToan" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="VAT" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="HinhThucThanhToanStr" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="PhieuThuThuocGUIDList" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ChuaThuTien" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="MauSo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="KiHieu" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HinhThucNhanHoaDon" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="NguoiTao" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="MaDonVi" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HoaDonXetNghiemView" Member="HoaDonXetNghiemViews">
+    <Type Name="HoaDonXetNghiemView">
+      <Column Name="HoaDonXetNghiemGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="SoHoaDon" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NgayXuatHoaDon" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="TenNguoiMuaHang" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TenDonVi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="MaSoThue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="SoTaiKhoan" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HinhThucThanhToan" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="VAT" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="HinhThucThanhToanStr" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ChuaThuTien" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="MauSo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="KiHieu" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HinhThucNhanHoaDon" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="NguoiTao" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="MaDonVi" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.HoaDonXuatTruocView" Member="HoaDonXuatTruocViews">
+    <Type Name="HoaDonXuatTruocView">
+      <Column Name="SoHoaDon" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="NgayXuatHoaDon" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TenNguoiMuaHang" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="TenDonVi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="MaSoThue" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="SoTaiKhoan" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HinhThucThanhToan" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="VAT" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="HinhThucThanhToanStr" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="HoaDonXuatTruocGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ChuaThuTien" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="MauSo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="KiHieu" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HinhThucNhanHoaDon" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="NguoiTao" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="MaDonVi" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.InvoiceView" Member="InvoiceViews">
+    <Type Name="InvoiceView">
+      <Column Name="InvoiceGUID" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="InvoiceCode" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="InvoiceDate" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="TenDonVi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="SoTaiKhoan" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HinhThucThanhToan" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="CreatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="CreatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="UpdatedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="UpdatedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="DeletedDate" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="DeletedBy" Type="System.Guid" DbType="UniqueIdentifier" CanBeNull="true" />
+      <Column Name="Status" Type="System.Byte" DbType="TinyInt NOT NULL" CanBeNull="false" />
+      <Column Name="VAT" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="HinhThucThanhToanStr" Type="System.String" DbType="NVarChar(5)" CanBeNull="true" />
+      <Column Name="MaSoThue" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="ReceiptGUIDList" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="TenNguoiMuaHang" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="DiaChi" Type="System.String" DbType="NVarChar(255)" CanBeNull="true" />
+      <Column Name="Notes" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ChuaThuTien" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="MauSo" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="KiHieu" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="HinhThucNhanHoaDon" Type="System.String" DbType="NVarChar(250)" CanBeNull="true" />
+      <Column Name="NguoiTao" Type="System.String" DbType="NVarChar(255) NOT NULL" CanBeNull="false" />
+      <Column Name="MaDonVi" Type="System.String" DbType="NVarChar(500)" CanBeNull="true" />
     </Type>
   </Table>
   <Function Name="dbo.spDoanhThuNhanVienTongHop" Method="spDoanhThuNhanVienTongHop">

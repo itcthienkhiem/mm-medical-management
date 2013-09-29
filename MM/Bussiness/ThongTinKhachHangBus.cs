@@ -58,6 +58,62 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetMaDonViList()
+        {
+            Result result = null;
+
+            try
+            {
+                string query = "SELECT DISTINCT MaDonVi FROM ThongTinKhachHang WITH(NOLOCK) ORDER BY MaDonVi";
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
+        public static Result GetThongTinMaDonVi(string maDonVi)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                ThongTinKhachHang ttkh = db.ThongTinKhachHangs.FirstOrDefault(t => t.MaDonVi.ToLower() == maDonVi.Trim().ToLower());
+                result.QueryResult = ttkh;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
         public static Result GetThongTinDonVi(string tenDonVi)
         {
             Result result = new Result();
@@ -112,6 +168,7 @@ namespace MM.Bussiness
                     }
                     else
                     {
+                        thongTinKhachHang.MaDonVi = ttkh.MaDonVi;
                         thongTinKhachHang.TenDonVi = ttkh.TenDonVi;
                         thongTinKhachHang.MaSoThue = ttkh.MaSoThue;
                         thongTinKhachHang.DiaChi = ttkh.DiaChi;
