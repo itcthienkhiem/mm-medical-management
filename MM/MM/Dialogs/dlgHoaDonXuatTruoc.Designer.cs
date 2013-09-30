@@ -69,9 +69,7 @@
             this.raGuiQuaBuuDien = new System.Windows.Forms.RadioButton();
             this.raKhachTuLay = new System.Windows.Forms.RadioButton();
             this.txtHinhThucThanhToan = new System.Windows.Forms.TextBox();
-            this.txtTenDonVi = new System.Windows.Forms.TextBox();
             this.txtTenNguoiMuaHang = new System.Windows.Forms.TextBox();
-            this.cboTenDonVi = new System.Windows.Forms.ComboBox();
             this.cboTenNguoiMuaHang = new System.Windows.Forms.ComboBox();
             this.chkDaThuTien = new System.Windows.Forms.CheckBox();
             this.txtMaSoThue = new System.Windows.Forms.TextBox();
@@ -86,6 +84,8 @@
             this.lbPatientName = new System.Windows.Forms.Label();
             this.txtMaDonVi = new System.Windows.Forms.TextBox();
             this.cboMaDonVi = new System.Windows.Forms.ComboBox();
+            this.txtTenDonVi = new System.Windows.Forms.TextBox();
+            this.cboTenDonVi = new System.Windows.Forms.ComboBox();
             this.panel7 = new System.Windows.Forms.Panel();
             this.dgDetail = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -342,9 +342,9 @@
             this.label2.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(5, 3);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(305, 15);
+            this.label2.Size = new System.Drawing.Size(336, 15);
             this.label2.TabIndex = 10;
-            this.label2.Text = "Đơn vị bán hàng: CÔNG TY CỔ PHẦN VIGOR HEALTH";
+            this.label2.Text = "Đơn vị bán hàng: CÔNG TY CỔ PHẦN VIGOR ANBIS JAPAN";
             // 
             // panel5
             // 
@@ -444,15 +444,6 @@
             this.txtHinhThucThanhToan.TabIndex = 24;
             this.txtHinhThucThanhToan.Visible = false;
             // 
-            // txtTenDonVi
-            // 
-            this.txtTenDonVi.Location = new System.Drawing.Point(143, 49);
-            this.txtTenDonVi.Name = "txtTenDonVi";
-            this.txtTenDonVi.ReadOnly = true;
-            this.txtTenDonVi.Size = new System.Drawing.Size(342, 20);
-            this.txtTenDonVi.TabIndex = 19;
-            this.txtTenDonVi.Visible = false;
-            // 
             // txtTenNguoiMuaHang
             // 
             this.txtTenNguoiMuaHang.Location = new System.Drawing.Point(143, 3);
@@ -461,15 +452,6 @@
             this.txtTenNguoiMuaHang.Size = new System.Drawing.Size(342, 20);
             this.txtTenNguoiMuaHang.TabIndex = 17;
             this.txtTenNguoiMuaHang.Visible = false;
-            // 
-            // cboTenDonVi
-            // 
-            this.cboTenDonVi.FormattingEnabled = true;
-            this.cboTenDonVi.Location = new System.Drawing.Point(143, 49);
-            this.cboTenDonVi.Name = "cboTenDonVi";
-            this.cboTenDonVi.Size = new System.Drawing.Size(342, 21);
-            this.cboTenDonVi.TabIndex = 19;
-            this.cboTenDonVi.SelectedIndexChanged += new System.EventHandler(this.cboTenDonVi_SelectedIndexChanged);
             // 
             // cboTenNguoiMuaHang
             // 
@@ -605,6 +587,24 @@
             this.cboMaDonVi.Size = new System.Drawing.Size(342, 21);
             this.cboMaDonVi.TabIndex = 18;
             this.cboMaDonVi.SelectedIndexChanged += new System.EventHandler(this.cboMaDonVi_SelectedIndexChanged);
+            // 
+            // txtTenDonVi
+            // 
+            this.txtTenDonVi.Location = new System.Drawing.Point(143, 49);
+            this.txtTenDonVi.Name = "txtTenDonVi";
+            this.txtTenDonVi.ReadOnly = true;
+            this.txtTenDonVi.Size = new System.Drawing.Size(342, 20);
+            this.txtTenDonVi.TabIndex = 19;
+            this.txtTenDonVi.Visible = false;
+            // 
+            // cboTenDonVi
+            // 
+            this.cboTenDonVi.FormattingEnabled = true;
+            this.cboTenDonVi.Location = new System.Drawing.Point(143, 49);
+            this.cboTenDonVi.Name = "cboTenDonVi";
+            this.cboTenDonVi.Size = new System.Drawing.Size(342, 21);
+            this.cboTenDonVi.TabIndex = 19;
+            this.cboTenDonVi.SelectedIndexChanged += new System.EventHandler(this.cboTenDonVi_SelectedIndexChanged);
             // 
             // panel7
             // 
