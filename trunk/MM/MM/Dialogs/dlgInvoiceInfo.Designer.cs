@@ -94,10 +94,10 @@
             this.lbAddress = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.lbPatientName = new System.Windows.Forms.Label();
-            this.txtTenDonVi = new System.Windows.Forms.TextBox();
-            this.cboTenDonVi = new System.Windows.Forms.ComboBox();
             this.txtMaDonVi = new System.Windows.Forms.TextBox();
             this.cboMaDonVi = new System.Windows.Forms.ComboBox();
+            this.txtTenDonVi = new System.Windows.Forms.TextBox();
+            this.cboTenDonVi = new System.Windows.Forms.ComboBox();
             this.panel7 = new System.Windows.Forms.Panel();
             this.tabDetail = new System.Windows.Forms.TabControl();
             this.pageDichVu = new System.Windows.Forms.TabPage();
@@ -373,9 +373,9 @@
             this.label2.Font = new System.Drawing.Font("Times New Roman", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(5, 3);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(305, 15);
+            this.label2.Size = new System.Drawing.Size(336, 15);
             this.label2.TabIndex = 10;
-            this.label2.Text = "Đơn vị bán hàng: CÔNG TY CỔ PHẦN VIGOR HEALTH";
+            this.label2.Text = "Đơn vị bán hàng: CÔNG TY CỔ PHẦN VIGOR ANBIS JAPAN";
             // 
             // panel5
             // 
@@ -601,24 +601,6 @@
             this.lbPatientName.TabIndex = 15;
             this.lbPatientName.Text = "Họ tên người mua hàng:";
             // 
-            // txtTenDonVi
-            // 
-            this.txtTenDonVi.Location = new System.Drawing.Point(143, 51);
-            this.txtTenDonVi.Name = "txtTenDonVi";
-            this.txtTenDonVi.ReadOnly = true;
-            this.txtTenDonVi.Size = new System.Drawing.Size(342, 20);
-            this.txtTenDonVi.TabIndex = 19;
-            this.txtTenDonVi.Visible = false;
-            // 
-            // cboTenDonVi
-            // 
-            this.cboTenDonVi.FormattingEnabled = true;
-            this.cboTenDonVi.Location = new System.Drawing.Point(143, 51);
-            this.cboTenDonVi.Name = "cboTenDonVi";
-            this.cboTenDonVi.Size = new System.Drawing.Size(342, 21);
-            this.cboTenDonVi.TabIndex = 19;
-            this.cboTenDonVi.SelectedIndexChanged += new System.EventHandler(this.cboTenDonVi_SelectedIndexChanged);
-            // 
             // txtMaDonVi
             // 
             this.txtMaDonVi.Location = new System.Drawing.Point(143, 27);
@@ -636,6 +618,24 @@
             this.cboMaDonVi.Size = new System.Drawing.Size(342, 21);
             this.cboMaDonVi.TabIndex = 18;
             this.cboMaDonVi.SelectedIndexChanged += new System.EventHandler(this.cboMaDonVi_SelectedIndexChanged);
+            // 
+            // txtTenDonVi
+            // 
+            this.txtTenDonVi.Location = new System.Drawing.Point(143, 51);
+            this.txtTenDonVi.Name = "txtTenDonVi";
+            this.txtTenDonVi.ReadOnly = true;
+            this.txtTenDonVi.Size = new System.Drawing.Size(342, 20);
+            this.txtTenDonVi.TabIndex = 19;
+            this.txtTenDonVi.Visible = false;
+            // 
+            // cboTenDonVi
+            // 
+            this.cboTenDonVi.FormattingEnabled = true;
+            this.cboTenDonVi.Location = new System.Drawing.Point(143, 51);
+            this.cboTenDonVi.Name = "cboTenDonVi";
+            this.cboTenDonVi.Size = new System.Drawing.Size(342, 21);
+            this.cboTenDonVi.TabIndex = 19;
+            this.cboTenDonVi.SelectedIndexChanged += new System.EventHandler(this.cboTenDonVi_SelectedIndexChanged);
             // 
             // panel7
             // 
