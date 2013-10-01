@@ -10116,7 +10116,7 @@ namespace MM.Exports
                     string phieuThuGUIDList = row["PhieuThuGUIDList"] as string;
                     workSheet.Cells[rowIndex, 0].Value = stt++;
 
-                    if (phieuThuGUIDList != null)
+                    if (phieuThuGUIDList != null && phieuThuGUIDList.Trim() != string.Empty)
                     {
                         DateTime ngayPhieuThu = Global.MaxDateTime;
                         result = ReportBus.GetSoPhieuThuStr(phieuThuGUIDList, ref ngayPhieuThu);
