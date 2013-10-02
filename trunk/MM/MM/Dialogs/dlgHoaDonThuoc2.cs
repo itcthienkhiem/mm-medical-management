@@ -42,6 +42,7 @@ namespace MM.Dialogs
             _phieuThuThuocList = phieuThuThuocList;
             cboHinhThucThanhToan.SelectedIndex = 0;
             btnExportAndPrint.Enabled = Global.AllowPrintHoaDonThuoc;
+            numVAT.Value = 5;
         }
 
         public dlgHoaDonThuoc2(DataRow drInvoice, bool isView)
