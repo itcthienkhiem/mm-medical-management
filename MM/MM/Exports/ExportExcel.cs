@@ -10112,6 +10112,10 @@ namespace MM.Exports
                     int soLuong = Convert.ToInt32(row["SoLuong"]);
                     double donGia = Convert.ToDouble(row["DonGia"]);
                     double thanhTien = Convert.ToDouble(row["ThanhTien"]);
+                    double vat = Convert.ToDouble(row["VAT"]);
+                    if (vat > 0)
+                        thanhTien += (vat * thanhTien) / 100;
+
                     string hinhThucThanhToan = row["HinhThucThanhToan"].ToString();
                     string phieuThuGUIDList = row["PhieuThuGUIDList"] as string;
                     workSheet.Cells[rowIndex, 0].Value = stt++;
