@@ -219,52 +219,52 @@
             this.toolStripSeparator1,
             this.printToolStripMenuItem});
             this.ctmAction.Name = "cmtAction";
-            this.ctmAction.Size = new System.Drawing.Size(153, 132);
+            this.ctmAction.Size = new System.Drawing.Size(146, 110);
             // 
             // xuatHoaDonToolStripMenuItem
             // 
             this.xuatHoaDonToolStripMenuItem.Image = global::MM.Properties.Resources.invoice_icon;
             this.xuatHoaDonToolStripMenuItem.Name = "xuatHoaDonToolStripMenuItem";
-            this.xuatHoaDonToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.xuatHoaDonToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.xuatHoaDonToolStripMenuItem.Text = "Xuất hóa đơn";
             this.xuatHoaDonToolStripMenuItem.Click += new System.EventHandler(this.xuatHoaDonToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(142, 6);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Image = global::MM.Properties.Resources.del;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.deleteToolStripMenuItem.Text = "Xóa";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(142, 6);
             // 
             // xemBanInToolStripMenuItem
             // 
             this.xemBanInToolStripMenuItem.Image = global::MM.Properties.Resources.Actions_print_preview_icon;
             this.xemBanInToolStripMenuItem.Name = "xemBanInToolStripMenuItem";
-            this.xemBanInToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.xemBanInToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.xemBanInToolStripMenuItem.Text = "Xem bản in";
             this.xemBanInToolStripMenuItem.Click += new System.EventHandler(this.xemBanInToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(142, 6);
             // 
             // printToolStripMenuItem
             // 
             this.printToolStripMenuItem.Image = global::MM.Properties.Resources.Printer_icon__1_;
             this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.printToolStripMenuItem.Text = "In hóa đơn";
             this.printToolStripMenuItem.Click += new System.EventHandler(this.printToolStripMenuItem_Click);
             // 
@@ -429,6 +429,7 @@
             this.soHoaDonDataGridViewTextBoxColumn.DataPropertyName = "SoHoaDon";
             this.soHoaDonDataGridViewTextBoxColumn.HeaderText = "Mã hóa đơn";
             this.soHoaDonDataGridViewTextBoxColumn.Name = "soHoaDonDataGridViewTextBoxColumn";
+            this.soHoaDonDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // ngayXuatHoaDonDataGridViewTextBoxColumn
             // 
@@ -439,12 +440,14 @@
             this.ngayXuatHoaDonDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.ngayXuatHoaDonDataGridViewTextBoxColumn.HeaderText = "Ngày xuất";
             this.ngayXuatHoaDonDataGridViewTextBoxColumn.Name = "ngayXuatHoaDonDataGridViewTextBoxColumn";
+            this.ngayXuatHoaDonDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // tenNguoiMuaHangDataGridViewTextBoxColumn
             // 
             this.tenNguoiMuaHangDataGridViewTextBoxColumn.DataPropertyName = "TenNguoiMuaHang";
             this.tenNguoiMuaHangDataGridViewTextBoxColumn.HeaderText = "Người mua hàng";
             this.tenNguoiMuaHangDataGridViewTextBoxColumn.Name = "tenNguoiMuaHangDataGridViewTextBoxColumn";
+            this.tenNguoiMuaHangDataGridViewTextBoxColumn.ReadOnly = true;
             this.tenNguoiMuaHangDataGridViewTextBoxColumn.Width = 200;
             // 
             // tenDonViDataGridViewTextBoxColumn
@@ -452,6 +455,7 @@
             this.tenDonViDataGridViewTextBoxColumn.DataPropertyName = "TenDonVi";
             this.tenDonViDataGridViewTextBoxColumn.HeaderText = "Tên đơn vị";
             this.tenDonViDataGridViewTextBoxColumn.Name = "tenDonViDataGridViewTextBoxColumn";
+            this.tenDonViDataGridViewTextBoxColumn.ReadOnly = true;
             this.tenDonViDataGridViewTextBoxColumn.Width = 200;
             // 
             // DaThuTien
@@ -459,6 +463,7 @@
             this.DaThuTien.DataPropertyName = "DaThuTien";
             this.DaThuTien.HeaderText = "Đã thu tiền";
             this.DaThuTien.Name = "DaThuTien";
+            this.DaThuTien.ReadOnly = true;
             this.DaThuTien.Width = 80;
             // 
             // maSoThueDataGridViewTextBoxColumn
@@ -466,6 +471,7 @@
             this.maSoThueDataGridViewTextBoxColumn.DataPropertyName = "MaSoThue";
             this.maSoThueDataGridViewTextBoxColumn.HeaderText = "Mã số thuế";
             this.maSoThueDataGridViewTextBoxColumn.Name = "maSoThueDataGridViewTextBoxColumn";
+            this.maSoThueDataGridViewTextBoxColumn.ReadOnly = true;
             this.maSoThueDataGridViewTextBoxColumn.Width = 120;
             // 
             // diaChiDataGridViewTextBoxColumn
@@ -473,6 +479,7 @@
             this.diaChiDataGridViewTextBoxColumn.DataPropertyName = "DiaChi";
             this.diaChiDataGridViewTextBoxColumn.HeaderText = "Địa chỉ";
             this.diaChiDataGridViewTextBoxColumn.Name = "diaChiDataGridViewTextBoxColumn";
+            this.diaChiDataGridViewTextBoxColumn.ReadOnly = true;
             this.diaChiDataGridViewTextBoxColumn.Width = 200;
             // 
             // soTaiKhoanDataGridViewTextBoxColumn
@@ -480,6 +487,7 @@
             this.soTaiKhoanDataGridViewTextBoxColumn.DataPropertyName = "SoTaiKhoan";
             this.soTaiKhoanDataGridViewTextBoxColumn.HeaderText = "Số tài khoản";
             this.soTaiKhoanDataGridViewTextBoxColumn.Name = "soTaiKhoanDataGridViewTextBoxColumn";
+            this.soTaiKhoanDataGridViewTextBoxColumn.ReadOnly = true;
             // 
             // hinhThucThanhToanStrDataGridViewTextBoxColumn
             // 
@@ -488,6 +496,7 @@
             this.hinhThucThanhToanStrDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle3;
             this.hinhThucThanhToanStrDataGridViewTextBoxColumn.HeaderText = "Hình thức thanh toán";
             this.hinhThucThanhToanStrDataGridViewTextBoxColumn.Name = "hinhThucThanhToanStrDataGridViewTextBoxColumn";
+            this.hinhThucThanhToanStrDataGridViewTextBoxColumn.ReadOnly = true;
             this.hinhThucThanhToanStrDataGridViewTextBoxColumn.Width = 150;
             // 
             // vATDataGridViewTextBoxColumn
@@ -497,6 +506,7 @@
             this.vATDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle4;
             this.vATDataGridViewTextBoxColumn.HeaderText = "GTGT (%)";
             this.vATDataGridViewTextBoxColumn.Name = "vATDataGridViewTextBoxColumn";
+            this.vATDataGridViewTextBoxColumn.ReadOnly = true;
             this.vATDataGridViewTextBoxColumn.Width = 80;
             // 
             // Notes
@@ -504,6 +514,7 @@
             this.Notes.DataPropertyName = "Notes";
             this.Notes.HeaderText = "Ghi chú";
             this.Notes.Name = "Notes";
+            this.Notes.ReadOnly = true;
             this.Notes.Width = 250;
             // 
             // NguoiTao
@@ -511,6 +522,7 @@
             this.NguoiTao.DataPropertyName = "NguoiTao";
             this.NguoiTao.HeaderText = "Người xuất";
             this.NguoiTao.Name = "NguoiTao";
+            this.NguoiTao.ReadOnly = true;
             this.NguoiTao.Width = 200;
             // 
             // uHoaDonThuocList
