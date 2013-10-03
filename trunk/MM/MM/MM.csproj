@@ -2793,6 +2793,7 @@
     <None Include="Resources\WhiteImage.PNG" />
     <None Include="Resources\email-alert-icon %282%29.png" />
     <None Include="Resources\email-alert-icon.png" />
+    <Content Include="Scripts\ScriptUpdate_KH_2013-10-03.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2013-09-29.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2013-09-25.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2013-09-11.sql" />
