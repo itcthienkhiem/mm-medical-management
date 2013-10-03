@@ -68,7 +68,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.raGuiQuaBuuDien = new System.Windows.Forms.RadioButton();
             this.raKhachTuLay = new System.Windows.Forms.RadioButton();
-            this.txtHinhThucThanhToan = new System.Windows.Forms.TextBox();
             this.txtTenNguoiMuaHang = new System.Windows.Forms.TextBox();
             this.cboTenNguoiMuaHang = new System.Windows.Forms.ComboBox();
             this.chkDaThuTien = new System.Windows.Forms.CheckBox();
@@ -86,6 +85,7 @@
             this.cboMaDonVi = new System.Windows.Forms.ComboBox();
             this.txtTenDonVi = new System.Windows.Forms.TextBox();
             this.cboTenDonVi = new System.Windows.Forms.ComboBox();
+            this.txtHinhThucThanhToan = new System.Windows.Forms.TextBox();
             this.panel7 = new System.Windows.Forms.Panel();
             this.dgDetail = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -362,14 +362,12 @@
             this.panel6.Controls.Add(this.label3);
             this.panel6.Controls.Add(this.raGuiQuaBuuDien);
             this.panel6.Controls.Add(this.raKhachTuLay);
-            this.panel6.Controls.Add(this.txtHinhThucThanhToan);
             this.panel6.Controls.Add(this.txtTenNguoiMuaHang);
             this.panel6.Controls.Add(this.cboTenNguoiMuaHang);
             this.panel6.Controls.Add(this.chkDaThuTien);
             this.panel6.Controls.Add(this.txtMaSoThue);
             this.panel6.Controls.Add(this.label16);
             this.panel6.Controls.Add(this.txtAddress);
-            this.panel6.Controls.Add(this.cboHinhThucThanhToan);
             this.panel6.Controls.Add(this.label11);
             this.panel6.Controls.Add(this.txtSoTaiKhoan);
             this.panel6.Controls.Add(this.label10);
@@ -380,6 +378,8 @@
             this.panel6.Controls.Add(this.cboMaDonVi);
             this.panel6.Controls.Add(this.txtTenDonVi);
             this.panel6.Controls.Add(this.cboTenDonVi);
+            this.panel6.Controls.Add(this.txtHinhThucThanhToan);
+            this.panel6.Controls.Add(this.cboHinhThucThanhToan);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(0, 190);
             this.panel6.Name = "panel6";
@@ -434,15 +434,6 @@
             this.raKhachTuLay.TabStop = true;
             this.raKhachTuLay.Text = "Khách tự lấy";
             this.raKhachTuLay.UseVisualStyleBackColor = true;
-            // 
-            // txtHinhThucThanhToan
-            // 
-            this.txtHinhThucThanhToan.Location = new System.Drawing.Point(143, 138);
-            this.txtHinhThucThanhToan.Name = "txtHinhThucThanhToan";
-            this.txtHinhThucThanhToan.ReadOnly = true;
-            this.txtHinhThucThanhToan.Size = new System.Drawing.Size(178, 20);
-            this.txtHinhThucThanhToan.TabIndex = 24;
-            this.txtHinhThucThanhToan.Visible = false;
             // 
             // txtTenNguoiMuaHang
             // 
@@ -505,9 +496,9 @@
             this.cboHinhThucThanhToan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboHinhThucThanhToan.FormattingEnabled = true;
             this.cboHinhThucThanhToan.Items.AddRange(new object[] {
-            "TM",
-            "CK",
-            "TM/CK"});
+            "Tiền mặt",
+            "Chuyển khoản",
+            "Tiền mặt/Chuyển khoản"});
             this.cboHinhThucThanhToan.Location = new System.Drawing.Point(143, 138);
             this.cboHinhThucThanhToan.Name = "cboHinhThucThanhToan";
             this.cboHinhThucThanhToan.Size = new System.Drawing.Size(178, 21);
@@ -605,6 +596,15 @@
             this.cboTenDonVi.Size = new System.Drawing.Size(342, 21);
             this.cboTenDonVi.TabIndex = 19;
             this.cboTenDonVi.SelectedIndexChanged += new System.EventHandler(this.cboTenDonVi_SelectedIndexChanged);
+            // 
+            // txtHinhThucThanhToan
+            // 
+            this.txtHinhThucThanhToan.Location = new System.Drawing.Point(143, 138);
+            this.txtHinhThucThanhToan.Name = "txtHinhThucThanhToan";
+            this.txtHinhThucThanhToan.ReadOnly = true;
+            this.txtHinhThucThanhToan.Size = new System.Drawing.Size(178, 20);
+            this.txtHinhThucThanhToan.TabIndex = 24;
+            this.txtHinhThucThanhToan.Visible = false;
             // 
             // panel7
             // 
