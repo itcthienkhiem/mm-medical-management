@@ -32,7 +32,6 @@ namespace MM.Dialogs
         private List<DataRow> _phieuThuThuocList = null;
         private HoaDonThuoc _hoaDonThuoc = new HoaDonThuoc();
         private LoaiHoaDon _loaiHoaDon = LoaiHoaDon.HoaDonThuoc;
-        private DataTable _dtThongTinKhachHang = null;
         private ComboBox _cboBox = null;
         private DataTable _dtServices = null;
         #endregion
@@ -119,8 +118,8 @@ namespace MM.Dialogs
             Result result = ThongTinKhachHangBus.GetThongTinKhachHangList();
             if (result.IsOK)
             {
-                _dtThongTinKhachHang = result.QueryResult as DataTable;
-                foreach (DataRow row in _dtThongTinKhachHang.Rows)
+                DataTable dt = result.QueryResult as DataTable;
+                foreach (DataRow row in dt.Rows)
                 {
                     cboTenNguoiMuaHang.Items.Add(row["TenKhachHang"].ToString());
                 }
@@ -182,21 +181,29 @@ namespace MM.Dialogs
             txtSoTaiKhoan.Text = string.Empty;
             cboMaDonVi.Text = string.Empty;
 
-            if (_dtThongTinKhachHang == null) return;
             if (tenKhachHang.Trim() != string.Empty)
             {
-                List<DataRow> results = (from t in _dtThongTinKhachHang.AsEnumerable()
-                                         where t.Field<string>("TenKhachHang").Trim().ToLower() == tenKhachHang.Trim().ToLower()
-                                         select t).ToList<DataRow>();
-
-                if (results != null && results.Count > 0)
+                Result result = ThongTinKhachHangBus.GetThongTinKhachHang(tenKhachHang);
+                if (result.IsOK)
                 {
-                    cboTenDonVi.Text = results[0]["TenDonVi"] as string;
-                    cboMaDonVi.Text = results[0]["MaDonVi"] as string;
-                    txtMaSoThue.Text = results[0]["MaSoThue"] as string;
-                    txtAddress.Text = results[0]["DiaChi"] as string;
-                    txtSoTaiKhoan.Text = results[0]["SoTaiKhoan"] as string;
-                    cboHinhThucThanhToan.SelectedIndex = Convert.ToByte(results[0]["HinhThucThanhToan"]);
+                    ThongTinKhachHang ttkh = result.QueryResult as ThongTinKhachHang;
+                    if (ttkh == null)
+                    {
+                        _flag3 = true;
+                        return;
+                    }
+
+                    cboTenDonVi.Text = ttkh.TenDonVi;
+                    cboMaDonVi.Text = ttkh.MaDonVi;
+                    txtMaSoThue.Text = ttkh.MaSoThue;
+                    txtAddress.Text = ttkh.DiaChi;
+                    txtSoTaiKhoan.Text = ttkh.SoTaiKhoan;
+                    cboHinhThucThanhToan.SelectedIndex = ttkh.HinhThucThanhToan.Value;
+                }
+                else
+                {
+                    MsgBox.Show(this.Text, result.GetErrorAsString("ThongTinKhachHangBus.GetThongTinKhachHang"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("ThongTinKhachHangBus.GetThongTinKhachHang"));
                 }
             }
 

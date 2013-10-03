@@ -18,7 +18,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = "SELECT * FROM ThongTinKhachHang WITH(NOLOCK) ORDER BY TenKhachHang";
+                string query = "SELECT TenKhachHang FROM ThongTinKhachHang WITH(NOLOCK) ORDER BY TenKhachHang";
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -81,6 +81,39 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetThongTinKhachHang(string tenKhachHang)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                ThongTinKhachHang ttkh = db.ThongTinKhachHangs.FirstOrDefault(t => t.TenKhachHang.Trim().ToLower() == tenKhachHang.Trim().ToLower());
+                result.QueryResult = ttkh;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
         public static Result GetThongTinMaDonVi(string maDonVi)
         {
             Result result = new Result();
@@ -89,7 +122,7 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-                ThongTinKhachHang ttkh = db.ThongTinKhachHangs.FirstOrDefault(t => t.MaDonVi.ToLower() == maDonVi.Trim().ToLower());
+                ThongTinKhachHang ttkh = db.ThongTinKhachHangs.FirstOrDefault(t => t.MaDonVi.Trim().ToLower() == maDonVi.Trim().ToLower());
                 result.QueryResult = ttkh;
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -122,7 +155,7 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-                ThongTinKhachHang ttkh = db.ThongTinKhachHangs.FirstOrDefault(t => t.TenDonVi.ToLower() == tenDonVi.Trim().ToLower());
+                ThongTinKhachHang ttkh = db.ThongTinKhachHangs.FirstOrDefault(t => t.TenDonVi.Trim().ToLower() == tenDonVi.Trim().ToLower());
                 result.QueryResult = ttkh;
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -179,6 +212,134 @@ namespace MM.Bussiness
                     db.SubmitChanges();
                     t.Complete();
                 }
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result DeleteTenKhachHang(string tenKhachHang)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                ThongTinKhachHang ttkh = db.ThongTinKhachHangs.FirstOrDefault(t => t.TenKhachHang.Trim().ToLower() == tenKhachHang.Trim().ToLower());
+                if (ttkh != null)
+                    ttkh.TenKhachHang = string.Empty;
+
+                db.SubmitChanges();
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result DeleteMaDonVi(string maDonVi)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                List<ThongTinKhachHang> ttkhs = db.ThongTinKhachHangs.Where(t => t.MaDonVi.Trim().ToLower() == maDonVi.Trim().ToLower()).ToList();
+                if (ttkhs != null)
+                {
+                    foreach (var ttkh in ttkhs)
+                    {
+                        ttkh.MaDonVi = string.Empty;
+                        ttkh.TenDonVi = string.Empty;
+                        ttkh.DiaChi = string.Empty;
+                        ttkh.MaSoThue = string.Empty;
+                    }
+
+                    db.SubmitChanges();
+                }
+
+                db.SubmitChanges();
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
+        public static Result DeleteTenDonVi(string tenDonVi)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                List<ThongTinKhachHang> ttkhs = db.ThongTinKhachHangs.Where(t => t.TenDonVi.Trim().ToLower() == tenDonVi.Trim().ToLower()).ToList();
+                if (ttkhs != null)
+                {
+                    foreach (var ttkh in ttkhs)
+                    {
+                        ttkh.MaDonVi = string.Empty;
+                        ttkh.TenDonVi = string.Empty;
+                        ttkh.DiaChi = string.Empty;
+                        ttkh.MaSoThue = string.Empty;
+                    }
+
+                    db.SubmitChanges();
+                }
+
+                db.SubmitChanges();
             }
             catch (System.Data.SqlClient.SqlException se)
             {
