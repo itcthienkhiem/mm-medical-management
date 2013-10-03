@@ -170,18 +170,21 @@ namespace MM.Dialogs
             txtSoTaiKhoan.Text = string.Empty;
 
             if (_dtThongTinKhachHang == null) return;
-            List<DataRow> results = (from t in _dtThongTinKhachHang.AsEnumerable()
-                                     where t.Field<string>("TenKhachHang").Trim().ToLower() == tenKhachHang.Trim().ToLower()
-                                     select t).ToList<DataRow>();
-
-            if (results != null && results.Count > 0)
+            if (tenKhachHang.Trim() != string.Empty)
             {
-                cboMaDonVi.Text = results[0]["MaDonVi"] as string;
-                cboTenDonVi.Text = results[0]["TenDonVi"] as string;
-                txtMaSoThue.Text = results[0]["MaSoThue"] as string;
-                txtAddress.Text = results[0]["DiaChi"] as string;
-                txtSoTaiKhoan.Text = results[0]["SoTaiKhoan"] as string;
-                cboHinhThucThanhToan.SelectedIndex = Convert.ToByte(results[0]["HinhThucThanhToan"]);
+                List<DataRow> results = (from t in _dtThongTinKhachHang.AsEnumerable()
+                                         where t.Field<string>("TenKhachHang").Trim().ToLower() == tenKhachHang.Trim().ToLower()
+                                         select t).ToList<DataRow>();
+
+                if (results != null && results.Count > 0)
+                {
+                    cboMaDonVi.Text = results[0]["MaDonVi"] as string;
+                    cboTenDonVi.Text = results[0]["TenDonVi"] as string;
+                    txtMaSoThue.Text = results[0]["MaSoThue"] as string;
+                    txtAddress.Text = results[0]["DiaChi"] as string;
+                    txtSoTaiKhoan.Text = results[0]["SoTaiKhoan"] as string;
+                    cboHinhThucThanhToan.SelectedIndex = Convert.ToByte(results[0]["HinhThucThanhToan"]);
+                }
             }
             _flag2 = true;
         }
