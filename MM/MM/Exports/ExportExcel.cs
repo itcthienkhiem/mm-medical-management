@@ -10246,7 +10246,14 @@ namespace MM.Exports
                     string donViTinh = row["DonViTinh"].ToString();
                     int soLuong = Convert.ToInt32(row["SoLuong"]);
                     double donGia = Convert.ToDouble(row["DonGia"]);
-                    //double giam = Convert.ToDouble(row["Giam"]);
+                    double giam = Convert.ToDouble(row["Giam"]);
+
+                    if (giam > 0)
+                    {
+                        donGia -= (donGia * giam) / 100;
+                        donGia = Math.Round(donGia);
+                    }
+
                     double thanhTien = Convert.ToDouble(row["ThanhTien"]);
                     string hinhThucThanhToan = row["HinhThucThanhToan"].ToString();
 
