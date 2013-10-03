@@ -385,7 +385,6 @@
             this.panel6.Controls.Add(this.label3);
             this.panel6.Controls.Add(this.raGuiQuaBuuDien);
             this.panel6.Controls.Add(this.raKhachTuLay);
-            this.panel6.Controls.Add(this.txtHinhThucThanhToan);
             this.panel6.Controls.Add(this.txtTenNguoiMuaHang);
             this.panel6.Controls.Add(this.cboTenNguoiMuaHang);
             this.panel6.Controls.Add(this.chkDaThuTien);
@@ -403,6 +402,7 @@
             this.panel6.Controls.Add(this.cboMaDonVi);
             this.panel6.Controls.Add(this.txtTenDonVi);
             this.panel6.Controls.Add(this.cboTenDonVi);
+            this.panel6.Controls.Add(this.txtHinhThucThanhToan);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(0, 190);
             this.panel6.Name = "panel6";
@@ -528,9 +528,9 @@
             this.cboHinhThucThanhToan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cboHinhThucThanhToan.FormattingEnabled = true;
             this.cboHinhThucThanhToan.Items.AddRange(new object[] {
-            "TM",
-            "CK",
-            "TM/CK"});
+            "Tiền mặt",
+            "Chuyển khoản",
+            "Tiền mặt/Chuyển khoản"});
             this.cboHinhThucThanhToan.Location = new System.Drawing.Point(143, 138);
             this.cboHinhThucThanhToan.Name = "cboHinhThucThanhToan";
             this.cboHinhThucThanhToan.Size = new System.Drawing.Size(178, 21);
