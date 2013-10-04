@@ -74,7 +74,6 @@
             this.txtMaSoThue = new System.Windows.Forms.TextBox();
             this.label16 = new System.Windows.Forms.Label();
             this.txtAddress = new System.Windows.Forms.TextBox();
-            this.cboHinhThucThanhToan = new System.Windows.Forms.ComboBox();
             this.label11 = new System.Windows.Forms.Label();
             this.txtSoTaiKhoan = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
@@ -86,6 +85,7 @@
             this.txtTenDonVi = new System.Windows.Forms.TextBox();
             this.cboTenDonVi = new System.Windows.Forms.ComboBox();
             this.txtHinhThucThanhToan = new System.Windows.Forms.TextBox();
+            this.cboHinhThucThanhToan = new System.Windows.Forms.ComboBox();
             this.panel7 = new System.Windows.Forms.Panel();
             this.dgDetail = new DevComponents.DotNetBar.Controls.DataGridViewX();
             this.STT = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -378,8 +378,8 @@
             this.panel6.Controls.Add(this.cboMaDonVi);
             this.panel6.Controls.Add(this.txtTenDonVi);
             this.panel6.Controls.Add(this.cboTenDonVi);
-            this.panel6.Controls.Add(this.txtHinhThucThanhToan);
             this.panel6.Controls.Add(this.cboHinhThucThanhToan);
+            this.panel6.Controls.Add(this.txtHinhThucThanhToan);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(0, 190);
             this.panel6.Name = "panel6";
@@ -489,21 +489,6 @@
             this.txtAddress.Size = new System.Drawing.Size(342, 20);
             this.txtAddress.TabIndex = 21;
             // 
-            // cboHinhThucThanhToan
-            // 
-            this.cboHinhThucThanhToan.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
-            this.cboHinhThucThanhToan.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.cboHinhThucThanhToan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cboHinhThucThanhToan.FormattingEnabled = true;
-            this.cboHinhThucThanhToan.Items.AddRange(new object[] {
-            "Tiền mặt",
-            "Chuyển khoản",
-            "Tiền mặt/Chuyển khoản"});
-            this.cboHinhThucThanhToan.Location = new System.Drawing.Point(143, 138);
-            this.cboHinhThucThanhToan.Name = "cboHinhThucThanhToan";
-            this.cboHinhThucThanhToan.Size = new System.Drawing.Size(178, 21);
-            this.cboHinhThucThanhToan.TabIndex = 23;
-            // 
             // label11
             // 
             this.label11.AutoSize = true;
@@ -605,6 +590,21 @@
             this.txtHinhThucThanhToan.Size = new System.Drawing.Size(178, 20);
             this.txtHinhThucThanhToan.TabIndex = 24;
             this.txtHinhThucThanhToan.Visible = false;
+            // 
+            // cboHinhThucThanhToan
+            // 
+            this.cboHinhThucThanhToan.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.SuggestAppend;
+            this.cboHinhThucThanhToan.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.cboHinhThucThanhToan.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboHinhThucThanhToan.FormattingEnabled = true;
+            this.cboHinhThucThanhToan.Items.AddRange(new object[] {
+            "Tiền mặt",
+            "Chuyển khoản",
+            "Tiền mặt/Chuyển khoản"});
+            this.cboHinhThucThanhToan.Location = new System.Drawing.Point(143, 138);
+            this.cboHinhThucThanhToan.Name = "cboHinhThucThanhToan";
+            this.cboHinhThucThanhToan.Size = new System.Drawing.Size(178, 21);
+            this.cboHinhThucThanhToan.TabIndex = 23;
             // 
             // panel7
             // 

@@ -41,7 +41,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = "SELECT DISTINCT TenDonVi FROM ThongTinKhachHang WITH(NOLOCK) ORDER BY TenDonVi";
+                string query = "SELECT DISTINCT TenDonVi FROM ThongTinKhachHang WITH(NOLOCK) UNION SELECT TenCty As TenDonVi FROM Company WITH(NOLOCK) WHERE [Status] = 0 ORDER BY TenDonVi";
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -64,7 +64,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = "SELECT DISTINCT MaDonVi FROM ThongTinKhachHang WITH(NOLOCK) ORDER BY MaDonVi";
+                string query = "SELECT DISTINCT MaDonVi FROM ThongTinKhachHang WITH(NOLOCK) UNION SELECT MaCty As MaDonVi FROM Company WITH(NOLOCK) WHERE [Status] = 0 ORDER BY MaDonVi";
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -123,6 +123,21 @@ namespace MM.Bussiness
             {
                 db = new MMOverride();
                 ThongTinKhachHang ttkh = db.ThongTinKhachHangs.FirstOrDefault(t => t.MaDonVi.Trim().ToLower() == maDonVi.Trim().ToLower());
+
+                if (ttkh == null)
+                {
+                    Company company = db.Companies.FirstOrDefault(t => t.MaCty.Trim().ToLower() == maDonVi.Trim().ToLower());
+                    if (company != null)
+                    {
+                        ttkh = new ThongTinKhachHang();
+                        ttkh.MaDonVi = company.MaCty;
+                        ttkh.TenDonVi = company.TenCty;
+                        ttkh.DiaChi = company.DiaChi;
+                        ttkh.MaSoThue = company.MaSoThue;
+                        ttkh.HinhThucThanhToan = 0;
+                    }
+                }
+
                 result.QueryResult = ttkh;
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -156,6 +171,20 @@ namespace MM.Bussiness
             {
                 db = new MMOverride();
                 ThongTinKhachHang ttkh = db.ThongTinKhachHangs.FirstOrDefault(t => t.TenDonVi.Trim().ToLower() == tenDonVi.Trim().ToLower());
+                if (ttkh == null)
+                {
+                    Company company = db.Companies.FirstOrDefault(t => t.TenCty.Trim().ToLower() == tenDonVi.Trim().ToLower());
+                    if (company != null)
+                    {
+                        ttkh = new ThongTinKhachHang();
+                        ttkh.MaDonVi = company.MaCty;
+                        ttkh.TenDonVi = company.TenCty;
+                        ttkh.DiaChi = company.DiaChi;
+                        ttkh.MaSoThue = company.MaSoThue;
+                        ttkh.HinhThucThanhToan = 0;
+                    }
+                }
+
                 result.QueryResult = ttkh;
             }
             catch (System.Data.SqlClient.SqlException se)
