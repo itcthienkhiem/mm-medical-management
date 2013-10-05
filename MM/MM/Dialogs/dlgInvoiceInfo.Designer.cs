@@ -80,7 +80,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.raGuiQuaBuuDien = new System.Windows.Forms.RadioButton();
             this.raKhachTuLay = new System.Windows.Forms.RadioButton();
-            this.txtHinhThucThanhToan = new System.Windows.Forms.TextBox();
             this.txtTenNguoiMuaHang = new System.Windows.Forms.TextBox();
             this.cboTenNguoiMuaHang = new System.Windows.Forms.ComboBox();
             this.chkDaThuTien = new System.Windows.Forms.CheckBox();
@@ -98,6 +97,7 @@
             this.cboMaDonVi = new System.Windows.Forms.ComboBox();
             this.txtTenDonVi = new System.Windows.Forms.TextBox();
             this.cboTenDonVi = new System.Windows.Forms.ComboBox();
+            this.txtHinhThucThanhToan = new System.Windows.Forms.TextBox();
             this.panel7 = new System.Windows.Forms.Panel();
             this.tabDetail = new System.Windows.Forms.TabControl();
             this.pageDichVu = new System.Windows.Forms.TabPage();
@@ -138,6 +138,9 @@
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.btnXoaTenDonVi = new System.Windows.Forms.Button();
+            this.btnXoaMaDonVi = new System.Windows.Forms.Button();
+            this.btnXoaTenKhachHang = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -388,6 +391,9 @@
             // panel6
             // 
             this.panel6.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.panel6.Controls.Add(this.btnXoaTenDonVi);
+            this.panel6.Controls.Add(this.btnXoaMaDonVi);
+            this.panel6.Controls.Add(this.btnXoaTenKhachHang);
             this.panel6.Controls.Add(this.label4);
             this.panel6.Controls.Add(this.txtGhiChu);
             this.panel6.Controls.Add(this.label3);
@@ -465,15 +471,6 @@
             this.raKhachTuLay.TabStop = true;
             this.raKhachTuLay.Text = "Khách tự lấy";
             this.raKhachTuLay.UseVisualStyleBackColor = true;
-            // 
-            // txtHinhThucThanhToan
-            // 
-            this.txtHinhThucThanhToan.Location = new System.Drawing.Point(143, 141);
-            this.txtHinhThucThanhToan.Name = "txtHinhThucThanhToan";
-            this.txtHinhThucThanhToan.ReadOnly = true;
-            this.txtHinhThucThanhToan.Size = new System.Drawing.Size(178, 20);
-            this.txtHinhThucThanhToan.TabIndex = 26;
-            this.txtHinhThucThanhToan.Visible = false;
             // 
             // txtTenNguoiMuaHang
             // 
@@ -636,6 +633,15 @@
             this.cboTenDonVi.Size = new System.Drawing.Size(342, 21);
             this.cboTenDonVi.TabIndex = 19;
             this.cboTenDonVi.SelectedIndexChanged += new System.EventHandler(this.cboTenDonVi_SelectedIndexChanged);
+            // 
+            // txtHinhThucThanhToan
+            // 
+            this.txtHinhThucThanhToan.Location = new System.Drawing.Point(143, 141);
+            this.txtHinhThucThanhToan.Name = "txtHinhThucThanhToan";
+            this.txtHinhThucThanhToan.ReadOnly = true;
+            this.txtHinhThucThanhToan.Size = new System.Drawing.Size(178, 20);
+            this.txtHinhThucThanhToan.TabIndex = 26;
+            this.txtHinhThucThanhToan.Visible = false;
             // 
             // panel7
             // 
@@ -1156,6 +1162,36 @@
             this.dataGridViewTextBoxColumn11.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.dataGridViewTextBoxColumn11.Width = 120;
             // 
+            // btnXoaTenDonVi
+            // 
+            this.btnXoaTenDonVi.Image = ((System.Drawing.Image)(resources.GetObject("btnXoaTenDonVi.Image")));
+            this.btnXoaTenDonVi.Location = new System.Drawing.Point(489, 48);
+            this.btnXoaTenDonVi.Name = "btnXoaTenDonVi";
+            this.btnXoaTenDonVi.Size = new System.Drawing.Size(22, 22);
+            this.btnXoaTenDonVi.TabIndex = 54;
+            this.btnXoaTenDonVi.UseVisualStyleBackColor = true;
+            this.btnXoaTenDonVi.Click += new System.EventHandler(this.btnXoaTenDonVi_Click);
+            // 
+            // btnXoaMaDonVi
+            // 
+            this.btnXoaMaDonVi.Image = ((System.Drawing.Image)(resources.GetObject("btnXoaMaDonVi.Image")));
+            this.btnXoaMaDonVi.Location = new System.Drawing.Point(489, 25);
+            this.btnXoaMaDonVi.Name = "btnXoaMaDonVi";
+            this.btnXoaMaDonVi.Size = new System.Drawing.Size(22, 22);
+            this.btnXoaMaDonVi.TabIndex = 53;
+            this.btnXoaMaDonVi.UseVisualStyleBackColor = true;
+            this.btnXoaMaDonVi.Click += new System.EventHandler(this.btnXoaMaDonVi_Click);
+            // 
+            // btnXoaTenKhachHang
+            // 
+            this.btnXoaTenKhachHang.Image = ((System.Drawing.Image)(resources.GetObject("btnXoaTenKhachHang.Image")));
+            this.btnXoaTenKhachHang.Location = new System.Drawing.Point(489, 2);
+            this.btnXoaTenKhachHang.Name = "btnXoaTenKhachHang";
+            this.btnXoaTenKhachHang.Size = new System.Drawing.Size(22, 22);
+            this.btnXoaTenKhachHang.TabIndex = 52;
+            this.btnXoaTenKhachHang.UseVisualStyleBackColor = true;
+            this.btnXoaTenKhachHang.Click += new System.EventHandler(this.btnXoaTenKhachHang_Click);
+            // 
             // dlgInvoiceInfo
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1288,6 +1324,9 @@
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox txtMaDonVi;
         private System.Windows.Forms.ComboBox cboMaDonVi;
+        private System.Windows.Forms.Button btnXoaTenDonVi;
+        private System.Windows.Forms.Button btnXoaMaDonVi;
+        private System.Windows.Forms.Button btnXoaTenKhachHang;
 
 
     }

@@ -61,6 +61,10 @@ namespace MM.Dialogs
                 txtMaDonVi.Visible = true;
                 txtHinhThucThanhToan.Visible = true;
 
+                btnXoaTenKhachHang.Visible = false;
+                btnXoaMaDonVi.Visible = false;
+                btnXoaTenDonVi.Visible = false;
+
                 btnExportInvoice.Visible = false;
                 btnExportAndPrint.Visible = false;
                 btnCancel.Visible = false;
@@ -806,9 +810,114 @@ namespace MM.Dialogs
                 Utility.WriteToTraceLog(result.GetErrorAsString("ServicesBus.GetServicesList"));
             }
         }
+
+        private void XoaTenKhachHang()
+        {
+            if (cboTenNguoiMuaHang.Text.Trim() == string.Empty) return;
+
+            if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa tên người mua hàng ?") == System.Windows.Forms.DialogResult.No) return;
+
+            string tenKhachHang = cboTenNguoiMuaHang.Text;
+            Result result = ThongTinKhachHangBus.DeleteTenKhachHang(tenKhachHang);
+            if (!result.IsOK)
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("ThongTinKhachHangBus.DeleteTenKhachHang"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("ThongTinKhachHangBus.DeleteTenKhachHang"));
+                return;
+            }
+
+            _flag2 = false;
+            foreach (var item in cboTenNguoiMuaHang.Items)
+            {
+                if (item.ToString() == tenKhachHang)
+                {
+                    cboTenNguoiMuaHang.Items.Remove(item);
+                    break;
+                }
+            }
+
+            cboTenNguoiMuaHang.Text = string.Empty;
+
+            _flag2 = true;
+        }
+
+        private void XoaMaDonVi()
+        {
+            if (cboMaDonVi.Text.Trim() == string.Empty) return;
+
+            if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa mã đơn vị ?") == System.Windows.Forms.DialogResult.No) return;
+
+            string maDonVi = cboMaDonVi.Text;
+            Result result = ThongTinKhachHangBus.DeleteMaDonVi(maDonVi);
+            if (!result.IsOK)
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("ThongTinKhachHangBus.DeleteMaDonVi"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("ThongTinKhachHangBus.DeleteMaDonVi"));
+                return;
+            }
+
+            _flag2 = false;
+            foreach (var item in cboMaDonVi.Items)
+            {
+                if (item.ToString() == maDonVi)
+                {
+                    cboMaDonVi.Items.Remove(item);
+                    break;
+                }
+            }
+
+            cboMaDonVi.Text = string.Empty;
+
+            _flag2 = true;
+        }
+
+        private void XoaTenDonVi()
+        {
+            if (cboTenDonVi.Text.Trim() == string.Empty) return;
+
+            if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa tên đơn vị ?") == System.Windows.Forms.DialogResult.No) return;
+
+            string tenDonVi = cboTenDonVi.Text;
+            Result result = ThongTinKhachHangBus.DeleteTenDonVi(tenDonVi);
+            if (!result.IsOK)
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("ThongTinKhachHangBus.DeleteTenDonVi"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("ThongTinKhachHangBus.DeleteTenDonVi"));
+                return;
+            }
+
+            _flag2 = false;
+            foreach (var item in cboTenDonVi.Items)
+            {
+                if (item.ToString() == tenDonVi)
+                {
+                    cboTenDonVi.Items.Remove(item);
+                    break;
+                }
+            }
+
+            cboTenDonVi.Text = string.Empty;
+
+            _flag2 = true;
+        }
         #endregion
 
         #region Window Event Handlers
+        private void btnXoaTenKhachHang_Click(object sender, EventArgs e)
+        {
+            XoaTenKhachHang();
+        }
+
+        private void btnXoaMaDonVi_Click(object sender, EventArgs e)
+        {
+            XoaMaDonVi();
+        }
+
+        private void btnXoaTenDonVi_Click(object sender, EventArgs e)
+        {
+            XoaTenDonVi();
+        }
+
         private void dlgInvoiceInfo_Load(object sender, EventArgs e)
         {
             dtpkNgay.Value = DateTime.Now;
@@ -1089,6 +1198,8 @@ namespace MM.Dialogs
             RefreshThongTinMaDonVi(cboMaDonVi.Text);
         }
         #endregion
+
+        
 
         
     }
