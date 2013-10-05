@@ -314,9 +314,9 @@ namespace MM.Bussiness
                     foreach (var ttkh in ttkhs)
                     {
                         ttkh.MaDonVi = string.Empty;
-                        ttkh.TenDonVi = string.Empty;
-                        ttkh.DiaChi = string.Empty;
-                        ttkh.MaSoThue = string.Empty;
+                        //ttkh.TenDonVi = string.Empty;
+                        //ttkh.DiaChi = string.Empty;
+                        //ttkh.MaSoThue = string.Empty;
                     }
 
                     db.SubmitChanges();
@@ -359,10 +359,10 @@ namespace MM.Bussiness
                 {
                     foreach (var ttkh in ttkhs)
                     {
-                        ttkh.MaDonVi = string.Empty;
+                        //ttkh.MaDonVi = string.Empty;
                         ttkh.TenDonVi = string.Empty;
-                        ttkh.DiaChi = string.Empty;
-                        ttkh.MaSoThue = string.Empty;
+                        //ttkh.DiaChi = string.Empty;
+                        //ttkh.MaSoThue = string.Empty;
                     }
 
                     db.SubmitChanges();
