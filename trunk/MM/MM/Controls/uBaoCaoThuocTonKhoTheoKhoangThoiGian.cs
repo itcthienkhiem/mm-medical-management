@@ -19,6 +19,7 @@ namespace MM.Controls
     {
         #region Members
         private List<string> _maThuocList = new List<string>();
+        private List<string> _maThuocStrList = new List<string>();
         private string _maThuocs = string.Empty;
         private DateTime _tuNgay = DateTime.Now;
         private DateTime _denNgay = DateTime.Now;
@@ -58,7 +59,7 @@ namespace MM.Controls
 
         private void OnView()
         {
-            Result result = ReportBus.GetThuocTonKhoTheoKhoangThoiGian(_tuNgay, _denNgay, _maThuocs);
+            Result result = ReportBus.GetThuocTonKhoTheoKhoangThoiGian(_tuNgay, _denNgay, _maThuocStrList);
             if (result.IsOK)
             {
                 MethodInvoker method = delegate
@@ -96,13 +97,26 @@ namespace MM.Controls
 
                 _maThuocList.Clear();
                 _maThuocs = string.Empty;
+                _maThuocStrList.Clear();
                 foreach (DataRow row in _uThuocList.CheckedRows)
                 {
                     _maThuocList.Add(row["MaThuoc"].ToString());
-                    _maThuocs += string.Format("{0},", row["MaThuoc"].ToString());
+                    string temp = _maThuocs + string.Format("{0},", row["MaThuoc"].ToString());
+                    if (temp.Length < 4000)
+                        _maThuocs += string.Format("{0},", row["MaThuoc"].ToString());
+                    else
+                    {
+                        _maThuocs = _maThuocs.Substring(0, _maThuocs.Length - 1);
+                        _maThuocStrList.Add(_maThuocs);
+                        _maThuocs = string.Format("{0},", row["MaThuoc"].ToString());
+                    }
                 }
 
-                _maThuocs = _maThuocs.Substring(0, _maThuocs.Length - 1);
+                if (_maThuocs != string.Empty)
+                {
+                    _maThuocs = _maThuocs.Substring(0, _maThuocs.Length - 1);
+                    _maThuocStrList.Add(_maThuocs);
+                }
 
                 _tuNgay = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
                 _denNgay = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
@@ -144,18 +158,31 @@ namespace MM.Controls
             {
                 _maThuocList.Clear();
                 _maThuocs = string.Empty;
+                _maThuocStrList.Clear();
                 foreach (DataRow row in _uThuocList.CheckedRows)
                 {
                     _maThuocList.Add(row["MaThuoc"].ToString());
-                    _maThuocs += string.Format("{0},", row["MaThuoc"].ToString());
+                    string temp = _maThuocs + string.Format("{0},", row["MaThuoc"].ToString());
+                    if (temp.Length < 4000)
+                        _maThuocs += string.Format("{0},", row["MaThuoc"].ToString());
+                    else
+                    {
+                        _maThuocs = _maThuocs.Substring(0, _maThuocs.Length - 1);
+                        _maThuocStrList.Add(_maThuocs);
+                        _maThuocs = string.Format("{0},", row["MaThuoc"].ToString());
+                    }
                 }
 
-                _maThuocs = _maThuocs.Substring(0, _maThuocs.Length - 1);
+                if (_maThuocs != string.Empty)
+                {
+                    _maThuocs = _maThuocs.Substring(0, _maThuocs.Length - 1);
+                    _maThuocStrList.Add(_maThuocs);
+                }
 
                 _tuNgay = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
                 _denNgay = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
 
-                Result result = ReportBus.GetThuocTonKhoTheoKhoangThoiGian(_tuNgay, _denNgay, _maThuocs);
+                Result result = ReportBus.GetThuocTonKhoTheoKhoangThoiGian(_tuNgay, _denNgay, _maThuocStrList);
                 if (result.IsOK)
                 {
                     List<spThuocTonKhoResult> thuocTonKhoList = (List<spThuocTonKhoResult>)result.QueryResult;
