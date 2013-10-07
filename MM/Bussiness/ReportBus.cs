@@ -669,7 +669,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetThuocTonKhoTheoKhoangThoiGian(DateTime fromDate, DateTime toDate, string maThuocs)
+        public static Result GetThuocTonKhoTheoKhoangThoiGian(DateTime fromDate, DateTime toDate, List<string> maThuocStrList)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -677,7 +677,15 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-                result.QueryResult = db.spThuocTonKho(fromDate, toDate, maThuocs).ToList<spThuocTonKhoResult>();
+
+                List<spThuocTonKhoResult> thuocTonKhos = new List<spThuocTonKhoResult>();
+                foreach (string maThuocStr in maThuocStrList)
+                {
+                    List<spThuocTonKhoResult> results = db.spThuocTonKho(fromDate, toDate, maThuocStr).ToList<spThuocTonKhoResult>();
+                    thuocTonKhos.AddRange(results);
+                }
+
+                result.QueryResult = thuocTonKhos;
             }
             catch (System.Data.SqlClient.SqlException se)
             {
