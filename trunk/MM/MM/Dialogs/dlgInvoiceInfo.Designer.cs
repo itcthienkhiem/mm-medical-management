@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgInvoiceInfo));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle7 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
@@ -52,7 +53,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle22 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle23 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle24 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgInvoiceInfo));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnClose2 = new System.Windows.Forms.Button();
@@ -75,6 +75,9 @@
             this.label2 = new System.Windows.Forms.Label();
             this.panel5 = new System.Windows.Forms.Panel();
             this.panel6 = new System.Windows.Forms.Panel();
+            this.btnXoaTenDonVi = new System.Windows.Forms.Button();
+            this.btnXoaMaDonVi = new System.Windows.Forms.Button();
+            this.btnXoaTenKhachHang = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.txtGhiChu = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
@@ -138,9 +141,6 @@
             this.dataGridViewTextBoxColumn9 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn10 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn11 = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.btnXoaTenDonVi = new System.Windows.Forms.Button();
-            this.btnXoaMaDonVi = new System.Windows.Forms.Button();
-            this.btnXoaTenKhachHang = new System.Windows.Forms.Button();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.panel4.SuspendLayout();
@@ -399,7 +399,6 @@
             this.panel6.Controls.Add(this.label3);
             this.panel6.Controls.Add(this.raGuiQuaBuuDien);
             this.panel6.Controls.Add(this.raKhachTuLay);
-            this.panel6.Controls.Add(this.txtTenNguoiMuaHang);
             this.panel6.Controls.Add(this.cboTenNguoiMuaHang);
             this.panel6.Controls.Add(this.chkDaThuTien);
             this.panel6.Controls.Add(this.txtMaSoThue);
@@ -412,16 +411,47 @@
             this.panel6.Controls.Add(this.lbAddress);
             this.panel6.Controls.Add(this.label9);
             this.panel6.Controls.Add(this.lbPatientName);
-            this.panel6.Controls.Add(this.txtMaDonVi);
             this.panel6.Controls.Add(this.cboMaDonVi);
-            this.panel6.Controls.Add(this.txtTenDonVi);
             this.panel6.Controls.Add(this.cboTenDonVi);
             this.panel6.Controls.Add(this.txtHinhThucThanhToan);
+            this.panel6.Controls.Add(this.txtTenNguoiMuaHang);
+            this.panel6.Controls.Add(this.txtMaDonVi);
+            this.panel6.Controls.Add(this.txtTenDonVi);
             this.panel6.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel6.Location = new System.Drawing.Point(0, 190);
             this.panel6.Name = "panel6";
             this.panel6.Size = new System.Drawing.Size(708, 195);
             this.panel6.TabIndex = 0;
+            // 
+            // btnXoaTenDonVi
+            // 
+            this.btnXoaTenDonVi.Image = ((System.Drawing.Image)(resources.GetObject("btnXoaTenDonVi.Image")));
+            this.btnXoaTenDonVi.Location = new System.Drawing.Point(489, 48);
+            this.btnXoaTenDonVi.Name = "btnXoaTenDonVi";
+            this.btnXoaTenDonVi.Size = new System.Drawing.Size(22, 22);
+            this.btnXoaTenDonVi.TabIndex = 54;
+            this.btnXoaTenDonVi.UseVisualStyleBackColor = true;
+            this.btnXoaTenDonVi.Click += new System.EventHandler(this.btnXoaTenDonVi_Click);
+            // 
+            // btnXoaMaDonVi
+            // 
+            this.btnXoaMaDonVi.Image = ((System.Drawing.Image)(resources.GetObject("btnXoaMaDonVi.Image")));
+            this.btnXoaMaDonVi.Location = new System.Drawing.Point(489, 25);
+            this.btnXoaMaDonVi.Name = "btnXoaMaDonVi";
+            this.btnXoaMaDonVi.Size = new System.Drawing.Size(22, 22);
+            this.btnXoaMaDonVi.TabIndex = 53;
+            this.btnXoaMaDonVi.UseVisualStyleBackColor = true;
+            this.btnXoaMaDonVi.Click += new System.EventHandler(this.btnXoaMaDonVi_Click);
+            // 
+            // btnXoaTenKhachHang
+            // 
+            this.btnXoaTenKhachHang.Image = ((System.Drawing.Image)(resources.GetObject("btnXoaTenKhachHang.Image")));
+            this.btnXoaTenKhachHang.Location = new System.Drawing.Point(489, 2);
+            this.btnXoaTenKhachHang.Name = "btnXoaTenKhachHang";
+            this.btnXoaTenKhachHang.Size = new System.Drawing.Size(22, 22);
+            this.btnXoaTenKhachHang.TabIndex = 52;
+            this.btnXoaTenKhachHang.UseVisualStyleBackColor = true;
+            this.btnXoaTenKhachHang.Click += new System.EventHandler(this.btnXoaTenKhachHang_Click);
             // 
             // label4
             // 
@@ -483,6 +513,8 @@
             // 
             // cboTenNguoiMuaHang
             // 
+            this.cboTenNguoiMuaHang.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cboTenNguoiMuaHang.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboTenNguoiMuaHang.FormattingEnabled = true;
             this.cboTenNguoiMuaHang.Location = new System.Drawing.Point(143, 3);
             this.cboTenNguoiMuaHang.Name = "cboTenNguoiMuaHang";
@@ -609,6 +641,8 @@
             // 
             // cboMaDonVi
             // 
+            this.cboMaDonVi.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cboMaDonVi.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboMaDonVi.FormattingEnabled = true;
             this.cboMaDonVi.Location = new System.Drawing.Point(143, 27);
             this.cboMaDonVi.Name = "cboMaDonVi";
@@ -627,6 +661,8 @@
             // 
             // cboTenDonVi
             // 
+            this.cboTenDonVi.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.cboTenDonVi.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboTenDonVi.FormattingEnabled = true;
             this.cboTenDonVi.Location = new System.Drawing.Point(143, 51);
             this.cboTenDonVi.Name = "cboTenDonVi";
@@ -1161,36 +1197,6 @@
             this.dataGridViewTextBoxColumn11.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dataGridViewTextBoxColumn11.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.dataGridViewTextBoxColumn11.Width = 120;
-            // 
-            // btnXoaTenDonVi
-            // 
-            this.btnXoaTenDonVi.Image = ((System.Drawing.Image)(resources.GetObject("btnXoaTenDonVi.Image")));
-            this.btnXoaTenDonVi.Location = new System.Drawing.Point(489, 48);
-            this.btnXoaTenDonVi.Name = "btnXoaTenDonVi";
-            this.btnXoaTenDonVi.Size = new System.Drawing.Size(22, 22);
-            this.btnXoaTenDonVi.TabIndex = 54;
-            this.btnXoaTenDonVi.UseVisualStyleBackColor = true;
-            this.btnXoaTenDonVi.Click += new System.EventHandler(this.btnXoaTenDonVi_Click);
-            // 
-            // btnXoaMaDonVi
-            // 
-            this.btnXoaMaDonVi.Image = ((System.Drawing.Image)(resources.GetObject("btnXoaMaDonVi.Image")));
-            this.btnXoaMaDonVi.Location = new System.Drawing.Point(489, 25);
-            this.btnXoaMaDonVi.Name = "btnXoaMaDonVi";
-            this.btnXoaMaDonVi.Size = new System.Drawing.Size(22, 22);
-            this.btnXoaMaDonVi.TabIndex = 53;
-            this.btnXoaMaDonVi.UseVisualStyleBackColor = true;
-            this.btnXoaMaDonVi.Click += new System.EventHandler(this.btnXoaMaDonVi_Click);
-            // 
-            // btnXoaTenKhachHang
-            // 
-            this.btnXoaTenKhachHang.Image = ((System.Drawing.Image)(resources.GetObject("btnXoaTenKhachHang.Image")));
-            this.btnXoaTenKhachHang.Location = new System.Drawing.Point(489, 2);
-            this.btnXoaTenKhachHang.Name = "btnXoaTenKhachHang";
-            this.btnXoaTenKhachHang.Size = new System.Drawing.Size(22, 22);
-            this.btnXoaTenKhachHang.TabIndex = 52;
-            this.btnXoaTenKhachHang.UseVisualStyleBackColor = true;
-            this.btnXoaTenKhachHang.Click += new System.EventHandler(this.btnXoaTenKhachHang_Click);
             // 
             // dlgInvoiceInfo
             // 
