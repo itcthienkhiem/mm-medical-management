@@ -1050,7 +1050,7 @@ namespace MM.Controls
             if (checkedRows.Count > 0)
             {
                 bool onlyEmail = false;
-                if (MsgBox.Question(Application.ProductName, "Bạn chỉ muốn xuất những bệnh nhân có địa chỉ email hay xuất hết ?") == DialogResult.Yes)
+                if (MsgBox.Question(Application.ProductName, "Bạn chỉ muốn xuất những bệnh nhân có địa chỉ email hay xuất hết ?\nNhấn 'Đồng ý' để xuất những bệnh nhân có email.\nNhấn 'Không' để xuất tất cả bệnh nhân.") == DialogResult.Yes)
                     onlyEmail = true;
 
                 string exportFileName = string.Format("{0}\\Temp\\DanhSachBenhNhan2.xls", Application.StartupPath);
@@ -1081,7 +1081,7 @@ namespace MM.Controls
             if (checkedRows.Count > 0)
             {
                 bool onlyEmail = false;
-                if (MsgBox.Question(Application.ProductName, "Bạn chỉ muốn xuất những bệnh nhân có địa chỉ email hay xuất hết ?") == DialogResult.Yes)
+                if (MsgBox.Question(Application.ProductName, "Bạn chỉ muốn xuất những bệnh nhân có địa chỉ email hay xuất hết ?\nNhấn 'Đồng ý' để xuất những bệnh nhân có email.\nNhấn 'Không' để xuất tất cả bệnh nhân.") == DialogResult.Yes)
                     onlyEmail = true;
 
                 SaveFileDialog dlg = new SaveFileDialog();
