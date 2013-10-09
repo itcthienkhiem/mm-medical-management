@@ -83,7 +83,6 @@
             this.label3 = new System.Windows.Forms.Label();
             this.raGuiQuaBuuDien = new System.Windows.Forms.RadioButton();
             this.raKhachTuLay = new System.Windows.Forms.RadioButton();
-            this.txtTenNguoiMuaHang = new System.Windows.Forms.TextBox();
             this.cboTenNguoiMuaHang = new System.Windows.Forms.ComboBox();
             this.chkDaThuTien = new System.Windows.Forms.CheckBox();
             this.txtMaSoThue = new System.Windows.Forms.TextBox();
@@ -96,11 +95,12 @@
             this.lbAddress = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.lbPatientName = new System.Windows.Forms.Label();
-            this.txtMaDonVi = new System.Windows.Forms.TextBox();
             this.cboMaDonVi = new System.Windows.Forms.ComboBox();
-            this.txtTenDonVi = new System.Windows.Forms.TextBox();
             this.cboTenDonVi = new System.Windows.Forms.ComboBox();
             this.txtHinhThucThanhToan = new System.Windows.Forms.TextBox();
+            this.txtTenNguoiMuaHang = new System.Windows.Forms.TextBox();
+            this.txtMaDonVi = new System.Windows.Forms.TextBox();
+            this.txtTenDonVi = new System.Windows.Forms.TextBox();
             this.panel7 = new System.Windows.Forms.Panel();
             this.tabDetail = new System.Windows.Forms.TabControl();
             this.pageDichVu = new System.Windows.Forms.TabPage();
@@ -426,7 +426,7 @@
             // btnXoaTenDonVi
             // 
             this.btnXoaTenDonVi.Image = ((System.Drawing.Image)(resources.GetObject("btnXoaTenDonVi.Image")));
-            this.btnXoaTenDonVi.Location = new System.Drawing.Point(489, 48);
+            this.btnXoaTenDonVi.Location = new System.Drawing.Point(672, 49);
             this.btnXoaTenDonVi.Name = "btnXoaTenDonVi";
             this.btnXoaTenDonVi.Size = new System.Drawing.Size(22, 22);
             this.btnXoaTenDonVi.TabIndex = 54;
@@ -436,7 +436,7 @@
             // btnXoaMaDonVi
             // 
             this.btnXoaMaDonVi.Image = ((System.Drawing.Image)(resources.GetObject("btnXoaMaDonVi.Image")));
-            this.btnXoaMaDonVi.Location = new System.Drawing.Point(489, 25);
+            this.btnXoaMaDonVi.Location = new System.Drawing.Point(672, 26);
             this.btnXoaMaDonVi.Name = "btnXoaMaDonVi";
             this.btnXoaMaDonVi.Size = new System.Drawing.Size(22, 22);
             this.btnXoaMaDonVi.TabIndex = 53;
@@ -446,7 +446,7 @@
             // btnXoaTenKhachHang
             // 
             this.btnXoaTenKhachHang.Image = ((System.Drawing.Image)(resources.GetObject("btnXoaTenKhachHang.Image")));
-            this.btnXoaTenKhachHang.Location = new System.Drawing.Point(489, 2);
+            this.btnXoaTenKhachHang.Location = new System.Drawing.Point(672, 3);
             this.btnXoaTenKhachHang.Name = "btnXoaTenKhachHang";
             this.btnXoaTenKhachHang.Size = new System.Drawing.Size(22, 22);
             this.btnXoaTenKhachHang.TabIndex = 52;
@@ -502,15 +502,6 @@
             this.raKhachTuLay.Text = "Khách tự lấy";
             this.raKhachTuLay.UseVisualStyleBackColor = true;
             // 
-            // txtTenNguoiMuaHang
-            // 
-            this.txtTenNguoiMuaHang.Location = new System.Drawing.Point(143, 3);
-            this.txtTenNguoiMuaHang.Name = "txtTenNguoiMuaHang";
-            this.txtTenNguoiMuaHang.ReadOnly = true;
-            this.txtTenNguoiMuaHang.Size = new System.Drawing.Size(342, 20);
-            this.txtTenNguoiMuaHang.TabIndex = 17;
-            this.txtTenNguoiMuaHang.Visible = false;
-            // 
             // cboTenNguoiMuaHang
             // 
             this.cboTenNguoiMuaHang.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
@@ -518,7 +509,7 @@
             this.cboTenNguoiMuaHang.FormattingEnabled = true;
             this.cboTenNguoiMuaHang.Location = new System.Drawing.Point(143, 3);
             this.cboTenNguoiMuaHang.Name = "cboTenNguoiMuaHang";
-            this.cboTenNguoiMuaHang.Size = new System.Drawing.Size(342, 21);
+            this.cboTenNguoiMuaHang.Size = new System.Drawing.Size(524, 21);
             this.cboTenNguoiMuaHang.TabIndex = 16;
             this.cboTenNguoiMuaHang.SelectedIndexChanged += new System.EventHandler(this.cboTenNguoiMuaHang_SelectedIndexChanged);
             // 
@@ -630,15 +621,6 @@
             this.lbPatientName.TabIndex = 15;
             this.lbPatientName.Text = "Họ tên người mua hàng:";
             // 
-            // txtMaDonVi
-            // 
-            this.txtMaDonVi.Location = new System.Drawing.Point(143, 27);
-            this.txtMaDonVi.Name = "txtMaDonVi";
-            this.txtMaDonVi.ReadOnly = true;
-            this.txtMaDonVi.Size = new System.Drawing.Size(342, 20);
-            this.txtMaDonVi.TabIndex = 33;
-            this.txtMaDonVi.Visible = false;
-            // 
             // cboMaDonVi
             // 
             this.cboMaDonVi.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
@@ -646,18 +628,9 @@
             this.cboMaDonVi.FormattingEnabled = true;
             this.cboMaDonVi.Location = new System.Drawing.Point(143, 27);
             this.cboMaDonVi.Name = "cboMaDonVi";
-            this.cboMaDonVi.Size = new System.Drawing.Size(342, 21);
+            this.cboMaDonVi.Size = new System.Drawing.Size(524, 21);
             this.cboMaDonVi.TabIndex = 18;
             this.cboMaDonVi.SelectedIndexChanged += new System.EventHandler(this.cboMaDonVi_SelectedIndexChanged);
-            // 
-            // txtTenDonVi
-            // 
-            this.txtTenDonVi.Location = new System.Drawing.Point(143, 51);
-            this.txtTenDonVi.Name = "txtTenDonVi";
-            this.txtTenDonVi.ReadOnly = true;
-            this.txtTenDonVi.Size = new System.Drawing.Size(342, 20);
-            this.txtTenDonVi.TabIndex = 19;
-            this.txtTenDonVi.Visible = false;
             // 
             // cboTenDonVi
             // 
@@ -666,7 +639,7 @@
             this.cboTenDonVi.FormattingEnabled = true;
             this.cboTenDonVi.Location = new System.Drawing.Point(143, 51);
             this.cboTenDonVi.Name = "cboTenDonVi";
-            this.cboTenDonVi.Size = new System.Drawing.Size(342, 21);
+            this.cboTenDonVi.Size = new System.Drawing.Size(524, 21);
             this.cboTenDonVi.TabIndex = 19;
             this.cboTenDonVi.SelectedIndexChanged += new System.EventHandler(this.cboTenDonVi_SelectedIndexChanged);
             // 
@@ -678,6 +651,33 @@
             this.txtHinhThucThanhToan.Size = new System.Drawing.Size(178, 20);
             this.txtHinhThucThanhToan.TabIndex = 26;
             this.txtHinhThucThanhToan.Visible = false;
+            // 
+            // txtTenNguoiMuaHang
+            // 
+            this.txtTenNguoiMuaHang.Location = new System.Drawing.Point(143, 3);
+            this.txtTenNguoiMuaHang.Name = "txtTenNguoiMuaHang";
+            this.txtTenNguoiMuaHang.ReadOnly = true;
+            this.txtTenNguoiMuaHang.Size = new System.Drawing.Size(342, 20);
+            this.txtTenNguoiMuaHang.TabIndex = 17;
+            this.txtTenNguoiMuaHang.Visible = false;
+            // 
+            // txtMaDonVi
+            // 
+            this.txtMaDonVi.Location = new System.Drawing.Point(143, 27);
+            this.txtMaDonVi.Name = "txtMaDonVi";
+            this.txtMaDonVi.ReadOnly = true;
+            this.txtMaDonVi.Size = new System.Drawing.Size(342, 20);
+            this.txtMaDonVi.TabIndex = 33;
+            this.txtMaDonVi.Visible = false;
+            // 
+            // txtTenDonVi
+            // 
+            this.txtTenDonVi.Location = new System.Drawing.Point(143, 51);
+            this.txtTenDonVi.Name = "txtTenDonVi";
+            this.txtTenDonVi.ReadOnly = true;
+            this.txtTenDonVi.Size = new System.Drawing.Size(342, 20);
+            this.txtTenDonVi.TabIndex = 19;
+            this.txtTenDonVi.Visible = false;
             // 
             // panel7
             // 
