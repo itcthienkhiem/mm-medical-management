@@ -35,6 +35,34 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetCompanyList(string name)
+        {
+            Result result = null;
+
+            try
+            {
+                string subQuery = string.Empty;
+                if (name.Trim() != string.Empty)
+                    subQuery = string.Format("AND TenCty LIKE N'%{0}%'", name);
+
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM Company WITH(NOLOCK) WHERE Status={0} {1} ORDER BY TenCty", 
+                    (byte)Status.Actived, subQuery);
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetCompanyCount()
         {
             Result result = null;
