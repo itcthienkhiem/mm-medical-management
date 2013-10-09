@@ -1049,10 +1049,14 @@ namespace MM.Controls
             
             if (checkedRows.Count > 0)
             {
+                bool onlyEmail = false;
+                if (MsgBox.Question(Application.ProductName, "Bạn chỉ muốn xuất những bệnh nhân có địa chỉ email hay xuất hết ?") == DialogResult.Yes)
+                    onlyEmail = true;
+
                 string exportFileName = string.Format("{0}\\Temp\\DanhSachBenhNhan2.xls", Application.StartupPath);
                 if (_printDialog.ShowDialog() == DialogResult.OK)
                 {
-                    if (ExportExcel.ExportDanhSachBenhNhan2ToExcel(exportFileName, checkedRows))
+                    if (ExportExcel.ExportDanhSachBenhNhan2ToExcel(exportFileName, checkedRows, onlyEmail))
                     {
                         try
                         {
@@ -1076,12 +1080,16 @@ namespace MM.Controls
             List<DataRow> checkedRows = _dictPatient.Values.ToList();
             if (checkedRows.Count > 0)
             {
+                bool onlyEmail = false;
+                if (MsgBox.Question(Application.ProductName, "Bạn chỉ muốn xuất những bệnh nhân có địa chỉ email hay xuất hết ?") == DialogResult.Yes)
+                    onlyEmail = true;
+
                 SaveFileDialog dlg = new SaveFileDialog();
                 dlg.Title = "Export Excel";
                 dlg.Filter = "Excel Files(*.xls,*.xlsx)|*.xls;*.xlsx";
                 if (dlg.ShowDialog() == DialogResult.OK)
                 {
-                    if (!ExportExcel.ExportDanhSachBenhNhan2ToExcel(dlg.FileName, checkedRows))
+                    if (!ExportExcel.ExportDanhSachBenhNhan2ToExcel(dlg.FileName, checkedRows, onlyEmail))
                         return;
                 }
             }
