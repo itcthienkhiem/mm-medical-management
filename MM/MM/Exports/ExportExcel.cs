@@ -8990,6 +8990,10 @@ namespace MM.Exports
 
             try
             {
+
+                rows.Sort((a, b) => String.Compare(a["FirstName"].ToString() + " " + a["FullName"].ToString(), 
+                    b["FirstName"].ToString() + " " + b["FullName"].ToString()));
+
                 string excelTemplateName = string.Format("{0}\\Templates\\DanhSachBenhNhan2Template.xls", Application.StartupPath);
                 Utility.CopyTemplates(excelTemplateName);
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
