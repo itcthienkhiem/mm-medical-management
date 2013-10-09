@@ -8983,7 +8983,7 @@ namespace MM.Exports
             return true;
         }
 
-        public static bool ExportDanhSachBenhNhan2ToExcel(string exportFileName, List<DataRow> rows)
+        public static bool ExportDanhSachBenhNhan2ToExcel(string exportFileName, List<DataRow> rows, bool onlyEmail)
         {
             Cursor.Current = Cursors.WaitCursor;
             IWorkbook workBook = null;
@@ -9004,6 +9004,9 @@ namespace MM.Exports
 
                 foreach (DataRow row in rows)
                 {
+                    string email = row["Email"] as string;
+                    if (onlyEmail && (email == null || email.Trim() == string.Empty)) continue;
+
                     string maBenhNhan = row["FileNum"].ToString();
                     string tenBenhNhan = row["FullName"].ToString();
                     string ngaySinh = string.Empty;
@@ -9016,7 +9019,7 @@ namespace MM.Exports
 
                     string mobile = row["Mobile"] as string;
 
-                    string email = row["Email"] as string;
+                    
 
                     string diaChi = string.Empty;
                     if (row["Address"] != null && row["Address"] != DBNull.Value)
