@@ -9012,6 +9012,8 @@ namespace MM.Exports
 
                     string mobile = row["Mobile"] as string;
 
+                    string email = row["Email"] as string;
+
                     string diaChi = string.Empty;
                     if (row["Address"] != null && row["Address"] != DBNull.Value)
                         diaChi = row["Address"].ToString();
@@ -9035,13 +9037,16 @@ namespace MM.Exports
                     range.Value = mobile;
 
                     range = workSheet.Cells[rowIndex, 6];
+                    range.Value = email;
+
+                    range = workSheet.Cells[rowIndex, 7];
                     range.Value = diaChi;
 
                     rowIndex++;
                     stt++;
                 }
 
-                range = workSheet.Cells[string.Format("A3:G{0}", rowIndex)];
+                range = workSheet.Cells[string.Format("A3:H{0}", rowIndex)];
                 range.Borders.Color = Color.Black;
                 range.Borders.LineStyle = LineStyle.Continuous;
                 range.Borders.Weight = BorderWeight.Thin;
