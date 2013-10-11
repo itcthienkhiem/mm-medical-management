@@ -264,7 +264,7 @@ namespace MM.Dialogs
                     txtMaSoThue.Text = ttkh.MaSoThue;
                     txtAddress.Text = ttkh.DiaChi;
                     txtSoTaiKhoan.Text = ttkh.SoTaiKhoan;
-                    cboTenDonVi.Text = ttkh.MaDonVi;
+                    cboTenDonVi.Text = ttkh.TenDonVi;
                     cboHinhThucThanhToan.SelectedIndex = ttkh.HinhThucThanhToan.Value;
                 }
                 else
