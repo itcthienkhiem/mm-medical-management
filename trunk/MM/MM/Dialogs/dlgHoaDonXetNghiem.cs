@@ -396,28 +396,28 @@ namespace MM.Dialogs
 
         private void CalculateThanhTien()
         {
-            int rowIndex = dgDetail.CurrentCell.RowIndex;
-            int colIndex = dgDetail.CurrentCell.ColumnIndex;
+            //int rowIndex = dgDetail.CurrentCell.RowIndex;
+            //int colIndex = dgDetail.CurrentCell.ColumnIndex;
 
-            if (rowIndex < 0 || colIndex < 0) return;
+            //if (rowIndex < 0 || colIndex < 0) return;
 
-            int soLuong = 1;
-            string strValue = dgDetail[3, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
-            if (strValue != string.Empty && strValue != "System.Data.DataRowView")
-                soLuong = Convert.ToInt32(strValue);
+            //int soLuong = 1;
+            //string strValue = dgDetail[3, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
+            //if (strValue != string.Empty && strValue != "System.Data.DataRowView")
+            //    soLuong = Convert.ToInt32(strValue);
 
-            strValue = dgDetail[4, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
-            int donGia = 0;
-            if (strValue != string.Empty && strValue != "System.Data.DataRowView")
-                donGia = Convert.ToInt32(strValue);
+            //strValue = dgDetail[4, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
+            //int donGia = 0;
+            //if (strValue != string.Empty && strValue != "System.Data.DataRowView")
+            //    donGia = Convert.ToInt32(strValue);
 
-            strValue = dgDetail[5, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
-            int giam = 0;
-            if (strValue != string.Empty && strValue != "System.Data.DataRowView")
-                giam = Convert.ToInt32(strValue);
+            //strValue = dgDetail[5, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
+            //int giam = 0;
+            //if (strValue != string.Empty && strValue != "System.Data.DataRowView")
+            //    giam = Convert.ToInt32(strValue);
             
-            double thanhTien = soLuong * donGia;
-            dgDetail[5, rowIndex].Value = thanhTien;
+            //double thanhTien = soLuong * donGia;
+            //dgDetail[5, rowIndex].Value = thanhTien;
 
             CalculateTongTien();
         }
@@ -429,8 +429,13 @@ namespace MM.Dialogs
             for (int i = 0; i < rowCount; i++)
             {
                 double tt = 0;
-                if (dgDetail[5, i].Value != null && dgDetail[5, i].Value != DBNull.Value)
-                    tt = Convert.ToDouble(dgDetail[5, i].Value);
+
+                string strValue = dgDetail[5, i].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
+                if (strValue != string.Empty && strValue != "System.Data.DataRowView")
+                    tt = Convert.ToDouble(strValue);
+
+                //if (dgDetail[5, i].Value != null && dgDetail[5, i].Value != DBNull.Value)
+                //    tt = Convert.ToDouble(dgDetail[5, i].Value);
                 _totalPrice += tt;
             }
 
@@ -564,21 +569,21 @@ namespace MM.Dialogs
                     return false;
                 }
 
-                if (row.Cells[2].Value.ToString().Trim() == string.Empty)
-                {
-                    MsgBox.Show(this.Text, "Vui lòng nhập đơn vị tính.", IconType.Information);
-                    return false;
-                }
+                //if (row.Cells[2].Value.ToString().Trim() == string.Empty)
+                //{
+                //    MsgBox.Show(this.Text, "Vui lòng nhập đơn vị tính.", IconType.Information);
+                //    return false;
+                //}
 
-                int donGia = 0;
-                if (row.Cells[4].Value != null && row.Cells[4].Value != DBNull.Value && row.Cells[4].Value.ToString().Trim() != string.Empty)
-                    donGia = Convert.ToInt32(row.Cells[4].Value);
+                //int donGia = 0;
+                //if (row.Cells[4].Value != null && row.Cells[4].Value != DBNull.Value && row.Cells[4].Value.ToString().Trim() != string.Empty)
+                //    donGia = Convert.ToInt32(row.Cells[4].Value);
 
-                if (donGia <= 0)
-                {
-                    MsgBox.Show(this.Text, "Vui lòng nhập đơn giá.", IconType.Information);
-                    return false;
-                }
+                //if (donGia <= 0)
+                //{
+                //    MsgBox.Show(this.Text, "Vui lòng nhập đơn giá.", IconType.Information);
+                //    return false;
+                //}
             }
 
             return true;
@@ -619,27 +624,28 @@ namespace MM.Dialogs
                     detail.CreatedBy = Guid.Parse(Global.UserGUID);
                     detail.TenHangHoa = row.Cells["TenHangHoa"].Value.ToString();
                     
-                    if (row.Cells["DonViTinh"].Value != null)
-                        detail.DonViTinh = row.Cells["DonViTinh"].Value.ToString();
-                    else
-                        detail.DonViTinh = "Lần";
+                    //if (row.Cells["DonViTinh"].Value != null)
+                    //    detail.DonViTinh = row.Cells["DonViTinh"].Value.ToString();
+                    //else
+                    detail.DonViTinh = "Lần";
 
                     int soLuong = 1;
-                    if (row.Cells["SoLuong"].Value != null && row.Cells["SoLuong"].Value != DBNull.Value)
-                        soLuong = Convert.ToInt32(row.Cells["SoLuong"].Value);
+                    //if (row.Cells["SoLuong"].Value != null && row.Cells["SoLuong"].Value != DBNull.Value)
+                    //    soLuong = Convert.ToInt32(row.Cells["SoLuong"].Value);
                     detail.SoLuong = soLuong;
 
-                    int donGia = 0;
-                    if (row.Cells["DonGia"].Value != null && row.Cells["DonGia"].Value != DBNull.Value)
-                        donGia = Convert.ToInt32(row.Cells["DonGia"].Value);
+                    //int donGia = 0;
+                    //if (row.Cells["DonGia"].Value != null && row.Cells["DonGia"].Value != DBNull.Value)
+                    //    donGia = Convert.ToInt32(row.Cells["DonGia"].Value);
 
-                    detail.DonGia = donGia;
+                    //detail.DonGia = donGia;
 
                     int thanhTien = 0;
                     if (row.Cells["ThanhTien"].Value != null && row.Cells["ThanhTien"].Value != DBNull.Value)
                         thanhTien = Convert.ToInt32(row.Cells["ThanhTien"].Value);
 
                     detail.ThanhTien = thanhTien;
+                    detail.DonGia = thanhTien;
 
                     addedDetails.Add(detail);
                 }
@@ -949,7 +955,7 @@ namespace MM.Dialogs
 
         private void dgDetail_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            if (dgDetail.CurrentCell.ColumnIndex >= 3 && dgDetail.CurrentCell.ColumnIndex <= 4)
+            if (dgDetail.CurrentCell.ColumnIndex >= 3) //&& dgDetail.CurrentCell.ColumnIndex <= 4)
             {
                 TextBox textBox = e.Control as TextBox;
 
@@ -999,7 +1005,7 @@ namespace MM.Dialogs
         private void textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             int colIndex = dgDetail.CurrentCell.ColumnIndex;
-            if (colIndex != 3 && colIndex != 4) return;
+            if (colIndex != 3 && colIndex != 4 && colIndex != 5) return;
             
             DataGridViewTextBoxEditingControl textBox = (DataGridViewTextBoxEditingControl)sender;
             if (!(char.IsDigit(e.KeyChar)))
