@@ -10409,9 +10409,9 @@ namespace MM.Exports
                 foreach (DataRow row in dataSource.Rows)
                 {
                     string tenHangHoa = row["TenHangHoa"].ToString();
-                    string donViTinh = row["DonViTinh"].ToString();
-                    int soLuong = Convert.ToInt32(row["SoLuong"]);
-                    int donGia = Convert.ToInt32(row["DonGia"]);
+                    //string donViTinh = row["DonViTinh"].ToString();
+                    //int soLuong = Convert.ToInt32(row["SoLuong"]);
+                    //int donGia = Convert.ToInt32(row["DonGia"]);
                     double thanhTien = Convert.ToDouble(row["ThanhTien"]);
                     totalPrice += thanhTien;
 
@@ -10419,27 +10419,29 @@ namespace MM.Exports
                     range.Value = no++;
                     range.HorizontalAlignment = HAlign.Center;
 
-                    range = workSheet.Cells[rowIndex, 1];
+                    range = workSheet.Cells[string.Format("B{0}:E{0}", rowIndex + 1)];
+                    range.Merge();
+                    //range = workSheet.Cells[rowIndex, 1];
                     range.Value = tenHangHoa;
                     range.HorizontalAlignment = HAlign.Left;
                     range.WrapText = true;
 
-                    range = workSheet.Cells[rowIndex, 2];
-                    range.Value = donViTinh;
-                    range.HorizontalAlignment = HAlign.Center;
+                    //range = workSheet.Cells[rowIndex, 2];
+                    //range.Value = donViTinh;
+                    //range.HorizontalAlignment = HAlign.Center;
 
-                    range = workSheet.Cells[rowIndex, 3];
-                    range.Value = soLuong;
-                    range.HorizontalAlignment = HAlign.Center;
+                    //range = workSheet.Cells[rowIndex, 3];
+                    //range.Value = soLuong;
+                    //range.HorizontalAlignment = HAlign.Center;
 
-                    range = workSheet.Cells[rowIndex, 4];
-                    range.NumberFormat = "@";
-                    if (donGia > 0)
-                        range.Value = Utility.ToStringFormat(donGia);
-                    else
-                        range.Value = donGia.ToString();
+                    //range = workSheet.Cells[rowIndex, 4];
+                    //range.NumberFormat = "@";
+                    //if (donGia > 0)
+                    //    range.Value = Utility.ToStringFormat(donGia);
+                    //else
+                    //    range.Value = donGia.ToString();
 
-                    range.HorizontalAlignment = HAlign.Right;
+                    //range.HorizontalAlignment = HAlign.Right;
 
                     range = workSheet.Cells[rowIndex, 5];
                     range.NumberFormat = "@";
