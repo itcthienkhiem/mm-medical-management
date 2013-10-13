@@ -119,10 +119,13 @@ namespace MM.Dialogs
             if (result.IsOK)
             {
                 DataTable dt = result.QueryResult as DataTable;
-                foreach (DataRow row in dt.Rows)
-                {
-                    cboTenNguoiMuaHang.Items.Add(row["TenKhachHang"].ToString());
-                }
+                cboTenNguoiMuaHang.DisplayMember = "TenKhachHang";
+                cboTenNguoiMuaHang.ValueMember = "ThongTinKhachHangGUID";
+                cboTenNguoiMuaHang.DataSource = dt;
+                //foreach (DataRow row in dt.Rows)
+                //{
+                //    cboTenNguoiMuaHang.Items.Add(row["TenKhachHang"].ToString());
+                //}
             }
             else
             {
@@ -173,7 +176,7 @@ namespace MM.Dialogs
             _flag3 = true;
         }
 
-        private void RefreshThongTinKhachHang(string tenKhachHang)
+        private void RefreshThongTinKhachHang(string thongTinKhachHangGUID)
         {
             _flag3 = false;
             cboMaDonVi.Text = string.Empty;
@@ -182,9 +185,9 @@ namespace MM.Dialogs
             txtAddress.Text = string.Empty;
             txtSoTaiKhoan.Text = string.Empty;
 
-            if (tenKhachHang.Trim() != string.Empty)
+            if (thongTinKhachHangGUID.Trim() != string.Empty)
             {
-                Result result = ThongTinKhachHangBus.GetThongTinKhachHang(tenKhachHang);
+                Result result = ThongTinKhachHangBus.GetThongTinKhachHang(thongTinKhachHangGUID);
                 if (result.IsOK)
                 {
                     ThongTinKhachHang ttkh = result.QueryResult as ThongTinKhachHang;
@@ -966,8 +969,10 @@ namespace MM.Dialogs
 
             if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa tên người mua hàng ?") == System.Windows.Forms.DialogResult.No) return;
 
-            string tenKhachHang = cboTenNguoiMuaHang.Text;
-            Result result = ThongTinKhachHangBus.DeleteTenKhachHang(tenKhachHang);
+            string thongTinKhachHangGUID = string.Empty;
+            if (cboTenNguoiMuaHang.SelectedValue != null)
+                thongTinKhachHangGUID = cboTenNguoiMuaHang.SelectedValue.ToString();
+            Result result = ThongTinKhachHangBus.DeleteTenKhachHang(thongTinKhachHangGUID);
             if (!result.IsOK)
             {
                 MsgBox.Show(this.Text, result.GetErrorAsString("ThongTinKhachHangBus.DeleteTenKhachHang"), IconType.Error);
@@ -976,14 +981,20 @@ namespace MM.Dialogs
             }
 
             _flag3 = false;
-            foreach (var item in cboTenNguoiMuaHang.Items)
+            DataTable dt = cboTenNguoiMuaHang.DataSource as DataTable;
+            DataRow[] rows = dt.Select(string.Format("ThongTinKhachHangGUID='{0}'", thongTinKhachHangGUID));
+            if (rows != null && rows.Length > 0)
             {
-                if (item.ToString() == tenKhachHang)
-                {
-                    cboTenNguoiMuaHang.Items.Remove(item);
-                    break;
-                }
+                dt.Rows.Remove(rows[0]);
             }
+            //foreach (var item in cboTenNguoiMuaHang.Items)
+            //{
+            //    if (item.ToString() == tenKhachHang)
+            //    {
+            //        cboTenNguoiMuaHang.Items.Remove(item);
+            //        break;
+            //    }
+            //}
 
             cboTenNguoiMuaHang.Text = string.Empty;
 
@@ -1333,7 +1344,10 @@ namespace MM.Dialogs
         private void cboTenNguoiMuaHang_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (_isView || !_flag3) return;
-            RefreshThongTinKhachHang(cboTenNguoiMuaHang.Text);
+            string thongTinKhachHangGUID = string.Empty;
+            if (cboTenNguoiMuaHang.SelectedValue != null)
+                thongTinKhachHangGUID = cboTenNguoiMuaHang.SelectedValue.ToString();
+            RefreshThongTinKhachHang(thongTinKhachHangGUID);
         }
 
         private void cboTenDonVi_SelectedIndexChanged(object sender, EventArgs e)

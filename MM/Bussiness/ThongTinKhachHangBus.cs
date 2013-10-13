@@ -18,7 +18,7 @@ namespace MM.Bussiness
 
             try
             {
-                string query = "SELECT TenKhachHang FROM ThongTinKhachHang WITH(NOLOCK) ORDER BY TenKhachHang";
+                string query = "SELECT ThongTinKhachHangGUID, TenKhachHang FROM ThongTinKhachHang WITH(NOLOCK) ORDER BY TenKhachHang";
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -81,7 +81,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetThongTinKhachHang(string tenKhachHang)
+        public static Result GetThongTinKhachHang(string thongTinKhachHangGUID)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -89,7 +89,7 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-                ThongTinKhachHang ttkh = db.ThongTinKhachHangs.FirstOrDefault(t => t.TenKhachHang.Trim().ToLower() == tenKhachHang.Trim().ToLower());
+                ThongTinKhachHang ttkh = db.ThongTinKhachHangs.FirstOrDefault(t => t.ThongTinKhachHangGUID.ToString().ToLower() == thongTinKhachHangGUID.ToLower());
                 result.QueryResult = ttkh;
             }
             catch (System.Data.SqlClient.SqlException se)
@@ -220,7 +220,9 @@ namespace MM.Bussiness
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
                     ThongTinKhachHang thongTinKhachHang = (from tt in db.ThongTinKhachHangs
-                                                           where tt.TenKhachHang.Trim().ToLower() == ttkh.TenKhachHang.Trim().ToLower()
+                                                           where tt.TenKhachHang.Trim().ToLower() == ttkh.TenKhachHang.Trim().ToLower() &&
+                                                           tt.TenDonVi.Trim().ToLower() == ttkh.TenDonVi.Trim().ToLower() &&
+                                                           tt.DiaChi.Trim().ToLower() == ttkh.DiaChi.Trim().ToLower()
                                                            select tt).FirstOrDefault();
 
                     if (thongTinKhachHang == null)
@@ -264,7 +266,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result DeleteTenKhachHang(string tenKhachHang)
+        public static Result DeleteTenKhachHang(string thongTinKhachHangGUID)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -272,7 +274,7 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-                ThongTinKhachHang ttkh = db.ThongTinKhachHangs.FirstOrDefault(t => t.TenKhachHang.Trim().ToLower() == tenKhachHang.Trim().ToLower());
+                ThongTinKhachHang ttkh = db.ThongTinKhachHangs.FirstOrDefault(t => t.ThongTinKhachHangGUID.ToString().ToLower() == thongTinKhachHangGUID.ToLower());
                 if (ttkh != null)
                     ttkh.TenKhachHang = string.Empty;
 
