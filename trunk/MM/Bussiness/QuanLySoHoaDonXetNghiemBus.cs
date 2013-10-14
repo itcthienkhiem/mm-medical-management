@@ -30,8 +30,8 @@ namespace MM.Bussiness
                         result.QueryResult = dt.Rows[0][0];
                     else
                     {
-                        query = string.Format("SELECT MAX(SoHoaDon) as SoHoaDon FROM QuanLySoHoaDonXetNghiemYKhoa WITH(NOLOCK) WHERE NgayBatDau >= '{0}'", 
-                            Global.NgayThayDoiSoHoaDonSauCung.ToString("yyyy-MM-dd HH:mm:ss"));
+                        query = string.Format("SELECT MAX(SoHoaDon) as SoHoaDon FROM QuanLySoHoaDonXetNghiemYKhoa WITH(NOLOCK) WHERE NgayBatDau >= '{0}'",
+                            Global.NgayThayDoiSoHoaDonXetNghiemSauCung.ToString("yyyy-MM-dd HH:mm:ss"));
                         result = ExcuteQuery(query);
                         if (!result.IsOK) return result;
 
@@ -39,7 +39,7 @@ namespace MM.Bussiness
                         if (dt != null && dt.Rows.Count > 0 && dt.Rows[0][0] != null && dt.Rows[0][0] != DBNull.Value)
                             result.QueryResult = Convert.ToInt32(dt.Rows[0][0]) + 1;
                         else
-                            result.QueryResult = Global.SoHoaDonBatDau;
+                            result.QueryResult = Global.SoHoaDonXetNghiemBatDau;
                     }
 
                     db = new MMOverride();
