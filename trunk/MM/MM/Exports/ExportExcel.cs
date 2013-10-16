@@ -10419,9 +10419,9 @@ namespace MM.Exports
                     range.Value = no++;
                     range.HorizontalAlignment = HAlign.Center;
 
-                    range = workSheet.Cells[string.Format("B{0}:E{0}", rowIndex + 1)];
-                    range.Merge();
-                    //range = workSheet.Cells[rowIndex, 1];
+                    //range = workSheet.Cells[string.Format("B{0}:E{0}", rowIndex + 1)];
+                    //range.Merge();
+                    range = workSheet.Cells[rowIndex, 1];
                     range.Value = tenHangHoa;
                     range.HorizontalAlignment = HAlign.Left;
                     range.WrapText = true;
