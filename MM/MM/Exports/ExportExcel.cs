@@ -18,6 +18,7 @@ namespace MM.Exports
 {
     public class ExportExcel
     {
+        private static double _rowHeight = 15.75;
         public static bool ExportThuocXuatHoaDonToExcel(string exportFileName, DateTime tuNgay, DateTime denNgay)
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -484,6 +485,10 @@ namespace MM.Exports
                 IRange range = null;
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
+
+                double height1 = 0, height2 = 0;
+                GetHeightPrintPageHDGTGT(excelTemplateName, ref height1, ref height2);
+
                 workSheet.Cells["E1"].Value = string.Format("          Mẫu số: {0}", invoice.MauSo);
                 workSheet.Cells["E2"].Value = string.Format("          Kí hiệu: {0}", invoice.KiHieu);
                 workSheet.Cells["E3"].Value = string.Format("          Số: {0}", invoice.InvoiceCode);
@@ -574,10 +579,10 @@ namespace MM.Exports
                     range.Font.Bold = false;
                     range.WrapText = true;
 
-                    int div = serviceName.Length / 32;
-                    int mod = serviceName.Length % 32;
-                    if (mod != 0) div++;
-                    range.RowHeight = 15 * div;
+                    //int div = serviceName.Length / 32;
+                    //int mod = serviceName.Length % 32;
+                    //if (mod != 0) div++;
+                    //range.RowHeight = 15 * div;
 
                     range = workSheet.Cells[rowIndex, 2];
                     range.Value = donViTinh;
@@ -674,6 +679,8 @@ namespace MM.Exports
                     Directory.CreateDirectory(path);
 
                 workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+
+                SetRightTitleHDGTGT(exportFileName, rowIndex + 9, height1, height2);
             }
             catch (Exception ex)
             {
@@ -690,6 +697,147 @@ namespace MM.Exports
             }
 
             return true;
+        }
+
+        private static void GetHeightPrintPageHDGTGT(string fileName, ref double height1, ref double height2)
+        {
+            Excel.Application excelApp = null;
+            Excel.Workbook workBook = null;
+            try
+            {
+                object objOpt = System.Reflection.Missing.Value;
+                excelApp = ExcelPrintPreview.ExcelInit();
+                workBook = excelApp.Workbooks.Open(fileName, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt,
+                                           objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt);
+
+                Excel.Worksheet workSheet = workBook.Sheets[1];
+                Excel.Range range = workSheet.get_Range("A1:A45");
+                height1 = Math.Round(range.Height / _rowHeight, 0);
+
+
+                range = workSheet.get_Range("A46:A74");
+                height2 = Math.Round(range.Height / _rowHeight, 0);
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(workBook);
+                    workBook = null;
+                }
+
+                ExcelPrintPreview.ExcelTerminal(excelApp);
+            }
+        }
+
+        private static void SetRightTitleHDGTGT(string fileName, int rowIndex, double height1, double height2)
+        {
+            Excel.Application excelApp = null;
+            Excel.Workbook workBook = null;
+            try
+            {
+                object objOpt = System.Reflection.Missing.Value;
+                excelApp = ExcelPrintPreview.ExcelInit();
+                workBook = excelApp.Workbooks.Open(fileName, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt,
+                                           objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt);
+
+                Excel.Worksheet workSheet = workBook.Sheets[1];
+                Excel.Range range = null;
+
+                double height = 0;
+                int row = 0;
+                for (int i = 1; i <= 100; i++)
+                {
+                    height += Math.Round(workSheet.get_Range(string.Format("A{0}", i)).Height / _rowHeight, 0);
+
+                    if (height == height1)
+                    {
+                        row = i + 1;
+                        range = workSheet.get_Range(string.Format("G19:G{0}", i));
+                        range.Merge();
+                        range.VerticalAlignment = Excel.XlVAlign.xlVAlignTop;
+                        range = workSheet.get_Range("G19");
+                        range.Value = "In bởi Phần mềm MISA SME.NET 2012 - Công ty Cổ phần MISA -";
+                        break;
+                    }
+
+                    if (height > height1)
+                    {
+                        row = i;
+                        range = workSheet.get_Range(string.Format("G19:G{0}", i - 1));
+                        range.Merge();
+                        range.VerticalAlignment = Excel.XlVAlign.xlVAlignTop;
+                        range = workSheet.get_Range("G19");
+                        range.Value = "In bởi Phần mềm MISA SME.NET 2012 - Công ty Cổ phần MISA -";
+                        break;
+                    }
+                    
+                }
+
+                height = Math.Round(workSheet.get_Range(string.Format("A1:A{0}", rowIndex)).Height / _rowHeight, 0);
+                if (height >= height1)
+                {
+                    height = height - height1;
+
+                    int pageCount = 1;
+                    double delta = height - height2;
+                    while (delta >= 0)
+                    {
+                        pageCount++;
+                        delta = delta - height2;
+                    }
+
+                    for (int i = 1; i <= pageCount; i++)
+                    {
+                        double h = 0;
+                        for (int j = row; j < row + 100; j++)
+                        {
+                            h += Math.Round(workSheet.get_Range(string.Format("A{0}", j)).Height / _rowHeight, 0);
+                            if (h == height2)
+                            {
+                                range = workSheet.get_Range(string.Format("G{0}:G{1}", row, j));
+                                range.Merge();
+                                range.VerticalAlignment = Excel.XlVAlign.xlVAlignTop;
+                                workSheet.get_Range(string.Format("G{0}", row)).Value = "In bởi Phần mềm MISA SME.NET 2012 - Công ty Cổ phần MISA -";
+                                row = j + 1;
+                                break;
+                            }
+
+                            if (h == height2)
+                            {
+                                range = workSheet.get_Range(string.Format("G{0}:G{1}", row, j - 1));
+                                range.Merge();
+                                range.VerticalAlignment = Excel.XlVAlign.xlVAlignTop;
+                                workSheet.get_Range(string.Format("G{0}", row)).Value = "In bởi Phần mềm MISA SME.NET 2012 - Công ty Cổ phần MISA -";
+                                row = j;
+                                break;
+                            }
+                        }
+                    }
+                }
+
+                workBook.Save();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(workBook);
+                    workBook = null;
+                }
+
+                ExcelPrintPreview.ExcelTerminal(excelApp);
+            }
         }
 
         public static bool ExportHoaDonThuocToExcel(string exportFileName, string hoaDonThuocGUID, string lien)
@@ -723,6 +871,10 @@ namespace MM.Exports
                 IRange range = null;
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
+
+                double height1 = 0, height2 = 0;
+                GetHeightPrintPageHDGTGT(excelTemplateName, ref height1, ref height2);
+
                 workSheet.Cells["E1"].Value = string.Format("          Mẫu số: {0}", hdt.MauSo);
                 workSheet.Cells["E2"].Value = string.Format("          Kí hiệu: {0}", hdt.KiHieu);
                 workSheet.Cells["E3"].Value = string.Format("          Số: {0}", hdt.SoHoaDon);
@@ -807,10 +959,10 @@ namespace MM.Exports
                     range.HorizontalAlignment = HAlign.Left;
                     range.Font.Bold = false;
                     range.WrapText = true;
-                    int div = serviceName.Length / 32;
-                    int mod = serviceName.Length % 32;
-                    if (mod != 0) div++;
-                    range.RowHeight = 15 * div;
+                    //int div = serviceName.Length / 32;
+                    //int mod = serviceName.Length % 32;
+                    //if (mod != 0) div++;
+                    //range.RowHeight = 15 * div;
 
                     range = workSheet.Cells[rowIndex, 2];
                     range.Value = donViTinh;
@@ -906,6 +1058,8 @@ namespace MM.Exports
                     Directory.CreateDirectory(path);
 
                 workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+
+                SetRightTitleHDGTGT(exportFileName, rowIndex + 9, height1, height2);
             }
             catch (Exception ex)
             {
@@ -955,6 +1109,10 @@ namespace MM.Exports
                 IRange range = null;
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
+
+                double height1 = 0, height2 = 0;
+                GetHeightPrintPageHDGTGT(excelTemplateName, ref height1, ref height2);
+
                 workSheet.Cells["E1"].Value = string.Format("          Mẫu số: {0}", hdt.MauSo);
                 workSheet.Cells["E2"].Value = string.Format("          Kí hiệu: {0}", hdt.KiHieu);
                 workSheet.Cells["E3"].Value = string.Format("          Số: {0}", hdt.SoHoaDon);
@@ -1037,10 +1195,10 @@ namespace MM.Exports
                     range.HorizontalAlignment = HAlign.Left;
                     range.Font.Bold = false;
                     range.WrapText = true;
-                    int div = serviceName.Length / 32;
-                    int mod = serviceName.Length % 32;
-                    if (mod != 0) div++;
-                    range.RowHeight = 15 * div;
+                    //int div = serviceName.Length / 32;
+                    //int mod = serviceName.Length % 32;
+                    //if (mod != 0) div++;
+                    //range.RowHeight = 15 * div;
 
                     range = workSheet.Cells[rowIndex, 2];
                     range.Value = donViTinh;
@@ -1136,6 +1294,8 @@ namespace MM.Exports
                     Directory.CreateDirectory(path);
 
                 workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+
+                SetRightTitleHDGTGT(exportFileName, rowIndex + 9, height1, height2);
             }
             catch (Exception ex)
             {
@@ -1185,6 +1345,10 @@ namespace MM.Exports
                 IRange range = null;
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
+
+                double height1 = 0, height2 = 0;
+                GetHeightPrintPageHDGTGT(excelTemplateName, ref height1, ref height2);
+
                 workSheet.Cells["E1"].Value = string.Format("          Mẫu số: {0}", hdt.MauSo);
                 workSheet.Cells["E2"].Value = string.Format("          Kí hiệu: {0}", hdt.KiHieu);
                 workSheet.Cells["E3"].Value = string.Format("          Số: {0}", hdt.SoHoaDon);
@@ -1267,10 +1431,10 @@ namespace MM.Exports
                     range.HorizontalAlignment = HAlign.Left;
                     range.Font.Bold = false;
                     range.WrapText = true;
-                    int div = serviceName.Length / 32;
-                    int mod = serviceName.Length % 32;
-                    if (mod != 0) div++;
-                    range.RowHeight = 15 * div;
+                    //int div = serviceName.Length / 32;
+                    //int mod = serviceName.Length % 32;
+                    //if (mod != 0) div++;
+                    //range.RowHeight = 15 * div;
 
                     range = workSheet.Cells[rowIndex, 2];
                     range.Value = donViTinh;
@@ -1366,6 +1530,8 @@ namespace MM.Exports
                     Directory.CreateDirectory(path);
 
                 workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+
+                SetRightTitleHDGTGT(exportFileName, rowIndex + 9, height1, height2);
             }
             catch (Exception ex)
             {

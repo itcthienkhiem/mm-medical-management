@@ -595,7 +595,7 @@ namespace MM.Dialogs
                             {
                                 try
                                 {
-                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.HDGTGTTemplate));
+                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, null);
                                 }
                                 catch (Exception ex)
                                 {
@@ -612,7 +612,7 @@ namespace MM.Dialogs
                             {
                                 try
                                 {
-                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.HDGTGTTemplate));
+                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, null);
                                 }
                                 catch (Exception ex)
                                 {
@@ -629,7 +629,7 @@ namespace MM.Dialogs
                             {
                                 try
                                 {
-                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.HDGTGTTemplate));
+                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, null);
                                 }
                                 catch (Exception ex)
                                 {
@@ -646,7 +646,7 @@ namespace MM.Dialogs
                             {
                                 try
                                 {
-                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.HDGTGTTemplate));
+                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, null);
                                 }
                                 catch (Exception ex)
                                 {
@@ -668,7 +668,7 @@ namespace MM.Dialogs
                             {
                                 try
                                 {
-                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.HDGTGTTemplate));
+                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, null);
                                 }
                                 catch (Exception ex)
                                 {
@@ -685,7 +685,7 @@ namespace MM.Dialogs
                             {
                                 try
                                 {
-                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.HDGTGTTemplate));
+                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, null);
                                 }
                                 catch (Exception ex)
                                 {
@@ -702,7 +702,7 @@ namespace MM.Dialogs
                             {
                                 try
                                 {
-                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.HDGTGTTemplate));
+                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, null);
                                 }
                                 catch (Exception ex)
                                 {
@@ -719,7 +719,7 @@ namespace MM.Dialogs
                             {
                                 try
                                 {
-                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.HDGTGTTemplate));
+                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, null);
                                 }
                                 catch (Exception ex)
                                 {
@@ -741,7 +741,7 @@ namespace MM.Dialogs
                             {
                                 try
                                 {
-                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.HDGTGTTemplate));
+                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, null);
                                 }
                                 catch (Exception ex)
                                 {
@@ -758,7 +758,7 @@ namespace MM.Dialogs
                             {
                                 try
                                 {
-                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.HDGTGTTemplate));
+                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, null);
                                 }
                                 catch (Exception ex)
                                 {
@@ -775,7 +775,7 @@ namespace MM.Dialogs
                             {
                                 try
                                 {
-                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.HDGTGTTemplate));
+                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, null);
                                 }
                                 catch (Exception ex)
                                 {
@@ -792,7 +792,7 @@ namespace MM.Dialogs
                             {
                                 try
                                 {
-                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.HDGTGTTemplate));
+                                    ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, null);
                                 }
                                 catch (Exception ex)
                                 {
