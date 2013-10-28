@@ -711,11 +711,11 @@ namespace MM.Exports
                                            objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt);
 
                 Excel.Worksheet workSheet = workBook.Sheets[1];
-                Excel.Range range = workSheet.get_Range("A1:A45");
+                Excel.Range range = workSheet.get_Range("A1:A38");
                 height1 = Math.Round(range.Height / _rowHeight, 0);
 
 
-                range = workSheet.get_Range("A46:A74");
+                range = workSheet.get_Range("A39:A60");
                 height2 = Math.Round(range.Height / _rowHeight, 0);
             }
             catch (Exception ex)
@@ -762,7 +762,7 @@ namespace MM.Exports
                         range.Merge();
                         range.VerticalAlignment = Excel.XlVAlign.xlVAlignTop;
                         range = workSheet.get_Range("G19");
-                        range.Value = "In bởi Phần mềm MISA SME.NET 2012 - Công ty Cổ phần MISA -";
+                        range.Value = "In bởi Phần mềm MISA SME.NET 2012 -";
                         break;
                     }
 
@@ -773,7 +773,7 @@ namespace MM.Exports
                         range.Merge();
                         range.VerticalAlignment = Excel.XlVAlign.xlVAlignTop;
                         range = workSheet.get_Range("G19");
-                        range.Value = "In bởi Phần mềm MISA SME.NET 2012 - Công ty Cổ phần MISA -";
+                        range.Value = "In bởi Phần mềm MISA SME.NET 2012 -";
                         break;
                     }
                     
@@ -803,17 +803,17 @@ namespace MM.Exports
                                 range = workSheet.get_Range(string.Format("G{0}:G{1}", row, j));
                                 range.Merge();
                                 range.VerticalAlignment = Excel.XlVAlign.xlVAlignTop;
-                                workSheet.get_Range(string.Format("G{0}", row)).Value = "In bởi Phần mềm MISA SME.NET 2012 - Công ty Cổ phần MISA -";
+                                workSheet.get_Range(string.Format("G{0}", row)).Value = "In bởi Phần mềm MISA SME.NET 2012 -";
                                 row = j + 1;
                                 break;
                             }
 
-                            if (h == height2)
+                            if (h > height2)
                             {
                                 range = workSheet.get_Range(string.Format("G{0}:G{1}", row, j - 1));
                                 range.Merge();
                                 range.VerticalAlignment = Excel.XlVAlign.xlVAlignTop;
-                                workSheet.get_Range(string.Format("G{0}", row)).Value = "In bởi Phần mềm MISA SME.NET 2012 - Công ty Cổ phần MISA -";
+                                workSheet.get_Range(string.Format("G{0}", row)).Value = "In bởi Phần mềm MISA SME.NET 2012 -";
                                 row = j;
                                 break;
                             }
