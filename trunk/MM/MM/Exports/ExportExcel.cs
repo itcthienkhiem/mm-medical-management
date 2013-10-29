@@ -18,7 +18,7 @@ namespace MM.Exports
 {
     public class ExportExcel
     {
-        private static double _rowHeight = 15.75;
+        private static double _rowHeight = 12.75;
         public static bool ExportThuocXuatHoaDonToExcel(string exportFileName, DateTime tuNgay, DateTime denNgay)
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -711,11 +711,11 @@ namespace MM.Exports
                                            objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt);
 
                 Excel.Worksheet workSheet = workBook.Sheets[1];
-                Excel.Range range = workSheet.get_Range("A1:A38");
+                Excel.Range range = workSheet.get_Range("A1:A47");
                 height1 = Math.Round(range.Height / _rowHeight, 0);
 
 
-                range = workSheet.get_Range("A39:A60");
+                range = workSheet.get_Range("A48:A78");
                 height2 = Math.Round(range.Height / _rowHeight, 0);
             }
             catch (Exception ex)
