@@ -18,7 +18,6 @@ namespace MM.Exports
 {
     public class ExportExcel
     {
-        private static double _rowHeight = 12.75;
         public static bool ExportThuocXuatHoaDonToExcel(string exportFileName, DateTime tuNgay, DateTime denNgay)
         {
             Cursor.Current = Cursors.WaitCursor;
@@ -711,12 +710,12 @@ namespace MM.Exports
                                            objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt);
 
                 Excel.Worksheet workSheet = workBook.Sheets[1];
-                Excel.Range range = workSheet.get_Range("A1:A47");
-                height1 = Math.Round(range.Height / _rowHeight, 0);
+                Excel.Range range = workSheet.get_Range(Global.HDGTGTSettings.Page1Range);
+                height1 = Math.Round(range.Height / Global.HDGTGTSettings.RowHeight, 0);
 
 
-                range = workSheet.get_Range("A48:A78");
-                height2 = Math.Round(range.Height / _rowHeight, 0);
+                range = workSheet.get_Range(Global.HDGTGTSettings.Page2Range);
+                height2 = Math.Round(range.Height / Global.HDGTGTSettings.RowHeight, 0);
             }
             catch (Exception ex)
             {
@@ -753,7 +752,7 @@ namespace MM.Exports
                 int row = 0;
                 for (int i = 1; i <= 100; i++)
                 {
-                    height += Math.Round(workSheet.get_Range(string.Format("A{0}", i)).Height / _rowHeight, 0);
+                    height += Math.Round(workSheet.get_Range(string.Format("A{0}", i)).Height / Global.HDGTGTSettings.RowHeight, 0);
 
                     if (height == height1)
                     {
@@ -779,7 +778,7 @@ namespace MM.Exports
                     
                 }
 
-                height = Math.Round(workSheet.get_Range(string.Format("A1:A{0}", rowIndex)).Height / _rowHeight, 0);
+                height = Math.Round(workSheet.get_Range(string.Format("A1:A{0}", rowIndex)).Height / Global.HDGTGTSettings.RowHeight, 0);
                 if (height >= height1)
                 {
                     height = height - height1;
@@ -797,7 +796,7 @@ namespace MM.Exports
                         double h = 0;
                         for (int j = row; j < row + 100; j++)
                         {
-                            h += Math.Round(workSheet.get_Range(string.Format("A{0}", j)).Height / _rowHeight, 0);
+                            h += Math.Round(workSheet.get_Range(string.Format("A{0}", j)).Height / Global.HDGTGTSettings.RowHeight, 0);
                             if (h == height2)
                             {
                                 range = workSheet.get_Range(string.Format("G{0}:G{1}", row, j));

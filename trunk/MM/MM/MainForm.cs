@@ -257,6 +257,11 @@ namespace MM
                     Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatientList"));
 
                 Global.InitIgnorePermissions();
+
+                if (!File.Exists(Global.HDGTGTSettingsPath))
+                    Global.HDGTGTSettings.Serialize(Global.HDGTGTSettingsPath);
+                else
+                    Global.HDGTGTSettings.Deserialize(Global.HDGTGTSettingsPath);
             };
 
             if (InvokeRequired) BeginInvoke(method);

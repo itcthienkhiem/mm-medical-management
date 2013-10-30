@@ -8,6 +8,8 @@ namespace MM.Common
 {
     public class Global
     {
+        public static string HDGTGTSettingsPath = string.Format("{0}\\HDGTGTSettings.xml", AppDomain.CurrentDomain.BaseDirectory);
+        public static HDGTGTSettings HDGTGTSettings = new HDGTGTSettings();
         public static string AppConfig = string.Format("{0}\\App.cfg", AppDomain.CurrentDomain.BaseDirectory);
         public static string FTPUploadPath = string.Format("{0}\\FTPUpload", AppDomain.CurrentDomain.BaseDirectory);
         public static string UsersPath = string.Format("{0}\\Users", AppDomain.CurrentDomain.BaseDirectory);
