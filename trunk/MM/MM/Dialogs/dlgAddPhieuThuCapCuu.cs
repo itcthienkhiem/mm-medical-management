@@ -112,6 +112,22 @@ namespace MM.Dialogs
             }
         }
 
+        private string GetGenerateCode()
+        {
+            Result result = PhieuThuCapCuuBus.GetPhieuThuCapCuuCount();
+            if (result.IsOK)
+            {
+                int count = Convert.ToInt32(result.QueryResult);
+                return Utility.GetCode("PTCC", count + 1, 7);
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("PhieuThuCapCuuBus.GetPhieuThuCapCuuCount"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("PhieuThuCapCuuBus.GetPhieuThuCapCuuCount"));
+                return string.Empty;
+            }
+        }
+
         private void InitData()
         {
             cboHinhThucThanhToan.SelectedIndex = 0;
@@ -419,23 +435,23 @@ namespace MM.Dialogs
                 return false;
             }
 
-            string phieuThuCapCuuGUID = _isNew ? string.Empty : _phieuThuCapCuu.PhieuThuCapCuuGUID.ToString();
-            Result result = PhieuThuCapCuuBus.CheckPhieuThuCapCuuExistCode(phieuThuCapCuuGUID, txtMaPhieuThu.Text);
+            //string phieuThuCapCuuGUID = _isNew ? string.Empty : _phieuThuCapCuu.PhieuThuCapCuuGUID.ToString();
+            //Result result = PhieuThuCapCuuBus.CheckPhieuThuCapCuuExistCode(phieuThuCapCuuGUID, txtMaPhieuThu.Text);
 
-            if (result.Error.Code == ErrorCode.EXIST || result.Error.Code == ErrorCode.NOT_EXIST)
-            {
-                if (result.Error.Code == ErrorCode.EXIST)
-                {
-                    MsgBox.Show(this.Text, "Mã phiếu thu này đã tồn tại rồi. Vui lòng nhập mã khác.", IconType.Information);
-                    txtMaPhieuThu.Focus();
-                    return false;
-                }
-            }
-            else
-            {
-                MsgBox.Show(this.Text, result.GetErrorAsString("PhieuThuCapCuuBus.CheckPhieuThuCapCuuExistCode"), IconType.Error);
-                return false;
-            }
+            //if (result.Error.Code == ErrorCode.EXIST || result.Error.Code == ErrorCode.NOT_EXIST)
+            //{
+            //    if (result.Error.Code == ErrorCode.EXIST)
+            //    {
+            //        MsgBox.Show(this.Text, "Mã phiếu thu này đã tồn tại rồi. Vui lòng nhập mã khác.", IconType.Information);
+            //        txtMaPhieuThu.Focus();
+            //        return false;
+            //    }
+            //}
+            //else
+            //{
+            //    MsgBox.Show(this.Text, result.GetErrorAsString("PhieuThuCapCuuBus.CheckPhieuThuCapCuuExistCode"), IconType.Error);
+            //    return false;
+            //}
 
             if (dgChiTiet.RowCount > 0)
             {
@@ -605,6 +621,10 @@ namespace MM.Dialogs
                         ctptcc.Status = (byte)Status.Actived;
                         addedList.Add(ctptcc);
                     }
+
+                    string maPhieuThu = GetGenerateCode();
+                    if (maPhieuThu == string.Empty) return;
+                    _phieuThuCapCuu.MaPhieuThuCapCuu = maPhieuThu;
 
                     Result result = PhieuThuCapCuuBus.InsertPhieuThuCapCuu(_phieuThuCapCuu, addedList);
 
