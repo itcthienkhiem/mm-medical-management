@@ -700,6 +700,8 @@ namespace MM.Exports
 
         private static void GetHeightPrintPageHDGTGT(string fileName, ref double height1, ref double height2)
         {
+            Global.HDGTGTSettings.Deserialize(Global.HDGTGTSettingsPath);
+
             Excel.Application excelApp = null;
             Excel.Workbook workBook = null;
             try
