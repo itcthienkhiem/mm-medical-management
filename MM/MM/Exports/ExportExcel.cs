@@ -1097,8 +1097,11 @@ namespace MM.Exports
                 Excel.Range range = null;
 
                 int headerRow = 0;
+                List<double> headerRowHeights = new List<double>();
                 for (int i = 1; i <= 18; i++)
                 {
+                    double height = workSheet.get_Range(string.Format("A{0}", i)).Height;
+                    headerRowHeights.Add(height);
                     headerRow += Math.Round(workSheet.get_Range(string.Format("A{0}", i)).Height / Global.HDGTGTSettings.RowHeight, 0);
                 }
 
@@ -1124,6 +1127,14 @@ namespace MM.Exports
                         {
                             range = workSheet.get_Range(string.Format("A{0}", index + 1)).EntireRow;
                             range.Insert();
+                        }
+
+                        int row = index + 1;
+                        for (int k = 0; k < 18; k++)
+                        {
+                            range = workSheet.get_Range(string.Format("A{0}", row));
+                            row++;
+                            range.RowHeight = headerRowHeights[k];
                         }
 
                         range = workSheet.get_Range(string.Format("A{0}", index + 1));
