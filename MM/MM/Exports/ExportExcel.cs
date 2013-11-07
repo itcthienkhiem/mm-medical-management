@@ -485,8 +485,8 @@ namespace MM.Exports
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
 
-                double height1 = 0, height2 = 0;
-                GetHeightPrintPageHDGTGT(excelTemplateName, ref height1, ref height2);
+                //double height1 = 0, height2 = 0;
+                //GetHeightPrintPageHDGTGT(excelTemplateName, ref height1, ref height2);
 
                 workSheet.Cells["E1"].Value = string.Format("          Mẫu số: {0}", invoice.MauSo);
                 workSheet.Cells["E2"].Value = string.Format("          Kí hiệu: {0}", invoice.KiHieu);
@@ -679,7 +679,8 @@ namespace MM.Exports
 
                 workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
 
-                SetRightTitleHDGTGT(exportFileName, rowIndex + 9, height1, height2);
+                //SetRightTitleHDGTGT(exportFileName, rowIndex + 9, height1, height2);
+                PagingHDGTGT(exportFileName, rowIndex + 9);
             }
             catch (Exception ex)
             {
@@ -873,8 +874,8 @@ namespace MM.Exports
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
 
-                double height1 = 0, height2 = 0;
-                GetHeightPrintPageHDGTGT(excelTemplateName, ref height1, ref height2);
+                //double height1 = 0, height2 = 0;
+                //GetHeightPrintPageHDGTGT(excelTemplateName, ref height1, ref height2);
 
                 workSheet.Cells["E1"].Value = string.Format("          Mẫu số: {0}", hdt.MauSo);
                 workSheet.Cells["E2"].Value = string.Format("          Kí hiệu: {0}", hdt.KiHieu);
@@ -1060,7 +1061,8 @@ namespace MM.Exports
 
                 workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
 
-                SetRightTitleHDGTGT(exportFileName, rowIndex + 9, height1, height2);
+                //SetRightTitleHDGTGT(exportFileName, rowIndex + 9, height1, height2);
+                PagingHDGTGT(exportFileName, rowIndex + 9);
             }
             catch (Exception ex)
             {
@@ -1077,6 +1079,110 @@ namespace MM.Exports
             }
 
             return true;
+        }
+
+        public static void PagingHDGTGT(string fileName, int rowIndex)
+        {
+            Excel.Application excelApp = null;
+            Excel.Workbook workBook = null;
+
+            try
+            {
+                object objOpt = System.Reflection.Missing.Value;
+                excelApp = ExcelPrintPreview.ExcelInit();
+                workBook = excelApp.Workbooks.Open(fileName, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt,
+                                           objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt, objOpt);
+
+                Excel.Worksheet workSheet = workBook.Sheets[1];
+                Excel.Range range = null;
+
+                int headerRow = 0;
+                for (int i = 1; i <= 18; i++)
+                {
+                    headerRow += Math.Round(workSheet.get_Range(string.Format("A{0}", i)).Height / Global.HDGTGTSettings.RowHeight, 0);
+                }
+
+                int contentRowOfPage = Global.HDGTGTSettings.RowOfPage - headerRow;
+
+                int contentRow = 0;
+                for (int i = 19; i <= rowIndex; i++)
+                {
+                    contentRow += Math.Round(workSheet.get_Range(string.Format("A{0}", i)).Height / Global.HDGTGTSettings.RowHeight, 0);
+                }
+
+                int pageCount = contentRow / contentRowOfPage;
+                if (contentRow % contentRowOfPage != 0) pageCount++;
+
+                int startRow = 19;
+                int index = 0;
+
+                for (int i = 1; i <= pageCount; i++)
+                {
+                    if (i > 1)
+                    {
+                        for (int k = 1; k <= 18; k++)
+                        {
+                            range = workSheet.get_Range(string.Format("A{0}", index + 1)).EntireRow;
+                            range.Insert();
+                        }
+
+                        range = workSheet.get_Range(string.Format("A{0}", index + 1));
+                        workSheet.HPageBreaks.Add(range);
+
+                        int from = startRow - 18;
+                        int to = startRow - 1;
+                        Excel.Range rangeCopy = workSheet.get_Range(string.Format("A{0}:G{1}", from, to));
+                        rangeCopy.Copy(range);
+                        startRow = index + 19;
+                    }
+
+                    int rowCount = 0;
+                    for (int j = 1; j <= contentRowOfPage; j++)
+                    {
+                        index = startRow + j - 1;
+                        rowCount += Math.Round(workSheet.get_Range(string.Format("A{0}", index)).Height / Global.HDGTGTSettings.RowHeight, 0);
+
+                        if (rowCount == contentRowOfPage)
+                        {
+                            range = workSheet.get_Range(string.Format("G{0}:G{1}" , startRow, index));
+                            range.Merge();
+                            range.VerticalAlignment = Excel.XlVAlign.xlVAlignTop;
+                            range = workSheet.get_Range(string.Format("G{0}", startRow));
+                            range.Value = "In bởi Phần mềm MISA SME.NET 2012 -";
+                            break;
+                        }
+                        else if (rowCount > contentRowOfPage)
+                        {
+                            range = workSheet.get_Range(string.Format("G{0}:G{1}", startRow, index - 1));
+                            range.Merge();
+                            range.VerticalAlignment = Excel.XlVAlign.xlVAlignTop;
+                            range = workSheet.get_Range(string.Format("G{0}", startRow));
+                            range.Value = "In bởi Phần mềm MISA SME.NET 2012 -";
+                            index--;
+                            break;
+                        }
+                    }
+
+                    
+                }
+
+                workBook.Save();
+            }
+            catch (Exception ex)
+            {
+                throw ex;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    System.Runtime.InteropServices.Marshal.ReleaseComObject(workBook);
+                    workBook = null;
+                }
+
+                ExcelPrintPreview.ExcelTerminal(excelApp);
+            }
         }
 
         public static bool ExportHoaDonHopDongToExcel(string exportFileName, string hoaDonHopDongGUID, string lien)
@@ -1111,8 +1217,8 @@ namespace MM.Exports
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
 
-                double height1 = 0, height2 = 0;
-                GetHeightPrintPageHDGTGT(excelTemplateName, ref height1, ref height2);
+                //double height1 = 0, height2 = 0;
+                //GetHeightPrintPageHDGTGT(excelTemplateName, ref height1, ref height2);
 
                 workSheet.Cells["E1"].Value = string.Format("          Mẫu số: {0}", hdt.MauSo);
                 workSheet.Cells["E2"].Value = string.Format("          Kí hiệu: {0}", hdt.KiHieu);
@@ -1296,7 +1402,8 @@ namespace MM.Exports
 
                 workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
 
-                SetRightTitleHDGTGT(exportFileName, rowIndex + 9, height1, height2);
+                //SetRightTitleHDGTGT(exportFileName, rowIndex + 9, height1, height2);
+                PagingHDGTGT(exportFileName, rowIndex + 9);
             }
             catch (Exception ex)
             {
@@ -1347,8 +1454,8 @@ namespace MM.Exports
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
                 IWorksheet workSheet = workBook.Worksheets[0];
 
-                double height1 = 0, height2 = 0;
-                GetHeightPrintPageHDGTGT(excelTemplateName, ref height1, ref height2);
+                //double height1 = 0, height2 = 0;
+                //GetHeightPrintPageHDGTGT(excelTemplateName, ref height1, ref height2);
 
                 workSheet.Cells["E1"].Value = string.Format("          Mẫu số: {0}", hdt.MauSo);
                 workSheet.Cells["E2"].Value = string.Format("          Kí hiệu: {0}", hdt.KiHieu);
@@ -1532,7 +1639,8 @@ namespace MM.Exports
 
                 workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
 
-                SetRightTitleHDGTGT(exportFileName, rowIndex + 9, height1, height2);
+                //SetRightTitleHDGTGT(exportFileName, rowIndex + 9, height1, height2);
+                PagingHDGTGT(exportFileName, rowIndex + 9);
             }
             catch (Exception ex)
             {
