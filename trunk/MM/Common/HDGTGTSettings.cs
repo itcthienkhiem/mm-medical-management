@@ -13,6 +13,7 @@ namespace MM.Common
         private double _rowHeight = 12.75;
         private string _page1Range = "A1:A47";
         private string _page2Range = "A48:A78";
+        private int _rowOfPage = 47;
         #endregion
 
         #region Constructor
@@ -23,6 +24,12 @@ namespace MM.Common
         #endregion
 
         #region Properties
+        public int RowOfPage
+        {
+            get { return _rowOfPage; }
+            set { _rowOfPage = value; }
+        }
+
         public double RowHeight
         {
             get { return _rowHeight; }
@@ -83,6 +90,7 @@ namespace MM.Common
                 this._rowHeight = settings._rowHeight;
                 this._page1Range = settings._page1Range;
                 this._page2Range = settings._page2Range;
+                this._rowOfPage = settings._rowOfPage;
                 return true;
             }
             catch (Exception ex)
