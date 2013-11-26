@@ -10410,9 +10410,10 @@ namespace MM.Exports
                     int soLuong = Convert.ToInt32(row["SoLuong"]);
                     double donGia = Convert.ToDouble(row["DonGia"]);
                     double thanhTien = Convert.ToDouble(row["ThanhTien"]);
+                    double tienVAT = 0;
                     double vat = Convert.ToDouble(row["VAT"]);
                     if (vat > 0)
-                        thanhTien += (vat * thanhTien) / 100;
+                        tienVAT = (vat * thanhTien) / 100;
 
                     string hinhThucThanhToan = row["HinhThucThanhToan"].ToString();
                     string phieuThuGUIDList = row["PhieuThuGUIDList"] as string;
@@ -10455,29 +10456,31 @@ namespace MM.Exports
                     workSheet.Cells[rowIndex, 14].Value = soLuong;
                     workSheet.Cells[rowIndex, 15].Value = donGia;
                     workSheet.Cells[rowIndex, 16].Value = thanhTien;
+                    workSheet.Cells[rowIndex, 17].Value = tienVAT;
+                    workSheet.Cells[rowIndex, 18].Value = thanhTien + tienVAT;
 
                     if (hinhThucThanhToan == "TM")
-                        workSheet.Cells[rowIndex, 17].Value = hinhThucThanhToan;
-                    else if (hinhThucThanhToan == "CK")
-                        workSheet.Cells[rowIndex, 18].Value = hinhThucThanhToan;
-                    else
                         workSheet.Cells[rowIndex, 19].Value = hinhThucThanhToan;
+                    else if (hinhThucThanhToan == "CK")
+                        workSheet.Cells[rowIndex, 20].Value = hinhThucThanhToan;
+                    else
+                        workSheet.Cells[rowIndex, 21].Value = hinhThucThanhToan;
 
                     rowIndex++;
                 }
 
-                range = workSheet.Cells[string.Format("N{0}:P{0}", rowIndex + 1)];
+                range = workSheet.Cells[string.Format("Q{0}:R{0}", rowIndex + 1)];
                 range.Merge();
                 range.Font.Bold = true;
                 range.HorizontalAlignment = HAlign.Right;
                 range.Value = "Tổng Cộng:";
 
-                range = workSheet.Cells[string.Format("Q{0}", rowIndex + 1)];
+                range = workSheet.Cells[string.Format("S{0}", rowIndex + 1)];
                 range.Font.Bold = true;
 
-                range.Value = string.Format("=SUM(Q5:Q{0})", rowIndex);
+                range.Value = string.Format("=SUM(S5:S{0})", rowIndex);
 
-                range = workSheet.Cells[string.Format("A5:T{0}", rowIndex + 1)];
+                range = workSheet.Cells[string.Format("A5:V{0}", rowIndex + 1)];
                 range.Borders.Color = Color.Black;
                 range.Borders.LineStyle = LineStyle.Continuous;
                 range.Borders.Weight = BorderWeight.Thin;
