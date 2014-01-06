@@ -3078,29 +3078,32 @@ namespace MM.Exports
                         range.WrapText = true;
 
                         range = workSheet.Cells[rowIndex, 5];
-                        range.Value = Convert.ToDouble(row["Amount"]);
+                        range.Value = Convert.ToInt32(row["SoLuong"]);
 
                         range = workSheet.Cells[rowIndex, 6];
-                        range.Value = giaVon;
+                        range.Value = Convert.ToDouble(row["Amount"]);
 
                         range = workSheet.Cells[rowIndex, 7];
+                        range.Value = giaVon;
+
+                        range = workSheet.Cells[rowIndex, 8];
                         range.Value = bacSiChiDinh;
 
                         string bsThucHien = string.Empty;
                         if (row["FullName"] != null && row["FullName"] != DBNull.Value)
                             bsThucHien = row["FullName"].ToString();
 
-                        range = workSheet.Cells[rowIndex, 8];
+                        range = workSheet.Cells[rowIndex, 9];
                         range.Value = bsThucHien;
 
-                        range = workSheet.Cells[rowIndex, 9];
+                        range = workSheet.Cells[rowIndex, 10];
                         range.Value = thuTien;
 
                         rowIndex++;
                     }
                 }
 
-                range = workSheet.Cells[string.Format("A3:J{0}", rowIndex)];
+                range = workSheet.Cells[string.Format("A3:K{0}", rowIndex)];
                 range.Borders.Color = Color.Black;
                 range.Borders.LineStyle = LineStyle.Continuous;
                 range.Borders.Weight = BorderWeight.Thin;
