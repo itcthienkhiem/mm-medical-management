@@ -147,7 +147,7 @@ namespace MM.Controls
                 cell = NewCell("Chiều", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
                 dgLichKham[1, 6] = cell;
 
-                cell = NewCell("Bs Răng Hàm Mặt", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
+                cell = NewCell("Bs Tai Mũi Họng", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
                 dgLichKham[0, 7] = cell;
                 dgLichKham[0, 7].ColumnSpan = 2;
 
@@ -157,7 +157,7 @@ namespace MM.Controls
                 cell = NewCell("Chiều", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
                 dgLichKham[1, 8] = cell;
 
-                cell = NewCell("Bs Siêu Âm", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
+                cell = NewCell("Bs Răng Hàm Mặt", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
                 dgLichKham[0, 9] = cell;
                 dgLichKham[0, 9].ColumnSpan = 2;
 
@@ -167,7 +167,7 @@ namespace MM.Controls
                 cell = NewCell("Chiều", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
                 dgLichKham[1, 10] = cell;
 
-                cell = NewCell("Bs Sản Phụ Khoa", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
+                cell = NewCell("Bs Siêu Âm", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
                 dgLichKham[0, 11] = cell;
                 dgLichKham[0, 11].ColumnSpan = 2;
 
@@ -176,6 +176,16 @@ namespace MM.Controls
 
                 cell = NewCell("Chiều", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
                 dgLichKham[1, 12] = cell;
+
+                cell = NewCell("Bs Sản Phụ Khoa", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
+                dgLichKham[0, 13] = cell;
+                dgLichKham[0, 13].ColumnSpan = 2;
+
+                cell = NewCell("Sáng", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
+                dgLichKham[1, 13] = cell;
+
+                cell = NewCell("Chiều", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
+                dgLichKham[1, 14] = cell;
             }
         }
 
@@ -272,16 +282,20 @@ namespace MM.Controls
                 case 5:
                     return LoaiLichKham.BsNgoaiTongQuatChieu;
                 case 6:
-                    return LoaiLichKham.BsRangHamMatSang;
+                    return LoaiLichKham.BsTaiMuiHongSang;
                 case 7:
-                    return LoaiLichKham.BsRangHamMatChieu;
+                    return LoaiLichKham.BsTaiMuiHongChieu;
                 case 8:
-                    return LoaiLichKham.BsSieuAmSang;
+                    return LoaiLichKham.BsRangHamMatSang;
                 case 9:
-                    return LoaiLichKham.BsSieuAmChieu;
+                    return LoaiLichKham.BsRangHamMatChieu;
                 case 10:
-                    return LoaiLichKham.BsSanPhuKhoaSang;
+                    return LoaiLichKham.BsSieuAmSang;
                 case 11:
+                    return LoaiLichKham.BsSieuAmChieu;
+                case 12:
+                    return LoaiLichKham.BsSanPhuKhoaSang;
+                case 13:
                     return LoaiLichKham.BsSanPhuKhoaChieu;
             }
 
@@ -316,7 +330,7 @@ namespace MM.Controls
                     Utility.WriteToTraceLog(result.GetErrorAsString("BookingBus.GetBooking"));
                 }
 
-                for (int col = 0; col < 12; col++)
+                for (int col = 0; col < 14; col++)
                 {
                     if (col < 2)
                     {
@@ -365,7 +379,7 @@ namespace MM.Controls
                 MethodInvoker method = delegate
                 {
                     ClearData();
-                    int colCount = 13;
+                    int colCount = 15;
                     int rowCount = GetRowCount();
                     List<LichKham> lichKhams = result.QueryResult as List<LichKham>;
 
