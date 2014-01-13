@@ -23,6 +23,11 @@ namespace MM.Controls
         private DateTime _fromDate = DateTime.Now;
         private DateTime _toDate = DateTime.Now;
         private int _type = 1; //0: TatCa; 1: ChuaXoa; 2: DaXoa
+        private bool _flag = false;
+        private string _mauSo = string.Empty;
+        private string _kiHieu = string.Empty;
+        private DateTime _fromNgayThayDoiHD = DateTime.Now;
+        private DateTime _toNgayThayDoiHD = DateTime.Now;
         #endregion
 
         #region Constructor
@@ -119,6 +124,7 @@ namespace MM.Controls
             {
                 UpdateGUI();
                 ClearData();
+                DisplayComboMauHoaDon();
                 _isFromDateToDate = raTuNgayToiNgay.Checked;
                 _fromDate = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
                 _toDate = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
@@ -144,6 +150,54 @@ namespace MM.Controls
             }
         }
 
+        private void DisplayComboMauHoaDon()
+        {
+            Result result = QuanLySoHoaDonBus.GetMauHoaDonList();
+            if (result.IsOK)
+            {
+                MethodInvoker method = delegate
+                {
+                    _flag = true;
+                    cboMauHoaDon.DataSource = result.QueryResult as DataTable;
+                    cboMauHoaDon.DisplayMember = "MauHoaDon";
+                    cboMauHoaDon.ValueMember = "MaNgayBatDauGUID";
+                    SetMauHoaDon();
+                    _flag = false;
+                };
+
+                if (InvokeRequired) BeginInvoke(method);
+                else method.Invoke();
+            }
+            else
+            {
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("QuanLySoHoaDonBus.GetMauHoaDonList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("QuanLySoHoaDonBus.GetMauHoaDonList"));
+            }
+        }
+
+        private void SetMauHoaDon()
+        {
+            if (cboMauHoaDon.SelectedValue == null) return;
+            string mauHoaDon = cboMauHoaDon.Text;
+            int index = mauHoaDon.IndexOf("-");
+            if (index >= 0)
+            {
+                _mauSo = mauHoaDon.Substring(0, index);
+                _kiHieu = mauHoaDon.Substring(index + 1, mauHoaDon.Length - index - 1);
+                Result result = QuanLySoHoaDonBus.GetThayDoiSoHoaDon(_mauSo, _kiHieu, ref _toNgayThayDoiHD);
+                if (result.IsOK)
+                {
+                    NgayBatDauLamMoiSoHoaDon nbdlm = result.QueryResult as NgayBatDauLamMoiSoHoaDon;
+                    _fromNgayThayDoiHD = nbdlm.NgayBatDau;
+                }
+                else
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("QuanLySoHoaDonBus.GetThayDoiSoHoaDon"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("QuanLySoHoaDonBus.GetThayDoiSoHoaDon"));
+                }
+            }
+        }
+
         private void DisplayDSHoaDonXuatTruoc()
         {
             Result result = HoaDonXuatTruocBus.GetHoaDonXuatTruocList(_isFromDateToDate, _fromDate, _toDate, _tenBenhNhan, _type);
@@ -166,7 +220,7 @@ namespace MM.Controls
 
         private void DisplayDSSoHoaDonXuatTruoc()
         {
-            Result result = HoaDonXuatTruocBus.GetSoHoaDonXuatTruocList();
+            Result result = HoaDonXuatTruocBus.GetSoHoaDonXuatTruocList(_fromNgayThayDoiHD, _toNgayThayDoiHD);
             if (result.IsOK)
             {
                 MethodInvoker method = delegate
@@ -599,6 +653,13 @@ namespace MM.Controls
         {
             OnPrint(true);
         }
+
+        private void cboMauHoaDon_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (_flag) return;
+            SetMauHoaDon();
+            DisplayDSSoHoaDonXuatTruoc();
+        }
         #endregion
 
         #region Working Thread
@@ -621,6 +682,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
        
 
