@@ -345,6 +345,55 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetThayDoiSoHoaDon(string mauSo, string kiHieu, ref DateTime nextNgayThayDoi)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+            nextNgayThayDoi = Global.MaxDateTime;
+
+            try
+            {
+                db = new MMOverride();
+                var ngayThayDoi = (from n in db.NgayBatDauLamMoiSoHoaDons
+                                   where n.KiHieu.ToLower() == kiHieu.ToLower() &&
+                                   n.MauSo.ToLower() == mauSo.ToLower()
+                                   select n).FirstOrDefault();
+
+                if (ngayThayDoi != null)
+                    result.QueryResult = ngayThayDoi;
+                else
+                    result.QueryResult = null;
+
+                var nextThayDoi = (from n in db.NgayBatDauLamMoiSoHoaDons
+                                   where n.NgayBatDau > ngayThayDoi.NgayBatDau                               
+                                   orderby n.NgayBatDau ascending
+                                   select n).FirstOrDefault();
+
+                if (nextThayDoi != null)
+                    nextNgayThayDoi = nextThayDoi.NgayBatDau;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
         public static Result GetThayDoiSoHoaSonSauCung()
         {
             Result result = new Result();
