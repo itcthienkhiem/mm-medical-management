@@ -432,5 +432,37 @@ namespace MM.Bussiness
 
             return result;
         }
+
+        public static Result GetMauHoaDonList()
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                string query = string.Format("SELECT *, MauSo + '-' + KiHieu AS MauHoaDon FROM dbo.NgayBatDauLamMoiSoHoaDon ORDER BY NgayBatDau DESC");
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
     }
 }
