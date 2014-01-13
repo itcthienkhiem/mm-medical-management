@@ -62,6 +62,31 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetSoHoaDonXuatTruocList(DateTime fromDate, DateTime toDate)
+        {
+            Result result = new Result();
+
+            try
+            {
+
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM QuanLySoHoaDon WITH(NOLOCK) WHERE XuatTruoc='True' AND NgayBatDau >= '{0}' AND NgayBatDau < '{1}' ORDER BY SoHoaDon",
+                    fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetHoaDonXuatTruocList(bool isFromDateToDate, DateTime fromDate, DateTime toDate, string tenBenhNhan, int type)
         {
             Result result = new Result();
