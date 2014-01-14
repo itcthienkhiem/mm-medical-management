@@ -16,13 +16,17 @@ namespace MM.Dialogs
     public partial class dlgAddSoHoaDonXuatTruoc : dlgBase
     {
         #region Members
-
+        private DateTime _fromDate = DateTime.Now;
+        private DateTime _toDate = DateTime.Now;
         #endregion
 
         #region Constructor
-        public dlgAddSoHoaDonXuatTruoc()
+        public dlgAddSoHoaDonXuatTruoc(DateTime fromDate, DateTime toDate)
         {
             InitializeComponent();
+
+            _fromDate = fromDate;
+            _toDate = toDate;
         }
         #endregion
 
@@ -43,14 +47,14 @@ namespace MM.Dialogs
             int count = (int)numNo.Value;
             dgSoHoaDon.DataSource = null;
 
-            Result result = QuanLySoHoaDonBus.GetSoHoaDonChuaXuat(count);
+            Result result = QuanLySoHoaDonBus.GetSoHoaDonChuaXuat(count, _fromDate, _toDate);
             if (result.IsOK)
             {
                 DataTable dt = result.QueryResult as DataTable;
 
                 if (dt.Rows.Count < count)
                 {
-                    result = QuanLySoHoaDonBus.GetMaxSoHoaDon();
+                    result = QuanLySoHoaDonBus.GetMaxSoHoaDon(_fromDate, _toDate);
                     if (result.IsOK)
                     {
                         int maxSoHoaDon = Convert.ToInt32(result.QueryResult);
@@ -102,7 +106,7 @@ namespace MM.Dialogs
             {
                 int soHoaDon = Convert.ToInt32(row["SoHoaDon"]);
                 string code = Utility.GetCode(string.Empty, soHoaDon, 7);
-                Result result = HoaDonThuocBus.CheckHoaDonThuocExistCode(Convert.ToInt32(code));
+                Result result = HoaDonThuocBus.CheckHoaDonThuocExistCode(Convert.ToInt32(code), _fromDate, _toDate);
                 if (result.Error.Code == ErrorCode.EXIST || result.Error.Code == ErrorCode.NOT_EXIST)
                 {
                     if (result.Error.Code == ErrorCode.EXIST)
@@ -155,7 +159,7 @@ namespace MM.Dialogs
                         qlshdList.Add(qlshd);
                     }
 
-                    Result result = HoaDonXuatTruocBus.InsertQuanLySoHoaDon(qlshdList);
+                    Result result = HoaDonXuatTruocBus.InsertQuanLySoHoaDon(qlshdList, _fromDate, _toDate);
                     if (!result.IsOK)
                     {
                         MsgBox.Show(this.Text, result.GetErrorAsString("HoaDonXuatTruocBus.InsertInsertQuanLySoHoaDonService"), IconType.Error);

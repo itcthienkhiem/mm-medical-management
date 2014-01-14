@@ -306,6 +306,44 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result CheckHoaDonThuocExistCode(int soHoaDon, DateTime fromDate, DateTime toDate)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon &&
+                   (q.DaXuat == true || q.XuatTruoc == true) && q.NgayBatDau.Value >= fromDate && q.NgayBatDau < toDate);
+
+                if (qlshd == null)
+                    result.Error.Code = ErrorCode.NOT_EXIST;
+                else
+                    result.Error.Code = ErrorCode.EXIST;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
         public static Result DeleteHoaDonThuoc(List<string> keys, List<string> noteList)
         {
             Result result = new Result();

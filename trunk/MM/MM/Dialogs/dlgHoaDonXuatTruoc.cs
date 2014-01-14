@@ -30,13 +30,21 @@ namespace MM.Dialogs
         private double _oldTotalPayment = 0;
         private double _totalPayment = 0;
         private HoaDonXuatTruoc _hoaDonXuatTruoc = new HoaDonXuatTruoc();
+        private DateTime _fromDate = DateTime.Now;
+        private DateTime _toDate = DateTime.Now;
+        private string _mauSo = string.Empty;
+        private string _kiHieu = string.Empty;
         #endregion
 
         #region Constructor
-        public dlgHoaDonXuatTruoc(int soHoaDon)
+        public dlgHoaDonXuatTruoc(int soHoaDon, DateTime fromDate, DateTime toDate, string mauSo, string kiHieu)
         {
             InitializeComponent();
             _soHoaDon = soHoaDon;
+            _fromDate = fromDate;
+            _toDate = toDate;
+            _mauSo = mauSo;
+            _kiHieu = kiHieu;
             cboHinhThucThanhToan.SelectedIndex = 0;
             btnExportAndPrint.Enabled = Global.AllowPrintHoaDonXuatTruoc;
         }
@@ -274,28 +282,17 @@ namespace MM.Dialogs
             lbInvoiceCode.Text = string.Format("Số: {0}", _invoiceCode);
 
             SetMinMaxNgayXuatHoaDon(_soHoaDon);
-            /*Cursor.Current = Cursors.WaitCursor;
-            Result result = QuanLySoHoaDonBus.GetSoHoaDon();
-            if (result.IsOK)
-            {
-                int count = Convert.ToInt32(result.QueryResult);
-                _invoiceCode = Utility.GetCode(string.Empty, count, 7);
-                lbInvoiceCode.Text = string.Format("Số: {0}", _invoiceCode);
-            }
-            else
-            {
-                MsgBox.Show(this.Text, result.GetErrorAsString("QuanLySoHoaDonBus.GetSoHoaDon"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("QuanLySoHoaDonBus.GetSoHoaDon"));
-                this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-                this.Close();
-            }*/
         }
 
         private void SetMinMaxNgayXuatHoaDon(int soHoaDon)
         {
             DateTime minDate = DateTime.Now;
             DateTime maxDate = DateTime.Now;
-            Result result = QuanLySoHoaDonBus.GetMinMaxNgayXuatHoaDon(soHoaDon, ref minDate, ref maxDate);
+            Result result = QuanLySoHoaDonBus.GetMinMaxNgayXuatHoaDon(soHoaDon, _fromDate, _toDate, ref minDate, ref maxDate);
+
+            if (minDate == Global.MinDateTime) minDate = _fromDate;
+            if (maxDate == Global.MaxDateTime) maxDate = _toDate;
+
             if (result.IsOK)
             {
                 if (dtpkNgay.Value < minDate) dtpkNgay.Value = minDate;
@@ -327,11 +324,6 @@ namespace MM.Dialogs
                 lbMauSo.Text = string.Format("Mẫu số: {0}", _drInvoice["MauSo"].ToString());
                 lbKiHieu.Text = string.Format("Kí hiệu: {0}", _drInvoice["KiHieu"].ToString());
                 lbInvoiceCode.Text = string.Format("Số: {0}", _drInvoice["SoHoaDon"].ToString());
-                //DateTime dt = Convert.ToDateTime(_drInvoice["NgayXuatHoaDon"]);
-                //string strDay = dt.Day >= 10 ? dt.Day.ToString() : string.Format("0{0}", dt.Day);
-                //string strMonth = dt.Month >= 10 ? dt.Month.ToString() : string.Format("0{0}", dt.Month);
-                //string strYear = dt.Year.ToString();
-                //lbDate.Text = string.Format("Ngày {0} tháng {1} năm {2}", strDay, strMonth, strYear);
                 dtpkNgay.Value = Convert.ToDateTime(_drInvoice["NgayXuatHoaDon"]);
                 cboTenDonVi.Text = _drInvoice["TenDonVi"].ToString();
                 txtTenDonVi.Text = cboTenDonVi.Text;
@@ -411,10 +403,10 @@ namespace MM.Dialogs
             {
                 GenerateCode();
 
-                lbMauSo.Text = string.Format("Mẫu số: {0}", Global.MauSoSauCung);
-                lbKiHieu.Text = string.Format("Kí hiệu: {0}", Global.KiHieuSauCung);
+                lbMauSo.Text = string.Format("Mẫu số: {0}", _mauSo);
+                lbKiHieu.Text = string.Format("Kí hiệu: {0}", _kiHieu);
 
-                Result result = HoaDonXuatTruocBus.GetNgayXuatHoaDon(_invoiceCode);
+                Result result = HoaDonXuatTruocBus.GetNgayXuatHoaDon(_invoiceCode, _fromDate, _toDate);
                 if (result.IsOK)
                 {
                     if (result.QueryResult != null)
@@ -431,12 +423,6 @@ namespace MM.Dialogs
                     MsgBox.Show(Application.ProductName, result.GetErrorAsString("HoaDonXuatTruocBus.GetNgayXuatHoaDon"), IconType.Error);
                     Utility.WriteToTraceLog(result.GetErrorAsString("HoaDonXuatTruocBus.GetNgayXuatHoaDon"));
                 }
-
-                //DateTime dt = DateTime.Now;
-                //string strDay = dt.Day >= 10 ? dt.Day.ToString() : string.Format("0{0}", dt.Day);
-                //string strMonth = dt.Month >= 10 ? dt.Month.ToString() : string.Format("0{0}", dt.Month);
-                //string strYear = dt.Year.ToString();
-                //lbDate.Text = string.Format("Ngày {0} tháng {1} năm {2}", strDay, strMonth, strYear);
 
                 lbBangChu.Text = string.Format("Số tiền viết bằng chữ: {0}", Utility.ReadNumberAsString((long)_totalPayment));
             }
@@ -568,15 +554,13 @@ namespace MM.Dialogs
 
         private bool CheckInfo()
         {
-            Result result = HoaDonXuatTruocBus.CheckHoaDonXuatTruocExistCode(Convert.ToInt32(_invoiceCode));
+            Result result = HoaDonXuatTruocBus.CheckHoaDonXuatTruocExistCode(Convert.ToInt32(_invoiceCode), _fromDate, _toDate);
             if (result.Error.Code == ErrorCode.EXIST || result.Error.Code == ErrorCode.NOT_EXIST)
             {
                 if (result.Error.Code == ErrorCode.EXIST)
                 {
                     MsgBox.Show(this.Text, "Số hóa đơn này đã được xuất rồi. Chương trình sẽ tạo lại số hóa đơn khác.", IconType.Information);
                     GenerateCode();
-                    //this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-                    //this.Close();
                     return false;
                 }
             }
@@ -650,8 +634,8 @@ namespace MM.Dialogs
                 invoice.CreatedBy = Guid.Parse(Global.UserGUID);
                 invoice.Status = (byte)Status.Actived;
                 invoice.ChuaThuTien = !chkDaThuTien.Checked;
-                invoice.MauSo = Global.MauSoSauCung;
-                invoice.KiHieu = Global.KiHieuSauCung;
+                invoice.MauSo = _mauSo;
+                invoice.KiHieu = _kiHieu;
                 invoice.HinhThucNhanHoaDon = raKhachTuLay.Checked ? "Khách tự lấy" : "Gởi qua bưu điện";
                 invoice.Notes = txtGhiChu.Text;
 
@@ -685,7 +669,7 @@ namespace MM.Dialogs
                     addedDetails.Add(detail);
                 }
 
-                Result result = HoaDonXuatTruocBus.InsertHoaDonXuatTruoc(invoice, addedDetails);
+                Result result = HoaDonXuatTruocBus.InsertHoaDonXuatTruoc(invoice, addedDetails, _fromDate, _toDate);
                 if (result.IsOK)
                 {
                     //Insert thông tin khách hàng

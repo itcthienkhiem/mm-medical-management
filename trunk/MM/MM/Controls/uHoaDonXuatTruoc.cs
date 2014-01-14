@@ -158,9 +158,11 @@ namespace MM.Controls
                 MethodInvoker method = delegate
                 {
                     _flag = true;
+                    object key = cboMauHoaDon.SelectedValue;
                     cboMauHoaDon.DataSource = result.QueryResult as DataTable;
                     cboMauHoaDon.DisplayMember = "MauHoaDon";
                     cboMauHoaDon.ValueMember = "MaNgayBatDauGUID";
+                    if (key != null) cboMauHoaDon.SelectedValue = key;
                     SetMauHoaDon();
                     _flag = false;
                 };
@@ -256,7 +258,7 @@ namespace MM.Controls
 
         private void OnAddDangKy()
         {
-            dlgAddSoHoaDonXuatTruoc dlg = new dlgAddSoHoaDonXuatTruoc();
+            dlgAddSoHoaDonXuatTruoc dlg = new dlgAddSoHoaDonXuatTruoc(_fromNgayThayDoiHD, _toNgayThayDoiHD);
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 DisplayDSSoHoaDonXuatTruoc();
@@ -301,7 +303,7 @@ namespace MM.Controls
             foreach (DataRow row in checkedRows)
             {
                 int soHoaDon = Convert.ToInt32(row["SoHoaDon"]);
-                dlgHoaDonXuatTruoc dlg = new dlgHoaDonXuatTruoc(soHoaDon);
+                dlgHoaDonXuatTruoc dlg = new dlgHoaDonXuatTruoc(soHoaDon, _fromNgayThayDoiHD, _toNgayThayDoiHD, _mauSo, _kiHieu);
                 dlg.ShowDialog();
             }
 
@@ -343,7 +345,7 @@ namespace MM.Controls
 
                     if (deletedInvoiceList.Count > 0)
                     {
-                        Result result = HoaDonXuatTruocBus.DeleteHoaDonXuatTruoc(deletedInvoiceList, noteList);
+                        Result result = HoaDonXuatTruocBus.DeleteHoaDonXuatTruoc(deletedInvoiceList, noteList, _fromNgayThayDoiHD, _toNgayThayDoiHD);
                         if (result.IsOK)
                         {
                             foreach (DataRow row in deletedRows)
