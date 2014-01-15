@@ -345,7 +345,7 @@ namespace MM.Controls
 
                     if (deletedInvoiceList.Count > 0)
                     {
-                        Result result = HoaDonXuatTruocBus.DeleteHoaDonXuatTruoc(deletedInvoiceList, noteList, _fromNgayThayDoiHD, _toNgayThayDoiHD);
+                        Result result = HoaDonXuatTruocBus.DeleteHoaDonXuatTruoc(deletedInvoiceList, noteList);
                         if (result.IsOK)
                         {
                             foreach (DataRow row in deletedRows)

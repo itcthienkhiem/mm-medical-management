@@ -373,9 +373,30 @@ namespace MM.Bussiness
                             }
 
                             int soHoaDon = Convert.ToInt32(invoice.InvoiceCode);
-                            QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon &&
-                                q.NgayBatDau.Value >= Global.NgayThayDoiSoHoaDonSauCung);
-                            if (qlshd != null) qlshd.DaXuat = false;
+
+                            DateTime fromDate = Global.MinDateTime;
+                            DateTime toDate = Global.MaxDateTime;
+                            var ngayThayDoi = (from n in db.NgayBatDauLamMoiSoHoaDons
+                                               where n.KiHieu.ToLower() == invoice.KiHieu &&
+                                               n.MauSo.ToLower() == invoice.MauSo.ToLower()
+                                               select n).FirstOrDefault();
+
+                            if (ngayThayDoi != null)
+                            {
+                                fromDate = ngayThayDoi.NgayBatDau;
+
+                                var nextThayDoi = (from n in db.NgayBatDauLamMoiSoHoaDons
+                                                   where n.NgayBatDau > ngayThayDoi.NgayBatDau
+                                                   orderby n.NgayBatDau ascending
+                                                   select n).FirstOrDefault();
+
+                                if (nextThayDoi != null) toDate = nextThayDoi.NgayBatDau;
+
+                                QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon &&
+                                q.NgayBatDau.Value >= fromDate && q.NgayBatDau < toDate);
+                                if (qlshd != null) qlshd.DaXuat = false;
+                            }
+                            
 
                             string htttStr = Utility.ParseHinhThucThanhToanToStr((PaymentType)invoice.HinhThucThanhToan);
 
