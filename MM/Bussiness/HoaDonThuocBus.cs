@@ -382,18 +382,38 @@ namespace MM.Bussiness
                             }
 
                             int soHoaDon = Convert.ToInt32(hdt.SoHoaDon);
-                            QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon &&
-                                q.NgayBatDau.Value >= Global.NgayThayDoiSoHoaDonSauCung);
-                            if (qlshd != null) qlshd.DaXuat = false;
-                            else
+
+                            DateTime fromDate = Global.MinDateTime;
+                            DateTime toDate = Global.MaxDateTime;
+                            var ngayThayDoi = (from n in db.NgayBatDauLamMoiSoHoaDons
+                                               where n.KiHieu.ToLower() == hdt.KiHieu &&
+                                               n.MauSo.ToLower() == hdt.MauSo.ToLower()
+                                               select n).FirstOrDefault();
+
+                            if (ngayThayDoi != null)
                             {
-                                qlshd = new QuanLySoHoaDon();
-                                qlshd.QuanLySoHoaDonGUID = Guid.NewGuid();
-                                qlshd.SoHoaDon = soHoaDon;
-                                qlshd.DaXuat = false;
-                                qlshd.XuatTruoc = false;
-                                qlshd.NgayBatDau = Global.NgayThayDoiSoHoaDonSauCung;
-                                db.QuanLySoHoaDons.InsertOnSubmit(qlshd);
+                                fromDate = ngayThayDoi.NgayBatDau;
+
+                                var nextThayDoi = (from n in db.NgayBatDauLamMoiSoHoaDons
+                                                   where n.NgayBatDau > ngayThayDoi.NgayBatDau
+                                                   orderby n.NgayBatDau ascending
+                                                   select n).FirstOrDefault();
+
+                                if (nextThayDoi != null) toDate = nextThayDoi.NgayBatDau;
+
+                                QuanLySoHoaDon qlshd = db.QuanLySoHoaDons.SingleOrDefault<QuanLySoHoaDon>(q => q.SoHoaDon == soHoaDon &&
+                                q.NgayBatDau.Value >= fromDate && q.NgayBatDau < toDate);
+                                if (qlshd != null) qlshd.DaXuat = false;
+                                else
+                                {
+                                    qlshd = new QuanLySoHoaDon();
+                                    qlshd.QuanLySoHoaDonGUID = Guid.NewGuid();
+                                    qlshd.SoHoaDon = soHoaDon;
+                                    qlshd.DaXuat = false;
+                                    qlshd.XuatTruoc = false;
+                                    qlshd.NgayBatDau = fromDate;
+                                    db.QuanLySoHoaDons.InsertOnSubmit(qlshd);
+                                }
                             }
 
                             string htttStr = Utility.ParseHinhThucThanhToanToStr((PaymentType)hdt.HinhThucThanhToan);

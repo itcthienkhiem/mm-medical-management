@@ -235,18 +235,38 @@ namespace MM.Bussiness
                                 hdxn.Notes += string.Format(" - {0}", noteList[index]);
 
                             int soHoaDon = Convert.ToInt32(hdxn.SoHoaDon);
-                            QuanLySoHoaDonXetNghiemYKhoa qlshd = db.QuanLySoHoaDonXetNghiemYKhoas.SingleOrDefault<QuanLySoHoaDonXetNghiemYKhoa>(q => q.SoHoaDon == soHoaDon &&
-                                q.NgayBatDau.Value >= Global.NgayThayDoiSoHoaDonXetNghiemSauCung);
-                            if (qlshd != null) qlshd.DaXuat = false;
-                            else
+
+                            DateTime fromDate = Global.MinDateTime;
+                            DateTime toDate = Global.MaxDateTime;
+                            var ngayThayDoi = (from n in db.NgayBatDauLamMoiSoHoaDonXetNghiemYKhoas
+                                               where n.KiHieu.ToLower() == hdxn.KiHieu &&
+                                               n.MauSo.ToLower() == hdxn.MauSo.ToLower()
+                                               select n).FirstOrDefault();
+
+                            if (ngayThayDoi != null)
                             {
-                                qlshd = new QuanLySoHoaDonXetNghiemYKhoa();
-                                qlshd.QuanLySoHoaDonGUID = Guid.NewGuid();
-                                qlshd.SoHoaDon = soHoaDon;
-                                qlshd.DaXuat = false;
-                                qlshd.XuatTruoc = false;
-                                qlshd.NgayBatDau = Global.NgayThayDoiSoHoaDonXetNghiemSauCung;
-                                db.QuanLySoHoaDonXetNghiemYKhoas.InsertOnSubmit(qlshd);
+                                fromDate = ngayThayDoi.NgayBatDau;
+
+                                var nextThayDoi = (from n in db.NgayBatDauLamMoiSoHoaDonXetNghiemYKhoas
+                                                   where n.NgayBatDau > ngayThayDoi.NgayBatDau
+                                                   orderby n.NgayBatDau ascending
+                                                   select n).FirstOrDefault();
+
+                                if (nextThayDoi != null) toDate = nextThayDoi.NgayBatDau;
+
+                                QuanLySoHoaDonXetNghiemYKhoa qlshd = db.QuanLySoHoaDonXetNghiemYKhoas.SingleOrDefault<QuanLySoHoaDonXetNghiemYKhoa>(q => q.SoHoaDon == soHoaDon &&
+                                q.NgayBatDau.Value >= fromDate && q.NgayBatDau < toDate);
+                                if (qlshd != null) qlshd.DaXuat = false;
+                                else
+                                {
+                                    qlshd = new QuanLySoHoaDonXetNghiemYKhoa();
+                                    qlshd.QuanLySoHoaDonGUID = Guid.NewGuid();
+                                    qlshd.SoHoaDon = soHoaDon;
+                                    qlshd.DaXuat = false;
+                                    qlshd.XuatTruoc = false;
+                                    qlshd.NgayBatDau = fromDate;
+                                    db.QuanLySoHoaDonXetNghiemYKhoas.InsertOnSubmit(qlshd);
+                                }
                             }
 
                             string htttStr = Utility.ParseHinhThucThanhToanToStr((PaymentType)hdxn.HinhThucThanhToan);
