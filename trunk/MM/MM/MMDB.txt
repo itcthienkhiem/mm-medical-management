@@ -357,9 +357,10 @@ May nen cho nut refresh so phieu thu nhu ben hoa don de khoi phai nhap lai tu da
 
 2. Gia thuoc xuat Excel may phan quyen cho Ke Toan luon nha. Hien tai sao cai quyen "Phan Quyen" khong thay trong MM nua. 
 Manager khong phan duoc mot so quyen nhu la Dieu Duong, cai nhom quyen do no bi disable. 
-Nhu user Tran Thi NGoc Qui co quyen phan quyen nhung gio khong phan duoc quyen Dieu Duong cho thang Dieu Duong moi vao lam.
+Nhu user Tran Thi NGoc Qui co quyen phan quyen nhung gio khong phan duoc quyen Dieu Duong cho thang Dieu Duong moi vao lam. (Đã xong)
 
-3. Thuoc het han 9 ong, nhap lo moi 15 ong thi khi xuat phan mem noi con 24 ong >> tuc la 9 ong kia tro thanh con han. (Đã test không thấy vấn đề gì nhờ nói cụ thể thuốc nào để vào check)
+3. Thuoc het han 9 ong, nhap lo moi 15 ong thi khi xuat phan mem noi con 24 ong >> tuc la 9 ong kia tro thanh con han. 
+(Đã test không thấy vấn đề gì nhờ nói cụ thể thuốc nào để vào check) (vixigrip)
 
 4. Thuoc het han thi co the xuat mot phieu thu de huy so luong het han nay khong? Vi du: co 25 ong nhung 10 ong het han, thi lam sao huy 10 ong nay. (Làm sau)
 
