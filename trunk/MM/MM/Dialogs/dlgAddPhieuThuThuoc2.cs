@@ -41,18 +41,16 @@ namespace MM.Dialogs
             _drPhieuThu = drPhieuThu;
             if (Global.StaffType != StaffType.Admin)
             {
-                btnOK.Enabled = false;
+                //btnOK.Enabled = false;
                 chkDaThuTien.Enabled = false;
                 chkDaXuatHD.Enabled = false;
                 cboHinhThucThanhToan.Enabled = false;
-                txtGhiChu.ReadOnly = true;
             }
             else
             {
                 chkDaThuTien.Enabled = true;
                 chkDaXuatHD.Enabled = true;
                 cboHinhThucThanhToan.Enabled = true;
-                txtGhiChu.ReadOnly = false;
             }
 
             gridViewPTT.OptionsBehavior.Editable = false;
@@ -713,7 +711,7 @@ namespace MM.Dialogs
                     else
                         e.Cancel = true;
                 }
-                else if (Global.StaffType == StaffType.Admin)
+                else //if (Global.StaffType == StaffType.Admin)
                 {
                     Result result = PhieuThuThuocBus.CapNhatTrangThaiPhieuThu(_phieuThuThuoc.PhieuThuThuocGUID.ToString(), 
                         chkDaXuatHD.Checked, chkDaThuTien.Checked, (byte)cboHinhThucThanhToan.SelectedIndex, txtGhiChu.Text);

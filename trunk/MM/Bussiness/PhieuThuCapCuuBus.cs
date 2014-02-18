@@ -444,7 +444,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result CapNhatTrangThaiPhieuThu(string phieuThuCapCuuGUID, bool daXuatHD, bool daThuTien, byte hinhThucThanhToan)
+        public static Result CapNhatTrangThaiPhieuThu(string phieuThuCapCuuGUID, bool daXuatHD, bool daThuTien, byte hinhThucThanhToan, string ghiChu)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -463,6 +463,7 @@ namespace MM.Bussiness
                         ptcc.IsExported = daXuatHD;
                         ptcc.ChuaThuTien = !daThuTien;
                         ptcc.HinhThucThanhToan = hinhThucThanhToan;
+                        ptcc.Notes = ghiChu;
 
                         string desc = string.Format("Phiếu thu cấp cứu: GUID: '{0}', Mã phiếu thu: '{1}', Ngày thu: '{2}', Mã bệnh nhân: '{3}', Tên bệnh nhân: '{4}', Địa chỉ: '{5}', Ghi chú: '{6}', Đã thu tiền: '{7}', Đã xuất HĐ: '{8}', Hình thức thanh toán: '{9}'",
                             ptcc.PhieuThuCapCuuGUID.ToString(), ptcc.MaPhieuThuCapCuu, ptcc.NgayThu.ToString("dd/MM/yyyy HH:mm:ss"),
