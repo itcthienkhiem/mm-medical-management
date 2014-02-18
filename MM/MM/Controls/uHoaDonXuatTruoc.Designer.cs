@@ -695,6 +695,7 @@
             // 
             this.txtTenBenhNhan.Location = new System.Drawing.Point(113, 30);
             this.txtTenBenhNhan.Name = "txtTenBenhNhan";
+            this.txtTenBenhNhan.ReadOnly = true;
             this.txtTenBenhNhan.Size = new System.Drawing.Size(255, 20);
             this.txtTenBenhNhan.TabIndex = 29;
             // 

@@ -365,7 +365,7 @@ Nhu user Tran Thi NGoc Qui co quyen phan quyen nhung gio khong phan duoc quyen D
 4. Thuoc het han thi co the xuat mot phieu thu de huy so luong het han nay khong? Vi du: co 25 ong nhung 10 ong het han, thi lam sao huy 10 ong nay. (Làm sau)
 
 5. Phieu thu da xuat may khong cho sua nhung van cho no update co GHI CHU. 
-Vi co mot so phieu thu nhieu tien no tra nhieu lan thi ben do ke toan ghi chu vao phan mem (tren phieu thu do luon).
+Vi co mot so phieu thu nhieu tien no tra nhieu lan thi ben do ke toan ghi chu vao phan mem (tren phieu thu do luon). (Đã xong)
 
 6. Danh sach hoa don: may cho search theo 3 muc: Ten nguoi mua hang, Ten don vi, Ma so thue. HIen tai chi search theo ten benh nhan (ten nguoi mua hang)
 
