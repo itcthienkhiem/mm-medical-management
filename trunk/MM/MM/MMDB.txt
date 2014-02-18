@@ -373,7 +373,7 @@ Vi co mot so phieu thu nhieu tien no tra nhieu lan thi ben do ke toan ghi chu va
 Nen minh se select tu do , chu khong lam distinct nua.
 
 8. Khi xuat hoa don, neu khong nho Ma don vi thi no danh ten cong ty vao combo nhung hien taị minh chi search begin chu khong phai contain. 
-Tuc la neu Cty TNHH Generelli ma danh vao Generelli thi no ko ra. May coi thu cai nay lam duoc ko nha.
+Tuc la neu Cty TNHH Generelli ma danh vao Generelli thi no ko ra. May coi thu cai nay lam duoc ko nha (Để sau).
 
 9. thuốc cấp cứu anh xem dùm em phần xuất thuốc cấp cứu (Đã check thấy vẫn ổn, nhờ cho biết thuốc cụ thể nào kô đúng để vào check)
 + nhập thuốc vào phần mềm thì được 
