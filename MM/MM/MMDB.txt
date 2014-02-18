@@ -351,3 +351,29 @@ Hai Hoan: ben do moi mo khoa Rang Ham Mat (OK)
 6. ServicePrice				Giá dịch vụ
 7. GiaThuoc					Giá thuốc
 8. GiaVonDichVu				Giá vốn dịch vụ
+==================================================================================
+1. 2 nguoi tao phieu thu (dac biet la ben ban Thuoc) dong thoi khi SAVE lai se gap van de "So phieu thu nay da ton tai". 
+May nen cho nut refresh so phieu thu nhu ben hoa don de khoi phai nhap lai tu dau. (Đã làm rồi)
+
+2. Gia thuoc xuat Excel may phan quyen cho Ke Toan luon nha. Hien tai sao cai quyen "Phan Quyen" khong thay trong MM nua. 
+Manager khong phan duoc mot so quyen nhu la Dieu Duong, cai nhom quyen do no bi disable. 
+Nhu user Tran Thi NGoc Qui co quyen phan quyen nhung gio khong phan duoc quyen Dieu Duong cho thang Dieu Duong moi vao lam.
+
+3. Thuoc het han 9 ong, nhap lo moi 15 ong thi khi xuat phan mem noi con 24 ong >> tuc la 9 ong kia tro thanh con han. (Đã test không thấy vấn đề gì nhờ nói cụ thể thuốc nào để vào check)
+
+4. Thuoc het han thi co the xuat mot phieu thu de huy so luong het han nay khong? Vi du: co 25 ong nhung 10 ong het han, thi lam sao huy 10 ong nay. (Làm sau)
+
+5. Phieu thu da xuat may khong cho sua nhung van cho no update co GHI CHU. 
+Vi co mot so phieu thu nhieu tien no tra nhieu lan thi ben do ke toan ghi chu vao phan mem (tren phieu thu do luon).
+
+6. Danh sach hoa don: may cho search theo 3 muc: Ten nguoi mua hang, Ten don vi, Ma so thue. HIen tai chi search theo ten benh nhan (ten nguoi mua hang)
+
+7. Xuat hoa don: phan ma don vi select tu danh muc cong ty. Tui ke toan ben do co nhiem vu update danh muc cong ty cho chinh xac. 
+Nen minh se select tu do , chu khong lam distinct nua.
+
+8. Khi xuat hoa don, neu khong nho Ma don vi thi no danh ten cong ty vao combo nhung hien taị minh chi search begin chu khong phai contain. 
+Tuc la neu Cty TNHH Generelli ma danh vao Generelli thi no ko ra. May coi thu cai nay lam duoc ko nha.
+
+9. thuốc cấp cứu anh xem dùm em phần xuất thuốc cấp cứu (Đã check thấy vẫn ổn, nhờ cho biết thuốc cụ thể nào kô đúng để vào check)
++ nhập thuốc vào phần mềm thì được 
++ xuất thuốc ra thì phần mềm không trừ ra 
