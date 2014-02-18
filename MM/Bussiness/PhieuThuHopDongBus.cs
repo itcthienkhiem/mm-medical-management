@@ -748,7 +748,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result CapNhatTrangThaiPhieuThu(string phieuThuHopDongGUID, bool daXuatHD, bool daThuTien, byte hinhThucThanhToan)
+        public static Result CapNhatTrangThaiPhieuThu(string phieuThuHopDongGUID, bool daXuatHD, bool daThuTien, byte hinhThucThanhToan, string ghiChu)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -767,6 +767,7 @@ namespace MM.Bussiness
                         pthd.ChuaThuTien = !daThuTien;
                         pthd.IsExported = daXuatHD;
                         pthd.HinhThucThanhToan = hinhThucThanhToan;
+                        pthd.Notes = ghiChu;
 
                         string desc = string.Format("Phiếu thu hợp đồng: GUID: '{0}', Mã hợp đồng: '{1}', Mã phiếu thu: '{2}', Ngày thu: '{3}', Tên khách hàng: '{4}', Công ty: '{5}', Địa chỉ: '{6}', Ghi chú: '{7}', Đã thu tiền: '{8}', Đã xuất HĐ: '{9}', Hình thức thanh toán: '{10}'\n",
                             pthd.PhieuThuHopDongGUID.ToString(), pthd.CompanyContract.CompanyContractGUID, pthd.MaPhieuThuHopDong, pthd.NgayThu.ToString("dd/MM/yyyy HH:mm:ss"),

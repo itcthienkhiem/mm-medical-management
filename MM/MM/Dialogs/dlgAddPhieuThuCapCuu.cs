@@ -44,6 +44,7 @@ namespace MM.Dialogs
                 btnOK.Enabled = false;
                 chkDaThuTien.Enabled = false;
                 cboHinhThucThanhToan.Enabled = false;
+                txtGhiChu.ReadOnly = true;
             }
 
             cboMaToaCapCuu.Visible = false;
@@ -65,7 +66,7 @@ namespace MM.Dialogs
             txtMaBenhNhan.ReadOnly = true;
             txtTenBenhNhan.ReadOnly = true;
             txtDiaChi.ReadOnly = true;
-            txtGhiChu.ReadOnly = true;
+            //txtGhiChu.ReadOnly = true;
             txtLyDoGiam.ReadOnly = true;
             btnChonBenhNhan.Enabled = false;
             
@@ -755,7 +756,7 @@ namespace MM.Dialogs
                 else
                 {
                     Result result = PhieuThuCapCuuBus.CapNhatTrangThaiPhieuThu(_phieuThuCapCuu.PhieuThuCapCuuGUID.ToString(), 
-                        chkDaXuatHD.Checked, chkDaThuTien.Checked, (byte)cboHinhThucThanhToan.SelectedIndex);
+                        chkDaXuatHD.Checked, chkDaThuTien.Checked, (byte)cboHinhThucThanhToan.SelectedIndex, txtGhiChu.Text);
                     if (!result.IsOK)
                     {
                         MsgBox.Show(Application.ProductName, result.GetErrorAsString("PhieuThuCapCuuBus.CapNhatTrangThaiPhieuThu"), IconType.Error);
@@ -768,6 +769,7 @@ namespace MM.Dialogs
                         _drPhieuThu["DaThuTien"] = chkDaThuTien.Checked;
                         _drPhieuThu["HinhThucThanhToan"] = (byte)cboHinhThucThanhToan.SelectedIndex;
                         _drPhieuThu["HinhThucThanhToanStr"] = cboHinhThucThanhToan.Text;
+                        _drPhieuThu["Notes"] = txtGhiChu.Text;
                     }
                 }
             }
