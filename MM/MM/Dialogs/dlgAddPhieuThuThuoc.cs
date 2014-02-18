@@ -44,12 +44,14 @@ namespace MM.Dialogs
                 chkDaThuTien.Enabled = false;
                 chkDaXuatHD.Enabled = false;
                 cboHinhThucThanhToan.Enabled = false;
+                txtGhiChu.ReadOnly = true;
             }
             else
             {
                 chkDaThuTien.Enabled = true;
                 chkDaXuatHD.Enabled = true;
                 cboHinhThucThanhToan.Enabled = true;
+                txtGhiChu.ReadOnly = false;
             }
 
             dgChiTiet.AllowUserToAddRows = false;
@@ -61,7 +63,7 @@ namespace MM.Dialogs
             txtMaBenhNhan.ReadOnly = true;
             txtTenBenhNhan.ReadOnly = true;
             txtDiaChi.ReadOnly = true;
-            txtGhiChu.ReadOnly = true;
+            //txtGhiChu.ReadOnly = true;
             txtLyDoGiam.ReadOnly = true;
             btnChonBenhNhan.Enabled = false;
             
@@ -751,7 +753,7 @@ namespace MM.Dialogs
                 else if (Global.StaffType == StaffType.Admin)
                 {
                     Result result = PhieuThuThuocBus.CapNhatTrangThaiPhieuThu(_phieuThuThuoc.PhieuThuThuocGUID.ToString(), 
-                        chkDaXuatHD.Checked, chkDaThuTien.Checked, (byte)cboHinhThucThanhToan.SelectedIndex);
+                        chkDaXuatHD.Checked, chkDaThuTien.Checked, (byte)cboHinhThucThanhToan.SelectedIndex, txtGhiChu.Text);
                     if (!result.IsOK)
                     {
                         MsgBox.Show(Application.ProductName, result.GetErrorAsString("PhieuThuThuocBus.CapNhatTrangThaiPhieuThu"), IconType.Error);
@@ -764,6 +766,7 @@ namespace MM.Dialogs
                         _drPhieuThu["DaThuTien"] = chkDaThuTien.Checked;
                         _drPhieuThu["HinhThucThanhToan"] = (byte)cboHinhThucThanhToan.SelectedIndex;
                         _drPhieuThu["HinhThucThanhToanStr"] = cboHinhThucThanhToan.Text;
+                        _drPhieuThu["Notes"] = txtGhiChu.Text;
                     }
                 }
             }
