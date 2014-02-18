@@ -458,7 +458,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result CapNhatTrangThaiPhieuThu(string phieuThuThuocGUID, bool daXuatHD, bool daThuTien, byte hinhThucThanhToan)
+        public static Result CapNhatTrangThaiPhieuThu(string phieuThuThuocGUID, bool daXuatHD, bool daThuTien, byte hinhThucThanhToan, string ghiChu)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -477,6 +477,7 @@ namespace MM.Bussiness
                         ptthuoc.IsExported = daXuatHD;
                         ptthuoc.ChuaThuTien = !daThuTien;
                         ptthuoc.HinhThucThanhToan = hinhThucThanhToan;
+                        ptthuoc.Notes = ghiChu;
 
                         string maToaThuoc = string.Empty;
                         if (ptthuoc.ToaThuocGUID.Value != Guid.Empty)
