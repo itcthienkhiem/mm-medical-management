@@ -122,23 +122,27 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-                ThongTinKhachHang ttkh = db.ThongTinKhachHangs.FirstOrDefault(t => t.MaDonVi.Trim().ToLower() == maDonVi.Trim().ToLower());
-
-                if (ttkh == null)
+                ThongTinKhachHang thongTinKhachHang = null;
+                Company company = db.Companies.FirstOrDefault(t => t.MaCty.Trim().ToLower() == maDonVi.Trim().ToLower() &&
+                    t.Status == (byte)Status.Actived);
+                if (company != null)
                 {
-                    Company company = db.Companies.FirstOrDefault(t => t.MaCty.Trim().ToLower() == maDonVi.Trim().ToLower());
-                    if (company != null)
+                    thongTinKhachHang = new ThongTinKhachHang();
+                    thongTinKhachHang.MaDonVi = company.MaCty;
+                    thongTinKhachHang.TenDonVi = company.TenCty;
+                    thongTinKhachHang.DiaChi = company.DiaChi;
+                    thongTinKhachHang.MaSoThue = company.MaSoThue;
+                    thongTinKhachHang.HinhThucThanhToan = 0;
+
+                    ThongTinKhachHang ttkh = db.ThongTinKhachHangs.FirstOrDefault(t => t.MaDonVi.Trim().ToLower() == maDonVi.Trim().ToLower());
+                    if (ttkh != null)
                     {
-                        ttkh = new ThongTinKhachHang();
-                        ttkh.MaDonVi = company.MaCty;
-                        ttkh.TenDonVi = company.TenCty;
-                        ttkh.DiaChi = company.DiaChi;
-                        ttkh.MaSoThue = company.MaSoThue;
-                        ttkh.HinhThucThanhToan = 0;
-                    }
+                        thongTinKhachHang.HinhThucThanhToan = ttkh.HinhThucThanhToan;
+                        thongTinKhachHang.SoTaiKhoan = ttkh.SoTaiKhoan;
+                    }    
                 }
 
-                result.QueryResult = ttkh;
+                result.QueryResult = thongTinKhachHang;
             }
             catch (System.Data.SqlClient.SqlException se)
             {
@@ -170,22 +174,27 @@ namespace MM.Bussiness
             try
             {
                 db = new MMOverride();
-                ThongTinKhachHang ttkh = db.ThongTinKhachHangs.FirstOrDefault(t => t.TenDonVi.Trim().ToLower() == tenDonVi.Trim().ToLower());
-                if (ttkh == null)
+                ThongTinKhachHang thongTinKhachHang = null;
+                Company company = db.Companies.FirstOrDefault(t => t.TenCty.Trim().ToLower() == tenDonVi.Trim().ToLower() &&
+                    t.Status == (byte)Status.Actived);
+                if (company != null)
                 {
-                    Company company = db.Companies.FirstOrDefault(t => t.TenCty.Trim().ToLower() == tenDonVi.Trim().ToLower());
-                    if (company != null)
+                    thongTinKhachHang = new ThongTinKhachHang();
+                    thongTinKhachHang.MaDonVi = company.MaCty;
+                    thongTinKhachHang.TenDonVi = company.TenCty;
+                    thongTinKhachHang.DiaChi = company.DiaChi;
+                    thongTinKhachHang.MaSoThue = company.MaSoThue;
+                    thongTinKhachHang.HinhThucThanhToan = 0;
+
+                    ThongTinKhachHang ttkh = db.ThongTinKhachHangs.FirstOrDefault(t => t.TenDonVi.Trim().ToLower() == tenDonVi.Trim().ToLower());
+                    if (ttkh != null)
                     {
-                        ttkh = new ThongTinKhachHang();
-                        ttkh.MaDonVi = company.MaCty;
-                        ttkh.TenDonVi = company.TenCty;
-                        ttkh.DiaChi = company.DiaChi;
-                        ttkh.MaSoThue = company.MaSoThue;
-                        ttkh.HinhThucThanhToan = 0;
+                        thongTinKhachHang.HinhThucThanhToan = ttkh.HinhThucThanhToan;
+                        thongTinKhachHang.SoTaiKhoan = ttkh.SoTaiKhoan;
                     }
                 }
 
-                result.QueryResult = ttkh;
+                result.QueryResult = thongTinKhachHang;
             }
             catch (System.Data.SqlClient.SqlException se)
             {
@@ -221,8 +230,9 @@ namespace MM.Bussiness
                 {
                     ThongTinKhachHang thongTinKhachHang = (from tt in db.ThongTinKhachHangs
                                                            where tt.TenKhachHang.Trim().ToLower() == ttkh.TenKhachHang.Trim().ToLower() &&
-                                                           tt.TenDonVi.Trim().ToLower() == ttkh.TenDonVi.Trim().ToLower() &&
-                                                           tt.DiaChi.Trim().ToLower() == ttkh.DiaChi.Trim().ToLower()
+                                                           tt.MaDonVi.Trim().ToLower() == ttkh.MaDonVi.Trim().ToLower()
+                                                           //tt.TenDonVi.Trim().ToLower() == ttkh.TenDonVi.Trim().ToLower() &&
+                                                           //tt.DiaChi.Trim().ToLower() == ttkh.DiaChi.Trim().ToLower()
                                                            select tt).FirstOrDefault();
 
                     if (thongTinKhachHang == null)
@@ -232,10 +242,10 @@ namespace MM.Bussiness
                     }
                     else
                     {
-                        thongTinKhachHang.MaDonVi = ttkh.MaDonVi;
-                        thongTinKhachHang.TenDonVi = ttkh.TenDonVi;
-                        thongTinKhachHang.MaSoThue = ttkh.MaSoThue;
-                        thongTinKhachHang.DiaChi = ttkh.DiaChi;
+                        //thongTinKhachHang.MaDonVi = ttkh.MaDonVi;
+                        //thongTinKhachHang.TenDonVi = ttkh.TenDonVi;
+                        //thongTinKhachHang.MaSoThue = ttkh.MaSoThue;
+                        //thongTinKhachHang.DiaChi = ttkh.DiaChi;
                         thongTinKhachHang.SoTaiKhoan = ttkh.SoTaiKhoan;
                         thongTinKhachHang.HinhThucThanhToan = ttkh.HinhThucThanhToan;
                     }

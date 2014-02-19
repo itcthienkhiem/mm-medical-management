@@ -120,10 +120,6 @@ namespace MM.Dialogs
                 cboTenNguoiMuaHang.DisplayMember = "TenKhachHang";
                 cboTenNguoiMuaHang.ValueMember = "ThongTinKhachHangGUID";
                 cboTenNguoiMuaHang.DataSource = dt;
-                //foreach (DataRow row in dt.Rows)
-                //{
-                //    cboTenNguoiMuaHang.Items.Add(row["TenKhachHang"].ToString());
-                //}
             }
             else
             {
@@ -136,19 +132,22 @@ namespace MM.Dialogs
         private void DisplayTenDonVi()
         {
             _flag2 = false;
-            Result result = ThongTinKhachHangBus.GetTenDonViList();
+            Result result = CompanyBus.GetTenCongTyList();//ThongTinKhachHangBus.GetTenDonViList();
             if (result.IsOK)
             {
                 DataTable dt = result.QueryResult as DataTable;
-                foreach (DataRow row in dt.Rows)
-                {
-                    cboTenDonVi.Items.Add(row["TenDonVi"].ToString());
-                }
+                DataRow newRow = dt.NewRow();
+                newRow[0] = string.Empty;
+                dt.Rows.InsertAt(newRow, 0);
+
+                cboTenDonVi.DisplayMember = "TenCty";//"TenDonVi";
+                cboTenDonVi.ValueMember = "TenCty";//"TenDonVi";
+                cboTenDonVi.DataSource = dt;
             }
             else
             {
-                MsgBox.Show(this.Text, result.GetErrorAsString("ThongTinKhachHangBus.GetTenDonViList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("ThongTinKhachHangBus.GetTenDonViList"));
+                MsgBox.Show(this.Text, result.GetErrorAsString("CompanyBus.GetTenCongTyList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("CompanyBus.GetTenCongTyList"));
             }
 
             _flag2 = true;
@@ -157,19 +156,22 @@ namespace MM.Dialogs
         private void DisplayMaDonVi()
         {
             _flag2 = false;
-            Result result = ThongTinKhachHangBus.GetMaDonViList();
+            Result result = CompanyBus.GetMaCongTyList();//ThongTinKhachHangBus.GetMaDonViList();
             if (result.IsOK)
             {
                 DataTable dt = result.QueryResult as DataTable;
-                foreach (DataRow row in dt.Rows)
-                {
-                    cboMaDonVi.Items.Add(row["MaDonVi"].ToString());
-                }
+                DataRow newRow = dt.NewRow();
+                newRow[0] = string.Empty;
+                dt.Rows.InsertAt(newRow, 0);
+
+                cboMaDonVi.DisplayMember = "MaCty";//"MaDonVi";
+                cboMaDonVi.ValueMember = "MaCty";//"MaDonVi";
+                cboMaDonVi.DataSource = dt;
             }
             else
             {
-                MsgBox.Show(this.Text, result.GetErrorAsString("ThongTinKhachHangBus.GetMaDonViList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("ThongTinKhachHangBus.GetMaDonViList"));
+                MsgBox.Show(this.Text, result.GetErrorAsString("CompanyBus.GetMaCongTyList"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("CompanyBus.GetMaCongTyList"));
             }
 
             _flag2 = true;
@@ -196,10 +198,44 @@ namespace MM.Dialogs
                         return;
                     }
 
-                    cboTenDonVi.Text = ttkh.TenDonVi;
-                    cboMaDonVi.Text = ttkh.MaDonVi;
-                    txtMaSoThue.Text = ttkh.MaSoThue;
-                    txtAddress.Text = ttkh.DiaChi;
+                    result = ThongTinKhachHangBus.GetThongTinMaDonVi(ttkh.MaDonVi);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(this.Text, result.GetErrorAsString("ThongTinKhachHangBus.GetThongTinMaDonVi"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("ThongTinKhachHangBus.GetThongTinMaDonVi"));
+                        _flag2 = true;
+                        return;
+                    }
+
+                    ThongTinKhachHang ttkh2 = result.QueryResult as ThongTinKhachHang;
+                    if (ttkh2 != null)
+                    {
+                        cboTenDonVi.Text = ttkh2.TenDonVi;
+                        cboMaDonVi.Text = ttkh2.MaDonVi;
+                        txtMaSoThue.Text = ttkh2.MaSoThue;
+                        txtAddress.Text = ttkh2.DiaChi;
+                    }
+                    else
+                    {
+                        result = ThongTinKhachHangBus.GetThongTinDonVi(ttkh.TenDonVi);
+                        if (!result.IsOK)
+                        {
+                            MsgBox.Show(this.Text, result.GetErrorAsString("ThongTinKhachHangBus.GetThongTinDonVi"), IconType.Error);
+                            Utility.WriteToTraceLog(result.GetErrorAsString("ThongTinKhachHangBus.GetThongTinDonVi"));
+                            _flag2 = true;
+                            return;
+                        }
+
+                        ttkh2 = result.QueryResult as ThongTinKhachHang;
+                        if (ttkh2 != null)
+                        {
+                            cboTenDonVi.Text = ttkh2.TenDonVi;
+                            cboMaDonVi.Text = ttkh2.MaDonVi;
+                            txtMaSoThue.Text = ttkh2.MaSoThue;
+                            txtAddress.Text = ttkh2.DiaChi;
+                        }
+                    }
+                    
                     txtSoTaiKhoan.Text = ttkh.SoTaiKhoan;
                     cboHinhThucThanhToan.SelectedIndex = ttkh.HinhThucThanhToan.Value;
                 }
@@ -770,9 +806,9 @@ namespace MM.Dialogs
                     ThongTinKhachHang thongTinKhachHang = new ThongTinKhachHang();
                     thongTinKhachHang.TenKhachHang = invoice.TenNguoiMuaHang;
                     thongTinKhachHang.MaDonVi = invoice.MaDonVi;
-                    thongTinKhachHang.TenDonVi = invoice.TenDonVi;
-                    thongTinKhachHang.MaSoThue = invoice.MaSoThue;
-                    thongTinKhachHang.DiaChi = invoice.DiaChi;
+                    //thongTinKhachHang.TenDonVi = invoice.TenDonVi;
+                    //thongTinKhachHang.MaSoThue = invoice.MaSoThue;
+                    //thongTinKhachHang.DiaChi = invoice.DiaChi;
                     thongTinKhachHang.SoTaiKhoan = invoice.SoTaiKhoan;
                     thongTinKhachHang.HinhThucThanhToan = invoice.HinhThucThanhToan;
                     result = ThongTinKhachHangBus.InsertThongTinKhachHang(thongTinKhachHang);

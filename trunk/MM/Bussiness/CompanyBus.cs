@@ -12,6 +12,39 @@ namespace MM.Bussiness
 {
     public class CompanyBus : BusBase
     {
+        public static Result GetThongTinCongTy(string maCongTy)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+                Company com = db.Companies.Where(c => c.MaCty.ToUpper() == maCongTy.Trim().ToUpper()).FirstOrDefault();
+                result.QueryResult = com;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
         public static Result GetCompanyList()
         {
             Result result = null;
@@ -19,6 +52,52 @@ namespace MM.Bussiness
             try
             {
                 string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, * FROM Company WITH(NOLOCK) WHERE Status={0} ORDER BY TenCty", (byte)Status.Actived);
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
+        public static Result GetMaCongTyList()
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Format("SELECT MaCty FROM Company WITH(NOLOCK) WHERE Status={0} ORDER BY MaCty", (byte)Status.Actived);
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
+        public static Result GetTenCongTyList()
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Format("SELECT TenCty FROM Company WITH(NOLOCK) WHERE Status={0} ORDER BY TenCty", (byte)Status.Actived);
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
