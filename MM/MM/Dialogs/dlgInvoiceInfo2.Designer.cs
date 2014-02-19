@@ -400,6 +400,7 @@
             this.btnXoaTenDonVi.Size = new System.Drawing.Size(22, 22);
             this.btnXoaTenDonVi.TabIndex = 57;
             this.btnXoaTenDonVi.UseVisualStyleBackColor = true;
+            this.btnXoaTenDonVi.Visible = false;
             this.btnXoaTenDonVi.Click += new System.EventHandler(this.btnXoaTenDonVi_Click);
             // 
             // btnXoaMaDonVi
@@ -410,6 +411,7 @@
             this.btnXoaMaDonVi.Size = new System.Drawing.Size(22, 22);
             this.btnXoaMaDonVi.TabIndex = 56;
             this.btnXoaMaDonVi.UseVisualStyleBackColor = true;
+            this.btnXoaMaDonVi.Visible = false;
             this.btnXoaMaDonVi.Click += new System.EventHandler(this.btnXoaMaDonVi_Click);
             // 
             // btnXoaTenKhachHang
