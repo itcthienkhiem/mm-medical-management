@@ -73,6 +73,36 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetHoaDonXetNghiemList(DateTime fromDate, DateTime toDate, string tenBenhNhan, string tenDonVi, string maSoThue, int type)
+        {
+            Result result = new Result();
+
+            try
+            {
+                string subQuery = string.Empty;
+                if (type == 0) subQuery = "1=1";
+                else if (type == 1) subQuery = string.Format("Status={0}", (byte)Status.Actived);
+                else subQuery = string.Format("Status={0}", (byte)Status.Deactived);
+
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM HoaDonXetNghiemView WITH(NOLOCK) WHERE NgayXuatHoaDon BETWEEN '{0}' AND '{1}' AND TenNguoiMuaHang LIKE N'%{2}%' AND TenDonVi LIKE N'%{3}%' AND MaSoThue LIKE N'%{4}%' AND {5} ORDER BY NgayXuatHoaDon DESC",
+                           fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"), tenBenhNhan, tenDonVi, maSoThue, subQuery);
+
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetChiTietHoaDonXetNghiem(string hoaDonXetNghiemGUID)
         {
             Result result = null;
