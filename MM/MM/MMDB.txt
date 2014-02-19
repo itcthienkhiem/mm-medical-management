@@ -367,7 +367,7 @@ Nhu user Tran Thi NGoc Qui co quyen phan quyen nhung gio khong phan duoc quyen D
 5. Phieu thu da xuat may khong cho sua nhung van cho no update co GHI CHU. 
 Vi co mot so phieu thu nhieu tien no tra nhieu lan thi ben do ke toan ghi chu vao phan mem (tren phieu thu do luon). (Đã xong)
 
-6. Danh sach hoa don: may cho search theo 3 muc: Ten nguoi mua hang, Ten don vi, Ma so thue. HIen tai chi search theo ten benh nhan (ten nguoi mua hang)
+6. Danh sach hoa don: may cho search theo 3 muc: Ten nguoi mua hang, Ten don vi, Ma so thue. HIen tai chi search theo ten benh nhan (ten nguoi mua hang) (Đã xong)
 
 7. Xuat hoa don: phan ma don vi select tu danh muc cong ty. Tui ke toan ben do co nhiem vu update danh muc cong ty cho chinh xac. 
 Nen minh se select tu do , chu khong lam distinct nua.
