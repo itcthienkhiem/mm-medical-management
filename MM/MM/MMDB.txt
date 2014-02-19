@@ -370,7 +370,7 @@ Vi co mot so phieu thu nhieu tien no tra nhieu lan thi ben do ke toan ghi chu va
 6. Danh sach hoa don: may cho search theo 3 muc: Ten nguoi mua hang, Ten don vi, Ma so thue. HIen tai chi search theo ten benh nhan (ten nguoi mua hang) (Đã xong)
 
 7. Xuat hoa don: phan ma don vi select tu danh muc cong ty. Tui ke toan ben do co nhiem vu update danh muc cong ty cho chinh xac. 
-Nen minh se select tu do , chu khong lam distinct nua.
+Nen minh se select tu do , chu khong lam distinct nua. (Đã xong)
 
 8. Khi xuat hoa don, neu khong nho Ma don vi thi no danh ten cong ty vao combo nhung hien taị minh chi search begin chu khong phai contain. 
 Tuc la neu Cty TNHH Generelli ma danh vao Generelli thi no ko ra. May coi thu cai nay lam duoc ko nha (Để sau).
