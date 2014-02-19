@@ -409,18 +409,20 @@ namespace MM.Controls
 
         private void chkTuNgay_CheckedChanged(object sender, EventArgs e)
         {
-            if (chkTuNgay.Checked)
-            {
-                dtpkTuNgay.Enabled = true;
-                chkDenNgay.Enabled = true;
-                dtpkDenNgay.Enabled = chkDenNgay.Checked;
-            }
-            else
-            {
-                dtpkTuNgay.Enabled = false;
-                dtpkDenNgay.Enabled = false;
-                chkDenNgay.Enabled = false;
-            }
+            dtpkTuNgay.Enabled = chkTuNgay.Checked;
+
+            //if (chkTuNgay.Checked)
+            //{
+            //    dtpkTuNgay.Enabled = true;
+            //    chkDenNgay.Enabled = true;
+            //    dtpkDenNgay.Enabled = chkDenNgay.Checked;
+            //}
+            //else
+            //{
+            //    dtpkTuNgay.Enabled = false;
+            //    dtpkDenNgay.Enabled = false;
+            //    chkDenNgay.Enabled = false;
+            //}
         }
 
         private void chkDenNgay_CheckedChanged(object sender, EventArgs e)
@@ -430,7 +432,7 @@ namespace MM.Controls
 
         private void btnView_Click(object sender, EventArgs e)
         {
-            if (chkTuNgay.Checked && dtpkTuNgay.Value > dtpkDenNgay.Value)
+            if (chkTuNgay.Checked && chkDenNgay.Checked && dtpkTuNgay.Value > dtpkDenNgay.Value)
             {
                 MsgBox.Show(Application.ProductName, "Vui lòng nhập từ ngày nhỏ hơn hoặc bằng đến ngày.", IconType.Information);
                 dtpkTuNgay.Focus();

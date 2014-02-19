@@ -20,10 +20,11 @@ namespace MM.Controls
     public partial class uHoaDonXetNghiemList : uBase
     {
         #region Members
-        private bool _isFromDateToDate = true;
         private string _tenBenhNhan = string.Empty;
-        private DateTime _fromDate = DateTime.Now;
-        private DateTime _toDate = DateTime.Now;
+        private string _tenDonVi = string.Empty;
+        private string _maSoThue = string.Empty;
+        private DateTime _fromDate = Global.MinDateTime;
+        private DateTime _toDate = Global.MaxDateTime;
         private int _type = 1; //0: TatCa; 1: ChuaXoa; 2: DaXoa
         #endregion
 
@@ -61,10 +62,18 @@ namespace MM.Controls
             {
                 UpdateGUI();
 
-                _isFromDateToDate = raTuNgayToiNgay.Checked;
-                _fromDate = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
-                _toDate = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
-                _tenBenhNhan = txtTenBenhNhan.Text;
+                _fromDate = Global.MinDateTime;
+                _toDate = Global.MaxDateTime;
+
+                if (chkTuNgay.Checked)
+                    _fromDate = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
+
+                if (chkDenNgay.Checked && chkTuNgay.Checked)
+                    _toDate = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
+
+                _tenBenhNhan = txtTenBenhNhan.Text.Trim();
+                _tenDonVi = txtTenDonVi.Text.Trim();
+                _maSoThue = txtMaSoThue.Text.Trim();
 
                 if (raTatCa.Checked) _type = 0;
                 else if (raChuaXoa.Checked) _type = 1;
@@ -99,7 +108,7 @@ namespace MM.Controls
 
         private void OnDisplayInvoiceList()
         {
-            Result result = HoaDonXetNghiemBus.GetHoaDonXetNghiemList(_isFromDateToDate, _fromDate, _toDate, _tenBenhNhan, _type);
+            Result result = HoaDonXetNghiemBus.GetHoaDonXetNghiemList(_fromDate, _toDate, _tenBenhNhan, _tenDonVi, _maSoThue, _type);
             if (result.IsOK)
             {
                 MethodInvoker method = delegate
@@ -365,26 +374,22 @@ namespace MM.Controls
             OnDisplayInvoiceInfo();
         }
 
-        private void raTuNgayToiNgay_CheckedChanged(object sender, EventArgs e)
+        private void chkTuNgay_CheckedChanged(object sender, EventArgs e)
         {
-            dtpkTuNgay.Enabled = raTuNgayToiNgay.Checked;
-            dtpkDenNgay.Enabled = raTuNgayToiNgay.Checked;
-            txtTenBenhNhan.ReadOnly = raTuNgayToiNgay.Checked;
+            dtpkTuNgay.Enabled = chkTuNgay.Checked;
+        }
+
+        private void chkDenNgay_CheckedChanged(object sender, EventArgs e)
+        {
+            dtpkDenNgay.Enabled = chkDenNgay.Checked;
         }
 
         private void btnView_Click(object sender, EventArgs e)
         {
-            if (raTuNgayToiNgay.Checked && dtpkTuNgay.Value > dtpkDenNgay.Value)
+            if (chkTuNgay.Checked && chkDenNgay.Checked && dtpkTuNgay.Value > dtpkDenNgay.Value)
             {
                 MsgBox.Show(Application.ProductName, "Vui lòng nhập từ ngày nhỏ hơn hoặc bằng đến ngày.", IconType.Information);
                 dtpkTuNgay.Focus();
-                return;
-            }
-
-            if (raTenBenhNhan.Checked && txtTenBenhNhan.Text.Trim() == string.Empty)
-            {
-                MsgBox.Show(Application.ProductName, "Vui lòng nhập tên tên khách hàng.", IconType.Information);
-                txtTenBenhNhan.Focus();
                 return;
             }
 
@@ -441,6 +446,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
         
 
