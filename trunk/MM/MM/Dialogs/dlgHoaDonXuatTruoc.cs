@@ -613,6 +613,20 @@ namespace MM.Dialogs
                 return false;
             }
 
+            if (cboMaDonVi.SelectedValue == null)
+            {
+                MsgBox.Show(this.Text, "Mã đơn vị không tồn tại vui lòng nhập lại.", IconType.Information);
+                cboMaDonVi.Focus();
+                return false;
+            }
+
+            if (cboTenDonVi.Text.Trim() != string.Empty && cboTenDonVi.SelectedValue == null)
+            {
+                MsgBox.Show(this.Text, "Tên đơn vị không tồn tại vui lòng nhập lại.", IconType.Information);
+                cboTenDonVi.Focus();
+                return false;
+            }
+
             if (dgDetail.RowCount <= 1)
             {
                 MsgBox.Show(this.Text, "Vui lòng nhập ít nhất 1 dịch vụ để xuất hóa đơn.", IconType.Information);
