@@ -377,4 +377,4 @@ Tuc la neu Cty TNHH Generelli ma danh vao Generelli thi no ko ra. May coi thu ca
 
 9. thuốc cấp cứu anh xem dùm em phần xuất thuốc cấp cứu (Đã check thấy vẫn ổn, nhờ cho biết thuốc cụ thể nào kô đúng để vào check)
 + nhập thuốc vào phần mềm thì được 
-+ xuất thuốc ra thì phần mềm không trừ ra 
++ xuất thuốc ra thì phần mềm không trừ ra (Không bị bug)
