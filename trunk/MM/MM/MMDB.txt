@@ -360,7 +360,7 @@ Manager khong phan duoc mot so quyen nhu la Dieu Duong, cai nhom quyen do no bi 
 Nhu user Tran Thi NGoc Qui co quyen phan quyen nhung gio khong phan duoc quyen Dieu Duong cho thang Dieu Duong moi vao lam. (Đã xong)
 
 3. Thuoc het han 9 ong, nhap lo moi 15 ong thi khi xuat phan mem noi con 24 ong >> tuc la 9 ong kia tro thanh con han. 
-(Đã test không thấy vấn đề gì nhờ nói cụ thể thuốc nào để vào check) (vixigrip)
+(Đã test không thấy vấn đề gì nhờ nói cụ thể thuốc nào để vào check) (Vaxigrip)
 
 4. Thuoc het han thi co the xuat mot phieu thu de huy so luong het han nay khong? Vi du: co 25 ong nhung 10 ong het han, thi lam sao huy 10 ong nay. (Làm sau)
 
