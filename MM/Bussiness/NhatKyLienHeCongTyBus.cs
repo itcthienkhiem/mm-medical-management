@@ -35,7 +35,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetNhatKyLienHeCongTyList(int type, DateTime fromDate, DateTime toDate, string tenCongTy, string tenNguoiTao, int thang, string mobile)
+        public static Result GetNhatKyLienHeCongTyList(int type, DateTime fromDate, DateTime toDate, string tenCongTy, string tenNguoiTao, int thang, string mobile, int type2)
         {
             Result result = null;
 
@@ -47,6 +47,11 @@ namespace MM.Bussiness
                 string query = string.Empty;
                 if (type == 0)
                 {
+                    string subQuery = string.Empty;
+                    if (type2 == 0) subQuery = "1=1";
+                    else if (type2 == 1) subQuery = string.Format("([Archived] IS NULL OR [Archived] = 'False')");
+                    else if (type2 == 2) subQuery = string.Format("[Archived] IS NOT NULL AND [Archived] = 'True'");
+
                     string monthStr1 = string.Empty;
                     string monthStr2 = string.Empty;
 
@@ -57,9 +62,9 @@ namespace MM.Bussiness
                         monthStr2 = date.ToString("MMMM");
                     }
 
-                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE WHEN datediff(month, NgayGioLienHe, getdate()) > 18 THEN '' ELSE FullName END AS NguoiTao FROM NhatKyLienHeCongTyView WITH(NOLOCK) WHERE Status={0} AND NgayGioLienHe BETWEEN '{1}' AND '{2}' AND CongTyLienHe LIKE N'%{3}%' AND FullName LIKE N'%{4}%' AND (REPLACE(REPLACE(REPLACE(ThangKham, '11', 'Nov'), '12', 'Dec'), '10', 'Oct') LIKE N'%{5}%' OR REPLACE(REPLACE(REPLACE(ThangKham, '11', 'Nov'), '12', 'Dec'), '10', 'Oct') LIKE N'%{6}%') AND SoDienThoaiLienHe LIKE N'%{7}%' ORDER BY NgayGioLienHe DESC",
+                    query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE WHEN datediff(month, NgayGioLienHe, getdate()) > 18 THEN '' ELSE FullName END AS NguoiTao FROM NhatKyLienHeCongTyView WITH(NOLOCK) WHERE Status={0} AND NgayGioLienHe BETWEEN '{1}' AND '{2}' AND CongTyLienHe LIKE N'%{3}%' AND FullName LIKE N'%{4}%' AND (REPLACE(REPLACE(REPLACE(ThangKham, '11', 'Nov'), '12', 'Dec'), '10', 'Oct') LIKE N'%{5}%' OR REPLACE(REPLACE(REPLACE(ThangKham, '11', 'Nov'), '12', 'Dec'), '10', 'Oct') LIKE N'%{6}%') AND SoDienThoaiLienHe LIKE N'%{7}%' AND {8} ORDER BY NgayGioLienHe DESC",
                         (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"),
-                        tenCongTy, tenNguoiTao, monthStr1, monthStr2, mobile);
+                        tenCongTy, tenNguoiTao, monthStr1, monthStr2, mobile, subQuery);
                 }
                 else
                 {

@@ -27,6 +27,7 @@ namespace MM.Controls
         private DateTime _toDate = DateTime.Now;
         private int _thang = 0;
         private int _type = 0; //0: Info; 1: Công ty trùng
+        private int _type2 = 0;//0: Tất cả; 1: Nv còn làm; 2: Nv nghỉ làm
         #endregion
 
         #region Constructor
@@ -96,6 +97,10 @@ namespace MM.Controls
                 if (raInfo.Checked) _type = 0;
                 else _type = 1;
 
+                if (raTatCa.Checked) _type2 = 0;
+                else if (raChuaXoa.Checked) _type2 = 1;
+                else _type2 = 2;
+
                 _fromDate = new DateTime(dtpkTuNgay.Value.Year, dtpkTuNgay.Value.Month, dtpkTuNgay.Value.Day, 0, 0, 0);
                 _toDate = new DateTime(dtpkDenNgay.Value.Year, dtpkDenNgay.Value.Month, dtpkDenNgay.Value.Day, 23, 59, 59);
                 _tenBenhNhan = txtTenBenhNhan.Text;
@@ -119,7 +124,7 @@ namespace MM.Controls
 
         private void OnDisplayNhatKyLienHeCongTyList()
         {   
-            Result result = NhatKyLienHeCongTyBus.GetNhatKyLienHeCongTyList(_type, _fromDate, _toDate, _tenBenhNhan, _tenNguoiTao, _thang, _soDienThoai);
+            Result result = NhatKyLienHeCongTyBus.GetNhatKyLienHeCongTyList(_type, _fromDate, _toDate, _tenBenhNhan, _tenNguoiTao, _thang, _soDienThoai, _type2);
             if (result.IsOK)
             {
                 MethodInvoker method = delegate
@@ -652,6 +657,21 @@ namespace MM.Controls
         {
             DisplayAsThread();
         }
+
+        private void raTatCa_CheckedChanged(object sender, EventArgs e)
+        {
+            DisplayAsThread();
+        }
+
+        private void raChuaXoa_CheckedChanged(object sender, EventArgs e)
+        {
+            DisplayAsThread();
+        }
+
+        private void raDaXoa_CheckedChanged(object sender, EventArgs e)
+        {
+            DisplayAsThread();
+        }
         #endregion
 
         #region Working Thread
@@ -673,5 +693,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }
