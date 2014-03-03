@@ -48,6 +48,11 @@ namespace MM
             Utility.CreateFolder(Global.UsersPath);
 
             InitControl();
+
+            //string pass = "TRgD7BtFtcpQBJJ+4Bu0pw==";
+            //RijndaelCrypto crypto = new RijndaelCrypto();
+            //string newPass = crypto.Decrypt(pass);
+            //MessageBox.Show(newPass);
         }
         #endregion
 
