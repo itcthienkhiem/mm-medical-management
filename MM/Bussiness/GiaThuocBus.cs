@@ -85,7 +85,7 @@ namespace MM.Bussiness
             try
             {
                 string query = string.Format("SELECT TOP 1 * FROM GiaThuoc WITH(NOLOCK) WHERE ThuocGUID = '{0}' AND Status = {1} AND NgayApDung <= '{2}' ORDER BY NgayApDung DESC",
-                    thuocGUID, (byte)Status.Actived, DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"));
+                    thuocGUID, (byte)Status.Actived, DateTime.Now.ToString("yyyy-MM-dd 23:59:59"));
                 result = ExcuteQuery(query);
                 if (result.IsOK)
                 {
