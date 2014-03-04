@@ -121,6 +121,7 @@ namespace MM.Bussiness
 
             try
             {
+                if (maDonVi == null) maDonVi = string.Empty;
                 db = new MMOverride();
                 ThongTinKhachHang thongTinKhachHang = null;
                 Company company = db.Companies.FirstOrDefault(t => t.MaCty.Trim().ToLower() == maDonVi.Trim().ToLower() &&
@@ -173,6 +174,7 @@ namespace MM.Bussiness
 
             try
             {
+                if (tenDonVi == null) tenDonVi = string.Empty;
                 db = new MMOverride();
                 ThongTinKhachHang thongTinKhachHang = null;
                 Company company = db.Companies.FirstOrDefault(t => t.TenCty.Trim().ToLower() == tenDonVi.Trim().ToLower() &&
