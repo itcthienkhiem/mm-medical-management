@@ -191,7 +191,8 @@ namespace MM.Controls
                 if (Boolean.Parse(row["Checked"].ToString()))
                 {
                     string userGUID = row["CreatedBy"].ToString();
-                    if (userGUID != Global.UserGUID)
+                    string nguoiTao = row["NguoiTao"] as string;
+                    if (nguoiTao != null && nguoiTao.Trim() != string.Empty && userGUID != Global.UserGUID)
                     {
                         MsgBox.Show(Application.ProductName, "Bạn không thể xóa nhật ký liên hệ của người khác. Vui lòng kiểm tra lại.", IconType.Information);
                         return;
