@@ -97,6 +97,26 @@ namespace MM.Controls
                 Utility.WriteToTraceLog(result.GetErrorAsString("ReportBus.GetDanhSachKhachHangMuaThuoc"));
             }
         }
+
+        private void ViewPhieuThuThuoc(string phieuThuThuocGUID)
+        {
+            Result result = PhieuThuThuocBus.GetPhieuThuThuocAsDataTable(phieuThuThuocGUID);
+            if (result.IsOK)
+            {
+                DataTable dt = result.QueryResult as DataTable;
+                if (dt != null && dt.Rows.Count > 0)
+                {
+                    DataRow row = dt.Rows[0];
+                    dlgAddPhieuThuThuoc2 dlg = new dlgAddPhieuThuThuoc2(row);
+                    dlg.ShowDialog(this);
+                }
+            }
+            else
+            {
+                MsgBox.Show(Application.ProductName, result.GetErrorAsString("PhieuThuThuocBus.GetPhieuThuThuocAsDataTable"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("PhieuThuThuocBus.GetPhieuThuThuocAsDataTable"));
+            }
+        }
         #endregion
 
         #region Window Event Handlers
@@ -129,11 +149,17 @@ namespace MM.Controls
 
             OnView();
         }
+
+        private void dgDSKhachHang_DoubleClick(object sender, EventArgs e)
+        {
+            if (dgDSKhachHang.SelectedRows == null || dgDSKhachHang.SelectedRows.Count <= 0) return;
+
+            DataRow row = (dgDSKhachHang.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            string phieuThuThuocGUID = row["PhieuThuThuocGUID"].ToString();
+            ViewPhieuThuThuoc(phieuThuThuocGUID);
+        }
         #endregion
 
-        private void btnExportExcel_Click(object sender, EventArgs e)
-        {
-
-        }
+        
     }
 }
