@@ -378,3 +378,17 @@ Tuc la neu Cty TNHH Generelli ma danh vao Generelli thi no ko ra. May coi thu ca
 9. thuốc cấp cứu anh xem dùm em phần xuất thuốc cấp cứu (Đã check thấy vẫn ổn, nhờ cho biết thuốc cụ thể nào kô đúng để vào check)
 + nhập thuốc vào phần mềm thì được 
 + xuất thuốc ra thì phần mềm không trừ ra (Không bị bug)
+==============================================================================================
+1. Bao cao tong so tien ban trong ngay cua tung loai thuoc theo phieu thu (cai nay co the mo rong nen lam luon Tu Ngay Toi NGay). Co row TONG CONG o cuoi cung.
+
+2. Voi bao cao 1, minh co them check box co gia nhap ( cua thuoc do hay khong). Neu co gia nhap thi tinh tong tien nhap luon : so luong ban x gia nhap = tong tien nhap). Muc dich la de biet loi lo.
+
+Gia nhap thi co the tinh binh quan nhu sau: lo nao nhap chua ban het thi cu lay gia nhap cua tat ca cac lo thuoc do roi chia binh quan.
+
+3. Cai bao cao khach hang mua thuoc  da lam roi nhung co them yeu cau la double click vao 1 row thi mo phieu thu lien quan ( de user check cho nhanh) (OK)
+
+4. Xuat Hoa Don: Ten don vi nhieu khi chua co trong danh sach cong ty thi minh cho no type vao de xuat hoa don luon NHUNG MINH SE KHONG SAVE LAI THONG TIN MA USER TYPE VAO
+
+5.Danh sach hoa don xuat truoc: sao 2 nut THEM va XOA bi disable 
+
+6. Phan dich vu hop dong: Khi tao xong nhung xot 1 dich vu, user vao add dich vu vao danh sach, roi vao danh sach benh nhan chon nhieu nguoi cung luc de add dich vu do vao thi no chi add duoc 1 nguoi. May xem lai cho nay

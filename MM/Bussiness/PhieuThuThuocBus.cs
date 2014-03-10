@@ -75,6 +75,30 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetPhieuThuThuocAsDataTable(string phieuThuThuocGUID)
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Format("SELECT CAST(0 AS Bit) AS Checked, *, CASE ChuaThuTien WHEN 'True' THEN 'False' ELSE 'True' END AS DaThuTien FROM PhieuThuThuocView WITH(NOLOCK) WHERE PhieuThuThuocGUID='{0}' AND Status=0",
+                    phieuThuThuocGUID);
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetChiTietPhieuThuThuoc(string phieuThuThuocGUID)
         {
             Result result = null;
