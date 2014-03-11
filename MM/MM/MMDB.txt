@@ -389,7 +389,7 @@ Gia nhap thi co the tinh binh quan nhu sau: lo nao nhap chua ban het thi cu lay 
 3. Cai bao cao khach hang mua thuoc  da lam roi nhung co them yeu cau la double click vao 1 row thi mo phieu thu lien quan ( de user check cho nhanh) (Xong)
 
 4. Xuat Hoa Don: Ten don vi nhieu khi chua co trong danh sach cong ty thi minh cho no type vao de xuat hoa don luon 
-NHUNG MINH SE KHONG SAVE LAI THONG TIN MA USER TYPE VAO
+NHUNG MINH SE KHONG SAVE LAI THONG TIN MA USER TYPE VAO (Xong)
 
 5. Danh sach hoa don xuat truoc: sao 2 nut THEM va XOA bi disable (Xong)
 

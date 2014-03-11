@@ -14,5 +14,19 @@ namespace MM.Common
         public List<string> DeletedServices = new List<string>();
         public List<DataRow> DeletedServiceRows = new List<DataRow>();
         public DataTable DataSource = null;
+
+        public void RemoveServiceFromDataSource(string serviceGUID)
+        {
+            if (DataSource == null) return;
+
+            DataRow[] rows = DataSource.Select(string.Format("ServiceGUID='{0}'", serviceGUID));
+            if (rows != null && rows.Length > 0)
+            {
+                foreach (DataRow row in rows)
+                {
+                    DataSource.Rows.Remove(row);
+                }
+            }
+        }
     }
 }

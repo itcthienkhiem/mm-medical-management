@@ -774,6 +774,8 @@ namespace MM.Dialogs
                         //newRow["Price"] = row["Price"];
                         dataSource.Rows.Add(newRow);
 
+                        member.DataSource.Rows.Add(newRow.ItemArray);
+
                         if (!member.AddedServices.Contains(serviceGUID))
                             member.AddedServices.Add(serviceGUID);
 
@@ -857,6 +859,8 @@ namespace MM.Dialogs
                         member.AddedServices.Remove(serviceGUID);
 
                         dt.Rows.Remove(row);
+
+                        member.RemoveServiceFromDataSource(serviceGUID);
                     }
 
                     RefreshUsingService();
