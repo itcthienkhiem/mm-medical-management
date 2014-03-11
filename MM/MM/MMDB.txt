@@ -394,4 +394,4 @@ NHUNG MINH SE KHONG SAVE LAI THONG TIN MA USER TYPE VAO (Xong)
 5. Danh sach hoa don xuat truoc: sao 2 nut THEM va XOA bi disable (Xong)
 
 6. Phan dich vu hop dong: Khi tao xong nhung xot 1 dich vu, user vao add dich vu vao danh sach, 
-roi vao danh sach benh nhan chon nhieu nguoi cung luc de add dich vu do vao thi no chi add duoc 1 nguoi.
+roi vao danh sach benh nhan chon nhieu nguoi cung luc de add dich vu do vao thi no chi add duoc 1 nguoi. (Xong)
