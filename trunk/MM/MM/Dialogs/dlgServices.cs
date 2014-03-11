@@ -29,6 +29,7 @@ namespace MM.Dialogs
         private string _serviceGUID = string.Empty;
         private DataTable _dtDichVuCon = null;
         private bool _isDichVuHopDong = false;
+        private bool _isViewAllDichVuHopDong = false;
         #endregion
 
         #region Constructor
@@ -68,6 +69,13 @@ namespace MM.Dialogs
             _contractGUID = hopDongGUID;
             _isDichVuCon = true;
             _isDichVuHopDong = true;
+        }
+
+        public dlgServices(DataTable giaDichVuDataSource)
+        {
+            InitializeComponent();
+            _giaDichVuDataSource = giaDichVuDataSource;
+            _isViewAllDichVuHopDong = true;
         }
         #endregion
 
@@ -207,39 +215,54 @@ namespace MM.Dialogs
         {
             lock (ThisLock)
             {
-                Result result = null;
+                if (!_isViewAllDichVuHopDong)
+                {
+                    Result result = null;
 
-                if (!_isDichVuCon)
-                {
-                    if (!_isServiceGroup)
-                        result = ServicesBus.GetServicesListNotInCheckList(_contractGUID, _companyMemberGUID, _name);
+                    if (!_isDichVuCon)
+                    {
+                        if (!_isServiceGroup)
+                            result = ServicesBus.GetServicesListNotInCheckList(_contractGUID, _companyMemberGUID, _name);
+                        else
+                            result = ServiceGroupBus.GetServiceListNotInGroup(_name);
+                    }
+                    else if (_isDichVuHopDong)
+                    {
+                        result = ServicesBus.GetDichVuHopDongList(_name, _contractGUID);
+                    }
                     else
-                        result = ServiceGroupBus.GetServiceListNotInGroup(_name);
-                }
-                else if (_isDichVuHopDong)
-                {
-                    result = ServicesBus.GetDichVuHopDongList(_name, _contractGUID);
+                        result = ServicesBus.GetServicesList(_name);
+
+                    if (result.IsOK)
+                    {
+                        dgService.Invoke(new MethodInvoker(delegate()
+                        {
+                            ClearData();
+
+                            DataTable dt = result.QueryResult as DataTable;
+                            dt = GetDataSource(dt);
+                            if (_dtTemp == null) _dtTemp = dt.Clone();
+                            UpdateChecked(dt);
+                            dgService.DataSource = dt;
+                        }));
+                    }
+                    else
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("ServicesBus.GetServicesListNotInCheckList"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("ServicesBus.GetServicesListNotInCheckList"));
+                    }
                 }
                 else
-                    result = ServicesBus.GetServicesList(_name);
-
-                if (result.IsOK)
                 {
                     dgService.Invoke(new MethodInvoker(delegate()
                     {
                         ClearData();
 
-                        DataTable dt = result.QueryResult as DataTable;
-                        dt = GetDataSource(dt);
+                        DataTable dt = _giaDichVuDataSource.Copy();
                         if (_dtTemp == null) _dtTemp = dt.Clone();
                         UpdateChecked(dt);
                         dgService.DataSource = dt;
                     }));
-                }
-                else
-                {
-                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("ServicesBus.GetServicesListNotInCheckList"), IconType.Error);
-                    Utility.WriteToTraceLog(result.GetErrorAsString("ServicesBus.GetServicesListNotInCheckList"));
                 }
             }
         }

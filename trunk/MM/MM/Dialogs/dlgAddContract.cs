@@ -730,6 +730,100 @@ namespace MM.Dialogs
             }
         }
 
+        private void OnAddServiceToMultiMembers()
+        {
+            if (dgGiaDichVu.RowCount <= 0)
+            {
+                MsgBox.Show(this.Text, "Vui lòng nhập danh sách dịch vụ cho hợp đồng.", IconType.Information);
+                tabContract.SelectedTabIndex = 1;
+                btnAdd.Focus();
+                return;
+            }
+
+            if (_selectedCompanyInfo == null) return;
+
+            List<DataRow> checkedMembers = CheckedMemberRows;
+            if (checkedMembers == null || checkedMembers.Count <= 0)
+            {
+                MsgBox.Show(this.Text, "Vui lòng đánh dấu những nhân viên cần thêm dịch vụ.", IconType.Information);
+                return;
+            }
+
+            dlgServices dlg = new dlgServices(_selectedCompanyInfo.GiaDichVuDataSource);
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                List<DataRow> checkedRows = dlg.Services;
+
+                foreach (DataRow drMember in checkedMembers)
+                {
+                    string companyMemberGUID = drMember["CompanyMemberGUID"].ToString();
+                    string contractMemberGUID = drMember["ContractMemberGUID"].ToString();
+                    string patientGUID = drMember["PatientGUID"].ToString();
+
+                    Member member = null;
+
+                    if (_selectedCompanyInfo.AddedMembers.ContainsKey(companyMemberGUID))
+                        member = (Member)_selectedCompanyInfo.AddedMembers[companyMemberGUID];
+                    else
+                    {
+                        member = new Member();
+                        member.CompanyMemberGUID = companyMemberGUID;
+                        member.ConstractGUID = _contract.CompanyContractGUID.ToString();
+
+                        Result result = null;
+                        if (_isNew)
+                            result = CompanyContractBus.GetCheckList(contractMemberGUID);
+                        else
+                            result = CompanyContractBus.GetCheckList(_contract.CompanyContractGUID.ToString(), patientGUID);
+
+                        _selectedCompanyInfo.AddedMembers.Add(companyMemberGUID, member);
+
+                        if (result.IsOK)
+                        {
+                            DataTable dataSource = result.QueryResult as DataTable;
+                            member.DataSource = dataSource;
+                        }
+                        else
+                        {
+                            MsgBox.Show(this.Text, result.GetErrorAsString("CompanyContractBus.GetCheckList"), IconType.Error);
+                            Utility.WriteToTraceLog(result.GetErrorAsString("CompanyContractBus.GetCheckList"));
+                            return;
+                        }
+                    }
+
+                    foreach (DataRow row in checkedRows)
+                    {
+                        string serviceGUID = row["ServiceGUID"].ToString();
+                        DataRow[] rows = member.DataSource.Select(string.Format("ServiceGUID='{0}'", serviceGUID));
+                        if (rows == null || rows.Length <= 0)
+                        {
+                            DataRow newRow = member.DataSource.NewRow();
+                            newRow["Checked"] = false;
+                            newRow["ServiceGUID"] = serviceGUID;
+                            newRow["Code"] = row["Code"];
+                            newRow["Name"] = row["Name"];
+                            member.DataSource.Rows.Add(newRow);
+
+                            if (!member.AddedServices.Contains(serviceGUID))
+                                member.AddedServices.Add(serviceGUID);
+
+                            member.DeletedServices.Remove(serviceGUID);
+                            foreach (DataRow r in member.DeletedServiceRows)
+                            {
+                                if (r["ServiceGUID"].ToString() == serviceGUID)
+                                {
+                                    member.DeletedServiceRows.Remove(r);
+                                    break;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                OnDisplayCheckList();
+            }
+        }
+
         private void OnAddService()
         {
             if (dgGiaDichVu.RowCount <= 0)
@@ -1630,7 +1724,7 @@ namespace MM.Dialogs
 
         private void btnAddService_Click(object sender, EventArgs e)
         {
-            OnAddService();
+            OnAddServiceToMultiMembers();
         }
 
         private void btnDeleteService_Click(object sender, EventArgs e)
@@ -1790,7 +1884,7 @@ namespace MM.Dialogs
 
         private void themDVToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            OnAddService();
+            OnAddServiceToMultiMembers();
         }
 
         private void xoaDVToolStripMenuItem_Click(object sender, EventArgs e)
