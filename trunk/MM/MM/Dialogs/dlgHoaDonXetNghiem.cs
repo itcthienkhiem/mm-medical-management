@@ -373,8 +373,8 @@ namespace MM.Dialogs
             {
                 GenerateCode();
 
-                lbMauSo.Text = string.Format("Mẫu số: {0}", Global.MauSoSauCung);
-                lbKiHieu.Text = string.Format("Kí hiệu: {0}", Global.KiHieuSauCung);
+                lbMauSo.Text = string.Format("Mẫu số: {0}", Global.MauSoXetNghiemSauCung);
+                lbKiHieu.Text = string.Format("Kí hiệu: {0}", Global.KiHieuXetNghiemSauCung);
 
                 Result result = HoaDonXetNghiemBus.GetNgayXuatHoaDon(_invoiceCode);
                 if (result.IsOK)
