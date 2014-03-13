@@ -626,8 +626,8 @@ namespace MM.Dialogs
                 invoice.CreatedBy = Guid.Parse(Global.UserGUID);
                 invoice.Status = (byte)Status.Actived;
                 invoice.ChuaThuTien = !chkDaThuTien.Checked;
-                invoice.MauSo = Global.MauSoSauCung;
-                invoice.KiHieu = Global.KiHieuSauCung;
+                invoice.MauSo = Global.MauSoXetNghiemSauCung;
+                invoice.KiHieu = Global.KiHieuXetNghiemSauCung;
                 invoice.HinhThucNhanHoaDon = raKhachTuLay.Checked ? "Khách tự lấy" : "Gởi qua bưu điện";
                 invoice.Notes = txtGhiChu.Text;
 
