@@ -1022,5 +1022,38 @@ namespace MM.Bussiness
 
             return result;
         }
+
+        public static Result GetDoanhThuThuocTheoPhieuThu(DateTime tuNgay, DateTime denNgay, int type)
+        {
+            Result result = null;
+
+            try
+            {
+                string subQuery = "1=1";
+                if (type == 1) subQuery = "ChuaThuTien=0";
+                else if (type == 2) subQuery = "ChuaThuTien=1";
+
+                string query = string.Format(@"SELECT CT.ThuocGUID, CT.MaThuoc, CT.TenThuoc, SUM(CT.SoLuong) AS SoLuong, SUM(ThanhTien) AS TongTienBan 
+                                            FROM PhieuThuThuoc PT, ChiTietPhieuThuThuocView CT 
+                                            WHERE PT.PhieuThuThuocGUID = CT.PhieuThuThuocGUID AND PT.Status = 0 AND CT.CTPTTStatus = 0 AND 
+                                            PT.NgayThu BETWEEN '{0}' AND '{1}' AND {2} 
+                                            GROUP BY CT.ThuocGUID, CT.MaThuoc, CT.TenThuoc 
+                                            ORDER BY CT.TenThuoc", tuNgay.ToString("yyyy-MM-dd 00:00:00"), denNgay.ToString("yyyy-MM-dd 23:59:59"), subQuery);
+
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
     }
 }

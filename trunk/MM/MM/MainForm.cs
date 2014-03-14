@@ -453,6 +453,8 @@ namespace MM
                 _uHuyThuocList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uHoaDonXetNghiemList))
                 _uHoaDonXetNghiemList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uBaoCaoDoanhThuThuocTheoPhieuThu))
+                _uBaoCaoDoanhThuThuocTheoPhieuThu.InitData();
         }
 
         private void SaveAppConfig()
@@ -1852,6 +1854,20 @@ namespace MM
                             thayDoiSoHoaDonXetNghiemToolStripMenuItem.Enabled = isView && isLogin;
                             Global.AllowEditThayDoiSoHoaDonXetNghiem = isEdit;
                         }
+                        else if (functionCode == Const.BaoCaoDoanhThuThuocTheoPhieuThu)
+                        {
+                            reportToolStripMenuItem.Enabled = isLogin;
+                            baoCaoDoanhThuThuocTheoPhieuThuToolStripMenuItem.Enabled = isView && isLogin;
+                            _uBaoCaoDoanhThuThuocTheoPhieuThu.AllowAdd = isAdd;
+                            _uBaoCaoDoanhThuThuocTheoPhieuThu.AllowEdit = isEdit;
+                            _uBaoCaoDoanhThuThuocTheoPhieuThu.AllowDelete = isDelete;
+                            _uBaoCaoDoanhThuThuocTheoPhieuThu.AllowPrint = isPrint;
+                            _uBaoCaoDoanhThuThuocTheoPhieuThu.AllowExport = isExport;
+                            _uBaoCaoDoanhThuThuocTheoPhieuThu.AllowImport = isImport;
+                            _uBaoCaoDoanhThuThuocTheoPhieuThu.AllowLock = isLock;
+                            _uBaoCaoDoanhThuThuocTheoPhieuThu.AllowExportAll = isExportAll;
+                            _uBaoCaoDoanhThuThuocTheoPhieuThu.AllowConfirm = isConfirm;
+                        }
                     }
                 }
                 else
@@ -2100,6 +2116,7 @@ namespace MM
                 thayDoiSoHoaDonToolStripMenuItem.Enabled = isLogin;
                 thayDoiSoHoaDonXetNghiemToolStripMenuItem.Enabled = isLogin;
                 hoaDonXetNghiemToolStripMenuItem.Enabled = isLogin;
+                baoCaoDoanhThuThuocTheoPhieuThuToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -2606,7 +2623,18 @@ namespace MM
                 case "HoaDonXetNghiem":
                     OnHoaDonXetNghiem();
                     break;
+
+                case "BaoCaoDoanhThuThuocTheoPhieuThu":
+                    OnBaoCaoDoanhThuThuocTheoPhieuThu();
+                    break;
             }
+        }
+
+        private void OnBaoCaoDoanhThuThuocTheoPhieuThu()
+        {
+            this.Text = string.Format("{0} - Bao cao doanh thu thuoc theo phieu thu", Application.ProductName);
+            ViewControl(_uBaoCaoDoanhThuThuocTheoPhieuThu);
+            _uBaoCaoDoanhThuThuocTheoPhieuThu.InitData();
         }
 
         private void OnHoaDonXetNghiem()

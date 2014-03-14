@@ -106,6 +106,12 @@
     <Reference Include="TXTextControl, Version=15.1.800.500, Culture=neutral, PublicKeyToken=6b83fe9a75cfb638" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\uBaoCaoDoanhThuThuocTheoPhieuThu.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uBaoCaoDoanhThuThuocTheoPhieuThu.Designer.cs">
+      <DependentUpon>uBaoCaoDoanhThuThuocTheoPhieuThu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uHoaDonXetNghiemList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1763,6 +1769,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\uBaoCaoDoanhThuThuocTheoPhieuThu.resx">
+      <DependentUpon>uBaoCaoDoanhThuThuocTheoPhieuThu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uHoaDonXetNghiemList.resx">
       <DependentUpon>uHoaDonXetNghiemList.cs</DependentUpon>
     </EmbeddedResource>
@@ -2656,6 +2665,8 @@
     <None Include="Service References\PlayCapService\PlayCap1.wsdl" />
     <None Include="Templates\BaoCaoCongNoHopDongChiTietTemplate.xls" />
     <None Include="Templates\BaoCaoCongNoHopDongTemplate.xls" />
+    <None Include="Templates\BaoCaoDoanhThuThuocTheoPhieuThuCoGiaNhapTemplate.xls" />
+    <None Include="Templates\BaoCaoDoanhThuThuocTheoPhieuThuKhongGiaNhapTemplate.xls" />
     <None Include="Templates\BaoCaoTonKhoCapCuuTemplate.xls" />
     <None Include="Templates\BenhNhanNgoaiGoiKhamTemplate.xls" />
     <None Include="Templates\CheckListTemplate.xls" />
@@ -2799,6 +2810,7 @@
     <None Include="Resources\WhiteImage.PNG" />
     <None Include="Resources\email-alert-icon %282%29.png" />
     <None Include="Resources\email-alert-icon.png" />
+    <Content Include="Scripts\ScriptUpdate_KH_2014-03-14.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2014-02-27.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2014-02-25.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2014-01-21.sql" />
