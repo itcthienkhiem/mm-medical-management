@@ -12,6 +12,61 @@ namespace MM.Bussiness
 {
     public class LoThuocBus : BusBase
     {
+        public static Result GetGiaNhapTrungBinh(string thuocGUID)
+        {
+            Result result = new Result();
+
+            MMOverride db = null;
+            try
+            {
+                DateTime dt = DateTime.Now;
+                db = new MMOverride();
+                var loThuocList = from l in db.LoThuocs
+                                  where l.Status == (byte)Status.Actived &&
+                                  l.ThuocGUID.ToString() == thuocGUID &&
+                                  new DateTime(l.NgayHetHan.Year, l.NgayHetHan.Month, l.NgayHetHan.Day) > dt &&
+                                  l.SoLuongNhap * l.SoLuongQuiDoi - l.SoLuongXuat > 0
+                                  select l;
+
+                double giaNhapTB = 0;
+                if (loThuocList != null)
+                {
+                    double tongGiaNhap = 0;
+                    int soLuong = 0;
+                    foreach (var lt in loThuocList)
+                    {
+                        int soLuongTon = lt.SoLuongNhap * lt.SoLuongQuiDoi - lt.SoLuongXuat;
+                        soLuong += soLuongTon;
+                        tongGiaNhap += (soLuongTon * lt.GiaNhapQuiDoi);
+                    }
+
+                    giaNhapTB = Math.Round(tongGiaNhap / soLuong, 0);
+                }
+
+                result.QueryResult = giaNhapTB;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+            return result;
+        }
+
         public static Result GetLoThuocList()
         {
             Result result = null;

@@ -266,6 +266,7 @@ namespace MM.Common
             IgnorePermissions.Add("0763C052-318A-4198-B7F7-E9929B42C2F9");
             IgnorePermissions.Add("E1F9F5D1-4239-4B4A-82D3-FCE1CB025152");
             IgnorePermissions.Add("2BDDF71D-8B33-4778-93A6-FF43BC13E2EA");
+            IgnorePermissions.Add("2FB57B95-23D7-4B9F-B2B2-927F209D7BF1");
         }
     }
 }
