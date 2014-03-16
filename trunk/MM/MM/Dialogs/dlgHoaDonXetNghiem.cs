@@ -1002,6 +1002,7 @@ namespace MM.Dialogs
         private void dgDetail_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             RefreshNo();
+            CalculateTongTien();
         }
 
         private void dgDetail_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)

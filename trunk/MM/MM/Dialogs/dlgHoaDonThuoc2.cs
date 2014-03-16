@@ -566,17 +566,17 @@ namespace MM.Dialogs
             if (rowIndex < 0 || colIndex < 0) return;
 
             int soLuong = 1;
-            string strValue = dgDetail[4, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
+            string strValue = dgDetail[3, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
             if (strValue != string.Empty && strValue != "System.Data.DataRowView")
                 soLuong = Convert.ToInt32(strValue);
 
-            strValue = dgDetail[5, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
+            strValue = dgDetail[4, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
             double donGia = 0;
             if (strValue != string.Empty && strValue != "System.Data.DataRowView")
                 donGia = Convert.ToDouble(strValue);
 
             double thanhTien = soLuong * donGia;
-            dgDetail[6, rowIndex].Value = thanhTien;
+            dgDetail[5, rowIndex].Value = thanhTien;
 
             CalculateTongTien();
         }
@@ -588,8 +588,8 @@ namespace MM.Dialogs
             for (int i = 0; i < rowCount; i++)
             {
                 double tt = 0;
-                if (dgDetail[6, i].Value != null && dgDetail[6, i].Value != DBNull.Value)
-                    tt = Convert.ToDouble(dgDetail[6, i].Value);
+                if (dgDetail[5, i].Value != null && dgDetail[5, i].Value != DBNull.Value)
+                    tt = Convert.ToDouble(dgDetail[5, i].Value);
                 _totalPrice += tt;
             }
 
@@ -1313,11 +1313,12 @@ namespace MM.Dialogs
         private void dgDetail_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             RefreshNo();
+            CalculateTongTien();
         }
 
         private void dgDetail_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
-            if (dgDetail.CurrentCell.ColumnIndex >= 4 && dgDetail.CurrentCell.ColumnIndex <= 5)
+            if (dgDetail.CurrentCell.ColumnIndex >= 3 && dgDetail.CurrentCell.ColumnIndex <= 4)
             {
                 TextBox textBox = e.Control as TextBox;
 
@@ -1353,7 +1354,7 @@ namespace MM.Dialogs
                 if (cbo.SelectedValue == null || cbo.SelectedValue.ToString() == "System.Data.DataRowView") return;
                 string tenThuoc = cbo.SelectedValue.ToString();
                 string donViTinh = GetDonViTinh(tenThuoc);
-                dgDetail.Rows[dgDetail.CurrentRow.Index].Cells[3].Value = donViTinh;
+                dgDetail.Rows[dgDetail.CurrentRow.Index].Cells[2].Value = donViTinh;
                 _flag = true;
             }
         }
@@ -1363,11 +1364,11 @@ namespace MM.Dialogs
             if (!_flag) return;
             TextBox textBox = (TextBox)sender;
             int colIndex = dgDetail.CurrentCell.ColumnIndex;
-            if (colIndex < 4) return;
+            if (colIndex < 3) return;
 
             if (textBox.Text == null || textBox.Text.Trim() == string.Empty)
             {
-                if (colIndex == 4)
+                if (colIndex == 3)
                     textBox.Text = "1";
                 else
                     textBox.Text = "0";
@@ -1379,7 +1380,7 @@ namespace MM.Dialogs
             {
                 int value = int.Parse(strValue);
 
-                if (colIndex == 4 && value == 0)
+                if (colIndex == 3 && value == 0)
                     textBox.Text = "1";
             }
             catch
@@ -1393,7 +1394,7 @@ namespace MM.Dialogs
         private void textBox_KeyPress(object sender, KeyPressEventArgs e)
         {
             int colIndex = dgDetail.CurrentCell.ColumnIndex;
-            if (colIndex != 4 && colIndex != 5) return;
+            if (colIndex != 3 && colIndex != 4) return;
             
             DataGridViewTextBoxEditingControl textBox = (DataGridViewTextBoxEditingControl)sender;
             if (!(char.IsDigit(e.KeyChar)))
@@ -1442,11 +1443,11 @@ namespace MM.Dialogs
 
         private void dgDetail_CellFormatting(object sender, DataGridViewCellFormattingEventArgs e)
         {
-            if (e.ColumnIndex >= 4 && e.ColumnIndex <= 6)
+            if (e.ColumnIndex >= 3 && e.ColumnIndex <= 5)
             {
                 if (e.Value == null || e.Value.ToString() == string.Empty || e.Value == DBNull.Value)
                 {
-                    if (e.ColumnIndex == 5 || e.ColumnIndex == 6)
+                    if (e.ColumnIndex == 4 || e.ColumnIndex == 5)
                         e.Value = "0";
                     else
                         e.Value = "1";

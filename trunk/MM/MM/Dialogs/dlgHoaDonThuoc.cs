@@ -583,9 +583,9 @@ namespace MM.Dialogs
                 soLuong = Convert.ToInt32(strValue);
 
             strValue = dgDetail[5, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
-            int donGia = 0;
+            double donGia = 0;
             if (strValue != string.Empty && strValue != "System.Data.DataRowView")
-                donGia = Convert.ToInt32(strValue);
+                donGia = Convert.ToDouble(strValue);
 
             strValue = dgDetail[6, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
             int giam = 0;
@@ -1444,6 +1444,7 @@ namespace MM.Dialogs
         private void dgDetail_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             RefreshNo();
+            CalculateTongTien();
         }
 
         private void dgDetail_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
@@ -1756,6 +1757,7 @@ namespace MM.Dialogs
         private void dgDetail2_UserDeletedRow(object sender, DataGridViewRowEventArgs e)
         {
             RefreshNo2();
+            CalculateTongTien();
         }
         #endregion
 
