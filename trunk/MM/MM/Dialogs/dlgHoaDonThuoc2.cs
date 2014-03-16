@@ -571,15 +571,10 @@ namespace MM.Dialogs
                 soLuong = Convert.ToInt32(strValue);
 
             strValue = dgDetail[5, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
-            int donGia = 0;
+            double donGia = 0;
             if (strValue != string.Empty && strValue != "System.Data.DataRowView")
-                donGia = Convert.ToInt32(strValue);
+                donGia = Convert.ToDouble(strValue);
 
-            strValue = dgDetail[6, rowIndex].EditedFormattedValue.ToString().Replace(",", "").Replace(".", "");
-            int giam = 0;
-            if (strValue != string.Empty && strValue != "System.Data.DataRowView")
-                giam = Convert.ToInt32(strValue);
-            
             double thanhTien = soLuong * donGia;
             dgDetail[6, rowIndex].Value = thanhTien;
 
