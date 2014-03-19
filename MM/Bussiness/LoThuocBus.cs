@@ -40,7 +40,8 @@ namespace MM.Bussiness
                         tongGiaNhap += (soLuongTon * lt.GiaNhapQuiDoi);
                     }
 
-                    giaNhapTB = Math.Round(tongGiaNhap / soLuong, 0);
+                    if (soLuong > 0)
+                        giaNhapTB = Math.Round(tongGiaNhap / soLuong, 0);
                 }
 
                 result.QueryResult = giaNhapTB;
