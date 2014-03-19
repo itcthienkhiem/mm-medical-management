@@ -531,6 +531,8 @@ namespace MM.Dialogs
                             int soLuong = Convert.ToInt32(row["SoLuong"]);
                             double donGia = Math.Round(thanhTien / soLuong, 0);
                             row["DonGia"] = donGia;
+                            thanhTien = soLuong * donGia;
+                            row["ThanhTien"] = thanhTien;
 
                             _totalPrice += thanhTien;
                         }

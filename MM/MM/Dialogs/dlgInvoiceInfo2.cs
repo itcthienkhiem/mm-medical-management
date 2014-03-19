@@ -493,16 +493,17 @@ namespace MM.Dialogs
                 if (result.IsOK)
                 {
                     DataTable dataSource = result.QueryResult as DataTable;
-                    dgDetail.DataSource = dataSource;
-
                     if (dataSource != null)
                     {
                         foreach (DataRow row in dataSource.Rows)
                         {
-                            double thanhTien = Convert.ToDouble(row["ThanhTien"]);
+                            double thanhTien = Convert.ToDouble(row["SoLuong"]) * Math.Round(Convert.ToDouble(row["DonGia"]), 0); //Convert.ToDouble(row["ThanhTien"]);
+                            row["ThanhTien"] = thanhTien;
                             _totalPrice += thanhTien;
                         }
                     }
+
+                    dgDetail.DataSource = dataSource;
 
                     if (_totalPrice > 0)
                     lbTotalAmount.Text = string.Format("{0}", _totalPrice.ToString("#,###"));
