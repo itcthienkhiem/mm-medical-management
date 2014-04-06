@@ -162,7 +162,8 @@ namespace MM.Dialogs
                 {
                     _giaCapCuu.KhoCapCuuGUID = Guid.Parse(cboCapCuu.SelectedValue.ToString());
                     _giaCapCuu.GiaBan = (double)numGiaBan.Value;
-                    _giaCapCuu.NgayApDung = dtpkNgayApDung.Value;
+                    _giaCapCuu.NgayApDung = new DateTime(dtpkNgayApDung.Value.Year, dtpkNgayApDung.Value.Month,
+                        dtpkNgayApDung.Value.Day, 0, 0, 0, 0);
                     _giaCapCuu.Status = (byte)Status.Actived;
 
                     if (_isNew)
