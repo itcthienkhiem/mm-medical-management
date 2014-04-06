@@ -162,7 +162,8 @@ namespace MM.Dialogs
                 {
                     _giaThuoc.ThuocGUID = Guid.Parse(cboThuoc.SelectedValue.ToString());
                     _giaThuoc.GiaBan = (double)numGiaBan.Value;
-                    _giaThuoc.NgayApDung = dtpkNgayApDung.Value;
+                    _giaThuoc.NgayApDung = new DateTime(dtpkNgayApDung.Value.Year, dtpkNgayApDung.Value.Month,
+                        dtpkNgayApDung.Value.Day, 0, 0, 0, 0);
                     _giaThuoc.Status = (byte)Status.Actived;
 
                     if (_isNew)
