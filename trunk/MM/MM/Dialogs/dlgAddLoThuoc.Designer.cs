@@ -31,6 +31,8 @@
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddLoThuoc));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtGhiChu = new System.Windows.Forms.TextBox();
+            this.label11 = new System.Windows.Forms.Label();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
             this.label10 = new System.Windows.Forms.Label();
             this.numGiaNhapQuiDoi = new System.Windows.Forms.NumericUpDown();
@@ -71,8 +73,8 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
-            this.label11 = new System.Windows.Forms.Label();
-            this.txtGhiChu = new System.Windows.Forms.TextBox();
+            this.dtpkNgayNhapLo = new System.Windows.Forms.DateTimePicker();
+            this.label12 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numGiaNhapQuiDoi)).BeginInit();
@@ -85,6 +87,8 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.dtpkNgayNhapLo);
+            this.groupBox1.Controls.Add(this.label12);
             this.groupBox1.Controls.Add(this.txtGhiChu);
             this.groupBox1.Controls.Add(this.label11);
             this.groupBox1.Controls.Add(this.groupBox2);
@@ -110,10 +114,30 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(6, 4);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(452, 434);
+            this.groupBox1.Size = new System.Drawing.Size(452, 452);
             this.groupBox1.TabIndex = 11;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin lô thuốc";
+            // 
+            // txtGhiChu
+            // 
+            this.txtGhiChu.Location = new System.Drawing.Point(102, 236);
+            this.txtGhiChu.MaxLength = 50;
+            this.txtGhiChu.Multiline = true;
+            this.txtGhiChu.Name = "txtGhiChu";
+            this.txtGhiChu.ReadOnly = true;
+            this.txtGhiChu.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
+            this.txtGhiChu.Size = new System.Drawing.Size(331, 88);
+            this.txtGhiChu.TabIndex = 65;
+            // 
+            // label11
+            // 
+            this.label11.AutoSize = true;
+            this.label11.Location = new System.Drawing.Point(48, 239);
+            this.label11.Name = "label11";
+            this.label11.Size = new System.Drawing.Size(47, 13);
+            this.label11.TabIndex = 77;
+            this.label11.Text = "Ghi chú:";
             // 
             // groupBox2
             // 
@@ -125,7 +149,7 @@
             this.groupBox2.Controls.Add(this.label30);
             this.groupBox2.Controls.Add(this.txtDonViTinhQuiDoi);
             this.groupBox2.Controls.Add(this.numSoLuongQuiDoi);
-            this.groupBox2.Location = new System.Drawing.Point(193, 310);
+            this.groupBox2.Location = new System.Drawing.Point(193, 332);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Size = new System.Drawing.Size(240, 109);
             this.groupBox2.TabIndex = 76;
@@ -234,7 +258,7 @@
             this.groupBoxNhap.Controls.Add(this.label27);
             this.groupBoxNhap.Controls.Add(this.cboDonViTinhNhap);
             this.groupBoxNhap.Controls.Add(this.label29);
-            this.groupBoxNhap.Location = new System.Drawing.Point(18, 310);
+            this.groupBoxNhap.Location = new System.Drawing.Point(18, 332);
             this.groupBoxNhap.Name = "groupBoxNhap";
             this.groupBoxNhap.Size = new System.Drawing.Size(168, 109);
             this.groupBoxNhap.TabIndex = 75;
@@ -348,7 +372,7 @@
             this.cboNhaPhanPhoi.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
             this.cboNhaPhanPhoi.DisplayMember = "ThuocGUID";
             this.cboNhaPhanPhoi.FormattingEnabled = true;
-            this.cboNhaPhanPhoi.Location = new System.Drawing.Point(102, 189);
+            this.cboNhaPhanPhoi.Location = new System.Drawing.Point(102, 211);
             this.cboNhaPhanPhoi.Name = "cboNhaPhanPhoi";
             this.cboNhaPhanPhoi.Size = new System.Drawing.Size(331, 21);
             this.cboNhaPhanPhoi.TabIndex = 64;
@@ -356,7 +380,7 @@
             // 
             // txtHangSanXuat
             // 
-            this.txtHangSanXuat.Location = new System.Drawing.Point(102, 165);
+            this.txtHangSanXuat.Location = new System.Drawing.Point(102, 187);
             this.txtHangSanXuat.MaxLength = 255;
             this.txtHangSanXuat.Name = "txtHangSanXuat";
             this.txtHangSanXuat.Size = new System.Drawing.Size(331, 20);
@@ -365,7 +389,7 @@
             // label8
             // 
             this.label8.AutoSize = true;
-            this.label8.Location = new System.Drawing.Point(16, 168);
+            this.label8.Location = new System.Drawing.Point(16, 190);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(79, 13);
             this.label8.TabIndex = 74;
@@ -385,7 +409,7 @@
             // 
             this.dtpkNgayHetHan.CustomFormat = "dd/MM/yyyy";
             this.dtpkNgayHetHan.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkNgayHetHan.Location = new System.Drawing.Point(102, 141);
+            this.dtpkNgayHetHan.Location = new System.Drawing.Point(102, 163);
             this.dtpkNgayHetHan.Name = "dtpkNgayHetHan";
             this.dtpkNgayHetHan.Size = new System.Drawing.Size(112, 20);
             this.dtpkNgayHetHan.TabIndex = 62;
@@ -394,7 +418,7 @@
             // 
             this.dtpkNgaySanXuat.CustomFormat = "dd/MM/yyyy";
             this.dtpkNgaySanXuat.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpkNgaySanXuat.Location = new System.Drawing.Point(102, 117);
+            this.dtpkNgaySanXuat.Location = new System.Drawing.Point(102, 139);
             this.dtpkNgaySanXuat.Name = "dtpkNgaySanXuat";
             this.dtpkNgaySanXuat.Size = new System.Drawing.Size(112, 20);
             this.dtpkNgaySanXuat.TabIndex = 61;
@@ -402,7 +426,7 @@
             // label23
             // 
             this.label23.AutoSize = true;
-            this.label23.Location = new System.Drawing.Point(15, 192);
+            this.label23.Location = new System.Drawing.Point(15, 214);
             this.label23.Name = "label23";
             this.label23.Size = new System.Drawing.Size(80, 13);
             this.label23.TabIndex = 57;
@@ -411,7 +435,7 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(21, 145);
+            this.label7.Location = new System.Drawing.Point(21, 167);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(74, 13);
             this.label7.TabIndex = 56;
@@ -420,7 +444,7 @@
             // label5
             // 
             this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(17, 121);
+            this.label5.Location = new System.Drawing.Point(17, 143);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(78, 13);
             this.label5.TabIndex = 55;
@@ -529,7 +553,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(234, 444);
+            this.btnCancel.Location = new System.Drawing.Point(234, 460);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 13;
@@ -541,32 +565,30 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(155, 444);
+            this.btnOK.Location = new System.Drawing.Point(155, 460);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 12;
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
-            // label11
+            // dtpkNgayNhapLo
             // 
-            this.label11.AutoSize = true;
-            this.label11.Location = new System.Drawing.Point(48, 217);
-            this.label11.Name = "label11";
-            this.label11.Size = new System.Drawing.Size(47, 13);
-            this.label11.TabIndex = 77;
-            this.label11.Text = "Ghi chú:";
+            this.dtpkNgayNhapLo.CustomFormat = "dd/MM/yyyy";
+            this.dtpkNgayNhapLo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpkNgayNhapLo.Location = new System.Drawing.Point(102, 116);
+            this.dtpkNgayNhapLo.Name = "dtpkNgayNhapLo";
+            this.dtpkNgayNhapLo.Size = new System.Drawing.Size(112, 20);
+            this.dtpkNgayNhapLo.TabIndex = 55;
             // 
-            // txtGhiChu
+            // label12
             // 
-            this.txtGhiChu.Location = new System.Drawing.Point(102, 214);
-            this.txtGhiChu.MaxLength = 50;
-            this.txtGhiChu.Multiline = true;
-            this.txtGhiChu.Name = "txtGhiChu";
-            this.txtGhiChu.ReadOnly = true;
-            this.txtGhiChu.ScrollBars = System.Windows.Forms.ScrollBars.Vertical;
-            this.txtGhiChu.Size = new System.Drawing.Size(331, 88);
-            this.txtGhiChu.TabIndex = 65;
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(22, 120);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(73, 13);
+            this.label12.TabIndex = 78;
+            this.label12.Text = "Ngày nhập lô:";
             // 
             // dlgAddLoThuoc
             // 
@@ -574,7 +596,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(464, 474);
+            this.ClientSize = new System.Drawing.Size(464, 488);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupBox1);
@@ -648,5 +670,7 @@
         private System.Windows.Forms.NumericUpDown numGiaNhapQuiDoi;
         private System.Windows.Forms.TextBox txtGhiChu;
         private System.Windows.Forms.Label label11;
+        private System.Windows.Forms.DateTimePicker dtpkNgayNhapLo;
+        private System.Windows.Forms.Label label12;
     }
 }
