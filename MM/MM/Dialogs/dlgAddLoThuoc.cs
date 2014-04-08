@@ -56,6 +56,7 @@ namespace MM.Dialogs
         #region UI Command
         private void InitData()
         {
+            dtpkNgayNhapLo.Value = DateTime.Now;
             dtpkNgaySanXuat.Value = DateTime.Now;
             dtpkNgayHetHan.Value = DateTime.Now;
             OnDisplayThuocList();
@@ -150,6 +151,7 @@ namespace MM.Dialogs
                 txtTenLoThuoc.Text = drLoThuoc["TenLoThuoc"] as string;
                 cboThuoc.SelectedValue = drLoThuoc["ThuocGUID"].ToString();
                 txtSoDangKy.Text = drLoThuoc["SoDangKy"] as string;
+                dtpkNgayNhapLo.Value = Convert.ToDateTime(drLoThuoc["CreatedDate"]);
                 dtpkNgaySanXuat.Value = Convert.ToDateTime(drLoThuoc["NgaySanXuat"]);
                 dtpkNgayHetHan.Value = Convert.ToDateTime(drLoThuoc["NgayHetHan"]);
                 txtHangSanXuat.Text = drLoThuoc["HangSanXuat"] as string;
@@ -296,6 +298,7 @@ namespace MM.Dialogs
                     _loThuoc.TenLoThuoc = txtTenLoThuoc.Text;
                     _loThuoc.ThuocGUID = Guid.Parse(cboThuoc.SelectedValue.ToString());
                     _loThuoc.SoDangKy = txtSoDangKy.Text;
+                    _loThuoc.CreatedDate = dtpkNgayNhapLo.Value;
                     _loThuoc.NgaySanXuat = dtpkNgaySanXuat.Value;
                     _loThuoc.NgayHetHan = dtpkNgayHetHan.Value;
                     _loThuoc.HangSanXuat = txtHangSanXuat.Text;
@@ -312,7 +315,7 @@ namespace MM.Dialogs
 
                     if (_isNew)
                     {
-                        _loThuoc.CreatedDate = DateTime.Now;
+                        _loThuoc.SystemDate = DateTime.Now;
                         _loThuoc.CreatedBy = Guid.Parse(Global.UserGUID);
                     }
                     else

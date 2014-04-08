@@ -394,6 +394,16 @@ namespace MM.Dialogs
         }
         #endregion
 
+        private void dtpkNgayNhap_ValueChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
         
         
     }

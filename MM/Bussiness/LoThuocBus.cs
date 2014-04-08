@@ -598,6 +598,7 @@ namespace MM.Bussiness
                             lt.DeletedDate = loThuoc.DeletedDate;
                             lt.DeletedBy = loThuoc.DeletedBy;
                             lt.Status = loThuoc.Status;
+                            lt.SystemDate = loThuoc.SystemDate;
                             db.SubmitChanges();
 
                             //Tracking
