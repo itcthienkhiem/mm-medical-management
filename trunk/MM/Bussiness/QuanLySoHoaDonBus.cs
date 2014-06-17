@@ -332,38 +332,42 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT MAX(InvoiceDate) AS MinDate FROM Invoice WITH(NOLOCK) WHERE Status = 0 AND CAST(InvoiceCode as int) < {0} AND InvoiceDate >= '{1}' SELECT MAX(NgayXuatHoaDon) AS MinDate FROM HoaDonThuoc WHERE Status = 0 AND CAST(SoHoaDon as int) < {0} AND NgayXuatHoaDon >= '{1}' SELECT MAX(NgayXuatHoaDon) AS MinDate FROM HoaDonXuatTruoc WHERE Status = 0 AND CAST(SoHoaDon as int) < {0} AND NgayXuatHoaDon >= '{1}' SELECT MIN(InvoiceDate) AS MaxDate FROM Invoice WHERE Status = 0 AND CAST(InvoiceCode as int) > {0} AND InvoiceDate >= '{1}' SELECT MIN(NgayXuatHoaDon) AS MaxDate FROM HoaDonThuoc WHERE Status = 0 AND CAST(SoHoaDon as int) > {0} AND NgayXuatHoaDon >= '{1}' SELECT MIN(NgayXuatHoaDon) AS MaxDate FROM HoaDonXuatTruoc WHERE Status = 0 AND CAST(SoHoaDon as int) > {0} AND NgayXuatHoaDon >= '{1}'", 
+                do
+                {
+                    string query = string.Format("SELECT MAX(InvoiceDate) AS MinDate FROM Invoice WITH(NOLOCK) WHERE Status = 0 AND CAST(InvoiceCode as int) < {0} AND InvoiceDate >= '{1}' SELECT MAX(NgayXuatHoaDon) AS MinDate FROM HoaDonThuoc WHERE Status = 0 AND CAST(SoHoaDon as int) < {0} AND NgayXuatHoaDon >= '{1}' SELECT MAX(NgayXuatHoaDon) AS MinDate FROM HoaDonXuatTruoc WHERE Status = 0 AND CAST(SoHoaDon as int) < {0} AND NgayXuatHoaDon >= '{1}' SELECT MIN(InvoiceDate) AS MaxDate FROM Invoice WHERE Status = 0 AND CAST(InvoiceCode as int) > {0} AND InvoiceDate >= '{1}' SELECT MIN(NgayXuatHoaDon) AS MaxDate FROM HoaDonThuoc WHERE Status = 0 AND CAST(SoHoaDon as int) > {0} AND NgayXuatHoaDon >= '{1}' SELECT MIN(NgayXuatHoaDon) AS MaxDate FROM HoaDonXuatTruoc WHERE Status = 0 AND CAST(SoHoaDon as int) > {0} AND NgayXuatHoaDon >= '{1}'",
                     soHoaDon, Global.NgayThayDoiSoHoaDonSauCung.ToString("yyyy-MM-dd HH:mm:ss"));
-                result = ExcuteQueryDataSet(query);
-                if (!result.IsOK) return result;
+                    result = ExcuteQueryDataSet(query);
+                    if (!result.IsOK) return result;
 
-                DataSet ds = result.QueryResult as DataSet;
-                object obj = ds.Tables[0].Rows[0]["MinDate"];
-                if (obj != null && obj != DBNull.Value && Convert.ToDateTime(obj) > minDate)
-                    minDate = Convert.ToDateTime(obj);
+                    DataSet ds = result.QueryResult as DataSet;
+                    object obj = ds.Tables[0].Rows[0]["MinDate"];
+                    if (obj != null && obj != DBNull.Value && Convert.ToDateTime(obj) > minDate)
+                        minDate = Convert.ToDateTime(obj);
 
-                obj = ds.Tables[1].Rows[0]["MinDate"];
-                if (obj != null && obj != DBNull.Value && Convert.ToDateTime(obj) > minDate)
-                    minDate = Convert.ToDateTime(obj);
+                    obj = ds.Tables[1].Rows[0]["MinDate"];
+                    if (obj != null && obj != DBNull.Value && Convert.ToDateTime(obj) > minDate)
+                        minDate = Convert.ToDateTime(obj);
 
-                obj = ds.Tables[2].Rows[0]["MinDate"];
-                if (obj != null && obj != DBNull.Value && Convert.ToDateTime(obj) > minDate)
-                    minDate = Convert.ToDateTime(obj);
+                    obj = ds.Tables[2].Rows[0]["MinDate"];
+                    if (obj != null && obj != DBNull.Value && Convert.ToDateTime(obj) > minDate)
+                        minDate = Convert.ToDateTime(obj);
 
-                obj = ds.Tables[3].Rows[0]["MaxDate"];
-                if (obj != null && obj != DBNull.Value && Convert.ToDateTime(obj) < maxDate)
-                    maxDate = Convert.ToDateTime(obj);
+                    obj = ds.Tables[3].Rows[0]["MaxDate"];
+                    if (obj != null && obj != DBNull.Value && Convert.ToDateTime(obj) < maxDate)
+                        maxDate = Convert.ToDateTime(obj);
 
-                obj = ds.Tables[4].Rows[0]["MaxDate"];
-                if (obj != null && obj != DBNull.Value && Convert.ToDateTime(obj) < maxDate)
-                    maxDate = Convert.ToDateTime(obj);
+                    obj = ds.Tables[4].Rows[0]["MaxDate"];
+                    if (obj != null && obj != DBNull.Value && Convert.ToDateTime(obj) < maxDate)
+                        maxDate = Convert.ToDateTime(obj);
 
-                obj = ds.Tables[5].Rows[0]["MaxDate"];
-                if (obj != null && obj != DBNull.Value && Convert.ToDateTime(obj) < maxDate)
-                    maxDate = Convert.ToDateTime(obj);
+                    obj = ds.Tables[5].Rows[0]["MaxDate"];
+                    if (obj != null && obj != DBNull.Value && Convert.ToDateTime(obj) < maxDate)
+                        maxDate = Convert.ToDateTime(obj);
 
-                minDate = new DateTime(minDate.Year, minDate.Month, minDate.Day, 0, 0, 0);
-                maxDate = new DateTime(maxDate.Year, maxDate.Month, maxDate.Day, 23, 59, 59);
+                    minDate = new DateTime(minDate.Year, minDate.Month, minDate.Day, 0, 0, 0);
+                    maxDate = new DateTime(maxDate.Year, maxDate.Month, maxDate.Day, 23, 59, 59);
+                }
+                while (minDate > maxDate);
             }
             catch (System.Data.SqlClient.SqlException se)
             {
@@ -387,38 +391,42 @@ namespace MM.Bussiness
 
             try
             {
-                string query = string.Format("SELECT MAX(InvoiceDate) AS MinDate FROM Invoice WITH(NOLOCK) WHERE Status = 0 AND CAST(InvoiceCode as int) < {0} AND InvoiceDate >= '{1}' AND InvoiceDate < '{2}' SELECT MAX(NgayXuatHoaDon) AS MinDate FROM HoaDonThuoc WHERE Status = 0 AND CAST(SoHoaDon as int) < {0} AND NgayXuatHoaDon >= '{1}' AND NgayXuatHoaDon < '{2}' SELECT MAX(NgayXuatHoaDon) AS MinDate FROM HoaDonXuatTruoc WHERE Status = 0 AND CAST(SoHoaDon as int) < {0} AND NgayXuatHoaDon >= '{1}' AND NgayXuatHoaDon < '{2}' SELECT MIN(InvoiceDate) AS MaxDate FROM Invoice WHERE Status = 0 AND CAST(InvoiceCode as int) > {0} AND InvoiceDate >= '{1}' AND InvoiceDate < '{2}' SELECT MIN(NgayXuatHoaDon) AS MaxDate FROM HoaDonThuoc WHERE Status = 0 AND CAST(SoHoaDon as int) > {0} AND NgayXuatHoaDon >= '{1}' AND NgayXuatHoaDon < '{2}' SELECT MIN(NgayXuatHoaDon) AS MaxDate FROM HoaDonXuatTruoc WHERE Status = 0 AND CAST(SoHoaDon as int) > {0} AND NgayXuatHoaDon >= '{1}' AND NgayXuatHoaDon < '{2}'",
+                do
+                {
+                    string query = string.Format("SELECT MAX(InvoiceDate) AS MinDate FROM Invoice WITH(NOLOCK) WHERE Status = 0 AND CAST(InvoiceCode as int) < {0} AND InvoiceDate >= '{1}' AND InvoiceDate < '{2}' SELECT MAX(NgayXuatHoaDon) AS MinDate FROM HoaDonThuoc WHERE Status = 0 AND CAST(SoHoaDon as int) < {0} AND NgayXuatHoaDon >= '{1}' AND NgayXuatHoaDon < '{2}' SELECT MAX(NgayXuatHoaDon) AS MinDate FROM HoaDonXuatTruoc WHERE Status = 0 AND CAST(SoHoaDon as int) < {0} AND NgayXuatHoaDon >= '{1}' AND NgayXuatHoaDon < '{2}' SELECT MIN(InvoiceDate) AS MaxDate FROM Invoice WHERE Status = 0 AND CAST(InvoiceCode as int) > {0} AND InvoiceDate >= '{1}' AND InvoiceDate < '{2}' SELECT MIN(NgayXuatHoaDon) AS MaxDate FROM HoaDonThuoc WHERE Status = 0 AND CAST(SoHoaDon as int) > {0} AND NgayXuatHoaDon >= '{1}' AND NgayXuatHoaDon < '{2}' SELECT MIN(NgayXuatHoaDon) AS MaxDate FROM HoaDonXuatTruoc WHERE Status = 0 AND CAST(SoHoaDon as int) > {0} AND NgayXuatHoaDon >= '{1}' AND NgayXuatHoaDon < '{2}'",
                     soHoaDon, fromDate.ToString("yyyy-MM-dd HH:mm:ss"), toDate.ToString("yyyy-MM-dd HH:mm:ss"));
-                result = ExcuteQueryDataSet(query);
-                if (!result.IsOK) return result;
+                    result = ExcuteQueryDataSet(query);
+                    if (!result.IsOK) return result;
 
-                DataSet ds = result.QueryResult as DataSet;
-                object obj = ds.Tables[0].Rows[0]["MinDate"];
-                if (obj != null && obj != DBNull.Value && Convert.ToDateTime(obj) > minDate)
-                    minDate = Convert.ToDateTime(obj);
+                    DataSet ds = result.QueryResult as DataSet;
+                    object obj = ds.Tables[0].Rows[0]["MinDate"];
+                    if (obj != null && obj != DBNull.Value && Convert.ToDateTime(obj) > minDate)
+                        minDate = Convert.ToDateTime(obj);
 
-                obj = ds.Tables[1].Rows[0]["MinDate"];
-                if (obj != null && obj != DBNull.Value && Convert.ToDateTime(obj) > minDate)
-                    minDate = Convert.ToDateTime(obj);
+                    obj = ds.Tables[1].Rows[0]["MinDate"];
+                    if (obj != null && obj != DBNull.Value && Convert.ToDateTime(obj) > minDate)
+                        minDate = Convert.ToDateTime(obj);
 
-                obj = ds.Tables[2].Rows[0]["MinDate"];
-                if (obj != null && obj != DBNull.Value && Convert.ToDateTime(obj) > minDate)
-                    minDate = Convert.ToDateTime(obj);
+                    obj = ds.Tables[2].Rows[0]["MinDate"];
+                    if (obj != null && obj != DBNull.Value && Convert.ToDateTime(obj) > minDate)
+                        minDate = Convert.ToDateTime(obj);
 
-                obj = ds.Tables[3].Rows[0]["MaxDate"];
-                if (obj != null && obj != DBNull.Value && Convert.ToDateTime(obj) < maxDate)
-                    maxDate = Convert.ToDateTime(obj);
+                    obj = ds.Tables[3].Rows[0]["MaxDate"];
+                    if (obj != null && obj != DBNull.Value && Convert.ToDateTime(obj) < maxDate)
+                        maxDate = Convert.ToDateTime(obj);
 
-                obj = ds.Tables[4].Rows[0]["MaxDate"];
-                if (obj != null && obj != DBNull.Value && Convert.ToDateTime(obj) < maxDate)
-                    maxDate = Convert.ToDateTime(obj);
+                    obj = ds.Tables[4].Rows[0]["MaxDate"];
+                    if (obj != null && obj != DBNull.Value && Convert.ToDateTime(obj) < maxDate)
+                        maxDate = Convert.ToDateTime(obj);
 
-                obj = ds.Tables[5].Rows[0]["MaxDate"];
-                if (obj != null && obj != DBNull.Value && Convert.ToDateTime(obj) < maxDate)
-                    maxDate = Convert.ToDateTime(obj);
+                    obj = ds.Tables[5].Rows[0]["MaxDate"];
+                    if (obj != null && obj != DBNull.Value && Convert.ToDateTime(obj) < maxDate)
+                        maxDate = Convert.ToDateTime(obj);
 
-                minDate = new DateTime(minDate.Year, minDate.Month, minDate.Day, 0, 0, 0);
-                maxDate = new DateTime(maxDate.Year, maxDate.Month, maxDate.Day, 23, 59, 59);
+                    minDate = new DateTime(minDate.Year, minDate.Month, minDate.Day, 0, 0, 0);
+                    maxDate = new DateTime(maxDate.Year, maxDate.Month, maxDate.Day, 23, 59, 59);
+                }
+                while (minDate > maxDate);
             }
             catch (System.Data.SqlClient.SqlException se)
             {
