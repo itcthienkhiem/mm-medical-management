@@ -3190,6 +3190,7 @@ namespace MM.Exports
                     if (receipt == null) continue;
 
                     string thuTien = receipt.ChuaThuTien == true ? "Chưa thu" : "Đã thu";
+                    string xuatHD = receipt.IsExportedInVoice == true ? "Đã xuất" : "Chưa xuất";
                     string tenCongTy = string.Empty;
                     tenCongTy = Utility.GetMaCongTy(receipt.FileNum);
                     if (tenCongTy.Trim() == string.Empty || tenCongTy.ToLower() == "tt" || tenCongTy.ToLower() == "vgh")
@@ -3274,11 +3275,14 @@ namespace MM.Exports
                         range = workSheet.Cells[rowIndex, 10];
                         range.Value = thuTien;
 
+                        range = workSheet.Cells[rowIndex, 11];
+                        range.Value = xuatHD;
+
                         rowIndex++;
                     }
                 }
 
-                range = workSheet.Cells[string.Format("A3:K{0}", rowIndex)];
+                range = workSheet.Cells[string.Format("A3:L{0}", rowIndex)];
                 range.Borders.Color = Color.Black;
                 range.Borders.LineStyle = LineStyle.Continuous;
                 range.Borders.Weight = BorderWeight.Thin;
