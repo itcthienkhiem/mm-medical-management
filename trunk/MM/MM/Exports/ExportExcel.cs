@@ -855,7 +855,7 @@ namespace MM.Exports
                 workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
 
                 //SetRightTitleHDGTGT(exportFileName, rowIndex + 9, height1, height2);
-                PagingHDGTGT(exportFileName, rowIndex + 9);
+                //PagingHDGTGT(exportFileName, rowIndex + 9);
             }
             catch (Exception ex)
             {
@@ -1237,7 +1237,7 @@ namespace MM.Exports
                 workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
 
                 //SetRightTitleHDGTGT(exportFileName, rowIndex + 9, height1, height2);
-                PagingHDGTGT(exportFileName, rowIndex + 9);
+                //PagingHDGTGT(exportFileName, rowIndex + 9);
             }
             catch (Exception ex)
             {
@@ -1589,7 +1589,7 @@ namespace MM.Exports
                 workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
 
                 //SetRightTitleHDGTGT(exportFileName, rowIndex + 9, height1, height2);
-                PagingHDGTGT(exportFileName, rowIndex + 9);
+                //PagingHDGTGT(exportFileName, rowIndex + 9);
             }
             catch (Exception ex)
             {
@@ -1826,7 +1826,7 @@ namespace MM.Exports
                 workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
 
                 //SetRightTitleHDGTGT(exportFileName, rowIndex + 9, height1, height2);
-                PagingHDGTGT(exportFileName, rowIndex + 9);
+                //PagingHDGTGT(exportFileName, rowIndex + 9);
             }
             catch (Exception ex)
             {
