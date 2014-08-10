@@ -2691,6 +2691,7 @@
     <None Include="Templates\GiaThuocTemplate.xls" />
     <None Include="Templates\GiaVonDichVuTemplate.xls" />
     <None Include="Templates\HDGTGTTemplate.xls" />
+    <None Include="Templates\HDGTGTTemplateOld.xls" />
     <None Include="Templates\HoaDonXetNghiemYKhoaTemplate.xls" />
     <None Include="Templates\KetQuaNoiSoiHongThanhQuanTemplate.xls" />
     <None Include="Templates\KetQuaNoiSoiMuiTemplate.xls" />
