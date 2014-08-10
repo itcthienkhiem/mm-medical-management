@@ -654,7 +654,10 @@ namespace MM.Exports
                     return false;
                 }
 
+                int soHD = Convert.ToInt32(invoice.InvoiceCode);
                 string excelTemplateName = string.Format("{0}\\Templates\\HDGTGTTemplate.xls", Application.StartupPath);
+                if (soHD < 3001) excelTemplateName = string.Format("{0}\\Templates\\HDGTGTTemplateOld.xls", Application.StartupPath);
+
                 Utility.CopyTemplates(excelTemplateName);
                 IRange range = null;
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
@@ -855,7 +858,8 @@ namespace MM.Exports
                 workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
 
                 //SetRightTitleHDGTGT(exportFileName, rowIndex + 9, height1, height2);
-                //PagingHDGTGT(exportFileName, rowIndex + 9);
+                if (soHD < 3001)
+                    PagingHDGTGT(exportFileName, rowIndex + 9);
             }
             catch (Exception ex)
             {
@@ -1043,7 +1047,10 @@ namespace MM.Exports
                     return false;
                 }
 
+                int soHD = Convert.ToInt32(hdt.SoHoaDon);
                 string excelTemplateName = string.Format("{0}\\Templates\\HDGTGTTemplate.xls", Application.StartupPath);
+                if (soHD < 3001) excelTemplateName = string.Format("{0}\\Templates\\HDGTGTTemplateOld.xls", Application.StartupPath);
+
                 Utility.CopyTemplates(excelTemplateName);
                 IRange range = null;
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
@@ -1237,7 +1244,8 @@ namespace MM.Exports
                 workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
 
                 //SetRightTitleHDGTGT(exportFileName, rowIndex + 9, height1, height2);
-                //PagingHDGTGT(exportFileName, rowIndex + 9);
+                if (soHD < 3001)
+                    PagingHDGTGT(exportFileName, rowIndex + 9);
             }
             catch (Exception ex)
             {
@@ -1397,7 +1405,10 @@ namespace MM.Exports
                     return false;
                 }
 
+                int soHD = Convert.ToInt32(hdt.SoHoaDon);
                 string excelTemplateName = string.Format("{0}\\Templates\\HDGTGTTemplate.xls", Application.StartupPath);
+                if (soHD < 3001) excelTemplateName = string.Format("{0}\\Templates\\HDGTGTTemplateOld.xls", Application.StartupPath);
+
                 Utility.CopyTemplates(excelTemplateName);
                 IRange range = null;
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
@@ -1589,7 +1600,8 @@ namespace MM.Exports
                 workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
 
                 //SetRightTitleHDGTGT(exportFileName, rowIndex + 9, height1, height2);
-                //PagingHDGTGT(exportFileName, rowIndex + 9);
+                if (soHD < 3001)
+                    PagingHDGTGT(exportFileName, rowIndex + 9);
             }
             catch (Exception ex)
             {
@@ -1634,7 +1646,10 @@ namespace MM.Exports
                     return false;
                 }
 
+                int soHD = Convert.ToInt32(hdt.SoHoaDon);
                 string excelTemplateName = string.Format("{0}\\Templates\\HDGTGTTemplate.xls", Application.StartupPath);
+                if (soHD < 3001) excelTemplateName = string.Format("{0}\\Templates\\HDGTGTTemplateOld.xls", Application.StartupPath);
+
                 Utility.CopyTemplates(excelTemplateName);
                 IRange range = null;
                 workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
@@ -1826,7 +1841,8 @@ namespace MM.Exports
                 workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
 
                 //SetRightTitleHDGTGT(exportFileName, rowIndex + 9, height1, height2);
-                //PagingHDGTGT(exportFileName, rowIndex + 9);
+                if (soHD < 3001)
+                    PagingHDGTGT(exportFileName, rowIndex + 9);
             }
             catch (Exception ex)
             {
