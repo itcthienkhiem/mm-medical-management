@@ -119,6 +119,7 @@
     <Compile Include="ConnectionInfo.cs" />
     <Compile Include="Const.cs" />
     <Compile Include="HDGTGTSettings.cs" />
+    <Compile Include="HoaDonDichVuChiDinh.cs" />
     <Compile Include="InputDevice.cs" />
     <Compile Include="PageSetupConfig.cs" />
     <Compile Include="Enum.cs" />
