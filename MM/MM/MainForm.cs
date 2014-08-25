@@ -49,10 +49,10 @@ namespace MM
 
             InitControl();
 
-            //string pass = "TRgD7BtFtcpQBJJ+4Bu0pw==";
-            //RijndaelCrypto crypto = new RijndaelCrypto();
-            //string newPass = crypto.Decrypt(pass);
-            //MessageBox.Show(newPass);
+            //DateTime fromDate = new DateTime(2000, 1, 1);
+            //DateTime toDate = new DateTime(2015, 1, 1);
+            //ReportBus.GetChiDinhDuocXuatHoaDon(fromDate, toDate);
+
         }
         #endregion
 
@@ -455,6 +455,8 @@ namespace MM
                 _uHoaDonXetNghiemList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uBaoCaoDoanhThuThuocTheoPhieuThu))
                 _uBaoCaoDoanhThuThuocTheoPhieuThu.InitData();
+            else if (ctrl.GetType() == typeof(uThongKeChiDinhDuocXuatHoaDon))
+                _uThongKeChiDinhDuocXuatHoaDon.InitData();
         }
 
         private void SaveAppConfig()
@@ -1868,6 +1870,20 @@ namespace MM
                             _uBaoCaoDoanhThuThuocTheoPhieuThu.AllowExportAll = isExportAll;
                             _uBaoCaoDoanhThuThuocTheoPhieuThu.AllowConfirm = isConfirm;
                         }
+                        else if (functionCode == Const.ThongKeChiDinhDuocXuatHoaDon)
+                        {
+                            reportToolStripMenuItem.Enabled = isLogin;
+                            thongKeChiDinhDuocXuatHoaDonToolStripMenuItem.Enabled = isView && isLogin;
+                            _uThongKeChiDinhDuocXuatHoaDon.AllowAdd = isAdd;
+                            _uThongKeChiDinhDuocXuatHoaDon.AllowEdit = isEdit;
+                            _uThongKeChiDinhDuocXuatHoaDon.AllowDelete = isDelete;
+                            _uThongKeChiDinhDuocXuatHoaDon.AllowPrint = isPrint;
+                            _uThongKeChiDinhDuocXuatHoaDon.AllowExport = isExport;
+                            _uThongKeChiDinhDuocXuatHoaDon.AllowImport = isImport;
+                            _uThongKeChiDinhDuocXuatHoaDon.AllowLock = isLock;
+                            _uThongKeChiDinhDuocXuatHoaDon.AllowExportAll = isExportAll;
+                            _uThongKeChiDinhDuocXuatHoaDon.AllowConfirm = isConfirm;
+                        }
                     }
                 }
                 else
@@ -2117,6 +2133,7 @@ namespace MM
                 thayDoiSoHoaDonXetNghiemToolStripMenuItem.Enabled = isLogin;
                 hoaDonXetNghiemToolStripMenuItem.Enabled = isLogin;
                 baoCaoDoanhThuThuocTheoPhieuThuToolStripMenuItem.Enabled = isLogin;
+                thongKeChiDinhDuocXuatHoaDonToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -2627,7 +2644,18 @@ namespace MM
                 case "BaoCaoDoanhThuThuocTheoPhieuThu":
                     OnBaoCaoDoanhThuThuocTheoPhieuThu();
                     break;
+
+                case "ThongKeChiDinhDuocXuatHoaDon":
+                    OnThongKeChiDinhDuocXuatHoaDon();
+                    break;
             }
+        }
+
+        private void OnThongKeChiDinhDuocXuatHoaDon()
+        {
+            this.Text = string.Format("{0} - Thong ke chi dinh duoc xuat hoa don", Application.ProductName);
+            ViewControl(_uThongKeChiDinhDuocXuatHoaDon);
+            _uThongKeChiDinhDuocXuatHoaDon.InitData();
         }
 
         private void OnBaoCaoDoanhThuThuocTheoPhieuThu()
