@@ -118,6 +118,12 @@
     <Compile Include="Controls\uHoaDonXetNghiemList.Designer.cs">
       <DependentUpon>uHoaDonXetNghiemList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uThongKeChiDinhDuocXuatHoaDon.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uThongKeChiDinhDuocXuatHoaDon.Designer.cs">
+      <DependentUpon>uThongKeChiDinhDuocXuatHoaDon.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uThongKePhieuThuDichVuVaThuoc.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1775,6 +1781,9 @@
     <EmbeddedResource Include="Controls\uHoaDonXetNghiemList.resx">
       <DependentUpon>uHoaDonXetNghiemList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uThongKeChiDinhDuocXuatHoaDon.resx">
+      <DependentUpon>uThongKeChiDinhDuocXuatHoaDon.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uThongKePhieuThuDichVuVaThuoc.resx">
       <DependentUpon>uThongKePhieuThuDichVuVaThuoc.cs</DependentUpon>
     </EmbeddedResource>
@@ -2740,6 +2749,7 @@
     <None Include="Templates\SieuAmTemplate\6.rtf" />
     <None Include="Templates\SieuAmTemplate\Cac bao cao.doc" />
     <None Include="Templates\SymptomTemplate.xls" />
+    <None Include="Templates\ThongKeChiDinhDuocXuatHoaDonTemplate.xls" />
     <None Include="Templates\ThongKeHoaDonDichVuVaThuocTemplate.xls" />
     <None Include="Templates\ThongKePhieuThuDichVuVaThuocTemplate.xls" />
     <None Include="Templates\ThongKeThuocXuatHoaDonTemplate.xls" />
@@ -2811,6 +2821,7 @@
     <None Include="Resources\WhiteImage.PNG" />
     <None Include="Resources\email-alert-icon %282%29.png" />
     <None Include="Resources\email-alert-icon.png" />
+    <Content Include="Scripts\ScriptUpdate_KH_2014-08-25.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2014-04-08.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2014-03-14.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2014-02-27.sql" />

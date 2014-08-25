@@ -15,6 +15,7 @@ namespace MM.Common
         public DateTime NgayXuatHD = DateTime.Now;
         public string TenDichVu = string.Empty;
         public double DonGia = 0;
+        public int SoLuong = 0;
         public double VAT = 0;
         public double ThanhTien = 0;
         #endregion
