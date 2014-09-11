@@ -11,7 +11,8 @@ namespace MM.Common
         public string BSCDGUID = string.Empty;
         public string BSCDFirstName = string.Empty;
         public string BSCDFullName = string.Empty;
-        public string SoHoaSon = string.Empty;
+        public string SoPhieuThu = string.Empty;
+        public string SoHoaDon = string.Empty;
         public DateTime NgayXuatHD = DateTime.Now;
         public string TenDichVu = string.Empty;
         public double DonGia = 0;
