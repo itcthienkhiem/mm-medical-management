@@ -58,11 +58,13 @@ namespace MM.Exports
                         if (key == item.BSCDGUID)
                         {
                             workSheet.Cells[rowIndex, 1].Value = item.NgayXuatHD.ToString("dd/MM/yyyy");
-                            workSheet.Cells[rowIndex, 2].Value = item.TenDichVu;
-                            workSheet.Cells[rowIndex, 3].Value = item.SoLuong;
-                            workSheet.Cells[rowIndex, 4].Value = item.DonGia;
-                            workSheet.Cells[rowIndex, 5].Value = item.VAT;
-                            workSheet.Cells[rowIndex, 6].Value = item.ThanhTien;
+                            workSheet.Cells[rowIndex, 2].Value = item.SoPhieuThu;
+                            workSheet.Cells[rowIndex, 3].Value = item.SoHoaDon;
+                            workSheet.Cells[rowIndex, 4].Value = item.TenDichVu;
+                            workSheet.Cells[rowIndex, 5].Value = item.SoLuong;
+                            workSheet.Cells[rowIndex, 6].Value = item.DonGia;
+                            workSheet.Cells[rowIndex, 7].Value = item.VAT;
+                            workSheet.Cells[rowIndex, 8].Value = item.ThanhTien;
                             tongTien += item.ThanhTien;
                             tongCong += item.ThanhTien;
                             rowIndex++;
@@ -76,16 +78,18 @@ namespace MM.Exports
                             range.Merge();
                             workSheet.Cells[string.Format("A{0}", start)].Value = bsChiDinh;
 
-                            range = workSheet.Cells[string.Format("H{0}:H{1}", start, end)];
+                            range = workSheet.Cells[string.Format("J{0}:J{1}", start, end)];
                             range.Merge();
-                            workSheet.Cells[string.Format("H{0}", start)].Value = tongTien;
+                            workSheet.Cells[string.Format("J{0}", start)].Value = tongTien;
 
                             workSheet.Cells[rowIndex, 1].Value = item.NgayXuatHD.ToString("dd/MM/yyyy");
-                            workSheet.Cells[rowIndex, 2].Value = item.TenDichVu;
-                            workSheet.Cells[rowIndex, 3].Value = item.SoLuong;
-                            workSheet.Cells[rowIndex, 4].Value = item.DonGia;
-                            workSheet.Cells[rowIndex, 5].Value = item.VAT;
-                            workSheet.Cells[rowIndex, 6].Value = item.ThanhTien;
+                            workSheet.Cells[rowIndex, 2].Value = item.SoPhieuThu;
+                            workSheet.Cells[rowIndex, 3].Value = item.SoHoaDon;
+                            workSheet.Cells[rowIndex, 4].Value = item.TenDichVu;
+                            workSheet.Cells[rowIndex, 5].Value = item.SoLuong;
+                            workSheet.Cells[rowIndex, 6].Value = item.DonGia;
+                            workSheet.Cells[rowIndex, 7].Value = item.VAT;
+                            workSheet.Cells[rowIndex, 8].Value = item.ThanhTien;
                             rowIndex++;
 
                             key = item.BSCDGUID;
@@ -102,21 +106,21 @@ namespace MM.Exports
                     range.Merge();
                     workSheet.Cells[string.Format("A{0}", start)].Value = bsChiDinh;
 
-                    range = workSheet.Cells[string.Format("H{0}:H{1}", start, end)];
+                    range = workSheet.Cells[string.Format("J{0}:J{1}", start, end)];
                     range.Merge();
-                    workSheet.Cells[string.Format("H{0}", start)].Value = tongTien;
+                    workSheet.Cells[string.Format("J{0}", start)].Value = tongTien;
 
-                    range = workSheet.Cells[string.Format("A4:H{0}", rowIndex)];
+                    range = workSheet.Cells[string.Format("A4:J{0}", rowIndex)];
                     range.Borders.Color = Color.Black;
                     range.Borders.LineStyle = LineStyle.Continuous;
                     range.Borders.Weight = BorderWeight.Thin;
 
                     rowIndex++;
-                    range = workSheet.Cells[string.Format("G{0}", rowIndex)];
+                    range = workSheet.Cells[string.Format("I{0}", rowIndex)];
                     range.Value = "Tổng cộng:";
                     range.Font.Bold = true;
 
-                    range = workSheet.Cells[string.Format("H{0}", rowIndex)];
+                    range = workSheet.Cells[string.Format("J{0}", rowIndex)];
                     range.Value = tongCong;
                     range.Font.Bold = true;
                 }

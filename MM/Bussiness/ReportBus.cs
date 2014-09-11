@@ -84,12 +84,14 @@ namespace MM.Bussiness
                                 item.BSCDFirstName = chiDinh.DocStaff.Contact.FirstName;
                                 item.BSCDFullName = chiDinh.DocStaff.Contact.FullName;
                                 item.NgayXuatHD = hoaDon.InvoiceDate;
-                                item.SoHoaSon = hoaDon.InvoiceCode;
+                                item.SoPhieuThu = ctpt.Receipt.ReceiptCode;
+                                item.SoHoaDon = hoaDon.InvoiceCode;
                                 item.VAT = hoaDon.VAT.Value;
                                 item.TenDichVu = cthd.TenDichVu;
                                 item.DonGia = cthd.DonGia;
                                 item.SoLuong = cthd.SoLuong;
                                 item.ThanhTien = cthd.ThanhTien;
+                                
                                 if (item.VAT > 0)
                                     item.ThanhTien = (item.DonGia * item.SoLuong) + ((item.DonGia * item.SoLuong * item.VAT) / 100);
 
@@ -101,7 +103,7 @@ namespace MM.Bussiness
                     if (hddvcds.Count > 0)
                     {
                         hddvcds = hddvcds.OrderBy(x => x.BSCDFirstName).ThenBy(x => x.BSCDFullName)
-                            .ThenBy(x => x.BSCDGUID).ThenBy(x => x.SoHoaSon).ThenBy(x => x.NgayXuatHD)
+                            .ThenBy(x => x.BSCDGUID).ThenBy(x => x.SoHoaDon).ThenBy(x => x.NgayXuatHD)
                             .ThenBy(x => x.TenDichVu).ToList();
                         result.QueryResult = hddvcds;
                     }
