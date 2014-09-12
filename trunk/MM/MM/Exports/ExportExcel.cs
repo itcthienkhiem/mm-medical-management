@@ -43,6 +43,16 @@ namespace MM.Exports
 
                 if (data != null && data.Count > 0)
                 {
+                    Result ttResult = ReportBus.GetTongTienPhieuThuKhongXuatHD(tuNgay, denNgay);
+                    if (!ttResult.IsOK)
+                    {
+                        MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReportBus.GetTongTienPhieuThuKhongXuatHD"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("ReportBus.GetTongTienPhieuThuKhongXuatHD"));
+                        return false;
+                    }
+
+                    Dictionary<string, double> dictTongTien = ttResult.QueryResult as Dictionary<string, double>;
+
                     int rowIndex = 3;
                     IRange range;
 
@@ -80,6 +90,13 @@ namespace MM.Exports
 
                             range = workSheet.Cells[string.Format("J{0}:J{1}", start, end)];
                             range.Merge();
+
+                            if (dictTongTien != null && dictTongTien.ContainsKey(key))
+                            {
+                                tongTien += dictTongTien[key];
+                                tongCong += dictTongTien[key];
+                            }
+
                             workSheet.Cells[string.Format("J{0}", start)].Value = tongTien;
 
                             workSheet.Cells[rowIndex, 1].Value = item.NgayXuatHD.ToString("dd/MM/yyyy");
@@ -108,6 +125,13 @@ namespace MM.Exports
 
                     range = workSheet.Cells[string.Format("J{0}:J{1}", start, end)];
                     range.Merge();
+
+                    if (dictTongTien != null && dictTongTien.ContainsKey(key))
+                    {
+                        tongTien += dictTongTien[key];
+                        tongCong += dictTongTien[key];
+                    }
+
                     workSheet.Cells[string.Format("J{0}", start)].Value = tongTien;
 
                     range = workSheet.Cells[string.Format("A4:J{0}", rowIndex)];
