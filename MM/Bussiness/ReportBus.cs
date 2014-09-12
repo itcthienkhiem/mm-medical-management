@@ -44,6 +44,73 @@ namespace MM.Bussiness
             return null;
         }
 
+        public static Result GetTongTienPhieuThuKhongXuatHD(DateTime fromDate, DateTime toDate)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+
+                var phieuThuList =  from h in db.Receipts
+                                    where h.Status == (byte)Status.Actived &&
+                                    !h.IsExportedInVoice &&
+                                    h.ReceiptDate >= fromDate && h.ReceiptDate <= toDate
+                                    select h;
+
+                if (phieuThuList != null)
+                {
+                    Dictionary<string, double> dictTongTien = new Dictionary<string, double>();
+                    foreach (var pt in phieuThuList)
+                    {
+                        var ctptList = db.ReceiptDetails.Where(p => p.ReceiptGUID == pt.ReceiptGUID);
+                        if (ctptList != null)
+                        {
+                            foreach (var ctpt in ctptList)
+                            {
+                                ChiDinh chiDinh = GetChiDinh(ctpt.ServiceHistoryGUID.ToString(), db);
+                                if (chiDinh == null) continue;
+
+                                string bscdGUID = chiDinh.BacSiChiDinhGUID.ToString();
+                                double donGia = ctpt.ServiceHistory.Price.Value;
+                                double giam = ctpt.ServiceHistory.Discount;
+                                double tongTien = (donGia - (donGia * giam) / 100) * ctpt.SoLuong;
+                                if (dictTongTien.ContainsKey(bscdGUID))
+                                    dictTongTien[bscdGUID] = dictTongTien[bscdGUID] + tongTien; 
+                                else
+                                    dictTongTien.Add(bscdGUID, tongTien);
+                            }
+                        }
+                    }
+
+                    if (dictTongTien.Count > 0)
+                        result.QueryResult = dictTongTien;
+                }
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+
+            return result;
+        }
+
         public static Result GetChiDinhDuocXuatHoaDon(DateTime fromDate, DateTime toDate)
         {
             Result result = new Result();
