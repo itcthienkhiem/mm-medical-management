@@ -101,7 +101,7 @@ namespace MM.Bussiness
             try
             {
                 string query = string.Format("SELECT TOP 1 * FROM GiaVonDichVu WITH(NOLOCK) WHERE ServiceGUID = '{0}' AND Status = {1} AND NgayApDung <= '{2}' ORDER BY NgayApDung DESC",
-                    serviceGUID, (byte)Status.Actived, ngayThu.ToString("yyyy-MM-dd HH:mm:ss"));
+                    serviceGUID, (byte)Status.Actived, ngayThu.ToString("yyyy-MM-dd 23:59:59"));
                 return ExcuteQuery(query);
             }
             catch (System.Data.SqlClient.SqlException se)
