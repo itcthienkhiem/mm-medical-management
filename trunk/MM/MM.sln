@@ -23,6 +23,8 @@ Project("{54435603-DBB4-11D2-8724-00A0C9A8B90C}") = "MMConfigServicesSetup", "MM
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayCap", "PlayCap\PlayCap.csproj", "{28155FFD-CEE4-4E36-9BA7-96C2A069E913}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "Demo\Demo.csproj", "{9DFDF105-1A7B-4703-BC2C-A5AC1F692C7E}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -144,6 +146,16 @@ Global
 		{28155FFD-CEE4-4E36-9BA7-96C2A069E913}.Release|Mixed Platforms.Build.0 = Release|x86
 		{28155FFD-CEE4-4E36-9BA7-96C2A069E913}.Release|x86.ActiveCfg = Release|x86
 		{28155FFD-CEE4-4E36-9BA7-96C2A069E913}.Release|x86.Build.0 = Release|x86
+		{9DFDF105-1A7B-4703-BC2C-A5AC1F692C7E}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{9DFDF105-1A7B-4703-BC2C-A5AC1F692C7E}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{9DFDF105-1A7B-4703-BC2C-A5AC1F692C7E}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{9DFDF105-1A7B-4703-BC2C-A5AC1F692C7E}.Debug|x86.ActiveCfg = Debug|x86
+		{9DFDF105-1A7B-4703-BC2C-A5AC1F692C7E}.Debug|x86.Build.0 = Debug|x86
+		{9DFDF105-1A7B-4703-BC2C-A5AC1F692C7E}.Release|Any CPU.ActiveCfg = Release|x86
+		{9DFDF105-1A7B-4703-BC2C-A5AC1F692C7E}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{9DFDF105-1A7B-4703-BC2C-A5AC1F692C7E}.Release|Mixed Platforms.Build.0 = Release|x86
+		{9DFDF105-1A7B-4703-BC2C-A5AC1F692C7E}.Release|x86.ActiveCfg = Release|x86
+		{9DFDF105-1A7B-4703-BC2C-A5AC1F692C7E}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
