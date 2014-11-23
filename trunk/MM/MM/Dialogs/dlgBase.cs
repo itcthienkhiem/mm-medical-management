@@ -63,6 +63,17 @@ namespace MM.Dialogs
             _dlgWaiting.ShowDialog();
         }
 
+        protected void SetTitleWaiting(string title)
+        {
+            this.Invoke(new MethodInvoker(delegate()
+            {
+                if (_dlgWaiting != null)
+                {
+                    _dlgWaiting.Title = title;
+                }
+            }));
+        }
+
         protected void HideWaiting()
         {
             try
