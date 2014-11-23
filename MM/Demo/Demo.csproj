@@ -38,6 +38,9 @@
     <ApplicationIcon>MM_Ico.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MailBee.NET">
+      <HintPath>..\MM\Components\MailBee.NET.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -56,10 +59,31 @@
     <Compile Include="Demo.Designer.cs">
       <DependentUpon>Demo.cs</DependentUpon>
     </Compile>
+    <Compile Include="dlgMailConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgMailConfig.Designer.cs">
+      <DependentUpon>dlgMailConfig.cs</DependentUpon>
+    </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestMailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestMailForm.Designer.cs">
+      <DependentUpon>TestMailForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UploadFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UploadFile.Designer.cs">
+      <DependentUpon>UploadFile.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="Demo.resx">
       <DependentUpon>Demo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgMailConfig.resx">
+      <DependentUpon>dlgMailConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -71,6 +95,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="TestMailForm.resx">
+      <DependentUpon>TestMailForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UploadFile.resx">
+      <DependentUpon>UploadFile.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -86,6 +116,10 @@
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{A8C421C9-52BA-4A39-A741-E2499DD43DC8}</Project>
       <Name>Common</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\MM\MM.csproj">
+      <Project>{F72BF909-337D-4B65-8FC8-02A0FAE0C7F7}</Project>
+      <Name>MM</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

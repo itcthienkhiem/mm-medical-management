@@ -17,8 +17,10 @@ namespace MM.Common
         public static string FTPFolder = "domains/healthcare.com.vn/public_html/report/images";
         public static string HoSoPath = string.Format("{0}\\HoSo", AppDomain.CurrentDomain.BaseDirectory);
         public static string HinhChupPath = string.Format("{0}\\HinhChup", AppDomain.CurrentDomain.BaseDirectory);
+        public static string MailConfigPath = string.Format("{0}\\MailConfig.xml", AppDomain.CurrentDomain.BaseDirectory);
         public static ConnectionInfo ConnectionInfo = new ConnectionInfo();
         public static FTPConnectionInfo FTPConnectionInfo = new FTPConnectionInfo();
+        public static MailConfig MailConfig = new MailConfig();
         public static TVHomeConfig TVHomeConfig = new TVHomeConfig();
         public static int AlertDays = 3;
         public static int AlertSoNgayHetHanCapCuu = 3;
