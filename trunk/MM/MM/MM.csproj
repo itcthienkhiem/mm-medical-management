@@ -2794,6 +2794,7 @@
     <Content Include="Components\DSBarCode.dll" />
     <Content Include="Components\Interop.Excel.dll" />
     <Content Include="Components\Interop.Microsoft.Office.Core.dll" />
+    <Content Include="Components\MailBee.NET.dll" />
     <Content Include="Components\Microsoft.SqlServer.ConnectionInfo.dll" />
     <Content Include="Components\Microsoft.SqlServer.Management.Sdk.Sfc.dll" />
     <Content Include="Components\Microsoft.SqlServer.Smo.dll" />

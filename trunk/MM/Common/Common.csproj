@@ -121,6 +121,7 @@
     <Compile Include="HDGTGTSettings.cs" />
     <Compile Include="HoaDonDichVuChiDinh.cs" />
     <Compile Include="InputDevice.cs" />
+    <Compile Include="MailConfig.cs" />
     <Compile Include="PageSetupConfig.cs" />
     <Compile Include="Enum.cs" />
     <Compile Include="Error.cs" />
