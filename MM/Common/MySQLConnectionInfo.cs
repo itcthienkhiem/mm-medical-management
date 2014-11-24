@@ -23,6 +23,17 @@ namespace MM.Common
         }
         #endregion
 
+        #region Properties
+        public string ConnectionString
+        {
+            get
+            {
+                return string.Format("server={0};username={2};password={3};database={1};persist security info=False",
+                    Server, Database, User, Password);
+            }
+        }
+        #endregion
+
         #region Serialize & Deserialize
         public bool Serialize(string fileName)
         {

@@ -67,6 +67,10 @@ namespace SonoOnlineResult
         {
             switch (cmd)
             {
+                case "MySQL Configuration":
+                    OnMySQLConfig();
+                    break;
+
                 case "FTP Configuration":
                     OnFTPConfig();
                     break;
@@ -76,6 +80,12 @@ namespace SonoOnlineResult
                     break;
                     
             }
+        }
+
+        private void OnMySQLConfig()
+        {
+            dlgMySQLConfig dlg = new dlgMySQLConfig();
+            dlg.ShowDialog(this);
         }
 
         private void OnMailConfig()

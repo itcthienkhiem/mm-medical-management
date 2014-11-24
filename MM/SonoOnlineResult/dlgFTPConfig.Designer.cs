@@ -126,7 +126,7 @@
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 4;
-            this.btnCancel.Text = "&Close";
+            this.btnCancel.Text = "&Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
             // 
@@ -138,7 +138,7 @@
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 3;
-            this.btnOK.Text = "&Save";
+            this.btnOK.Text = "&OK";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
             // dlgFTPConfig

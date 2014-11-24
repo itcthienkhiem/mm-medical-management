@@ -42,6 +42,7 @@
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.toolStripButtonMySQLConfig = new System.Windows.Forms.ToolStripButton();
             this.toolStripMain.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -52,6 +53,7 @@
             // 
             this.toolStripMain.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.toolStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButtonMySQLConfig,
             this.toolStripButtonFTPConfig,
             this.toolStripButtonMailConfig});
             this.toolStripMain.Location = new System.Drawing.Point(0, 0);
@@ -182,6 +184,16 @@
             this.panel3.Size = new System.Drawing.Size(507, 322);
             this.panel3.TabIndex = 4;
             // 
+            // toolStripButtonMySQLConfig
+            // 
+            this.toolStripButtonMySQLConfig.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonMySQLConfig.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonMySQLConfig.Image")));
+            this.toolStripButtonMySQLConfig.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonMySQLConfig.Name = "toolStripButtonMySQLConfig";
+            this.toolStripButtonMySQLConfig.Size = new System.Drawing.Size(28, 28);
+            this.toolStripButtonMySQLConfig.Text = "toolStripButton1";
+            this.toolStripButtonMySQLConfig.ToolTipText = "MySQL Configuration";
+            // 
             // UploadFile
             // 
             this.AllowDrop = true;
@@ -197,7 +209,7 @@
             this.MaximizeBox = false;
             this.Name = "UploadFile";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Upload File";
+            this.Text = "Sono Online Result";
             this.toolStripMain.ResumeLayout(false);
             this.toolStripMain.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -223,5 +235,6 @@
         private System.Windows.Forms.Button btnRemove;
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Panel panel3;
+        private System.Windows.Forms.ToolStripButton toolStripButtonMySQLConfig;
     }
 }
