@@ -54,7 +54,7 @@ namespace Demo
                 Global.MailConfig.Deserialize(Global.MailConfigPath);
             }
 
-            Global.FTPFolder = "Demo";
+            Global.FTPFolder = "demo";
         }
 
         private void Execute(string cmd)
