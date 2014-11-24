@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
 
-namespace Demo
+namespace SonoOnlineResult
 {
     static class Program
     {
@@ -15,7 +15,7 @@ namespace Demo
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Demo());
+            Application.Run(new UploadFile());
         }
     }
 }
