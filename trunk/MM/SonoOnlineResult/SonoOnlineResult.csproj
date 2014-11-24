@@ -5,11 +5,11 @@
     <Platform Condition=" '$(Platform)' == '' ">x86</Platform>
     <ProductVersion>8.0.30703</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
-    <ProjectGuid>{9DFDF105-1A7B-4703-BC2C-A5AC1F692C7E}</ProjectGuid>
+    <ProjectGuid>{9031B48F-602F-4785-8567-7C703C640620}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Demo</RootNamespace>
-    <AssemblyName>Demo</AssemblyName>
+    <RootNamespace>SonoOnlineResult</RootNamespace>
+    <AssemblyName>SonoOnlineResult</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -38,6 +38,9 @@
     <ApplicationIcon>MM_Ico.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="MailBee.NET">
+      <HintPath>..\MM\Components\MailBee.NET.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -50,16 +53,47 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Demo.cs">
+    <Compile Include="dlgFTPConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="Demo.Designer.cs">
-      <DependentUpon>Demo.cs</DependentUpon>
+    <Compile Include="dlgFTPConfig.Designer.cs">
+      <DependentUpon>dlgFTPConfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="dlgMailConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgMailConfig.Designer.cs">
+      <DependentUpon>dlgMailConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="dlgMySQLConfig.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="dlgMySQLConfig.Designer.cs">
+      <DependentUpon>dlgMySQLConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="MySQL.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="Demo.resx">
-      <DependentUpon>Demo.cs</DependentUpon>
+    <Compile Include="TestMailForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TestMailForm.Designer.cs">
+      <DependentUpon>TestMailForm.cs</DependentUpon>
+    </Compile>
+    <Compile Include="UploadFile.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="UploadFile.Designer.cs">
+      <DependentUpon>UploadFile.cs</DependentUpon>
+    </Compile>
+    <EmbeddedResource Include="dlgFTPConfig.resx">
+      <DependentUpon>dlgFTPConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgMailConfig.resx">
+      <DependentUpon>dlgMailConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dlgMySQLConfig.resx">
+      <DependentUpon>dlgMySQLConfig.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -71,6 +105,12 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="TestMailForm.resx">
+      <DependentUpon>TestMailForm.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="UploadFile.resx">
+      <DependentUpon>UploadFile.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -83,13 +123,17 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MM_Ico.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{A8C421C9-52BA-4A39-A741-E2499DD43DC8}</Project>
       <Name>Common</Name>
     </ProjectReference>
+    <ProjectReference Include="..\MM\MM.csproj">
+      <Project>{F72BF909-337D-4B65-8FC8-02A0FAE0C7F7}</Project>
+      <Name>MM</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="MM_Ico.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

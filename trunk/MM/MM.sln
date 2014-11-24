@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PlayCap", "PlayCap\PlayCap.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Demo", "Demo\Demo.csproj", "{9DFDF105-1A7B-4703-BC2C-A5AC1F692C7E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SonoOnlineResult", "SonoOnlineResult\SonoOnlineResult.csproj", "{9031B48F-602F-4785-8567-7C703C640620}"
+EndProject
 Global
 	GlobalSection(SubversionScc) = preSolution
 		Svn-Managed = True
@@ -156,6 +158,16 @@ Global
 		{9DFDF105-1A7B-4703-BC2C-A5AC1F692C7E}.Release|Mixed Platforms.Build.0 = Release|x86
 		{9DFDF105-1A7B-4703-BC2C-A5AC1F692C7E}.Release|x86.ActiveCfg = Release|x86
 		{9DFDF105-1A7B-4703-BC2C-A5AC1F692C7E}.Release|x86.Build.0 = Release|x86
+		{9031B48F-602F-4785-8567-7C703C640620}.Debug|Any CPU.ActiveCfg = Debug|x86
+		{9031B48F-602F-4785-8567-7C703C640620}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
+		{9031B48F-602F-4785-8567-7C703C640620}.Debug|Mixed Platforms.Build.0 = Debug|x86
+		{9031B48F-602F-4785-8567-7C703C640620}.Debug|x86.ActiveCfg = Debug|x86
+		{9031B48F-602F-4785-8567-7C703C640620}.Debug|x86.Build.0 = Debug|x86
+		{9031B48F-602F-4785-8567-7C703C640620}.Release|Any CPU.ActiveCfg = Release|x86
+		{9031B48F-602F-4785-8567-7C703C640620}.Release|Mixed Platforms.ActiveCfg = Release|x86
+		{9031B48F-602F-4785-8567-7C703C640620}.Release|Mixed Platforms.Build.0 = Release|x86
+		{9031B48F-602F-4785-8567-7C703C640620}.Release|x86.ActiveCfg = Release|x86
+		{9031B48F-602F-4785-8567-7C703C640620}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

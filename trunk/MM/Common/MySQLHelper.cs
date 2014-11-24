@@ -9,7 +9,7 @@ namespace MM.Common
 {
     public class MySQLHelper
     {
-        private static string _connectionString = "server=healthcare.com.vn;username=healthcare_user;password=dsfsd@$@#Rsdf;database=healthcare_report;persist security info=False";
+        public static string _connectionString = "server=healthcare.com.vn;username=healthcare_user;password=dsfsd@$@#Rsdf;database=healthcare_report;persist security info=False";
 
         public static Result GetAllUsers()
         {
