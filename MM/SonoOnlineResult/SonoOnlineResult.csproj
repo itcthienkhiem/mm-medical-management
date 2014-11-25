@@ -57,11 +57,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\ctrlAutoComplete.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
     <Compile Include="Dialogs\dlgFTPConfig.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dialogs\dlgFTPConfig.Designer.cs">
       <DependentUpon>dlgFTPConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\DlgListBoxData.cs">
+      <SubType>Form</SubType>
     </Compile>
     <Compile Include="Dialogs\dlgMailConfig.cs">
       <SubType>Form</SubType>
@@ -96,8 +102,14 @@
     <Compile Include="UploadFile.Designer.cs">
       <DependentUpon>UploadFile.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\ctrlAutoComplete.resx">
+      <DependentUpon>ctrlAutoComplete.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgFTPConfig.resx">
       <DependentUpon>dlgFTPConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DlgListBoxData.resx">
+      <DependentUpon>DlgListBoxData.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgMailConfig.resx">
       <DependentUpon>dlgMailConfig.cs</DependentUpon>
@@ -149,9 +161,7 @@
     <Content Include="MM_Ico.ico" />
     <Content Include="Notes.txt" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Controls\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

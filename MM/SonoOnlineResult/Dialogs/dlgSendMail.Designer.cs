@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgSendMail));
             this.btnTo = new System.Windows.Forms.Button();
-            this.txtTo = new System.Windows.Forms.TextBox();
+            this.txtTo = new SonoOnlineResult.Dialogs.ctrlAutoComplete();
             this.SuspendLayout();
             // 
             // btnTo
@@ -41,15 +41,15 @@
             this.btnTo.TabIndex = 0;
             this.btnTo.Text = "To...";
             this.btnTo.UseVisualStyleBackColor = true;
+            this.btnTo.Click += new System.EventHandler(this.btnTo_Click);
             // 
             // txtTo
             // 
-            this.txtTo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
-            this.txtTo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.CustomSource;
             this.txtTo.Location = new System.Drawing.Point(69, 8);
             this.txtTo.Name = "txtTo";
-            this.txtTo.Size = new System.Drawing.Size(360, 20);
+            this.txtTo.Size = new System.Drawing.Size(400, 23);
             this.txtTo.TabIndex = 1;
+            this.txtTo.Value = "";
             // 
             // dlgSendMail
             // 
@@ -65,14 +65,14 @@
             this.Name = "dlgSendMail";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Send Mail";
+            this.Move += new System.EventHandler(this.dlgSendMail_Move);
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
         #endregion
 
         private System.Windows.Forms.Button btnTo;
-        private System.Windows.Forms.TextBox txtTo;
+        private ctrlAutoComplete txtTo;
     }
 }

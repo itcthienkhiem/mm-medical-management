@@ -26,7 +26,23 @@ namespace SonoOnlineResult.Dialogs
             _values.Add("Lemon");
 
 
-            txtTo.AutoCompleteCustomSource.AddRange(_values.ToArray());
+            txtTo.Values = _values;
+        }
+        #endregion
+
+        #region UI Command
+
+        #endregion
+
+        #region Window Event Handlers
+        private void dlgSendMail_Move(object sender, EventArgs e)
+        {
+            txtTo.RecalLocation();
+        }
+
+        private void btnTo_Click(object sender, EventArgs e)
+        {
+            txtTo.Hide();
         }
         #endregion
     }
