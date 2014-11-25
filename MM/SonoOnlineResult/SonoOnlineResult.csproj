@@ -57,31 +57,37 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="dlgFTPConfig.cs">
+    <Compile Include="Dialogs\dlgFTPConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="dlgFTPConfig.Designer.cs">
+    <Compile Include="Dialogs\dlgFTPConfig.Designer.cs">
       <DependentUpon>dlgFTPConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="dlgMailConfig.cs">
+    <Compile Include="Dialogs\dlgMailConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="dlgMailConfig.Designer.cs">
+    <Compile Include="Dialogs\dlgMailConfig.Designer.cs">
       <DependentUpon>dlgMailConfig.cs</DependentUpon>
     </Compile>
-    <Compile Include="dlgMySQLConfig.cs">
+    <Compile Include="Dialogs\dlgMySQLConfig.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="dlgMySQLConfig.Designer.cs">
+    <Compile Include="Dialogs\dlgMySQLConfig.Designer.cs">
       <DependentUpon>dlgMySQLConfig.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgSendMail.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgSendMail.Designer.cs">
+      <DependentUpon>dlgSendMail.cs</DependentUpon>
     </Compile>
     <Compile Include="MySQL.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="TestMailForm.cs">
+    <Compile Include="Dialogs\TestMailForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="TestMailForm.Designer.cs">
+    <Compile Include="Dialogs\TestMailForm.Designer.cs">
       <DependentUpon>TestMailForm.cs</DependentUpon>
     </Compile>
     <Compile Include="UploadFile.cs">
@@ -90,14 +96,17 @@
     <Compile Include="UploadFile.Designer.cs">
       <DependentUpon>UploadFile.cs</DependentUpon>
     </Compile>
-    <EmbeddedResource Include="dlgFTPConfig.resx">
+    <EmbeddedResource Include="Dialogs\dlgFTPConfig.resx">
       <DependentUpon>dlgFTPConfig.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="dlgMailConfig.resx">
+    <EmbeddedResource Include="Dialogs\dlgMailConfig.resx">
       <DependentUpon>dlgMailConfig.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="dlgMySQLConfig.resx">
+    <EmbeddedResource Include="Dialogs\dlgMySQLConfig.resx">
       <DependentUpon>dlgMySQLConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgSendMail.resx">
+      <DependentUpon>dlgSendMail.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -109,7 +118,7 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
-    <EmbeddedResource Include="TestMailForm.resx">
+    <EmbeddedResource Include="Dialogs\TestMailForm.resx">
       <DependentUpon>TestMailForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="UploadFile.resx">
@@ -139,6 +148,9 @@
   <ItemGroup>
     <Content Include="MM_Ico.ico" />
     <Content Include="Notes.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Controls\" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

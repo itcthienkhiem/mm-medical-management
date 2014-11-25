@@ -10,7 +10,7 @@ using MM.Common;
 using MailBee.Mime;
 using MailBee.SmtpMail;
 
-namespace SonoOnlineResult
+namespace SonoOnlineResult.Dialogs
 {
     public partial class dlgMailConfig : Form
     {

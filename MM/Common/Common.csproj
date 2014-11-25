@@ -118,6 +118,7 @@
     <Compile Include="Configuration.cs" />
     <Compile Include="ConnectionInfo.cs" />
     <Compile Include="Const.cs" />
+    <Compile Include="EmailList.cs" />
     <Compile Include="HDGTGTSettings.cs" />
     <Compile Include="HoaDonDichVuChiDinh.cs" />
     <Compile Include="InputDevice.cs" />

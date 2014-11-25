@@ -10,7 +10,7 @@ using System.Threading;
 using MM.Common;
 using MM.Dialogs;
 
-namespace SonoOnlineResult
+namespace SonoOnlineResult.Dialogs
 {
     public partial class dlgFTPConfig : dlgBase
     {

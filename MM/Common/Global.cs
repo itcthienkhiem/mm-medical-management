@@ -19,6 +19,7 @@ namespace MM.Common
         public static string HinhChupPath = string.Format("{0}\\HinhChup", AppDomain.CurrentDomain.BaseDirectory);
         public static string MailConfigPath = string.Format("{0}\\MailConfig.xml", AppDomain.CurrentDomain.BaseDirectory);
         public static string MySQLConnectionInfoPath = string.Format("{0}\\MySQLConnectionInfo.xml", AppDomain.CurrentDomain.BaseDirectory);
+        public static string EmailListPath = string.Format("{0}\\EmailList.xml", AppDomain.CurrentDomain.BaseDirectory);
         public static ConnectionInfo ConnectionInfo = new ConnectionInfo();
         public static FTPConnectionInfo FTPConnectionInfo = new FTPConnectionInfo();
         public static MailConfig MailConfig = new MailConfig();

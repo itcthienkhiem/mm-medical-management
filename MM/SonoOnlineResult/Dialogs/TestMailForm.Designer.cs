@@ -1,4 +1,4 @@
-﻿namespace SonoOnlineResult
+﻿namespace SonoOnlineResult.Dialogs
 {
     partial class TestMailForm
     {
