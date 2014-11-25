@@ -49,7 +49,7 @@
             this.txtTo.Name = "txtTo";
             this.txtTo.Size = new System.Drawing.Size(400, 23);
             this.txtTo.TabIndex = 1;
-            //this.txtTo.Value = "";
+            this.txtTo.Value = "";
             // 
             // dlgSendMail
             // 
