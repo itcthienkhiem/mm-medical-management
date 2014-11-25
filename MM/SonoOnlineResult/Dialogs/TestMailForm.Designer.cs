@@ -45,22 +45,22 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Location = new System.Drawing.Point(12, 13);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(52, 13);
+            this.label1.Size = new System.Drawing.Size(55, 13);
             this.label1.TabIndex = 0;
-            this.label1.Text = "Recipient";
+            this.label1.Text = "Recipient:";
             // 
             // txtRecipient
             // 
-            this.txtRecipient.Location = new System.Drawing.Point(78, 5);
+            this.txtRecipient.Location = new System.Drawing.Point(78, 9);
             this.txtRecipient.Name = "txtRecipient";
             this.txtRecipient.Size = new System.Drawing.Size(391, 20);
             this.txtRecipient.TabIndex = 1;
             // 
             // txtSubject
             // 
-            this.txtSubject.Location = new System.Drawing.Point(78, 38);
+            this.txtSubject.Location = new System.Drawing.Point(78, 33);
             this.txtSubject.Name = "txtSubject";
             this.txtSubject.Size = new System.Drawing.Size(391, 20);
             this.txtSubject.TabIndex = 3;
@@ -69,15 +69,15 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 42);
+            this.label2.Location = new System.Drawing.Point(12, 37);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(43, 13);
+            this.label2.Size = new System.Drawing.Size(46, 13);
             this.label2.TabIndex = 2;
-            this.label2.Text = "Subject";
+            this.label2.Text = "Subject:";
             // 
             // txtBody
             // 
-            this.txtBody.Location = new System.Drawing.Point(78, 71);
+            this.txtBody.Location = new System.Drawing.Point(78, 57);
             this.txtBody.Multiline = true;
             this.txtBody.Name = "txtBody";
             this.txtBody.Size = new System.Drawing.Size(391, 126);
@@ -87,17 +87,17 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(12, 71);
+            this.label3.Location = new System.Drawing.Point(12, 57);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(50, 13);
+            this.label3.Size = new System.Drawing.Size(53, 13);
             this.label3.TabIndex = 4;
-            this.label3.Text = "Message";
+            this.label3.Text = "Message:";
             // 
             // btnSend
             // 
-            this.btnSend.Location = new System.Drawing.Point(105, 218);
+            this.btnSend.Location = new System.Drawing.Point(156, 189);
             this.btnSend.Name = "btnSend";
-            this.btnSend.Size = new System.Drawing.Size(110, 23);
+            this.btnSend.Size = new System.Drawing.Size(79, 23);
             this.btnSend.TabIndex = 6;
             this.btnSend.Text = "&Send";
             this.btnSend.UseVisualStyleBackColor = true;
@@ -106,9 +106,9 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(266, 218);
+            this.btnCancel.Location = new System.Drawing.Point(239, 189);
             this.btnCancel.Name = "btnCancel";
-            this.btnCancel.Size = new System.Drawing.Size(110, 23);
+            this.btnCancel.Size = new System.Drawing.Size(79, 23);
             this.btnCancel.TabIndex = 7;
             this.btnCancel.Text = "&Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
@@ -121,7 +121,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(481, 262);
+            this.ClientSize = new System.Drawing.Size(489, 214);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnSend);
             this.Controls.Add(this.txtBody);
@@ -130,7 +130,7 @@
             this.Controls.Add(this.label2);
             this.Controls.Add(this.txtRecipient);
             this.Controls.Add(this.label1);
-            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.Fixed3D;
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "TestMailForm";

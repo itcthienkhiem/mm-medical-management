@@ -17,6 +17,8 @@ namespace SonoOnlineResult
     {
         #region Members
         private List<string> _fileNames = new List<string>();
+        private List<string> _emailList = new List<string>();
+        private bool _isUploadSuccess = true;
         #endregion
 
         #region Constructor
@@ -61,7 +63,7 @@ namespace SonoOnlineResult
             if (File.Exists(Global.MySQLConnectionInfoPath))
                 Global.MySQLConnectionInfo.Deserialize(Global.MySQLConnectionInfoPath);
 
-            Global.FTPFolder = "results";
+            Global.FTPFolder = "Results";
         }
 
         private void Execute(string cmd)
@@ -91,10 +93,8 @@ namespace SonoOnlineResult
 
         private void OnMailConfig()
         {
-            dlgSendMail dlg = new dlgSendMail();
+            dlgMailConfig dlg = new dlgMailConfig();
             dlg.ShowDialog(this);
-            //dlgMailConfig dlg = new dlgMailConfig();
-            //dlg.ShowDialog(this);
         }
 
         private void OnFTPConfig()
@@ -150,11 +150,11 @@ namespace SonoOnlineResult
         {
             if (lvFile.SelectedItems == null || lvFile.SelectedItems.Count <= 0)
             {
-                MessageBox.Show("Please select at least one file name.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Please select at least one file.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            if (MessageBox.Show("Do you want to remove selected file names ?", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            if (MessageBox.Show("Do you want to remove selected files ?", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
             {
                 foreach (ListViewItem item in lvFile.SelectedItems)
                 {
@@ -167,7 +167,7 @@ namespace SonoOnlineResult
         {
             if (lvFile.Items.Count <= 0) return;
 
-            if (MessageBox.Show("Do you want to remove all file names ?", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            if (MessageBox.Show("Do you want to remove all files ?", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
             {
                 lvFile.Items.Clear();
             }
@@ -179,11 +179,12 @@ namespace SonoOnlineResult
             {
                 if (lvFile.Items.Count <= 0) return;
 
-                if (MessageBox.Show("Do you want to upload file names ?", 
+                if (MessageBox.Show("Do you want to upload files ?", 
                     this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
                     return;
 
                 _fileNames.Clear();
+                _isUploadSuccess = false;
 
                 foreach (ListViewItem item in lvFile.Items)
                 {
@@ -192,14 +193,50 @@ namespace SonoOnlineResult
 
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnUploadProc));
                 base.ShowWaiting();
+
+                if (_isUploadSuccess)
+                {
+                    dlgSendMail dlg = new dlgSendMail();
+                    if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+                    {
+                        _emailList = dlg.Emails;
+                        OnSendMailAsThread();            
+                    }
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            finally
+        }
+
+        private void OnSendMailAsThread()
+        {
+            try
             {
-                base.HideWaiting();
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnSendMailProc));
+                base.ShowWaiting();
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void OnSendMail()
+        {
+            foreach (var email in _emailList)
+            {
+                string pass = Utility.GeneratePassword(5);
+                Result result = MySQL.AddUser(email, pass, _fileNames);
+                if (!result.IsOK)
+                {
+                    MessageBox.Show(result.GetErrorAsString("OnSendMail"), 
+                        this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
+                }
+
+                
             }
         }
 
@@ -212,9 +249,11 @@ namespace SonoOnlineResult
                 if (!result.IsOK)
                 {
                     MessageBox.Show(result.GetErrorAsString("FTP.UploadFile"), this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    break;
+                    return;
                 }
             }
+
+            _isUploadSuccess = true;
         }
         #endregion
 
@@ -274,9 +313,27 @@ namespace SonoOnlineResult
         {
             try
             {
-                base.SetTitleWaiting("Please waiting...");
+                base.SetTitleWaiting("Uploading files...");
                 Thread.Sleep(500);
                 OnUpload();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                base.HideWaiting();
+            }
+        }
+
+        private void OnSendMailProc(object state)
+        {
+            try
+            {
+                base.SetTitleWaiting("Sending mail...");
+                Thread.Sleep(500);
+                OnSendMail();
             }
             catch (Exception e)
             {

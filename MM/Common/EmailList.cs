@@ -21,6 +21,41 @@ namespace MM.Common
         }
         #endregion
 
+        #region Methods
+        public List<string> GetEmails()
+        {
+            List<string> emails = new List<string>();
+            foreach (var email in Emails)
+            {
+                emails.Add(email.EmailAddress);
+            }
+
+            return emails;
+        }
+
+        public bool CheckEmailExist(string email)
+        {
+            foreach (var e in Emails)
+            {
+                if (e.EmailAddress.Trim().ToLower() == email.Trim().ToLower())
+                    return true;
+            }
+
+            return false;
+        }
+
+        public void Add(string email)
+        {
+            if (!CheckEmailExist(email))
+            {
+                Email em = new Email();
+                em.Name = email;
+                em.EmailAddress = email;
+                Emails.Add(em);
+            }
+        }
+        #endregion
+
         #region Serialize & Deserialize
         public bool Serialize(string fileName)
         {
