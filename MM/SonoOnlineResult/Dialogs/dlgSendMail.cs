@@ -26,7 +26,7 @@ namespace SonoOnlineResult.Dialogs
             _values.Add("Lemon");
 
 
-            //txtTo.Values = _values;
+            txtTo.Values = _values;
         }
         #endregion
 
@@ -37,12 +37,12 @@ namespace SonoOnlineResult.Dialogs
         #region Window Event Handlers
         private void dlgSendMail_Move(object sender, EventArgs e)
         {
-            //txtTo.RecalLocation();
+            txtTo.RecalLocation();
         }
 
         private void btnTo_Click(object sender, EventArgs e)
         {
-            //txtTo.Hide();
+            txtTo.Hide();
         }
         #endregion
     }
