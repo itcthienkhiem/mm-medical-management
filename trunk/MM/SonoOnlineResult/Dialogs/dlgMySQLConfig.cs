@@ -7,11 +7,10 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using MySql.Data.MySqlClient;
-using System.Data;
 using MM.Common;
 
 
-namespace SonoOnlineResult
+namespace SonoOnlineResult.Dialogs
 {
     public partial class dlgMySQLConfig : Form
     {

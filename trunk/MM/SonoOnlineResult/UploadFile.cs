@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using MM.Common;
 using System.IO;
 using System.Threading;
+using SonoOnlineResult.Dialogs;
 
 namespace SonoOnlineResult
 {
@@ -90,8 +91,10 @@ namespace SonoOnlineResult
 
         private void OnMailConfig()
         {
-            dlgMailConfig dlg = new dlgMailConfig();
+            dlgSendMail dlg = new dlgSendMail();
             dlg.ShowDialog(this);
+            //dlgMailConfig dlg = new dlgMailConfig();
+            //dlg.ShowDialog(this);
         }
 
         private void OnFTPConfig()
