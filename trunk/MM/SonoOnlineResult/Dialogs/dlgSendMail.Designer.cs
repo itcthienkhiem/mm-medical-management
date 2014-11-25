@@ -91,6 +91,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Send Mail";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.dlgSendMail_FormClosing);
+            this.Load += new System.EventHandler(this.dlgSendMail_Load);
             this.Move += new System.EventHandler(this.dlgSendMail_Move);
             this.ResumeLayout(false);
 

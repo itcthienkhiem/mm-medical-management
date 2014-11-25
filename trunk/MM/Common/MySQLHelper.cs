@@ -154,7 +154,7 @@ namespace MM.Common
 
                 if (cnn != null)
                 {
-                    cnn.Clone();
+                    cnn.Close();
                     cnn = null;
                 }
             }
@@ -191,7 +191,7 @@ namespace MM.Common
 
                 if (cnn != null)
                 {
-                    cnn.Clone();
+                    cnn.Close();
                     cnn = null;
                 }
             }

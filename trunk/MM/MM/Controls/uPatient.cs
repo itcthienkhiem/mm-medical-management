@@ -521,7 +521,7 @@ namespace MM.Controls
             string maBenhNhan = row["FileNum"].ToString();
             string tenBenhNhan = Utility.ConvertToUnSign(row["FullName"].ToString());
             string tenBenhNhan2 = Utility.ConvertToUnSign2(row["FullName"].ToString());
-            string password = Utility.GeneratePassword();
+            string password = Utility.GeneratePassword(5);
             string path = string.Format("{0}\\{1}@{2}", Global.HoSoPath, maBenhNhan, tenBenhNhan);
             if (!Directory.Exists(path)) return;
             string[] files = Directory.GetFiles(path);
@@ -601,7 +601,7 @@ namespace MM.Controls
 
             if (result.Error.Code == ErrorCode.NOT_EXIST)
             {
-                string password = Utility.GeneratePassword();
+                string password = Utility.GeneratePassword(5);
                 result = UserBus.AddUser(fileNum, password);
                 if (!result.IsOK)
                 {

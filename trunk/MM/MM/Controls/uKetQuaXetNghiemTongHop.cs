@@ -747,7 +747,7 @@ namespace MM.Controls
                         {
                             string maBenhNhan = row["FileNum"].ToString();
                             string tenBenhNhan = row["FullName"].ToString();
-                            string password = Utility.GeneratePassword();
+                            string password = Utility.GeneratePassword(5);
 
                             string remoteFileName = string.Format("{0}/{1}/{2}_{3}.xls", Global.FTPFolder, maBenhNhan,
                                 maxNgayXN.ToString("ddMMyyyyHHmmss"), "CellDyn3200");
@@ -816,7 +816,7 @@ namespace MM.Controls
                         {
                             string maBenhNhan = row["FileNum"].ToString();
                             string tenBenhNhan = row["FullName"].ToString();
-                            string password = Utility.GeneratePassword();
+                            string password = Utility.GeneratePassword(5);
 
                             string remoteFileName = string.Format("{0}/{1}/{2}_{3}.xls", Global.FTPFolder, maBenhNhan,
                                 maxNgayXN.ToString("ddMMyyyyHHmmss"), "SinhHoa");
