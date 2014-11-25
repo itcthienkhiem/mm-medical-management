@@ -30,7 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgSendMail));
             this.btnTo = new System.Windows.Forms.Button();
-            this.txtTo = new SonoOnlineResult.Dialogs.ctrlAutoComplete();
+            this.txtTo = new SonoOnlineResult.Dialogs.uAutoComplete();
             this.SuspendLayout();
             // 
             // btnTo
@@ -49,7 +49,7 @@
             this.txtTo.Name = "txtTo";
             this.txtTo.Size = new System.Drawing.Size(400, 23);
             this.txtTo.TabIndex = 1;
-            this.txtTo.Value = "";
+            //this.txtTo.Value = "";
             // 
             // dlgSendMail
             // 
@@ -73,6 +73,6 @@
         #endregion
 
         private System.Windows.Forms.Button btnTo;
-        private ctrlAutoComplete txtTo;
+        private uAutoComplete txtTo;
     }
 }
