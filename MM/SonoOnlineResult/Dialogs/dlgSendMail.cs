@@ -27,7 +27,6 @@ namespace SonoOnlineResult.Dialogs
 
 
             txtTo.Values = _values;
-            txtCc.Values = _values;
         }
         #endregion
 
@@ -39,25 +38,21 @@ namespace SonoOnlineResult.Dialogs
         private void dlgSendMail_Move(object sender, EventArgs e)
         {
             txtTo.RecalLocation();
-            txtCc.RecalLocation();
         }
 
         private void btnTo_Click(object sender, EventArgs e)
         {
             txtTo.Hide();
-            txtCc.Hide();
         }
 
         private void btnCc_Click(object sender, EventArgs e)
         {
             txtTo.Hide();
-            txtCc.Hide();
         }
 
         private void dlgSendMail_FormClosing(object sender, FormClosingEventArgs e)
         {
             txtTo.Clear();
-            txtCc.Clear();
         }
         #endregion
     }
