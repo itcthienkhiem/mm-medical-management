@@ -59,7 +59,7 @@ namespace SonoOnlineResult
                 Global.MailConfig.Deserialize(Global.MailConfigPath);
 
             if (File.Exists(Global.MySQLConnectionInfoPath))
-                Global.MySQLConnectionInfo = new MySQLConnectionInfo();
+                Global.MySQLConnectionInfo.Deserialize(Global.MySQLConnectionInfoPath);
 
             Global.FTPFolder = "results";
         }
