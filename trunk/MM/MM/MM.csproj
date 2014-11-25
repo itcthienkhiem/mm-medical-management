@@ -2805,6 +2805,7 @@
     <Content Include="Components\SourceLibrary.dll" />
     <Content Include="Components\SpreadsheetGear.Design.dll" />
     <Content Include="Components\SpreadsheetGear.dll" />
+    <Content Include="Components\TextBoxEmailAutocomplete.dll" />
     <Content Include="Components\uninstall.ico" />
     <Content Include="Components\WebCam_Capture.dll" />
     <Content Include="Controls\Excel\Office\Excel\MetaData\EscherRecordTypes.txt" />
