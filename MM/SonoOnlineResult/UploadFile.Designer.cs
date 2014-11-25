@@ -30,6 +30,7 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UploadFile));
             this.toolStripMain = new System.Windows.Forms.ToolStrip();
+            this.toolStripButtonMySQLConfig = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonFTPConfig = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonMailConfig = new System.Windows.Forms.ToolStripButton();
             this.lvFile = new System.Windows.Forms.ListView();
@@ -42,7 +43,6 @@
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.toolStripButtonMySQLConfig = new System.Windows.Forms.ToolStripButton();
             this.toolStripMain.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -62,6 +62,16 @@
             this.toolStripMain.TabIndex = 0;
             this.toolStripMain.Text = "toolStrip1";
             this.toolStripMain.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStripMain_ItemClicked);
+            // 
+            // toolStripButtonMySQLConfig
+            // 
+            this.toolStripButtonMySQLConfig.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonMySQLConfig.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonMySQLConfig.Image")));
+            this.toolStripButtonMySQLConfig.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonMySQLConfig.Name = "toolStripButtonMySQLConfig";
+            this.toolStripButtonMySQLConfig.Size = new System.Drawing.Size(28, 28);
+            this.toolStripButtonMySQLConfig.Text = "toolStripButton1";
+            this.toolStripButtonMySQLConfig.ToolTipText = "MySQL Configuration";
             // 
             // toolStripButtonFTPConfig
             // 
@@ -102,7 +112,7 @@
             // colFileName
             // 
             this.colFileName.Text = "File Name";
-            this.colFileName.Width = 483;
+            this.colFileName.Width = 502;
             // 
             // panel1
             // 
@@ -183,16 +193,6 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(507, 322);
             this.panel3.TabIndex = 4;
-            // 
-            // toolStripButtonMySQLConfig
-            // 
-            this.toolStripButtonMySQLConfig.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonMySQLConfig.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonMySQLConfig.Image")));
-            this.toolStripButtonMySQLConfig.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonMySQLConfig.Name = "toolStripButtonMySQLConfig";
-            this.toolStripButtonMySQLConfig.Size = new System.Drawing.Size(28, 28);
-            this.toolStripButtonMySQLConfig.Text = "toolStripButton1";
-            this.toolStripButtonMySQLConfig.ToolTipText = "MySQL Configuration";
             // 
             // UploadFile
             // 
