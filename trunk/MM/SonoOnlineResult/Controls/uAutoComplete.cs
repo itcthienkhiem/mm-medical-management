@@ -24,14 +24,8 @@ namespace SonoOnlineResult.Dialogs
 		{
 			InitializeComponent();
 
-			_dlg.ListBoxData.Leave += new EventHandler(ListBoxData_Leave);
-			_dlg.ListBoxData.DoubleClick += new EventHandler(ListBoxData_DoubleClick);
             _dlg.ListBoxData.Click += new EventHandler(ListBoxData_Click);
-			_dlg.ListBoxData.KeyDown += new KeyEventHandler(ListBoxData_KeyDown);
-			_dlg.ListBoxData.KeyUp += new KeyEventHandler(ListBoxData_KeyUp);
 		}
-
-        
 
 		protected override void Dispose( bool disposing )
 		{
@@ -70,11 +64,12 @@ namespace SonoOnlineResult.Dialogs
             this.txtTextBox.TextChanged += new System.EventHandler(this.txtTextBox_TextChanged);
             this.txtTextBox.KeyDown += new System.Windows.Forms.KeyEventHandler(this.txtTextBox_KeyDown);
             this.txtTextBox.Leave += new System.EventHandler(this.txtTextBox_Leave);
+            this.txtTextBox.PreviewKeyDown += new System.Windows.Forms.PreviewKeyDownEventHandler(this.txtTextBox_PreviewKeyDown);
             // 
-            // ctrlAutoComplete
+            // uAutoComplete
             // 
             this.Controls.Add(this.txtTextBox);
-            this.Name = "ctrlAutoComplete";
+            this.Name = "uAutoComplete";
             this.Size = new System.Drawing.Size(296, 20);
             this.ResumeLayout(false);
 
@@ -124,9 +119,8 @@ namespace SonoOnlineResult.Dialogs
                 _dlg.ListBoxData.SelectedIndex = 0;
 
                 Size size = _dlg.Size;
-                size.Height = 13 * (_dlg.ListBoxData.Items.Count + 1);
-
-                _dlg.Size = size;
+                Size newSize = new System.Drawing.Size(size.Width, (15 * _dlg.ListBoxData.Items.Count) + 2);
+                _dlg.Size = newSize;
             }
 
 			return bResult;
@@ -159,7 +153,10 @@ namespace SonoOnlineResult.Dialogs
         public void Hide()
         {
             if (_dlg != null)
+            {
                 _dlg.Hide();
+                _dlg.WindowState = FormWindowState.Minimized;
+            }
         }
 
         public void RecalLocation()
@@ -187,20 +184,27 @@ namespace SonoOnlineResult.Dialogs
 
 					str = str.TrimStart(" ".ToCharArray());
 
-					if (str != string.Empty)
-					{
-						if (RefreshListBoxData(str.Trim()))
-						{
-							_dlg.TopMost = true;
-							_dlg.Show();
+                    if (str != string.Empty)
+                    {
+                        if (RefreshListBoxData(str.Trim()))
+                        {
+                            _dlg.TopMost = true;
+                            _dlg.WindowState = FormWindowState.Normal;
+                            _dlg.Show();
                             RecalLocation();
-							txtTextBox.Focus();
-						}
-						else
-							_dlg.Hide();
-					}
-					else
-						_dlg.Hide();
+                            txtTextBox.Focus();
+                        }
+                        else
+                        {
+                            _dlg.Hide();
+                            _dlg.WindowState = FormWindowState.Minimized;
+                        }
+                    }
+                    else
+                    {
+                        _dlg.Hide();
+                        _dlg.WindowState = FormWindowState.Minimized;
+                    }
 				}
 
 				_flag = true;
@@ -213,11 +217,13 @@ namespace SonoOnlineResult.Dialogs
 
 		private void txtTextBox_Leave(object sender, System.EventArgs e)
 		{
-			_dlg.ListBoxData.Focus();
+            this.Hide();
 		}
 
 		private void txtTextBox_KeyDown(object sender, System.Windows.Forms.KeyEventArgs e)
 		{
+            if (_dlg.WindowState != FormWindowState.Normal) return;
+
 			if(e.KeyCode == Keys.Up || e.KeyCode == Keys.Down)
 			{
 				if (_dlg.ListBoxData.Items.Count > 0)
@@ -226,15 +232,11 @@ namespace SonoOnlineResult.Dialogs
                     {
                         if (_dlg.ListBoxData.SelectedIndex < _dlg.ListBoxData.Items.Count - 1)
                             _dlg.ListBoxData.SelectedIndex = _dlg.ListBoxData.SelectedIndex + 1;
-
-                        _dlg.ListBoxData.Focus();
                     }
                     else
                     {
                         if (_dlg.ListBoxData.SelectedIndex > 0)
                             _dlg.ListBoxData.SelectedIndex = _dlg.ListBoxData.SelectedIndex - 1;
-
-                        _dlg.ListBoxData.Focus();
                     }
 				}
 			}
@@ -242,6 +244,7 @@ namespace SonoOnlineResult.Dialogs
 			if(e.KeyCode == Keys.Escape)
 			{
 				_dlg.Hide();
+                _dlg.WindowState = FormWindowState.Minimized;
 				txtTextBox.Focus();
 			}
 
@@ -255,20 +258,27 @@ namespace SonoOnlineResult.Dialogs
                 _flag = true;
 
                 _dlg.Hide();
+                _dlg.WindowState = FormWindowState.Minimized;
                 txtTextBox.Focus();
             }
 		}
 
-		private void ListBoxData_Leave(object sender, EventArgs e)
-		{
-			_dlg.Hide();
-			txtTextBox.Focus();
-		}
+        private void txtTextBox_PreviewKeyDown(object sender, PreviewKeyDownEventArgs e)
+        {
+            if (e.KeyCode == Keys.Tab && _dlg.WindowState == FormWindowState.Normal)
+            {
+                string ss = ProcessText();
 
-		private void ListBoxData_DoubleClick(object sender, EventArgs e)
-		{
-			
-		}
+                _flag = false;
+                txtTextBox.Text = "";
+                txtTextBox.AppendText(ss);
+                _flag = true;
+
+                _dlg.Hide();
+                _dlg.WindowState = FormWindowState.Minimized;
+                txtTextBox.Focus();
+            }
+        }
 
         private void ListBoxData_Click(object sender, EventArgs e)
         {
@@ -283,51 +293,9 @@ namespace SonoOnlineResult.Dialogs
             _flag = true;
 
             _dlg.Hide();
+            _dlg.WindowState = FormWindowState.Minimized;
             txtTextBox.Focus();
         }
-
-		private void ListBoxData_KeyDown(object sender, KeyEventArgs e)
-		{
-			if(e.KeyCode == Keys.Escape)
-			{
-				_dlg.Hide();
-				txtTextBox.Focus();
-			}
-
-			if(e.KeyCode == Keys.Enter)
-			{
-				string ss = ProcessText();
-
-				_flag = false;
-				txtTextBox.Text = "";
-				txtTextBox.AppendText(ss);
-				_flag = true;
-
-				_dlg.Hide();
-				txtTextBox.Focus();
-			}
-		}
-
-		private void ListBoxData_KeyUp(object sender, KeyEventArgs e)
-		{
-			if (e.KeyCode == Keys.Tab)
-			{
-				if (_dlg.ListBoxData.SelectedItem != null)
-				{
-					string ss = ProcessText();
-
-					_flag = false;
-					txtTextBox.Text = "";
-					txtTextBox.AppendText(ss);
-					_flag = true;
-
-					_dlg.Hide();
-					txtTextBox.Focus();
-				}
-				else
-					_dlg.ListBoxData.SelectedIndex = 0;
-			}
-		}	
 		#endregion
 	}
 }
