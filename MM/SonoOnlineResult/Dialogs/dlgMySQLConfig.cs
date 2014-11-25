@@ -84,7 +84,7 @@ namespace SonoOnlineResult.Dialogs
                 cnn.Close();
                 cnn.Dispose();
                 cnn = null;
-                MessageBox.Show("Connect to MySQL successfully.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show("Connect to MySQL successfully.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
