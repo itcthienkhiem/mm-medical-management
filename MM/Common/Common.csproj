@@ -123,6 +123,7 @@
     <Compile Include="HoaDonDichVuChiDinh.cs" />
     <Compile Include="InputDevice.cs" />
     <Compile Include="MailConfig.cs" />
+    <Compile Include="MailTemplate.cs" />
     <Compile Include="MySQLConnectionInfo.cs" />
     <Compile Include="PageSetupConfig.cs" />
     <Compile Include="Enum.cs" />
