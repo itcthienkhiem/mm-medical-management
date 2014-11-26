@@ -11,6 +11,7 @@ namespace MM.Common
     {
         #region Members
         public string TemplateName = string.Empty;
+        public string Subject = string.Empty;
         public string Content = string.Empty;
         #endregion
 

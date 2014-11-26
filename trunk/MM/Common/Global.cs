@@ -24,6 +24,7 @@ namespace MM.Common
         public static ConnectionInfo ConnectionInfo = new ConnectionInfo();
         public static FTPConnectionInfo FTPConnectionInfo = new FTPConnectionInfo();
         public static MailConfig MailConfig = new MailConfig();
+        public static MailTemplateList MailTemplateList = new MailTemplateList();
         public static MySQLConnectionInfo MySQLConnectionInfo = new MySQLConnectionInfo();
         public static TVHomeConfig TVHomeConfig = new TVHomeConfig();
         public static int AlertDays = 3;
