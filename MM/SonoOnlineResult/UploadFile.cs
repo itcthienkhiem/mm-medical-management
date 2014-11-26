@@ -63,6 +63,9 @@ namespace SonoOnlineResult
             if (File.Exists(Global.MySQLConnectionInfoPath))
                 Global.MySQLConnectionInfo.Deserialize(Global.MySQLConnectionInfoPath);
 
+            if (File.Exists(Global.MailTemplatePath))
+                Global.MailTemplateList.Deserialize(Global.MailTemplatePath);
+
             Global.FTPFolder = "Results";
         }
 
@@ -81,8 +84,17 @@ namespace SonoOnlineResult
                 case "Mail Configuration":
                     OnMailConfig();
                     break;
+
+                case "Mail Templates":
+                    OnMailTemplates();
+                    break;
                     
             }
+        }
+
+        private void OnMailTemplates()
+        {
+
         }
 
         private void OnMySQLConfig()

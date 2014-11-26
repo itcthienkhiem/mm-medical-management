@@ -43,6 +43,7 @@
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.toolStripButtonMailTemplate = new System.Windows.Forms.ToolStripButton();
             this.toolStripMain.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -55,7 +56,8 @@
             this.toolStripMain.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonMySQLConfig,
             this.toolStripButtonFTPConfig,
-            this.toolStripButtonMailConfig});
+            this.toolStripButtonMailConfig,
+            this.toolStripButtonMailTemplate});
             this.toolStripMain.Location = new System.Drawing.Point(0, 0);
             this.toolStripMain.Name = "toolStripMain";
             this.toolStripMain.Size = new System.Drawing.Size(592, 31);
@@ -194,6 +196,16 @@
             this.panel3.Size = new System.Drawing.Size(507, 327);
             this.panel3.TabIndex = 4;
             // 
+            // toolStripButtonMailTemplate
+            // 
+            this.toolStripButtonMailTemplate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonMailTemplate.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonMailTemplate.Image")));
+            this.toolStripButtonMailTemplate.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonMailTemplate.Name = "toolStripButtonMailTemplate";
+            this.toolStripButtonMailTemplate.Size = new System.Drawing.Size(28, 28);
+            this.toolStripButtonMailTemplate.Text = "toolStripButton1";
+            this.toolStripButtonMailTemplate.ToolTipText = "Mail Templates";
+            // 
             // UploadFile
             // 
             this.AllowDrop = true;
@@ -236,5 +248,6 @@
         private System.Windows.Forms.Button btnAdd;
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.ToolStripButton toolStripButtonMySQLConfig;
+        private System.Windows.Forms.ToolStripButton toolStripButtonMailTemplate;
     }
 }
