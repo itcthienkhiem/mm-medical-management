@@ -29,19 +29,23 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgMailTemplates));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.panel2 = new System.Windows.Forms.Panel();
-            this.dgTemplates = new System.Windows.Forms.DataGridView();
-            this.btnAdd = new System.Windows.Forms.Button();
-            this.btnEdit = new System.Windows.Forms.Button();
-            this.btnDelete = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
+            this.btnDelete = new System.Windows.Forms.Button();
+            this.btnEdit = new System.Windows.Forms.Button();
+            this.btnAdd = new System.Windows.Forms.Button();
+            this.panel2 = new System.Windows.Forms.Panel();
+            this.chkCheck = new System.Windows.Forms.CheckBox();
+            this.dgTemplates = new System.Windows.Forms.DataGridView();
+            this.dataGridViewCheckBoxColumn1 = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colChecked = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.colNo = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.colTemplateName = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.chkCheck = new System.Windows.Forms.CheckBox();
+            this.colTemplateName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgTemplates)).BeginInit();
@@ -59,6 +63,46 @@
             this.panel1.Size = new System.Drawing.Size(387, 35);
             this.panel1.TabIndex = 0;
             // 
+            // btnClose
+            // 
+            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+            this.btnClose.Location = new System.Drawing.Point(277, 6);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.TabIndex = 3;
+            this.btnClose.Text = "&Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            // 
+            // btnDelete
+            // 
+            this.btnDelete.Location = new System.Drawing.Point(196, 6);
+            this.btnDelete.Name = "btnDelete";
+            this.btnDelete.Size = new System.Drawing.Size(75, 23);
+            this.btnDelete.TabIndex = 2;
+            this.btnDelete.Text = "&Delete";
+            this.btnDelete.UseVisualStyleBackColor = true;
+            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            // 
+            // btnEdit
+            // 
+            this.btnEdit.Location = new System.Drawing.Point(115, 6);
+            this.btnEdit.Name = "btnEdit";
+            this.btnEdit.Size = new System.Drawing.Size(75, 23);
+            this.btnEdit.TabIndex = 1;
+            this.btnEdit.Text = "&Edit";
+            this.btnEdit.UseVisualStyleBackColor = true;
+            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            // 
+            // btnAdd
+            // 
+            this.btnAdd.Location = new System.Drawing.Point(34, 6);
+            this.btnAdd.Name = "btnAdd";
+            this.btnAdd.Size = new System.Drawing.Size(75, 23);
+            this.btnAdd.TabIndex = 0;
+            this.btnAdd.Text = "&Add";
+            this.btnAdd.UseVisualStyleBackColor = true;
+            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            // 
             // panel2
             // 
             this.panel2.Controls.Add(this.chkCheck);
@@ -68,6 +112,16 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(387, 403);
             this.panel2.TabIndex = 1;
+            // 
+            // chkCheck
+            // 
+            this.chkCheck.AutoSize = true;
+            this.chkCheck.Location = new System.Drawing.Point(10, 4);
+            this.chkCheck.Name = "chkCheck";
+            this.chkCheck.Size = new System.Drawing.Size(15, 14);
+            this.chkCheck.TabIndex = 2;
+            this.chkCheck.UseVisualStyleBackColor = true;
+            this.chkCheck.CheckedChanged += new System.EventHandler(this.chkCheck_CheckedChanged);
             // 
             // dgTemplates
             // 
@@ -89,51 +143,39 @@
             this.colTemplateName});
             this.dgTemplates.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgTemplates.Location = new System.Drawing.Point(0, 0);
+            this.dgTemplates.MultiSelect = false;
             this.dgTemplates.Name = "dgTemplates";
             this.dgTemplates.RowHeadersVisible = false;
             this.dgTemplates.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgTemplates.Size = new System.Drawing.Size(387, 403);
             this.dgTemplates.TabIndex = 0;
+            this.dgTemplates.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgTemplates_CellDoubleClick);
+            this.dgTemplates.ColumnHeaderMouseClick += new System.Windows.Forms.DataGridViewCellMouseEventHandler(this.dgTemplates_ColumnHeaderMouseClick);
             // 
-            // btnAdd
+            // dataGridViewCheckBoxColumn1
             // 
-            this.btnAdd.Location = new System.Drawing.Point(34, 6);
-            this.btnAdd.Name = "btnAdd";
-            this.btnAdd.Size = new System.Drawing.Size(75, 23);
-            this.btnAdd.TabIndex = 0;
-            this.btnAdd.Text = "&Add";
-            this.btnAdd.UseVisualStyleBackColor = true;
-            this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
+            this.dataGridViewCheckBoxColumn1.Frozen = true;
+            this.dataGridViewCheckBoxColumn1.HeaderText = "";
+            this.dataGridViewCheckBoxColumn1.Name = "dataGridViewCheckBoxColumn1";
+            this.dataGridViewCheckBoxColumn1.Width = 30;
             // 
-            // btnEdit
+            // dataGridViewTextBoxColumn1
             // 
-            this.btnEdit.Location = new System.Drawing.Point(115, 6);
-            this.btnEdit.Name = "btnEdit";
-            this.btnEdit.Size = new System.Drawing.Size(75, 23);
-            this.btnEdit.TabIndex = 1;
-            this.btnEdit.Text = "&Edit";
-            this.btnEdit.UseVisualStyleBackColor = true;
-            this.btnEdit.Click += new System.EventHandler(this.btnEdit_Click);
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.dataGridViewTextBoxColumn1.DefaultCellStyle = dataGridViewCellStyle3;
+            this.dataGridViewTextBoxColumn1.HeaderText = "No.";
+            this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
+            this.dataGridViewTextBoxColumn1.ReadOnly = true;
+            this.dataGridViewTextBoxColumn1.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
+            this.dataGridViewTextBoxColumn1.Width = 35;
             // 
-            // btnDelete
+            // dataGridViewTextBoxColumn2
             // 
-            this.btnDelete.Location = new System.Drawing.Point(196, 6);
-            this.btnDelete.Name = "btnDelete";
-            this.btnDelete.Size = new System.Drawing.Size(75, 23);
-            this.btnDelete.TabIndex = 2;
-            this.btnDelete.Text = "&Delete";
-            this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
-            // 
-            // btnClose
-            // 
-            this.btnClose.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnClose.Location = new System.Drawing.Point(277, 6);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.TabIndex = 3;
-            this.btnClose.Text = "&Close";
-            this.btnClose.UseVisualStyleBackColor = true;
+            this.dataGridViewTextBoxColumn2.HeaderText = "Template Name";
+            this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
+            this.dataGridViewTextBoxColumn2.ReadOnly = true;
+            this.dataGridViewTextBoxColumn2.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridViewTextBoxColumn2.Width = 300;
             // 
             // colChecked
             // 
@@ -149,6 +191,7 @@
             this.colNo.HeaderText = "No.";
             this.colNo.Name = "colNo";
             this.colNo.ReadOnly = true;
+            this.colNo.SortMode = System.Windows.Forms.DataGridViewColumnSortMode.NotSortable;
             this.colNo.Width = 35;
             // 
             // colTemplateName
@@ -156,17 +199,8 @@
             this.colTemplateName.HeaderText = "Template Name";
             this.colTemplateName.Name = "colTemplateName";
             this.colTemplateName.ReadOnly = true;
+            this.colTemplateName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             this.colTemplateName.Width = 300;
-            // 
-            // chkCheck
-            // 
-            this.chkCheck.AutoSize = true;
-            this.chkCheck.Location = new System.Drawing.Point(11, 3);
-            this.chkCheck.Name = "chkCheck";
-            this.chkCheck.Size = new System.Drawing.Size(15, 14);
-            this.chkCheck.TabIndex = 2;
-            this.chkCheck.UseVisualStyleBackColor = true;
-            this.chkCheck.CheckedChanged += new System.EventHandler(this.chkCheck_CheckedChanged);
             // 
             // dlgMailTemplates
             // 
@@ -183,6 +217,7 @@
             this.Name = "dlgMailTemplates";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Mail Templates";
+            this.Load += new System.EventHandler(this.dlgMailTemplates_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
@@ -200,9 +235,12 @@
         private System.Windows.Forms.Button btnDelete;
         private System.Windows.Forms.Button btnEdit;
         private System.Windows.Forms.Button btnAdd;
+        private System.Windows.Forms.CheckBox chkCheck;
         private System.Windows.Forms.DataGridViewCheckBoxColumn colChecked;
         private System.Windows.Forms.DataGridViewTextBoxColumn colNo;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn colTemplateName;
-        private System.Windows.Forms.CheckBox chkCheck;
+        private System.Windows.Forms.DataGridViewTextBoxColumn colTemplateName;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn dataGridViewCheckBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
+        private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
     }
 }

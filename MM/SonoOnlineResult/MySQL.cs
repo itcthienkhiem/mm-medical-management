@@ -37,7 +37,7 @@ namespace SonoOnlineResult
             return result;
         }
 
-        public static Result AddUser(string email, string password, List<string> fileNames)
+        public static Result AddUser(string email, string password, string code, List<string> fileNames)
         {
             Result result = new Result();
             MySqlCommand cmd = null;
@@ -75,7 +75,6 @@ namespace SonoOnlineResult
                     cmd.ExecuteNonQuery();
 
                     //Insert Last Upload
-                    string code = Guid.NewGuid().ToString();
                     query = string.Format("INSERT INTO LastUpload(Email, Code) VALUES('{0}', '{1}')", email, code);
                     cmd.CommandText = query;
                     cmd.ExecuteNonQuery();

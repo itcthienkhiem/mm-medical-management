@@ -10,9 +10,10 @@ namespace MM.Common
     public class MailTemplate
     {
         #region Members
+        public int TemplateKey = 0;
         public string TemplateName = string.Empty;
         public string Subject = string.Empty;
-        public string Content = string.Empty;
+        public string Body = string.Empty;
         #endregion
 
         #region Constructor
@@ -47,6 +48,30 @@ namespace MM.Common
             }
 
             return null;
+        }
+
+        public bool CheckTemplateNameExist(string templateName, int templateKey)
+        {
+            foreach (var template in TemplateList)
+            {
+                if (template.TemplateKey != templateKey && 
+                    template.TemplateName.Trim().ToUpper() == templateName.Trim().ToUpper())
+                    return true;
+            }
+
+            return false;
+        }
+
+        public int GetNextTemplateKey()
+        {
+            int key = 0;
+            foreach (var template in TemplateList)
+            {
+                if (key < template.TemplateKey)
+                    key = template.TemplateKey;
+            }
+
+            return key + 1;
         }
         #endregion
 

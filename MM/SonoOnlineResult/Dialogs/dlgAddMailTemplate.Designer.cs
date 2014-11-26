@@ -84,6 +84,8 @@
             // 
             // txtBody
             // 
+            this.txtBody.AcceptsTab = true;
+            this.txtBody.EnableAutoDragDrop = true;
             this.txtBody.Location = new System.Drawing.Point(93, 54);
             this.txtBody.Name = "txtBody";
             this.txtBody.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;

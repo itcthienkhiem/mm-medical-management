@@ -10,6 +10,8 @@ using MM.Common;
 using System.IO;
 using System.Threading;
 using SonoOnlineResult.Dialogs;
+using MailBee.Mime;
+using MailBee.SmtpMail;
 
 namespace SonoOnlineResult
 {
@@ -17,8 +19,12 @@ namespace SonoOnlineResult
     {
         #region Members
         private List<string> _fileNames = new List<string>();
-        private List<string> _emailList = new List<string>();
+        private List<string> _toEmailList = new List<string>();
+        private List<string> _ccEmailList = new List<string>();
+        private bool _usingMailTemplate = false;
         private bool _isUploadSuccess = true;
+        private string _subject = string.Empty;
+        private string _body = string.Empty;
         #endregion
 
         #region Constructor
@@ -216,7 +222,11 @@ namespace SonoOnlineResult
                     dlgSendMail dlg = new dlgSendMail();
                     if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
                     {
-                        _emailList = dlg.Emails;
+                        _toEmailList = dlg.ToEmailList;
+                        _ccEmailList = dlg.CcEmailList;
+                        _usingMailTemplate = dlg.UsingMailTemplate;
+                        _subject = dlg.Subject;
+                        _body = dlg.Body;
                         OnSendMailAsThread();            
                     }
                 }
@@ -242,18 +252,74 @@ namespace SonoOnlineResult
 
         private void OnSendMail()
         {
-            foreach (var email in _emailList)
+            string toEmail = _toEmailList[0];
+            string pass = Utility.GeneratePassword(5);
+            string code = Guid.NewGuid().ToString();
+            Result result = MySQL.AddUser(toEmail, pass, code, _fileNames);
+            if (!result.IsOK)
             {
-                string pass = Utility.GeneratePassword(5);
-                Result result = MySQL.AddUser(email, pass, _fileNames);
-                if (!result.IsOK)
-                {
-                    MessageBox.Show(result.GetErrorAsString("OnSendMail"), 
-                        this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
+                MessageBox.Show(result.GetErrorAsString("OnSendMail"), 
+                    this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
-                
+            MailMessage msg = new MailMessage();
+            msg.From = new EmailAddress(Global.MailConfig.SenderMail);
+            msg.To.Add(new EmailAddress(toEmail));
+            if (_ccEmailList.Count > 0)
+            {
+                foreach (var email in _ccEmailList)
+                    msg.Cc.Add(new EmailAddress(email));
+            }
+
+            msg.Subject = _subject;
+            string link = string.Format("http://wwww.ris.com.au?code={0}", code);
+            string account = string.Format("Username: {0}\nPassword: {1}", toEmail, pass);
+
+            if (_usingMailTemplate)
+            {
+                _body = _body.Replace("#Email#", toEmail);
+                _body = _body.Replace("#Link#", link);
+                _body = _body.Replace("#Account#", account);
+            }
+            else
+            {
+                _body += string.Format("Please follow this link to view your result:\n{0}\n\nThe username and password to login are:\n{1}",
+                    link, account);
+            }
+
+            msg.BodyPlainText = _body;
+
+            Smtp.LicenseKey = "MN200-B47C7EFF7C257CFF7C2E34E777B5-D2BD";
+            Smtp smtp = new Smtp();
+            if (Global.MailConfig.UseSMTPServer)
+            {
+                SmtpServer server = new SmtpServer();
+                server.Name = Global.MailConfig.Server;
+                server.Port = Global.MailConfig.Port;
+                server.AccountName = Global.MailConfig.Username;
+                server.Password = Global.MailConfig.Password;
+                server.AuthMethods = MailBee.AuthenticationMethods.SaslLogin | MailBee.AuthenticationMethods.SaslPlain;
+                smtp.SmtpServers.Add(server);
+            }
+            else
+                smtp.DnsServers.Autodetect();
+
+            try
+            {
+                smtp.Message = msg;
+                if (smtp.Send())
+                    MessageBox.Show("Mail has been sent.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                {
+                    string error = string.Format("Cannot send mail!\r\nError: {0}", smtp.GetErrorDescription());
+                    MessageBox.Show(error, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            catch (Exception ex)
+            {
+                string error = string.Format("Cannot send mail!\r\nError: {0}", ex.Message);
+                MessageBox.Show(error, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 

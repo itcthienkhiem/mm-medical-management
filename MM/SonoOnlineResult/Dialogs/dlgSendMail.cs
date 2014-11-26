@@ -26,21 +26,29 @@ namespace SonoOnlineResult.Dialogs
         #endregion
 
         #region Properties
-        public List<string> Emails
+        public List<string> ToEmailList
         {
-            get
-            {
-                List<string> emailList = new List<string>();
-                string emailStr = txtTo.Value.Trim().Replace(",", ";");
-                string[] emails = emailStr.Split(";".ToCharArray());
-                foreach (var email in emails)
-                {
-                    if (email.Trim() == string.Empty) continue;
-                    emailList.Add(email.Trim().ToLower());
-                }
+            get { return txtTo.GetEmailList(); }
+        }
 
-                return emailList;
-            }
+        public List<string> CcEmailList
+        {
+            get { return txtCc.GetEmailList(); }
+        }
+
+        public bool UsingMailTemplate
+        {
+            get { return cboMailTemplate.SelectedIndex == 0; }
+        }
+
+        public string Subject
+        {
+            get { return txtSubject.Text; }
+        }
+
+        public string Body
+        {
+            get { return txtBody.Text; }
         }
         #endregion
 
@@ -54,22 +62,50 @@ namespace SonoOnlineResult.Dialogs
                 return false;
             }
 
-            string emailStr = txtTo.Value.Trim().Replace(",", ";");
-            string[] emails = emailStr.Split(";".ToCharArray());
-            foreach (var email in emails)
-            {
-                if (email.Trim() == string.Empty) continue;
+            if (!txtTo.CheckInfo())
+                return false;
 
-                if (!Utility.IsValidEmail(email.Trim().ToLower()))
-                {
-                    MessageBox.Show(string.Format("The email address: '{0}' is invalid.", email.Trim().ToLower()), 
-                        this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    txtTo.TxtBox.Focus();
-                    return false;
-                }
+            if (txtTo.GetEmailList().Count > 1)
+            {
+                MessageBox.Show("To email address only one.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtTo.TxtBox.Focus();
+                return false;
+            }
+
+            if (txtCc.Value.Trim() != string.Empty && !txtCc.CheckInfo())
+                return false;
+
+            if (txtSubject.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Please enter subject", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtSubject.Focus();
+                return false;
             }
 
             return true;
+        }
+
+        private void InitData()
+        {
+            MySQLHelper._connectionString = Global.MySQLConnectionInfo.ConnectionString;
+
+            if (File.Exists(Global.EmailListPath))
+            {
+                if (_emailList.Deserialize(Global.EmailListPath))
+                {
+                    List<string> emails = _emailList.GetEmails();
+                    txtTo.Values = emails;
+                    txtCc.Values = emails;
+                }
+            }
+
+            cboMailTemplate.Items.Add("");
+            foreach (var template in Global.MailTemplateList.TemplateList)
+            {
+                cboMailTemplate.Items.Add(template.TemplateName);
+            }
+
+            cboMailTemplate.SelectedIndex = 0;
         }
         #endregion
 
@@ -77,16 +113,40 @@ namespace SonoOnlineResult.Dialogs
         private void dlgSendMail_Move(object sender, EventArgs e)
         {
             txtTo.RecalLocation();
+            txtCc.RecalLocation();
         }
 
         private void btnTo_Click(object sender, EventArgs e)
         {
             txtTo.Hide();
+            txtCc.Hide();
+
+            dlgEmailList dlg = new dlgEmailList();
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                txtTo.Value = dlg.SelectedEmails[0] + "; ";
+                txtTo.TxtBox.SelectionStart = txtTo.Value.Length;
+                txtTo.Hide();
+            }
         }
 
         private void btnCc_Click(object sender, EventArgs e)
         {
             txtTo.Hide();
+            txtCc.Hide();
+
+            dlgEmailList dlg = new dlgEmailList();
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                List<string> selectedEmails = dlg.SelectedEmails;
+                foreach (var email in selectedEmails)
+                {
+                    txtCc.TxtBox.AppendText(string.Format("{0}; ", email));
+                }
+
+                txtCc.TxtBox.SelectionStart = txtTo.Value.Length;
+                txtCc.Hide();
+            }
         }
 
         private void dlgSendMail_FormClosing(object sender, FormClosingEventArgs e)
@@ -98,37 +158,54 @@ namespace SonoOnlineResult.Dialogs
                 if (!CheckInfo())
                 {
                     txtTo.Hide();
+                    txtCc.Hide();
                     e.Cancel = true;
                 }
                 else
                 {
-                    foreach (var mail in Emails)
-                    {
+                    List<string> toEmailList = txtTo.GetEmailList();
+                    List<string> ccEmailList = txtCc.GetEmailList();
+                    foreach (var mail in toEmailList)
                         _emailList.Add(mail);
-                    }
+
+                    foreach (var mail in ccEmailList)
+                        _emailList.Add(mail);
 
                     _emailList.Serialize(Global.EmailListPath);
 
                     txtTo.Clear();
+                    txtCc.Clear();
                 }
             }
             else
+            {
                 txtTo.Hide();
+                txtCc.Hide();
+            }
         }
 
         private void dlgSendMail_Load(object sender, EventArgs e)
         {
-            //MySQLHelper._connectionString = Global.MySQLConnectionInfo.ConnectionString;
+            InitData();   
+        }
 
-            if (File.Exists(Global.EmailListPath))
+        private void cboMailTemplate_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (cboMailTemplate.SelectedIndex == 0)
             {
-                if (_emailList.Deserialize(Global.EmailListPath))
+                txtSubject.Text = string.Empty;
+                txtBody.Text = string.Empty;
+            }
+            else
+            {
+                MailTemplate template = Global.MailTemplateList.GetMailTemplate(cboMailTemplate.Text);
+                if (template != null)
                 {
-                    txtTo.Values = _emailList.GetEmails();
+                    txtSubject.Text = template.Subject;
+                    txtBody.Text = template.Body;
                 }
             }
         }
         #endregion
-
     }
 }
