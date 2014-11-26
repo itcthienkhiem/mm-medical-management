@@ -5,6 +5,7 @@ using System.Drawing;
 using System.Data;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using MM.Common;
 
 namespace SonoOnlineResult.Dialogs
 {
@@ -90,14 +91,41 @@ namespace SonoOnlineResult.Dialogs
 		#endregion
 
 		#region UI Command
+        public List<string> GetEmailList()
+        {
+            List<string> emailList = new List<string>();
+            string emailStr = txtTextBox.Text.Trim().Replace(",", ";");
+            string[] emails = emailStr.Split(";".ToCharArray());
+            foreach (var email in emails)
+            {
+                if (email.Trim() == string.Empty) continue;
+                emailList.Add(email.Trim().ToLower());
+            }
+
+            return emailList;
+        }
+
 		public bool CheckInfo()
 		{
-			bool result = true;
+            if (txtTextBox.Text.Trim() != string.Empty)
+            {
+                string emailStr = txtTextBox.Text.Trim().Replace(",", ";");
+                string[] emails = emailStr.Split(";".ToCharArray());
+                foreach (var email in emails)
+                {
+                    if (email.Trim() == string.Empty) continue;
 
-			if (txtTextBox.Text == "")
-				result = false;
+                    if (!Utility.IsValidEmail(email.Trim().ToLower()))
+                    {
+                        MessageBox.Show(string.Format("The email address: '{0}' is invalid.", email.Trim().ToLower()),
+                            Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        txtTextBox.Focus();
+                        return false;
+                    }
+                }
+            }
 
-			return result;
+            return true;
 		}
 
 		private bool RefreshListBoxData(string value)

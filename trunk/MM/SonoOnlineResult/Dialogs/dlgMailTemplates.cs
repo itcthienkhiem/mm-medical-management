@@ -6,6 +6,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Windows.Forms;
+using MM.Common;
 
 namespace SonoOnlineResult.Dialogs
 {
@@ -25,17 +26,91 @@ namespace SonoOnlineResult.Dialogs
         #region UI Command
         private void OnAdd()
         {
-
+            dlgAddMailTemplate dlg = new dlgAddMailTemplate();
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                AddTemplateToDataGrid(dlg.Template);
+            }
         }
 
         private void OnEdit()
         {
+            if (dgTemplates.SelectedRows == null || dgTemplates.SelectedRows.Count <= 0)
+            {
+                MessageBox.Show("Please select one template.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
+            DataGridViewRow row = dgTemplates.SelectedRows[0];
+            MailTemplate template = row.Tag as MailTemplate;
+            dlgAddMailTemplate dlg = new dlgAddMailTemplate(template);
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                row.Tag = dlg.Template;
+                row.Cells[2].Value = dlg.Template.TemplateName;
+            }
+        }
+
+        private List<DataGridViewRow> GetCheckedRows()
+        {
+            List<DataGridViewRow> checkedRows = new List<DataGridViewRow>();
+            foreach (DataGridViewRow row in dgTemplates.Rows)
+            {
+                if (Convert.ToBoolean(row.Cells[0].Value))
+                    checkedRows.Add(row);
+            }
+
+            return checkedRows;
         }
 
         private void OnDelete()
         {
+            List<DataGridViewRow> checkedRows = GetCheckedRows();
+            if (checkedRows.Count <= 0)
+            {
+                MessageBox.Show("Please check at least one template.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
 
+            if (MessageBox.Show("Do you want to delete selected templates ?", 
+                this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            {
+                foreach (DataGridViewRow row in checkedRows)
+                {
+                    MailTemplate template = row.Tag as MailTemplate;
+                    Global.MailTemplateList.TemplateList.Remove(template);
+                    dgTemplates.Rows.Remove(row);
+                }
+
+                Global.MailTemplateList.Serialize(Global.MailTemplatePath);
+            }
+        }
+
+        private void AddTemplateToDataGrid(MailTemplate template)
+        {
+            int rowIndex = dgTemplates.Rows.Add();
+            DataGridViewRow newRow = dgTemplates.Rows[rowIndex];
+            newRow.Cells[0].Value = false;
+            newRow.Cells[1].Value = newRow.Index + 1;
+            newRow.Cells[2].Value = template.TemplateName;
+            newRow.Tag = template;
+        }
+
+        private void DisplayInfo()
+        {
+            foreach (var template in Global.MailTemplateList.TemplateList)
+            {
+                AddTemplateToDataGrid(template);
+            }
+        }
+
+        private void RefreshNo()
+        {
+            int no = 1;
+            foreach (DataGridViewRow row in dgTemplates.Rows)
+            {
+                row.Cells[1].Value = no++;
+            }
         }
         #endregion
 
@@ -57,7 +132,25 @@ namespace SonoOnlineResult.Dialogs
 
         private void chkCheck_CheckedChanged(object sender, EventArgs e)
         {
+            foreach (DataGridViewRow row in dgTemplates.Rows)
+            {
+                row.Cells[0].Value = chkCheck.Checked;
+            }
+        }
 
+        private void dlgMailTemplates_Load(object sender, EventArgs e)
+        {
+            DisplayInfo();
+        }
+
+        private void dgTemplates_ColumnHeaderMouseClick(object sender, DataGridViewCellMouseEventArgs e)
+        {
+            RefreshNo();
+        }
+
+        private void dgTemplates_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            OnEdit();
         }
         #endregion
     }

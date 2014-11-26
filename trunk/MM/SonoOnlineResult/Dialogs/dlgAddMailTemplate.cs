@@ -14,6 +14,7 @@ namespace SonoOnlineResult.Dialogs
     {
         #region Members
         private MailTemplate _template = null;
+        private bool _isNew = true;
         #endregion
 
         #region Constructor
@@ -27,6 +28,14 @@ namespace SonoOnlineResult.Dialogs
             InitializeComponent();
             _template = template;
             this.Text = "Edit Mail Template";
+            _isNew = false;
+        }
+        #endregion
+
+        #region Properties
+        public MailTemplate Template
+        {
+            get { return _template; }
         }
         #endregion
 
@@ -45,7 +54,6 @@ namespace SonoOnlineResult.Dialogs
             }
 
             txtBody.DragEnter += new DragEventHandler(txtBody_DragEnter);
-            //txtBody.DragDrop += new DragEventHandler(txtBody_DragDrop);
         }
 
         private bool CheckInfo()
@@ -57,9 +65,58 @@ namespace SonoOnlineResult.Dialogs
                 return false;
             }
 
+            if (txtSubject.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Please enter subject.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtSubject.Focus();
+                return false;
+            }
 
+            if (txtBody.Text.Trim() == string.Empty)
+            {
+                MessageBox.Show("Please enter body.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtBody.Focus();
+                return false;
+            }
+
+            int templateKey = _isNew ? 0 : _template.TemplateKey;
+            if (Global.MailTemplateList.CheckTemplateNameExist(txtTemplateName.Text, templateKey))
+            {
+                MessageBox.Show(string.Format("The template name: '{0}' is exist.", txtTemplateName.Text), 
+                    this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtTemplateName.Focus();
+                return false;
+            }
 
             return true;
+        }
+
+        private void SaveTemplate()
+        {
+            if (_isNew)
+            {
+                _template = new MailTemplate();
+                _template.TemplateKey = Global.MailTemplateList.GetNextTemplateKey();
+                _template.TemplateName = txtTemplateName.Text;
+                _template.Subject = txtSubject.Text;
+                _template.Body = txtBody.Text;
+                Global.MailTemplateList.TemplateList.Add(_template);
+            }
+            else
+            {
+                _template.TemplateName = txtTemplateName.Text;
+                _template.Subject = txtSubject.Text;
+                _template.Body = txtBody.Text;
+            }
+
+            Global.MailTemplateList.Serialize(Global.MailTemplatePath);
+        }
+
+        private void DisplayInfo()
+        {
+            txtTemplateName.Text = _template.TemplateName;
+            txtSubject.Text = _template.Subject;
+            txtBody.Text = _template.Body;
         }
         #endregion
 
@@ -67,6 +124,7 @@ namespace SonoOnlineResult.Dialogs
         private void dlgAddMailTemplate_Load(object sender, EventArgs e)
         {
             InitBookmarks();
+            if (!_isNew) DisplayInfo();
         }
 
         private void dlgAddMailTemplate_FormClosing(object sender, FormClosingEventArgs e)
@@ -74,13 +132,10 @@ namespace SonoOnlineResult.Dialogs
             if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
                 if (!CheckInfo()) e.Cancel = true;
+                else
+                    SaveTemplate();
             }
         }
-
-        //private void txtBody_DragDrop(object sender, DragEventArgs e)
-        //{
-
-        //}
 
         private void txtBody_DragEnter(object sender, DragEventArgs e)
         {
