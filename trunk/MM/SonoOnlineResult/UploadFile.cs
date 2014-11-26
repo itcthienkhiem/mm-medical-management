@@ -94,7 +94,8 @@ namespace SonoOnlineResult
 
         private void OnMailTemplates()
         {
-
+            dlgMailTemplates dlg = new dlgMailTemplates();
+            dlg.ShowDialog(this);
         }
 
         private void OnMySQLConfig()
@@ -147,13 +148,17 @@ namespace SonoOnlineResult
         {
             OpenFileDialog dlg = new OpenFileDialog();
             dlg.Filter = "All Files: (*.*)|*.*";
+            dlg.Multiselect = true;
 
             if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
-                if (!CheckFileExist(dlg.FileName))
+                foreach (var fileName in dlg.FileNames)
                 {
-                    ListViewItem item = new ListViewItem(dlg.FileName);
-                    lvFile.Items.Add(item);
+                    if (!CheckFileExist(fileName))
+                    {
+                        ListViewItem item = new ListViewItem(fileName);
+                        lvFile.Items.Add(item);
+                    }
                 }
             }
         }
