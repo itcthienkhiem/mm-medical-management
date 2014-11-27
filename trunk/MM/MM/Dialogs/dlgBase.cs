@@ -60,7 +60,7 @@ namespace MM.Dialogs
         protected void ShowWaiting()
         {
             if (_dlgWaiting == null) _dlgWaiting = new dlgWaiting();
-            _dlgWaiting.ShowDialog();
+            _dlgWaiting.ShowDialog(this);
         }
 
         protected void SetTitleWaiting(string title)

@@ -284,7 +284,7 @@ namespace SonoOnlineResult
             }
             else
             {
-                _body += string.Format("Please follow this link to view your result:\n{0}\n\nThe username and password to login are:\n{1}",
+                _body += string.Format("\n\nPlease follow this link to view your result:\n{0}\n\nThe username and password to login are:\n{1}\n\nThanks.",
                     link, account);
             }
 
