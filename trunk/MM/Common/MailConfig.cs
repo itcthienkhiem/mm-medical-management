@@ -16,6 +16,7 @@ namespace MM.Common
         private int _port = 0;
         private string _username = string.Empty;
         private string _password = string.Empty;
+        private string _signature = string.Empty;
         #endregion
 
         #region Constructors
@@ -60,6 +61,12 @@ namespace MM.Common
         {
             get { return _password; }
             set { _password = value; }
+        }
+
+        public string Signature
+        {
+            get { return _signature; }
+            set { _signature = value; }
         }
         #endregion
 
@@ -114,6 +121,7 @@ namespace MM.Common
                 _username = mailConfig.Username;
                 RijndaelCrypto crypto = new RijndaelCrypto();
                 _password = crypto.Decrypt(mailConfig.Password);
+                _signature = mailConfig.Signature;
 
                 return true;
             }

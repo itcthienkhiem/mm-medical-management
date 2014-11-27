@@ -285,11 +285,12 @@ namespace SonoOnlineResult
                 _body = _body.Replace("#Email#", toEmail);
                 _body = _body.Replace("#Link#", link);
                 _body = _body.Replace("#Account#", account);
+                _body = _body.Replace("#Signature#", Global.MailConfig.Signature);
             }
             else
             {
-                _body += string.Format("\n\nPlease follow this link to view your result:\n{0}\n\nThe username and password to login are:\n{1}\n\nThanks.",
-                    link, account);
+                _body += string.Format("\n\nPlease follow this link to view your result:\n{0}\n\nThe username and password to login are:\n{1}\n\n{2}",
+                    link, account, Global.MailConfig.Signature);
             }
 
             msg.BodyPlainText = _body;
