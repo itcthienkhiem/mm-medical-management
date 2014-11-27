@@ -67,6 +67,8 @@ namespace SonoOnlineResult.Dialogs
         {
             Global.MailConfig.SenderMail = txtSenderMail.Text;
             Global.MailConfig.UseSMTPServer = chbUseSMTPServer.Checked;
+            Global.MailConfig.Signature = txtSignature.Text;
+
             if (chbUseSMTPServer.Checked)
             {
                 Global.MailConfig.Server = txtServer.Text;
@@ -83,6 +85,7 @@ namespace SonoOnlineResult.Dialogs
         private void dlgMailConfig_Load(object sender, EventArgs e)
         {
             txtSenderMail.Text = Global.MailConfig.SenderMail;
+            txtSignature.Text = Global.MailConfig.Signature;
             chbUseSMTPServer.Checked = Global.MailConfig.UseSMTPServer;
             if (Global.MailConfig.UseSMTPServer)
             {

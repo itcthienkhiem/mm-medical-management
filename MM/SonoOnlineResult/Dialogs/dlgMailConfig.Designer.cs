@@ -30,7 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgMailConfig));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.chbUseSMTPServer = new System.Windows.Forms.CheckBox();
             this.groupBoxSMTP = new System.Windows.Forms.GroupBox();
+            this.numPort = new System.Windows.Forms.NumericUpDown();
             this.txtPassword = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.txtUserName = new System.Windows.Forms.TextBox();
@@ -38,13 +40,13 @@
             this.label4 = new System.Windows.Forms.Label();
             this.txtServer = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
-            this.chbUseSMTPServer = new System.Windows.Forms.CheckBox();
             this.txtSenderMail = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnTest = new System.Windows.Forms.Button();
-            this.numPort = new System.Windows.Forms.NumericUpDown();
+            this.label1 = new System.Windows.Forms.Label();
+            this.txtSignature = new System.Windows.Forms.RichTextBox();
             this.groupBox1.SuspendLayout();
             this.groupBoxSMTP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).BeginInit();
@@ -52,15 +54,28 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.txtSignature);
+            this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Controls.Add(this.chbUseSMTPServer);
             this.groupBox1.Controls.Add(this.groupBoxSMTP);
             this.groupBox1.Controls.Add(this.txtSenderMail);
             this.groupBox1.Controls.Add(this.label2);
             this.groupBox1.Location = new System.Drawing.Point(5, 3);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(311, 184);
+            this.groupBox1.Size = new System.Drawing.Size(363, 270);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
+            // 
+            // chbUseSMTPServer
+            // 
+            this.chbUseSMTPServer.AutoSize = true;
+            this.chbUseSMTPServer.Location = new System.Drawing.Point(19, 47);
+            this.chbUseSMTPServer.Name = "chbUseSMTPServer";
+            this.chbUseSMTPServer.Size = new System.Drawing.Size(110, 17);
+            this.chbUseSMTPServer.TabIndex = 4;
+            this.chbUseSMTPServer.Text = "Use SMTP server";
+            this.chbUseSMTPServer.UseVisualStyleBackColor = true;
+            this.chbUseSMTPServer.CheckedChanged += new System.EventHandler(this.chbUseSMTPServer_CheckedChanged);
             // 
             // groupBoxSMTP
             // 
@@ -75,15 +90,32 @@
             this.groupBoxSMTP.Enabled = false;
             this.groupBoxSMTP.Location = new System.Drawing.Point(13, 47);
             this.groupBoxSMTP.Name = "groupBoxSMTP";
-            this.groupBoxSMTP.Size = new System.Drawing.Size(285, 125);
+            this.groupBoxSMTP.Size = new System.Drawing.Size(335, 125);
             this.groupBoxSMTP.TabIndex = 6;
             this.groupBoxSMTP.TabStop = false;
+            // 
+            // numPort
+            // 
+            this.numPort.Location = new System.Drawing.Point(100, 46);
+            this.numPort.Maximum = new decimal(new int[] {
+            9999999,
+            0,
+            0,
+            0});
+            this.numPort.Name = "numPort";
+            this.numPort.Size = new System.Drawing.Size(68, 20);
+            this.numPort.TabIndex = 16;
+            this.numPort.Value = new decimal(new int[] {
+            80,
+            0,
+            0,
+            0});
             // 
             // txtPassword
             // 
             this.txtPassword.Location = new System.Drawing.Point(100, 92);
             this.txtPassword.Name = "txtPassword";
-            this.txtPassword.Size = new System.Drawing.Size(168, 20);
+            this.txtPassword.Size = new System.Drawing.Size(218, 20);
             this.txtPassword.TabIndex = 15;
             this.txtPassword.UseSystemPasswordChar = true;
             // 
@@ -100,7 +132,7 @@
             // 
             this.txtUserName.Location = new System.Drawing.Point(100, 69);
             this.txtUserName.Name = "txtUserName";
-            this.txtUserName.Size = new System.Drawing.Size(168, 20);
+            this.txtUserName.Size = new System.Drawing.Size(218, 20);
             this.txtUserName.TabIndex = 13;
             // 
             // label6
@@ -125,7 +157,7 @@
             // 
             this.txtServer.Location = new System.Drawing.Point(100, 23);
             this.txtServer.Name = "txtServer";
-            this.txtServer.Size = new System.Drawing.Size(168, 20);
+            this.txtServer.Size = new System.Drawing.Size(218, 20);
             this.txtServer.TabIndex = 7;
             // 
             // label3
@@ -137,22 +169,11 @@
             this.label3.TabIndex = 6;
             this.label3.Text = "Server:";
             // 
-            // chbUseSMTPServer
-            // 
-            this.chbUseSMTPServer.AutoSize = true;
-            this.chbUseSMTPServer.Location = new System.Drawing.Point(19, 47);
-            this.chbUseSMTPServer.Name = "chbUseSMTPServer";
-            this.chbUseSMTPServer.Size = new System.Drawing.Size(110, 17);
-            this.chbUseSMTPServer.TabIndex = 4;
-            this.chbUseSMTPServer.Text = "Use SMTP server";
-            this.chbUseSMTPServer.UseVisualStyleBackColor = true;
-            this.chbUseSMTPServer.CheckedChanged += new System.EventHandler(this.chbUseSMTPServer_CheckedChanged);
-            // 
             // txtSenderMail
             // 
             this.txtSenderMail.Location = new System.Drawing.Point(81, 19);
             this.txtSenderMail.Name = "txtSenderMail";
-            this.txtSenderMail.Size = new System.Drawing.Size(217, 20);
+            this.txtSenderMail.Size = new System.Drawing.Size(267, 20);
             this.txtSenderMail.TabIndex = 5;
             // 
             // label2
@@ -167,7 +188,7 @@
             // btnCancel
             // 
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-            this.btnCancel.Location = new System.Drawing.Point(202, 193);
+            this.btnCancel.Location = new System.Drawing.Point(230, 279);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
             this.btnCancel.TabIndex = 9;
@@ -177,7 +198,7 @@
             // btnOK
             // 
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
-            this.btnOK.Location = new System.Drawing.Point(123, 193);
+            this.btnOK.Location = new System.Drawing.Point(151, 279);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 8;
@@ -186,7 +207,7 @@
             // 
             // btnTest
             // 
-            this.btnTest.Location = new System.Drawing.Point(44, 193);
+            this.btnTest.Location = new System.Drawing.Point(72, 279);
             this.btnTest.Name = "btnTest";
             this.btnTest.Size = new System.Drawing.Size(75, 23);
             this.btnTest.TabIndex = 7;
@@ -194,30 +215,30 @@
             this.btnTest.UseVisualStyleBackColor = true;
             this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
             // 
-            // numPort
+            // label1
             // 
-            this.numPort.Location = new System.Drawing.Point(100, 46);
-            this.numPort.Maximum = new decimal(new int[] {
-            9999999,
-            0,
-            0,
-            0});
-            this.numPort.Name = "numPort";
-            this.numPort.Size = new System.Drawing.Size(68, 20);
-            this.numPort.TabIndex = 16;
-            this.numPort.Value = new decimal(new int[] {
-            80,
-            0,
-            0,
-            0});
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(10, 176);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Signature:";
+            // 
+            // txtSignature
+            // 
+            this.txtSignature.AcceptsTab = true;
+            this.txtSignature.Location = new System.Drawing.Point(13, 192);
+            this.txtSignature.Name = "txtSignature";
+            this.txtSignature.Size = new System.Drawing.Size(335, 62);
+            this.txtSignature.TabIndex = 8;
+            this.txtSignature.Text = "";
             // 
             // dlgMailConfig
             // 
-            this.AcceptButton = this.btnOK;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(321, 222);
+            this.ClientSize = new System.Drawing.Size(377, 309);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
@@ -258,5 +279,7 @@
         public System.Windows.Forms.Button btnOK;
         private System.Windows.Forms.Button btnTest;
         private System.Windows.Forms.NumericUpDown numPort;
+        private System.Windows.Forms.RichTextBox txtSignature;
+        private System.Windows.Forms.Label label1;
     }
 }
