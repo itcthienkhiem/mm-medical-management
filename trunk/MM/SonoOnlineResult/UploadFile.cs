@@ -12,6 +12,7 @@ using System.Threading;
 using SonoOnlineResult.Dialogs;
 using MailBee.Mime;
 using MailBee.SmtpMail;
+using System.Diagnostics;
 
 namespace SonoOnlineResult
 {
@@ -166,6 +167,9 @@ namespace SonoOnlineResult
                         lvFile.Items.Add(item);
                     }
                 }
+
+                lvFile.SelectedItems.Clear();
+                lvFile.Items[lvFile.Items.Count - 1].Selected = true;
             }
         }
 
@@ -253,7 +257,7 @@ namespace SonoOnlineResult
         private void OnSendMail()
         {
             string toEmail = _toEmailList[0];
-            string pass = Utility.GeneratePassword(5);
+            string pass = Utility.GeneratePassword(8);
             string code = Guid.NewGuid().ToString();
             Result result = MySQL.AddUser(toEmail, pass, code, _fileNames);
             if (!result.IsOK)
@@ -338,6 +342,30 @@ namespace SonoOnlineResult
 
             _isUploadSuccess = true;
         }
+
+        private void OnRunFile()
+        {
+            if (lvFile.SelectedItems == null || lvFile.SelectedItems.Count <= 0)
+                return;
+
+            Process.Start(lvFile.SelectedItems[0].Text);
+        }
+
+        private void OnViewImage()
+        {
+            if (lvFile.SelectedItems == null || lvFile.SelectedItems.Count <= 0)
+                return;
+
+            string ext = Path.GetExtension(lvFile.SelectedItems[0].Text).ToLower();
+            if (ext == ".bmp" || ext == ".png" || ext == ".jpg" ||
+                ext == ".jpeg" || ext == ".jpe" || ext == ".gif")
+            {
+                Image img = Utility.LoadImageFromFile(lvFile.SelectedItems[0].Text);
+                picViewer.Image = img;
+            }
+            else
+                picViewer.Image = null;
+        }
         #endregion
 
         #region Window Event Handlers
@@ -388,6 +416,24 @@ namespace SonoOnlineResult
                     lvFile.Items.Add(item);
                 }
             }
+
+            lvFile.SelectedItems.Clear();
+            lvFile.Items[lvFile.Items.Count - 1].Selected = true;
+        }
+
+        private void lvFile_DoubleClick(object sender, EventArgs e)
+        {
+            OnRunFile();
+        }
+
+        private void lvFile_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void lvFile_ItemSelectionChanged(object sender, ListViewItemSelectionChangedEventArgs e)
+        {
+            OnViewImage();
         }
         #endregion
 
