@@ -37,20 +37,20 @@
             this.lvFile = new System.Windows.Forms.ListView();
             this.colFileName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1 = new System.Windows.Forms.Panel();
-            this.btnClose = new System.Windows.Forms.Button();
-            this.btnUpload = new System.Windows.Forms.Button();
-            this.panel2 = new System.Windows.Forms.Panel();
             this.btnRemoveAll = new System.Windows.Forms.Button();
+            this.btnClose = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
+            this.btnUpload = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.panel3 = new System.Windows.Forms.Panel();
-            this.label1 = new System.Windows.Forms.Label();
+            this.panel2 = new System.Windows.Forms.Panel();
             this.picViewer = new System.Windows.Forms.PictureBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.toolStripMain.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
-            this.panel3.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picViewer)).BeginInit();
+            this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
             // toolStripMain
@@ -147,36 +147,6 @@
             this.panel1.Size = new System.Drawing.Size(858, 30);
             this.panel1.TabIndex = 2;
             // 
-            // btnClose
-            // 
-            this.btnClose.Location = new System.Drawing.Point(321, 3);
-            this.btnClose.Name = "btnClose";
-            this.btnClose.Size = new System.Drawing.Size(75, 23);
-            this.btnClose.TabIndex = 2;
-            this.btnClose.Text = "Close";
-            this.btnClose.UseVisualStyleBackColor = true;
-            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
-            // 
-            // btnUpload
-            // 
-            this.btnUpload.Location = new System.Drawing.Point(242, 3);
-            this.btnUpload.Name = "btnUpload";
-            this.btnUpload.Size = new System.Drawing.Size(75, 23);
-            this.btnUpload.TabIndex = 1;
-            this.btnUpload.Text = "Upload";
-            this.btnUpload.UseVisualStyleBackColor = true;
-            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
-            // 
-            // panel2
-            // 
-            this.panel2.Controls.Add(this.picViewer);
-            this.panel2.Controls.Add(this.label1);
-            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(522, 31);
-            this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(336, 482);
-            this.panel2.TabIndex = 3;
-            // 
             // btnRemoveAll
             // 
             this.btnRemoveAll.Location = new System.Drawing.Point(162, 3);
@@ -186,6 +156,16 @@
             this.btnRemoveAll.Text = "Remove All";
             this.btnRemoveAll.UseVisualStyleBackColor = true;
             this.btnRemoveAll.Click += new System.EventHandler(this.btnRemoveAll_Click);
+            // 
+            // btnClose
+            // 
+            this.btnClose.Location = new System.Drawing.Point(321, 3);
+            this.btnClose.Name = "btnClose";
+            this.btnClose.Size = new System.Drawing.Size(75, 23);
+            this.btnClose.TabIndex = 2;
+            this.btnClose.Text = "Close";
+            this.btnClose.UseVisualStyleBackColor = true;
+            this.btnClose.Click += new System.EventHandler(this.btnClose_Click);
             // 
             // btnRemove
             // 
@@ -197,6 +177,16 @@
             this.btnRemove.UseVisualStyleBackColor = true;
             this.btnRemove.Click += new System.EventHandler(this.btnRemove_Click);
             // 
+            // btnUpload
+            // 
+            this.btnUpload.Location = new System.Drawing.Point(242, 3);
+            this.btnUpload.Name = "btnUpload";
+            this.btnUpload.Size = new System.Drawing.Size(75, 23);
+            this.btnUpload.TabIndex = 1;
+            this.btnUpload.Text = "Upload";
+            this.btnUpload.UseVisualStyleBackColor = true;
+            this.btnUpload.Click += new System.EventHandler(this.btnUpload_Click);
+            // 
             // btnAdd
             // 
             this.btnAdd.Location = new System.Drawing.Point(3, 3);
@@ -207,14 +197,27 @@
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
             // 
-            // panel3
+            // panel2
             // 
-            this.panel3.Controls.Add(this.lvFile);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 31);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(522, 482);
-            this.panel3.TabIndex = 4;
+            this.panel2.Controls.Add(this.picViewer);
+            this.panel2.Controls.Add(this.label1);
+            this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
+            this.panel2.Location = new System.Drawing.Point(522, 31);
+            this.panel2.Name = "panel2";
+            this.panel2.Size = new System.Drawing.Size(336, 482);
+            this.panel2.TabIndex = 3;
+            // 
+            // picViewer
+            // 
+            this.picViewer.BackColor = System.Drawing.Color.White;
+            this.picViewer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.picViewer.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.picViewer.Location = new System.Drawing.Point(0, 18);
+            this.picViewer.Name = "picViewer";
+            this.picViewer.Size = new System.Drawing.Size(336, 464);
+            this.picViewer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picViewer.TabIndex = 1;
+            this.picViewer.TabStop = false;
             // 
             // label1
             // 
@@ -229,17 +232,14 @@
             this.label1.Text = "Image Viewer";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
             // 
-            // picViewer
+            // panel3
             // 
-            this.picViewer.BackColor = System.Drawing.Color.White;
-            this.picViewer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.picViewer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picViewer.Location = new System.Drawing.Point(0, 18);
-            this.picViewer.Name = "picViewer";
-            this.picViewer.Size = new System.Drawing.Size(336, 464);
-            this.picViewer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
-            this.picViewer.TabIndex = 1;
-            this.picViewer.TabStop = false;
+            this.panel3.Controls.Add(this.lvFile);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 31);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(522, 482);
+            this.panel3.TabIndex = 4;
             // 
             // UploadFile
             // 
@@ -261,8 +261,8 @@
             this.toolStripMain.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
-            this.panel3.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.picViewer)).EndInit();
+            this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
 

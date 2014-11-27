@@ -183,9 +183,18 @@ namespace SonoOnlineResult
 
             if (MessageBox.Show("Do you want to remove selected files ?", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
             {
+                int index = lvFile.SelectedItems[0].Index;
                 foreach (ListViewItem item in lvFile.SelectedItems)
                 {
                     lvFile.Items.Remove(item);
+                }
+
+                if (lvFile.Items.Count > 0)
+                {
+                    if (index < lvFile.Items.Count)
+                        lvFile.Items[index].Selected = true;
+                    else
+                        lvFile.Items[0].Selected = true;
                 }
             }
         }
@@ -197,6 +206,7 @@ namespace SonoOnlineResult
             if (MessageBox.Show("Do you want to remove all files ?", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
             {
                 lvFile.Items.Clear();
+                picViewer.Image = null;
             }
         }
 
