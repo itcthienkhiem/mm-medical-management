@@ -38,7 +38,7 @@ namespace SonoOnlineResult.Dialogs
 
         public bool UsingMailTemplate
         {
-            get { return cboMailTemplate.SelectedIndex == 0; }
+            get { return cboMailTemplate.SelectedIndex > 0; }
         }
 
         public string Subject
