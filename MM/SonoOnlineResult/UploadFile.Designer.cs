@@ -63,7 +63,7 @@
             this.toolStripButtonMailTemplate});
             this.toolStripMain.Location = new System.Drawing.Point(0, 0);
             this.toolStripMain.Name = "toolStripMain";
-            this.toolStripMain.Size = new System.Drawing.Size(858, 31);
+            this.toolStripMain.Size = new System.Drawing.Size(977, 31);
             this.toolStripMain.TabIndex = 0;
             this.toolStripMain.Text = "toolStrip1";
             this.toolStripMain.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStripMain_ItemClicked);
@@ -119,7 +119,7 @@
             this.lvFile.HideSelection = false;
             this.lvFile.Location = new System.Drawing.Point(0, 0);
             this.lvFile.Name = "lvFile";
-            this.lvFile.Size = new System.Drawing.Size(522, 482);
+            this.lvFile.Size = new System.Drawing.Size(410, 599);
             this.lvFile.TabIndex = 1;
             this.lvFile.UseCompatibleStateImageBehavior = false;
             this.lvFile.View = System.Windows.Forms.View.Details;
@@ -132,7 +132,7 @@
             // colFileName
             // 
             this.colFileName.Text = "File Name";
-            this.colFileName.Width = 502;
+            this.colFileName.Width = 388;
             // 
             // panel1
             // 
@@ -142,9 +142,9 @@
             this.panel1.Controls.Add(this.btnUpload);
             this.panel1.Controls.Add(this.btnAdd);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.panel1.Location = new System.Drawing.Point(0, 513);
+            this.panel1.Location = new System.Drawing.Point(0, 630);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(858, 30);
+            this.panel1.Size = new System.Drawing.Size(977, 30);
             this.panel1.TabIndex = 2;
             // 
             // btnRemoveAll
@@ -202,9 +202,9 @@
             this.panel2.Controls.Add(this.picViewer);
             this.panel2.Controls.Add(this.label1);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
-            this.panel2.Location = new System.Drawing.Point(522, 31);
+            this.panel2.Location = new System.Drawing.Point(410, 31);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(336, 482);
+            this.panel2.Size = new System.Drawing.Size(567, 599);
             this.panel2.TabIndex = 3;
             // 
             // picViewer
@@ -214,7 +214,7 @@
             this.picViewer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picViewer.Location = new System.Drawing.Point(0, 18);
             this.picViewer.Name = "picViewer";
-            this.picViewer.Size = new System.Drawing.Size(336, 464);
+            this.picViewer.Size = new System.Drawing.Size(567, 581);
             this.picViewer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picViewer.TabIndex = 1;
             this.picViewer.TabStop = false;
@@ -227,7 +227,7 @@
             this.label1.ForeColor = System.Drawing.Color.White;
             this.label1.Location = new System.Drawing.Point(0, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(336, 18);
+            this.label1.Size = new System.Drawing.Size(567, 18);
             this.label1.TabIndex = 0;
             this.label1.Text = "Image Viewer";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -238,7 +238,7 @@
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Location = new System.Drawing.Point(0, 31);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(522, 482);
+            this.panel3.Size = new System.Drawing.Size(410, 599);
             this.panel3.TabIndex = 4;
             // 
             // UploadFile
@@ -246,7 +246,7 @@
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(858, 543);
+            this.ClientSize = new System.Drawing.Size(977, 660);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
