@@ -118,10 +118,12 @@ namespace SonoOnlineResult.Dialogs
             if (chbUseSMTPServer.Checked)
             {
                 SmtpServer server = new SmtpServer();
+                server.Timeout = 60000;
                 server.Name = txtServer.Text;
                 server.Port = (int)numPort.Value;
                 server.AccountName = txtUserName.Text;
                 server.Password = txtPassword.Text;
+                server.SslMode = MailBee.Security.SslStartupMode.OnConnect;
                 server.AuthMethods = MailBee.AuthenticationMethods.SaslLogin | MailBee.AuthenticationMethods.SaslPlain;
                 smtp.SmtpServers.Add(server);
             }
