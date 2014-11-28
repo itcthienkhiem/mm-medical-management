@@ -287,7 +287,7 @@ namespace SonoOnlineResult
             }
 
             msg.Subject = _subject;
-            string link = string.Format("http://wwww.ris.com.au?code={0}", code);
+            string link = string.Format("http://result.ris.com.au?code={0}", code);
             string account = string.Format("Username: {0}\nPassword: {1}", toEmail, pass);
 
             if (_usingMailTemplate)
