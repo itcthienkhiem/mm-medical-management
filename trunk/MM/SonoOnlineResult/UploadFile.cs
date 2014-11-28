@@ -310,6 +310,8 @@ namespace SonoOnlineResult
             if (Global.MailConfig.UseSMTPServer)
             {
                 SmtpServer server = new SmtpServer();
+                server.Timeout = 60000;
+                server.SslMode = MailBee.Security.SslStartupMode.OnConnect;
                 server.Name = Global.MailConfig.Server;
                 server.Port = Global.MailConfig.Port;
                 server.AccountName = Global.MailConfig.Username;
