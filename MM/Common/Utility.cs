@@ -1515,6 +1515,11 @@ namespace MM.Common
             return img;
         }
 
+        public static byte[] LoadBytesFromFile(string path)
+        {
+            return File.ReadAllBytes(path); 
+        }
+
         public static void CopyTemplates(string reportFileName)
         {
             try
