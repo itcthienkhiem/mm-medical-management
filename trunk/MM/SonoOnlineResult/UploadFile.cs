@@ -73,7 +73,7 @@ namespace SonoOnlineResult
             if (File.Exists(Global.MailTemplatePath))
                 Global.MailTemplateList.Deserialize(Global.MailTemplatePath);
 
-            Global.FTPFolder = "Results";
+            Global.FTPFolder = "results";
         }
 
         private void Execute(string cmd)
