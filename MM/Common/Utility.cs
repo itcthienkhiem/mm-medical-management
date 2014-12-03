@@ -13,6 +13,8 @@ using System.ServiceProcess;
 using System.Threading;
 using System.Runtime.InteropServices;
 using SpreadsheetGear;
+using System.Drawing.Imaging;
+using System.Drawing.Drawing2D;
 
 namespace MM.Common
 {
@@ -33,6 +35,25 @@ namespace MM.Common
         [DllImport("user32.dll", CharSet = CharSet.Auto)]
         [return: MarshalAs(UnmanagedType.Bool)]
         private static extern bool IsIconic(IntPtr hWnd);
+
+        public const string Png = "PNG Portable Network Graphics (*.png)|" + "*.png";
+        public const string Jpg = "JPEG File Interchange Format (*.jpg *.jpeg *jfif)|" + "*.jpg;*.jpeg;*.jfif";
+        public const string Bmp = "BMP Windows Bitmap (*.bmp)|" + "*.bmp";
+        public const string Tif = "TIF Tagged Imaged File Format (*.tif *.tiff)|" + "*.tif;*.tiff";
+        public const string Gif = "GIF Graphics Interchange Format (*.gif)|" + "*.gif";
+        public const string AllImages = "Image file|" + "*.png; *.jpg; *.jpeg; *.jfif; *.bmp;*.tif; *.tiff; *.gif";
+        public const string AllFiles = "All files (*.*)" + "|*.*";
+        public static List<string> imagesTypes;
+
+        static Utility()
+        {
+            imagesTypes = new List<string>();
+            imagesTypes.Add(Png);
+            imagesTypes.Add(Jpg);
+            imagesTypes.Add(Bmp);
+            imagesTypes.Add(Tif);
+            imagesTypes.Add(Gif);
+        }
 
         #region WriteToTraceLog
         public static string fpTraceLog = "";
@@ -143,6 +164,11 @@ namespace MM.Common
         }
 
         #endregion
+
+        public static bool IsImageExtension(string ext)
+        {
+            return imagesTypes.Contains(ext);
+        }
 
         public static bool IsValidEmail(string email)
         {
@@ -1540,6 +1566,55 @@ namespace MM.Common
         {
             System.Net.IPHostEntry host = System.Net.Dns.GetHostEntry(System.Net.Dns.GetHostName());
             return host.HostName;
+        }
+
+        public static Image FixedSize(Image imgPhoto, int Width, int Height)
+        {
+            int sourceWidth = imgPhoto.Width;
+            int sourceHeight = imgPhoto.Height;
+            int sourceX = 0;
+            int sourceY = 0;
+            int destX = 0;
+            int destY = 0;
+
+            float nPercent = 0;
+            float nPercentW = 0;
+            float nPercentH = 0;
+
+            nPercentW = ((float)Width / (float)sourceWidth);
+            nPercentH = ((float)Height / (float)sourceHeight);
+            if (nPercentH < nPercentW)
+            {
+                nPercent = nPercentH;
+                destX = System.Convert.ToInt16((Width -
+                              (sourceWidth * nPercent)) / 2);
+            }
+            else
+            {
+                nPercent = nPercentW;
+                destY = System.Convert.ToInt16((Height -
+                              (sourceHeight * nPercent)) / 2);
+            }
+
+            int destWidth = (int)(sourceWidth * nPercent);
+            int destHeight = (int)(sourceHeight * nPercent);
+
+            (imgPhoto as Bitmap).SetResolution(72, 72);
+
+            Bitmap bmPhoto = new Bitmap(Width, Height, PixelFormat.Format24bppRgb);
+            bmPhoto.SetResolution(imgPhoto.HorizontalResolution, imgPhoto.VerticalResolution);
+
+            Graphics grPhoto = Graphics.FromImage(bmPhoto);
+            grPhoto.Clear(Color.White);
+            grPhoto.InterpolationMode = InterpolationMode.HighQualityBicubic;
+
+            grPhoto.DrawImage(imgPhoto,
+                new Rectangle(destX, destY, destWidth, destHeight),
+                new Rectangle(sourceX, sourceY, sourceWidth, sourceHeight),
+                GraphicsUnit.Pixel);
+
+            grPhoto.Dispose();
+            return bmPhoto;
         }
     }
 }
