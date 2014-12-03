@@ -13,6 +13,7 @@ using SonoOnlineResult.Dialogs;
 using MailBee.Mime;
 using MailBee.SmtpMail;
 using System.Diagnostics;
+using System.Drawing.Imaging;
 
 namespace SonoOnlineResult
 {
@@ -351,6 +352,31 @@ namespace SonoOnlineResult
                     MessageBox.Show(result.GetErrorAsString("FTP.UploadFile"), this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
+
+                string ext = Path.GetExtension(fileName).ToLower();
+                if (ext == ".bmp" || ext == ".png" || ext == ".jpg" ||
+                    ext == ".jpeg" || ext == ".jpe" || ext == ".gif")
+                {
+                    Image thumbnail = Utility.LoadImageFromFile(fileName);
+                    thumbnail = Utility.FixedSize(thumbnail, 320, 320);
+                    string thumbnailFileName = string.Format("{0}\\{1}_thumb{2}", 
+                        Application.StartupPath, Path.GetFileNameWithoutExtension(fileName), Path.GetExtension(fileName));
+
+                    thumbnail.Save(thumbnailFileName);
+                    thumbnail.Dispose();
+                    thumbnail = null;
+
+                    remoteFileName = string.Format("{0}/{1}", Global.FTPFolder, Path.GetFileName(thumbnailFileName));
+                    result = FTP.UploadFile(Global.FTPConnectionInfo, thumbnailFileName, remoteFileName);
+
+                    File.Delete(thumbnailFileName);
+
+                    if (!result.IsOK)
+                    {
+                        MessageBox.Show(result.GetErrorAsString("FTP.UploadFile"), this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
             }
 
             _isUploadSuccess = true;
@@ -374,6 +400,8 @@ namespace SonoOnlineResult
                 ext == ".jpeg" || ext == ".jpe" || ext == ".gif")
             {
                 Image img = Utility.LoadImageFromFile(lvFile.SelectedItems[0].Text);
+                img = Utility.FixedSize(img, 320, 320);
+                img.Save(string.Format("{0}\\{1}", Application.StartupPath, Path.GetFileName(lvFile.SelectedItems[0].Text)));
                 picViewer.Image = img;
             }
             else
