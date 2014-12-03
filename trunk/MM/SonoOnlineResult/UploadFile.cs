@@ -241,7 +241,7 @@ namespace SonoOnlineResult
                         _usingMailTemplate = dlg.UsingMailTemplate;
                         _subject = dlg.Subject;
                         _body = dlg.Body;
-                        OnSendMailAsThread();            
+                        OnSendMailAsThread();
                     }
                 }
             }

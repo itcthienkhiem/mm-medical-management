@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using Dart.PowerTCP.Ftp;
+using System.Drawing;
 
 namespace MM.Common
 {
@@ -26,6 +27,7 @@ namespace MM.Common
                 _ftp.Server = server;
                 _ftp.Username = username;
                 _ftp.Password = password;
+
                 string dir = _ftp.GetDirectory();
             }
             catch (Exception e)
@@ -37,41 +39,96 @@ namespace MM.Common
             return result;
         }
 
+        //public static Result UploadFile(FTPConnectionInfo connectionInfo, string localFileName, string remoteFileName)
+        //{
+        //    Result result = new Result();
+
+        //    try
+        //    {
+        //        UploadFile(localFileName, string.Format("ftp://{0}/{1}", connectionInfo.ServerName, remoteFileName),
+        //                connectionInfo.Username, connectionInfo.Password);
+        //    }
+        //    catch (Exception e)
+        //    {
+        //        result.Error.Code = ErrorCode.UPLOAD_FTP_FAIL;
+        //        result.Error.Description = e.Message;
+        //    }
+            
+
+        //    //int retry = 0;
+        //    //while (retry < _maxRetry)
+        //    //{
+        //    //    try
+        //    //    {
+        //    //        //Connnect
+        //    //        //_ftp.Server = connectionInfo.ServerName;
+        //    //        //_ftp.Username = connectionInfo.Username;
+        //    //        //_ftp.Password = connectionInfo.Password;
+        //    //        //string dir = _ftp.GetDirectory();
+
+        //    //        ////Upload
+        //    //        //FtpFile ftpFile = _ftp.Put(localFileName, string.Format("{0}{1}", dir, remoteFileName));
+        //    //        //if (ftpFile.Status == FtpFileStatus.TransferCompleted)
+        //    //        //{
+        //    //        //    result.Error.Code = ErrorCode.OK;
+        //    //        //    result.Error.Description = string.Empty;
+        //    //        //    break;
+        //    //        //}
+
+        //    //        UploadFile(localFileName, string.Format("ftp://{0}/{1}", connectionInfo.ServerName, remoteFileName), 
+        //    //            connectionInfo.Username, connectionInfo.Password);
+        //    //    }
+        //    //    catch (Exception e)
+        //    //    {
+        //    //        result.Error.Code = ErrorCode.UPLOAD_FTP_FAIL;
+        //    //        result.Error.Description = e.Message;
+        //    //    }
+
+        //    //    retry++;
+        //    //}
+
+        //    //_ftp.Abort();
+        //    //_ftp.Close();
+
+        //    return result;
+        //}
+
         public static Result UploadFile(FTPConnectionInfo connectionInfo, string localFileName, string remoteFileName)
         {
             Result result = new Result();
+            string ftpFileName = string.Format("ftp://{0}/{1}", connectionInfo.ServerName, remoteFileName);
 
-            int retry = 0;
-            while (retry < _maxRetry)
+            FileInfo fileInfo = new FileInfo(localFileName);
+            System.Net.FtpWebRequest ftpWebRequest = (System.Net.FtpWebRequest)System.Net.FtpWebRequest.Create(new Uri(ftpFileName));
+            ftpWebRequest.Credentials = new System.Net.NetworkCredential(connectionInfo.Username, connectionInfo.Password);
+            ftpWebRequest.KeepAlive = false;
+            ftpWebRequest.Timeout = 20000;
+            ftpWebRequest.Method = System.Net.WebRequestMethods.Ftp.UploadFile;
+            ftpWebRequest.UseBinary = true;
+            ftpWebRequest.ContentLength = fileInfo.Length;
+            int buffLength = 2048;
+            byte[] buff = new byte[buffLength];
+            System.IO.FileStream fileStream = fileInfo.OpenRead();
+            try
             {
-                try
+                System.IO.Stream stream = ftpWebRequest.GetRequestStream();
+                int contentLen = fileStream.Read(buff, 0, buffLength);
+                while (contentLen != 0)
                 {
-                    //Connnect
-                    _ftp.Server = connectionInfo.ServerName;
-                    _ftp.Username = connectionInfo.Username;
-                    _ftp.Password = connectionInfo.Password;
-                    string dir = _ftp.GetDirectory();
-
-                    //Upload
-                    FtpFile ftpFile = _ftp.Put(localFileName, string.Format("{0}{1}", dir, remoteFileName));
-                    if (ftpFile.Status == FtpFileStatus.TransferCompleted)
-                    {
-                        result.Error.Code = ErrorCode.OK;
-                        result.Error.Description = string.Empty;
-                        break;
-                    }
-                }
-                catch (Exception e)
-                {
-                    result.Error.Code = ErrorCode.UPLOAD_FTP_FAIL;
-                    result.Error.Description = e.Message;
+                    stream.Write(buff, 0, contentLen);
+                    contentLen = fileStream.Read(buff, 0, buffLength);
                 }
 
-                retry++;
+                stream.Close();
+                stream.Dispose();
+                fileStream.Close();
+                fileStream.Dispose();
             }
-
-            _ftp.Abort();
-            _ftp.Close();
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UPLOAD_FTP_FAIL;
+                result.Error.Description = e.Message;
+            }
 
             return result;
         }
