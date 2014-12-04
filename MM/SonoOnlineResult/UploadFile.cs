@@ -362,7 +362,7 @@ namespace SonoOnlineResult
                     string thumbnailFileName = string.Format("{0}\\{1}_thumb{2}", 
                         Application.StartupPath, Path.GetFileNameWithoutExtension(fileName), Path.GetExtension(fileName));
 
-                    thumbnail.Save(thumbnailFileName);
+                    thumbnail.Save(thumbnailFileName, ImageFormat.Jpeg);
                     thumbnail.Dispose();
                     thumbnail = null;
 
@@ -401,7 +401,8 @@ namespace SonoOnlineResult
             {
                 Image img = Utility.LoadImageFromFile(lvFile.SelectedItems[0].Text);
                 img = Utility.FixedSize(img, picViewer.Width, picViewer.Height);
-                //img.Save(string.Format("{0}\\{1}", Application.StartupPath, Path.GetFileName(lvFile.SelectedItems[0].Text)));
+                //img.Save(string.Format("{0}\\{1}", Application.StartupPath, Path.GetFileName(lvFile.SelectedItems[0].Text)),
+                //    ImageFormat.Jpeg);
                 picViewer.Image = img;
             }
             else
