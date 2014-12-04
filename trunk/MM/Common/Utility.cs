@@ -1599,8 +1599,6 @@ namespace MM.Common
             int destWidth = (int)(sourceWidth * nPercent);
             int destHeight = (int)(sourceHeight * nPercent);
 
-            (imgPhoto as Bitmap).SetResolution(72, 72);
-
             Bitmap bmPhoto = new Bitmap(Width, Height, PixelFormat.Format24bppRgb);
             bmPhoto.SetResolution(imgPhoto.HorizontalResolution, imgPhoto.VerticalResolution);
 
