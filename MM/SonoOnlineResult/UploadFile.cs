@@ -400,8 +400,8 @@ namespace SonoOnlineResult
                 ext == ".jpeg" || ext == ".jpe" || ext == ".gif")
             {
                 Image img = Utility.LoadImageFromFile(lvFile.SelectedItems[0].Text);
-                img = Utility.FixedSize(img, 320, 320);
-                img.Save(string.Format("{0}\\{1}", Application.StartupPath, Path.GetFileName(lvFile.SelectedItems[0].Text)));
+                img = Utility.FixedSize(img, picViewer.Width, picViewer.Height);
+                //img.Save(string.Format("{0}\\{1}", Application.StartupPath, Path.GetFileName(lvFile.SelectedItems[0].Text)));
                 picViewer.Image = img;
             }
             else
