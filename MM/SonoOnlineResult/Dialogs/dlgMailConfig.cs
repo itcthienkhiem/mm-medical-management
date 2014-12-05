@@ -7,8 +7,9 @@ using System.Linq;
 using System.Text;
 using System.Windows.Forms;
 using MM.Common;
-using MailBee.Mime;
-using MailBee.SmtpMail;
+using System.Net.Mail;
+//using MailBee.Mime;
+//using MailBee.SmtpMail;
 
 namespace SonoOnlineResult.Dialogs
 {
@@ -68,14 +69,14 @@ namespace SonoOnlineResult.Dialogs
             Global.MailConfig.SenderMail = txtSenderMail.Text;
             Global.MailConfig.UseSMTPServer = chbUseSMTPServer.Checked;
             Global.MailConfig.Signature = txtSignature.Text;
-
-            if (chbUseSMTPServer.Checked)
-            {
+            Global.MailConfig.UseSMTPServer = true;
+            //if (chbUseSMTPServer.Checked)
+            //{
                 Global.MailConfig.Server = txtServer.Text;
                 Global.MailConfig.Port = (int)numPort.Value;
                 Global.MailConfig.Username = txtUserName.Text;
                 Global.MailConfig.Password = txtPassword.Text;
-            }
+            //}
 
             Global.MailConfig.Serialize(Global.MailConfigPath);
         }
@@ -107,47 +108,77 @@ namespace SonoOnlineResult.Dialogs
             if (testMailForm.ShowDialog(this) != DialogResult.OK)
                 return;
 
-            MailMessage msg = new MailMessage();
-            msg.From = new EmailAddress(txtSenderMail.Text, txtSenderMail.Text);
-            msg.To.Add(new EmailAddress(testMailForm.Recipient));
-            msg.Subject = testMailForm.Subject; // "[Notification Service] Test mail";
-            msg.BodyPlainText = testMailForm.Body; // "This is a test mail.";
-
-            Smtp.LicenseKey = "MN200-B47C7EFF7C257CFF7C2E34E777B5-D2BD";
-            Smtp smtp = new Smtp();
-            if (chbUseSMTPServer.Checked)
-            {
-                SmtpServer server = new SmtpServer();
-                server.Timeout = 60000;
-                server.Name = txtServer.Text;
-                server.Port = (int)numPort.Value;
-                server.AccountName = txtUserName.Text;
-                server.Password = txtPassword.Text;
-                server.SslMode = MailBee.Security.SslStartupMode.OnConnect;
-                server.AuthMethods = MailBee.AuthenticationMethods.SaslLogin | MailBee.AuthenticationMethods.SaslPlain;
-                smtp.SmtpServers.Add(server);
-            }
-            else
-                smtp.DnsServers.Autodetect();
-
             try
             {
-                smtp.Message = msg;
-                if (smtp.Send())
-                {
-                    MessageBox.Show("Mail has been sent.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                }
-                else
-                {
-                    string error = string.Format("Cannot send mail!\r\nError: {0}", smtp.GetErrorDescription());
-                    MessageBox.Show(error, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                SmtpClient client = new SmtpClient();
+                client.Port = (int)numPort.Value;
+                client.Host = txtServer.Text;
+                client.EnableSsl = true;
+                client.Timeout = 10000;
+                client.DeliveryMethod = SmtpDeliveryMethod.Network;
+                client.UseDefaultCredentials = false;
+                client.Credentials = new System.Net.NetworkCredential(txtUserName.Text, txtPassword.Text);
+
+                MailMessage msg = new MailMessage();
+                msg.From = new MailAddress(txtSenderMail.Text, txtSenderMail.Text);
+                msg.To.Add(new MailAddress(testMailForm.Recipient));
+
+                msg.Subject = testMailForm.Subject; // "[Notification Service] Test mail";
+                msg.Body = testMailForm.Body; // "This is a test mail.";
+                msg.IsBodyHtml = false;
+                msg.BodyEncoding = UTF8Encoding.UTF8;
+                msg.DeliveryNotificationOptions = DeliveryNotificationOptions.OnFailure;
+
+                client.Send(msg);
+                MessageBox.Show("Mail has been sent.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
                 string error = string.Format("Cannot send mail!\r\nError: {0}", ex.Message);
                 MessageBox.Show(error, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
+            //MailMessage msg = new MailMessage();
+            //msg.From = new EmailAddress(txtSenderMail.Text, txtSenderMail.Text);
+            //msg.To.Add(new EmailAddress(testMailForm.Recipient));
+            //msg.Subject = testMailForm.Subject; // "[Notification Service] Test mail";
+            //msg.BodyPlainText = testMailForm.Body; // "This is a test mail.";
+
+            //Smtp.LicenseKey = "MN200-B47C7EFF7C257CFF7C2E34E777B5-D2BD";
+            //Smtp smtp = new Smtp();
+            //if (chbUseSMTPServer.Checked)
+            //{
+            //    SmtpServer server = new SmtpServer();
+            //    server.Timeout = 60000;
+            //    server.Name = txtServer.Text;
+            //    server.Port = (int)numPort.Value;
+            //    server.AccountName = txtUserName.Text;
+            //    server.Password = txtPassword.Text;
+            //    server.SslMode = MailBee.Security.SslStartupMode.OnConnect;
+            //    server.AuthMethods = MailBee.AuthenticationMethods.SaslLogin | MailBee.AuthenticationMethods.SaslPlain;
+            //    smtp.SmtpServers.Add(server);
+            //}
+            //else
+            //    smtp.DnsServers.Autodetect();
+
+            //try
+            //{
+            //    smtp.Message = msg;
+            //    if (smtp.Send())
+            //    {
+            //        MessageBox.Show("Mail has been sent.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            //    }
+            //    else
+            //    {
+            //        string error = string.Format("Cannot send mail!\r\nError: {0}", smtp.GetErrorDescription());
+            //        MessageBox.Show(error, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //    }
+            //}
+            //catch (Exception ex)
+            //{
+            //    string error = string.Format("Cannot send mail!\r\nError: {0}", ex.Message);
+            //    MessageBox.Show(error, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
 
         private void dlgMailConfig_FormClosing(object sender, FormClosingEventArgs e)

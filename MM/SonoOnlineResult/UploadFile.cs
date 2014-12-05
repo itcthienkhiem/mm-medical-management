@@ -10,10 +10,11 @@ using MM.Common;
 using System.IO;
 using System.Threading;
 using SonoOnlineResult.Dialogs;
-using MailBee.Mime;
-using MailBee.SmtpMail;
+//using MailBee.Mime;
+//using MailBee.SmtpMail;
 using System.Diagnostics;
 using System.Drawing.Imaging;
+using System.Net.Mail;
 
 namespace SonoOnlineResult
 {
@@ -279,12 +280,12 @@ namespace SonoOnlineResult
             }
 
             MailMessage msg = new MailMessage();
-            msg.From = new EmailAddress(Global.MailConfig.SenderMail);
-            msg.To.Add(new EmailAddress(toEmail));
+            msg.From = new MailAddress(Global.MailConfig.SenderMail);
+            msg.To.Add(new MailAddress(toEmail));
             if (_ccEmailList.Count > 0)
             {
                 foreach (var email in _ccEmailList)
-                    msg.Cc.Add(new EmailAddress(email));
+                    msg.CC.Add(new MailAddress(email));
             }
 
             msg.Subject = _subject;
@@ -304,35 +305,21 @@ namespace SonoOnlineResult
                     link, account, Global.MailConfig.Signature);
             }
 
-            msg.BodyPlainText = _body;
+            msg.Body = _body;
 
-            Smtp.LicenseKey = "MN200-B47C7EFF7C257CFF7C2E34E777B5-D2BD";
-            Smtp smtp = new Smtp();
-            if (Global.MailConfig.UseSMTPServer)
-            {
-                SmtpServer server = new SmtpServer();
-                server.Timeout = 60000;
-                server.SslMode = MailBee.Security.SslStartupMode.OnConnect;
-                server.Name = Global.MailConfig.Server;
-                server.Port = Global.MailConfig.Port;
-                server.AccountName = Global.MailConfig.Username;
-                server.Password = Global.MailConfig.Password;
-                server.AuthMethods = MailBee.AuthenticationMethods.SaslLogin | MailBee.AuthenticationMethods.SaslPlain;
-                smtp.SmtpServers.Add(server);
-            }
-            else
-                smtp.DnsServers.Autodetect();
+            SmtpClient client = new SmtpClient();
+            client.Port = Global.MailConfig.Port;
+            client.Host = Global.MailConfig.Server;
+            client.EnableSsl = true;
+            client.Timeout = 10000;
+            client.DeliveryMethod = SmtpDeliveryMethod.Network;
+            client.UseDefaultCredentials = false;
+            client.Credentials = new System.Net.NetworkCredential(Global.MailConfig.Username, Global.MailConfig.Password);
 
             try
             {
-                smtp.Message = msg;
-                if (smtp.Send())
-                    MessageBox.Show("Mail has been sent.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
-                else
-                {
-                    string error = string.Format("Cannot send mail!\r\nError: {0}", smtp.GetErrorDescription());
-                    MessageBox.Show(error, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                client.Send(msg);
+                MessageBox.Show("Mail has been sent.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
