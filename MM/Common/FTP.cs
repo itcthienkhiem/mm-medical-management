@@ -3,18 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.IO;
-using Dart.PowerTCP.Ftp;
 using System.Drawing;
 
 namespace MM.Common
 {
     public class FTP
     {
-        #region Members
-        private static Ftp _ftp = new Ftp();
-        private static int _maxRetry = 10;
-        #endregion
-
         #region Public Methods
         public static Result Connect(string server, string username, string password)
         {
@@ -22,13 +16,15 @@ namespace MM.Common
 
             try
             {
-                _ftp.Abort();
-                _ftp.Close();
-                _ftp.Server = server;
-                _ftp.Username = username;
-                _ftp.Password = password;
-
-                string dir = _ftp.GetDirectory();
+                string ftpFileName = string.Format("ftp://{0}/{1}", server, "/results/test.txt");
+                System.Net.FtpWebRequest ftpWebRequest = (System.Net.FtpWebRequest)System.Net.FtpWebRequest.Create(new Uri(ftpFileName));
+                ftpWebRequest.Credentials = new System.Net.NetworkCredential(username, password);
+                ftpWebRequest.KeepAlive = false;
+                ftpWebRequest.Timeout = 20000;
+                ftpWebRequest.Method = System.Net.WebRequestMethods.Ftp.UploadFile;
+                ftpWebRequest.UseBinary = true;
+                System.IO.Stream stream = ftpWebRequest.GetRequestStream();
+                stream.Close();
             }
             catch (Exception e)
             {
