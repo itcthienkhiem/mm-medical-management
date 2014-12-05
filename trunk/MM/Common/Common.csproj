@@ -69,10 +69,6 @@
     <CodeAnalysisRuleDirectories>;C:\Program Files\Microsoft Visual Studio 10.0\Team Tools\Static Analysis Tools\FxCop\\Rules</CodeAnalysisRuleDirectories>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="Dart.PowerTCP.Ftp, Version=2.3.3.0, Culture=neutral, PublicKeyToken=5966291b8955e4bb">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\MM\Components\Dart.PowerTCP.Ftp.DLL</HintPath>
-    </Reference>
     <Reference Include="Interop.Excel">
       <HintPath>..\MM\Components\Interop.Excel.dll</HintPath>
       <EmbedInteropTypes>True</EmbedInteropTypes>
