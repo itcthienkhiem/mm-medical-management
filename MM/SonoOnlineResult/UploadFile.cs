@@ -63,7 +63,7 @@ namespace SonoOnlineResult
             {
                 Global.FTPConnectionInfo.ServerName = "ftp.ris.com.au";
                 Global.FTPConnectionInfo.Username = "onlineresult@ris.com.au";
-                Global.FTPConnectionInfo.Password = "Password001qazxdr5";
+                Global.FTPConnectionInfo.Password = "onlineresult1qazxdr5";
             }
 
             if (File.Exists(Global.MailConfigPath))
