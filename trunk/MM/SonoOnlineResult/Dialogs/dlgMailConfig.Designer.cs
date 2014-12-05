@@ -30,6 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgMailConfig));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtSignature = new System.Windows.Forms.RichTextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.chbUseSMTPServer = new System.Windows.Forms.CheckBox();
             this.groupBoxSMTP = new System.Windows.Forms.GroupBox();
             this.numPort = new System.Windows.Forms.NumericUpDown();
@@ -45,8 +47,6 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnTest = new System.Windows.Forms.Button();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtSignature = new System.Windows.Forms.RichTextBox();
             this.groupBox1.SuspendLayout();
             this.groupBoxSMTP.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPort)).BeginInit();
@@ -66,15 +66,36 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
+            // txtSignature
+            // 
+            this.txtSignature.AcceptsTab = true;
+            this.txtSignature.Location = new System.Drawing.Point(13, 192);
+            this.txtSignature.Name = "txtSignature";
+            this.txtSignature.Size = new System.Drawing.Size(335, 62);
+            this.txtSignature.TabIndex = 8;
+            this.txtSignature.Text = "";
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(10, 176);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(55, 13);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Signature:";
+            // 
             // chbUseSMTPServer
             // 
             this.chbUseSMTPServer.AutoSize = true;
+            this.chbUseSMTPServer.Checked = true;
+            this.chbUseSMTPServer.CheckState = System.Windows.Forms.CheckState.Checked;
             this.chbUseSMTPServer.Location = new System.Drawing.Point(19, 47);
             this.chbUseSMTPServer.Name = "chbUseSMTPServer";
             this.chbUseSMTPServer.Size = new System.Drawing.Size(110, 17);
             this.chbUseSMTPServer.TabIndex = 4;
             this.chbUseSMTPServer.Text = "Use SMTP server";
             this.chbUseSMTPServer.UseVisualStyleBackColor = true;
+            this.chbUseSMTPServer.Visible = false;
             this.chbUseSMTPServer.CheckedChanged += new System.EventHandler(this.chbUseSMTPServer_CheckedChanged);
             // 
             // groupBoxSMTP
@@ -87,12 +108,12 @@
             this.groupBoxSMTP.Controls.Add(this.label4);
             this.groupBoxSMTP.Controls.Add(this.txtServer);
             this.groupBoxSMTP.Controls.Add(this.label3);
-            this.groupBoxSMTP.Enabled = false;
             this.groupBoxSMTP.Location = new System.Drawing.Point(13, 47);
             this.groupBoxSMTP.Name = "groupBoxSMTP";
             this.groupBoxSMTP.Size = new System.Drawing.Size(335, 125);
             this.groupBoxSMTP.TabIndex = 6;
             this.groupBoxSMTP.TabStop = false;
+            this.groupBoxSMTP.Text = "SMTP Server";
             // 
             // numPort
             // 
@@ -214,24 +235,6 @@
             this.btnTest.Text = "&Test";
             this.btnTest.UseVisualStyleBackColor = true;
             this.btnTest.Click += new System.EventHandler(this.btnTest_Click);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(10, 176);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 13);
-            this.label1.TabIndex = 7;
-            this.label1.Text = "Signature:";
-            // 
-            // txtSignature
-            // 
-            this.txtSignature.AcceptsTab = true;
-            this.txtSignature.Location = new System.Drawing.Point(13, 192);
-            this.txtSignature.Name = "txtSignature";
-            this.txtSignature.Size = new System.Drawing.Size(335, 62);
-            this.txtSignature.TabIndex = 8;
-            this.txtSignature.Text = "";
             // 
             // dlgMailConfig
             // 
