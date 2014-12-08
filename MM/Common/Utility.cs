@@ -1612,7 +1612,14 @@ namespace MM.Common
                 GraphicsUnit.Pixel);
 
             grPhoto.Dispose();
+
             return bmPhoto;
+        }
+
+        public static Image RotateImage(Image image, RotateFlipType type)
+        {
+            image.RotateFlip(type);
+            return image;
         }
     }
 }
