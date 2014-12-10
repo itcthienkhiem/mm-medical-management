@@ -1568,6 +1568,24 @@ namespace MM.Common
             return host.HostName;
         }
 
+        public static Image Crop(Image image, int width, int height, int x, int y)
+        {
+            Bitmap bmp = new Bitmap(width, height, PixelFormat.Format24bppRgb);
+            //bmp.SetResolution(80, 60);
+
+            Graphics gfx = Graphics.FromImage(bmp);
+            gfx.SmoothingMode = SmoothingMode.AntiAlias;
+            gfx.InterpolationMode = InterpolationMode.HighQualityBicubic;
+            gfx.PixelOffsetMode = PixelOffsetMode.HighQuality;
+            gfx.DrawImage(image, new Rectangle(0, 0, width, height), x, y, width, height, GraphicsUnit.Pixel);
+            // Dispose to free up resources
+            //image.Dispose();
+            //bmp.Dispose();
+            gfx.Dispose();
+
+            return bmp;
+        }
+
         public static Image FixedSize(Image imgPhoto, int Width, int Height)
         {
             int sourceWidth = imgPhoto.Width;
@@ -1616,10 +1634,113 @@ namespace MM.Common
             return bmPhoto;
         }
 
+        public static Image FixedSizeAndCrop(Image imgPhoto, int Width, int Height)
+        {
+            int sourceWidth = imgPhoto.Width;
+            int sourceHeight = imgPhoto.Height;
+            int sourceX = 0;
+            int sourceY = 0;
+            int destX = 0;
+            int destY = 0;
+
+            float nPercent = 0;
+            float nPercentW = 0;
+            float nPercentH = 0;
+
+            nPercentW = ((float)Width / (float)sourceWidth);
+            nPercentH = ((float)Height / (float)sourceHeight);
+            if (nPercentH < nPercentW)
+            {
+                nPercent = nPercentH;
+                destX = System.Convert.ToInt16((Width -
+                              (sourceWidth * nPercent)) / 2);
+            }
+            else
+            {
+                nPercent = nPercentW;
+                destY = System.Convert.ToInt16((Height -
+                              (sourceHeight * nPercent)) / 2);
+            }
+
+            int destWidth = (int)(sourceWidth * nPercent);
+            int destHeight = (int)(sourceHeight * nPercent);
+
+            Bitmap bmPhoto = new Bitmap(Width, Height, PixelFormat.Format24bppRgb);
+            bmPhoto.SetResolution(imgPhoto.HorizontalResolution, imgPhoto.VerticalResolution);
+
+            Graphics grPhoto = Graphics.FromImage(bmPhoto);
+            grPhoto.Clear(Color.White);
+            grPhoto.InterpolationMode = InterpolationMode.HighQualityBicubic;
+
+            grPhoto.DrawImage(imgPhoto,
+                new Rectangle(destX, destY, destWidth, destHeight),
+                new Rectangle(sourceX, sourceY, sourceWidth, sourceHeight),
+                GraphicsUnit.Pixel);
+
+            grPhoto.Dispose();
+
+            return Crop(bmPhoto, destWidth, destHeight, destX, destY);
+        }
+
         public static Image RotateImage(Image image, RotateFlipType type)
         {
             image.RotateFlip(type);
             return image;
+        }
+
+        public static Image FillData2ImageTemplate(Image imageTemplate, Image logo, Image image, Point logoLocation, Size logoSize,
+            Point contentLocation, Size contentSize)
+        {
+            logo = FixedSizeAndCrop(logo, logoSize.Width, logoSize.Height);
+            if (image.Width > image.Height)
+                image = RotateImage(image, RotateFlipType.Rotate270FlipNone);
+
+            image = FixedSizeAndCrop(image, contentSize.Width, contentSize.Height);
+
+            Graphics grPhoto = Graphics.FromImage(imageTemplate);
+            grPhoto.InterpolationMode = InterpolationMode.HighQualityBicubic;
+
+            if (logo.Width < logoSize.Width)
+            {
+                int delta = logoSize.Width - logo.Width;
+                logoLocation.X += delta / 2;
+                logoSize.Width = logo.Width;
+            }
+
+            if (logo.Height < logoSize.Height)
+            {
+                int delta = logoSize.Height - logo.Height;
+                logoLocation.Y += delta / 2;
+                logoSize.Height = logo.Height;
+            }
+
+            grPhoto.DrawImage(logo,
+                new Rectangle(logoLocation.X, logoLocation.Y, logoSize.Width, logoSize.Height),
+                new Rectangle(0, 0, logo.Width, logo.Height),
+                GraphicsUnit.Pixel);
+
+            if (image.Width < contentSize.Width)
+            {
+                int delta = contentSize.Width - image.Width;
+                contentLocation.X += delta / 2;
+                contentSize.Width = image.Width;
+            }
+
+            if (image.Height < contentSize.Height)
+            {
+                int delta = contentSize.Height - image.Height;
+                contentLocation.Y += delta / 2;
+                contentSize.Height = image.Height;
+            }
+
+            grPhoto.DrawImage(image,
+                new Rectangle(contentLocation.X, contentLocation.Y, contentSize.Width, contentSize.Height),
+                new Rectangle(0, 0, image.Width, image.Height),
+                GraphicsUnit.Pixel);
+
+            grPhoto.Dispose();
+
+            return imageTemplate;
         }
     }
 }
