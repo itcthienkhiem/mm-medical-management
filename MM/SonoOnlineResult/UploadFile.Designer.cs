@@ -153,7 +153,6 @@
             this.lvFile.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvFile.FullRowSelect = true;
             this.lvFile.GridLines = true;
-            this.lvFile.HideSelection = false;
             this.lvFile.Location = new System.Drawing.Point(0, 0);
             this.lvFile.Name = "lvFile";
             this.lvFile.Size = new System.Drawing.Size(410, 599);

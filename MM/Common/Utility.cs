@@ -1691,7 +1691,9 @@ namespace MM.Common
         public static Image FillData2ImageTemplate(Image imageTemplate, Image logo, Image image, Point logoLocation, Size logoSize,
             Point contentLocation, Size contentSize)
         {
-            logo = FixedSizeAndCrop(logo, logoSize.Width, logoSize.Height);
+            if (logo != null)
+                logo = FixedSizeAndCrop(logo, logoSize.Width, logoSize.Height);
+
             if (image.Width > image.Height)
                 image = RotateImage(image, RotateFlipType.Rotate270FlipNone);
 
@@ -1700,24 +1702,27 @@ namespace MM.Common
             Graphics grPhoto = Graphics.FromImage(imageTemplate);
             grPhoto.InterpolationMode = InterpolationMode.HighQualityBicubic;
 
-            if (logo.Width < logoSize.Width)
+            if (logo != null)
             {
-                int delta = logoSize.Width - logo.Width;
-                logoLocation.X += delta / 2;
-                logoSize.Width = logo.Width;
-            }
+                if (logo.Width < logoSize.Width)
+                {
+                    int delta = logoSize.Width - logo.Width;
+                    logoLocation.X += delta / 2;
+                    logoSize.Width = logo.Width;
+                }
 
-            if (logo.Height < logoSize.Height)
-            {
-                int delta = logoSize.Height - logo.Height;
-                logoLocation.Y += delta / 2;
-                logoSize.Height = logo.Height;
-            }
+                if (logo.Height < logoSize.Height)
+                {
+                    int delta = logoSize.Height - logo.Height;
+                    logoLocation.Y += delta / 2;
+                    logoSize.Height = logo.Height;
+                }
 
-            grPhoto.DrawImage(logo,
-                new Rectangle(logoLocation.X, logoLocation.Y, logoSize.Width, logoSize.Height),
-                new Rectangle(0, 0, logo.Width, logo.Height),
-                GraphicsUnit.Pixel);
+                grPhoto.DrawImage(logo,
+                    new Rectangle(logoLocation.X, logoLocation.Y, logoSize.Width, logoSize.Height),
+                    new Rectangle(0, 0, logo.Width, logo.Height),
+                    GraphicsUnit.Pixel);
+            }
 
             if (image.Width < contentSize.Width)
             {

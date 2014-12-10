@@ -116,7 +116,20 @@ namespace SonoOnlineResult
                 case "Mail Templates":
                     OnMailTemplates();
                     break;
+
+                case "Logo Configuration":
+                    OnLogoConfig();
+                    break;
                     
+            }
+        }
+
+        private void OnLogoConfig()
+        {
+            dlgLogoConfig dlg = new dlgLogoConfig();
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                OnViewImage();
             }
         }
 
@@ -422,31 +435,16 @@ namespace SonoOnlineResult
         private void OnViewImage()
         {
             if (lvFile.SelectedItems == null || lvFile.SelectedItems.Count <= 0)
+            {
+                picViewer.Image = null;
                 return;
+            }
 
             string ext = Path.GetExtension(lvFile.SelectedItems[0].Text).ToLower();
             if (ext == ".bmp" || ext == ".png" || ext == ".jpg" ||
                 ext == ".jpeg" || ext == ".jpe" || ext == ".gif")
             {
                 Image img = FillImageTemplate(toolStripComboBoxTemplates.SelectedItem.ToString(), lvFile.SelectedItems[0].Text);
-                //Image img = Utility.LoadImageFromFile(lvFile.SelectedItems[0].Text);
-                //if (toolStripComboBoxTemplates.SelectedItem.ToString() != "[None]")
-                //{
-                //    string templateFileName = string.Format("{0}\\ImageTemplates\\{1}", Application.StartupPath, toolStripComboBoxTemplates.SelectedItem.ToString());
-                //    if (File.Exists(templateFileName))
-                //    {
-                //        string logoFileName = string.Format("{0}\\Logo\\Logo.jpg", Application.StartupPath);
-                //        Image logo = Utility.LoadImageFromFile(logoFileName);
-                //        Image imgTemplate = Utility.LoadImageFromFile(templateFileName);
-                //        Point logoLocation = new Point(404, 142);
-                //        Size logoSize = new Size(708, 248);
-                //        Point contentLocation = new Point(97, 480);
-                //        Size contentSize = new Size(1092, 1183);
-                //        img = Utility.FillData2ImageTemplate(imgTemplate, logo, img, logoLocation, logoSize, contentLocation, contentSize);
-                //    }
-                //}
-
-                //img = Utility.FixedSize(img, picViewer.Width, picViewer.Height);
                 picViewer.Image = img;
             }
             else
@@ -462,7 +460,10 @@ namespace SonoOnlineResult
                 if (File.Exists(templateFileName))
                 {
                     string logoFileName = string.Format("{0}\\Logo\\Logo.jpg", Application.StartupPath);
-                    Image logo = Utility.LoadImageFromFile(logoFileName);
+                    Image logo = null;
+                    if (File.Exists(logoFileName))
+                        logo = Utility.LoadImageFromFile(logoFileName);
+
                     Image imgTemplate = Utility.LoadImageFromFile(templateFileName);
                     Point logoLocation = new Point(404, 142);
                     Size logoSize = new Size(708, 248);
