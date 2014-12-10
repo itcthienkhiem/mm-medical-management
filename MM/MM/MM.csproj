@@ -2784,6 +2784,7 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Components\Christmas.jpg" />
     <Content Include="Components\Dart.PowerTCP.Ftp.DLL" />
     <Content Include="Components\Dart.PowerTCP.Ftp.Forms.dll" />
     <Content Include="Components\DartIcons.dll" />
