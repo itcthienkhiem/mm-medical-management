@@ -28,6 +28,7 @@ namespace SonoOnlineResult
         private bool _isUploadSuccess = true;
         private string _subject = string.Empty;
         private string _body = string.Empty;
+        private string _templateName = string.Empty;
         #endregion
 
         #region Constructor
@@ -76,6 +77,24 @@ namespace SonoOnlineResult
                 Global.MailTemplateList.Deserialize(Global.MailTemplatePath);
 
             Global.FTPFolder = "results";
+
+            LoadImageTemplates();
+        }
+
+        private void LoadImageTemplates()
+        {
+            toolStripComboBoxTemplates.Items.Clear();
+            toolStripComboBoxTemplates.Items.Add("[None]");
+
+            string templateFolder = string.Format("{0}\\ImageTemplates", Application.StartupPath);
+            if (Directory.Exists(templateFolder))
+            {
+                string[] fileNames = Directory.GetFiles(templateFolder);
+                foreach (var fileName in fileNames)
+                    toolStripComboBoxTemplates.Items.Add(Path.GetFileName(fileName));
+
+                toolStripComboBoxTemplates.SelectedIndex = 0;
+            }
         }
 
         private void Execute(string cmd)
@@ -224,6 +243,7 @@ namespace SonoOnlineResult
 
                 _fileNames.Clear();
                 _isUploadSuccess = false;
+                _templateName = toolStripComboBoxTemplates.SelectedItem.ToString();
 
                 foreach (ListViewItem item in lvFile.Items)
                 {
@@ -332,22 +352,31 @@ namespace SonoOnlineResult
         {
             foreach (var fileName in _fileNames)
             {
-                string remoteFileName = string.Format("{0}/{1}", Global.FTPFolder, Path.GetFileName(fileName));
-                Result result = FTP.UploadFile(Global.FTPConnectionInfo, fileName, remoteFileName);
-                if (!result.IsOK)
-                {
-                    MessageBox.Show(result.GetErrorAsString("FTP.UploadFile"), this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
                 string ext = Path.GetExtension(fileName).ToLower();
                 if (ext == ".bmp" || ext == ".png" || ext == ".jpg" ||
                     ext == ".jpeg" || ext == ".jpe" || ext == ".gif")
                 {
-                    Image thumbnail = Utility.LoadImageFromFile(fileName);
+                    string fn = fileName;
+
+                    if (_templateName != "[None]")
+                    {
+                        Image image = FillImageTemplate(_templateName, fn);
+                        fn = string.Format("{0}\\{1}", Application.StartupPath, Path.GetFileName(fn));
+                        image.Save(fn, ImageFormat.Jpeg);
+                    }
+
+                    string remoteFileName = string.Format("{0}/{1}", Global.FTPFolder, Path.GetFileName(fn));
+                    Result result = FTP.UploadFile(Global.FTPConnectionInfo, fn, remoteFileName);
+                    if (!result.IsOK)
+                    {
+                        MessageBox.Show(result.GetErrorAsString("FTP.UploadFile"), this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    Image thumbnail = Utility.LoadImageFromFile(fn);
                     thumbnail = Utility.FixedSize(thumbnail, 320, 320);
-                    string thumbnailFileName = string.Format("{0}\\{1}_thumb{2}", 
-                        Application.StartupPath, Path.GetFileNameWithoutExtension(fileName), Path.GetExtension(fileName));
+                    string thumbnailFileName = string.Format("{0}\\{1}_thumb{2}",
+                        Application.StartupPath, Path.GetFileNameWithoutExtension(fn), Path.GetExtension(fn));
 
                     thumbnail.Save(thumbnailFileName, ImageFormat.Jpeg);
                     thumbnail.Dispose();
@@ -358,6 +387,19 @@ namespace SonoOnlineResult
 
                     File.Delete(thumbnailFileName);
 
+                    if (_templateName != "[None]")
+                        File.Delete(fn);
+
+                    if (!result.IsOK)
+                    {
+                        MessageBox.Show(result.GetErrorAsString("FTP.UploadFile"), this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+                else
+                {
+                    string remoteFileName = string.Format("{0}/{1}", Global.FTPFolder, Path.GetFileName(fileName));
+                    Result result = FTP.UploadFile(Global.FTPConnectionInfo, fileName, remoteFileName);
                     if (!result.IsOK)
                     {
                         MessageBox.Show(result.GetErrorAsString("FTP.UploadFile"), this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -386,14 +428,52 @@ namespace SonoOnlineResult
             if (ext == ".bmp" || ext == ".png" || ext == ".jpg" ||
                 ext == ".jpeg" || ext == ".jpe" || ext == ".gif")
             {
-                Image img = Utility.LoadImageFromFile(lvFile.SelectedItems[0].Text);
-                img = Utility.FixedSize(img, picViewer.Width, picViewer.Height);
-                //img.Save(string.Format("{0}\\{1}", Application.StartupPath, Path.GetFileName(lvFile.SelectedItems[0].Text)),
-                //    ImageFormat.Jpeg);
+                Image img = FillImageTemplate(toolStripComboBoxTemplates.SelectedItem.ToString(), lvFile.SelectedItems[0].Text);
+                //Image img = Utility.LoadImageFromFile(lvFile.SelectedItems[0].Text);
+                //if (toolStripComboBoxTemplates.SelectedItem.ToString() != "[None]")
+                //{
+                //    string templateFileName = string.Format("{0}\\ImageTemplates\\{1}", Application.StartupPath, toolStripComboBoxTemplates.SelectedItem.ToString());
+                //    if (File.Exists(templateFileName))
+                //    {
+                //        string logoFileName = string.Format("{0}\\Logo\\Logo.jpg", Application.StartupPath);
+                //        Image logo = Utility.LoadImageFromFile(logoFileName);
+                //        Image imgTemplate = Utility.LoadImageFromFile(templateFileName);
+                //        Point logoLocation = new Point(404, 142);
+                //        Size logoSize = new Size(708, 248);
+                //        Point contentLocation = new Point(97, 480);
+                //        Size contentSize = new Size(1092, 1183);
+                //        img = Utility.FillData2ImageTemplate(imgTemplate, logo, img, logoLocation, logoSize, contentLocation, contentSize);
+                //    }
+                //}
+
+                //img = Utility.FixedSize(img, picViewer.Width, picViewer.Height);
                 picViewer.Image = img;
             }
             else
                 picViewer.Image = null;
+        }
+
+        private Image FillImageTemplate(string templateName, string fileName)
+        {
+            Image img = Utility.LoadImageFromFile(fileName);
+            if (templateName != "[None]")
+            {
+                string templateFileName = string.Format("{0}\\ImageTemplates\\{1}", Application.StartupPath, templateName);
+                if (File.Exists(templateFileName))
+                {
+                    string logoFileName = string.Format("{0}\\Logo\\Logo.jpg", Application.StartupPath);
+                    Image logo = Utility.LoadImageFromFile(logoFileName);
+                    Image imgTemplate = Utility.LoadImageFromFile(templateFileName);
+                    Point logoLocation = new Point(404, 142);
+                    Size logoSize = new Size(708, 248);
+                    Point contentLocation = new Point(97, 480);
+                    Size contentSize = new Size(1092, 1183);
+                    img = Utility.FillData2ImageTemplate(imgTemplate, logo, img, logoLocation, logoSize, contentLocation, contentSize);
+                }
+            }
+
+            img = Utility.FixedSizeAndCrop(img, picViewer.Width, picViewer.Height);
+            return img;
         }
         #endregion
 
@@ -464,6 +544,11 @@ namespace SonoOnlineResult
         {
             OnViewImage();
         }
+
+        private void toolStripComboBoxTemplates_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            OnViewImage();
+        }
         #endregion
 
         #region Working Thread
@@ -503,6 +588,8 @@ namespace SonoOnlineResult
             }
         }
         #endregion
+
+       
 
         
     }

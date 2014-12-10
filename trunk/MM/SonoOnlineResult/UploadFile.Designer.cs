@@ -34,6 +34,10 @@
             this.toolStripButtonFTPConfig = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonMailConfig = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonMailTemplate = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonLogoConfig = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripComboBoxTemplates = new System.Windows.Forms.ToolStripComboBox();
             this.lvFile = new System.Windows.Forms.ListView();
             this.colFileName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1 = new System.Windows.Forms.Panel();
@@ -60,7 +64,11 @@
             this.toolStripButtonMySQLConfig,
             this.toolStripButtonFTPConfig,
             this.toolStripButtonMailConfig,
-            this.toolStripButtonMailTemplate});
+            this.toolStripButtonMailTemplate,
+            this.toolStripButtonLogoConfig,
+            this.toolStripSeparator1,
+            this.toolStripLabel1,
+            this.toolStripComboBoxTemplates});
             this.toolStripMain.Location = new System.Drawing.Point(0, 0);
             this.toolStripMain.Name = "toolStripMain";
             this.toolStripMain.Size = new System.Drawing.Size(977, 31);
@@ -107,6 +115,35 @@
             this.toolStripButtonMailTemplate.Size = new System.Drawing.Size(28, 28);
             this.toolStripButtonMailTemplate.Text = "toolStripButton1";
             this.toolStripButtonMailTemplate.ToolTipText = "Mail Templates";
+            // 
+            // toolStripButtonLogoConfig
+            // 
+            this.toolStripButtonLogoConfig.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonLogoConfig.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonLogoConfig.Image")));
+            this.toolStripButtonLogoConfig.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonLogoConfig.Name = "toolStripButtonLogoConfig";
+            this.toolStripButtonLogoConfig.Size = new System.Drawing.Size(28, 28);
+            this.toolStripButtonLogoConfig.Text = "toolStripButton1";
+            this.toolStripButtonLogoConfig.ToolTipText = "Logo Configuration";
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 31);
+            // 
+            // toolStripLabel1
+            // 
+            this.toolStripLabel1.Name = "toolStripLabel1";
+            this.toolStripLabel1.Size = new System.Drawing.Size(101, 28);
+            this.toolStripLabel1.Text = "Image Templates:";
+            // 
+            // toolStripComboBoxTemplates
+            // 
+            this.toolStripComboBoxTemplates.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.toolStripComboBoxTemplates.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.toolStripComboBoxTemplates.Name = "toolStripComboBoxTemplates";
+            this.toolStripComboBoxTemplates.Size = new System.Drawing.Size(121, 31);
+            this.toolStripComboBoxTemplates.SelectedIndexChanged += new System.EventHandler(this.toolStripComboBoxTemplates_SelectedIndexChanged);
             // 
             // lvFile
             // 
@@ -215,7 +252,7 @@
             this.picViewer.Location = new System.Drawing.Point(0, 18);
             this.picViewer.Name = "picViewer";
             this.picViewer.Size = new System.Drawing.Size(567, 581);
-            this.picViewer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.picViewer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picViewer.TabIndex = 1;
             this.picViewer.TabStop = false;
             // 
@@ -287,5 +324,9 @@
         private System.Windows.Forms.ToolStripButton toolStripButtonMailTemplate;
         private System.Windows.Forms.PictureBox picViewer;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStripButton toolStripButtonLogoConfig;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel1;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBoxTemplates;
     }
 }
