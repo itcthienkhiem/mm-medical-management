@@ -37,7 +37,7 @@ namespace SonoOnlineResult
             return result;
         }
 
-        public static Result AddUser(string email, string password, string code, List<string> fileNames)
+        public static Result AddUser(string email, string password, string code, List<ResultFileInfo> resultFileInfos)
         {
             Result result = new Result();
             MySqlCommand cmd = null;
@@ -86,10 +86,10 @@ namespace SonoOnlineResult
                     int lastUploadKey = Convert.ToInt32(obj);
 
                     //Insert Last Upload Detail
-                    foreach (var fileName in fileNames)
+                    foreach (var info in resultFileInfos)
                     {
                         query = string.Format("INSERT INTO LastUploadDetail(LastUploadKey, FileName) VALUES({0}, '{1}')",
-                            lastUploadKey, Path.GetFileName(fileName));
+                            lastUploadKey, Path.GetFileName(info.FileName));
 
                         cmd.CommandText = query;
                         cmd.ExecuteNonQuery();

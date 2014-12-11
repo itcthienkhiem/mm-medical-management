@@ -21,7 +21,7 @@ namespace SonoOnlineResult
     public partial class UploadFile : MM.Dialogs.dlgBase
     {
         #region Members
-        private List<string> _fileNames = new List<string>();
+        private List<ResultFileInfo> _resultFileInfos = new List<ResultFileInfo>();
         private List<string> _toEmailList = new List<string>();
         private List<string> _ccEmailList = new List<string>();
         private bool _usingMailTemplate = false;
@@ -29,6 +29,7 @@ namespace SonoOnlineResult
         private string _subject = string.Empty;
         private string _body = string.Empty;
         private string _templateName = string.Empty;
+        private string _passcode = string.Empty;
         #endregion
 
         #region Constructor
@@ -120,8 +121,33 @@ namespace SonoOnlineResult
                 case "Logo Configuration":
                     OnLogoConfig();
                     break;
+
+                case "Rotate counterclockwise":
+                    OnRotateCounterclockwise();
+                    break;
+
+                case "Rotate clockwise":
+                    OnRotateClockwise();
+                    break;
                     
             }
+        }
+
+        private void OnRotateCounterclockwise()
+        {
+            if (lvFile.SelectedItems == null || lvFile.SelectedItems.Count <= 0) return;
+            ResultFileInfo info = lvFile.SelectedItems[0].Tag as ResultFileInfo;
+            info.RotateOrgImage(RotateFlipType.Rotate270FlipNone);
+            OnViewImage();
+            
+        }
+
+        private void OnRotateClockwise()
+        {
+            if (lvFile.SelectedItems == null || lvFile.SelectedItems.Count <= 0) return;
+            ResultFileInfo info = lvFile.SelectedItems[0].Tag as ResultFileInfo;
+            info.RotateOrgImage(RotateFlipType.Rotate90FlipNone);
+            OnViewImage();
         }
 
         private void OnLogoConfig()
@@ -199,6 +225,12 @@ namespace SonoOnlineResult
                     {
                         ListViewItem item = new ListViewItem(fileName);
                         lvFile.Items.Add(item);
+                        ResultFileInfo info = new ResultFileInfo();
+                        info.FileName = fileName;
+                        info.TemplateName = toolStripComboBoxTemplates.SelectedItem.ToString();
+                        info.LogoName = "Logo.jpg";
+                        info.ProcessResultImage();
+                        item.Tag = info;
                     }
                 }
 
@@ -220,6 +252,12 @@ namespace SonoOnlineResult
                 int index = lvFile.SelectedItems[0].Index;
                 foreach (ListViewItem item in lvFile.SelectedItems)
                 {
+                    if (item.Tag != null)
+                    {
+                        (item.Tag as ResultFileInfo).Clear();
+                        item.Tag = null;
+                    }
+
                     lvFile.Items.Remove(item);
                 }
 
@@ -239,6 +277,15 @@ namespace SonoOnlineResult
 
             if (MessageBox.Show("Do you want to remove all files ?", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
             {
+                foreach (ListViewItem item in lvFile.Items)
+                {
+                    if (item.Tag != null)
+                    {
+                        (item.Tag as ResultFileInfo).Clear();
+                        item.Tag = null;
+                    }
+                }
+
                 lvFile.Items.Clear();
                 picViewer.Image = null;
             }
@@ -254,14 +301,12 @@ namespace SonoOnlineResult
                     this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
                     return;
 
-                _fileNames.Clear();
+                _resultFileInfos.Clear();
                 _isUploadSuccess = false;
                 _templateName = toolStripComboBoxTemplates.SelectedItem.ToString();
 
                 foreach (ListViewItem item in lvFile.Items)
-                {
-                    _fileNames.Add(item.Text);
-                }
+                    _resultFileInfos.Add(item.Tag as ResultFileInfo);
 
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnUploadProc));
                 base.ShowWaiting();
@@ -276,6 +321,8 @@ namespace SonoOnlineResult
                         _usingMailTemplate = dlg.UsingMailTemplate;
                         _subject = dlg.Subject;
                         _body = dlg.Body;
+                        _passcode = dlg.Passcode;
+
                         OnSendMailAsThread();
                     }
                 }
@@ -302,9 +349,9 @@ namespace SonoOnlineResult
         private void OnSendMail()
         {
             string toEmail = _toEmailList[0];
-            string pass = Utility.GeneratePassword(8);
+            //string pass = Utility.GeneratePassword(8);
             string code = Guid.NewGuid().ToString();
-            Result result = MySQL.AddUser(toEmail, pass, code, _fileNames);
+            Result result = MySQL.AddUser(toEmail, _passcode, code, _resultFileInfos);
             if (!result.IsOK)
             {
                 MessageBox.Show(result.GetErrorAsString("OnSendMail"), 
@@ -323,19 +370,19 @@ namespace SonoOnlineResult
 
             msg.Subject = _subject;
             string link = string.Format("http://result.ris.com.au?code={0}", code);
-            string account = string.Format("Username: {0}\nPassword: {1}", toEmail, pass);
+            //string account = string.Format("Username: {0}\nPassword: {1}", toEmail, pass);
 
             if (_usingMailTemplate)
             {
                 _body = _body.Replace("#Email#", toEmail);
                 _body = _body.Replace("#Link#", link);
-                _body = _body.Replace("#Account#", account);
+                //_body = _body.Replace("#Account#", account);
                 _body = _body.Replace("#Signature#", Global.MailConfig.Signature);
             }
             else
             {
-                _body += string.Format("\n\nPlease follow this link to view your result:\n{0}\n\nThe username and password to login are:\n{1}\n\n{2}",
-                    link, account, Global.MailConfig.Signature);
+                _body += string.Format("\n\nPlease follow this link to view your result:\n{0}\n\n{1}",
+                    link, Global.MailConfig.Signature);
             }
 
             msg.Body = _body;
@@ -363,20 +410,14 @@ namespace SonoOnlineResult
 
         private void OnUpload()
         {
-            foreach (var fileName in _fileNames)
+            foreach (var info in _resultFileInfos)
             {
-                string ext = Path.GetExtension(fileName).ToLower();
-                if (ext == ".bmp" || ext == ".png" || ext == ".jpg" ||
-                    ext == ".jpeg" || ext == ".jpe" || ext == ".gif")
+                if (info.IsImageFile)
                 {
-                    string fn = fileName;
-
-                    if (_templateName != "[None]")
-                    {
-                        Image image = FillImageTemplate(_templateName, fn);
-                        fn = string.Format("{0}\\{1}", Application.StartupPath, Path.GetFileName(fn));
-                        image.Save(fn, ImageFormat.Jpeg);
-                    }
+                    string fn = string.Format("{0}\\{1}", Application.StartupPath, Path.GetFileName(info.FileName));
+                    info.TemplateName = _templateName;
+                    Image img = info.ProcessResultImage();
+                    img.Save(fn, ImageFormat.Jpeg);
 
                     string remoteFileName = string.Format("{0}/{1}", Global.FTPFolder, Path.GetFileName(fn));
                     Result result = FTP.UploadFile(Global.FTPConnectionInfo, fn, remoteFileName);
@@ -386,22 +427,21 @@ namespace SonoOnlineResult
                         return;
                     }
 
-                    Image thumbnail = Utility.LoadImageFromFile(fn);
-                    thumbnail = Utility.FixedSize(thumbnail, 320, 320);
+                    Image thumbnail = Utility.FixedSize(img, 320, 320);
                     string thumbnailFileName = string.Format("{0}\\{1}_thumb{2}",
                         Application.StartupPath, Path.GetFileNameWithoutExtension(fn), Path.GetExtension(fn));
 
                     thumbnail.Save(thumbnailFileName, ImageFormat.Jpeg);
                     thumbnail.Dispose();
                     thumbnail = null;
+                    img.Dispose();
+                    img = null;
 
                     remoteFileName = string.Format("{0}/{1}", Global.FTPFolder, Path.GetFileName(thumbnailFileName));
                     result = FTP.UploadFile(Global.FTPConnectionInfo, thumbnailFileName, remoteFileName);
 
                     File.Delete(thumbnailFileName);
-
-                    if (_templateName != "[None]")
-                        File.Delete(fn);
+                    File.Delete(fn);
 
                     if (!result.IsOK)
                     {
@@ -411,8 +451,8 @@ namespace SonoOnlineResult
                 }
                 else
                 {
-                    string remoteFileName = string.Format("{0}/{1}", Global.FTPFolder, Path.GetFileName(fileName));
-                    Result result = FTP.UploadFile(Global.FTPConnectionInfo, fileName, remoteFileName);
+                    string remoteFileName = string.Format("{0}/{1}", Global.FTPFolder, Path.GetFileName(info.FileName));
+                    Result result = FTP.UploadFile(Global.FTPConnectionInfo, info.FileName, remoteFileName);
                     if (!result.IsOK)
                     {
                         MessageBox.Show(result.GetErrorAsString("FTP.UploadFile"), this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -437,18 +477,28 @@ namespace SonoOnlineResult
             if (lvFile.SelectedItems == null || lvFile.SelectedItems.Count <= 0)
             {
                 picViewer.Image = null;
+                toolStripButtonRotateLeft.Enabled = false;
+                toolStripButtonRotateRight.Enabled = false;
                 return;
             }
 
-            string ext = Path.GetExtension(lvFile.SelectedItems[0].Text).ToLower();
-            if (ext == ".bmp" || ext == ".png" || ext == ".jpg" ||
-                ext == ".jpeg" || ext == ".jpe" || ext == ".gif")
+            ResultFileInfo info = lvFile.SelectedItems[0].Tag as ResultFileInfo;
+            info.TemplateName = toolStripComboBoxTemplates.SelectedItem.ToString();
+
+            Image img = info.ProcessResultImage();
+            if (img != null)
             {
-                Image img = FillImageTemplate(toolStripComboBoxTemplates.SelectedItem.ToString(), lvFile.SelectedItems[0].Text);
-                picViewer.Image = img;
+                img = Utility.FixedSizeAndCrop(img, picViewer.Width, picViewer.Height);
+                toolStripButtonRotateLeft.Enabled = true;
+                toolStripButtonRotateRight.Enabled = true;
             }
             else
-                picViewer.Image = null;
+            {
+                toolStripButtonRotateLeft.Enabled = false;
+                toolStripButtonRotateRight.Enabled = false;
+            }
+
+            picViewer.Image = img;
         }
 
         private Image FillImageTemplate(string templateName, string fileName)
@@ -550,6 +600,11 @@ namespace SonoOnlineResult
         {
             OnViewImage();
         }
+
+        private void toolStripImage_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            Execute(e.ClickedItem.ToolTipText);
+        }
         #endregion
 
         #region Working Thread
@@ -589,9 +644,89 @@ namespace SonoOnlineResult
             }
         }
         #endregion
+    }
 
-       
+    public class ResultFileInfo
+    {
+        #region Members
+        public string FileName = string.Empty;
+        public string LogoName = string.Empty;
+        public string TemplateName = string.Empty;
+        public Image OrgImage = null;
+        #endregion
 
-        
+        #region Constructor
+        public ResultFileInfo()
+        {
+
+        }
+        #endregion
+
+        #region Properties
+        public bool IsImageFile
+        {
+            get
+            {
+                string ext = Path.GetExtension(FileName).ToLower();
+                if (ext == ".bmp" || ext == ".png" || ext == ".jpg" ||
+                    ext == ".jpeg" || ext == ".jpe" || ext == ".gif")
+                    return true;
+
+                return false;
+            }
+        }
+        #endregion
+
+        #region Methods
+        public Image ProcessResultImage()
+        {
+            if (!IsImageFile) return null;
+
+            Image resultImage = null;
+
+            if (OrgImage == null)
+                OrgImage = Utility.LoadImageFromFile(FileName);
+
+            if (TemplateName != "[None]")
+            {
+                string templateFileName = string.Format("{0}\\ImageTemplates\\{1}", Application.StartupPath, TemplateName);
+                if (File.Exists(templateFileName))
+                {
+                    string logoFileName = string.Format("{0}\\Logo\\{1}", Application.StartupPath, LogoName);
+                    Image logo = null;
+                    if (File.Exists(logoFileName))
+                        logo = Utility.LoadImageFromFile(logoFileName);
+
+                    Image imgTemplate = Utility.LoadImageFromFile(templateFileName);
+                    Point logoLocation = new Point(404, 142);
+                    Size logoSize = new Size(708, 248);
+                    Point contentLocation = new Point(97, 480);
+                    Size contentSize = new Size(1092, 1183);
+                    resultImage = Utility.FillData2ImageTemplate(imgTemplate, logo, OrgImage, logoLocation, logoSize, contentLocation, contentSize);
+                }
+            }
+            else
+                resultImage = OrgImage;
+
+            return resultImage;
+        }
+
+        public void RotateOrgImage(RotateFlipType rotateFlipType)
+        {
+            if (OrgImage != null)
+                OrgImage = Utility.RotateImage(OrgImage, rotateFlipType);
+
+            //ProcessResultImage();
+        }
+
+        public void Clear()
+        {
+            if (OrgImage != null)
+            {
+                OrgImage.Dispose();
+                OrgImage = null;
+            }
+        }
+        #endregion
     }
 }

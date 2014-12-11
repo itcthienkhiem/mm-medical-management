@@ -16,6 +16,7 @@ namespace SonoOnlineResult.Dialogs
         #region Members
         private List<string> _values = new List<string>();
         private EmailList _emailList = new EmailList();
+        private string _passcode = string.Empty;
         #endregion
 
         #region Constructor
@@ -49,6 +50,11 @@ namespace SonoOnlineResult.Dialogs
         public string Body
         {
             get { return txtBody.Text; }
+        }
+
+        public string Passcode
+        {
+            get { return _passcode; }
         }
         #endregion
 
@@ -163,18 +169,25 @@ namespace SonoOnlineResult.Dialogs
                 }
                 else
                 {
-                    List<string> toEmailList = txtTo.GetEmailList();
-                    List<string> ccEmailList = txtCc.GetEmailList();
-                    foreach (var mail in toEmailList)
-                        _emailList.Add(mail);
+                    dlgPasscode dlg = new dlgPasscode();
+                    if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+                    {
+                        _passcode = dlg.Passcode;
+                        List<string> toEmailList = txtTo.GetEmailList();
+                        List<string> ccEmailList = txtCc.GetEmailList();
+                        foreach (var mail in toEmailList)
+                            _emailList.Add(mail);
 
-                    foreach (var mail in ccEmailList)
-                        _emailList.Add(mail);
+                        foreach (var mail in ccEmailList)
+                            _emailList.Add(mail);
 
-                    _emailList.Serialize(Global.EmailListPath);
+                        _emailList.Serialize(Global.EmailListPath);
 
-                    txtTo.Clear();
-                    txtCc.Clear();
+                        txtTo.Clear();
+                        txtCc.Clear();
+                    }
+                    else
+                        e.Cancel = true;
                 }
             }
             else

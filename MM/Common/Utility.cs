@@ -1694,8 +1694,8 @@ namespace MM.Common
             if (logo != null)
                 logo = FixedSizeAndCrop(logo, logoSize.Width, logoSize.Height);
 
-            if (image.Width > image.Height)
-                image = RotateImage(image, RotateFlipType.Rotate270FlipNone);
+            //if (image.Width > image.Height)
+            //    image = RotateImage(image, RotateFlipType.Rotate270FlipNone);
 
             image = FixedSizeAndCrop(image, contentSize.Width, contentSize.Height);
 

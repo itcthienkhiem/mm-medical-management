@@ -49,11 +49,15 @@
             this.panel2 = new System.Windows.Forms.Panel();
             this.picViewer = new System.Windows.Forms.PictureBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.toolStripImage = new System.Windows.Forms.ToolStrip();
+            this.toolStripButtonRotateLeft = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonRotateRight = new System.Windows.Forms.ToolStripButton();
             this.panel3 = new System.Windows.Forms.Panel();
             this.toolStripMain.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picViewer)).BeginInit();
+            this.toolStripImage.SuspendLayout();
             this.panel3.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -237,6 +241,7 @@
             // 
             this.panel2.Controls.Add(this.picViewer);
             this.panel2.Controls.Add(this.label1);
+            this.panel2.Controls.Add(this.toolStripImage);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Location = new System.Drawing.Point(410, 31);
             this.panel2.Name = "panel2";
@@ -248,11 +253,11 @@
             this.picViewer.BackColor = System.Drawing.Color.White;
             this.picViewer.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.picViewer.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.picViewer.Location = new System.Drawing.Point(0, 18);
+            this.picViewer.Location = new System.Drawing.Point(0, 49);
             this.picViewer.Name = "picViewer";
-            this.picViewer.Size = new System.Drawing.Size(567, 581);
+            this.picViewer.Size = new System.Drawing.Size(567, 550);
             this.picViewer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
-            this.picViewer.TabIndex = 1;
+            this.picViewer.TabIndex = 4;
             this.picViewer.TabStop = false;
             // 
             // label1
@@ -261,12 +266,47 @@
             this.label1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.label1.Dock = System.Windows.Forms.DockStyle.Top;
             this.label1.ForeColor = System.Drawing.Color.White;
-            this.label1.Location = new System.Drawing.Point(0, 0);
+            this.label1.Location = new System.Drawing.Point(0, 31);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(567, 18);
-            this.label1.TabIndex = 0;
+            this.label1.TabIndex = 3;
             this.label1.Text = "Image Viewer";
             this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // toolStripImage
+            // 
+            this.toolStripImage.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.toolStripImage.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripButtonRotateLeft,
+            this.toolStripButtonRotateRight});
+            this.toolStripImage.Location = new System.Drawing.Point(0, 0);
+            this.toolStripImage.Name = "toolStripImage";
+            this.toolStripImage.Size = new System.Drawing.Size(567, 31);
+            this.toolStripImage.TabIndex = 2;
+            this.toolStripImage.Text = "toolStrip1";
+            this.toolStripImage.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStripImage_ItemClicked);
+            // 
+            // toolStripButtonRotateLeft
+            // 
+            this.toolStripButtonRotateLeft.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonRotateLeft.Enabled = false;
+            this.toolStripButtonRotateLeft.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRotateLeft.Image")));
+            this.toolStripButtonRotateLeft.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonRotateLeft.Name = "toolStripButtonRotateLeft";
+            this.toolStripButtonRotateLeft.Size = new System.Drawing.Size(28, 28);
+            this.toolStripButtonRotateLeft.Text = "toolStripButton1";
+            this.toolStripButtonRotateLeft.ToolTipText = "Rotate counterclockwise";
+            // 
+            // toolStripButtonRotateRight
+            // 
+            this.toolStripButtonRotateRight.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonRotateRight.Enabled = false;
+            this.toolStripButtonRotateRight.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRotateRight.Image")));
+            this.toolStripButtonRotateRight.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonRotateRight.Name = "toolStripButtonRotateRight";
+            this.toolStripButtonRotateRight.Size = new System.Drawing.Size(28, 28);
+            this.toolStripButtonRotateRight.Text = "toolStripButton2";
+            this.toolStripButtonRotateRight.ToolTipText = "Rotate clockwise";
             // 
             // panel3
             // 
@@ -297,7 +337,10 @@
             this.toolStripMain.PerformLayout();
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);
+            this.panel2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picViewer)).EndInit();
+            this.toolStripImage.ResumeLayout(false);
+            this.toolStripImage.PerformLayout();
             this.panel3.ResumeLayout(false);
             this.ResumeLayout(false);
             this.PerformLayout();
@@ -321,11 +364,14 @@
         private System.Windows.Forms.Panel panel3;
         private System.Windows.Forms.ToolStripButton toolStripButtonMySQLConfig;
         private System.Windows.Forms.ToolStripButton toolStripButtonMailTemplate;
-        private System.Windows.Forms.PictureBox picViewer;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ToolStripButton toolStripButtonLogoConfig;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripLabel toolStripLabel1;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBoxTemplates;
+        private System.Windows.Forms.PictureBox picViewer;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.ToolStrip toolStripImage;
+        private System.Windows.Forms.ToolStripButton toolStripButtonRotateLeft;
+        private System.Windows.Forms.ToolStripButton toolStripButtonRotateRight;
     }
 }
