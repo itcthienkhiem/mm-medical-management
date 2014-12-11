@@ -38,6 +38,9 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripComboBoxTemplates = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripComboBoxLogo = new System.Windows.Forms.ToolStripComboBox();
             this.lvFile = new System.Windows.Forms.ListView();
             this.colFileName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1 = new System.Windows.Forms.Panel();
@@ -72,7 +75,10 @@
             this.toolStripButtonLogoConfig,
             this.toolStripSeparator1,
             this.toolStripLabel1,
-            this.toolStripComboBoxTemplates});
+            this.toolStripComboBoxTemplates,
+            this.toolStripSeparator2,
+            this.toolStripLabel2,
+            this.toolStripComboBoxLogo});
             this.toolStripMain.Location = new System.Drawing.Point(0, 0);
             this.toolStripMain.Name = "toolStripMain";
             this.toolStripMain.Size = new System.Drawing.Size(977, 31);
@@ -137,8 +143,10 @@
             // 
             // toolStripLabel1
             // 
+            this.toolStripLabel1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel1.ForeColor = System.Drawing.Color.Blue;
             this.toolStripLabel1.Name = "toolStripLabel1";
-            this.toolStripLabel1.Size = new System.Drawing.Size(101, 28);
+            this.toolStripLabel1.Size = new System.Drawing.Size(106, 28);
             this.toolStripLabel1.Text = "Image Templates:";
             // 
             // toolStripComboBoxTemplates
@@ -148,6 +156,27 @@
             this.toolStripComboBoxTemplates.Name = "toolStripComboBoxTemplates";
             this.toolStripComboBoxTemplates.Size = new System.Drawing.Size(121, 31);
             this.toolStripComboBoxTemplates.SelectedIndexChanged += new System.EventHandler(this.toolStripComboBoxTemplates_SelectedIndexChanged);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(6, 31);
+            // 
+            // toolStripLabel2
+            // 
+            this.toolStripLabel2.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel2.ForeColor = System.Drawing.Color.Blue;
+            this.toolStripLabel2.Name = "toolStripLabel2";
+            this.toolStripLabel2.Size = new System.Drawing.Size(37, 28);
+            this.toolStripLabel2.Text = "Logo:";
+            // 
+            // toolStripComboBoxLogo
+            // 
+            this.toolStripComboBoxLogo.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.toolStripComboBoxLogo.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.toolStripComboBoxLogo.Name = "toolStripComboBoxLogo";
+            this.toolStripComboBoxLogo.Size = new System.Drawing.Size(121, 31);
+            this.toolStripComboBoxLogo.SelectedIndexChanged += new System.EventHandler(this.toolStripComboBoxLogo_SelectedIndexChanged);
             // 
             // lvFile
             // 
@@ -373,5 +402,8 @@
         private System.Windows.Forms.ToolStrip toolStripImage;
         private System.Windows.Forms.ToolStripButton toolStripButtonRotateLeft;
         private System.Windows.Forms.ToolStripButton toolStripButtonRotateRight;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel2;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBoxLogo;
     }
 }

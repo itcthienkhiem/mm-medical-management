@@ -29,6 +29,7 @@ namespace SonoOnlineResult
         private string _subject = string.Empty;
         private string _body = string.Empty;
         private string _templateName = string.Empty;
+        private string _logoName = string.Empty;
         private string _passcode = string.Empty;
         #endregion
 
@@ -80,6 +81,7 @@ namespace SonoOnlineResult
             Global.FTPFolder = "results";
 
             LoadImageTemplates();
+            LoadLogos();
         }
 
         private void LoadImageTemplates()
@@ -96,6 +98,29 @@ namespace SonoOnlineResult
 
                 toolStripComboBoxTemplates.SelectedIndex = 0;
             }
+        }
+
+        private void LoadLogos()
+        {
+
+            string oldLogoName = string.Empty;
+            if (toolStripComboBoxLogo.SelectedItem != null)
+                oldLogoName = toolStripComboBoxLogo.SelectedItem.ToString();
+
+            toolStripComboBoxLogo.Items.Clear();
+            toolStripComboBoxLogo.Items.Add("[None]");
+
+            string logoFolder = string.Format("{0}\\Logo", Application.StartupPath);
+            if (Directory.Exists(logoFolder))
+            {
+                string[] fileNames = Directory.GetFiles(logoFolder);
+                foreach (var fileName in fileNames)
+                    toolStripComboBoxLogo.Items.Add(Path.GetFileName(fileName));
+
+                toolStripComboBoxLogo.SelectedIndex = 0;
+            }
+
+            toolStripComboBoxLogo.SelectedItem = oldLogoName;
         }
 
         private void Execute(string cmd)
@@ -153,9 +178,12 @@ namespace SonoOnlineResult
         private void OnLogoConfig()
         {
             dlgLogoConfig dlg = new dlgLogoConfig();
-            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.Cancel)
             {
-                OnViewImage();
+                if (dlg.IsChanged)
+                {
+                    LoadLogos();
+                }
             }
         }
 
@@ -228,7 +256,7 @@ namespace SonoOnlineResult
                         ResultFileInfo info = new ResultFileInfo();
                         info.FileName = fileName;
                         info.TemplateName = toolStripComboBoxTemplates.SelectedItem.ToString();
-                        info.LogoName = "Logo.jpg";
+                        info.LogoName = toolStripComboBoxLogo.SelectedItem.ToString();
                         info.ProcessResultImage();
                         item.Tag = info;
                     }
@@ -304,6 +332,7 @@ namespace SonoOnlineResult
                 _resultFileInfos.Clear();
                 _isUploadSuccess = false;
                 _templateName = toolStripComboBoxTemplates.SelectedItem.ToString();
+                _logoName = toolStripComboBoxLogo.SelectedItem.ToString();
 
                 foreach (ListViewItem item in lvFile.Items)
                     _resultFileInfos.Add(item.Tag as ResultFileInfo);
@@ -416,6 +445,7 @@ namespace SonoOnlineResult
                 {
                     string fn = string.Format("{0}\\{1}", Application.StartupPath, Path.GetFileName(info.FileName));
                     info.TemplateName = _templateName;
+                    info.LogoName = _logoName;
                     Image img = info.ProcessResultImage();
                     img.Save(fn, ImageFormat.Jpeg);
 
@@ -484,6 +514,7 @@ namespace SonoOnlineResult
 
             ResultFileInfo info = lvFile.SelectedItems[0].Tag as ResultFileInfo;
             info.TemplateName = toolStripComboBoxTemplates.SelectedItem.ToString();
+            info.LogoName = toolStripComboBoxLogo.SelectedItem.ToString();
 
             Image img = info.ProcessResultImage();
             if (img != null)
@@ -597,6 +628,11 @@ namespace SonoOnlineResult
         }
 
         private void toolStripComboBoxTemplates_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            OnViewImage();
+        }
+
+        private void toolStripComboBoxLogo_SelectedIndexChanged(object sender, EventArgs e)
         {
             OnViewImage();
         }
