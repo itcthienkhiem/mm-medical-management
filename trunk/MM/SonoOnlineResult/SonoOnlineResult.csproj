@@ -103,6 +103,12 @@
     <Compile Include="Dialogs\dlgMySQLConfig.Designer.cs">
       <DependentUpon>dlgMySQLConfig.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgPasscode.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgPasscode.Designer.cs">
+      <DependentUpon>dlgPasscode.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgSendMail.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -150,6 +156,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgMySQLConfig.resx">
       <DependentUpon>dlgMySQLConfig.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgPasscode.resx">
+      <DependentUpon>dlgPasscode.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgSendMail.resx">
       <DependentUpon>dlgSendMail.cs</DependentUpon>

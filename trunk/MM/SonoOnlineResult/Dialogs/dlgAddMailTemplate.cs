@@ -45,7 +45,7 @@ namespace SonoOnlineResult.Dialogs
             List<string> bookMarks = new List<string>();
             bookMarks.Add("#Email#");
             bookMarks.Add("#Link#");
-            bookMarks.Add("#Account#");
+            //bookMarks.Add("#Account#");
             bookMarks.Add("#Signature#");
 
             foreach (string bookMark in bookMarks)
