@@ -103,10 +103,7 @@ namespace SonoOnlineResult
         private void LoadLogos()
         {
 
-            string oldLogoName = string.Empty;
-            if (toolStripComboBoxLogo.SelectedItem != null)
-                oldLogoName = toolStripComboBoxLogo.SelectedItem.ToString();
-
+            string oldLogoName = toolStripComboBoxLogo.SelectedItem == null ? string.Empty : toolStripComboBoxLogo.SelectedItem.ToString();
             toolStripComboBoxLogo.Items.Clear();
             toolStripComboBoxLogo.Items.Add("[None]");
 
@@ -255,8 +252,8 @@ namespace SonoOnlineResult
                         lvFile.Items.Add(item);
                         ResultFileInfo info = new ResultFileInfo();
                         info.FileName = fileName;
-                        info.TemplateName = toolStripComboBoxTemplates.SelectedItem.ToString();
-                        info.LogoName = toolStripComboBoxLogo.SelectedItem.ToString();
+                        info.TemplateName = toolStripComboBoxTemplates.SelectedItem == null ? string.Empty : toolStripComboBoxTemplates.SelectedItem.ToString();
+                        info.LogoName = toolStripComboBoxLogo.SelectedItem == null ? string.Empty : toolStripComboBoxLogo.SelectedItem.ToString();
                         info.ProcessResultImage();
                         item.Tag = info;
                     }
@@ -331,8 +328,8 @@ namespace SonoOnlineResult
 
                 _resultFileInfos.Clear();
                 _isUploadSuccess = false;
-                _templateName = toolStripComboBoxTemplates.SelectedItem.ToString();
-                _logoName = toolStripComboBoxLogo.SelectedItem.ToString();
+                _templateName = toolStripComboBoxTemplates.SelectedItem == null ? string.Empty : toolStripComboBoxTemplates.SelectedItem.ToString();
+                _logoName = toolStripComboBoxLogo.SelectedItem == null ? string.Empty : toolStripComboBoxLogo.SelectedItem.ToString();
 
                 foreach (ListViewItem item in lvFile.Items)
                     _resultFileInfos.Add(item.Tag as ResultFileInfo);
@@ -513,8 +510,8 @@ namespace SonoOnlineResult
             }
 
             ResultFileInfo info = lvFile.SelectedItems[0].Tag as ResultFileInfo;
-            info.TemplateName = toolStripComboBoxTemplates.SelectedItem.ToString();
-            info.LogoName = toolStripComboBoxLogo.SelectedItem.ToString();
+            info.TemplateName = toolStripComboBoxTemplates.SelectedItem == null ? string.Empty : toolStripComboBoxTemplates.SelectedItem.ToString();
+            info.LogoName = toolStripComboBoxLogo.SelectedItem == null ? string.Empty : toolStripComboBoxLogo.SelectedItem.ToString();
 
             Image img = info.ProcessResultImage();
             if (img != null)
