@@ -249,13 +249,13 @@ namespace SonoOnlineResult
                     if (!CheckFileExist(fileName))
                     {
                         ListViewItem item = new ListViewItem(fileName);
-                        lvFile.Items.Add(item);
                         ResultFileInfo info = new ResultFileInfo();
                         info.FileName = fileName;
                         info.TemplateName = toolStripComboBoxTemplates.SelectedItem == null ? string.Empty : toolStripComboBoxTemplates.SelectedItem.ToString();
                         info.LogoName = toolStripComboBoxLogo.SelectedItem == null ? string.Empty : toolStripComboBoxLogo.SelectedItem.ToString();
                         info.ProcessResultImage();
                         item.Tag = info;
+                        lvFile.Items.Add(item);
                     }
                 }
 
@@ -601,6 +601,12 @@ namespace SonoOnlineResult
                 if (!CheckFileExist(file))
                 {
                     ListViewItem item = new ListViewItem(file);
+                    ResultFileInfo info = new ResultFileInfo();
+                    info.FileName = file;
+                    info.TemplateName = toolStripComboBoxTemplates.SelectedItem == null ? string.Empty : toolStripComboBoxTemplates.SelectedItem.ToString();
+                    info.LogoName = toolStripComboBoxLogo.SelectedItem == null ? string.Empty : toolStripComboBoxLogo.SelectedItem.ToString();
+                    info.ProcessResultImage();
+                    item.Tag = info;
                     lvFile.Items.Add(item);
                 }
             }
