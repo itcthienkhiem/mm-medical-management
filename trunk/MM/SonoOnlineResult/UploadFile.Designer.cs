@@ -56,6 +56,8 @@
             this.toolStripButtonRotateLeft = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonRotateRight = new System.Windows.Forms.ToolStripButton();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonAddText = new System.Windows.Forms.ToolStripButton();
             this.toolStripMain.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -307,7 +309,9 @@
             this.toolStripImage.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.toolStripImage.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.toolStripButtonRotateLeft,
-            this.toolStripButtonRotateRight});
+            this.toolStripButtonRotateRight,
+            this.toolStripSeparator3,
+            this.toolStripButtonAddText});
             this.toolStripImage.Location = new System.Drawing.Point(0, 0);
             this.toolStripImage.Name = "toolStripImage";
             this.toolStripImage.Size = new System.Drawing.Size(567, 31);
@@ -345,6 +349,21 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(410, 599);
             this.panel3.TabIndex = 4;
+            // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 31);
+            // 
+            // toolStripButtonAddText
+            // 
+            this.toolStripButtonAddText.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonAddText.Enabled = false;
+            this.toolStripButtonAddText.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonAddText.Image")));
+            this.toolStripButtonAddText.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonAddText.Name = "toolStripButtonAddText";
+            this.toolStripButtonAddText.Size = new System.Drawing.Size(28, 28);
+            this.toolStripButtonAddText.ToolTipText = "Add Text";
             // 
             // UploadFile
             // 
@@ -405,5 +424,7 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripLabel toolStripLabel2;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBoxLogo;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton toolStripButtonAddText;
     }
 }

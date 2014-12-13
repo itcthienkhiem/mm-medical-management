@@ -151,7 +151,26 @@ namespace SonoOnlineResult
                 case "Rotate clockwise":
                     OnRotateClockwise();
                     break;
+
+                case "Add Text":
+                    OnAddText();
+                    break;
                     
+            }
+        }
+
+        private void OnAddText()
+        {
+            dlgAddText dlg = new dlgAddText();
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                if (lvFile.SelectedItems == null || lvFile.SelectedItems.Count <= 0)
+                    return;
+                ResultFileInfo info = lvFile.SelectedItems[0].Tag as ResultFileInfo;
+                info.Text1 = dlg.Text1;
+                info.Text2 = dlg.Text2;
+                info.Text3 = dlg.Text3;
+                OnViewImage();
             }
         }
 
@@ -506,6 +525,7 @@ namespace SonoOnlineResult
                 picViewer.Image = null;
                 toolStripButtonRotateLeft.Enabled = false;
                 toolStripButtonRotateRight.Enabled = false;
+                toolStripButtonAddText.Enabled = false;
                 return;
             }
 
@@ -516,14 +536,17 @@ namespace SonoOnlineResult
             Image img = info.ProcessResultImage();
             if (img != null)
             {
+                img.Save(string.Format("D:\\test.jpg", Application.StartupPath));
                 img = Utility.FixedSizeAndCrop(img, picViewer.Width, picViewer.Height);
                 toolStripButtonRotateLeft.Enabled = true;
                 toolStripButtonRotateRight.Enabled = true;
+                toolStripButtonAddText.Enabled = info.TemplateName != "[None]" ? true : false;
             }
             else
             {
                 toolStripButtonRotateLeft.Enabled = false;
                 toolStripButtonRotateRight.Enabled = false;
+                toolStripButtonAddText.Enabled = false;
             }
 
             picViewer.Image = img;
@@ -691,6 +714,9 @@ namespace SonoOnlineResult
         public string FileName = string.Empty;
         public string LogoName = string.Empty;
         public string TemplateName = string.Empty;
+        public string Text1 = string.Empty;
+        public string Text2 = string.Empty;
+        public string Text3 = string.Empty;
         public Image OrgImage = null;
         #endregion
 
@@ -737,8 +763,8 @@ namespace SonoOnlineResult
                         logo = Utility.LoadImageFromFile(logoFileName);
 
                     Image imgTemplate = Utility.LoadImageFromFile(templateFileName);
-                    Point logoLocation = new Point(404, 142);
-                    Size logoSize = new Size(708, 248);
+                    Point logoLocation = new Point(404, 120);
+                    Size logoSize = new Size(708, 185);
                     Point contentLocation = new Point(97, 480);
                     Size contentSize = new Size(1092, 1183);
                     resultImage = Utility.FillData2ImageTemplate(imgTemplate, logo, OrgImage, logoLocation, logoSize, contentLocation, contentSize);

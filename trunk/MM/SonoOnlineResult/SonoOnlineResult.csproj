@@ -64,6 +64,12 @@
     <Compile Include="Dialogs\dlgAddMailTemplate.Designer.cs">
       <DependentUpon>dlgAddMailTemplate.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgAddText.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddText.Designer.cs">
+      <DependentUpon>dlgAddText.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgEmailList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -135,6 +141,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddMailTemplate.resx">
       <DependentUpon>dlgAddMailTemplate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddText.resx">
+      <DependentUpon>dlgAddText.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgEmailList.resx">
       <DependentUpon>dlgEmailList.cs</DependentUpon>
