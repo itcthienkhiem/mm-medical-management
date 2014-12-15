@@ -161,12 +161,18 @@ namespace SonoOnlineResult
 
         private void OnAddText()
         {
+            if (lvFile.SelectedItems == null || lvFile.SelectedItems.Count <= 0)
+                return;
+            ResultFileInfo info = lvFile.SelectedItems[0].Tag as ResultFileInfo;
+
             dlgAddText dlg = new dlgAddText();
+            dlg.Text1 = info.Text1;
+            dlg.Text2 = info.Text2;
+            dlg.Text3 = info.Text3;
+
             if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
             {
-                if (lvFile.SelectedItems == null || lvFile.SelectedItems.Count <= 0)
-                    return;
-                ResultFileInfo info = lvFile.SelectedItems[0].Tag as ResultFileInfo;
+                info = lvFile.SelectedItems[0].Tag as ResultFileInfo;
                 info.Text1 = dlg.Text1;
                 info.Text2 = dlg.Text2;
                 info.Text3 = dlg.Text3;
@@ -536,7 +542,7 @@ namespace SonoOnlineResult
             Image img = info.ProcessResultImage();
             if (img != null)
             {
-                img.Save(string.Format("D:\\test.jpg", Application.StartupPath));
+                //img.Save(string.Format("D:\\test.jpg", Application.StartupPath));
                 img = Utility.FixedSizeAndCrop(img, picViewer.Width, picViewer.Height);
                 toolStripButtonRotateLeft.Enabled = true;
                 toolStripButtonRotateRight.Enabled = true;
@@ -550,32 +556,6 @@ namespace SonoOnlineResult
             }
 
             picViewer.Image = img;
-        }
-
-        private Image FillImageTemplate(string templateName, string fileName)
-        {
-            Image img = Utility.LoadImageFromFile(fileName);
-            if (templateName != "[None]")
-            {
-                string templateFileName = string.Format("{0}\\ImageTemplates\\{1}", Application.StartupPath, templateName);
-                if (File.Exists(templateFileName))
-                {
-                    string logoFileName = string.Format("{0}\\Logo\\Logo.jpg", Application.StartupPath);
-                    Image logo = null;
-                    if (File.Exists(logoFileName))
-                        logo = Utility.LoadImageFromFile(logoFileName);
-
-                    Image imgTemplate = Utility.LoadImageFromFile(templateFileName);
-                    Point logoLocation = new Point(404, 142);
-                    Size logoSize = new Size(708, 248);
-                    Point contentLocation = new Point(97, 480);
-                    Size contentSize = new Size(1092, 1183);
-                    img = Utility.FillData2ImageTemplate(imgTemplate, logo, img, logoLocation, logoSize, contentLocation, contentSize);
-                }
-            }
-
-            img = Utility.FixedSizeAndCrop(img, picViewer.Width, picViewer.Height);
-            return img;
         }
         #endregion
 
@@ -763,11 +743,10 @@ namespace SonoOnlineResult
                         logo = Utility.LoadImageFromFile(logoFileName);
 
                     Image imgTemplate = Utility.LoadImageFromFile(templateFileName);
-                    Point logoLocation = new Point(404, 120);
-                    Size logoSize = new Size(708, 185);
-                    Point contentLocation = new Point(97, 480);
-                    Size contentSize = new Size(1092, 1183);
-                    resultImage = Utility.FillData2ImageTemplate(imgTemplate, logo, OrgImage, logoLocation, logoSize, contentLocation, contentSize);
+                    Rectangle logoRect = new Rectangle(404, 120, 708, 185);
+                    Rectangle contentRect = new Rectangle(97, 480, 1092, 1183);
+                    Rectangle textRect = new Rectangle(405, 310, 690, 96);
+                    resultImage = Utility.FillData2ImageTemplate(imgTemplate, logo, OrgImage, logoRect, contentRect, textRect,  Text1, Text2, Text3);
                 }
             }
             else
@@ -780,8 +759,6 @@ namespace SonoOnlineResult
         {
             if (OrgImage != null)
                 OrgImage = Utility.RotateImage(OrgImage, rotateFlipType);
-
-            //ProcessResultImage();
         }
 
         public void Clear()
