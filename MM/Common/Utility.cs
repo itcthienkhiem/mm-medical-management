@@ -1688,61 +1688,89 @@ namespace MM.Common
             return image;
         }
 
-        public static Image FillData2ImageTemplate(Image imageTemplate, Image logo, Image image, Point logoLocation, Size logoSize,
-            Point contentLocation, Size contentSize)
+        public static Image FillData2ImageTemplate(Image imageTemplate, Image logo, Image image, Rectangle logoRect, Rectangle contentRect, 
+            Rectangle textRect, string text1, string text2, string text3)
         {
             if (logo != null)
-                logo = FixedSizeAndCrop(logo, logoSize.Width, logoSize.Height);
+                logo = FixedSizeAndCrop(logo, logoRect.Width, logoRect.Height);
 
-            //if (image.Width > image.Height)
-            //    image = RotateImage(image, RotateFlipType.Rotate270FlipNone);
-
-            image = FixedSizeAndCrop(image, contentSize.Width, contentSize.Height);
+            image = FixedSizeAndCrop(image, contentRect.Width, contentRect.Height);
 
             Graphics grPhoto = Graphics.FromImage(imageTemplate);
             grPhoto.InterpolationMode = InterpolationMode.HighQualityBicubic;
 
+            int x, y, w, h;
             if (logo != null)
             {
-                if (logo.Width < logoSize.Width)
+                x = logoRect.X;
+                y = logoRect.Y;
+                w = logoRect.Width;
+                h = logoRect.Height;
+
+                if (logo.Width < logoRect.Width)
                 {
-                    int delta = logoSize.Width - logo.Width;
-                    logoLocation.X += delta / 2;
-                    logoSize.Width = logo.Width;
+                    int delta = logoRect.Width - logo.Width;
+                    x += delta / 2;
+                    w = logo.Width;
                 }
 
-                if (logo.Height < logoSize.Height)
+                if (logo.Height < logoRect.Height)
                 {
-                    int delta = logoSize.Height - logo.Height;
-                    logoLocation.Y += delta / 2;
-                    logoSize.Height = logo.Height;
+                    int delta = logoRect.Height - logo.Height;
+                    y += delta / 2;
+                    h = logo.Height;
                 }
 
                 grPhoto.DrawImage(logo,
-                    new Rectangle(logoLocation.X, logoLocation.Y, logoSize.Width, logoSize.Height),
+                    new Rectangle(x, y, w, h),
                     new Rectangle(0, 0, logo.Width, logo.Height),
                     GraphicsUnit.Pixel);
             }
 
-            if (image.Width < contentSize.Width)
+            x = contentRect.X;
+            y = contentRect.Y;
+            w = contentRect.Width;
+            h = contentRect.Height;
+
+            if (image.Width < contentRect.Width)
             {
-                int delta = contentSize.Width - image.Width;
-                contentLocation.X += delta / 2;
-                contentSize.Width = image.Width;
+                int delta = contentRect.Width - image.Width;
+                x += delta / 2;
+                w = image.Width;
             }
 
-            if (image.Height < contentSize.Height)
+            if (image.Height < contentRect.Height)
             {
-                int delta = contentSize.Height - image.Height;
-                contentLocation.Y += delta / 2;
-                contentSize.Height = image.Height;
+                int delta = contentRect.Height - image.Height;
+                y += delta / 2;
+                h = image.Height;
             }
 
             grPhoto.DrawImage(image,
-                new Rectangle(contentLocation.X, contentLocation.Y, contentSize.Width, contentSize.Height),
+                new Rectangle(x, y, w, h),
                 new Rectangle(0, 0, image.Width, image.Height),
                 GraphicsUnit.Pixel);
 
+            //Fill text
+            Font font = new Font("Arial", 13);
+            Brush brush = new SolidBrush(Color.Black);
+            if (text1.Trim() != string.Empty)
+            {
+                grPhoto.DrawString(text1, font, brush, textRect.X, textRect.Y);
+            }
+
+            if (text2.Trim() != string.Empty)
+            {
+                grPhoto.DrawString(text2, font, brush, textRect.X, textRect.Y + 32);
+            }
+
+            if (text3.Trim() != string.Empty)
+            {
+                grPhoto.DrawString(text3, font, brush, textRect.X, textRect.Y + 64);
+            }
+
+            font.Dispose();
+            brush.Dispose();
             grPhoto.Dispose();
 
             return imageTemplate;
