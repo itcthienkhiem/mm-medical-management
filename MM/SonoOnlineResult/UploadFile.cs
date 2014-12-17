@@ -28,8 +28,8 @@ namespace SonoOnlineResult
         private bool _isUploadSuccess = true;
         private string _subject = string.Empty;
         private string _body = string.Empty;
-        private string _templateName = string.Empty;
-        private string _logoName = string.Empty;
+        //private string _templateName = string.Empty;
+        //private string _logoName = string.Empty;
         private string _passcode = string.Empty;
         #endregion
 
@@ -82,6 +82,7 @@ namespace SonoOnlineResult
 
             LoadImageTemplates();
             LoadLogos();
+            LoadAds();
         }
 
         private void LoadImageTemplates()
@@ -120,6 +121,26 @@ namespace SonoOnlineResult
             toolStripComboBoxLogo.SelectedItem = oldLogoName;
         }
 
+        private void LoadAds()
+        {
+
+            string oldAdsName = toolStripComboBoxAds.SelectedItem == null ? string.Empty : toolStripComboBoxAds.SelectedItem.ToString();
+            toolStripComboBoxAds.Items.Clear();
+            toolStripComboBoxAds.Items.Add("[None]");
+
+            string adsFolder = string.Format("{0}\\Ads", Application.StartupPath);
+            if (Directory.Exists(adsFolder))
+            {
+                string[] fileNames = Directory.GetFiles(adsFolder);
+                foreach (var fileName in fileNames)
+                    toolStripComboBoxAds.Items.Add(Path.GetFileName(fileName));
+
+                toolStripComboBoxAds.SelectedIndex = 0;
+            }
+
+            toolStripComboBoxAds.SelectedItem = oldAdsName;
+        }
+
         private void Execute(string cmd)
         {
             switch (cmd)
@@ -155,8 +176,67 @@ namespace SonoOnlineResult
                 case "Add Text":
                     OnAddText();
                     break;
-                    
+
+                case "Apply":
+                    OnApplyTemplate();
+                    break;
+
+                case "Ads Configuration":
+                    OnAdsConfig();
+                    break;
+
+                case "Add Ads":
+                    OnAddAds();
+                    break;
             }
+        }
+
+        private void OnAdsConfig()
+        {
+            dlgAdsConfig dlg = new dlgAdsConfig();
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.Cancel)
+            {
+                if (dlg.IsChanged)
+                {
+                    LoadAds();
+                }
+            }
+        }
+
+        private void OnAddAds()
+        {
+            if (toolStripComboBoxAds.SelectedItem == null ||
+                toolStripComboBoxAds.SelectedItem.ToString() == "[None]") return;
+
+            string fileName = toolStripComboBoxAds.SelectedItem.ToString();
+            if (!CheckFileExist(fileName))
+            {
+                ListViewItem item = new ListViewItem(fileName);
+                ResultFileInfo info = new ResultFileInfo();
+                info.FileName = fileName;
+                info.Type = FileType.Ads;
+                info.ProcessResultImage();
+                item.Tag = info;
+                lvFile.Items.Add(item);
+            }
+
+            lvFile.SelectedItems.Clear();
+            lvFile.Items[lvFile.Items.Count - 1].Selected = true;
+        }
+
+        private void OnApplyTemplate()
+        {
+            if (lvFile.SelectedItems == null || lvFile.SelectedItems.Count <= 0)
+                return;
+
+            foreach (ListViewItem item in lvFile.SelectedItems)
+            {
+                ResultFileInfo info = item.Tag as ResultFileInfo;
+                info.TemplateName = toolStripComboBoxTemplates.SelectedItem == null ? "[None]" : toolStripComboBoxTemplates.SelectedItem.ToString();
+                info.LogoName = toolStripComboBoxLogo.SelectedItem == null ? "[None]" : toolStripComboBoxLogo.SelectedItem.ToString();
+            }
+
+            OnViewImage();
         }
 
         private void OnAddText()
@@ -276,8 +356,8 @@ namespace SonoOnlineResult
                         ListViewItem item = new ListViewItem(fileName);
                         ResultFileInfo info = new ResultFileInfo();
                         info.FileName = fileName;
-                        info.TemplateName = toolStripComboBoxTemplates.SelectedItem == null ? string.Empty : toolStripComboBoxTemplates.SelectedItem.ToString();
-                        info.LogoName = toolStripComboBoxLogo.SelectedItem == null ? string.Empty : toolStripComboBoxLogo.SelectedItem.ToString();
+                        //info.TemplateName = toolStripComboBoxTemplates.SelectedItem == null ? string.Empty : toolStripComboBoxTemplates.SelectedItem.ToString();
+                        //info.LogoName = toolStripComboBoxLogo.SelectedItem == null ? string.Empty : toolStripComboBoxLogo.SelectedItem.ToString();
                         info.ProcessResultImage();
                         item.Tag = info;
                         lvFile.Items.Add(item);
@@ -353,8 +433,8 @@ namespace SonoOnlineResult
 
                 _resultFileInfos.Clear();
                 _isUploadSuccess = false;
-                _templateName = toolStripComboBoxTemplates.SelectedItem == null ? string.Empty : toolStripComboBoxTemplates.SelectedItem.ToString();
-                _logoName = toolStripComboBoxLogo.SelectedItem == null ? string.Empty : toolStripComboBoxLogo.SelectedItem.ToString();
+                //_templateName = toolStripComboBoxTemplates.SelectedItem == null ? string.Empty : toolStripComboBoxTemplates.SelectedItem.ToString();
+                //_logoName = toolStripComboBoxLogo.SelectedItem == null ? string.Empty : toolStripComboBoxLogo.SelectedItem.ToString();
 
                 foreach (ListViewItem item in lvFile.Items)
                     _resultFileInfos.Add(item.Tag as ResultFileInfo);
@@ -466,8 +546,8 @@ namespace SonoOnlineResult
                 if (info.IsImageFile)
                 {
                     string fn = string.Format("{0}\\{1}", Application.StartupPath, Path.GetFileName(info.FileName));
-                    info.TemplateName = _templateName;
-                    info.LogoName = _logoName;
+                    //info.TemplateName = _templateName;
+                    //info.LogoName = _logoName;
                     Image img = info.ProcessResultImage();
                     img.Save(fn, ImageFormat.Jpeg);
 
@@ -536,8 +616,8 @@ namespace SonoOnlineResult
             }
 
             ResultFileInfo info = lvFile.SelectedItems[0].Tag as ResultFileInfo;
-            info.TemplateName = toolStripComboBoxTemplates.SelectedItem == null ? string.Empty : toolStripComboBoxTemplates.SelectedItem.ToString();
-            info.LogoName = toolStripComboBoxLogo.SelectedItem == null ? string.Empty : toolStripComboBoxLogo.SelectedItem.ToString();
+            //info.TemplateName = toolStripComboBoxTemplates.SelectedItem == null ? string.Empty : toolStripComboBoxTemplates.SelectedItem.ToString();
+            //info.LogoName = toolStripComboBoxLogo.SelectedItem == null ? string.Empty : toolStripComboBoxLogo.SelectedItem.ToString();
 
             Image img = info.ProcessResultImage();
             if (img != null)
@@ -606,8 +686,8 @@ namespace SonoOnlineResult
                     ListViewItem item = new ListViewItem(file);
                     ResultFileInfo info = new ResultFileInfo();
                     info.FileName = file;
-                    info.TemplateName = toolStripComboBoxTemplates.SelectedItem == null ? string.Empty : toolStripComboBoxTemplates.SelectedItem.ToString();
-                    info.LogoName = toolStripComboBoxLogo.SelectedItem == null ? string.Empty : toolStripComboBoxLogo.SelectedItem.ToString();
+                    info.TemplateName = toolStripComboBoxTemplates.SelectedItem == null ? "[None]" : toolStripComboBoxTemplates.SelectedItem.ToString();
+                    info.LogoName = toolStripComboBoxLogo.SelectedItem == null ? "[None]" : toolStripComboBoxLogo.SelectedItem.ToString();
                     info.ProcessResultImage();
                     item.Tag = info;
                     lvFile.Items.Add(item);
@@ -635,17 +715,26 @@ namespace SonoOnlineResult
 
         private void toolStripComboBoxTemplates_SelectedIndexChanged(object sender, EventArgs e)
         {
-            OnViewImage();
+            //OnViewImage();
         }
 
         private void toolStripComboBoxLogo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            OnViewImage();
+            //OnViewImage();
         }
 
         private void toolStripImage_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
         {
             Execute(e.ClickedItem.ToolTipText);
+        }
+
+        private void UploadFile_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            if (MessageBox.Show("Do you want to quit this program ?", 
+                this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
+            {
+                e.Cancel = true;
+            }
         }
         #endregion
 
@@ -686,18 +775,21 @@ namespace SonoOnlineResult
             }
         }
         #endregion
+
+        
     }
 
     public class ResultFileInfo
     {
         #region Members
         public string FileName = string.Empty;
-        public string LogoName = string.Empty;
-        public string TemplateName = string.Empty;
+        public string LogoName = "[None]";
+        public string TemplateName = "[None]";
         public string Text1 = string.Empty;
         public string Text2 = string.Empty;
         public string Text3 = string.Empty;
         public Image OrgImage = null;
+        public FileType Type = FileType.Result;
         #endregion
 
         #region Constructor
@@ -730,7 +822,17 @@ namespace SonoOnlineResult
             Image resultImage = null;
 
             if (OrgImage == null)
-                OrgImage = Utility.LoadImageFromFile(FileName);
+            {
+                if (Type == FileType.Result)
+                    OrgImage = Utility.LoadImageFromFile(FileName);
+                else
+                {
+                    string AdsFileName = string.Format("{0}\\Ads\\{1}", Application.StartupPath, FileName);
+                    OrgImage = Utility.LoadImageFromFile(AdsFileName);
+                }
+            }
+
+            resultImage = OrgImage;
 
             if (TemplateName != "[None]")
             {
@@ -746,11 +848,9 @@ namespace SonoOnlineResult
                     Rectangle logoRect = new Rectangle(404, 120, 708, 185);
                     Rectangle contentRect = new Rectangle(97, 480, 1092, 1183);
                     Rectangle textRect = new Rectangle(405, 310, 690, 96);
-                    resultImage = Utility.FillData2ImageTemplate(imgTemplate, logo, OrgImage, logoRect, contentRect, textRect,  Text1, Text2, Text3);
+                    resultImage = Utility.FillData2ImageTemplate(imgTemplate, logo, OrgImage, logoRect, contentRect, textRect, Text1, Text2, Text3);
                 }
             }
-            else
-                resultImage = OrgImage;
 
             return resultImage;
         }
@@ -770,5 +870,11 @@ namespace SonoOnlineResult
             }
         }
         #endregion
+    }
+
+    public enum FileType : int
+    {
+        Result = 0,
+        Ads
     }
 }
