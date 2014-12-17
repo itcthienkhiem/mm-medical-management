@@ -35,12 +35,18 @@
             this.toolStripButtonMailConfig = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonMailTemplate = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonLogoConfig = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonAdver = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripComboBoxTemplates = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel2 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripComboBoxLogo = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripButtonApply = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator4 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
+            this.toolStripComboBoxAds = new System.Windows.Forms.ToolStripComboBox();
+            this.toolStripButtonAddAds = new System.Windows.Forms.ToolStripButton();
             this.lvFile = new System.Windows.Forms.ListView();
             this.colFileName = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.panel1 = new System.Windows.Forms.Panel();
@@ -55,9 +61,9 @@
             this.toolStripImage = new System.Windows.Forms.ToolStrip();
             this.toolStripButtonRotateLeft = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonRotateRight = new System.Windows.Forms.ToolStripButton();
-            this.panel3 = new System.Windows.Forms.Panel();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonAddText = new System.Windows.Forms.ToolStripButton();
+            this.panel3 = new System.Windows.Forms.Panel();
             this.toolStripMain.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -75,12 +81,18 @@
             this.toolStripButtonMailConfig,
             this.toolStripButtonMailTemplate,
             this.toolStripButtonLogoConfig,
+            this.toolStripButtonAdver,
             this.toolStripSeparator1,
             this.toolStripLabel1,
             this.toolStripComboBoxTemplates,
             this.toolStripSeparator2,
             this.toolStripLabel2,
-            this.toolStripComboBoxLogo});
+            this.toolStripComboBoxLogo,
+            this.toolStripButtonApply,
+            this.toolStripSeparator4,
+            this.toolStripLabel3,
+            this.toolStripComboBoxAds,
+            this.toolStripButtonAddAds});
             this.toolStripMain.Location = new System.Drawing.Point(0, 0);
             this.toolStripMain.Name = "toolStripMain";
             this.toolStripMain.Size = new System.Drawing.Size(977, 31);
@@ -138,6 +150,16 @@
             this.toolStripButtonLogoConfig.Text = "toolStripButton1";
             this.toolStripButtonLogoConfig.ToolTipText = "Logo Configuration";
             // 
+            // toolStripButtonAdver
+            // 
+            this.toolStripButtonAdver.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonAdver.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonAdver.Image")));
+            this.toolStripButtonAdver.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonAdver.Name = "toolStripButtonAdver";
+            this.toolStripButtonAdver.Size = new System.Drawing.Size(28, 28);
+            this.toolStripButtonAdver.Text = "toolStripButton1";
+            this.toolStripButtonAdver.ToolTipText = "Ads Configuration";
+            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -180,14 +202,57 @@
             this.toolStripComboBoxLogo.Size = new System.Drawing.Size(121, 31);
             this.toolStripComboBoxLogo.SelectedIndexChanged += new System.EventHandler(this.toolStripComboBoxLogo_SelectedIndexChanged);
             // 
+            // toolStripButtonApply
+            // 
+            this.toolStripButtonApply.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Text;
+            this.toolStripButtonApply.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripButtonApply.ForeColor = System.Drawing.Color.Red;
+            this.toolStripButtonApply.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonApply.Image")));
+            this.toolStripButtonApply.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonApply.Name = "toolStripButtonApply";
+            this.toolStripButtonApply.Size = new System.Drawing.Size(42, 28);
+            this.toolStripButtonApply.Text = "Apply";
+            this.toolStripButtonApply.TextImageRelation = System.Windows.Forms.TextImageRelation.Overlay;
+            // 
+            // toolStripSeparator4
+            // 
+            this.toolStripSeparator4.Name = "toolStripSeparator4";
+            this.toolStripSeparator4.Size = new System.Drawing.Size(6, 31);
+            // 
+            // toolStripLabel3
+            // 
+            this.toolStripLabel3.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.toolStripLabel3.ForeColor = System.Drawing.Color.Blue;
+            this.toolStripLabel3.Name = "toolStripLabel3";
+            this.toolStripLabel3.Size = new System.Drawing.Size(30, 28);
+            this.toolStripLabel3.Text = "Ads:";
+            // 
+            // toolStripComboBoxAds
+            // 
+            this.toolStripComboBoxAds.Name = "toolStripComboBoxAds";
+            this.toolStripComboBoxAds.Size = new System.Drawing.Size(121, 31);
+            // 
+            // toolStripButtonAddAds
+            // 
+            this.toolStripButtonAddAds.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonAddAds.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonAddAds.Image")));
+            this.toolStripButtonAddAds.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonAddAds.Name = "toolStripButtonAddAds";
+            this.toolStripButtonAddAds.Size = new System.Drawing.Size(28, 28);
+            this.toolStripButtonAddAds.Text = "toolStripButton1";
+            this.toolStripButtonAddAds.ToolTipText = "Add Ads";
+            // 
             // lvFile
             // 
+            this.lvFile.Activation = System.Windows.Forms.ItemActivation.OneClick;
             this.lvFile.AllowDrop = true;
             this.lvFile.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.colFileName});
             this.lvFile.Dock = System.Windows.Forms.DockStyle.Fill;
             this.lvFile.FullRowSelect = true;
             this.lvFile.GridLines = true;
+            this.lvFile.HeaderStyle = System.Windows.Forms.ColumnHeaderStyle.Nonclickable;
+            this.lvFile.HideSelection = false;
             this.lvFile.Location = new System.Drawing.Point(0, 0);
             this.lvFile.Name = "lvFile";
             this.lvFile.Size = new System.Drawing.Size(410, 599);
@@ -341,15 +406,6 @@
             this.toolStripButtonRotateRight.Text = "toolStripButton2";
             this.toolStripButtonRotateRight.ToolTipText = "Rotate clockwise";
             // 
-            // panel3
-            // 
-            this.panel3.Controls.Add(this.lvFile);
-            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel3.Location = new System.Drawing.Point(0, 31);
-            this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(410, 599);
-            this.panel3.TabIndex = 4;
-            // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
@@ -364,6 +420,15 @@
             this.toolStripButtonAddText.Name = "toolStripButtonAddText";
             this.toolStripButtonAddText.Size = new System.Drawing.Size(28, 28);
             this.toolStripButtonAddText.ToolTipText = "Add Text";
+            // 
+            // panel3
+            // 
+            this.panel3.Controls.Add(this.lvFile);
+            this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.panel3.Location = new System.Drawing.Point(0, 31);
+            this.panel3.Name = "panel3";
+            this.panel3.Size = new System.Drawing.Size(410, 599);
+            this.panel3.TabIndex = 4;
             // 
             // UploadFile
             // 
@@ -381,6 +446,7 @@
             this.Name = "UploadFile";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Sono Online Result";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UploadFile_FormClosing);
             this.toolStripMain.ResumeLayout(false);
             this.toolStripMain.PerformLayout();
             this.panel1.ResumeLayout(false);
@@ -426,5 +492,11 @@
         private System.Windows.Forms.ToolStripComboBox toolStripComboBoxLogo;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton toolStripButtonAddText;
+        private System.Windows.Forms.ToolStripButton toolStripButtonApply;
+        private System.Windows.Forms.ToolStripButton toolStripButtonAdver;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator4;
+        private System.Windows.Forms.ToolStripLabel toolStripLabel3;
+        private System.Windows.Forms.ToolStripComboBox toolStripComboBoxAds;
+        private System.Windows.Forms.ToolStripButton toolStripButtonAddAds;
     }
 }
