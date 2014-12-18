@@ -64,6 +64,7 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonAddText = new System.Windows.Forms.ToolStripButton();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.toolStripButtonResendMail = new System.Windows.Forms.ToolStripButton();
             this.toolStripMain.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -82,6 +83,7 @@
             this.toolStripButtonMailTemplate,
             this.toolStripButtonLogoConfig,
             this.toolStripButtonAdver,
+            this.toolStripButtonResendMail,
             this.toolStripSeparator1,
             this.toolStripLabel1,
             this.toolStripComboBoxTemplates,
@@ -430,6 +432,17 @@
             this.panel3.Size = new System.Drawing.Size(410, 599);
             this.panel3.TabIndex = 4;
             // 
+            // toolStripButtonResendMail
+            // 
+            this.toolStripButtonResendMail.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonResendMail.Enabled = false;
+            this.toolStripButtonResendMail.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonResendMail.Image")));
+            this.toolStripButtonResendMail.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonResendMail.Name = "toolStripButtonResendMail";
+            this.toolStripButtonResendMail.Size = new System.Drawing.Size(28, 28);
+            this.toolStripButtonResendMail.Text = "toolStripButton1";
+            this.toolStripButtonResendMail.ToolTipText = "Resend Mail";
+            // 
             // UploadFile
             // 
             this.AllowDrop = true;
@@ -498,5 +511,6 @@
         private System.Windows.Forms.ToolStripLabel toolStripLabel3;
         private System.Windows.Forms.ToolStripComboBox toolStripComboBoxAds;
         private System.Windows.Forms.ToolStripButton toolStripButtonAddAds;
+        private System.Windows.Forms.ToolStripButton toolStripButtonResendMail;
     }
 }
