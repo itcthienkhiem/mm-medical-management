@@ -23,6 +23,7 @@ namespace SonoOnlineResult.Dialogs
         public dlgSendMail()
         {
             InitializeComponent();
+            InitData();
         }
         #endregion
 
@@ -42,14 +43,22 @@ namespace SonoOnlineResult.Dialogs
             get { return cboMailTemplate.SelectedIndex > 0; }
         }
 
+        public string MailTemplate
+        {
+            get { return cboMailTemplate.Text; }
+            set { cboMailTemplate.Text = value; }
+        }
+
         public string Subject
         {
             get { return txtSubject.Text; }
+            set { txtSubject.Text = value; }
         }
 
         public string Body
         {
             get { return txtBody.Text; }
+            set { txtBody.Text = value; }
         }
 
         public string Passcode
@@ -199,7 +208,7 @@ namespace SonoOnlineResult.Dialogs
 
         private void dlgSendMail_Load(object sender, EventArgs e)
         {
-            InitData();   
+            //InitData();   
         }
 
         private void cboMailTemplate_SelectedIndexChanged(object sender, EventArgs e)

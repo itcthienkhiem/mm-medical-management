@@ -28,6 +28,7 @@ namespace SonoOnlineResult
         private bool _isUploadSuccess = true;
         private string _subject = string.Empty;
         private string _body = string.Empty;
+        private string _mailTemplate = string.Empty;
         //private string _templateName = string.Empty;
         //private string _logoName = string.Empty;
         private string _passcode = string.Empty;
@@ -188,6 +189,30 @@ namespace SonoOnlineResult
                 case "Add Ads":
                     OnAddAds();
                     break;
+
+                case "Resend Mail":
+                    OnResendMail();
+                    break;
+            }
+        }
+
+        private void OnResendMail()
+        {
+            dlgSendMail dlg = new dlgSendMail();
+            dlg.MailTemplate = _mailTemplate;
+            dlg.Subject = _subject;
+            dlg.Body = _body;
+
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                _toEmailList = dlg.ToEmailList;
+                _ccEmailList = dlg.CcEmailList;
+                _usingMailTemplate = dlg.UsingMailTemplate;
+                _subject = dlg.Subject;
+                _body = dlg.Body;
+                _passcode = dlg.Passcode;
+
+                OnSendMailAsThread();
             }
         }
 
@@ -366,7 +391,32 @@ namespace SonoOnlineResult
 
                 lvFile.SelectedItems.Clear();
                 lvFile.Items[lvFile.Items.Count - 1].Selected = true;
+
+                toolStripButtonResendMail.Enabled = CheckAllowResendMail();
             }
+        }
+
+        private bool CheckAllowResendMail()
+        {
+            if (_resultFileInfos.Count != lvFile.Items.Count)
+                return false;
+
+            foreach (ListViewItem item in lvFile.Items)
+            {
+                bool result = false;
+                foreach (var info in _resultFileInfos)
+                {
+                    if (item.Text == info.FileName)
+                    {
+                        result = true;
+                        break;
+                    }
+                }
+
+                if (!result) return false;
+            }
+
+            return true;
         }
 
         private void OnRemove()
@@ -398,6 +448,8 @@ namespace SonoOnlineResult
                     else
                         lvFile.Items[0].Selected = true;
                 }
+
+                toolStripButtonResendMail.Enabled = CheckAllowResendMail();
             }
         }
 
@@ -418,6 +470,8 @@ namespace SonoOnlineResult
 
                 lvFile.Items.Clear();
                 picViewer.Image = null;
+
+                toolStripButtonResendMail.Enabled = false;
             }
         }
 
@@ -432,6 +486,7 @@ namespace SonoOnlineResult
                     return;
 
                 _resultFileInfos.Clear();
+                toolStripButtonResendMail.Enabled = false;
                 _isUploadSuccess = false;
                 //_templateName = toolStripComboBoxTemplates.SelectedItem == null ? string.Empty : toolStripComboBoxTemplates.SelectedItem.ToString();
                 //_logoName = toolStripComboBoxLogo.SelectedItem == null ? string.Empty : toolStripComboBoxLogo.SelectedItem.ToString();
@@ -453,6 +508,7 @@ namespace SonoOnlineResult
                         _subject = dlg.Subject;
                         _body = dlg.Body;
                         _passcode = dlg.Passcode;
+                        _mailTemplate = dlg.MailTemplate;
 
                         OnSendMailAsThread();
                     }
@@ -470,6 +526,8 @@ namespace SonoOnlineResult
             {
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnSendMailProc));
                 base.ShowWaiting();
+
+                toolStripButtonResendMail.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -503,20 +561,21 @@ namespace SonoOnlineResult
             string link = string.Format("http://result.ris.com.au?code={0}", code);
             //string account = string.Format("Username: {0}\nPassword: {1}", toEmail, pass);
 
+            string body = _body;
             if (_usingMailTemplate)
             {
-                _body = _body.Replace("#Email#", toEmail);
-                _body = _body.Replace("#Link#", link);
+                body = body.Replace("#Email#", toEmail);
+                body = body.Replace("#Link#", link);
                 //_body = _body.Replace("#Account#", account);
-                _body = _body.Replace("#Signature#", Global.MailConfig.Signature);
+                body = body.Replace("#Signature#", Global.MailConfig.Signature);
             }
             else
             {
-                _body += string.Format("\n\nPlease follow this link to view your result:\n{0}\n\n{1}",
+                body += string.Format("\n\nPlease follow this link to view your result:\n{0}\n\n{1}",
                     link, Global.MailConfig.Signature);
             }
 
-            msg.Body = _body;
+            msg.Body = body;
 
             SmtpClient client = new SmtpClient();
             client.Port = Global.MailConfig.Port;
@@ -530,6 +589,7 @@ namespace SonoOnlineResult
             try
             {
                 client.Send(msg);
+
                 MessageBox.Show("Mail has been sent.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
@@ -566,8 +626,8 @@ namespace SonoOnlineResult
                     thumbnail.Save(thumbnailFileName, ImageFormat.Jpeg);
                     thumbnail.Dispose();
                     thumbnail = null;
-                    img.Dispose();
-                    img = null;
+                    //img.Dispose();
+                    //img = null;
 
                     remoteFileName = string.Format("{0}/{1}", Global.FTPFolder, Path.GetFileName(thumbnailFileName));
                     result = FTP.UploadFile(Global.FTPConnectionInfo, thumbnailFileName, remoteFileName);
