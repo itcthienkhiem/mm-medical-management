@@ -164,8 +164,18 @@ namespace SonoOnlineResult
 
             try
             {
-                string query = string.Format("SELECT * FROM Branch");
+                string query = string.Format("SELECT * FROM Branch ORDER BY BranchName");
                 result = MySQLHelper.ExecuteQuery(query);
+                if (result.IsOK)
+                {
+                    DataTable dt = result.QueryResult as DataTable;
+                    if (dt != null)
+                    {
+                        DataColumn col = new DataColumn("Check", typeof(bool));
+                        col.DefaultValue = false;
+                        dt.Columns.Add(col);
+                    }
+                }
             }
             catch (Exception e)
             {
@@ -213,13 +223,32 @@ namespace SonoOnlineResult
                 {
                     query = string.Format("INSERT INTO Branch(BranchName, Address, Telephone, Fax, Website, Note) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')",
                         branchName, address, telephone, fax, website, note);
-                    result = MySQLHelper.ExecuteNoneQuery(query);
-                    if (!result.IsOK) return result;
+                    result = MySQLHelper.ExecuteNoneQueryWithGetLastKey(query);
                 }
                 else //Update
                 {
-
+                    query = string.Format("UPDATE Branch SET BranchName = '{0}', Address = '{1}', Telephone = '{2}', Fax = '{3}', Website = '{4}', Note = '{5}' WHERE BranchKey = {6}", 
+                        branchName, address, telephone, fax, website, note, branchKey);
+                    result = MySQLHelper.ExecuteNoneQuery(query);
                 }
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.Message;
+            }
+
+            return result;
+        }
+
+        public static Result DeleteBranch(int branchKey)
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Format("DELETE FROM Branch WHERE BranchKey = {0}", branchKey);
+                result = MySQLHelper.ExecuteNoneQuery(query);
             }
             catch (Exception e)
             {
