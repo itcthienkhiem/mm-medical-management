@@ -41,7 +41,6 @@ namespace SonoOnlineResult
         {
             Result result = new Result();
             MySqlCommand cmd = null;
-            MySqlDataAdapter adapter = null;
             MySqlConnection cnn = null;
 
             try
@@ -111,12 +110,6 @@ namespace SonoOnlineResult
                     cmd = null;
                 }
 
-                if (adapter != null)
-                {
-                    adapter.Dispose();
-                    adapter = null;
-                }
-
                 if (cnn != null)
                 {
                     cnn.Close();
@@ -155,6 +148,78 @@ namespace SonoOnlineResult
                 //}
 
                 //result = MySQLHelper.ExecuteNoneQuery(query);
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.Message;
+            }
+
+            return result;
+        }
+
+        public static Result GetBranchList()
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Format("SELECT * FROM Branch");
+                result = MySQLHelper.ExecuteQuery(query);
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.Message;
+            }
+
+            return result;
+        }
+
+        public static Result CheckBranchExist(string branchName, int branchKey)
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Format("SELECT * FROM Branch WHERE BranchName = '{0}' AND (BranchKey <> {1} OR BranchKey = 0)", 
+                    branchName, branchKey);
+                result = MySQLHelper.ExecuteQuery(query);
+                if (!result.IsOK) return result;
+
+                DataTable dt = result.QueryResult as DataTable;
+                if (dt == null || dt.Rows.Count <= 0)
+                    result.Error.Code = ErrorCode.NOT_EXIST;
+                else
+                    result.Error.Code = ErrorCode.EXIST;
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.Message;
+            }
+
+            return result;
+        }
+
+        public static Result InsertBranch(int branchKey, string branchName, string address, string telephone, string fax, string website, string note)
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Empty;
+                if (branchKey <= 0) //Insert
+                {
+                    query = string.Format("INSERT INTO Branch(BranchName, Address, Telephone, Fax, Website, Note) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')",
+                        branchName, address, telephone, fax, website, note);
+                    result = MySQLHelper.ExecuteNoneQuery(query);
+                    if (!result.IsOK) return result;
+                }
+                else //Update
+                {
+
+                }
             }
             catch (Exception e)
             {

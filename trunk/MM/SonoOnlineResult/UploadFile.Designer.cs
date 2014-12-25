@@ -36,6 +36,7 @@
             this.toolStripButtonMailTemplate = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonLogoConfig = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonAdver = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonResendMail = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripComboBoxTemplates = new System.Windows.Forms.ToolStripComboBox();
@@ -64,7 +65,10 @@
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonAddText = new System.Windows.Forms.ToolStripButton();
             this.panel3 = new System.Windows.Forms.Panel();
-            this.toolStripButtonResendMail = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonBranch = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonUsers = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonTracking = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripMain.SuspendLayout();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
@@ -85,6 +89,10 @@
             this.toolStripButtonAdver,
             this.toolStripButtonResendMail,
             this.toolStripSeparator1,
+            this.toolStripButtonBranch,
+            this.toolStripButtonUsers,
+            this.toolStripButtonTracking,
+            this.toolStripSeparator5,
             this.toolStripLabel1,
             this.toolStripComboBoxTemplates,
             this.toolStripSeparator2,
@@ -161,6 +169,17 @@
             this.toolStripButtonAdver.Size = new System.Drawing.Size(28, 28);
             this.toolStripButtonAdver.Text = "toolStripButton1";
             this.toolStripButtonAdver.ToolTipText = "Ads Configuration";
+            // 
+            // toolStripButtonResendMail
+            // 
+            this.toolStripButtonResendMail.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonResendMail.Enabled = false;
+            this.toolStripButtonResendMail.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonResendMail.Image")));
+            this.toolStripButtonResendMail.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonResendMail.Name = "toolStripButtonResendMail";
+            this.toolStripButtonResendMail.Size = new System.Drawing.Size(28, 28);
+            this.toolStripButtonResendMail.Text = "toolStripButton1";
+            this.toolStripButtonResendMail.ToolTipText = "Resend Mail";
             // 
             // toolStripSeparator1
             // 
@@ -432,16 +451,40 @@
             this.panel3.Size = new System.Drawing.Size(410, 599);
             this.panel3.TabIndex = 4;
             // 
-            // toolStripButtonResendMail
+            // toolStripButtonBranch
             // 
-            this.toolStripButtonResendMail.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonResendMail.Enabled = false;
-            this.toolStripButtonResendMail.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonResendMail.Image")));
-            this.toolStripButtonResendMail.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonResendMail.Name = "toolStripButtonResendMail";
-            this.toolStripButtonResendMail.Size = new System.Drawing.Size(28, 28);
-            this.toolStripButtonResendMail.Text = "toolStripButton1";
-            this.toolStripButtonResendMail.ToolTipText = "Resend Mail";
+            this.toolStripButtonBranch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonBranch.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonBranch.Image")));
+            this.toolStripButtonBranch.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonBranch.Name = "toolStripButtonBranch";
+            this.toolStripButtonBranch.Size = new System.Drawing.Size(28, 28);
+            this.toolStripButtonBranch.Text = "toolStripButton1";
+            this.toolStripButtonBranch.ToolTipText = "Branch List";
+            // 
+            // toolStripButtonUsers
+            // 
+            this.toolStripButtonUsers.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonUsers.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonUsers.Image")));
+            this.toolStripButtonUsers.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonUsers.Name = "toolStripButtonUsers";
+            this.toolStripButtonUsers.Size = new System.Drawing.Size(28, 28);
+            this.toolStripButtonUsers.Text = "toolStripButton2";
+            this.toolStripButtonUsers.ToolTipText = "User List";
+            // 
+            // toolStripButtonTracking
+            // 
+            this.toolStripButtonTracking.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonTracking.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonTracking.Image")));
+            this.toolStripButtonTracking.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonTracking.Name = "toolStripButtonTracking";
+            this.toolStripButtonTracking.Size = new System.Drawing.Size(28, 28);
+            this.toolStripButtonTracking.Text = "toolStripButton3";
+            this.toolStripButtonTracking.ToolTipText = "Tracking";
+            // 
+            // toolStripSeparator5
+            // 
+            this.toolStripSeparator5.Name = "toolStripSeparator5";
+            this.toolStripSeparator5.Size = new System.Drawing.Size(6, 31);
             // 
             // UploadFile
             // 
@@ -512,5 +555,9 @@
         private System.Windows.Forms.ToolStripComboBox toolStripComboBoxAds;
         private System.Windows.Forms.ToolStripButton toolStripButtonAddAds;
         private System.Windows.Forms.ToolStripButton toolStripButtonResendMail;
+        private System.Windows.Forms.ToolStripButton toolStripButtonBranch;
+        private System.Windows.Forms.ToolStripButton toolStripButtonUsers;
+        private System.Windows.Forms.ToolStripButton toolStripButtonTracking;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
     }
 }
