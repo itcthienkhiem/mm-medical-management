@@ -76,6 +76,8 @@ namespace SonoOnlineResult
             if (File.Exists(Global.MySQLConnectionInfoPath))
                 Global.MySQLConnectionInfo.Deserialize(Global.MySQLConnectionInfoPath);
 
+            MySQLHelper._connectionString = Global.MySQLConnectionInfo.ConnectionString;
+
             if (File.Exists(Global.MailTemplatePath))
                 Global.MailTemplateList.Deserialize(Global.MailTemplatePath);
 
@@ -205,12 +207,40 @@ namespace SonoOnlineResult
                 case "Tracking":
                     OnTracking();
                     break;
+
+                case "Login":
+                    OnLogin();
+                    break;
+
+                case "Logout":
+                    OnLogout();
+                    break;
+
+                case "Change Password":
+                    OnChangePassword();
+                    break;
             }
+        }
+
+        private void OnLogin()
+        {
+            
+        }
+
+        private void OnLogout()
+        {
+            
+        }
+
+        private void OnChangePassword()
+        {
+            
         }
 
         private void OnBranchList()
         {
-            
+            dlgBranchList dlg = new dlgBranchList();
+            dlg.ShowDialog(this);
         }
 
         private void OnUserList()

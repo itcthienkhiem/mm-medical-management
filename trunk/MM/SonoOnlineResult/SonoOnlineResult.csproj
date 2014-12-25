@@ -64,6 +64,12 @@
     <Compile Include="Controls\uBase.Designer.cs">
       <DependentUpon>uBase.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgAddBranch.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddBranch.Designer.cs">
+      <DependentUpon>dlgAddBranch.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgAdsConfig.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -172,6 +178,9 @@
     <EmbeddedResource Include="Controls\uBase.resx">
       <DependentUpon>uBase.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddBranch.resx">
+      <DependentUpon>dlgAddBranch.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAdsConfig.resx">
       <DependentUpon>dlgAdsConfig.cs</DependentUpon>
     </EmbeddedResource>
@@ -253,6 +262,8 @@
   <ItemGroup>
     <Content Include="MM_Ico.ico" />
     <Content Include="Notes.txt" />
+    <None Include="Resources\Logout.png" />
+    <None Include="Resources\Login.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
