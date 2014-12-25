@@ -359,5 +359,41 @@ namespace SonoOnlineResult
 
             return result;
         }
+
+        public static Result ChangePassword(int logonKey, string newPassword)
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Format("UPDATE Logon SET Password = '{0}' WHERE LogonKey = {1}", newPassword, logonKey);
+                result = MySQLHelper.ExecuteNoneQuery(query);
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.Message;
+            }
+
+            return result;
+        }
+
+        public static Result GetUserLogon(string username, string password)
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Format("SELECT * FROM Logon WHERE Username = '{0}' AND Password = '{1}' LIMIT 1", username, password);
+                result = MySQLHelper.ExecuteNoneQuery(query);
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.Message;
+            }
+
+            return result;
+        }
     }
 }
