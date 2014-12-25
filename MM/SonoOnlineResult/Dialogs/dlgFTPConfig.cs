@@ -8,7 +8,7 @@ using System.Text;
 using System.Windows.Forms;
 using System.Threading;
 using MM.Common;
-using MM.Dialogs;
+using SonoOnlineResult.Dialogs;
 
 namespace SonoOnlineResult.Dialogs
 {

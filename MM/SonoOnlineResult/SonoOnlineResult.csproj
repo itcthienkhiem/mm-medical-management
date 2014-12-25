@@ -58,6 +58,12 @@
     <Compile Include="Controls\uAutoComplete.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Include="Controls\uBase.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uBase.Designer.cs">
+      <DependentUpon>uBase.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgAdsConfig.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -75,6 +81,12 @@
     </Compile>
     <Compile Include="Dialogs\dlgAddText.Designer.cs">
       <DependentUpon>dlgAddText.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgBase.Designer.cs">
+      <DependentUpon>dlgBase.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\dlgEmailList.cs">
       <SubType>Form</SubType>
@@ -127,6 +139,12 @@
     <Compile Include="Dialogs\dlgSendMail.Designer.cs">
       <DependentUpon>dlgSendMail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\DlgWaiting.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\DlgWaiting.Designer.cs">
+      <DependentUpon>DlgWaiting.cs</DependentUpon>
+    </Compile>
     <Compile Include="MySQL.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -145,6 +163,9 @@
     <EmbeddedResource Include="Controls\uAutoComplete.resx">
       <DependentUpon>uAutoComplete.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uBase.resx">
+      <DependentUpon>uBase.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAdsConfig.resx">
       <DependentUpon>dlgAdsConfig.cs</DependentUpon>
     </EmbeddedResource>
@@ -153,6 +174,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddText.resx">
       <DependentUpon>dlgAddText.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgBase.resx">
+      <DependentUpon>dlgBase.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgEmailList.resx">
       <DependentUpon>dlgEmailList.cs</DependentUpon>
@@ -180,6 +204,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgSendMail.resx">
       <DependentUpon>dlgSendMail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\DlgWaiting.resx">
+      <DependentUpon>DlgWaiting.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -212,10 +239,6 @@
     <ProjectReference Include="..\Common\Common.csproj">
       <Project>{A8C421C9-52BA-4A39-A741-E2499DD43DC8}</Project>
       <Name>Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\MM\MM.csproj">
-      <Project>{F72BF909-337D-4B65-8FC8-02A0FAE0C7F7}</Project>
-      <Name>MM</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

@@ -18,7 +18,7 @@ using System.Net.Mail;
 
 namespace SonoOnlineResult
 {
-    public partial class UploadFile : MM.Dialogs.dlgBase
+    public partial class UploadFile : SonoOnlineResult.Dialogs.dlgBase
     {
         #region Members
         private List<ResultFileInfo> _resultFileInfos = new List<ResultFileInfo>();
