@@ -258,5 +258,106 @@ namespace SonoOnlineResult
 
             return result;
         }
+
+        public static Result GetUserLogonList()
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Format("SELECT * FROM Logon WHERE Username <> 'Admin' ORDER BY Username");
+                result = MySQLHelper.ExecuteQuery(query);
+                if (result.IsOK)
+                {
+                    DataTable dt = result.QueryResult as DataTable;
+                    if (dt != null)
+                    {
+                        DataColumn col = new DataColumn("Check", typeof(bool));
+                        col.DefaultValue = false;
+                        dt.Columns.Add(col);
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.Message;
+            }
+
+            return result;
+        }
+
+        public static Result CheckUserLogonExist(string usernmae, int logonKey)
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Format("SELECT * FROM Logon WHERE Username = '{0}' AND (LogonKey <> {1} OR LogonKey = 0)",
+                    usernmae, logonKey);
+                result = MySQLHelper.ExecuteQuery(query);
+                if (!result.IsOK) return result;
+
+                DataTable dt = result.QueryResult as DataTable;
+                if (dt == null || dt.Rows.Count <= 0)
+                    result.Error.Code = ErrorCode.NOT_EXIST;
+                else
+                    result.Error.Code = ErrorCode.EXIST;
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.Message;
+            }
+
+            return result;
+        }
+
+        public static Result DeleteUserLogon(int logonKey)
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Format("DELETE FROM Logon WHERE LogonKey = {0}", logonKey);
+                result = MySQLHelper.ExecuteNoneQuery(query);
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.Message;
+            }
+
+            return result;
+        }
+
+        public static Result InsertUserLogon(int logonKey, string username, string password, int branchKey, string notes)
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Empty;
+                if (logonKey <= 0) //Insert
+                {
+                    query = string.Format("INSERT INTO Logon(Username, Password, BranchKey, Note) VALUES('{0}', '{1}', '{2}', '{3}')",
+                        username, password, branchKey, notes);
+                    result = MySQLHelper.ExecuteNoneQueryWithGetLastKey(query);
+                }
+                else //Update
+                {
+                    query = string.Format("UPDATE Logon SET Username = '{0}', Password = '{1}', BranchKey = {2}, Note = '{3}' WHERE LogonKey = {4}",
+                        username, password, branchKey, notes, logonKey);
+                    result = MySQLHelper.ExecuteNoneQuery(query);
+                }
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.Message;
+            }
+
+            return result;
+        }
     }
 }
