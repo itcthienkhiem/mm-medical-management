@@ -245,7 +245,8 @@ namespace SonoOnlineResult
 
         private void OnUserList()
         {
-            
+            dlgUserList dlg = new dlgUserList();
+            dlg.ShowDialog(this);
         }
 
         private void OnTracking()
