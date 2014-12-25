@@ -39,8 +39,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.txtSubject = new System.Windows.Forms.TextBox();
             this.txtBody = new System.Windows.Forms.RichTextBox();
-            this.txtCc = new SonoOnlineResult.Dialogs.uAutoComplete();
-            this.txtTo = new SonoOnlineResult.Dialogs.uAutoComplete();
+            this.txtCc = new SonoOnlineResult.Controls.uAutoComplete();
+            this.txtTo = new SonoOnlineResult.Controls.uAutoComplete();
             this.SuspendLayout();
             // 
             // btnTo
@@ -191,10 +191,10 @@
         #endregion
 
         private System.Windows.Forms.Button btnTo;
-        private uAutoComplete txtTo;
+        private SonoOnlineResult.Controls.uAutoComplete txtTo;
         private System.Windows.Forms.Button btnSend;
         private System.Windows.Forms.Button btnClose;
-        private uAutoComplete txtCc;
+        private SonoOnlineResult.Controls.uAutoComplete txtCc;
         private System.Windows.Forms.Button btnCc;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cboMailTemplate;

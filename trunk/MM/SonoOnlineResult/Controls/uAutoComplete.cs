@@ -6,8 +6,9 @@ using System.Data;
 using System.Windows.Forms;
 using System.Collections.Generic;
 using MM.Common;
+using SonoOnlineResult.Dialogs;
 
-namespace SonoOnlineResult.Dialogs
+namespace SonoOnlineResult.Controls
 {
 	public class uAutoComplete : System.Windows.Forms.UserControl
 	{
