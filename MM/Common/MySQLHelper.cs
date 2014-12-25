@@ -198,5 +198,42 @@ namespace MM.Common
 
             return result;
         }
+
+        public static Result ExecuteScalar(string query)
+        {
+            Result result = new Result();
+            MySqlConnection cnn = null;
+            MySqlCommand cmd = null;
+
+            try
+            {
+                cnn = CreateConnection();
+                cmd = cnn.CreateCommand();
+                cmd.CommandType = CommandType.Text;
+                cmd.CommandText = query;
+                result.QueryResult = cmd.ExecuteScalar();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.Message;
+            }
+            finally
+            {
+                if (cmd != null)
+                {
+                    cmd.Dispose();
+                    cmd = null;
+                }
+
+                if (cnn != null)
+                {
+                    cnn.Close();
+                    cnn = null;
+                }
+            }
+
+            return result;
+        }
     }
 }

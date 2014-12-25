@@ -193,7 +193,34 @@ namespace SonoOnlineResult
                 case "Resend Mail":
                     OnResendMail();
                     break;
+
+                case "Branch List":
+                    OnBranchList();
+                    break;
+
+                case "User List":
+                    OnUserList();
+                    break;
+
+                case "Tracking":
+                    OnTracking();
+                    break;
             }
+        }
+
+        private void OnBranchList()
+        {
+            
+        }
+
+        private void OnUserList()
+        {
+            
+        }
+
+        private void OnTracking()
+        {
+            
         }
 
         private void OnResendMail()
