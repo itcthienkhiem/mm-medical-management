@@ -198,6 +198,8 @@ namespace MM.Common
 
         public static List<string> IgnorePermissions = new List<string>();
 
+        public static string Username = string.Empty;
+
         public static void InitExcelTempates()
         {
             ExcelTemplates.Add(Const.CheckListTemplate);

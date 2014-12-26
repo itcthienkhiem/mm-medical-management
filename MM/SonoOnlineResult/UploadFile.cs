@@ -38,7 +38,7 @@ namespace SonoOnlineResult
         public UploadFile()
         {
             InitializeComponent();
-            InitConfig();
+            
         }
         #endregion
 
@@ -86,6 +86,8 @@ namespace SonoOnlineResult
             LoadImageTemplates();
             LoadLogos();
             LoadAds();
+
+            
         }
 
         private void LoadImageTemplates()
@@ -224,12 +226,58 @@ namespace SonoOnlineResult
 
         private void OnLogin()
         {
-            
+            MethodInvoker method = delegate
+            {
+                dlgLogin dlg = new dlgLogin();
+                if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+                {
+                    Global.Username = dlg.Username;
+                    panel1.Enabled = true;
+                    panel2.Enabled = true;
+                    panel3.Enabled = true;
+                    toolStripButtonChangePassword.Enabled = true;
+                    toolStripComboBoxTemplates.Enabled = true;
+                    toolStripComboBoxLogo.Enabled = true;
+                    toolStripComboBoxAds.Enabled = true;
+                    toolStripButtonAddAds.Enabled = true;
+
+                    if (Global.Username.ToUpper() == "ADMIN")
+                    {
+                        toolStripSeparator1.Visible = true;
+                        toolStripButtonBranch.Visible = true;
+                        toolStripButtonUsers.Visible = true;
+                        toolStripButtonTracking.Visible = true;
+                    }
+                }
+
+                toolStripButtonLogin.ToolTipText = "Logout";
+                toolStripButtonLogin.Image = Properties.Resources.Logout;
+                this.Text = string.Format("{0} - {1}", Application.ProductName, Global.Username);
+            };
+
+            if (InvokeRequired) BeginInvoke(method);
+            else method.Invoke();
         }
 
         private void OnLogout()
         {
-            
+            panel1.Enabled = false;
+            panel2.Enabled = false;
+            panel3.Enabled = false;
+            toolStripButtonChangePassword.Enabled = false;
+            toolStripComboBoxTemplates.Enabled = false;
+            toolStripComboBoxLogo.Enabled = false;
+            toolStripComboBoxAds.Enabled = false;
+            toolStripButtonAddAds.Enabled = false;
+
+            toolStripSeparator1.Visible = false;
+            toolStripButtonBranch.Visible = false;
+            toolStripButtonUsers.Visible = false;
+            toolStripButtonTracking.Visible = false;
+
+            toolStripButtonLogin.ToolTipText = "Login";
+            toolStripButtonLogin.Image = Properties.Resources.Login;
+            this.Text = Application.ProductName;
         }
 
         private void OnChangePassword()
@@ -755,6 +803,23 @@ namespace SonoOnlineResult
 
             picViewer.Image = img;
         }
+
+        private void OnLoginAsThread()
+        {
+            try
+            {
+                ThreadPool.QueueUserWorkItem(new WaitCallback(OnLoginProc));
+                //base.ShowWaiting();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                //base.HideWaiting();
+            }
+        }
         #endregion
 
         #region Window Event Handlers
@@ -854,6 +919,12 @@ namespace SonoOnlineResult
                 e.Cancel = true;
             }
         }
+
+        private void UploadFile_Load(object sender, EventArgs e)
+        {
+            InitConfig();
+            OnLoginAsThread();
+        }
         #endregion
 
         #region Working Thread
@@ -892,9 +963,24 @@ namespace SonoOnlineResult
                 base.HideWaiting();
             }
         }
-        #endregion
 
-        
+        private void OnLoginProc(object state)
+        {
+            try
+            {
+                Thread.Sleep(500);
+                OnLogin();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                //base.HideWaiting();
+            }
+        }
+        #endregion
     }
 
     public class ResultFileInfo
