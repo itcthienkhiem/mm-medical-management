@@ -378,13 +378,13 @@ namespace SonoOnlineResult
             return result;
         }
 
-        public static Result ChangePassword(int logonKey, string newPassword)
+        public static Result ChangePassword(string username, string newPassword)
         {
             Result result = new Result();
 
             try
             {
-                string query = string.Format("UPDATE Logon SET Password = '{0}' WHERE LogonKey = {1}", newPassword, logonKey);
+                string query = string.Format("UPDATE Logon SET Password = '{0}' WHERE Username = '{1}'", newPassword, username);
                 result = MySQLHelper.ExecuteNoneQuery(query);
             }
             catch (Exception e)
