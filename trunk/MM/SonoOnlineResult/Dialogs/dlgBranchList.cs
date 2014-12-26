@@ -46,18 +46,6 @@ namespace SonoOnlineResult.Dialogs
             }
         }
 
-        public void ClearData()
-        {
-            DataTable dt = dgBranch.DataSource as DataTable;
-            if (dt != null)
-            {
-                dt.Rows.Clear();
-                dt.Clear();
-                dt = null;
-                dgBranch.DataSource = null;
-            }
-        }
-
         private void OnDisplay()
         {
             Result result = MySQL.GetBranchList();
@@ -65,7 +53,6 @@ namespace SonoOnlineResult.Dialogs
             {
                 MethodInvoker method = delegate
                 {
-                    ClearData();
                     dgBranch.DataSource = result.QueryResult;
                 };
 
@@ -73,7 +60,7 @@ namespace SonoOnlineResult.Dialogs
                 else method.Invoke();
             }
             else
-                MessageBox.Show(result.GetErrorAsString("GetBranchList"), this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(result.GetErrorAsString("MySQL.GetBranchList"), this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void OnAdd()
