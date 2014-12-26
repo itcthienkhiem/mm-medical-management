@@ -121,6 +121,12 @@
     <Compile Include="Dialogs\DlgListBoxData.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="Dialogs\dlgLogin.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgLogin.Designer.cs">
+      <DependentUpon>dlgLogin.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgLogoConfig.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -219,6 +225,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\DlgListBoxData.resx">
       <DependentUpon>DlgListBoxData.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgLogin.resx">
+      <DependentUpon>dlgLogin.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgLogoConfig.resx">
       <DependentUpon>dlgLogoConfig.cs</DependentUpon>

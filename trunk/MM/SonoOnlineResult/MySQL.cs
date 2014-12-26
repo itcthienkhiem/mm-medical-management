@@ -287,6 +287,24 @@ namespace SonoOnlineResult
             return result;
         }
 
+        public static Result GetAllUserLogonList()
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Format("SELECT * FROM Logon ORDER BY Username");
+                result = MySQLHelper.ExecuteQuery(query);
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.Message;
+            }
+
+            return result;
+        }
+
         public static Result CheckUserLogonExist(string usernmae, int logonKey)
         {
             Result result = new Result();
@@ -384,8 +402,21 @@ namespace SonoOnlineResult
 
             try
             {
-                string query = string.Format("SELECT * FROM Logon WHERE Username = '{0}' AND Password = '{1}' LIMIT 1", username, password);
-                result = MySQLHelper.ExecuteNoneQuery(query);
+                string query = string.Format("SELECT * FROM Logon WHERE Username = '{0}' LIMIT 1", username);
+                result = MySQLHelper.ExecuteQuery(query);
+                if (!result.IsOK) return result;
+
+                DataTable dt = result.QueryResult as DataTable;
+                if (dt == null || dt.Rows.Count <= 0)
+                    result.Error.Code = ErrorCode.INVALID_USERNAME;
+                else
+                {
+                    string pass = dt.Rows[0]["Password"].ToString();
+                    RijndaelCrypto cryto = new RijndaelCrypto();
+                    pass = cryto.Decrypt(pass);
+                    if (password != pass)
+                        result.Error.Code = ErrorCode.INVALID_PASSWORD;
+                }
             }
             catch (Exception e)
             {
