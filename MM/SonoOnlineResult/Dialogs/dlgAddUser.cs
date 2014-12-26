@@ -134,6 +134,14 @@ namespace SonoOnlineResult.Dialogs
                 return false;
             }
 
+            if (!Utility.IsValidPassword(txtPassword.Text))
+            {
+                MessageBox.Show("The password is invalid (4-12 characters). Please re-enter.", 
+                    this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                txtPassword.Focus();
+                return false;
+            }
+
             Result result = MySQL.CheckUserLogonExist(txtUsername.Text, _logonKey);
             if (result.Error.Code != ErrorCode.EXIST && result.Error.Code != ErrorCode.NOT_EXIST)
             {

@@ -29,6 +29,11 @@ namespace SonoOnlineResult.Dialogs
         {
             get { return cboUsername.Text; }
         }
+
+        public string Password
+        {
+            get { return txtPassword.Text; }
+        }
         #endregion
 
         #region UI Commnad

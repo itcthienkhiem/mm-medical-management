@@ -232,6 +232,7 @@ namespace SonoOnlineResult
                 if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
                 {
                     Global.Username = dlg.Username;
+                    Global.Password = dlg.Password;
                     panel1.Enabled = true;
                     panel2.Enabled = true;
                     panel3.Enabled = true;
@@ -261,28 +262,33 @@ namespace SonoOnlineResult
 
         private void OnLogout()
         {
-            panel1.Enabled = false;
-            panel2.Enabled = false;
-            panel3.Enabled = false;
-            toolStripButtonChangePassword.Enabled = false;
-            toolStripComboBoxTemplates.Enabled = false;
-            toolStripComboBoxLogo.Enabled = false;
-            toolStripComboBoxAds.Enabled = false;
-            toolStripButtonAddAds.Enabled = false;
+            if (MessageBox.Show("Do you want to logout ?", 
+                Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            {
+                panel1.Enabled = false;
+                panel2.Enabled = false;
+                panel3.Enabled = false;
+                toolStripButtonChangePassword.Enabled = false;
+                toolStripComboBoxTemplates.Enabled = false;
+                toolStripComboBoxLogo.Enabled = false;
+                toolStripComboBoxAds.Enabled = false;
+                toolStripButtonAddAds.Enabled = false;
 
-            toolStripSeparator1.Visible = false;
-            toolStripButtonBranch.Visible = false;
-            toolStripButtonUsers.Visible = false;
-            toolStripButtonTracking.Visible = false;
+                toolStripSeparator1.Visible = false;
+                toolStripButtonBranch.Visible = false;
+                toolStripButtonUsers.Visible = false;
+                toolStripButtonTracking.Visible = false;
 
-            toolStripButtonLogin.ToolTipText = "Login";
-            toolStripButtonLogin.Image = Properties.Resources.Login;
-            this.Text = Application.ProductName;
+                toolStripButtonLogin.ToolTipText = "Login";
+                toolStripButtonLogin.Image = Properties.Resources.Login;
+                this.Text = Application.ProductName;
+            }
         }
 
         private void OnChangePassword()
         {
-            
+            dlgChangePassword dlg = new dlgChangePassword();
+            dlg.ShowDialog(this);
         }
 
         private void OnBranchList()
@@ -529,11 +535,11 @@ namespace SonoOnlineResult
         {
             if (lvFile.SelectedItems == null || lvFile.SelectedItems.Count <= 0)
             {
-                MessageBox.Show("Please select at least one file.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Please select at least one file.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
                 return;
             }
 
-            if (MessageBox.Show("Do you want to remove selected files ?", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            if (MessageBox.Show("Do you want to remove selected files ?", Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
             {
                 int index = lvFile.SelectedItems[0].Index;
                 foreach (ListViewItem item in lvFile.SelectedItems)
@@ -563,7 +569,8 @@ namespace SonoOnlineResult
         {
             if (lvFile.Items.Count <= 0) return;
 
-            if (MessageBox.Show("Do you want to remove all files ?", this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
+            if (MessageBox.Show("Do you want to remove all files ?", 
+                Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.Yes)
             {
                 foreach (ListViewItem item in lvFile.Items)
                 {
@@ -588,7 +595,7 @@ namespace SonoOnlineResult
                 if (lvFile.Items.Count <= 0) return;
 
                 if (MessageBox.Show("Do you want to upload files ?", 
-                    this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
+                    Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
                     return;
 
                 _resultFileInfos.Clear();
@@ -622,7 +629,7 @@ namespace SonoOnlineResult
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -637,7 +644,7 @@ namespace SonoOnlineResult
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -649,8 +656,8 @@ namespace SonoOnlineResult
             Result result = MySQL.AddUser(toEmail, _passcode, code, _resultFileInfos);
             if (!result.IsOK)
             {
-                MessageBox.Show(result.GetErrorAsString("OnSendMail"), 
-                    this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(result.GetErrorAsString("OnSendMail"),
+                    Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -696,12 +703,12 @@ namespace SonoOnlineResult
             {
                 client.Send(msg);
 
-                MessageBox.Show("Mail has been sent.", this.Text, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                MessageBox.Show("Mail has been sent.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
             }
             catch (Exception ex)
             {
                 string error = string.Format("Cannot send mail!\r\nError: {0}", ex.Message);
-                MessageBox.Show(error, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(error, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -721,7 +728,7 @@ namespace SonoOnlineResult
                     Result result = FTP.UploadFile(Global.FTPConnectionInfo, fn, remoteFileName);
                     if (!result.IsOK)
                     {
-                        MessageBox.Show(result.GetErrorAsString("FTP.UploadFile"), this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(result.GetErrorAsString("FTP.UploadFile"), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
@@ -743,7 +750,7 @@ namespace SonoOnlineResult
 
                     if (!result.IsOK)
                     {
-                        MessageBox.Show(result.GetErrorAsString("FTP.UploadFile"), this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(result.GetErrorAsString("FTP.UploadFile"), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                 }
@@ -753,7 +760,7 @@ namespace SonoOnlineResult
                     Result result = FTP.UploadFile(Global.FTPConnectionInfo, info.FileName, remoteFileName);
                     if (!result.IsOK)
                     {
-                        MessageBox.Show(result.GetErrorAsString("FTP.UploadFile"), this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show(result.GetErrorAsString("FTP.UploadFile"), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
                 }
@@ -813,7 +820,7 @@ namespace SonoOnlineResult
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -913,8 +920,8 @@ namespace SonoOnlineResult
 
         private void UploadFile_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (MessageBox.Show("Do you want to quit this program ?", 
-                this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
+            if (MessageBox.Show("Do you want to quit this program ?",
+                Application.ProductName, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
             {
                 e.Cancel = true;
             }
@@ -938,7 +945,7 @@ namespace SonoOnlineResult
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -956,7 +963,7 @@ namespace SonoOnlineResult
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
@@ -973,7 +980,7 @@ namespace SonoOnlineResult
             }
             catch (Exception e)
             {
-                MessageBox.Show(e.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(e.Message, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             finally
             {
