@@ -305,6 +305,46 @@ namespace SonoOnlineResult
             return result;
         }
 
+        public static Result GetUserLogonWithBranchList()
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Format("SELECT L.* FROM Logon L, Branch B WHERE L.BranchKey = B.BranchKey ORDER BY L.Username");
+                result = MySQLHelper.ExecuteQuery(query);
+                if (result.IsOK)
+                {
+                    query = string.Format("SELECT * FROM Logon WHERE Username = 'Admin'");
+                    Result result2 = MySQLHelper.ExecuteQuery(query);
+
+                    if (result2.IsOK)
+                    {
+                        DataTable dt2 = result2.QueryResult as DataTable;
+                        if (dt2 != null && dt2.Rows.Count > 0)
+                        {
+                            DataRow row2 = dt2.Rows[0];
+                            DataTable dt = result.QueryResult as DataTable;
+                            DataRow row = dt.NewRow();
+                            for (int i = 0; i < dt.Columns.Count; i++)
+                            {
+                                row[i] = row2[i];
+                            }
+
+                            dt.Rows.InsertAt(row, 0);
+                        }
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.Message;
+            }
+
+            return result;
+        }
+
         public static Result GetAllUserLogonList()
         {
             Result result = new Result();
@@ -445,14 +485,14 @@ namespace SonoOnlineResult
             return result;
         }
 
-        public static Result InsertTracking(string branchName, string email, DateTime trackingDate, string username, string note)
+        public static Result InsertTracking(string branchName, string toEmail, string ccEmail, DateTime trackingDate, string username, string note)
         {
             Result result = new Result();
 
             try
             {
-                    string query = string.Format("INSERT INTO Tracking(BranchName, Email, TrackingDate, Username, Note) VALUES('{0}', '{1}', '{2}', '{3}', '{4}')",
-                        branchName, email, trackingDate.ToString("yyyy-MM-dd HH:mm:ss"), username, note);
+                    string query = string.Format("INSERT INTO Tracking(BranchName, ToEmail, CcEmail, TrackingDate, Username, Note) VALUES('{0}', '{1}', '{2}', '{3}', '{4}', '{5}')",
+                        branchName, toEmail, ccEmail, trackingDate.ToString("yyyy-MM-dd HH:mm:ss"), username, note);
                     result = MySQLHelper.ExecuteNoneQuery(query);
             }
             catch (Exception e)

@@ -85,7 +85,7 @@ namespace SonoOnlineResult.Dialogs
 
         private void OnLoadUserList()
         {
-            Result result = MySQL.GetAllUserLogonList();
+            Result result = MySQL.GetUserLogonWithBranchList();
             if (result.IsOK)
             {
                 MethodInvoker method = delegate

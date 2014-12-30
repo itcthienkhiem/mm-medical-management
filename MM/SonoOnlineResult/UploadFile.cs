@@ -665,10 +665,16 @@ namespace SonoOnlineResult
             MailMessage msg = new MailMessage();
             msg.From = new MailAddress(Global.MailConfig.SenderMail);
             msg.To.Add(new MailAddress(toEmail));
+            string ccEmail = string.Empty;
             if (_ccEmailList.Count > 0)
             {
                 foreach (var email in _ccEmailList)
+                {
                     msg.CC.Add(new MailAddress(email));
+                    ccEmail += string.Format("{0}, ", email);
+                }
+
+                ccEmail = ccEmail.Remove(ccEmail.Length - 2);
             }
 
             msg.Subject = _subject;
@@ -703,8 +709,8 @@ namespace SonoOnlineResult
             try
             {
                 client.Send(msg);
-
                 MessageBox.Show("Mail has been sent.", Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                WriteTracking(Global.BranchName, toEmail, ccEmail, Global.Username, string.Empty);
             }
             catch (Exception ex)
             {
@@ -713,9 +719,11 @@ namespace SonoOnlineResult
             }
         }
 
-        private void WriteTracking(string branchName, string email, string username, string notes)
+        private void WriteTracking(string branchName, string toEmail, string ccEmail, string username, string notes)
         {
-
+            Result result = MySQL.InsertTracking(branchName, toEmail, ccEmail, DateTime.Now, username, notes);
+            if (!result.IsOK)
+                MessageBox.Show(result.GetErrorAsString("FTP.InsertTracking"), Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void OnUpload()
