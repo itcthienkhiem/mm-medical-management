@@ -169,6 +169,12 @@
     <Compile Include="Dialogs\dlgSendMail.Designer.cs">
       <DependentUpon>dlgSendMail.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgTracking.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgTracking.Designer.cs">
+      <DependentUpon>dlgTracking.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgUserList.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -255,6 +261,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgSendMail.resx">
       <DependentUpon>dlgSendMail.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgTracking.resx">
+      <DependentUpon>dlgTracking.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgUserList.resx">
       <DependentUpon>dlgUserList.cs</DependentUpon>
