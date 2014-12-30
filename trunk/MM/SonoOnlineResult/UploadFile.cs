@@ -233,6 +233,7 @@ namespace SonoOnlineResult
                 {
                     Global.Username = dlg.Username;
                     Global.Password = dlg.Password;
+                    Global.BranchName = dlg.BranchName;
                     panel1.Enabled = true;
                     panel2.Enabled = true;
                     panel3.Enabled = true;
@@ -710,6 +711,11 @@ namespace SonoOnlineResult
                 string error = string.Format("Cannot send mail!\r\nError: {0}", ex.Message);
                 MessageBox.Show(error, Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+        }
+
+        private void WriteTracking(string branchName, string email, string username)
+        {
+
         }
 
         private void OnUpload()

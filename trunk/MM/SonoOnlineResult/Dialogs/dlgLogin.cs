@@ -34,6 +34,35 @@ namespace SonoOnlineResult.Dialogs
         {
             get { return txtPassword.Text; }
         }
+
+        public string BranchName
+        {
+            get
+            {
+                string branchName = string.Empty;
+                int logonKey = Convert.ToInt32(cboUsername.SelectedValue);
+                DataTable dt = cboUsername.DataSource as DataTable;
+                DataRow[] rows = dt.Select(string.Format("LogonKey={0}", logonKey));
+                if (rows != null && rows.Length > 0)
+                {
+                    if (rows[0]["BranchKey"] != null && rows[0]["BranchKey"] != DBNull.Value)
+                    {
+                        int branchKey = Convert.ToInt32(rows[0]["BranchKey"]);
+                        Result result = MySQL.GetBranch(branchKey);
+                        if (result.IsOK)
+                        {
+                            DataTable dtBranch = result.QueryResult as DataTable;
+                            if (dtBranch != null && dtBranch.Rows.Count >= 0)
+                                branchName = dtBranch.Rows[0]["BranchName"].ToString();
+                        }
+                        else
+                            MessageBox.Show(result.GetErrorAsString("MySQL.GetBranch"), this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+
+                return branchName;
+            }
+        }
         #endregion
 
         #region UI Commnad

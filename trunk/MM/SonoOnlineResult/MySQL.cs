@@ -259,6 +259,24 @@ namespace SonoOnlineResult
             return result;
         }
 
+        public static Result GetBranch(int branchKey)
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Format("SELECT * FROM Branch WHERE BranchKey = {0} LIMIT 1", branchKey);
+                result = MySQLHelper.ExecuteQuery(query);
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.Message;
+            }
+
+            return result;
+        }
+
         public static Result GetUserLogonList()
         {
             Result result = new Result();
@@ -417,6 +435,25 @@ namespace SonoOnlineResult
                     if (password != pass)
                         result.Error.Code = ErrorCode.INVALID_PASSWORD;
                 }
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.Message;
+            }
+
+            return result;
+        }
+
+        public static Result InsertTracking(string branchName, string email, DateTime trackingDate, string username, string note)
+        {
+            Result result = new Result();
+
+            try
+            {
+                    string query = string.Format("INSERT INTO Tracking(BranchName, Email, TrackingDate, Username, Note) VALUES('{0}', '{1}', '{2}', '{3}', '{4}')",
+                        branchName, email, trackingDate.ToString("yyyy-MM-dd HH:mm:ss"), username, note);
+                    result = MySQLHelper.ExecuteNoneQuery(query);
             }
             catch (Exception e)
             {
