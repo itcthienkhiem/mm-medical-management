@@ -62,6 +62,9 @@ namespace SonoOnlineResult
                     RijndaelCrypto crypto = new RijndaelCrypto();
                     Global.FTPConnectionInfo.Password = crypto.Decrypt(password);
                 }
+
+                obj = Configuration.GetValues(Const.UsernameKey);
+                if (obj != null) Global.Username = Convert.ToString(obj);
             }
             else
             {
@@ -250,6 +253,9 @@ namespace SonoOnlineResult
                         toolStripButtonUsers.Visible = true;
                         toolStripButtonTracking.Visible = true;
                     }
+
+                    Configuration.SetValues(Const.UsernameKey, Global.Username);
+                    Configuration.SaveData(Global.AppConfig);
                 }
 
                 toolStripButtonLogin.ToolTipText = "Logout";
@@ -306,7 +312,8 @@ namespace SonoOnlineResult
 
         private void OnTracking()
         {
-            
+            dlgTracking dlg = new dlgTracking();
+            dlg.ShowDialog(this);
         }
 
         private void OnResendMail()
