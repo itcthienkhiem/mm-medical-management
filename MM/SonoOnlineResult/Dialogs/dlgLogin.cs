@@ -90,14 +90,19 @@ namespace SonoOnlineResult.Dialogs
             {
                 MethodInvoker method = delegate
                 {
-                    cboUsername.DataSource = result.QueryResult;
+                    DataTable dt = result.QueryResult as DataTable;
+                    cboUsername.DataSource = dt;
+
+                    DataRow[] rows = dt.Select(string.Format("Username = '{0}'", Global.Username));
+                    if (rows != null && rows.Length > 0)
+                        cboUsername.SelectedValue = Convert.ToInt32(rows[0]["LogonKey"]);
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
                 else method.Invoke();
             }
             else
-                MessageBox.Show(result.GetErrorAsString("MySQL.GetAllUserLogonList"), this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(result.GetErrorAsString("MySQL.GetUserLogonWithBranchList"), this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private bool CheckInfo()

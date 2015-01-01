@@ -503,5 +503,24 @@ namespace SonoOnlineResult
 
             return result;
         }
+
+        public static Result GetTracking(string username, DateTime from, DateTime to)
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Format("SELECT * FROM Tracking WHERE (Username = '{0}' OR '{0}' = '[All]') AND TrackingDate BETWEEN '{1}' AND '{2}' ORDER BY TrackingDate, Username",
+                    username, from.ToString("yyyy-MM-dd HH:mm:ss"), to.ToString("yyyy-MM-dd HH:mm:ss"));
+                result = MySQLHelper.ExecuteQuery(query);
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.Message;
+            }
+
+            return result;
+        }
     }
 }
