@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.IO;
 using System.Drawing;
+using System.Net;
 
 namespace MM.Common
 {
@@ -88,6 +89,30 @@ namespace MM.Common
 
         //    return result;
         //}
+
+        public static Result DeleteFile(FTPConnectionInfo connectionInfo, string remoteFileName)
+        {
+            Result result = new Result();
+            try
+            {
+                string ftpFileName = string.Format("ftp://{0}/{1}", connectionInfo.ServerName, remoteFileName);
+                FtpWebRequest requestFileDelete = (FtpWebRequest)WebRequest.Create(ftpFileName);
+                requestFileDelete.Credentials = new NetworkCredential(connectionInfo.Username, connectionInfo.Password);
+                requestFileDelete.Method = WebRequestMethods.Ftp.DeleteFile;
+                FtpWebResponse responseFileDelete = (FtpWebResponse)requestFileDelete.GetResponse();
+            }
+            catch (Exception e)
+            {
+                if (e.Message.IndexOf("(550)") >= 0)
+                    result.Error.Code = ErrorCode.FILE_NOT_FOUND;
+                else
+                    result.Error.Code = ErrorCode.DELETE_FTP_FAIL;
+
+                result.Error.Description = e.Message;
+            }
+
+            return result;
+        }
 
         public static Result UploadFile(FTPConnectionInfo connectionInfo, string localFileName, string remoteFileName)
         {

@@ -522,5 +522,66 @@ namespace SonoOnlineResult
 
             return result;
         }
+
+        public static Result InsertUploadHistory(List<ResultFileInfo> results)
+        {
+            Result result = new Result();
+
+            try
+            {
+                DateTime dtNow = DateTime.Now;
+                foreach (var info in results)
+                {
+                    string query = string.Format("INSERT INTO UploadHistory(UploadDate, FileName, Note) VALUES('{0}', '{1}', '{2}')",
+                    dtNow.ToString("yyyy-MM-dd HH:mm:ss"), Path.GetFileName(info.FileName), string.Empty);
+                    result = MySQLHelper.ExecuteNoneQuery(query);
+                    if (!result.IsOK) return result;
+                }
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.Message;
+            }
+
+            return result;
+        }
+
+        public static Result GetUploadHistory(DateTime from, DateTime to)
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Format("SELECT * FROM UploadHistory WHERE UploadDate BETWEEN '{0}' AND '{1}'",
+                    from.ToString("yyyy-MM-dd 00:00:00"), to.ToString("yyyy-MM-dd 23:59:59"));
+                result = MySQLHelper.ExecuteQuery(query);
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.Message;
+            }
+
+            return result;
+        }
+
+        public static Result DeleteUploadFile(int uploadHistoryKey)
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Format("DELETE FROM UploadHistory WHERE UploadHistoryKey = {0}", uploadHistoryKey);
+                result = MySQLHelper.ExecuteNoneQuery(query);
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.Message;
+            }
+
+            return result;
+        }
     }
 }

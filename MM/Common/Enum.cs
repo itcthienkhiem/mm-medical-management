@@ -54,7 +54,9 @@ namespace MM.Common
         EXIST,
         NOT_EXIST,
         CONNECT_FTP_FAIL,
-        UPLOAD_FTP_FAIL
+        UPLOAD_FTP_FAIL, 
+        DELETE_FTP_FAIL,
+        FILE_NOT_FOUND
     };
 
     public enum Gender : int
