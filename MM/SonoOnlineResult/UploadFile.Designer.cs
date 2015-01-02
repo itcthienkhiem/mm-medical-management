@@ -57,11 +57,11 @@
             this.toolStripButtonLogoConfig = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonAdver = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonResendMail = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButtonDeleteUploadFiles = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonBranch = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonUsers = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonTracking = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonDeleteUploadFiles = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator5 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripLabel1 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripComboBoxTemplates = new System.Windows.Forms.ToolStripComboBox();
@@ -286,11 +286,11 @@
             this.toolStripButtonLogoConfig,
             this.toolStripButtonAdver,
             this.toolStripButtonResendMail,
-            this.toolStripButtonDeleteUploadFiles,
             this.toolStripSeparator1,
             this.toolStripButtonBranch,
             this.toolStripButtonUsers,
             this.toolStripButtonTracking,
+            this.toolStripButtonDeleteUploadFiles,
             this.toolStripSeparator5,
             this.toolStripLabel1,
             this.toolStripComboBoxTemplates,
@@ -406,17 +406,6 @@
             this.toolStripButtonResendMail.Text = "toolStripButton1";
             this.toolStripButtonResendMail.ToolTipText = "Resend Mail";
             // 
-            // toolStripButtonDeleteUploadFiles
-            // 
-            this.toolStripButtonDeleteUploadFiles.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonDeleteUploadFiles.Enabled = false;
-            this.toolStripButtonDeleteUploadFiles.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonDeleteUploadFiles.Image")));
-            this.toolStripButtonDeleteUploadFiles.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButtonDeleteUploadFiles.Name = "toolStripButtonDeleteUploadFiles";
-            this.toolStripButtonDeleteUploadFiles.Size = new System.Drawing.Size(28, 28);
-            this.toolStripButtonDeleteUploadFiles.Text = "toolStripButton1";
-            this.toolStripButtonDeleteUploadFiles.ToolTipText = "Delete Upload File";
-            // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
@@ -455,6 +444,17 @@
             this.toolStripButtonTracking.Text = "toolStripButton3";
             this.toolStripButtonTracking.ToolTipText = "Tracking";
             this.toolStripButtonTracking.Visible = false;
+            // 
+            // toolStripButtonDeleteUploadFiles
+            // 
+            this.toolStripButtonDeleteUploadFiles.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonDeleteUploadFiles.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonDeleteUploadFiles.Image")));
+            this.toolStripButtonDeleteUploadFiles.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonDeleteUploadFiles.Name = "toolStripButtonDeleteUploadFiles";
+            this.toolStripButtonDeleteUploadFiles.Size = new System.Drawing.Size(28, 28);
+            this.toolStripButtonDeleteUploadFiles.Text = "toolStripButton1";
+            this.toolStripButtonDeleteUploadFiles.ToolTipText = "Delete Upload File";
+            this.toolStripButtonDeleteUploadFiles.Visible = false;
             // 
             // toolStripSeparator5
             // 
