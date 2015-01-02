@@ -32,6 +32,8 @@ namespace SonoOnlineResult
         //private string _templateName = string.Empty;
         //private string _logoName = string.Empty;
         private string _passcode = string.Empty;
+        private DateTime _fromDate = DateTime.Now;
+        private DateTime _toDate = DateTime.Now;
         #endregion
 
         #region Constructor
@@ -224,7 +226,87 @@ namespace SonoOnlineResult
                 case "Change Password":
                     OnChangePassword();
                     break;
+
+                case "Delete Upload File":
+                    OnDeleteUploadFile();
+                    break;
             }
+        }
+
+        private void OnDeleteUploadFile()
+        {
+            dlgDeleteUploadFile dlg = new dlgDeleteUploadFile();
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                try
+                {
+                    _fromDate = dlg.From;
+                    _toDate = dlg.To;
+
+                    ThreadPool.QueueUserWorkItem(new WaitCallback(DeleteUploadFileProc));
+                    base.ShowWaiting();
+                }
+                catch (Exception e)
+                {
+                    MessageBox.Show(e.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                finally
+                {
+                    base.HideWaiting();
+                }
+            }
+        }
+
+        private void DeleteUploadFile()
+        {
+            Result result = MySQL.GetUploadHistory(_fromDate, _toDate);
+            if (result.IsOK)
+            {
+                DataTable dt = result.QueryResult as DataTable;
+                if (dt.Rows.Count <= 0)
+                {
+                    MessageBox.Show("No data to delete.", 
+                        Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    return;
+                }
+
+                foreach (DataRow row in dt.Rows)
+                {
+                    string fileName = row["FileName"].ToString();
+                    Result ftpResult = FTP.DeleteFile(Global.FTPConnectionInfo, string.Format("{0}/{1}", Global.FTPFolder, fileName));
+                    if (!ftpResult.IsOK && ftpResult.Error.Code != ErrorCode.FILE_NOT_FOUND)
+                    {
+                        MessageBox.Show(ftpResult.GetErrorAsString("FTP.DeleteFile"), 
+                            this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    string thumbnailFileName = string.Format("{0}_thumb{1}",
+                        Path.GetFileNameWithoutExtension(fileName), Path.GetExtension(fileName));
+                    ftpResult = FTP.DeleteFile(Global.FTPConnectionInfo, string.Format("{0}/{1}", Global.FTPFolder, thumbnailFileName));
+                    if (!ftpResult.IsOK && ftpResult.Error.Code != ErrorCode.FILE_NOT_FOUND)
+                    {
+                        MessageBox.Show(ftpResult.GetErrorAsString("FTP.DeleteFile"),
+                            this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+
+                    int uploadHistoryKey = Convert.ToInt32(row["UploadHistoryKey"]);
+                    result = MySQL.DeleteUploadFile(uploadHistoryKey);
+                    if (!result.IsOK)
+                    {
+                        MessageBox.Show(ftpResult.GetErrorAsString("MySQL.DeleteUploadFile"),
+                            this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
+                }
+
+                MessageBox.Show("Delete upload file successfully.", 
+                    Application.ProductName, MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+                MessageBox.Show(result.GetErrorAsString("MySQL.GetUploadHistory"), 
+                    this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
         }
 
         private void OnLogin()
@@ -245,6 +327,7 @@ namespace SonoOnlineResult
                     toolStripComboBoxLogo.Enabled = true;
                     toolStripComboBoxAds.Enabled = true;
                     toolStripButtonAddAds.Enabled = true;
+                    toolStripButtonDeleteUploadFiles.Enabled = true;
 
                     if (Global.Username.ToUpper() == "ADMIN")
                     {
@@ -280,6 +363,7 @@ namespace SonoOnlineResult
                 toolStripComboBoxLogo.Enabled = false;
                 toolStripComboBoxAds.Enabled = false;
                 toolStripButtonAddAds.Enabled = false;
+                toolStripButtonDeleteUploadFiles.Enabled = false;
 
                 toolStripSeparator1.Visible = false;
                 toolStripButtonBranch.Visible = false;
@@ -787,6 +871,7 @@ namespace SonoOnlineResult
                 }
             }
 
+            MySQL.InsertUploadHistory(_resultFileInfos);
             _isUploadSuccess = true;
         }
 
@@ -1006,6 +1091,22 @@ namespace SonoOnlineResult
             finally
             {
                 //base.HideWaiting();
+            }
+        }
+
+        private void DeleteUploadFileProc(object state)
+        {
+            try
+            {
+                DeleteUploadFile();
+            }
+            catch (Exception e)
+            {
+                MessageBox.Show(e.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            finally
+            {
+                base.HideWaiting();
             }
         }
         #endregion

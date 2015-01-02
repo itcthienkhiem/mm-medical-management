@@ -57,6 +57,7 @@
             this.toolStripButtonLogoConfig = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonAdver = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonResendMail = new System.Windows.Forms.ToolStripButton();
+            this.toolStripButtonDeleteUploadFiles = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonBranch = new System.Windows.Forms.ToolStripButton();
             this.toolStripButtonUsers = new System.Windows.Forms.ToolStripButton();
@@ -87,7 +88,7 @@
             this.panel3.Enabled = false;
             this.panel3.Location = new System.Drawing.Point(0, 31);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(434, 599);
+            this.panel3.Size = new System.Drawing.Size(373, 599);
             this.panel3.TabIndex = 4;
             // 
             // lvFile
@@ -103,7 +104,7 @@
             this.lvFile.HideSelection = false;
             this.lvFile.Location = new System.Drawing.Point(0, 0);
             this.lvFile.Name = "lvFile";
-            this.lvFile.Size = new System.Drawing.Size(434, 599);
+            this.lvFile.Size = new System.Drawing.Size(373, 599);
             this.lvFile.TabIndex = 1;
             this.lvFile.UseCompatibleStateImageBehavior = false;
             this.lvFile.View = System.Windows.Forms.View.Details;
@@ -125,7 +126,7 @@
             this.panel2.Controls.Add(this.toolStripImage);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Enabled = false;
-            this.panel2.Location = new System.Drawing.Point(434, 31);
+            this.panel2.Location = new System.Drawing.Point(373, 31);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(567, 599);
             this.panel2.TabIndex = 3;
@@ -218,7 +219,7 @@
             this.panel1.Enabled = false;
             this.panel1.Location = new System.Drawing.Point(0, 630);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1001, 30);
+            this.panel1.Size = new System.Drawing.Size(940, 30);
             this.panel1.TabIndex = 2;
             // 
             // btnRemoveAll
@@ -285,6 +286,7 @@
             this.toolStripButtonLogoConfig,
             this.toolStripButtonAdver,
             this.toolStripButtonResendMail,
+            this.toolStripButtonDeleteUploadFiles,
             this.toolStripSeparator1,
             this.toolStripButtonBranch,
             this.toolStripButtonUsers,
@@ -302,7 +304,7 @@
             this.toolStripButtonAddAds});
             this.toolStripMain.Location = new System.Drawing.Point(0, 0);
             this.toolStripMain.Name = "toolStripMain";
-            this.toolStripMain.Size = new System.Drawing.Size(1001, 31);
+            this.toolStripMain.Size = new System.Drawing.Size(940, 31);
             this.toolStripMain.TabIndex = 0;
             this.toolStripMain.Text = "toolStrip1";
             this.toolStripMain.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStripMain_ItemClicked);
@@ -403,6 +405,17 @@
             this.toolStripButtonResendMail.Size = new System.Drawing.Size(28, 28);
             this.toolStripButtonResendMail.Text = "toolStripButton1";
             this.toolStripButtonResendMail.ToolTipText = "Resend Mail";
+            // 
+            // toolStripButtonDeleteUploadFiles
+            // 
+            this.toolStripButtonDeleteUploadFiles.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonDeleteUploadFiles.Enabled = false;
+            this.toolStripButtonDeleteUploadFiles.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonDeleteUploadFiles.Image")));
+            this.toolStripButtonDeleteUploadFiles.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonDeleteUploadFiles.Name = "toolStripButtonDeleteUploadFiles";
+            this.toolStripButtonDeleteUploadFiles.Size = new System.Drawing.Size(28, 28);
+            this.toolStripButtonDeleteUploadFiles.Text = "toolStripButton1";
+            this.toolStripButtonDeleteUploadFiles.ToolTipText = "Delete Upload File";
             // 
             // toolStripSeparator1
             // 
@@ -534,7 +547,7 @@
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1001, 660);
+            this.ClientSize = new System.Drawing.Size(940, 660);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
@@ -606,5 +619,6 @@
         private System.Windows.Forms.ToolStripButton toolStripButtonLogin;
         private System.Windows.Forms.ToolStripButton toolStripButtonChangePassword;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private System.Windows.Forms.ToolStripButton toolStripButtonDeleteUploadFiles;
     }
 }
