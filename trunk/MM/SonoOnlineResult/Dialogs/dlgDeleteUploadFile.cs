@@ -59,6 +59,9 @@ namespace SonoOnlineResult.Dialogs
             if (this.DialogResult == System.Windows.Forms.DialogResult.OK)
             {
                 if (!CheckInfo()) e.Cancel = true;
+                else if (MessageBox.Show("Do you want to delele upload file ?", 
+                    this.Text, MessageBoxButtons.YesNo, MessageBoxIcon.Question) == System.Windows.Forms.DialogResult.No)
+                    e.Cancel = true;
             }
         }
         #endregion

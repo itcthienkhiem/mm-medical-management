@@ -327,7 +327,7 @@ namespace SonoOnlineResult
                     toolStripComboBoxLogo.Enabled = true;
                     toolStripComboBoxAds.Enabled = true;
                     toolStripButtonAddAds.Enabled = true;
-                    toolStripButtonDeleteUploadFiles.Enabled = true;
+                    
 
                     if (Global.Username.ToUpper() == "ADMIN")
                     {
@@ -335,6 +335,7 @@ namespace SonoOnlineResult
                         toolStripButtonBranch.Visible = true;
                         toolStripButtonUsers.Visible = true;
                         toolStripButtonTracking.Visible = true;
+                        toolStripButtonDeleteUploadFiles.Visible = true;
                     }
 
                     Configuration.SetValues(Const.UsernameKey, Global.Username);
@@ -363,12 +364,12 @@ namespace SonoOnlineResult
                 toolStripComboBoxLogo.Enabled = false;
                 toolStripComboBoxAds.Enabled = false;
                 toolStripButtonAddAds.Enabled = false;
-                toolStripButtonDeleteUploadFiles.Enabled = false;
 
                 toolStripSeparator1.Visible = false;
                 toolStripButtonBranch.Visible = false;
                 toolStripButtonUsers.Visible = false;
                 toolStripButtonTracking.Visible = false;
+                toolStripButtonDeleteUploadFiles.Visible = false;
 
                 toolStripButtonLogin.ToolTipText = "Login";
                 toolStripButtonLogin.Image = Properties.Resources.Login;
