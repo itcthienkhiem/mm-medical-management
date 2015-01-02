@@ -70,7 +70,7 @@ namespace SonoOnlineResult
             {
                 Global.FTPConnectionInfo.ServerName = "ftp.ris.com.au";
                 Global.FTPConnectionInfo.Username = "onlineresult@ris.com.au";
-                Global.FTPConnectionInfo.Password = "onlineresult1qazxdr5";
+                Global.FTPConnectionInfo.Password = "Password001qazxdr5";
             }
 
             if (File.Exists(Global.MailConfigPath))
@@ -256,11 +256,11 @@ namespace SonoOnlineResult
 
                     Configuration.SetValues(Const.UsernameKey, Global.Username);
                     Configuration.SaveData(Global.AppConfig);
-                }
 
-                toolStripButtonLogin.ToolTipText = "Logout";
-                toolStripButtonLogin.Image = Properties.Resources.Logout;
-                this.Text = string.Format("{0} - {1}", Application.ProductName, Global.Username);
+                    toolStripButtonLogin.ToolTipText = "Logout";
+                    toolStripButtonLogin.Image = Properties.Resources.Logout;
+                    this.Text = string.Format("{0} - {1}", Application.ProductName, Global.Username);
+                }
             };
 
             if (InvokeRequired) BeginInvoke(method);

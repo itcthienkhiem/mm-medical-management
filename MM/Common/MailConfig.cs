@@ -11,7 +11,7 @@ namespace MM.Common
     {
         #region Members
         private string _senderMail = string.Empty;
-        private bool _useSMTPServer = false;
+        private bool _useSMTPServer = true;
         private string _server = string.Empty;
         private int _port = 0;
         private string _username = string.Empty;
