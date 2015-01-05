@@ -117,7 +117,7 @@ namespace MMService
                     PatientView patient = result.QueryResult as PatientView;
                     if (patient == null) continue;
                     string tenBenhNhan = patient.FullName;
-                    string password = Utility.GeneratePassword();
+                    string password = Utility.GeneratePassword(5);
 
                     result = MySQLHelper.CheckUserExist(maBenhNhan);
                     if (result.Error.Code != ErrorCode.EXIST && result.Error.Code != ErrorCode.NOT_EXIST)

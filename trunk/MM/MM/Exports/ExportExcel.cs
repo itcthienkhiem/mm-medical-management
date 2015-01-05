@@ -1013,7 +1013,7 @@ namespace MM.Exports
                 workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
 
                 //SetRightTitleHDGTGT(exportFileName, rowIndex + 9, height1, height2);
-                if (soHD < 3001)
+                if (invoice.KiHieu == "AA/14T" && soHD < 3001)
                     PagingHDGTGT(exportFileName, rowIndex + 9);
             }
             catch (Exception ex)
@@ -1399,7 +1399,7 @@ namespace MM.Exports
                 workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
 
                 //SetRightTitleHDGTGT(exportFileName, rowIndex + 9, height1, height2);
-                if (soHD < 3001)
+                if (hdt.KiHieu == "AA/14T" && soHD < 3001)
                     PagingHDGTGT(exportFileName, rowIndex + 9);
             }
             catch (Exception ex)
@@ -1755,7 +1755,7 @@ namespace MM.Exports
                 workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
 
                 //SetRightTitleHDGTGT(exportFileName, rowIndex + 9, height1, height2);
-                if (soHD < 3001)
+                if (hdt.KiHieu == "AA/14T" && soHD < 3001)
                     PagingHDGTGT(exportFileName, rowIndex + 9);
             }
             catch (Exception ex)
@@ -1996,7 +1996,7 @@ namespace MM.Exports
                 workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
 
                 //SetRightTitleHDGTGT(exportFileName, rowIndex + 9, height1, height2);
-                if (soHD < 3001)
+                if (hdt.KiHieu == "AA/14T" && soHD < 3001)
                     PagingHDGTGT(exportFileName, rowIndex + 9);
             }
             catch (Exception ex)
