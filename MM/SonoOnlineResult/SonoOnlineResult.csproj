@@ -9,7 +9,7 @@
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SonoOnlineResult</RootNamespace>
-    <AssemblyName>SonoOnlineResult</AssemblyName>
+    <AssemblyName>RiscomOnline</AssemblyName>
     <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
     <TargetFrameworkProfile>
     </TargetFrameworkProfile>
@@ -35,7 +35,7 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ApplicationIcon>MM_Ico.ico</ApplicationIcon>
+    <ApplicationIcon>RIS_icon.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="MySql.Data, Version=6.4.4.0, Culture=neutral, PublicKeyToken=c5687fc88969c44d, processorArchitecture=MSIL">
@@ -295,6 +295,7 @@
     </EmbeddedResource>
     <EmbeddedResource Include="UploadFile.resx">
       <DependentUpon>UploadFile.cs</DependentUpon>
+      <SubType>Designer</SubType>
     </EmbeddedResource>
     <None Include="app.config" />
     <None Include="Properties\Settings.settings">
@@ -316,6 +317,7 @@
   <ItemGroup>
     <Content Include="MM_Ico.ico" />
     <Content Include="Notes.txt" />
+    <Content Include="RIS_icon.ico" />
     <None Include="Resources\Logout.png" />
     <None Include="Resources\Login.png" />
   </ItemGroup>
