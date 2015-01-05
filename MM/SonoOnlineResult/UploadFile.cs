@@ -85,6 +85,18 @@ namespace SonoOnlineResult
             if (File.Exists(Global.MailTemplatePath))
                 Global.MailTemplateList.Deserialize(Global.MailTemplatePath);
 
+            string adsFolder = string.Format("{0}\\Ads", Application.StartupPath);
+            if (!Directory.Exists(adsFolder))
+                Directory.CreateDirectory(adsFolder);
+
+            string imageTemplateFolder = string.Format("{0}\\ImageTemplates", Application.StartupPath);
+            if (!Directory.Exists(imageTemplateFolder))
+                Directory.CreateDirectory(imageTemplateFolder);
+
+            string logoFolder = string.Format("{0}\\Logo", Application.StartupPath);
+            if (!Directory.Exists(logoFolder))
+                Directory.CreateDirectory(logoFolder);
+
             Global.FTPFolder = "results";
 
             LoadImageTemplates();
