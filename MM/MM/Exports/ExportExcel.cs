@@ -811,7 +811,7 @@ namespace MM.Exports
 
                 int soHD = Convert.ToInt32(invoice.InvoiceCode);
                 string excelTemplateName = string.Format("{0}\\Templates\\HDGTGTTemplate.xls", Application.StartupPath);
-                if (soHD < 3001) excelTemplateName = string.Format("{0}\\Templates\\HDGTGTTemplateOld.xls", Application.StartupPath);
+                if (invoice.KiHieu == "AA/14T" && soHD < 3001) excelTemplateName = string.Format("{0}\\Templates\\HDGTGTTemplateOld.xls", Application.StartupPath);
 
                 Utility.CopyTemplates(excelTemplateName);
                 IRange range = null;
@@ -1204,7 +1204,7 @@ namespace MM.Exports
 
                 int soHD = Convert.ToInt32(hdt.SoHoaDon);
                 string excelTemplateName = string.Format("{0}\\Templates\\HDGTGTTemplate.xls", Application.StartupPath);
-                if (soHD < 3001) excelTemplateName = string.Format("{0}\\Templates\\HDGTGTTemplateOld.xls", Application.StartupPath);
+                if (hdt.KiHieu == "AA/14T" && soHD < 3001) excelTemplateName = string.Format("{0}\\Templates\\HDGTGTTemplateOld.xls", Application.StartupPath);
 
                 Utility.CopyTemplates(excelTemplateName);
                 IRange range = null;
@@ -1562,7 +1562,7 @@ namespace MM.Exports
 
                 int soHD = Convert.ToInt32(hdt.SoHoaDon);
                 string excelTemplateName = string.Format("{0}\\Templates\\HDGTGTTemplate.xls", Application.StartupPath);
-                if (soHD < 3001) excelTemplateName = string.Format("{0}\\Templates\\HDGTGTTemplateOld.xls", Application.StartupPath);
+                if (hdt.KiHieu == "AA/14T" && soHD < 3001) excelTemplateName = string.Format("{0}\\Templates\\HDGTGTTemplateOld.xls", Application.StartupPath);
 
                 Utility.CopyTemplates(excelTemplateName);
                 IRange range = null;
@@ -1803,7 +1803,7 @@ namespace MM.Exports
 
                 int soHD = Convert.ToInt32(hdt.SoHoaDon);
                 string excelTemplateName = string.Format("{0}\\Templates\\HDGTGTTemplate.xls", Application.StartupPath);
-                if (soHD < 3001) excelTemplateName = string.Format("{0}\\Templates\\HDGTGTTemplateOld.xls", Application.StartupPath);
+                if (hdt.KiHieu == "AA/14T" && soHD < 3001) excelTemplateName = string.Format("{0}\\Templates\\HDGTGTTemplateOld.xls", Application.StartupPath);
 
                 Utility.CopyTemplates(excelTemplateName);
                 IRange range = null;
