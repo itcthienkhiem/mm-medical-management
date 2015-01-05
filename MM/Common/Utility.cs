@@ -15,6 +15,7 @@ using System.Runtime.InteropServices;
 using SpreadsheetGear;
 using System.Drawing.Imaging;
 using System.Drawing.Drawing2D;
+using System.Globalization;
 
 namespace MM.Common
 {
@@ -172,22 +173,26 @@ namespace MM.Common
 
         public static bool IsValidEmail(string email)
         {
-            string pattern = @"^[-a-zA-Z0-9][-.a-zA-Z0-9]*@[-.a-zA-Z0-9]+(\.[-.a-zA-Z0-9]+)*\.
-	    	(com|edu|info|gov|int|mil|net|org|biz|name|museum|coop|aero|pro|tv|[a-zA-Z]{2})$";
+            RegexUtilities regex = new RegexUtilities();
+            return regex.IsValidEmail(email);
+            //string pattern = @"^(?!\.)(""([^""\r\\]|\\[""\r\\])*""|"
+            //+ @"([-a-z0-9!#$%&'*+/=?^_`{|}~]|(?<!\.)\.)*)(?<!\.)"
+            //+ @"@[a-z0-9][\w\.-]*[a-z0-9]\.[a-z][a-z\.]*[a-z]$";//@"^[-a-zA-Z0-9][-.a-zA-Z0-9]*@[-.a-zA-Z0-9]+(\.[-.a-zA-Z0-9]+)*\.
+            ////(com|edu|info|gov|int|mil|net|org|biz|name|museum|coop|aero|pro|tv|[a-zA-Z]{2})$";
 
-            Regex check = new Regex(pattern, RegexOptions.IgnorePatternWhitespace);
-            bool valid = false;
+            //Regex check = new Regex(pattern, RegexOptions.IgnorePatternWhitespace);
+            //bool valid = false;
 
-            if (string.IsNullOrEmpty(email))
-            {
-                valid = false;
-            }
-            else
-            {
-                valid = check.IsMatch(email);
-            }
+            //if (string.IsNullOrEmpty(email))
+            //{
+            //    valid = false;
+            //}
+            //else
+            //{
+            //    valid = check.IsMatch(email);
+            //}
 
-            return valid;
+            //return valid;
         }
 
         public static bool IsValidPassword(string password)
