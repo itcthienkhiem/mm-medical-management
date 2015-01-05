@@ -60,6 +60,13 @@ namespace SonoOnlineResult.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Actions_application_exit_icon {
+            get {
+                object obj = ResourceManager.GetObject("Actions_application_exit_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Actions_insert_text_icon {
             get {
                 object obj = ResourceManager.GetObject("Actions_insert_text_icon", resourceCulture);
@@ -70,6 +77,13 @@ namespace SonoOnlineResult.Properties {
         internal static System.Drawing.Bitmap add_icon__1_ {
             get {
                 object obj = ResourceManager.GetObject("add_icon__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Advertisements_icon {
+            get {
+                object obj = ResourceManager.GetObject("Advertisements_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

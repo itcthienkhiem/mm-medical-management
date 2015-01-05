@@ -229,6 +229,10 @@ namespace SonoOnlineResult
                 case "Delete Upload File":
                     OnDeleteUploadFile();
                     break;
+
+                case "Exit":
+                    this.Close();
+                    break;
             }
         }
 
@@ -321,20 +325,26 @@ namespace SonoOnlineResult
                     panel1.Enabled = true;
                     panel2.Enabled = true;
                     panel3.Enabled = true;
+
                     toolStripButtonChangePassword.Enabled = true;
+                    changePasswordToolStripMenuItem.Enabled = true;
                     toolStripComboBoxTemplates.Enabled = true;
                     toolStripComboBoxLogo.Enabled = true;
                     toolStripComboBoxAds.Enabled = true;
                     toolStripButtonAddAds.Enabled = true;
-                    
 
                     if (Global.Username.ToUpper() == "ADMIN")
                     {
                         toolStripSeparator1.Visible = true;
+                        toolStripSeparator10.Visible = true;
                         toolStripButtonBranch.Visible = true;
+                        branchListToolStripMenuItem.Visible = true;
                         toolStripButtonUsers.Visible = true;
+                        userListToolStripMenuItem.Visible = true;
                         toolStripButtonTracking.Visible = true;
+                        trackingToolStripMenuItem.Visible = true;
                         toolStripButtonDeleteUploadFiles.Visible = true;
+                        deleteUploadFileToolStripMenuItem.Visible = true;
                     }
 
                     Configuration.SetValues(Const.UsernameKey, Global.Username);
@@ -342,6 +352,8 @@ namespace SonoOnlineResult
 
                     toolStripButtonLogin.ToolTipText = "Logout";
                     toolStripButtonLogin.Image = Properties.Resources.Logout;
+                    loginToolStripMenuItem.Text = "Logout";
+                    loginToolStripMenuItem.Image = Properties.Resources.Logout;
                     this.Text = string.Format("{0} - {1} (user)", Application.ProductName, Global.Username);
                 }
             };
@@ -359,19 +371,27 @@ namespace SonoOnlineResult
                 panel2.Enabled = false;
                 panel3.Enabled = false;
                 toolStripButtonChangePassword.Enabled = false;
+                changePasswordToolStripMenuItem.Enabled = false;
                 toolStripComboBoxTemplates.Enabled = false;
                 toolStripComboBoxLogo.Enabled = false;
                 toolStripComboBoxAds.Enabled = false;
                 toolStripButtonAddAds.Enabled = false;
 
                 toolStripSeparator1.Visible = false;
+                toolStripSeparator10.Visible = false;
                 toolStripButtonBranch.Visible = false;
+                branchListToolStripMenuItem.Visible = false;
                 toolStripButtonUsers.Visible = false;
+                userListToolStripMenuItem.Visible = false;
                 toolStripButtonTracking.Visible = false;
+                trackingToolStripMenuItem.Visible = false;
                 toolStripButtonDeleteUploadFiles.Visible = false;
+                deleteUploadFileToolStripMenuItem.Visible = false;
 
                 toolStripButtonLogin.ToolTipText = "Login";
                 toolStripButtonLogin.Image = Properties.Resources.Login;
+                loginToolStripMenuItem.Text = "Login";
+                loginToolStripMenuItem.Image = Properties.Resources.Login;
                 this.Text = Application.ProductName;
             }
         }
@@ -596,7 +616,9 @@ namespace SonoOnlineResult
                 lvFile.SelectedItems.Clear();
                 lvFile.Items[lvFile.Items.Count - 1].Selected = true;
 
-                toolStripButtonResendMail.Enabled = CheckAllowResendMail();
+                bool isResend = CheckAllowResendMail();
+                toolStripButtonResendMail.Enabled = isResend;
+                resendMailToolStripMenuItem.Enabled = isResend;
             }
         }
 
@@ -653,7 +675,9 @@ namespace SonoOnlineResult
                         lvFile.Items[0].Selected = true;
                 }
 
-                toolStripButtonResendMail.Enabled = CheckAllowResendMail();
+                bool isResend = CheckAllowResendMail();
+                toolStripButtonResendMail.Enabled = isResend;
+                resendMailToolStripMenuItem.Enabled = isResend;
             }
         }
 
@@ -677,6 +701,7 @@ namespace SonoOnlineResult
                 picViewer.Image = null;
 
                 toolStripButtonResendMail.Enabled = false;
+                resendMailToolStripMenuItem.Enabled = false;
             }
         }
 
@@ -692,6 +717,7 @@ namespace SonoOnlineResult
 
                 _resultFileInfos.Clear();
                 toolStripButtonResendMail.Enabled = false;
+                resendMailToolStripMenuItem.Enabled = false;
                 _isUploadSuccess = false;
                 //_templateName = toolStripComboBoxTemplates.SelectedItem == null ? string.Empty : toolStripComboBoxTemplates.SelectedItem.ToString();
                 //_logoName = toolStripComboBoxLogo.SelectedItem == null ? string.Empty : toolStripComboBoxLogo.SelectedItem.ToString();
@@ -733,6 +759,7 @@ namespace SonoOnlineResult
                 base.ShowWaiting();
 
                 toolStripButtonResendMail.Enabled = true;
+                resendMailToolStripMenuItem.Enabled = true;
             }
             catch (Exception ex)
             {
@@ -941,6 +968,12 @@ namespace SonoOnlineResult
             Execute(e.ClickedItem.ToolTipText);
         }
 
+        private void toolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            ToolStripMenuItem item = sender as ToolStripMenuItem;
+            Execute(item.Text);
+        }
+
         private void btnClose_Click(object sender, EventArgs e)
         {
             this.Close();
@@ -1110,6 +1143,8 @@ namespace SonoOnlineResult
             }
         }
         #endregion
+
+        
     }
 
     public class ResultFileInfo

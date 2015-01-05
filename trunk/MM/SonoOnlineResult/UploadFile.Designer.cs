@@ -73,12 +73,34 @@
             this.toolStripLabel3 = new System.Windows.Forms.ToolStripLabel();
             this.toolStripComboBoxAds = new System.Windows.Forms.ToolStripComboBox();
             this.toolStripButtonAddAds = new System.Windows.Forms.ToolStripButton();
+            this.menuStrip1 = new System.Windows.Forms.MenuStrip();
+            this.systemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.loginToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator8 = new System.Windows.Forms.ToolStripSeparator();
+            this.changePasswordToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
+            this.exitToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mySQLConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.fTPConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mailConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.mailTemplatesToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.logoConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.adsConfigurationToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator9 = new System.Windows.Forms.ToolStripSeparator();
+            this.branchListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.userListToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.trackingToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.deleteUploadFileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator10 = new System.Windows.Forms.ToolStripSeparator();
+            this.resendMailToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel3.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picViewer)).BeginInit();
             this.toolStripImage.SuspendLayout();
             this.panel1.SuspendLayout();
             this.toolStripMain.SuspendLayout();
+            this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel3
@@ -86,9 +108,9 @@
             this.panel3.Controls.Add(this.lvFile);
             this.panel3.Dock = System.Windows.Forms.DockStyle.Fill;
             this.panel3.Enabled = false;
-            this.panel3.Location = new System.Drawing.Point(0, 31);
+            this.panel3.Location = new System.Drawing.Point(0, 55);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(473, 599);
+            this.panel3.Size = new System.Drawing.Size(434, 575);
             this.panel3.TabIndex = 4;
             // 
             // lvFile
@@ -104,7 +126,7 @@
             this.lvFile.HideSelection = false;
             this.lvFile.Location = new System.Drawing.Point(0, 0);
             this.lvFile.Name = "lvFile";
-            this.lvFile.Size = new System.Drawing.Size(473, 599);
+            this.lvFile.Size = new System.Drawing.Size(434, 575);
             this.lvFile.TabIndex = 1;
             this.lvFile.UseCompatibleStateImageBehavior = false;
             this.lvFile.View = System.Windows.Forms.View.Details;
@@ -126,9 +148,9 @@
             this.panel2.Controls.Add(this.toolStripImage);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Enabled = false;
-            this.panel2.Location = new System.Drawing.Point(473, 31);
+            this.panel2.Location = new System.Drawing.Point(434, 55);
             this.panel2.Name = "panel2";
-            this.panel2.Size = new System.Drawing.Size(567, 599);
+            this.panel2.Size = new System.Drawing.Size(567, 575);
             this.panel2.TabIndex = 3;
             // 
             // picViewer
@@ -138,7 +160,7 @@
             this.picViewer.Dock = System.Windows.Forms.DockStyle.Fill;
             this.picViewer.Location = new System.Drawing.Point(0, 49);
             this.picViewer.Name = "picViewer";
-            this.picViewer.Size = new System.Drawing.Size(567, 550);
+            this.picViewer.Size = new System.Drawing.Size(567, 526);
             this.picViewer.SizeMode = System.Windows.Forms.PictureBoxSizeMode.CenterImage;
             this.picViewer.TabIndex = 4;
             this.picViewer.TabStop = false;
@@ -219,7 +241,7 @@
             this.panel1.Enabled = false;
             this.panel1.Location = new System.Drawing.Point(0, 630);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(1040, 30);
+            this.panel1.Size = new System.Drawing.Size(1001, 30);
             this.panel1.TabIndex = 2;
             // 
             // btnRemoveAll
@@ -302,9 +324,9 @@
             this.toolStripLabel3,
             this.toolStripComboBoxAds,
             this.toolStripButtonAddAds});
-            this.toolStripMain.Location = new System.Drawing.Point(0, 0);
+            this.toolStripMain.Location = new System.Drawing.Point(0, 24);
             this.toolStripMain.Name = "toolStripMain";
-            this.toolStripMain.Size = new System.Drawing.Size(1040, 31);
+            this.toolStripMain.Size = new System.Drawing.Size(1001, 31);
             this.toolStripMain.TabIndex = 0;
             this.toolStripMain.Text = "toolStrip1";
             this.toolStripMain.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStripMain_ItemClicked);
@@ -344,6 +366,7 @@
             this.toolStripButtonMySQLConfig.Size = new System.Drawing.Size(28, 28);
             this.toolStripButtonMySQLConfig.Text = "toolStripButton1";
             this.toolStripButtonMySQLConfig.ToolTipText = "MySQL Configuration";
+            this.toolStripButtonMySQLConfig.Visible = false;
             // 
             // toolStripButtonFTPConfig
             // 
@@ -354,6 +377,7 @@
             this.toolStripButtonFTPConfig.Size = new System.Drawing.Size(28, 28);
             this.toolStripButtonFTPConfig.Text = "toolStripButton1";
             this.toolStripButtonFTPConfig.ToolTipText = "FTP Configuration";
+            this.toolStripButtonFTPConfig.Visible = false;
             // 
             // toolStripButtonMailConfig
             // 
@@ -364,6 +388,7 @@
             this.toolStripButtonMailConfig.Size = new System.Drawing.Size(28, 28);
             this.toolStripButtonMailConfig.Text = "toolStripButton2";
             this.toolStripButtonMailConfig.ToolTipText = "Mail Configuration";
+            this.toolStripButtonMailConfig.Visible = false;
             // 
             // toolStripButtonMailTemplate
             // 
@@ -374,6 +399,7 @@
             this.toolStripButtonMailTemplate.Size = new System.Drawing.Size(28, 28);
             this.toolStripButtonMailTemplate.Text = "toolStripButton1";
             this.toolStripButtonMailTemplate.ToolTipText = "Mail Templates";
+            this.toolStripButtonMailTemplate.Visible = false;
             // 
             // toolStripButtonLogoConfig
             // 
@@ -384,16 +410,18 @@
             this.toolStripButtonLogoConfig.Size = new System.Drawing.Size(28, 28);
             this.toolStripButtonLogoConfig.Text = "toolStripButton1";
             this.toolStripButtonLogoConfig.ToolTipText = "Logo Configuration";
+            this.toolStripButtonLogoConfig.Visible = false;
             // 
             // toolStripButtonAdver
             // 
             this.toolStripButtonAdver.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonAdver.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonAdver.Image")));
+            this.toolStripButtonAdver.Image = global::SonoOnlineResult.Properties.Resources.Advertisements_icon;
             this.toolStripButtonAdver.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonAdver.Name = "toolStripButtonAdver";
             this.toolStripButtonAdver.Size = new System.Drawing.Size(28, 28);
             this.toolStripButtonAdver.Text = "toolStripButton1";
             this.toolStripButtonAdver.ToolTipText = "Ads Configuration";
+            this.toolStripButtonAdver.Visible = false;
             // 
             // toolStripButtonResendMail
             // 
@@ -542,18 +570,203 @@
             this.toolStripButtonAddAds.Text = "toolStripButton1";
             this.toolStripButtonAddAds.ToolTipText = "Add Ads";
             // 
+            // menuStrip1
+            // 
+            this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
+            this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.systemToolStripMenuItem,
+            this.toolsToolStripMenuItem});
+            this.menuStrip1.Location = new System.Drawing.Point(0, 0);
+            this.menuStrip1.Name = "menuStrip1";
+            this.menuStrip1.Size = new System.Drawing.Size(1001, 24);
+            this.menuStrip1.TabIndex = 5;
+            this.menuStrip1.Text = "menuStrip1";
+            // 
+            // systemToolStripMenuItem
+            // 
+            this.systemToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.loginToolStripMenuItem,
+            this.toolStripSeparator8,
+            this.changePasswordToolStripMenuItem,
+            this.toolStripSeparator7,
+            this.exitToolStripMenuItem});
+            this.systemToolStripMenuItem.Name = "systemToolStripMenuItem";
+            this.systemToolStripMenuItem.Size = new System.Drawing.Size(57, 20);
+            this.systemToolStripMenuItem.Text = "System";
+            // 
+            // loginToolStripMenuItem
+            // 
+            this.loginToolStripMenuItem.Image = global::SonoOnlineResult.Properties.Resources.Login;
+            this.loginToolStripMenuItem.Name = "loginToolStripMenuItem";
+            this.loginToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.loginToolStripMenuItem.Text = "Login";
+            this.loginToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator8
+            // 
+            this.toolStripSeparator8.Name = "toolStripSeparator8";
+            this.toolStripSeparator8.Size = new System.Drawing.Size(165, 6);
+            // 
+            // changePasswordToolStripMenuItem
+            // 
+            this.changePasswordToolStripMenuItem.Enabled = false;
+            this.changePasswordToolStripMenuItem.Image = global::SonoOnlineResult.Properties.Resources.change_password_icon;
+            this.changePasswordToolStripMenuItem.Name = "changePasswordToolStripMenuItem";
+            this.changePasswordToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.changePasswordToolStripMenuItem.Text = "Change Password";
+            this.changePasswordToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator7
+            // 
+            this.toolStripSeparator7.Name = "toolStripSeparator7";
+            this.toolStripSeparator7.Size = new System.Drawing.Size(165, 6);
+            // 
+            // exitToolStripMenuItem
+            // 
+            this.exitToolStripMenuItem.Image = global::SonoOnlineResult.Properties.Resources.Actions_application_exit_icon;
+            this.exitToolStripMenuItem.Name = "exitToolStripMenuItem";
+            this.exitToolStripMenuItem.Size = new System.Drawing.Size(168, 22);
+            this.exitToolStripMenuItem.Text = "Exit";
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolsToolStripMenuItem
+            // 
+            this.toolsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.mySQLConfigurationToolStripMenuItem,
+            this.fTPConfigurationToolStripMenuItem,
+            this.mailConfigurationToolStripMenuItem,
+            this.mailTemplatesToolStripMenuItem,
+            this.logoConfigurationToolStripMenuItem,
+            this.adsConfigurationToolStripMenuItem,
+            this.toolStripSeparator9,
+            this.branchListToolStripMenuItem,
+            this.userListToolStripMenuItem,
+            this.trackingToolStripMenuItem,
+            this.deleteUploadFileToolStripMenuItem,
+            this.toolStripSeparator10,
+            this.resendMailToolStripMenuItem});
+            this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
+            this.toolsToolStripMenuItem.Size = new System.Drawing.Size(48, 20);
+            this.toolsToolStripMenuItem.Text = "Tools";
+            // 
+            // mySQLConfigurationToolStripMenuItem
+            // 
+            this.mySQLConfigurationToolStripMenuItem.Image = global::SonoOnlineResult.Properties.Resources.database_connect_icon;
+            this.mySQLConfigurationToolStripMenuItem.Name = "mySQLConfigurationToolStripMenuItem";
+            this.mySQLConfigurationToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.mySQLConfigurationToolStripMenuItem.Text = "MySQL Configuration";
+            this.mySQLConfigurationToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // fTPConfigurationToolStripMenuItem
+            // 
+            this.fTPConfigurationToolStripMenuItem.Image = global::SonoOnlineResult.Properties.Resources.ftp_icon;
+            this.fTPConfigurationToolStripMenuItem.Name = "fTPConfigurationToolStripMenuItem";
+            this.fTPConfigurationToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.fTPConfigurationToolStripMenuItem.Text = "FTP Configuration";
+            this.fTPConfigurationToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // mailConfigurationToolStripMenuItem
+            // 
+            this.mailConfigurationToolStripMenuItem.Image = global::SonoOnlineResult.Properties.Resources.Communication_email_2_icon;
+            this.mailConfigurationToolStripMenuItem.Name = "mailConfigurationToolStripMenuItem";
+            this.mailConfigurationToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.mailConfigurationToolStripMenuItem.Text = "Mail Configuration";
+            this.mailConfigurationToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // mailTemplatesToolStripMenuItem
+            // 
+            this.mailTemplatesToolStripMenuItem.Image = global::SonoOnlineResult.Properties.Resources.mail_icon;
+            this.mailTemplatesToolStripMenuItem.Name = "mailTemplatesToolStripMenuItem";
+            this.mailTemplatesToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.mailTemplatesToolStripMenuItem.Text = "Mail Templates";
+            this.mailTemplatesToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // logoConfigurationToolStripMenuItem
+            // 
+            this.logoConfigurationToolStripMenuItem.Image = global::SonoOnlineResult.Properties.Resources.social_stumbleupon_box_color_icon;
+            this.logoConfigurationToolStripMenuItem.Name = "logoConfigurationToolStripMenuItem";
+            this.logoConfigurationToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.logoConfigurationToolStripMenuItem.Text = "Logo Configuration";
+            this.logoConfigurationToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // adsConfigurationToolStripMenuItem
+            // 
+            this.adsConfigurationToolStripMenuItem.Image = global::SonoOnlineResult.Properties.Resources.Advertisements_icon;
+            this.adsConfigurationToolStripMenuItem.Name = "adsConfigurationToolStripMenuItem";
+            this.adsConfigurationToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.adsConfigurationToolStripMenuItem.Text = "Ads Configuration";
+            this.adsConfigurationToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator9
+            // 
+            this.toolStripSeparator9.Name = "toolStripSeparator9";
+            this.toolStripSeparator9.Size = new System.Drawing.Size(186, 6);
+            // 
+            // branchListToolStripMenuItem
+            // 
+            this.branchListToolStripMenuItem.Image = global::SonoOnlineResult.Properties.Resources.red_home_icon;
+            this.branchListToolStripMenuItem.Name = "branchListToolStripMenuItem";
+            this.branchListToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.branchListToolStripMenuItem.Text = "Branch List";
+            this.branchListToolStripMenuItem.Visible = false;
+            this.branchListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // userListToolStripMenuItem
+            // 
+            this.userListToolStripMenuItem.Image = global::SonoOnlineResult.Properties.Resources.Users_icon;
+            this.userListToolStripMenuItem.Name = "userListToolStripMenuItem";
+            this.userListToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.userListToolStripMenuItem.Text = "User List";
+            this.userListToolStripMenuItem.Visible = false;
+            this.userListToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // trackingToolStripMenuItem
+            // 
+            this.trackingToolStripMenuItem.Image = global::SonoOnlineResult.Properties.Resources.log_icon;
+            this.trackingToolStripMenuItem.Name = "trackingToolStripMenuItem";
+            this.trackingToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.trackingToolStripMenuItem.Text = "Tracking";
+            this.trackingToolStripMenuItem.Visible = false;
+            this.trackingToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // deleteUploadFileToolStripMenuItem
+            // 
+            this.deleteUploadFileToolStripMenuItem.Image = global::SonoOnlineResult.Properties.Resources.delete_file_icon;
+            this.deleteUploadFileToolStripMenuItem.Name = "deleteUploadFileToolStripMenuItem";
+            this.deleteUploadFileToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.deleteUploadFileToolStripMenuItem.Text = "Delete Upload File";
+            this.deleteUploadFileToolStripMenuItem.Visible = false;
+            this.deleteUploadFileToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator10
+            // 
+            this.toolStripSeparator10.Name = "toolStripSeparator10";
+            this.toolStripSeparator10.Size = new System.Drawing.Size(186, 6);
+            this.toolStripSeparator10.Visible = false;
+            // 
+            // resendMailToolStripMenuItem
+            // 
+            this.resendMailToolStripMenuItem.Enabled = false;
+            this.resendMailToolStripMenuItem.Image = global::SonoOnlineResult.Properties.Resources.mail_14_icon;
+            this.resendMailToolStripMenuItem.Name = "resendMailToolStripMenuItem";
+            this.resendMailToolStripMenuItem.Size = new System.Drawing.Size(189, 22);
+            this.resendMailToolStripMenuItem.Text = "Resend Mail";
+            this.resendMailToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
             // UploadFile
             // 
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1040, 660);
+            this.ClientSize = new System.Drawing.Size(1001, 660);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.toolStripMain);
+            this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
+            this.MainMenuStrip = this.menuStrip1;
             this.MaximizeBox = false;
             this.Name = "UploadFile";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
@@ -569,6 +782,8 @@
             this.panel1.ResumeLayout(false);
             this.toolStripMain.ResumeLayout(false);
             this.toolStripMain.PerformLayout();
+            this.menuStrip1.ResumeLayout(false);
+            this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -620,5 +835,26 @@
         private System.Windows.Forms.ToolStripButton toolStripButtonChangePassword;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
         private System.Windows.Forms.ToolStripButton toolStripButtonDeleteUploadFiles;
+        private System.Windows.Forms.MenuStrip menuStrip1;
+        private System.Windows.Forms.ToolStripMenuItem systemToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem loginToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator7;
+        private System.Windows.Forms.ToolStripMenuItem exitToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem toolsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator8;
+        private System.Windows.Forms.ToolStripMenuItem changePasswordToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mySQLConfigurationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem fTPConfigurationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mailConfigurationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem mailTemplatesToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem logoConfigurationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem adsConfigurationToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator9;
+        private System.Windows.Forms.ToolStripMenuItem branchListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem userListToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem trackingToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem deleteUploadFileToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
+        private System.Windows.Forms.ToolStripMenuItem resendMailToolStripMenuItem;
     }
 }
