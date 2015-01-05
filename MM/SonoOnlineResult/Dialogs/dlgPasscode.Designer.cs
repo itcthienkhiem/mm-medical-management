@@ -30,8 +30,8 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgPasscode));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.txtPasscode = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -47,6 +47,13 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
+            // txtPasscode
+            // 
+            this.txtPasscode.Location = new System.Drawing.Point(68, 19);
+            this.txtPasscode.Name = "txtPasscode";
+            this.txtPasscode.Size = new System.Drawing.Size(163, 20);
+            this.txtPasscode.TabIndex = 1;
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -55,13 +62,6 @@
             this.label1.Size = new System.Drawing.Size(57, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Passcode:";
-            // 
-            // txtPasscode
-            // 
-            this.txtPasscode.Location = new System.Drawing.Point(68, 19);
-            this.txtPasscode.Name = "txtPasscode";
-            this.txtPasscode.Size = new System.Drawing.Size(163, 20);
-            this.txtPasscode.TabIndex = 1;
             // 
             // btnOK
             // 

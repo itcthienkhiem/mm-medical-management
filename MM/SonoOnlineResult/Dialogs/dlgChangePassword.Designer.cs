@@ -30,12 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgChangePassword));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.txtCurrentPassword = new System.Windows.Forms.TextBox();
-            this.txtNewPassword = new System.Windows.Forms.TextBox();
             this.txtConfirmNewPassword = new System.Windows.Forms.TextBox();
+            this.txtNewPassword = new System.Windows.Forms.TextBox();
+            this.txtCurrentPassword = new System.Windows.Forms.TextBox();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnChange = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -55,23 +55,29 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
-            // label1
+            // txtConfirmNewPassword
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(37, 23);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(93, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Current Password:";
+            this.txtConfirmNewPassword.Location = new System.Drawing.Point(134, 69);
+            this.txtConfirmNewPassword.Name = "txtConfirmNewPassword";
+            this.txtConfirmNewPassword.PasswordChar = '*';
+            this.txtConfirmNewPassword.Size = new System.Drawing.Size(228, 20);
+            this.txtConfirmNewPassword.TabIndex = 5;
             // 
-            // label2
+            // txtNewPassword
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(49, 47);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(81, 13);
-            this.label2.TabIndex = 1;
-            this.label2.Text = "New Password:";
+            this.txtNewPassword.Location = new System.Drawing.Point(134, 44);
+            this.txtNewPassword.Name = "txtNewPassword";
+            this.txtNewPassword.PasswordChar = '*';
+            this.txtNewPassword.Size = new System.Drawing.Size(228, 20);
+            this.txtNewPassword.TabIndex = 4;
+            // 
+            // txtCurrentPassword
+            // 
+            this.txtCurrentPassword.Location = new System.Drawing.Point(134, 20);
+            this.txtCurrentPassword.Name = "txtCurrentPassword";
+            this.txtCurrentPassword.PasswordChar = '*';
+            this.txtCurrentPassword.Size = new System.Drawing.Size(228, 20);
+            this.txtCurrentPassword.TabIndex = 3;
             // 
             // label3
             // 
@@ -82,29 +88,23 @@
             this.label3.TabIndex = 2;
             this.label3.Text = "Confirm New Password:";
             // 
-            // txtCurrentPassword
+            // label2
             // 
-            this.txtCurrentPassword.Location = new System.Drawing.Point(134, 20);
-            this.txtCurrentPassword.Name = "txtCurrentPassword";
-            this.txtCurrentPassword.PasswordChar = '*';
-            this.txtCurrentPassword.Size = new System.Drawing.Size(228, 20);
-            this.txtCurrentPassword.TabIndex = 3;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(49, 47);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(81, 13);
+            this.label2.TabIndex = 1;
+            this.label2.Text = "New Password:";
             // 
-            // txtNewPassword
+            // label1
             // 
-            this.txtNewPassword.Location = new System.Drawing.Point(134, 44);
-            this.txtNewPassword.Name = "txtNewPassword";
-            this.txtNewPassword.PasswordChar = '*';
-            this.txtNewPassword.Size = new System.Drawing.Size(228, 20);
-            this.txtNewPassword.TabIndex = 4;
-            // 
-            // txtConfirmNewPassword
-            // 
-            this.txtConfirmNewPassword.Location = new System.Drawing.Point(134, 69);
-            this.txtConfirmNewPassword.Name = "txtConfirmNewPassword";
-            this.txtConfirmNewPassword.PasswordChar = '*';
-            this.txtConfirmNewPassword.Size = new System.Drawing.Size(228, 20);
-            this.txtConfirmNewPassword.TabIndex = 5;
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(37, 23);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(93, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Current Password:";
             // 
             // btnChange
             // 
