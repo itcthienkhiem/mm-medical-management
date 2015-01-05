@@ -557,7 +557,7 @@
             this.MaximizeBox = false;
             this.Name = "UploadFile";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Sono Online Result";
+            this.Text = "Riscom Online";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.UploadFile_FormClosing);
             this.Load += new System.EventHandler(this.UploadFile_Load);
             this.panel3.ResumeLayout(false);

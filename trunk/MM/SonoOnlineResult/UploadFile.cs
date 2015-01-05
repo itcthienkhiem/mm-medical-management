@@ -40,7 +40,6 @@ namespace SonoOnlineResult
         public UploadFile()
         {
             InitializeComponent();
-            
         }
         #endregion
 
@@ -343,7 +342,7 @@ namespace SonoOnlineResult
 
                     toolStripButtonLogin.ToolTipText = "Logout";
                     toolStripButtonLogin.Image = Properties.Resources.Logout;
-                    this.Text = string.Format("{0} - {1}", Application.ProductName, Global.Username);
+                    this.Text = string.Format("{0} - {1} (user)", Application.ProductName, Global.Username);
                 }
             };
 
@@ -584,7 +583,7 @@ namespace SonoOnlineResult
                     if (!CheckFileExist(fileName))
                     {
                         ListViewItem item = new ListViewItem(fileName);
-                        ResultFileInfo info = new ResultFileInfo();
+                        ResultFileInfo info = new ResultFileInfo();     
                         info.FileName = fileName;
                         //info.TemplateName = toolStripComboBoxTemplates.SelectedItem == null ? string.Empty : toolStripComboBoxTemplates.SelectedItem.ToString();
                         //info.LogoName = toolStripComboBoxLogo.SelectedItem == null ? string.Empty : toolStripComboBoxLogo.SelectedItem.ToString();
