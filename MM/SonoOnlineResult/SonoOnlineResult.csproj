@@ -331,6 +331,8 @@
     <None Include="Resources\Actions-insert-text-icon.png" />
     <None Include="Resources\shape-rotate-anticlockwise-icon.png" />
     <None Include="Resources\shape-rotate-clockwise-icon.png" />
+    <None Include="Resources\Actions-application-exit-icon.png" />
+    <None Include="Resources\Advertisements-icon.png" />
     <Content Include="RIS_icon.ico" />
     <None Include="Resources\Logout.png" />
     <None Include="Resources\Login.png" />
