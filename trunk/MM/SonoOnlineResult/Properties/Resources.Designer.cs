@@ -60,6 +60,62 @@ namespace SonoOnlineResult.Properties {
             }
         }
         
+        internal static System.Drawing.Bitmap Actions_insert_text_icon {
+            get {
+                object obj = ResourceManager.GetObject("Actions_insert_text_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap add_icon__1_ {
+            get {
+                object obj = ResourceManager.GetObject("add_icon__1_", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap change_password_icon {
+            get {
+                object obj = ResourceManager.GetObject("change_password_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Communication_email_2_icon {
+            get {
+                object obj = ResourceManager.GetObject("Communication_email_2_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap database_connect_icon {
+            get {
+                object obj = ResourceManager.GetObject("database_connect_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap delete_file_icon {
+            get {
+                object obj = ResourceManager.GetObject("delete_file_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap ftp_icon {
+            get {
+                object obj = ResourceManager.GetObject("ftp_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap log_icon {
+            get {
+                object obj = ResourceManager.GetObject("log_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
         internal static System.Drawing.Bitmap Login {
             get {
                 object obj = ResourceManager.GetObject("Login", resourceCulture);
@@ -70,6 +126,55 @@ namespace SonoOnlineResult.Properties {
         internal static System.Drawing.Bitmap Logout {
             get {
                 object obj = ResourceManager.GetObject("Logout", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap mail_14_icon {
+            get {
+                object obj = ResourceManager.GetObject("mail_14_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap mail_icon {
+            get {
+                object obj = ResourceManager.GetObject("mail_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap red_home_icon {
+            get {
+                object obj = ResourceManager.GetObject("red_home_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap shape_rotate_anticlockwise_icon {
+            get {
+                object obj = ResourceManager.GetObject("shape_rotate_anticlockwise_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap shape_rotate_clockwise_icon {
+            get {
+                object obj = ResourceManager.GetObject("shape_rotate_clockwise_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap social_stumbleupon_box_color_icon {
+            get {
+                object obj = ResourceManager.GetObject("social_stumbleupon_box_color_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        internal static System.Drawing.Bitmap Users_icon {
+            get {
+                object obj = ResourceManager.GetObject("Users_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

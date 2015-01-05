@@ -315,8 +315,22 @@
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
-    <Content Include="MM_Ico.ico" />
     <Content Include="Notes.txt" />
+    <None Include="Resources\change-password-icon.png" />
+    <None Include="Resources\add-icon %281%29.png" />
+    <None Include="Resources\Communication-email-2-icon.png" />
+    <None Include="Resources\database-connect-icon.png" />
+    <None Include="Resources\ftp-icon.png" />
+    <None Include="Resources\log-icon.png" />
+    <None Include="Resources\mail-icon.png" />
+    <None Include="Resources\red-home-icon.png" />
+    <None Include="Resources\social-stumbleupon-box-color-icon.png" />
+    <None Include="Resources\Users-icon.png" />
+    <None Include="Resources\delete-file-icon.png" />
+    <None Include="Resources\mail-14-icon.png" />
+    <None Include="Resources\Actions-insert-text-icon.png" />
+    <None Include="Resources\shape-rotate-anticlockwise-icon.png" />
+    <None Include="Resources\shape-rotate-clockwise-icon.png" />
     <Content Include="RIS_icon.ico" />
     <None Include="Resources\Logout.png" />
     <None Include="Resources\Login.png" />

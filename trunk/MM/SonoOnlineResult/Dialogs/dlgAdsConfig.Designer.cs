@@ -34,13 +34,13 @@
             this.panel1 = new System.Windows.Forms.Panel();
             this.panel2 = new System.Windows.Forms.Panel();
             this.dgLogo = new System.Windows.Forms.DataGridView();
+            this.colLogo = new System.Windows.Forms.DataGridViewImageColumn();
+            this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel3 = new System.Windows.Forms.Panel();
             this.btnRemoveAll = new System.Windows.Forms.Button();
             this.btnRemove = new System.Windows.Forms.Button();
             this.btnEdit = new System.Windows.Forms.Button();
             this.btnAdd = new System.Windows.Forms.Button();
-            this.colLogo = new System.Windows.Forms.DataGridViewImageColumn();
-            this.colName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgLogo)).BeginInit();
@@ -104,6 +104,21 @@
             this.dgLogo.TabIndex = 1;
             this.dgLogo.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgLogo_CellDoubleClick);
             // 
+            // colLogo
+            // 
+            this.colLogo.HeaderText = "Ads";
+            this.colLogo.Name = "colLogo";
+            this.colLogo.ReadOnly = true;
+            this.colLogo.Width = 250;
+            // 
+            // colName
+            // 
+            this.colName.HeaderText = "Name";
+            this.colName.Name = "colName";
+            this.colName.ReadOnly = true;
+            this.colName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
+            this.colName.Width = 200;
+            // 
             // panel3
             // 
             this.panel3.Controls.Add(this.btnRemoveAll);
@@ -155,21 +170,6 @@
             this.btnAdd.Text = "&Add";
             this.btnAdd.UseVisualStyleBackColor = true;
             this.btnAdd.Click += new System.EventHandler(this.btnAdd_Click);
-            // 
-            // colLogo
-            // 
-            this.colLogo.HeaderText = "Ads";
-            this.colLogo.Name = "colLogo";
-            this.colLogo.ReadOnly = true;
-            this.colLogo.Width = 250;
-            // 
-            // colName
-            // 
-            this.colName.HeaderText = "Name";
-            this.colName.Name = "colName";
-            this.colName.ReadOnly = true;
-            this.colName.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.colName.Width = 200;
             // 
             // dlgAdsConfig
             // 

@@ -32,6 +32,8 @@
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.txtDatabase = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
             this.txtServerName = new System.Windows.Forms.TextBox();
             this.btnTestConnection = new System.Windows.Forms.Button();
             this.txtPassword = new System.Windows.Forms.TextBox();
@@ -39,8 +41,6 @@
             this.label5 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.txtDatabase = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -83,6 +83,22 @@
             this.groupBox1.TabIndex = 5;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "MySQL Information";
+            // 
+            // txtDatabase
+            // 
+            this.txtDatabase.Location = new System.Drawing.Point(78, 45);
+            this.txtDatabase.Name = "txtDatabase";
+            this.txtDatabase.Size = new System.Drawing.Size(222, 20);
+            this.txtDatabase.TabIndex = 1;
+            // 
+            // label2
+            // 
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(12, 48);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(56, 13);
+            this.label2.TabIndex = 11;
+            this.label2.Text = "Database:";
             // 
             // txtServerName
             // 
@@ -143,22 +159,6 @@
             this.label1.Size = new System.Drawing.Size(41, 13);
             this.label1.TabIndex = 0;
             this.label1.Text = "Server:";
-            // 
-            // txtDatabase
-            // 
-            this.txtDatabase.Location = new System.Drawing.Point(78, 45);
-            this.txtDatabase.Name = "txtDatabase";
-            this.txtDatabase.Size = new System.Drawing.Size(222, 20);
-            this.txtDatabase.TabIndex = 1;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(12, 48);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(56, 13);
-            this.label2.TabIndex = 11;
-            this.label2.Text = "Database:";
             // 
             // dlgMySQLConfig
             // 

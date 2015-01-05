@@ -30,12 +30,12 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(dlgAddText));
             this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.txtText1 = new System.Windows.Forms.TextBox();
-            this.txtText2 = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
             this.txtText3 = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
+            this.txtText2 = new System.Windows.Forms.TextBox();
+            this.label2 = new System.Windows.Forms.Label();
+            this.txtText1 = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.btnOK = new System.Windows.Forms.Button();
             this.btnCancel = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
@@ -55,21 +55,21 @@
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
-            // label1
+            // txtText3
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(40, 13);
-            this.label1.TabIndex = 0;
-            this.label1.Text = "Text 1:";
+            this.txtText3.Location = new System.Drawing.Point(50, 66);
+            this.txtText3.Name = "txtText3";
+            this.txtText3.Size = new System.Drawing.Size(445, 20);
+            this.txtText3.TabIndex = 5;
             // 
-            // txtText1
+            // label3
             // 
-            this.txtText1.Location = new System.Drawing.Point(50, 18);
-            this.txtText1.Name = "txtText1";
-            this.txtText1.Size = new System.Drawing.Size(445, 20);
-            this.txtText1.TabIndex = 1;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 69);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(40, 13);
+            this.label3.TabIndex = 4;
+            this.label3.Text = "Text 3:";
             // 
             // txtText2
             // 
@@ -87,21 +87,21 @@
             this.label2.TabIndex = 2;
             this.label2.Text = "Text 2:";
             // 
-            // txtText3
+            // txtText1
             // 
-            this.txtText3.Location = new System.Drawing.Point(50, 66);
-            this.txtText3.Name = "txtText3";
-            this.txtText3.Size = new System.Drawing.Size(445, 20);
-            this.txtText3.TabIndex = 5;
+            this.txtText1.Location = new System.Drawing.Point(50, 18);
+            this.txtText1.Name = "txtText1";
+            this.txtText1.Size = new System.Drawing.Size(445, 20);
+            this.txtText1.TabIndex = 1;
             // 
-            // label3
+            // label1
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 69);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(40, 13);
-            this.label3.TabIndex = 4;
-            this.label3.Text = "Text 3:";
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(6, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(40, 13);
+            this.label1.TabIndex = 0;
+            this.label1.Text = "Text 1:";
             // 
             // btnOK
             // 

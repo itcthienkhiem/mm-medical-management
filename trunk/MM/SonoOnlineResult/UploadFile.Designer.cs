@@ -88,7 +88,7 @@
             this.panel3.Enabled = false;
             this.panel3.Location = new System.Drawing.Point(0, 31);
             this.panel3.Name = "panel3";
-            this.panel3.Size = new System.Drawing.Size(373, 599);
+            this.panel3.Size = new System.Drawing.Size(473, 599);
             this.panel3.TabIndex = 4;
             // 
             // lvFile
@@ -104,7 +104,7 @@
             this.lvFile.HideSelection = false;
             this.lvFile.Location = new System.Drawing.Point(0, 0);
             this.lvFile.Name = "lvFile";
-            this.lvFile.Size = new System.Drawing.Size(373, 599);
+            this.lvFile.Size = new System.Drawing.Size(473, 599);
             this.lvFile.TabIndex = 1;
             this.lvFile.UseCompatibleStateImageBehavior = false;
             this.lvFile.View = System.Windows.Forms.View.Details;
@@ -126,7 +126,7 @@
             this.panel2.Controls.Add(this.toolStripImage);
             this.panel2.Dock = System.Windows.Forms.DockStyle.Right;
             this.panel2.Enabled = false;
-            this.panel2.Location = new System.Drawing.Point(373, 31);
+            this.panel2.Location = new System.Drawing.Point(473, 31);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(567, 599);
             this.panel2.TabIndex = 3;
@@ -175,7 +175,7 @@
             // 
             this.toolStripButtonRotateLeft.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButtonRotateLeft.Enabled = false;
-            this.toolStripButtonRotateLeft.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRotateLeft.Image")));
+            this.toolStripButtonRotateLeft.Image = global::SonoOnlineResult.Properties.Resources.shape_rotate_anticlockwise_icon;
             this.toolStripButtonRotateLeft.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonRotateLeft.Name = "toolStripButtonRotateLeft";
             this.toolStripButtonRotateLeft.Size = new System.Drawing.Size(28, 28);
@@ -186,7 +186,7 @@
             // 
             this.toolStripButtonRotateRight.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButtonRotateRight.Enabled = false;
-            this.toolStripButtonRotateRight.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonRotateRight.Image")));
+            this.toolStripButtonRotateRight.Image = global::SonoOnlineResult.Properties.Resources.shape_rotate_clockwise_icon;
             this.toolStripButtonRotateRight.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonRotateRight.Name = "toolStripButtonRotateRight";
             this.toolStripButtonRotateRight.Size = new System.Drawing.Size(28, 28);
@@ -202,7 +202,7 @@
             // 
             this.toolStripButtonAddText.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButtonAddText.Enabled = false;
-            this.toolStripButtonAddText.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonAddText.Image")));
+            this.toolStripButtonAddText.Image = global::SonoOnlineResult.Properties.Resources.Actions_insert_text_icon;
             this.toolStripButtonAddText.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonAddText.Name = "toolStripButtonAddText";
             this.toolStripButtonAddText.Size = new System.Drawing.Size(28, 28);
@@ -219,7 +219,7 @@
             this.panel1.Enabled = false;
             this.panel1.Location = new System.Drawing.Point(0, 630);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(940, 30);
+            this.panel1.Size = new System.Drawing.Size(1040, 30);
             this.panel1.TabIndex = 2;
             // 
             // btnRemoveAll
@@ -304,7 +304,7 @@
             this.toolStripButtonAddAds});
             this.toolStripMain.Location = new System.Drawing.Point(0, 0);
             this.toolStripMain.Name = "toolStripMain";
-            this.toolStripMain.Size = new System.Drawing.Size(940, 31);
+            this.toolStripMain.Size = new System.Drawing.Size(1040, 31);
             this.toolStripMain.TabIndex = 0;
             this.toolStripMain.Text = "toolStrip1";
             this.toolStripMain.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStripMain_ItemClicked);
@@ -323,7 +323,7 @@
             // 
             this.toolStripButtonChangePassword.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButtonChangePassword.Enabled = false;
-            this.toolStripButtonChangePassword.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonChangePassword.Image")));
+            this.toolStripButtonChangePassword.Image = global::SonoOnlineResult.Properties.Resources.change_password_icon;
             this.toolStripButtonChangePassword.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonChangePassword.Name = "toolStripButtonChangePassword";
             this.toolStripButtonChangePassword.Size = new System.Drawing.Size(28, 28);
@@ -338,7 +338,7 @@
             // toolStripButtonMySQLConfig
             // 
             this.toolStripButtonMySQLConfig.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonMySQLConfig.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonMySQLConfig.Image")));
+            this.toolStripButtonMySQLConfig.Image = global::SonoOnlineResult.Properties.Resources.database_connect_icon;
             this.toolStripButtonMySQLConfig.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonMySQLConfig.Name = "toolStripButtonMySQLConfig";
             this.toolStripButtonMySQLConfig.Size = new System.Drawing.Size(28, 28);
@@ -348,7 +348,7 @@
             // toolStripButtonFTPConfig
             // 
             this.toolStripButtonFTPConfig.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonFTPConfig.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonFTPConfig.Image")));
+            this.toolStripButtonFTPConfig.Image = global::SonoOnlineResult.Properties.Resources.ftp_icon;
             this.toolStripButtonFTPConfig.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonFTPConfig.Name = "toolStripButtonFTPConfig";
             this.toolStripButtonFTPConfig.Size = new System.Drawing.Size(28, 28);
@@ -358,7 +358,7 @@
             // toolStripButtonMailConfig
             // 
             this.toolStripButtonMailConfig.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonMailConfig.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonMailConfig.Image")));
+            this.toolStripButtonMailConfig.Image = global::SonoOnlineResult.Properties.Resources.Communication_email_2_icon;
             this.toolStripButtonMailConfig.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonMailConfig.Name = "toolStripButtonMailConfig";
             this.toolStripButtonMailConfig.Size = new System.Drawing.Size(28, 28);
@@ -368,7 +368,7 @@
             // toolStripButtonMailTemplate
             // 
             this.toolStripButtonMailTemplate.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonMailTemplate.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonMailTemplate.Image")));
+            this.toolStripButtonMailTemplate.Image = global::SonoOnlineResult.Properties.Resources.mail_icon;
             this.toolStripButtonMailTemplate.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonMailTemplate.Name = "toolStripButtonMailTemplate";
             this.toolStripButtonMailTemplate.Size = new System.Drawing.Size(28, 28);
@@ -378,7 +378,7 @@
             // toolStripButtonLogoConfig
             // 
             this.toolStripButtonLogoConfig.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonLogoConfig.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonLogoConfig.Image")));
+            this.toolStripButtonLogoConfig.Image = global::SonoOnlineResult.Properties.Resources.social_stumbleupon_box_color_icon;
             this.toolStripButtonLogoConfig.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonLogoConfig.Name = "toolStripButtonLogoConfig";
             this.toolStripButtonLogoConfig.Size = new System.Drawing.Size(28, 28);
@@ -399,7 +399,7 @@
             // 
             this.toolStripButtonResendMail.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButtonResendMail.Enabled = false;
-            this.toolStripButtonResendMail.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonResendMail.Image")));
+            this.toolStripButtonResendMail.Image = global::SonoOnlineResult.Properties.Resources.mail_14_icon;
             this.toolStripButtonResendMail.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonResendMail.Name = "toolStripButtonResendMail";
             this.toolStripButtonResendMail.Size = new System.Drawing.Size(28, 28);
@@ -415,7 +415,7 @@
             // toolStripButtonBranch
             // 
             this.toolStripButtonBranch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonBranch.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonBranch.Image")));
+            this.toolStripButtonBranch.Image = global::SonoOnlineResult.Properties.Resources.red_home_icon;
             this.toolStripButtonBranch.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonBranch.Name = "toolStripButtonBranch";
             this.toolStripButtonBranch.Size = new System.Drawing.Size(28, 28);
@@ -426,7 +426,7 @@
             // toolStripButtonUsers
             // 
             this.toolStripButtonUsers.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonUsers.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonUsers.Image")));
+            this.toolStripButtonUsers.Image = global::SonoOnlineResult.Properties.Resources.Users_icon;
             this.toolStripButtonUsers.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonUsers.Name = "toolStripButtonUsers";
             this.toolStripButtonUsers.Size = new System.Drawing.Size(28, 28);
@@ -437,7 +437,7 @@
             // toolStripButtonTracking
             // 
             this.toolStripButtonTracking.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonTracking.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonTracking.Image")));
+            this.toolStripButtonTracking.Image = global::SonoOnlineResult.Properties.Resources.log_icon;
             this.toolStripButtonTracking.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonTracking.Name = "toolStripButtonTracking";
             this.toolStripButtonTracking.Size = new System.Drawing.Size(28, 28);
@@ -448,7 +448,7 @@
             // toolStripButtonDeleteUploadFiles
             // 
             this.toolStripButtonDeleteUploadFiles.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
-            this.toolStripButtonDeleteUploadFiles.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonDeleteUploadFiles.Image")));
+            this.toolStripButtonDeleteUploadFiles.Image = global::SonoOnlineResult.Properties.Resources.delete_file_icon;
             this.toolStripButtonDeleteUploadFiles.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonDeleteUploadFiles.Name = "toolStripButtonDeleteUploadFiles";
             this.toolStripButtonDeleteUploadFiles.Size = new System.Drawing.Size(28, 28);
@@ -535,7 +535,7 @@
             // 
             this.toolStripButtonAddAds.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
             this.toolStripButtonAddAds.Enabled = false;
-            this.toolStripButtonAddAds.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButtonAddAds.Image")));
+            this.toolStripButtonAddAds.Image = global::SonoOnlineResult.Properties.Resources.add_icon__1_;
             this.toolStripButtonAddAds.ImageTransparentColor = System.Drawing.Color.Magenta;
             this.toolStripButtonAddAds.Name = "toolStripButtonAddAds";
             this.toolStripButtonAddAds.Size = new System.Drawing.Size(28, 28);
@@ -547,7 +547,7 @@
             this.AllowDrop = true;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(940, 660);
+            this.ClientSize = new System.Drawing.Size(1040, 660);
             this.Controls.Add(this.panel3);
             this.Controls.Add(this.panel2);
             this.Controls.Add(this.panel1);
