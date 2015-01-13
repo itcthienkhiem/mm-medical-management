@@ -1752,7 +1752,7 @@ namespace MM.Common
             }
 
             grPhoto.DrawImage(image,
-                new Rectangle(x, y, w, h),
+                new Rectangle(contentRect.X, contentRect.Y, contentRect.Width, contentRect.Height),
                 new Rectangle(0, 0, image.Width, image.Height),
                 GraphicsUnit.Pixel);
 

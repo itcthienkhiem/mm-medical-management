@@ -51,6 +51,9 @@ namespace SonoOnlineResult
             TemplateInfo info = new TemplateInfo();
             info.TemplateName = "Autumn.png";
             info.TemplateImage = Properties.Resources.Autumn;
+            info.LogoRect = new Rectangle(50, 60, 193, 193);
+            info.ContentRect = new Rectangle(90, 508, 1064, 1064);
+            info.TextRect = new Rectangle(317, 95, 100, 100);
             TemplateInfos.Add(info);
             info = new TemplateInfo();
             info.TemplateName = "Flower1.png";
@@ -1277,8 +1280,10 @@ namespace SonoOnlineResult
                     //Rectangle logoRect = new Rectangle(404, 120, 708, 185);
                     //Rectangle contentRect = new Rectangle(97, 480, 1092, 1183);
                     //Rectangle textRect = new Rectangle(405, 310, 690, 96);
-                    resultImage = Utility.FillData2ImageTemplate(info.TemplateImage, logo, OrgImage, 
+                    resultImage = Utility.FillData2ImageTemplate((Image)info.TemplateImage.Clone(), logo, OrgImage, 
                         info.LogoRect, info.ContentRect, info.TextRect, Text1, Text2, Text3);
+
+                    resultImage.Save(Application.StartupPath + "\\test.png");
                 }
             }
 
