@@ -34,16 +34,25 @@ namespace SonoOnlineResult
         private string _passcode = string.Empty;
         private DateTime _fromDate = DateTime.Now;
         private DateTime _toDate = DateTime.Now;
+        public static List<TemplateInfo> TemplateInfos = new List<TemplateInfo>();
         #endregion
 
         #region Constructor
         public UploadFile()
         {
             InitializeComponent();
+            InitTemplateInfo();
         }
         #endregion
 
         #region UI Command
+        private void InitTemplateInfo()
+        {
+            TemplateInfo info = new TemplateInfo();
+            info.TemplateName = "";
+            TemplateInfos.Add(info);
+        }
+
         private void InitConfig()
         {
             if (File.Exists(Global.AppConfig))
@@ -111,15 +120,23 @@ namespace SonoOnlineResult
             toolStripComboBoxTemplates.Items.Clear();
             toolStripComboBoxTemplates.Items.Add("[None]");
 
-            string templateFolder = string.Format("{0}\\ImageTemplates", Application.StartupPath);
-            if (Directory.Exists(templateFolder))
-            {
-                string[] fileNames = Directory.GetFiles(templateFolder);
-                foreach (var fileName in fileNames)
-                    toolStripComboBoxTemplates.Items.Add(Path.GetFileName(fileName));
+            //string templateFolder = string.Format("{0}\\ImageTemplates", Application.StartupPath);
+            //if (Directory.Exists(templateFolder))
+            //{
+            //    string[] fileNames = Directory.GetFiles(templateFolder);
+            //    foreach (var fileName in fileNames)
+            //        toolStripComboBoxTemplates.Items.Add(Path.GetFileName(fileName));
 
-                toolStripComboBoxTemplates.SelectedIndex = 0;
-            }
+            //    toolStripComboBoxTemplates.SelectedIndex = 0;
+            //}
+
+            toolStripComboBoxTemplates.Items.Add("Autumn.png");
+            toolStripComboBoxTemplates.Items.Add("Flower1.png");
+            toolStripComboBoxTemplates.Items.Add("Halloween1.png");
+            toolStripComboBoxTemplates.Items.Add("Spring1.png");
+            toolStripComboBoxTemplates.Items.Add("Summer1.png");
+            toolStripComboBoxTemplates.Items.Add("Winter1.png");
+            toolStripComboBoxTemplates.SelectedIndex = 0;
         }
 
         private void LoadLogos()
@@ -1195,6 +1212,17 @@ namespace SonoOnlineResult
         #endregion
 
         #region Methods
+        private TemplateInfo GetTemplateInfo(string templateName)
+        {
+            foreach (var info in UploadFile.TemplateInfos)
+            {
+                if (templateName == info.TemplateName)
+                    return info;
+            }
+
+            return null;
+        }
+
         public Image ProcessResultImage()
         {
             if (!IsImageFile) return null;
@@ -1256,5 +1284,55 @@ namespace SonoOnlineResult
     {
         Result = 0,
         Ads
+    }
+
+    public class TemplateInfo
+    {
+        #region Members
+        private string _templateName = string.Empty;
+        private Rectangle _logoRect = Rectangle.Empty;
+        private Rectangle _contentRect = Rectangle.Empty;
+        private Rectangle _textRect = Rectangle.Empty;
+        private Image _templateImage = null;
+        #endregion
+
+        #region Constructor
+        public TemplateInfo()
+        {
+
+        }
+        #endregion
+
+        #region Properties
+        public string TemplateName
+        {
+            get { return _templateName; }
+            set { _templateName = value; }
+        }
+
+        public Rectangle LogoRect
+        {
+            get { return _logoRect; }
+            set { _logoRect = value; }
+        }
+
+        public Rectangle ContentRect
+        {
+            get { return _contentRect; }
+            set { _contentRect = value; }
+        }
+
+        public Rectangle TextRect
+        {
+            get { return _textRect; }
+            set { _textRect = value; }
+        }
+
+        public Image TemplateImage
+        {
+            get { return _templateImage; }
+            set { _templateImage = value; }
+        }
+        #endregion
     }
 }
