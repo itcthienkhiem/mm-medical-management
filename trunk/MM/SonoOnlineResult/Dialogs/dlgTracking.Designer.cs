@@ -44,6 +44,7 @@
             this.btnExportToExcel = new System.Windows.Forms.Button();
             this.panel3 = new System.Windows.Forms.Panel();
             this.dgTracking = new System.Windows.Forms.DataGridView();
+            this.lbCount = new System.Windows.Forms.Label();
             this.colTrackingKey = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colTrackingDate = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.colUsername = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,6 +60,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.lbCount);
             this.panel1.Controls.Add(this.btnSearch);
             this.panel1.Controls.Add(this.cboUserLogon);
             this.panel1.Controls.Add(this.label1);
@@ -105,7 +107,7 @@
             // 
             // dtpkTo
             // 
-            this.dtpkTo.CustomFormat = "MM/dd/yyyy HH:mm:ss";
+            this.dtpkTo.CustomFormat = "dd/MM/yyyy HH:mm:ss";
             this.dtpkTo.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpkTo.Location = new System.Drawing.Point(263, 11);
             this.dtpkTo.Name = "dtpkTo";
@@ -114,7 +116,7 @@
             // 
             // dtpkFrom
             // 
-            this.dtpkFrom.CustomFormat = "MM/dd/yyyy HH:mm:ss";
+            this.dtpkFrom.CustomFormat = "dd/MM/yyyy HH:mm:ss";
             this.dtpkFrom.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
             this.dtpkFrom.Location = new System.Drawing.Point(58, 11);
             this.dtpkFrom.Name = "dtpkFrom";
@@ -216,6 +218,17 @@
             this.dgTracking.Size = new System.Drawing.Size(712, 404);
             this.dgTracking.TabIndex = 0;
             // 
+            // lbCount
+            // 
+            this.lbCount.AutoSize = true;
+            this.lbCount.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lbCount.ForeColor = System.Drawing.Color.Blue;
+            this.lbCount.Location = new System.Drawing.Point(430, 41);
+            this.lbCount.Name = "lbCount";
+            this.lbCount.Size = new System.Drawing.Size(59, 15);
+            this.lbCount.TabIndex = 7;
+            this.lbCount.Text = "0 row(s)";
+            // 
             // colTrackingKey
             // 
             this.colTrackingKey.DataPropertyName = "TrackingKey";
@@ -228,7 +241,7 @@
             // 
             this.colTrackingDate.DataPropertyName = "TrackingDate";
             dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle2.Format = "MM/dd/yyyy HH:mm:ss";
+            dataGridViewCellStyle2.Format = "dd/MM/yyyy HH:mm:ss";
             this.colTrackingDate.DefaultCellStyle = dataGridViewCellStyle2;
             this.colTrackingDate.HeaderText = "Tracking Date";
             this.colTrackingDate.Name = "colTrackingDate";
@@ -313,6 +326,7 @@
         private System.Windows.Forms.CheckBox chkFrom;
         private System.Windows.Forms.Button btnSearch;
         private System.Windows.Forms.DataGridView dgTracking;
+        private System.Windows.Forms.Label lbCount;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTrackingKey;
         private System.Windows.Forms.DataGridViewTextBoxColumn colTrackingDate;
         private System.Windows.Forms.DataGridViewTextBoxColumn colUsername;

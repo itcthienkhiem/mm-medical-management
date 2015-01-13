@@ -88,6 +88,8 @@ namespace SonoOnlineResult.Dialogs
 
                 ThreadPool.QueueUserWorkItem(new WaitCallback(OnSearchProc));
                 base.ShowWaiting();
+
+                lbCount.Text = string.Format("{0} row(s)", dgTracking.RowCount);
             }
             catch (Exception e)
             {
