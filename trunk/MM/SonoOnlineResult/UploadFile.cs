@@ -49,7 +49,28 @@ namespace SonoOnlineResult
         private void InitTemplateInfo()
         {
             TemplateInfo info = new TemplateInfo();
-            info.TemplateName = "";
+            info.TemplateName = "Autumn.png";
+            info.TemplateImage = Properties.Resources.Autumn;
+            TemplateInfos.Add(info);
+            info = new TemplateInfo();
+            info.TemplateName = "Flower1.png";
+            info.TemplateImage = Properties.Resources.Flower1;
+            TemplateInfos.Add(info);
+            info = new TemplateInfo();
+            info.TemplateName = "Halloween1.png";
+            info.TemplateImage = Properties.Resources.Halloween1;
+            TemplateInfos.Add(info);
+            info = new TemplateInfo();
+            info.TemplateName = "Spring1.png";
+            info.TemplateImage = Properties.Resources.Spring1;
+            TemplateInfos.Add(info);
+            info = new TemplateInfo();
+            info.TemplateName = "Summer1.png";
+            info.TemplateImage = Properties.Resources.Summer1;
+            TemplateInfos.Add(info);
+            info = new TemplateInfo();
+            info.TemplateName = "Winter1.png";
+            info.TemplateImage = Properties.Resources.Winter1;
             TemplateInfos.Add(info);
         }
 
@@ -346,11 +367,11 @@ namespace SonoOnlineResult
             MethodInvoker method = delegate
             {
                 dlgLogin dlg = new dlgLogin();
-                if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+                //if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
                 {
-                    Global.Username = dlg.Username;
-                    Global.Password = dlg.Password;
-                    Global.BranchName = dlg.BranchName;
+                    //Global.Username = dlg.Username;
+                    //Global.Password = dlg.Password;
+                    //Global.BranchName = dlg.BranchName;
                     panel1.Enabled = true;
                     panel2.Enabled = true;
                     panel3.Enabled = true;
@@ -1172,8 +1193,6 @@ namespace SonoOnlineResult
             }
         }
         #endregion
-
-        
     }
 
     public class ResultFileInfo
@@ -1244,19 +1263,22 @@ namespace SonoOnlineResult
 
             if (TemplateName != "[None]")
             {
-                string templateFileName = string.Format("{0}\\ImageTemplates\\{1}", Application.StartupPath, TemplateName);
-                if (File.Exists(templateFileName))
+                TemplateInfo info = GetTemplateInfo(TemplateName);
+                //string templateFileName = string.Format("{0}\\ImageTemplates\\{1}", Application.StartupPath, TemplateName);
+                //if (File.Exists(templateFileName))
+                if (info != null)
                 {
                     string logoFileName = string.Format("{0}\\Logo\\{1}", Application.StartupPath, LogoName);
                     Image logo = null;
                     if (File.Exists(logoFileName))
                         logo = Utility.LoadImageFromFile(logoFileName);
 
-                    Image imgTemplate = Utility.LoadImageFromFile(templateFileName);
-                    Rectangle logoRect = new Rectangle(404, 120, 708, 185);
-                    Rectangle contentRect = new Rectangle(97, 480, 1092, 1183);
-                    Rectangle textRect = new Rectangle(405, 310, 690, 96);
-                    resultImage = Utility.FillData2ImageTemplate(imgTemplate, logo, OrgImage, logoRect, contentRect, textRect, Text1, Text2, Text3);
+                    //Image imgTemplate = Utility.LoadImageFromFile(templateFileName);
+                    //Rectangle logoRect = new Rectangle(404, 120, 708, 185);
+                    //Rectangle contentRect = new Rectangle(97, 480, 1092, 1183);
+                    //Rectangle textRect = new Rectangle(405, 310, 690, 96);
+                    resultImage = Utility.FillData2ImageTemplate(info.TemplateImage, logo, OrgImage, 
+                        info.LogoRect, info.ContentRect, info.TextRect, Text1, Text2, Text3);
                 }
             }
 
