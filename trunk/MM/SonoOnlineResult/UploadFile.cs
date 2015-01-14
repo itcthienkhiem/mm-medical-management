@@ -49,31 +49,83 @@ namespace SonoOnlineResult
         private void InitTemplateInfo()
         {
             TemplateInfo info = new TemplateInfo();
-            info.TemplateName = "Autumn.png";
-            info.TemplateImage = Properties.Resources.Autumn;
+            info.TemplateName = "Autumn1.png";
+            info.TemplateImage = Properties.Resources.Autumn1;
+            info.LogoRect = new Rectangle(205, 73, 193, 193);
+            info.ContentRect = new Rectangle(112, 494, 1024, 768);
+            info.TextRect = new Rectangle(137, 1321, 100, 100);
+            TemplateInfos.Add(info);
+
+            info = new TemplateInfo();
+            info.TemplateName = "Autumn2.png";
+            info.TemplateImage = Properties.Resources.Autumn2;
             info.LogoRect = new Rectangle(50, 60, 193, 193);
             info.ContentRect = new Rectangle(90, 508, 1064, 1064);
-            info.TextRect = new Rectangle(317, 95, 100, 100);
+            info.TextRect = new Rectangle(315, 95, 100, 100);
             TemplateInfos.Add(info);
+
             info = new TemplateInfo();
             info.TemplateName = "Flower1.png";
             info.TemplateImage = Properties.Resources.Flower1;
+            info.LogoRect = new Rectangle(245, 249, 245, 245);
+            info.ContentRect = new Rectangle(656, 189, 1024, 768);
+            info.TextRect = new Rectangle(75, 1025, 100, 100);
             TemplateInfos.Add(info);
+
+            info = new TemplateInfo();
+            info.TemplateName = "Flower2.png";
+            info.TemplateImage = Properties.Resources.Flower2;
+            info.LogoRect = new Rectangle(256, 258, 246, 246);
+            info.ContentRect = new Rectangle(737, 177, 1004, 1004);
+            info.TextRect = new Rectangle(98, 590, 100, 100);
+            TemplateInfos.Add(info);
+
             info = new TemplateInfo();
             info.TemplateName = "Halloween1.png";
             info.TemplateImage = Properties.Resources.Halloween1;
+            info.LogoRect = new Rectangle(96, 67, 246, 246);
+            info.ContentRect = new Rectangle(616, 118, 1024, 768);
+            info.TextRect = new Rectangle(86, 953, 100, 100);
             TemplateInfos.Add(info);
+
+            info = new TemplateInfo();
+            info.TemplateName = "Halloween2.png";
+            info.TemplateImage = Properties.Resources.Halloween2;
+            info.LogoRect = new Rectangle(239, 106, 245, 245);
+            info.ContentRect = new Rectangle(764, 94, 886, 886);
+            info.TextRect = new Rectangle(73, 1027, 100, 100);
+            TemplateInfos.Add(info);
+
             info = new TemplateInfo();
             info.TemplateName = "Spring1.png";
             info.TemplateImage = Properties.Resources.Spring1;
+            info.LogoRect = new Rectangle(54, 49, 194, 194);
+            info.ContentRect = new Rectangle(108, 452, 1024, 768);
+            info.TextRect = new Rectangle(138, 1311, 100, 100);
             TemplateInfos.Add(info);
+
+            info = new TemplateInfo();
+            info.TemplateName = "Spring2.png";
+            info.TemplateImage = Properties.Resources.Spring2;
+            info.LogoRect = new Rectangle(54, 53, 194, 194);
+            info.ContentRect = new Rectangle(73, 536, 1094, 1094);
+            info.TextRect = new Rectangle(323, 85, 100, 100);
+            TemplateInfos.Add(info);
+
             info = new TemplateInfo();
             info.TemplateName = "Summer1.png";
             info.TemplateImage = Properties.Resources.Summer1;
+            info.LogoRect = new Rectangle(77, 28, 204, 204);
+            info.ContentRect = new Rectangle(105, 774, 1024, 768);
+            info.TextRect = new Rectangle(145, 412, 100, 100);
             TemplateInfos.Add(info);
+
             info = new TemplateInfo();
-            info.TemplateName = "Winter1.png";
-            info.TemplateImage = Properties.Resources.Winter1;
+            info.TemplateName = "Summer2.png";
+            info.TemplateImage = Properties.Resources.Summer2;
+            info.LogoRect = new Rectangle(82, 26, 204, 204);
+            info.ContentRect = new Rectangle(85, 512, 1078, 1078);
+            info.TextRect = new Rectangle(119, 299, 100, 100);
             TemplateInfos.Add(info);
         }
 
@@ -154,12 +206,16 @@ namespace SonoOnlineResult
             //    toolStripComboBoxTemplates.SelectedIndex = 0;
             //}
 
-            toolStripComboBoxTemplates.Items.Add("Autumn.png");
+            toolStripComboBoxTemplates.Items.Add("Autumn1.png");
+            toolStripComboBoxTemplates.Items.Add("Autumn2.png");
             toolStripComboBoxTemplates.Items.Add("Flower1.png");
+            toolStripComboBoxTemplates.Items.Add("Flower2.png");
             toolStripComboBoxTemplates.Items.Add("Halloween1.png");
+            toolStripComboBoxTemplates.Items.Add("Halloween2.png");
             toolStripComboBoxTemplates.Items.Add("Spring1.png");
+            toolStripComboBoxTemplates.Items.Add("Spring2.png");
             toolStripComboBoxTemplates.Items.Add("Summer1.png");
-            toolStripComboBoxTemplates.Items.Add("Winter1.png");
+            toolStripComboBoxTemplates.Items.Add("Summer2.png");
             toolStripComboBoxTemplates.SelectedIndex = 0;
         }
 
