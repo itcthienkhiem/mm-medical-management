@@ -1051,6 +1051,7 @@ namespace SonoOnlineResult
             Image img = info.ProcessResultImage();
             if (img != null)
             {
+                toolStripButtonStretch.Checked = info.HasStretch;
                 //img.Save(string.Format("D:\\test.jpg", Application.StartupPath));
                 img = Utility.FixedSizeAndCrop(img, picViewer.Width, picViewer.Height);
                 toolStripButtonRotateLeft.Enabled = true;
