@@ -291,6 +291,10 @@ namespace SonoOnlineResult
                     OnRotateClockwise();
                     break;
 
+                case "Stretch":
+                    OnStretch();
+                    break;
+
                 case "Add Text":
                     OnAddText();
                     break;
@@ -343,6 +347,15 @@ namespace SonoOnlineResult
                     this.Close();
                     break;
             }
+        }
+
+        private void OnStretch()
+        {
+            if (lvFile.SelectedItems == null || lvFile.SelectedItems.Count <= 0) return;
+            ResultFileInfo info = lvFile.SelectedItems[0].Tag as ResultFileInfo;
+            toolStripButtonStretch.Checked = !toolStripButtonStretch.Checked;
+            info.HasStretch = toolStripButtonStretch.Checked;
+            OnViewImage();
         }
 
         private void OnDeleteUploadFile()
@@ -1027,6 +1040,7 @@ namespace SonoOnlineResult
                 toolStripButtonRotateLeft.Enabled = false;
                 toolStripButtonRotateRight.Enabled = false;
                 toolStripButtonAddText.Enabled = false;
+                toolStripButtonStretch.Enabled = false;
                 return;
             }
 
@@ -1041,6 +1055,7 @@ namespace SonoOnlineResult
                 img = Utility.FixedSizeAndCrop(img, picViewer.Width, picViewer.Height);
                 toolStripButtonRotateLeft.Enabled = true;
                 toolStripButtonRotateRight.Enabled = true;
+                toolStripButtonStretch.Enabled = true;
                 toolStripButtonAddText.Enabled = info.TemplateName != "[None]" ? true : false;
             }
             else
@@ -1048,6 +1063,7 @@ namespace SonoOnlineResult
                 toolStripButtonRotateLeft.Enabled = false;
                 toolStripButtonRotateRight.Enabled = false;
                 toolStripButtonAddText.Enabled = false;
+                toolStripButtonStretch.Enabled = false;
             }
 
             picViewer.Image = img;
