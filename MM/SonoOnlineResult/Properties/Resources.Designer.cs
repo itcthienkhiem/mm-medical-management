@@ -103,9 +103,19 @@ namespace SonoOnlineResult.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Autumn {
+        internal static System.Drawing.Bitmap Autumn1 {
             get {
-                object obj = ResourceManager.GetObject("Autumn", resourceCulture);
+                object obj = ResourceManager.GetObject("Autumn1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Autumn2 {
+            get {
+                object obj = ResourceManager.GetObject("Autumn2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,6 +173,16 @@ namespace SonoOnlineResult.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Flower2 {
+            get {
+                object obj = ResourceManager.GetObject("Flower2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ftp_icon {
             get {
                 object obj = ResourceManager.GetObject("ftp_icon", resourceCulture);
@@ -176,6 +196,16 @@ namespace SonoOnlineResult.Properties {
         internal static System.Drawing.Bitmap Halloween1 {
             get {
                 object obj = ResourceManager.GetObject("Halloween1", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Halloween2 {
+            get {
+                object obj = ResourceManager.GetObject("Halloween2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -283,6 +313,16 @@ namespace SonoOnlineResult.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Spring2 {
+            get {
+                object obj = ResourceManager.GetObject("Spring2", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Summer1 {
             get {
                 object obj = ResourceManager.GetObject("Summer1", resourceCulture);
@@ -293,9 +333,9 @@ namespace SonoOnlineResult.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Users_icon {
+        internal static System.Drawing.Bitmap Summer2 {
             get {
-                object obj = ResourceManager.GetObject("Users_icon", resourceCulture);
+                object obj = ResourceManager.GetObject("Summer2", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -303,9 +343,9 @@ namespace SonoOnlineResult.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Winter1 {
+        internal static System.Drawing.Bitmap Users_icon {
             get {
-                object obj = ResourceManager.GetObject("Winter1", resourceCulture);
+                object obj = ResourceManager.GetObject("Users_icon", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

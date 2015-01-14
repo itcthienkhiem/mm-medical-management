@@ -1752,27 +1752,21 @@ namespace MM.Common
             }
 
             grPhoto.DrawImage(image,
-                new Rectangle(contentRect.X, contentRect.Y, contentRect.Width, contentRect.Height),
+                new Rectangle(x, y, w, h),
                 new Rectangle(0, 0, image.Width, image.Height),
                 GraphicsUnit.Pixel);
 
             //Fill text
-            Font font = new Font("Arial", 13);
+            Font font = new Font("Arial", 14);
             Brush brush = new SolidBrush(Color.Black);
             if (text1.Trim() != string.Empty)
-            {
                 grPhoto.DrawString(text1, font, brush, textRect.X, textRect.Y);
-            }
 
             if (text2.Trim() != string.Empty)
-            {
-                grPhoto.DrawString(text2, font, brush, textRect.X, textRect.Y + 32);
-            }
+                grPhoto.DrawString(text2, font, brush, textRect.X, textRect.Y + 36);
 
             if (text3.Trim() != string.Empty)
-            {
-                grPhoto.DrawString(text3, font, brush, textRect.X, textRect.Y + 64);
-            }
+                grPhoto.DrawString(text3, font, brush, textRect.X, textRect.Y + 72);
 
             font.Dispose();
             brush.Dispose();
