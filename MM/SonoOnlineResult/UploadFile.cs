@@ -439,11 +439,11 @@ namespace SonoOnlineResult
             MethodInvoker method = delegate
             {
                 dlgLogin dlg = new dlgLogin();
-                //if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+                if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
                 {
-                    //Global.Username = dlg.Username;
-                    //Global.Password = dlg.Password;
-                    //Global.BranchName = dlg.BranchName;
+                    Global.Username = dlg.Username;
+                    Global.Password = dlg.Password;
+                    Global.BranchName = dlg.BranchName;
                     panel1.Enabled = true;
                     panel2.Enabled = true;
                     panel3.Enabled = true;
@@ -1052,7 +1052,6 @@ namespace SonoOnlineResult
             if (img != null)
             {
                 toolStripButtonStretch.Checked = info.HasStretch;
-                //img.Save(string.Format("D:\\test.jpg", Application.StartupPath));
                 img = Utility.FixedSizeAndCrop(img, picViewer.Width, picViewer.Height);
                 toolStripButtonRotateLeft.Enabled = true;
                 toolStripButtonRotateRight.Enabled = true;
