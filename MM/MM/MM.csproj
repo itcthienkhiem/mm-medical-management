@@ -2801,6 +2801,7 @@
     <Content Include="Components\Microsoft.SqlServer.Management.Sdk.Sfc.dll" />
     <Content Include="Components\Microsoft.SqlServer.Smo.dll" />
     <Content Include="Components\MySql.Data.dll" />
+    <Content Include="Components\RIS-LOGO.png" />
     <Content Include="Components\SaveAsPDF.exe" />
     <Content Include="Components\SourceGrid2.dll" />
     <Content Include="Components\SourceLibrary.dll" />
