@@ -1338,8 +1338,6 @@ namespace SonoOnlineResult
                     //Rectangle textRect = new Rectangle(405, 310, 690, 96);
                     resultImage = Utility.FillData2ImageTemplate((Image)info.TemplateImage.Clone(), logo, OrgImage, 
                         info.LogoRect, info.ContentRect, info.TextRect, Text1, Text2, Text3);
-
-                    resultImage.Save(Application.StartupPath + "\\test.png");
                 }
             }
 
