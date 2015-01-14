@@ -40,6 +40,8 @@
             this.toolStripButtonRotateRight = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButtonAddText = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator11 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolStripButtonStretch = new System.Windows.Forms.ToolStripButton();
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnRemoveAll = new System.Windows.Forms.Button();
             this.btnClose = new System.Windows.Forms.Button();
@@ -185,7 +187,9 @@
             this.toolStripButtonRotateLeft,
             this.toolStripButtonRotateRight,
             this.toolStripSeparator3,
-            this.toolStripButtonAddText});
+            this.toolStripButtonAddText,
+            this.toolStripSeparator11,
+            this.toolStripButtonStretch});
             this.toolStripImage.Location = new System.Drawing.Point(0, 0);
             this.toolStripImage.Name = "toolStripImage";
             this.toolStripImage.Size = new System.Drawing.Size(567, 31);
@@ -229,6 +233,22 @@
             this.toolStripButtonAddText.Name = "toolStripButtonAddText";
             this.toolStripButtonAddText.Size = new System.Drawing.Size(28, 28);
             this.toolStripButtonAddText.ToolTipText = "Add Text";
+            // 
+            // toolStripSeparator11
+            // 
+            this.toolStripSeparator11.Name = "toolStripSeparator11";
+            this.toolStripSeparator11.Size = new System.Drawing.Size(6, 31);
+            // 
+            // toolStripButtonStretch
+            // 
+            this.toolStripButtonStretch.DisplayStyle = System.Windows.Forms.ToolStripItemDisplayStyle.Image;
+            this.toolStripButtonStretch.Enabled = false;
+            this.toolStripButtonStretch.Image = global::SonoOnlineResult.Properties.Resources.canvas_size_icon;
+            this.toolStripButtonStretch.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripButtonStretch.Name = "toolStripButtonStretch";
+            this.toolStripButtonStretch.Size = new System.Drawing.Size(28, 28);
+            this.toolStripButtonStretch.Text = "toolStripButton1";
+            this.toolStripButtonStretch.ToolTipText = "Stretch";
             // 
             // panel1
             // 
@@ -856,5 +876,7 @@
         private System.Windows.Forms.ToolStripMenuItem deleteUploadFileToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator10;
         private System.Windows.Forms.ToolStripMenuItem resendMailToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator11;
+        private System.Windows.Forms.ToolStripButton toolStripButtonStretch;
     }
 }

@@ -1591,6 +1591,25 @@ namespace MM.Common
             return bmp;
         }
 
+        public static Image StretchSize(Image imgPhoto, int Width, int Height)
+        {
+            Bitmap bmPhoto = new Bitmap(Width, Height, PixelFormat.Format24bppRgb);
+            bmPhoto.SetResolution(imgPhoto.HorizontalResolution, imgPhoto.VerticalResolution);
+
+            Graphics grPhoto = Graphics.FromImage(bmPhoto);
+            //grPhoto.Clear(Color.White);
+            //grPhoto.InterpolationMode = InterpolationMode.HighQualityBicubic;
+
+            grPhoto.DrawImage(imgPhoto,
+                new Rectangle(0, 0, Width, Height),
+                new Rectangle(0, 0, imgPhoto.Width, imgPhoto.Height),
+                GraphicsUnit.Pixel);
+
+            grPhoto.Dispose();
+
+            return bmPhoto;
+        }
+
         public static Image FixedSize(Image imgPhoto, int Width, int Height)
         {
             int sourceWidth = imgPhoto.Width;
@@ -1699,7 +1718,10 @@ namespace MM.Common
             if (logo != null)
                 logo = FixedSizeAndCrop(logo, logoRect.Width, logoRect.Height);
 
-            image = FixedSizeAndCrop(image, contentRect.Width, contentRect.Height);
+            if (!hasStretch)
+                image = FixedSizeAndCrop(image, contentRect.Width, contentRect.Height);
+            else
+                image = StretchSize(image, contentRect.Width, contentRect.Height);
 
             Graphics grPhoto = Graphics.FromImage(imageTemplate);
             grPhoto.InterpolationMode = InterpolationMode.HighQualityBicubic;

@@ -123,6 +123,16 @@ namespace SonoOnlineResult.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap canvas_size_icon {
+            get {
+                object obj = ResourceManager.GetObject("canvas_size_icon", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap change_password_icon {
             get {
                 object obj = ResourceManager.GetObject("change_password_icon", resourceCulture);

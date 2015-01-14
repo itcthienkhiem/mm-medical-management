@@ -343,6 +343,7 @@
     <None Include="Resources\Summer1.png" />
     <None Include="Resources\Summer2.png" />
     <None Include="Resources\Halloween1.png" />
+    <None Include="Resources\canvas-size-icon.png" />
     <Content Include="RIS_icon.ico" />
     <None Include="Resources\Logout.png" />
     <None Include="Resources\Login.png" />
