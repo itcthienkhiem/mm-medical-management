@@ -1693,8 +1693,8 @@ namespace MM.Common
             return image;
         }
 
-        public static Image FillData2ImageTemplate(Image imageTemplate, Image logo, Image image, Rectangle logoRect, Rectangle contentRect, 
-            Rectangle textRect, string text1, string text2, string text3)
+        public static Image FillData2ImageTemplate(Image imageTemplate, Image logo, Image image, Rectangle logoRect, Rectangle contentRect,
+            Rectangle textRect, string text1, string text2, string text3, bool hasStretch)
         {
             if (logo != null)
                 logo = FixedSizeAndCrop(logo, logoRect.Width, logoRect.Height);
@@ -1732,29 +1732,39 @@ namespace MM.Common
                     GraphicsUnit.Pixel);
             }
 
-            x = contentRect.X;
-            y = contentRect.Y;
-            w = contentRect.Width;
-            h = contentRect.Height;
-
-            if (image.Width < contentRect.Width)
+            if (!hasStretch)
             {
-                int delta = contentRect.Width - image.Width;
-                x += delta / 2;
-                w = image.Width;
-            }
+                x = contentRect.X;
+                y = contentRect.Y;
+                w = contentRect.Width;
+                h = contentRect.Height;
 
-            if (image.Height < contentRect.Height)
+                if (image.Width < contentRect.Width)
+                {
+                    int delta = contentRect.Width - image.Width;
+                    x += delta / 2;
+                    w = image.Width;
+                }
+
+                if (image.Height < contentRect.Height)
+                {
+                    int delta = contentRect.Height - image.Height;
+                    y += delta / 2;
+                    h = image.Height;
+                }
+
+                grPhoto.DrawImage(image,
+                    new Rectangle(x, y, w, h),
+                    new Rectangle(0, 0, image.Width, image.Height),
+                    GraphicsUnit.Pixel);
+            }
+            else
             {
-                int delta = contentRect.Height - image.Height;
-                y += delta / 2;
-                h = image.Height;
+                grPhoto.DrawImage(image,
+                    new Rectangle(contentRect.X, contentRect.Y, contentRect.Width, contentRect.Height),
+                    new Rectangle(0, 0, image.Width, image.Height),
+                    GraphicsUnit.Pixel);
             }
-
-            grPhoto.DrawImage(image,
-                new Rectangle(x, y, w, h),
-                new Rectangle(0, 0, image.Width, image.Height),
-                GraphicsUnit.Pixel);
 
             //Fill text
             Font font = new Font("Arial", 14);
