@@ -1265,6 +1265,7 @@ namespace SonoOnlineResult
         public string Text3 = string.Empty;
         public Image OrgImage = null;
         public FileType Type = FileType.Result;
+        public bool HasStretch = false;
         #endregion
 
         #region Constructor
@@ -1337,7 +1338,7 @@ namespace SonoOnlineResult
                     //Rectangle contentRect = new Rectangle(97, 480, 1092, 1183);
                     //Rectangle textRect = new Rectangle(405, 310, 690, 96);
                     resultImage = Utility.FillData2ImageTemplate((Image)info.TemplateImage.Clone(), logo, OrgImage, 
-                        info.LogoRect, info.ContentRect, info.TextRect, Text1, Text2, Text3);
+                        info.LogoRect, info.ContentRect, info.TextRect, Text1, Text2, Text3, HasStretch);
                 }
             }
 
