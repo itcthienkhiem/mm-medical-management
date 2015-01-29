@@ -134,7 +134,7 @@ namespace MM.Controls
                         }
                     }
 
-                    int colCount = 20;
+                    int colCount = 22;
                     int rowCount = 3;
                     rowCount += spaceCount;
 
@@ -334,6 +334,7 @@ namespace MM.Controls
                     int afternoonCount = 0;
                     int eveningCount = 0;
                     string sales = string.Empty;
+                    string createdDate = string.Empty;
                     string updatedDate = string.Empty;
                     string inOut = string.Empty;
                     DataRow row = null;
@@ -349,6 +350,9 @@ namespace MM.Controls
                         sales = bookingList[i]["Sales"].ToString();
                         if (bookingList[i]["UpdatedDate"] != null && bookingList[i]["UpdatedDate"] != DBNull.Value)
                             updatedDate = Convert.ToDateTime(bookingList[i]["UpdatedDate"]).ToString("dd/MM/yyyy HH:mm:ss");
+
+                        createdDate = Convert.ToDateTime(bookingList[i]["CreatedDate"]).ToString("dd/MM/yyyy HH:mm:ss");
+
                         inOut = bookingList[i]["InOut"].ToString();
 
                         if (inOut == "IN")
@@ -405,13 +409,21 @@ namespace MM.Controls
                     else cell.Border = i == count - 1 ? borderRB2 : borderRB;
                     dgBooking[rowIndex, 10] = cell;
 
+                    //Created Date
+                    cell = NewCell(createdDate, Color.White, foreColor,
+                        ContentAlignment.MiddleCenter, fontNormal, false, string.Empty);
+                    if (j < keys.Count - 1) cell.Border = i == 0 ? borderRBT : borderRB;
+                    else if (i == 0) cell.Border = i == count - 1 ? borderRBT2 : borderRBT;
+                    else cell.Border = i == count - 1 ? borderRB2 : borderRB;
+                    dgBooking[rowIndex, 11] = cell;
+
                     //Updated Date
                     cell = NewCell(updatedDate, Color.White, foreColor,
                         ContentAlignment.MiddleCenter, fontNormal, false, string.Empty);
                     if (j < keys.Count - 1) cell.Border = i == 0 ? borderRBT : borderRB;
                     else if (i == 0) cell.Border = i == count - 1 ? borderRBT2 : borderRBT;
                     else cell.Border = i == count - 1 ? borderRB2 : borderRB;
-                    dgBooking[rowIndex, 11] = cell;
+                    dgBooking[rowIndex, 12] = cell;
 
                     //In/Out
                     cell = NewCell(inOut, Color.White, foreColor,
@@ -419,13 +431,13 @@ namespace MM.Controls
                     if (j < keys.Count - 1) cell.Border = i == 0 ? borderRBT3 : borderRB3;
                     else if (i == 0) cell.Border = i == count - 1 ? borderRBT4 : borderRBT3;
                     else cell.Border = i == count - 1 ? borderRB4 : borderRB3;
-                    dgBooking[rowIndex, 12] = cell;
+                    dgBooking[rowIndex, 13] = cell;
 
                     //Empty Cell
                     cell = NewCell(string.Empty, Color.White, foreColor,
                         ContentAlignment.MiddleRight, fontNormal, false, string.Empty);
                     cell.Border = borderR;
-                    dgBooking[rowIndex, 13] = cell;
+                    dgBooking[rowIndex, 14] = cell;
 
                     //Blood Taking
                     company = string.Empty;
@@ -445,6 +457,8 @@ namespace MM.Controls
                         sales = bloodTakingList[i]["Sales"].ToString();
                         if (bloodTakingList[i]["UpdatedDate"] != null && bloodTakingList[i]["UpdatedDate"] != DBNull.Value)
                             updatedDate = Convert.ToDateTime(bloodTakingList[i]["UpdatedDate"]).ToString("dd/MM/yyyy HH:mm:ss");
+
+                        createdDate = Convert.ToDateTime(bloodTakingList[i]["CreatedDate"]).ToString("dd/MM/yyyy HH:mm:ss");
                         inOut = bloodTakingList[i]["InOut"].ToString();
                     }
 
@@ -454,7 +468,7 @@ namespace MM.Controls
                     else if (i == 0) cell.Border = i == count - 1 ? borderLRBT2 : borderLRBT;
                     else cell.Border = i == count - 1 ? borderLRB2 : borderLRB;
                     cell.Tag = row;
-                    dgBooking[rowIndex, 14] = cell;
+                    dgBooking[rowIndex, 15] = cell;
 
                     //Pax
                     cell = NewCell(pax == 0 ? string.Empty : pax.ToString(), Color.White, foreColor,
@@ -462,7 +476,7 @@ namespace MM.Controls
                     if (j < keys.Count - 1) cell.Border = i == 0 ? borderRBT : borderRB;
                     else if (i == 0) cell.Border = i == count - 1 ? borderRBT2 : borderRBT;
                     else cell.Border = i == count - 1 ? borderRB2 : borderRB;
-                    dgBooking[rowIndex, 15] = cell;
+                    dgBooking[rowIndex, 16] = cell;
 
                     //Time
                     cell = NewCell(time, Color.White, foreColor,
@@ -470,7 +484,7 @@ namespace MM.Controls
                     if (j < keys.Count - 1) cell.Border = i == 0 ? borderRBT : borderRB;
                     else if (i == 0) cell.Border = i == count - 1 ? borderRBT2 : borderRBT;
                     else cell.Border = i == count - 1 ? borderRB2 : borderRB;
-                    dgBooking[rowIndex, 16] = cell;
+                    dgBooking[rowIndex, 17] = cell;
 
                     //Sales
                     cell = NewCell(sales, Color.White, foreColor,
@@ -478,7 +492,15 @@ namespace MM.Controls
                     if (j < keys.Count - 1) cell.Border = i == 0 ? borderRBT : borderRB;
                     else if (i == 0) cell.Border = i == count - 1 ? borderRBT2 : borderRBT;
                     else cell.Border = i == count - 1 ? borderRB2 : borderRB;
-                    dgBooking[rowIndex, 17] = cell;
+                    dgBooking[rowIndex, 18] = cell;
+
+                    //Created Date
+                    cell = NewCell(createdDate, Color.White, foreColor,
+                        ContentAlignment.MiddleCenter, fontNormal, false, string.Empty);
+                    if (j < keys.Count - 1) cell.Border = i == 0 ? borderRBT : borderRB;
+                    else if (i == 0) cell.Border = i == count - 1 ? borderRBT2 : borderRBT;
+                    else cell.Border = i == count - 1 ? borderRB2 : borderRB;
+                    dgBooking[rowIndex, 19] = cell;
 
                     //Updated Date
                     cell = NewCell(updatedDate, Color.White, foreColor,
@@ -486,7 +508,7 @@ namespace MM.Controls
                     if (j < keys.Count - 1) cell.Border = i == 0 ? borderRBT : borderRB;
                     else if (i == 0) cell.Border = i == count - 1 ? borderRBT2 : borderRBT;
                     else cell.Border = i == count - 1 ? borderRB2 : borderRB;
-                    dgBooking[rowIndex, 18] = cell;
+                    dgBooking[rowIndex, 20] = cell;
 
                     //In/Out
                     cell = NewCell(inOut, Color.White, foreColor,
@@ -494,7 +516,7 @@ namespace MM.Controls
                     if (j < keys.Count - 1) cell.Border = i == 0 ? borderRBT3 : borderRB3;
                     else if (i == 0) cell.Border = i == count - 1 ? borderRBT4 : borderRBT3;
                     else cell.Border = i == count - 1 ? borderRB4 : borderRB3;
-                    dgBooking[rowIndex, 19] = cell;
+                    dgBooking[rowIndex, 21] = cell;
 
                     rowIndex++;
                 }
@@ -548,17 +570,17 @@ namespace MM.Controls
                         cell.Tag = "Spacing";
                         cell.Border = borderTB;
                         dgBooking[rowIndex, 0] = cell;
-                        dgBooking[rowIndex, 0].ColumnSpan = 13;
+                        dgBooking[rowIndex, 0].ColumnSpan = 14;
 
                         cell = NewCell(string.Empty, Color.White, foreColor,
                                 ContentAlignment.MiddleCenter, fontBold, false, string.Empty);
-                        dgBooking[rowIndex, 13] = cell;
+                        dgBooking[rowIndex, 14] = cell;
 
                         cell = NewCell(string.Empty, Color.White, foreColor,
                                 ContentAlignment.MiddleCenter, fontBold, false, string.Empty);
                         cell.Border = borderTB;
-                        dgBooking[rowIndex, 14] = cell;
-                        dgBooking[rowIndex, 14].ColumnSpan = 6;
+                        dgBooking[rowIndex, 15] = cell;
+                        dgBooking[rowIndex, 15].ColumnSpan = 7;
 
                         rowIndex++;
                     }
@@ -596,14 +618,14 @@ namespace MM.Controls
                         
             SourceGrid2.Cells.Real.Cell cell = NewCell("BOOKING MONITOR", Color.White, Color.Red, ContentAlignment.MiddleCenter, font, false, string.Empty);
             dgBooking[0, 0] = cell;
-            dgBooking[0, 0].ColumnSpan = 13;
+            dgBooking[0, 0].ColumnSpan = 14;
             
             cell = NewCell(string.Empty, Color.White, Color.Red, ContentAlignment.MiddleCenter, font, false, string.Empty);
-            dgBooking[0, 13] = cell;
+            dgBooking[0, 14] = cell;
 
             cell = NewCell("BLOOD TAKING", Color.White, Color.Red, ContentAlignment.MiddleCenter, font, false, string.Empty);
-            dgBooking[0, 14] = cell;
-            dgBooking[0, 14].ColumnSpan = 6;
+            dgBooking[0, 15] = cell;
+            dgBooking[0, 15].ColumnSpan = 7;
 
             cell = NewCell("Day", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
             cell.Border = borderTRB;
@@ -673,62 +695,74 @@ namespace MM.Controls
             dgBooking[1, 10].RowSpan = 2;
             dgBooking.AutoSizeColumn(10, 150);
 
-            cell = NewCell("Updated Date", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
+            cell = NewCell("Created Date", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
             cell.Border = borderTRB2;
             dgBooking[1, 11] = cell;
             dgBooking[1, 11].RowSpan = 2;
             dgBooking.AutoSizeColumn(11, 120);
 
-            cell = NewCell("In/Out", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
+            cell = NewCell("Updated Date", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
             cell.Border = borderTRB2;
             dgBooking[1, 12] = cell;
             dgBooking[1, 12].RowSpan = 2;
-            dgBooking.AutoSizeColumn(12, 70);
+            dgBooking.AutoSizeColumn(12, 120);
 
-            cell = NewCell(string.Empty, Color.White, Color.Black, ContentAlignment.MiddleCenter, font, false, string.Empty);
-            cell.Border = borderR;
+            cell = NewCell("In/Out", Color.Gray, Color.White, ContentAlignment.MiddleCenter, font, false, string.Empty);
+            cell.Border = borderTRB2;
             dgBooking[1, 13] = cell;
-            dgBooking.AutoSizeColumn(13, 30);
+            dgBooking[1, 13].RowSpan = 2;
+            dgBooking.AutoSizeColumn(13, 70);
 
             cell = NewCell(string.Empty, Color.White, Color.Black, ContentAlignment.MiddleCenter, font, false, string.Empty);
             cell.Border = borderR;
-            dgBooking[2, 13] = cell;
+            dgBooking[1, 14] = cell;
+            dgBooking.AutoSizeColumn(14, 30);
+
+            cell = NewCell(string.Empty, Color.White, Color.Black, ContentAlignment.MiddleCenter, font, false, string.Empty);
+            cell.Border = borderR;
+            dgBooking[2, 14] = cell;
 
             cell = NewCell("Company", Color.Yellow, Color.Black, ContentAlignment.MiddleCenter, font, false, string.Empty);
             cell.Border = borderLTRB;
-            dgBooking[1, 14] = cell;
-            dgBooking[1, 14].RowSpan = 2;
-            dgBooking.AutoSizeColumn(14, 150);
+            dgBooking[1, 15] = cell;
+            dgBooking[1, 15].RowSpan = 2;
+            dgBooking.AutoSizeColumn(15, 150);
 
             cell = NewCell("Pax", Color.Yellow, Color.Black, ContentAlignment.MiddleCenter, font, false, string.Empty);
             cell.Border = borderTRB;
-            dgBooking[1, 15] = cell;
-            dgBooking[1, 15].RowSpan = 2;
-            dgBooking.AutoSizeColumn(15, 50);
+            dgBooking[1, 16] = cell;
+            dgBooking[1, 16].RowSpan = 2;
+            dgBooking.AutoSizeColumn(16, 50);
 
             cell = NewCell("Time", Color.Yellow, Color.Black, ContentAlignment.MiddleCenter, font, false, string.Empty);
             cell.Border = borderTRB;
-            dgBooking[1, 16] = cell;
-            dgBooking[1, 16].RowSpan = 2;
-            dgBooking.AutoSizeColumn(16, 60);
+            dgBooking[1, 17] = cell;
+            dgBooking[1, 17].RowSpan = 2;
+            dgBooking.AutoSizeColumn(17, 60);
 
             cell = NewCell("Sales", Color.Yellow, Color.Black, ContentAlignment.MiddleCenter, font, false, string.Empty);
             cell.Border = borderTRB;
-            dgBooking[1, 17] = cell;
-            dgBooking[1, 17].RowSpan = 2;
-            dgBooking.AutoSizeColumn(17, 150);
+            dgBooking[1, 18] = cell;
+            dgBooking[1, 18].RowSpan = 2;
+            dgBooking.AutoSizeColumn(18, 150);
+
+            cell = NewCell("Created Date", Color.Yellow, Color.Black, ContentAlignment.MiddleCenter, font, false, string.Empty);
+            cell.Border = borderTRB;
+            dgBooking[1, 19] = cell;
+            dgBooking[1, 19].RowSpan = 2;
+            dgBooking.AutoSizeColumn(19, 120);
 
             cell = NewCell("Updated Date", Color.Yellow, Color.Black, ContentAlignment.MiddleCenter, font, false, string.Empty);
             cell.Border = borderTRB;
-            dgBooking[1, 18] = cell;
-            dgBooking[1, 18].RowSpan = 2;
-            dgBooking.AutoSizeColumn(18, 120);
+            dgBooking[1, 20] = cell;
+            dgBooking[1, 20].RowSpan = 2;
+            dgBooking.AutoSizeColumn(20, 120);
 
             cell = NewCell("In/Out", Color.Yellow, Color.Black, ContentAlignment.MiddleCenter, font, false, string.Empty);
             cell.Border = borderTRB2;
-            dgBooking[1, 19] = cell;
-            dgBooking[1, 19].RowSpan = 2;
-            dgBooking.AutoSizeColumn(19, 70);
+            dgBooking[1, 21] = cell;
+            dgBooking[1, 21].RowSpan = 2;
+            dgBooking.AutoSizeColumn(21, 70);
         }
 
         private SourceGrid2.Cells.Real.Cell NewCell(object value, Color backColor, Color foreColor, ContentAlignment textAlignment, Font font, bool isEnableEdit, string toolTip)
@@ -769,12 +803,12 @@ namespace MM.Controls
             foreach (SourceGrid2.Cells.Real.Cell cell in dgBooking.Selection.GetCells())
             {
                 if (cell.Row < 3) continue;
-                if (cell.Column < 0 || (cell.Column >= 6 && cell.Column <= 9) || cell.Column == 13) continue;
+                if (cell.Column < 0 || (cell.Column >= 6 && cell.Column <= 9) || cell.Column == 14) continue;
 
-                if ((cell.Column >= 0 && cell.Column <= 5) || (cell.Column >= 10 && cell.Column <= 12))
+                if ((cell.Column >= 0 && cell.Column <= 5) || (cell.Column >= 10 && cell.Column <= 13))
                     row = dgBooking[cell.Row, 2].Tag as DataRow;
                 else
-                    row = dgBooking[cell.Row, 14].Tag as DataRow;
+                    row = dgBooking[cell.Row, 15].Tag as DataRow;
 
                 if (row == null) continue;
 

@@ -4822,17 +4822,45 @@ namespace MM.Exports
                     workSheet.Cells["D8"].Value = string.Format("BSCĐ: {0}", ketQuaNoiSoi["TenBacSiChiDinh"].ToString());
 
                 List<byte[]> hinhList = new List<byte[]>();
-                if (ketQuaNoiSoi["Hinh1"] != null && ketQuaNoiSoi["Hinh1"] != DBNull.Value)
-                    hinhList.Add((byte[])ketQuaNoiSoi["Hinh1"]);
+                if (ketQuaNoiSoi["ImageName1"] != null && ketQuaNoiSoi["ImageName1"] != DBNull.Value)
+                {
+                    string fileName = Path.Combine(Global.ShareFolder, ketQuaNoiSoi["ImageName1"].ToString());
+                    if (File.Exists(fileName))
+                        hinhList.Add(Utility.LoadBytesFromFile(fileName));
+                }
 
-                if (ketQuaNoiSoi["Hinh2"] != null && ketQuaNoiSoi["Hinh2"] != DBNull.Value)
-                    hinhList.Add((byte[])ketQuaNoiSoi["Hinh2"]);
+                if (ketQuaNoiSoi["ImageName2"] != null && ketQuaNoiSoi["ImageName2"] != DBNull.Value)
+                {
+                    string fileName = Path.Combine(Global.ShareFolder, ketQuaNoiSoi["ImageName2"].ToString());
+                    if (File.Exists(fileName))
+                        hinhList.Add(Utility.LoadBytesFromFile(fileName));
+                }
 
-                if (ketQuaNoiSoi["Hinh3"] != null && ketQuaNoiSoi["Hinh3"] != DBNull.Value)
-                    hinhList.Add((byte[])ketQuaNoiSoi["Hinh3"]);
+                if (ketQuaNoiSoi["ImageName3"] != null && ketQuaNoiSoi["ImageName3"] != DBNull.Value)
+                {
+                    string fileName = Path.Combine(Global.ShareFolder, ketQuaNoiSoi["ImageName3"].ToString());
+                    if (File.Exists(fileName))
+                        hinhList.Add(Utility.LoadBytesFromFile(fileName));
+                }
 
-                if (ketQuaNoiSoi["Hinh4"] != null && ketQuaNoiSoi["Hinh4"] != DBNull.Value)
-                    hinhList.Add((byte[])ketQuaNoiSoi["Hinh4"]);
+                if (ketQuaNoiSoi["ImageName4"] != null && ketQuaNoiSoi["ImageName4"] != DBNull.Value)
+                {
+                    string fileName = Path.Combine(Global.ShareFolder, ketQuaNoiSoi["ImageName4"].ToString());
+                    if (File.Exists(fileName))
+                        hinhList.Add(Utility.LoadBytesFromFile(fileName));
+                }
+
+                //if (ketQuaNoiSoi["Hinh1"] != null && ketQuaNoiSoi["Hinh1"] != DBNull.Value)
+                //    hinhList.Add((byte[])ketQuaNoiSoi["Hinh1"]);
+
+                //if (ketQuaNoiSoi["Hinh2"] != null && ketQuaNoiSoi["Hinh2"] != DBNull.Value)
+                //    hinhList.Add((byte[])ketQuaNoiSoi["Hinh2"]);
+
+                //if (ketQuaNoiSoi["Hinh3"] != null && ketQuaNoiSoi["Hinh3"] != DBNull.Value)
+                //    hinhList.Add((byte[])ketQuaNoiSoi["Hinh3"]);
+
+                //if (ketQuaNoiSoi["Hinh4"] != null && ketQuaNoiSoi["Hinh4"] != DBNull.Value)
+                //    hinhList.Add((byte[])ketQuaNoiSoi["Hinh4"]);
 
                 double left = 0.73803149606299212;
                 double top = 198;
@@ -4972,17 +5000,44 @@ namespace MM.Exports
                     workSheet.Cells["D8"].Value = string.Format("BSCĐ: {0}", ketQuaNoiSoi["TenBacSiChiDinh"].ToString());
 
                 List<byte[]> hinhList = new List<byte[]>();
-                if (ketQuaNoiSoi["Hinh1"] != null && ketQuaNoiSoi["Hinh1"] != DBNull.Value)
-                    hinhList.Add((byte[])ketQuaNoiSoi["Hinh1"]);
+                if (ketQuaNoiSoi["ImageName1"] != null && ketQuaNoiSoi["ImageName1"] != DBNull.Value)
+                {
+                    string fileName = Path.Combine(Global.ShareFolder, ketQuaNoiSoi["ImageName1"].ToString());
+                    if (File.Exists(fileName))
+                        hinhList.Add(Utility.LoadBytesFromFile(fileName));
+                }
 
-                if (ketQuaNoiSoi["Hinh2"] != null && ketQuaNoiSoi["Hinh2"] != DBNull.Value)
-                    hinhList.Add((byte[])ketQuaNoiSoi["Hinh2"]);
+                if (ketQuaNoiSoi["ImageName2"] != null && ketQuaNoiSoi["ImageName2"] != DBNull.Value)
+                {
+                    string fileName = Path.Combine(Global.ShareFolder, ketQuaNoiSoi["ImageName2"].ToString());
+                    if (File.Exists(fileName))
+                        hinhList.Add(Utility.LoadBytesFromFile(fileName));
+                }
 
-                if (ketQuaNoiSoi["Hinh3"] != null && ketQuaNoiSoi["Hinh3"] != DBNull.Value)
-                    hinhList.Add((byte[])ketQuaNoiSoi["Hinh3"]);
+                if (ketQuaNoiSoi["ImageName3"] != null && ketQuaNoiSoi["ImageName3"] != DBNull.Value)
+                {
+                    string fileName = Path.Combine(Global.ShareFolder, ketQuaNoiSoi["ImageName3"].ToString());
+                    if (File.Exists(fileName))
+                        hinhList.Add(Utility.LoadBytesFromFile(fileName));
+                }
 
-                if (ketQuaNoiSoi["Hinh4"] != null && ketQuaNoiSoi["Hinh4"] != DBNull.Value)
-                    hinhList.Add((byte[])ketQuaNoiSoi["Hinh4"]);
+                if (ketQuaNoiSoi["ImageName4"] != null && ketQuaNoiSoi["ImageName4"] != DBNull.Value)
+                {
+                    string fileName = Path.Combine(Global.ShareFolder, ketQuaNoiSoi["ImageName4"].ToString());
+                    if (File.Exists(fileName))
+                        hinhList.Add(Utility.LoadBytesFromFile(fileName));
+                }
+                //if (ketQuaNoiSoi["Hinh1"] != null && ketQuaNoiSoi["Hinh1"] != DBNull.Value)
+                //    hinhList.Add((byte[])ketQuaNoiSoi["Hinh1"]);
+
+                //if (ketQuaNoiSoi["Hinh2"] != null && ketQuaNoiSoi["Hinh2"] != DBNull.Value)
+                //    hinhList.Add((byte[])ketQuaNoiSoi["Hinh2"]);
+
+                //if (ketQuaNoiSoi["Hinh3"] != null && ketQuaNoiSoi["Hinh3"] != DBNull.Value)
+                //    hinhList.Add((byte[])ketQuaNoiSoi["Hinh3"]);
+
+                //if (ketQuaNoiSoi["Hinh4"] != null && ketQuaNoiSoi["Hinh4"] != DBNull.Value)
+                //    hinhList.Add((byte[])ketQuaNoiSoi["Hinh4"]);
 
                 double left = 0.73803149606299212;
                 double top = 198;
@@ -5134,17 +5189,44 @@ namespace MM.Exports
                     workSheet.Cells["D8"].Value = string.Format("BSCĐ: {0}", ketQuaNoiSoi["TenBacSiChiDinh"].ToString());
 
                 List<byte[]> hinhList = new List<byte[]>();
-                if (ketQuaNoiSoi["Hinh1"] != null && ketQuaNoiSoi["Hinh1"] != DBNull.Value)
-                    hinhList.Add((byte[])ketQuaNoiSoi["Hinh1"]);
+                if (ketQuaNoiSoi["ImageName1"] != null && ketQuaNoiSoi["ImageName1"] != DBNull.Value)
+                {
+                    string fileName = Path.Combine(Global.ShareFolder, ketQuaNoiSoi["ImageName1"].ToString());
+                    if (File.Exists(fileName))
+                        hinhList.Add(Utility.LoadBytesFromFile(fileName));
+                }
 
-                if (ketQuaNoiSoi["Hinh2"] != null && ketQuaNoiSoi["Hinh2"] != DBNull.Value)
-                    hinhList.Add((byte[])ketQuaNoiSoi["Hinh2"]);
+                if (ketQuaNoiSoi["ImageName2"] != null && ketQuaNoiSoi["ImageName2"] != DBNull.Value)
+                {
+                    string fileName = Path.Combine(Global.ShareFolder, ketQuaNoiSoi["ImageName2"].ToString());
+                    if (File.Exists(fileName))
+                        hinhList.Add(Utility.LoadBytesFromFile(fileName));
+                }
 
-                if (ketQuaNoiSoi["Hinh3"] != null && ketQuaNoiSoi["Hinh3"] != DBNull.Value)
-                    hinhList.Add((byte[])ketQuaNoiSoi["Hinh3"]);
+                if (ketQuaNoiSoi["ImageName3"] != null && ketQuaNoiSoi["ImageName3"] != DBNull.Value)
+                {
+                    string fileName = Path.Combine(Global.ShareFolder, ketQuaNoiSoi["ImageName3"].ToString());
+                    if (File.Exists(fileName))
+                        hinhList.Add(Utility.LoadBytesFromFile(fileName));
+                }
 
-                if (ketQuaNoiSoi["Hinh4"] != null && ketQuaNoiSoi["Hinh4"] != DBNull.Value)
-                    hinhList.Add((byte[])ketQuaNoiSoi["Hinh4"]);
+                if (ketQuaNoiSoi["ImageName4"] != null && ketQuaNoiSoi["ImageName4"] != DBNull.Value)
+                {
+                    string fileName = Path.Combine(Global.ShareFolder, ketQuaNoiSoi["ImageName4"].ToString());
+                    if (File.Exists(fileName))
+                        hinhList.Add(Utility.LoadBytesFromFile(fileName));
+                }
+                //if (ketQuaNoiSoi["Hinh1"] != null && ketQuaNoiSoi["Hinh1"] != DBNull.Value)
+                //    hinhList.Add((byte[])ketQuaNoiSoi["Hinh1"]);
+
+                //if (ketQuaNoiSoi["Hinh2"] != null && ketQuaNoiSoi["Hinh2"] != DBNull.Value)
+                //    hinhList.Add((byte[])ketQuaNoiSoi["Hinh2"]);
+
+                //if (ketQuaNoiSoi["Hinh3"] != null && ketQuaNoiSoi["Hinh3"] != DBNull.Value)
+                //    hinhList.Add((byte[])ketQuaNoiSoi["Hinh3"]);
+
+                //if (ketQuaNoiSoi["Hinh4"] != null && ketQuaNoiSoi["Hinh4"] != DBNull.Value)
+                //    hinhList.Add((byte[])ketQuaNoiSoi["Hinh4"]);
 
                 double left = 0.73803149606299212;
                 double top = 198;
@@ -5281,17 +5363,44 @@ namespace MM.Exports
                     workSheet.Cells["D8"].Value = string.Format("BSCĐ: {0}", ketQuaNoiSoi["TenBacSiChiDinh"].ToString());
 
                 List<byte[]> hinhList = new List<byte[]>();
-                if (ketQuaNoiSoi["Hinh1"] != null && ketQuaNoiSoi["Hinh1"] != DBNull.Value)
-                    hinhList.Add((byte[])ketQuaNoiSoi["Hinh1"]);
+                if (ketQuaNoiSoi["ImageName1"] != null && ketQuaNoiSoi["ImageName1"] != DBNull.Value)
+                {
+                    string fileName = Path.Combine(Global.ShareFolder, ketQuaNoiSoi["ImageName1"].ToString());
+                    if (File.Exists(fileName))
+                        hinhList.Add(Utility.LoadBytesFromFile(fileName));
+                }
 
-                if (ketQuaNoiSoi["Hinh2"] != null && ketQuaNoiSoi["Hinh2"] != DBNull.Value)
-                    hinhList.Add((byte[])ketQuaNoiSoi["Hinh2"]);
+                if (ketQuaNoiSoi["ImageName2"] != null && ketQuaNoiSoi["ImageName2"] != DBNull.Value)
+                {
+                    string fileName = Path.Combine(Global.ShareFolder, ketQuaNoiSoi["ImageName2"].ToString());
+                    if (File.Exists(fileName))
+                        hinhList.Add(Utility.LoadBytesFromFile(fileName));
+                }
 
-                if (ketQuaNoiSoi["Hinh3"] != null && ketQuaNoiSoi["Hinh3"] != DBNull.Value)
-                    hinhList.Add((byte[])ketQuaNoiSoi["Hinh3"]);
+                if (ketQuaNoiSoi["ImageName3"] != null && ketQuaNoiSoi["ImageName3"] != DBNull.Value)
+                {
+                    string fileName = Path.Combine(Global.ShareFolder, ketQuaNoiSoi["ImageName3"].ToString());
+                    if (File.Exists(fileName))
+                        hinhList.Add(Utility.LoadBytesFromFile(fileName));
+                }
 
-                if (ketQuaNoiSoi["Hinh4"] != null && ketQuaNoiSoi["Hinh4"] != DBNull.Value)
-                    hinhList.Add((byte[])ketQuaNoiSoi["Hinh4"]);
+                if (ketQuaNoiSoi["ImageName4"] != null && ketQuaNoiSoi["ImageName4"] != DBNull.Value)
+                {
+                    string fileName = Path.Combine(Global.ShareFolder, ketQuaNoiSoi["ImageName4"].ToString());
+                    if (File.Exists(fileName))
+                        hinhList.Add(Utility.LoadBytesFromFile(fileName));
+                }
+                //if (ketQuaNoiSoi["Hinh1"] != null && ketQuaNoiSoi["Hinh1"] != DBNull.Value)
+                //    hinhList.Add((byte[])ketQuaNoiSoi["Hinh1"]);
+
+                //if (ketQuaNoiSoi["Hinh2"] != null && ketQuaNoiSoi["Hinh2"] != DBNull.Value)
+                //    hinhList.Add((byte[])ketQuaNoiSoi["Hinh2"]);
+
+                //if (ketQuaNoiSoi["Hinh3"] != null && ketQuaNoiSoi["Hinh3"] != DBNull.Value)
+                //    hinhList.Add((byte[])ketQuaNoiSoi["Hinh3"]);
+
+                //if (ketQuaNoiSoi["Hinh4"] != null && ketQuaNoiSoi["Hinh4"] != DBNull.Value)
+                //    hinhList.Add((byte[])ketQuaNoiSoi["Hinh4"]);
 
                 double left = 0.73803149606299212;
                 double top = 195;
@@ -5424,17 +5533,44 @@ namespace MM.Exports
                     workSheet.Cells["D8"].Value = string.Format("SBSCĐ: {0}", ketQuaNoiSoi["TenBacSiChiDinh"].ToString());
 
                 List<byte[]> hinhList = new List<byte[]>();
-                if (ketQuaNoiSoi["Hinh1"] != null && ketQuaNoiSoi["Hinh1"] != DBNull.Value)
-                    hinhList.Add((byte[])ketQuaNoiSoi["Hinh1"]);
+                if (ketQuaNoiSoi["ImageName1"] != null && ketQuaNoiSoi["ImageName1"] != DBNull.Value)
+                {
+                    string fileName = Path.Combine(Global.ShareFolder, ketQuaNoiSoi["ImageName1"].ToString());
+                    if (File.Exists(fileName))
+                        hinhList.Add(Utility.LoadBytesFromFile(fileName));
+                }
 
-                if (ketQuaNoiSoi["Hinh2"] != null && ketQuaNoiSoi["Hinh2"] != DBNull.Value)
-                    hinhList.Add((byte[])ketQuaNoiSoi["Hinh2"]);
+                if (ketQuaNoiSoi["ImageName2"] != null && ketQuaNoiSoi["ImageName2"] != DBNull.Value)
+                {
+                    string fileName = Path.Combine(Global.ShareFolder, ketQuaNoiSoi["ImageName2"].ToString());
+                    if (File.Exists(fileName))
+                        hinhList.Add(Utility.LoadBytesFromFile(fileName));
+                }
 
-                if (ketQuaNoiSoi["Hinh3"] != null && ketQuaNoiSoi["Hinh3"] != DBNull.Value)
-                    hinhList.Add((byte[])ketQuaNoiSoi["Hinh3"]);
+                if (ketQuaNoiSoi["ImageName3"] != null && ketQuaNoiSoi["ImageName3"] != DBNull.Value)
+                {
+                    string fileName = Path.Combine(Global.ShareFolder, ketQuaNoiSoi["ImageName3"].ToString());
+                    if (File.Exists(fileName))
+                        hinhList.Add(Utility.LoadBytesFromFile(fileName));
+                }
 
-                if (ketQuaNoiSoi["Hinh4"] != null && ketQuaNoiSoi["Hinh4"] != DBNull.Value)
-                    hinhList.Add((byte[])ketQuaNoiSoi["Hinh4"]);
+                if (ketQuaNoiSoi["ImageName4"] != null && ketQuaNoiSoi["ImageName4"] != DBNull.Value)
+                {
+                    string fileName = Path.Combine(Global.ShareFolder, ketQuaNoiSoi["ImageName4"].ToString());
+                    if (File.Exists(fileName))
+                        hinhList.Add(Utility.LoadBytesFromFile(fileName));
+                }
+                //if (ketQuaNoiSoi["Hinh1"] != null && ketQuaNoiSoi["Hinh1"] != DBNull.Value)
+                //    hinhList.Add((byte[])ketQuaNoiSoi["Hinh1"]);
+
+                //if (ketQuaNoiSoi["Hinh2"] != null && ketQuaNoiSoi["Hinh2"] != DBNull.Value)
+                //    hinhList.Add((byte[])ketQuaNoiSoi["Hinh2"]);
+
+                //if (ketQuaNoiSoi["Hinh3"] != null && ketQuaNoiSoi["Hinh3"] != DBNull.Value)
+                //    hinhList.Add((byte[])ketQuaNoiSoi["Hinh3"]);
+
+                //if (ketQuaNoiSoi["Hinh4"] != null && ketQuaNoiSoi["Hinh4"] != DBNull.Value)
+                //    hinhList.Add((byte[])ketQuaNoiSoi["Hinh4"]);
 
                 double left = 0.73803149606299212;
                 double top = 195;
@@ -5944,11 +6080,25 @@ namespace MM.Exports
                     workSheet.Cells["F7"].Value = string.Format("          Nghề nghiệp: {0}", patientRow["Occupation"].ToString());
 
                 List<byte[]> hinhList = new List<byte[]>();
-                if (ketQuaSoiCTC["Hinh1"] != null && ketQuaSoiCTC["Hinh1"] != DBNull.Value)
-                    hinhList.Add((byte[])ketQuaSoiCTC["Hinh1"]);
+                if (ketQuaSoiCTC["ImageName1"] != null && ketQuaSoiCTC["ImageName1"] != DBNull.Value)
+                {
+                    string fileName = Path.Combine(Global.ShareFolder, ketQuaSoiCTC["ImageName1"].ToString());
+                    if (File.Exists(fileName))
+                        hinhList.Add(Utility.LoadBytesFromFile(fileName));
+                }
 
-                if (ketQuaSoiCTC["Hinh2"] != null && ketQuaSoiCTC["Hinh2"] != DBNull.Value)
-                    hinhList.Add((byte[])ketQuaSoiCTC["Hinh2"]);
+                if (ketQuaSoiCTC["ImageName2"] != null && ketQuaSoiCTC["ImageName2"] != DBNull.Value)
+                {
+                    string fileName = Path.Combine(Global.ShareFolder, ketQuaSoiCTC["ImageName2"].ToString());
+                    if (File.Exists(fileName))
+                        hinhList.Add(Utility.LoadBytesFromFile(fileName));
+                }
+
+                //if (ketQuaSoiCTC["Hinh1"] != null && ketQuaSoiCTC["Hinh1"] != DBNull.Value)
+                //    hinhList.Add((byte[])ketQuaSoiCTC["Hinh1"]);
+
+                //if (ketQuaSoiCTC["Hinh2"] != null && ketQuaSoiCTC["Hinh2"] != DBNull.Value)
+                //    hinhList.Add((byte[])ketQuaSoiCTC["Hinh2"]);
 
                 double left = 96.134184222258924;
                 double top = 175;
@@ -7963,36 +8113,44 @@ namespace MM.Exports
                     cell = dgLichHen[rowIndex, 10] as SourceGrid2.Cells.Real.Cell;
                     string owner = cell.Value as string;
 
-                    //Booking Updated Date
+                    //Booking Created Date
                     cell = dgLichHen[rowIndex, 11] as SourceGrid2.Cells.Real.Cell;
+                    string bookingCreatedDate = cell.Value as string;
+
+                    //Booking Updated Date
+                    cell = dgLichHen[rowIndex, 12] as SourceGrid2.Cells.Real.Cell;
                     string bookingUpdatedDate = cell.Value as string;
 
                     //Booking IN/OUT
-                    cell = dgLichHen[rowIndex, 12] as SourceGrid2.Cells.Real.Cell;
+                    cell = dgLichHen[rowIndex, 13] as SourceGrid2.Cells.Real.Cell;
                     string bookingInOut = cell.Value as string;
 
                     //Blood Company
-                    cell = dgLichHen[rowIndex, 14] as SourceGrid2.Cells.Real.Cell;
+                    cell = dgLichHen[rowIndex, 15] as SourceGrid2.Cells.Real.Cell;
                     string bloodCompany = cell.Value as string;
 
                     //Pax
-                    cell = dgLichHen[rowIndex, 15] as SourceGrid2.Cells.Real.Cell;
+                    cell = dgLichHen[rowIndex, 16] as SourceGrid2.Cells.Real.Cell;
                     string pax = cell.Value as string;
 
                     //Time
-                    cell = dgLichHen[rowIndex, 16] as SourceGrid2.Cells.Real.Cell;
+                    cell = dgLichHen[rowIndex, 17] as SourceGrid2.Cells.Real.Cell;
                     string time = cell.Value as string;
 
                     //Sales
-                    cell = dgLichHen[rowIndex, 17] as SourceGrid2.Cells.Real.Cell;
+                    cell = dgLichHen[rowIndex, 18] as SourceGrid2.Cells.Real.Cell;
                     string sales = cell.Value as string;
 
+                    //Blood Created Date
+                    cell = dgLichHen[rowIndex, 19] as SourceGrid2.Cells.Real.Cell;
+                    string bloodCreatedDate = cell.Value as string;
+
                     //Blood Updated Date
-                    cell = dgLichHen[rowIndex, 18] as SourceGrid2.Cells.Real.Cell;
+                    cell = dgLichHen[rowIndex, 20] as SourceGrid2.Cells.Real.Cell;
                     string bloodUpdatedDate = cell.Value as string;
 
                     //Blood IN/OUT
-                    cell = dgLichHen[rowIndex, 19] as SourceGrid2.Cells.Real.Cell;
+                    cell = dgLichHen[rowIndex, 21] as SourceGrid2.Cells.Real.Cell;
                     string bloodInOut = cell.Value as string;
 
                     if (!isSpacing)
@@ -8008,30 +8166,32 @@ namespace MM.Exports
                         //workSheet.Cells[rowIndex, 8].Value = totalEveningINCount;
                         //workSheet.Cells[rowIndex, 9].Value = totalOUTCount;
                         workSheet.Cells[rowIndex, 10].Value = owner;
-                        workSheet.Cells[rowIndex, 11].Value = bookingUpdatedDate;
-                        workSheet.Cells[rowIndex, 12].Value = bookingInOut;
+                        workSheet.Cells[rowIndex, 11].Value = bookingCreatedDate;
+                        workSheet.Cells[rowIndex, 12].Value = bookingUpdatedDate;
+                        workSheet.Cells[rowIndex, 13].Value = bookingInOut;
 
                         range = workSheet.Cells[string.Format("C{0}:F{0}", rowIndex + 1)];
                         range.Borders.LineStyle = LineStyle.Continuous;
                         range.Borders.Color = Color.Black;
 
-                        range = workSheet.Cells[string.Format("K{0}:M{0}", rowIndex + 1)];
+                        range = workSheet.Cells[string.Format("K{0}:N{0}", rowIndex + 1)];
                         range.Borders.LineStyle = LineStyle.Continuous;
                         range.Borders.Color = Color.Black;
 
-                        workSheet.Cells[rowIndex, 14].Value = bloodCompany;
-                        workSheet.Cells[rowIndex, 15].Value = pax;
-                        workSheet.Cells[rowIndex, 16].Value = time;
-                        workSheet.Cells[rowIndex, 17].Value = sales;
-                        workSheet.Cells[rowIndex, 18].Value = bloodUpdatedDate;
-                        workSheet.Cells[rowIndex, 19].Value = bloodInOut;
+                        workSheet.Cells[rowIndex, 15].Value = bloodCompany;
+                        workSheet.Cells[rowIndex, 16].Value = pax;
+                        workSheet.Cells[rowIndex, 17].Value = time;
+                        workSheet.Cells[rowIndex, 18].Value = sales;
+                        workSheet.Cells[rowIndex, 19].Value = bloodCreatedDate;
+                        workSheet.Cells[rowIndex, 20].Value = bloodUpdatedDate;
+                        workSheet.Cells[rowIndex, 21].Value = bloodInOut;
 
-                        range = workSheet.Cells[string.Format("O{0}:T{0}", rowIndex + 1)];
+                        range = workSheet.Cells[string.Format("P{0}:V{0}", rowIndex + 1)];
                         range.Borders.LineStyle = LineStyle.Continuous;
                         range.Borders.Color = Color.Black;
 
                         if (day == "Thứ 7" || day == "CN")
-                            workSheet.Cells[string.Format("A{0}:T{0}", rowIndex + 1)].Font.Color = Color.Red;
+                            workSheet.Cells[string.Format("A{0}:V{0}", rowIndex + 1)].Font.Color = Color.Red;
 
                         int i = rowIndex + 1;
                         if (i >= dgLichHen.RowsCount || (dgLichHen[i, 0] as SourceGrid2.Cells.Real.Cell).Tag != null ||
@@ -8087,7 +8247,7 @@ namespace MM.Exports
                     }
                     else
                     {
-                        range = workSheet.Cells[string.Format("A{0}:T{0}", rowIndex + 1)];
+                        range = workSheet.Cells[string.Format("A{0}:V{0}", rowIndex + 1)];
                         range.Merge();
                     }
                 }

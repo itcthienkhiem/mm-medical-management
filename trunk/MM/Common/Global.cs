@@ -201,6 +201,8 @@ namespace MM.Common
         public static string Username = string.Empty;
         public static string BranchName = string.Empty;
 
+        public static string ShareFolder = string.Empty;
+
         public static void InitExcelTempates()
         {
             ExcelTemplates.Add(Const.CheckListTemplate);

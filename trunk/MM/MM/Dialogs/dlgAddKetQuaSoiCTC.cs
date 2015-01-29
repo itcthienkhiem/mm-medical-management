@@ -169,11 +169,25 @@ namespace MM.Dialogs
                 cboKetLuan.Text = drKetQuaSoiCTC["KetLuan"].ToString();
                 cboDeNghi.Text = drKetQuaSoiCTC["DeNghi"].ToString();
 
-                if (drKetQuaSoiCTC["Hinh1"] != null && drKetQuaSoiCTC["Hinh1"] != DBNull.Value)
-                    picHinh1.Image = Utility.ParseImage((byte[])drKetQuaSoiCTC["Hinh1"]);
+                //if (drKetQuaSoiCTC["Hinh1"] != null && drKetQuaSoiCTC["Hinh1"] != DBNull.Value)
+                //    picHinh1.Image = Utility.ParseImage((byte[])drKetQuaSoiCTC["Hinh1"]);
 
-                if (drKetQuaSoiCTC["Hinh2"] != null && drKetQuaSoiCTC["Hinh2"] != DBNull.Value)
-                    picHinh2.Image = Utility.ParseImage((byte[])drKetQuaSoiCTC["Hinh2"]);
+                //if (drKetQuaSoiCTC["Hinh2"] != null && drKetQuaSoiCTC["Hinh2"] != DBNull.Value)
+                //    picHinh2.Image = Utility.ParseImage((byte[])drKetQuaSoiCTC["Hinh2"]);
+
+                if (drKetQuaSoiCTC["ImageName1"] != null && drKetQuaSoiCTC["ImageName1"] != DBNull.Value)
+                {
+                    string fileName = Path.Combine(Global.ShareFolder, drKetQuaSoiCTC["ImageName1"].ToString());
+                    if (File.Exists(fileName))
+                        picHinh1.Image = Utility.LoadImageFromFile(fileName);
+                }
+
+                if (drKetQuaSoiCTC["ImageName2"] != null && drKetQuaSoiCTC["ImageName2"] != DBNull.Value)
+                {
+                    string fileName = Path.Combine(Global.ShareFolder, drKetQuaSoiCTC["ImageName2"].ToString());
+                    if (File.Exists(fileName))
+                        picHinh2.Image = Utility.LoadImageFromFile(fileName);
+                }
 
                 _uKetQuaSoiCTC.AmHo = drKetQuaSoiCTC["AmHo"].ToString();
                 _uKetQuaSoiCTC.AmDao = drKetQuaSoiCTC["AmDao"].ToString();
@@ -376,14 +390,23 @@ namespace MM.Dialogs
                     _ketQuaSoiCTC.KetLuan = cboKetLuan.Text;
                     _ketQuaSoiCTC.DeNghi = cboDeNghi.Text;
 
-                    _ketQuaSoiCTC.Hinh1 = null;
-                    _ketQuaSoiCTC.Hinh2 = null;
+                    //_ketQuaSoiCTC.Hinh1 = null;
+                    //_ketQuaSoiCTC.Hinh2 = null;
 
-                    if (picHinh1.Image != null)
-                        _ketQuaSoiCTC.Hinh1 = new System.Data.Linq.Binary(Utility.GetBinaryFromImage(picHinh1.Image));
+                    //if (picHinh1.Image != null)
+                    //    _ketQuaSoiCTC.Hinh1 = new System.Data.Linq.Binary(Utility.GetBinaryFromImage(picHinh1.Image));
 
-                    if (picHinh2.Image != null)
-                        _ketQuaSoiCTC.Hinh2 = new System.Data.Linq.Binary(Utility.GetBinaryFromImage(picHinh2.Image));
+                    //if (picHinh2.Image != null)
+                    //    _ketQuaSoiCTC.Hinh2 = new System.Data.Linq.Binary(Utility.GetBinaryFromImage(picHinh2.Image));
+
+                    _ketQuaSoiCTC.ImageName1 = null;
+                    _ketQuaSoiCTC.ImageName2 = null;
+
+                    byte[] imgBuff1 = null;
+                    byte[] imgBuff2 = null;
+
+                    if (picHinh1.Image != null) imgBuff1 = Utility.GetBinaryFromImage(picHinh1.Image);
+                    if (picHinh2.Image != null) imgBuff2 = Utility.GetBinaryFromImage(picHinh2.Image);
 
                     _ketQuaSoiCTC.AmHo = _uKetQuaSoiCTC.AmHo;
                     _ketQuaSoiCTC.AmDao = _uKetQuaSoiCTC.AmDao;
@@ -394,7 +417,7 @@ namespace MM.Dialogs
                     _ketQuaSoiCTC.SauAcidAcetic = _uKetQuaSoiCTC.SauAcidAcetic;
                     _ketQuaSoiCTC.SauLugol = _uKetQuaSoiCTC.SauLugol;
                    
-                    Result result = KetQuaSoiCTCBus.InsertKetQuaSoiCTC(_ketQuaSoiCTC);
+                    Result result = KetQuaSoiCTCBus.InsertKetQuaSoiCTC(_ketQuaSoiCTC, imgBuff1, imgBuff2);
                     if (!result.IsOK)
                     {
                         MsgBox.Show(this.Text, result.GetErrorAsString("KetQuaSoiCTCBus.InsertKetQuaSoiCTC"), IconType.Error);

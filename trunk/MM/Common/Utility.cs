@@ -1264,6 +1264,37 @@ namespace MM.Common
             }
         }
 
+        public static void SaveImage(byte[] buffer, string fileName)
+        {
+            Bitmap bmp = null;
+            MemoryStream ms = null;
+
+            try
+            {
+                ms = new MemoryStream(buffer);
+                bmp = new Bitmap(ms);
+                bmp.Save(fileName, ImageFormat.Png);
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+            finally
+            {
+                if (ms != null)
+                {
+                    ms.Close();
+                    ms = null;
+                }
+
+                if (bmp != null)
+                {
+                    bmp.Dispose();
+                    bmp = null;
+                }
+            }
+        }
+
         public static byte[] GetBinaryFromImage(Image img)
         {
             MemoryStream ms = null;
@@ -1805,6 +1836,12 @@ namespace MM.Common
             grPhoto.Dispose();
 
             return imageTemplate;
+        }
+
+        public static bool ValidateNetworkPath(string path)
+        {
+            string pattern = @"^\\{2}[\w-]+(\\{1}(([\w-][\w-\s]*[\w-]+[$$]?)|([\w-][$$]?$)))+";
+            return Regex.IsMatch(path, pattern);
         }
     }
 }
