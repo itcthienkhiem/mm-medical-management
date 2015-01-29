@@ -7,6 +7,7 @@ using System.Data;
 using System.Data.Linq;
 using MM.Common;
 using MM.Databasae;
+using System.IO;
 
 
 namespace MM.Bussiness
@@ -216,7 +217,8 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result InsertKetQuaNoiSoi(KetQuaNoiSoi ketQuaNoiSoi)
+        public static Result InsertKetQuaNoiSoi(KetQuaNoiSoi ketQuaNoiSoi, 
+            byte[] imgBuff1, byte[] imgBuff2, byte[] imgBuff3, byte[] imgBuff4)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -231,6 +233,19 @@ namespace MM.Bussiness
                     if (ketQuaNoiSoi.KetQuaNoiSoiGUID == null || ketQuaNoiSoi.KetQuaNoiSoiGUID == Guid.Empty)
                     {
                         ketQuaNoiSoi.KetQuaNoiSoiGUID = Guid.NewGuid();
+
+                        if (imgBuff1 != null)
+                            ketQuaNoiSoi.ImageName1 = string.Format("{0}_1.png", ketQuaNoiSoi.KetQuaNoiSoiGUID.ToString());
+
+                        if (imgBuff2 != null)
+                            ketQuaNoiSoi.ImageName2 = string.Format("{0}_2.png", ketQuaNoiSoi.KetQuaNoiSoiGUID.ToString());
+
+                        if (imgBuff3 != null)
+                            ketQuaNoiSoi.ImageName3 = string.Format("{0}_3.png", ketQuaNoiSoi.KetQuaNoiSoiGUID.ToString());
+
+                        if (imgBuff4 != null)
+                            ketQuaNoiSoi.ImageName4 = string.Format("{0}_4.png", ketQuaNoiSoi.KetQuaNoiSoiGUID.ToString());
+
                         db.KetQuaNoiSois.InsertOnSubmit(ketQuaNoiSoi);
                         db.SubmitChanges();
 
@@ -307,6 +322,18 @@ namespace MM.Bussiness
                         KetQuaNoiSoi kqns = db.KetQuaNoiSois.SingleOrDefault<KetQuaNoiSoi>(k => k.KetQuaNoiSoiGUID == ketQuaNoiSoi.KetQuaNoiSoiGUID);
                         if (kqns != null)
                         {
+                            if (imgBuff1 != null)
+                                kqns.ImageName1 = string.Format("{0}_1.png", kqns.KetQuaNoiSoiGUID.ToString());
+
+                            if (imgBuff2 != null)
+                                kqns.ImageName2 = string.Format("{0}_2.png", kqns.KetQuaNoiSoiGUID.ToString());
+
+                            if (imgBuff3 != null)
+                                kqns.ImageName3 = string.Format("{0}_3.png", kqns.KetQuaNoiSoiGUID.ToString());
+
+                            if (imgBuff4 != null)
+                                kqns.ImageName4 = string.Format("{0}_4.png", kqns.KetQuaNoiSoiGUID.ToString());
+
                             kqns.NgayKham = ketQuaNoiSoi.NgayKham;
                             kqns.PatientGUID = ketQuaNoiSoi.PatientGUID;
                             kqns.SoPhieu = ketQuaNoiSoi.SoPhieu;
@@ -371,6 +398,50 @@ namespace MM.Bussiness
                             kqns.UpdatedDate = ketQuaNoiSoi.UpdatedDate;
                             kqns.Status = ketQuaNoiSoi.Status;
                             db.SubmitChanges();
+
+                            if (imgBuff1 != null)
+                            {
+                                string fileName = Path.Combine(Global.ShareFolder, kqns.ImageName1);
+                                Utility.SaveImage(imgBuff1, fileName);
+                            }
+                            else
+                            {
+                                string fileName = Path.Combine(Global.ShareFolder, string.Format("{0}_1.png", kqns.KetQuaNoiSoiGUID.ToString()));
+                                if (File.Exists(fileName)) File.Delete(fileName);
+                            }
+
+                            if (imgBuff2 != null)
+                            {
+                                string fileName = Path.Combine(Global.ShareFolder, kqns.ImageName2);
+                                Utility.SaveImage(imgBuff2, fileName);
+                            }
+                            else
+                            {
+                                string fileName = Path.Combine(Global.ShareFolder, string.Format("{0}_2.png", kqns.KetQuaNoiSoiGUID.ToString()));
+                                if (File.Exists(fileName)) File.Delete(fileName);
+                            }
+
+                            if (imgBuff3 != null)
+                            {
+                                string fileName = Path.Combine(Global.ShareFolder, kqns.ImageName3);
+                                Utility.SaveImage(imgBuff3, fileName);
+                            }
+                            else
+                            {
+                                string fileName = Path.Combine(Global.ShareFolder, string.Format("{0}_3.png", kqns.KetQuaNoiSoiGUID.ToString()));
+                                if (File.Exists(fileName)) File.Delete(fileName);
+                            }
+
+                            if (imgBuff4 != null)
+                            {
+                                string fileName = Path.Combine(Global.ShareFolder, kqns.ImageName4);
+                                Utility.SaveImage(imgBuff4, fileName);
+                            }
+                            else
+                            {
+                                string fileName = Path.Combine(Global.ShareFolder, string.Format("{0}_4.png", kqns.KetQuaNoiSoiGUID.ToString()));
+                                if (File.Exists(fileName)) File.Delete(fileName);
+                            }
 
                             //Tracking
                             string tenBSCD = string.Empty;

@@ -160,6 +160,10 @@ namespace MM
                     obj = Configuration.GetValues(Const.TVHomeSieuAmKey);
                     if (obj != null) Global.TVHomeConfig.SuDungSieuAm = Convert.ToBoolean(obj);
 
+                    //Share Folder
+                    obj = Configuration.GetValues(Const.ShareFolderKey);
+                    if (obj != null) Global.ShareFolder = obj.ToString();
+
                     if (!Global.ConnectionInfo.TestConnection())
                     {
                         dlgDatabaseConfig dlg = new dlgDatabaseConfig();
@@ -482,6 +486,8 @@ namespace MM
             Configuration.SetValues(Const.TVHomeSoiCTCKey, Global.TVHomeConfig.SuDungSoiCTC);
             Configuration.SetValues(Const.TVHomeSieuAmKey, Global.TVHomeConfig.SuDungSieuAm);
 
+            Configuration.SetValues(Const.ShareFolderKey, Global.ShareFolder);
+
             Configuration.SaveData(Global.AppConfig);
         }
 
@@ -491,11 +497,13 @@ namespace MM
             {
                 thayDoiSoHoaDonToolStripMenuItem.Enabled = isLogin;
                 cauHinhFTPToolStripMenuItem.Enabled = isLogin;
+                cấuHìnhShareFolderToolStripMenuItem.Enabled = isLogin;
             }
             else
             {
                 thayDoiSoHoaDonToolStripMenuItem.Enabled = false;
                 cauHinhFTPToolStripMenuItem.Enabled = false;
+                cấuHìnhShareFolderToolStripMenuItem.Enabled = false;
             }
 
             if (Global.StaffType != StaffType.Admin)
@@ -2648,6 +2656,19 @@ namespace MM
                 case "ThongKeChiDinhDuocXuatHoaDon":
                     OnThongKeChiDinhDuocXuatHoaDon();
                     break;
+                    
+                case "CauHinhShareFolder":
+                    OnCauHinhShareFolder();
+                    break;
+            }
+        }
+
+        private void OnCauHinhShareFolder()
+        {
+            dlgCauHinhShareFolder dlg = new dlgCauHinhShareFolder();
+            if (dlg.ShowDialog(this) == System.Windows.Forms.DialogResult.OK)
+            {
+                SaveAppConfig();
             }
         }
 
