@@ -79,7 +79,7 @@ namespace ConvertImageFromDb2ShareFolder
                         string fileName = Path.Combine(Global.ShareFolder, string.Format("{0}_1.png", key));
                         Utility.SaveImage(kq.Hinh1.ToArray(), fileName);
                         kq.ImageName1 = string.Format("{0}_1.png", key);
-                        kq.Hinh1 = null;
+                        //kq.Hinh1 = null;
                         isSubmit = true;
                     }
 
@@ -88,7 +88,7 @@ namespace ConvertImageFromDb2ShareFolder
                         string fileName = Path.Combine(Global.ShareFolder, string.Format("{0}_2.png", key));
                         Utility.SaveImage(kq.Hinh2.ToArray(), fileName);
                         kq.ImageName2 = string.Format("{0}_2.png", key);
-                        kq.Hinh2 = null;
+                        //kq.Hinh2 = null;
                         isSubmit = true;
                     }
 
@@ -97,7 +97,7 @@ namespace ConvertImageFromDb2ShareFolder
                         string fileName = Path.Combine(Global.ShareFolder, string.Format("{0}_3.png", key));
                         Utility.SaveImage(kq.Hinh3.ToArray(), fileName);
                         kq.ImageName3 = string.Format("{0}_3.png", key);
-                        kq.Hinh3 = null;
+                        //kq.Hinh3 = null;
                         isSubmit = true;
                     }
 
@@ -106,7 +106,7 @@ namespace ConvertImageFromDb2ShareFolder
                         string fileName = Path.Combine(Global.ShareFolder, string.Format("{0}_4.png", key));
                         Utility.SaveImage(kq.Hinh4.ToArray(), fileName);
                         kq.ImageName4 = string.Format("{0}_4.png", key);
-                        kq.Hinh4 = null;
+                        //kq.Hinh4 = null;
                         isSubmit = true;
                     }
                 }
@@ -146,7 +146,7 @@ namespace ConvertImageFromDb2ShareFolder
                         string fileName = Path.Combine(Global.ShareFolder, string.Format("{0}_1.png", key));
                         Utility.SaveImage(kq.Hinh1.ToArray(), fileName);
                         kq.ImageName1 = string.Format("{0}_1.png", key);
-                        kq.Hinh1 = null;
+                        //kq.Hinh1 = null;
                         isSubmit = true;
                     }
 
@@ -155,7 +155,7 @@ namespace ConvertImageFromDb2ShareFolder
                         string fileName = Path.Combine(Global.ShareFolder, string.Format("{0}_2.png", key));
                         Utility.SaveImage(kq.Hinh2.ToArray(), fileName);
                         kq.ImageName2 = string.Format("{0}_2.png", key);
-                        kq.Hinh2 = null;
+                        //kq.Hinh2 = null;
                         isSubmit = true;
                     }
                 }
@@ -195,7 +195,7 @@ namespace ConvertImageFromDb2ShareFolder
                         string fileName = Path.Combine(Global.ShareFolder, string.Format("{0}_1.png", key));
                         Utility.SaveImage(kq.Hinh1.ToArray(), fileName);
                         kq.ImageName1 = string.Format("{0}_1.png", key);
-                        kq.Hinh1 = null;
+                        //kq.Hinh1 = null;
                         isSubmit = true;
                     }
 
@@ -204,7 +204,7 @@ namespace ConvertImageFromDb2ShareFolder
                         string fileName = Path.Combine(Global.ShareFolder, string.Format("{0}_2.png", key));
                         Utility.SaveImage(kq.Hinh2.ToArray(), fileName);
                         kq.ImageName2 = string.Format("{0}_2.png", key);
-                        kq.Hinh2 = null;
+                        //kq.Hinh2 = null;
                         isSubmit = true;
                     }
                 }
