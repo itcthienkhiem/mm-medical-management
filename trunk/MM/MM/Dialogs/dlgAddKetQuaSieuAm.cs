@@ -272,25 +272,11 @@ namespace MM.Dialogs
                 byte[] buff = (byte[])_drKetQuaSieuAm["KetQuaSieuAm"];
                 _textControl.Load(buff, TXTextControl.BinaryStreamType.MSWord);
 
-                //if (_drKetQuaSieuAm["Hinh1"] != null && _drKetQuaSieuAm["Hinh1"] != DBNull.Value)
-                //    picHinh1.Image = Utility.ParseImage((byte[])_drKetQuaSieuAm["Hinh1"]);
+                if (_drKetQuaSieuAm["Hinh1"] != null && _drKetQuaSieuAm["Hinh1"] != DBNull.Value)
+                    picHinh1.Image = Utility.ParseImage((byte[])_drKetQuaSieuAm["Hinh1"]);
 
-                //if (_drKetQuaSieuAm["Hinh2"] != null && _drKetQuaSieuAm["Hinh2"] != DBNull.Value)
-                //    picHinh2.Image = Utility.ParseImage((byte[])_drKetQuaSieuAm["Hinh2"]);
-
-                if (_drKetQuaSieuAm["ImageName1"] != null && _drKetQuaSieuAm["ImageName1"] != DBNull.Value)
-                {
-                    string fileName = Path.Combine(Global.ShareFolder, _drKetQuaSieuAm["ImageName1"].ToString());
-                    if (File.Exists(fileName))
-                        picHinh1.Image = Utility.LoadImageFromFile(fileName);
-                }
-
-                if (_drKetQuaSieuAm["ImageName2"] != null && _drKetQuaSieuAm["ImageName2"] != DBNull.Value)
-                {
-                    string fileName = Path.Combine(Global.ShareFolder, _drKetQuaSieuAm["ImageName2"].ToString());
-                    if (File.Exists(fileName))
-                        picHinh2.Image = Utility.LoadImageFromFile(fileName);
-                }
+                if (_drKetQuaSieuAm["Hinh2"] != null && _drKetQuaSieuAm["Hinh2"] != DBNull.Value)
+                    picHinh2.Image = Utility.ParseImage((byte[])_drKetQuaSieuAm["Hinh2"]);
 
                 if (_drKetQuaSieuAm["CreatedDate"] != null && _drKetQuaSieuAm["CreatedDate"] != DBNull.Value)
                     _ketQuaSieuAm.CreatedDate = Convert.ToDateTime(_drKetQuaSieuAm["CreatedDate"]);
@@ -378,25 +364,16 @@ namespace MM.Dialogs
                     _textControl.Save(out buff, TXTextControl.BinaryStreamType.MSWord);
                     _ketQuaSieuAm.KetQuaSieuAm1 = new System.Data.Linq.Binary(buff);
 
-                    //_ketQuaSieuAm.Hinh1 = null;
-                    //_ketQuaSieuAm.Hinh2 = null;
+                    _ketQuaSieuAm.Hinh1 = null;
+                    _ketQuaSieuAm.Hinh2 = null;
 
-                    //if (picHinh1.Image != null)
-                    //    _ketQuaSieuAm.Hinh1 = new System.Data.Linq.Binary(Utility.GetBinaryFromImage(picHinh1.Image));
+                    if (picHinh1.Image != null)
+                        _ketQuaSieuAm.Hinh1 = new System.Data.Linq.Binary(Utility.GetBinaryFromImage(picHinh1.Image));
 
-                    //if (picHinh2.Image != null)
-                    //    _ketQuaSieuAm.Hinh2 = new System.Data.Linq.Binary(Utility.GetBinaryFromImage(picHinh2.Image));
+                    if (picHinh2.Image != null)
+                        _ketQuaSieuAm.Hinh2 = new System.Data.Linq.Binary(Utility.GetBinaryFromImage(picHinh2.Image));
 
-                    _ketQuaSieuAm.ImageName1 = null;
-                    _ketQuaSieuAm.ImageName2 = null;
-
-                    byte[] imgBuff1 = null;
-                    byte[] imgBuff2 = null;
-
-                    if (picHinh1.Image != null) imgBuff1 = Utility.GetBinaryFromImage(picHinh1.Image);
-                    if (picHinh2.Image != null) imgBuff2 = Utility.GetBinaryFromImage(picHinh2.Image);
-
-                    Result result = SieuAmBus.InsertKetQuaSieuAm(_ketQuaSieuAm, imgBuff1, imgBuff2);
+                    Result result = SieuAmBus.InsertKetQuaSieuAm(_ketQuaSieuAm);
                     if (!result.IsOK)
                     {
                         MsgBox.Show(this.Text, result.GetErrorAsString("SieuAmBus.InsertKetQuaSieuAm"), IconType.Error);

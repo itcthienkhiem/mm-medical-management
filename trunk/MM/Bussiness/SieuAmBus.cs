@@ -7,7 +7,6 @@ using System.Data.Linq;
 using System.Transactions;
 using MM.Common;
 using MM.Databasae;
-using System.IO;
 
 
 namespace MM.Bussiness
@@ -538,7 +537,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result InsertKetQuaSieuAm(KetQuaSieuAm ketQuaSieuAm, byte[] imgBuff1, byte[] imgBuff2)
+        public static Result InsertKetQuaSieuAm(KetQuaSieuAm ketQuaSieuAm)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -553,27 +552,8 @@ namespace MM.Bussiness
                     if (ketQuaSieuAm.KetQuaSieuAmGUID == null || ketQuaSieuAm.KetQuaSieuAmGUID == Guid.Empty)
                     {
                         ketQuaSieuAm.KetQuaSieuAmGUID = Guid.NewGuid();
-
-                        if (imgBuff1 != null)
-                            ketQuaSieuAm.ImageName1 = string.Format("{0}_1.png", ketQuaSieuAm.KetQuaSieuAmGUID.ToString());
-
-                        if (imgBuff2 != null)
-                            ketQuaSieuAm.ImageName2 = string.Format("{0}_2.png", ketQuaSieuAm.KetQuaSieuAmGUID.ToString());
-
                         db.KetQuaSieuAms.InsertOnSubmit(ketQuaSieuAm);
                         db.SubmitChanges();
-
-                        if (imgBuff1 != null)
-                        {
-                            string fileName = Path.Combine(Global.ShareFolder, ketQuaSieuAm.ImageName1);
-                            Utility.SaveImage(imgBuff1, fileName);
-                        }
-
-                        if (imgBuff2 != null)
-                        {
-                            string fileName = Path.Combine(Global.ShareFolder, ketQuaSieuAm.ImageName2);
-                            Utility.SaveImage(imgBuff2, fileName);
-                        }
 
                         //Tracking
                         desc += string.Format("- GUID: '{0}', Ngày siêu âm: '{1}', Bệnh nhân: '{2}', Bác sĩ siêu âm: '{3}', Bác sĩ chỉ định: '{4}', Loại siêu âm: '{5}'",
@@ -598,12 +578,6 @@ namespace MM.Bussiness
                         KetQuaSieuAm kqsa = db.KetQuaSieuAms.SingleOrDefault<KetQuaSieuAm>(k => k.KetQuaSieuAmGUID == ketQuaSieuAm.KetQuaSieuAmGUID);
                         if (kqsa != null)
                         {
-                            if (imgBuff1 != null)
-                                kqsa.ImageName1 = string.Format("{0}_1.png", kqsa.KetQuaSieuAmGUID.ToString());
-
-                            if (imgBuff2 != null)
-                                kqsa.ImageName2 = string.Format("{0}_2.png", kqsa.KetQuaSieuAmGUID.ToString());
-
                             kqsa.NgaySieuAm = ketQuaSieuAm.NgaySieuAm;
                             kqsa.PatientGUID = ketQuaSieuAm.PatientGUID;
                             kqsa.BacSiSieuAmGUID = ketQuaSieuAm.BacSiSieuAmGUID;
@@ -617,28 +591,6 @@ namespace MM.Bussiness
                             kqsa.UpdatedDate = ketQuaSieuAm.UpdatedDate;
                             kqsa.Status = ketQuaSieuAm.Status;
                             db.SubmitChanges();
-
-                            if (imgBuff1 != null)
-                            {
-                                string fileName = Path.Combine(Global.ShareFolder, kqsa.ImageName1);
-                                Utility.SaveImage(imgBuff1, fileName);
-                            }
-                            else
-                            {
-                                string fileName = Path.Combine(Global.ShareFolder, string.Format("{0}_1.png", kqsa.KetQuaSieuAmGUID.ToString()));
-                                if (File.Exists(fileName)) File.Delete(fileName);
-                            }
-
-                            if (imgBuff2 != null)
-                            {
-                                string fileName = Path.Combine(Global.ShareFolder, kqsa.ImageName2);
-                                Utility.SaveImage(imgBuff2, fileName);
-                            }
-                            else
-                            {
-                                string fileName = Path.Combine(Global.ShareFolder, string.Format("{0}_2.png", kqsa.KetQuaSieuAmGUID.ToString()));
-                                if (File.Exists(fileName)) File.Delete(fileName);
-                            }
 
                             //Tracking
                             desc += string.Format("- GUID: '{0}', Ngày siêu âm: '{1}', Bệnh nhân: '{2}', Bác sĩ siêu âm: '{3}', Bác sĩ chỉ định: '{4}', Loại siêu âm: '{5}'",
