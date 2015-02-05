@@ -9,7 +9,6 @@ using System.Windows.Forms;
 using MM.Common;
 using MM.Databasae;
 using MM.Bussiness;
-using System.IO;
 
 namespace MM.Controls
 {
@@ -134,21 +133,10 @@ namespace MM.Controls
                 _textControl.Selection.Text = string.Empty;
 
                 Image bmp = null;
-                if (drKetQuaSieuAm["ImageName1"] != null && drKetQuaSieuAm["ImageName1"] != DBNull.Value)
-                {
-                    string fileName = Path.Combine(Global.ShareFolder, drKetQuaSieuAm["ImageName1"].ToString());
-                    if (File.Exists(fileName))
-                        bmp = Utility.LoadImageFromFile(fileName);
-                    else
-                        bmp = Properties.Resources.WhiteImage;
-                }
+                if (drKetQuaSieuAm["Hinh1"] != null && drKetQuaSieuAm["Hinh1"] != DBNull.Value)
+                    bmp = Utility.ParseImage((byte[])drKetQuaSieuAm["Hinh1"], 300, 200);
                 else
                     bmp = Properties.Resources.WhiteImage;
-
-                //if (drKetQuaSieuAm["Hinh1"] != null && drKetQuaSieuAm["Hinh1"] != DBNull.Value)
-                //    bmp = Utility.ParseImage((byte[])drKetQuaSieuAm["Hinh1"], 300, 200);
-                //else
-                //    bmp = Properties.Resources.WhiteImage;
 
                 img = new TXTextControl.Image(bmp);
                 _textControl.Images.Add(img, TXTextControl.HorizontalAlignment.Center, index,
@@ -163,21 +151,10 @@ namespace MM.Controls
                 _textControl.Selection.Text = string.Empty;
 
                 Image bmp = null;
-                if (drKetQuaSieuAm["ImageName2"] != null && drKetQuaSieuAm["ImageName2"] != DBNull.Value)
-                {
-                    string fileName = Path.Combine(Global.ShareFolder, drKetQuaSieuAm["ImageName2"].ToString());
-                    if (File.Exists(fileName))
-                        bmp = Utility.LoadImageFromFile(fileName);
-                    else
-                        bmp = Properties.Resources.WhiteImage;
-                }
+                if (drKetQuaSieuAm["Hinh2"] != null && drKetQuaSieuAm["Hinh2"] != DBNull.Value)
+                    bmp = Utility.ParseImage((byte[])drKetQuaSieuAm["Hinh2"], 300, 200);
                 else
                     bmp = Properties.Resources.WhiteImage;
-
-                //if (drKetQuaSieuAm["Hinh2"] != null && drKetQuaSieuAm["Hinh2"] != DBNull.Value)
-                //    bmp = Utility.ParseImage((byte[])drKetQuaSieuAm["Hinh2"], 300, 200);
-                //else
-                //    bmp = Properties.Resources.WhiteImage;
 
                 img = new TXTextControl.Image(bmp);
                 _textControl.Images.Add(img, TXTextControl.HorizontalAlignment.Center, index,

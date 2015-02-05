@@ -170,45 +170,17 @@ namespace MM.Dialogs
                 cboKetLuan.Text = drKetQuaNoiSoi["KetLuan"].ToString();
                 cboDeNghi.Text = drKetQuaNoiSoi["DeNghi"].ToString();
 
-                //if (drKetQuaNoiSoi["Hinh1"] != null && drKetQuaNoiSoi["Hinh1"] != DBNull.Value)
-                //    picHinh1.Image = Utility.ParseImage((byte[])drKetQuaNoiSoi["Hinh1"]);
+                if (drKetQuaNoiSoi["Hinh1"] != null && drKetQuaNoiSoi["Hinh1"] != DBNull.Value)
+                    picHinh1.Image = Utility.ParseImage((byte[])drKetQuaNoiSoi["Hinh1"]);
 
-                //if (drKetQuaNoiSoi["Hinh2"] != null && drKetQuaNoiSoi["Hinh2"] != DBNull.Value)
-                //    picHinh2.Image = Utility.ParseImage((byte[])drKetQuaNoiSoi["Hinh2"]);
+                if (drKetQuaNoiSoi["Hinh2"] != null && drKetQuaNoiSoi["Hinh2"] != DBNull.Value)
+                    picHinh2.Image = Utility.ParseImage((byte[])drKetQuaNoiSoi["Hinh2"]);
 
-                //if (drKetQuaNoiSoi["Hinh3"] != null && drKetQuaNoiSoi["Hinh3"] != DBNull.Value)
-                //    picHinh3.Image = Utility.ParseImage((byte[])drKetQuaNoiSoi["Hinh3"]);
+                if (drKetQuaNoiSoi["Hinh3"] != null && drKetQuaNoiSoi["Hinh3"] != DBNull.Value)
+                    picHinh3.Image = Utility.ParseImage((byte[])drKetQuaNoiSoi["Hinh3"]);
 
-                //if (drKetQuaNoiSoi["Hinh4"] != null && drKetQuaNoiSoi["Hinh4"] != DBNull.Value)
-                //    picHinh4.Image = Utility.ParseImage((byte[])drKetQuaNoiSoi["Hinh4"]);
-
-                if (drKetQuaNoiSoi["ImageName1"] != null && drKetQuaNoiSoi["ImageName1"] != DBNull.Value)
-                {
-                    string fileName = Path.Combine(Global.ShareFolder, drKetQuaNoiSoi["ImageName1"].ToString());
-                    if (File.Exists(fileName))
-                        picHinh1.Image = Utility.LoadImageFromFile(fileName);
-                }
-
-                if (drKetQuaNoiSoi["ImageName2"] != null && drKetQuaNoiSoi["ImageName2"] != DBNull.Value)
-                {
-                    string fileName = Path.Combine(Global.ShareFolder, drKetQuaNoiSoi["ImageName2"].ToString());
-                    if (File.Exists(fileName))
-                        picHinh2.Image = Utility.LoadImageFromFile(fileName);
-                }
-
-                if (drKetQuaNoiSoi["ImageName3"] != null && drKetQuaNoiSoi["ImageName3"] != DBNull.Value)
-                {
-                    string fileName = Path.Combine(Global.ShareFolder, drKetQuaNoiSoi["ImageName3"].ToString());
-                    if (File.Exists(fileName))
-                        picHinh2.Image = Utility.LoadImageFromFile(fileName);
-                }
-
-                if (drKetQuaNoiSoi["ImageName4"] != null && drKetQuaNoiSoi["ImageName4"] != DBNull.Value)
-                {
-                    string fileName = Path.Combine(Global.ShareFolder, drKetQuaNoiSoi["ImageName4"].ToString());
-                    if (File.Exists(fileName))
-                        picHinh2.Image = Utility.LoadImageFromFile(fileName);
-                }
+                if (drKetQuaNoiSoi["Hinh4"] != null && drKetQuaNoiSoi["Hinh4"] != DBNull.Value)
+                    picHinh4.Image = Utility.ParseImage((byte[])drKetQuaNoiSoi["Hinh4"]);
 
                 LoaiNoiSoi type = (LoaiNoiSoi)cboLoaiNoiSoi.SelectedIndex;
                 switch (type)
@@ -389,37 +361,22 @@ namespace MM.Dialogs
                     _ketQuaNoiSoi.KetLuan = cboKetLuan.Text;
                     _ketQuaNoiSoi.DeNghi = cboDeNghi.Text;
 
-                    //_ketQuaNoiSoi.Hinh1 = null;
-                    //_ketQuaNoiSoi.Hinh2 = null;
-                    //_ketQuaNoiSoi.Hinh3 = null;
-                    //_ketQuaNoiSoi.Hinh4 = null;
+                    _ketQuaNoiSoi.Hinh1 = null;
+                    _ketQuaNoiSoi.Hinh2 = null;
+                    _ketQuaNoiSoi.Hinh3 = null;
+                    _ketQuaNoiSoi.Hinh4 = null;
 
-                    //if (picHinh1.Image != null)
-                    //    _ketQuaNoiSoi.Hinh1 = new System.Data.Linq.Binary(Utility.GetBinaryFromImage(picHinh1.Image));
+                    if (picHinh1.Image != null)
+                        _ketQuaNoiSoi.Hinh1 = new System.Data.Linq.Binary(Utility.GetBinaryFromImage(picHinh1.Image));
 
-                    //if (picHinh2.Image != null)
-                    //    _ketQuaNoiSoi.Hinh2 = new System.Data.Linq.Binary(Utility.GetBinaryFromImage(picHinh2.Image));
+                    if (picHinh2.Image != null)
+                        _ketQuaNoiSoi.Hinh2 = new System.Data.Linq.Binary(Utility.GetBinaryFromImage(picHinh2.Image));
 
-                    //if (picHinh3.Image != null)
-                    //    _ketQuaNoiSoi.Hinh3 = new System.Data.Linq.Binary(Utility.GetBinaryFromImage(picHinh3.Image));
+                    if (picHinh3.Image != null)
+                        _ketQuaNoiSoi.Hinh3 = new System.Data.Linq.Binary(Utility.GetBinaryFromImage(picHinh3.Image));
 
-                    //if (picHinh4.Image != null)
-                    //    _ketQuaNoiSoi.Hinh4 = new System.Data.Linq.Binary(Utility.GetBinaryFromImage(picHinh4.Image));
-
-                    _ketQuaNoiSoi.ImageName1 = null;
-                    _ketQuaNoiSoi.ImageName2 = null;
-                    _ketQuaNoiSoi.ImageName3 = null;
-                    _ketQuaNoiSoi.ImageName4 = null;
-
-                    byte[] imgBuff1 = null;
-                    byte[] imgBuff2 = null;
-                    byte[] imgBuff3 = null;
-                    byte[] imgBuff4 = null;
-
-                    if (picHinh1.Image != null) imgBuff1 = Utility.GetBinaryFromImage(picHinh1.Image);
-                    if (picHinh2.Image != null) imgBuff2 = Utility.GetBinaryFromImage(picHinh2.Image);
-                    if (picHinh3.Image != null) imgBuff3 = Utility.GetBinaryFromImage(picHinh3.Image);
-                    if (picHinh4.Image != null) imgBuff4 = Utility.GetBinaryFromImage(picHinh4.Image);
+                    if (picHinh4.Image != null)
+                        _ketQuaNoiSoi.Hinh4 = new System.Data.Linq.Binary(Utility.GetBinaryFromImage(picHinh4.Image));
 
                     LoaiNoiSoi type = (LoaiNoiSoi)cboLoaiNoiSoi.SelectedIndex;
                     switch (type)
@@ -488,7 +445,7 @@ namespace MM.Dialogs
                             break;
                     }
 
-                    Result result = KetQuaNoiSoiBus.InsertKetQuaNoiSoi(_ketQuaNoiSoi, imgBuff1, imgBuff2, imgBuff3, imgBuff4);
+                    Result result = KetQuaNoiSoiBus.InsertKetQuaNoiSoi(_ketQuaNoiSoi);
                     if (!result.IsOK)
                     {
                         MsgBox.Show(this.Text, result.GetErrorAsString("KetQuaNoiSoiBus.InsertKetQuaNoiSoi"), IconType.Error);

@@ -7,7 +7,6 @@ using System.Data;
 using System.Data.Linq;
 using MM.Common;
 using MM.Databasae;
-using System.IO;
 
 namespace MM.Bussiness
 {
@@ -138,7 +137,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result InsertKetQuaSoiCTC(KetQuaSoiCTC ketQuaSoiCTC, byte[] imgBuff1, byte[] imgBuff2)
+        public static Result InsertKetQuaSoiCTC(KetQuaSoiCTC ketQuaSoiCTC)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -153,13 +152,6 @@ namespace MM.Bussiness
                     if (ketQuaSoiCTC.KetQuaSoiCTCGUID == null || ketQuaSoiCTC.KetQuaSoiCTCGUID == Guid.Empty)
                     {
                         ketQuaSoiCTC.KetQuaSoiCTCGUID = Guid.NewGuid();
-
-                        if (imgBuff1 != null)
-                            ketQuaSoiCTC.ImageName1 = string.Format("{0}_1.png", ketQuaSoiCTC.KetQuaSoiCTCGUID.ToString());
-
-                        if (imgBuff2 != null)
-                            ketQuaSoiCTC.ImageName2 = string.Format("{0}_2.png", ketQuaSoiCTC.KetQuaSoiCTCGUID.ToString());
-
                         db.KetQuaSoiCTCs.InsertOnSubmit(ketQuaSoiCTC);
                         db.SubmitChanges();
 
@@ -188,12 +180,6 @@ namespace MM.Bussiness
                         KetQuaSoiCTC kqsctc = db.KetQuaSoiCTCs.SingleOrDefault<KetQuaSoiCTC>(k => k.KetQuaSoiCTCGUID == ketQuaSoiCTC.KetQuaSoiCTCGUID);
                         if (kqsctc != null)
                         {
-                            if (imgBuff1 != null)
-                                kqsctc.ImageName1 = string.Format("{0}_1.png", kqsctc.KetQuaSoiCTCGUID.ToString());
-
-                            if (imgBuff2 != null)
-                                kqsctc.ImageName2 = string.Format("{0}_2.png", kqsctc.KetQuaSoiCTCGUID.ToString());
-
                             kqsctc.NgayKham = ketQuaSoiCTC.NgayKham;
                             kqsctc.PatientGUID = ketQuaSoiCTC.PatientGUID;
                             kqsctc.BacSiSoi = ketQuaSoiCTC.BacSiSoi;
@@ -217,28 +203,6 @@ namespace MM.Bussiness
                             kqsctc.UpdatedDate = ketQuaSoiCTC.UpdatedDate;
                             kqsctc.Status = ketQuaSoiCTC.Status;
                             db.SubmitChanges();
-
-                            if (imgBuff1 != null)
-                            {
-                                string fileName = Path.Combine(Global.ShareFolder, kqsctc.ImageName1);
-                                Utility.SaveImage(imgBuff1, fileName);
-                            }
-                            else
-                            {
-                                string fileName = Path.Combine(Global.ShareFolder, string.Format("{0}_1.png", kqsctc.KetQuaSoiCTCGUID.ToString()));
-                                if (File.Exists(fileName)) File.Delete(fileName);
-                            }
-
-                            if (imgBuff2 != null)
-                            {
-                                string fileName = Path.Combine(Global.ShareFolder, kqsctc.ImageName2);
-                                Utility.SaveImage(imgBuff2, fileName);
-                            }
-                            else
-                            {
-                                string fileName = Path.Combine(Global.ShareFolder, string.Format("{0}_2.png", kqsctc.KetQuaSoiCTCGUID.ToString()));
-                                if (File.Exists(fileName)) File.Delete(fileName);
-                            }
 
                             //Tracking
                             desc += string.Format("- GUID: '{0}', Ngày khám: '{1}', Bệnh nhân: '{2}', Bác sĩ soi: '{3}', Kết luận: '{4}', Đề nghị: '{5}', Âm hộ: '{6}', Âm đạo: '{7}', CTC: '{8}', Biểu mô lát: '{9}', Mô đệm: '{10}', Ranh giới lát trụ: '{11}', Sau Acid Acetic: '{12}', Sau Lugol: '{13}'\n",
