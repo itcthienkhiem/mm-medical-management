@@ -68,6 +68,30 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetLoThuocByThuoc(string thuocGUID)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Format("SELECT dbo.LoThuoc.MaLoThuoc, dbo.LoThuoc.TenLoThuoc, dbo.LoThuoc.GiaNhap, dbo.LoThuoc.CreatedDate, ISNULL(dbo.DocStaffView.FullName, 'Admin') AS NguoiTao FROM dbo.LoThuoc LEFT OUTER JOIN dbo.DocStaffView ON dbo.LoThuoc.CreatedBy = dbo.DocStaffView.DocStaffGUID WHERE LoThuoc.Status = 0 AND LoThuoc.SoLuongNhap * LoThuoc.SoLuongQuiDoi > LoThuoc.SoLuongXuat AND LoThuoc.ThuocGUID = '{0}' ORDER BY LoThuoc.CreatedDate",
+                    thuocGUID);
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetLoThuocList()
         {
             Result result = null;

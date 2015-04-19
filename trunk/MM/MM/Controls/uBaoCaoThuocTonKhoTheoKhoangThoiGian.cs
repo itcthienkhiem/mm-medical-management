@@ -12,6 +12,7 @@ using MM.Bussiness;
 using MM.Common;
 using MM.Databasae;
 using MM.Exports;
+using MM.Dialogs;
 
 namespace MM.Controls
 {
@@ -195,9 +196,27 @@ namespace MM.Controls
                 }
             }
         }
+
+        private void OnViewLoThuoc()
+        {
+            if (dgThuocTonKho.SelectedRows == null || dgThuocTonKho.SelectedRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 thuốc.", IconType.Information);
+                return;
+            }
+
+            string thuocGUID = dgThuocTonKho.SelectedRows[0].Cells["ThuocGUID"].Value.ToString();
+            dlgLoThuocView dlg = new dlgLoThuocView(thuocGUID);
+            dlg.ShowDialog();
+        }
         #endregion
 
         #region Window Event Handlers
+        private void dgThuocTonKho_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            OnViewLoThuoc();
+        }
+
         private void btnView_Click(object sender, EventArgs e)
         {
             ViewAsThread();
@@ -238,6 +257,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
         
 
