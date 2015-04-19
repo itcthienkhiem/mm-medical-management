@@ -269,6 +269,12 @@
     <Compile Include="Dialogs\dlgInvoiceInfo2.Designer.cs">
       <DependentUpon>dlgInvoiceInfo2.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgLoThuocView.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgLoThuocView.Designer.cs">
+      <DependentUpon>dlgLoThuocView.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgMergeNhanVien.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1862,6 +1868,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgInvoiceInfo2.resx">
       <DependentUpon>dlgInvoiceInfo2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgLoThuocView.resx">
+      <DependentUpon>dlgLoThuocView.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgMergeNhanVien.resx">
       <DependentUpon>dlgMergeNhanVien.cs</DependentUpon>
