@@ -848,13 +848,13 @@ namespace MM.Controls
             foreach (SourceGrid2.Cells.Real.Cell cell in dgBooking.Selection.GetCells())
             {
                 if (cell.Row < 3) continue;
-                if (cell.Column < 0 || (cell.Column >= 6 && cell.Column <= 9) || cell.Column == 13) continue;
+                if (cell.Column < 0 || (cell.Column >= 6 && cell.Column <= 9) || cell.Column == 14) continue;
 
                 DataRow row = null;
-                if ((cell.Column >= 0 && cell.Column <= 5) || (cell.Column >= 10 && cell.Column <= 12))
+                if ((cell.Column >= 0 && cell.Column <= 5) || (cell.Column >= 10 && cell.Column <= 13))
                     row = dgBooking[cell.Row, 2].Tag as DataRow;
                 else
-                    row = dgBooking[cell.Row, 14].Tag as DataRow;
+                    row = dgBooking[cell.Row, 15].Tag as DataRow;
 
                 if (row == null) continue;
                 string nguoiTao = row["CreatedBy"].ToString();
