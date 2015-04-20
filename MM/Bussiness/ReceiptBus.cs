@@ -241,6 +241,13 @@ namespace MM.Bussiness
 
             try
             {
+                result = SettingBus.GetValue(Const.XoaDichVuKhiXoaPhieuThuKey);
+                if (!result.IsOK) return result;
+
+                bool xoaDichVu = false;
+                if (result.QueryResult != null)
+                    xoaDichVu = Convert.ToBoolean((result.QueryResult as Setting).SettingValue);
+
                 db = new MMOverride();
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
@@ -263,7 +270,12 @@ namespace MM.Bussiness
                                 {
                                     ServiceHistory serviceHistory = db.ServiceHistories.SingleOrDefault<ServiceHistory>(s => s.ServiceHistoryGUID == receiptDetail.ServiceHistoryGUID);
                                     if (serviceHistory != null)
+                                    {
                                         serviceHistory.IsExported = false;
+
+                                        if (xoaDichVu)
+                                            serviceHistory.Status = (byte)Status.Deactived;
+                                    }
                                 }
                             }
 

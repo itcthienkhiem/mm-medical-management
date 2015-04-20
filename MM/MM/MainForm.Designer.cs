@@ -86,6 +86,8 @@
             this.cauHinhPageSetupToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator68 = new System.Windows.Forms.ToolStripSeparator();
             this.cauHinhTVHomeToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator92 = new System.Windows.Forms.ToolStripSeparator();
+            this.xóaDịchVụKhiXóaPhiếuThuToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator7 = new System.Windows.Forms.ToolStripSeparator();
             this.nhomNguoiSuDungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.nguoiSuDungToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -742,6 +744,8 @@
             this.cauHinhPageSetupToolStripMenuItem,
             this.toolStripSeparator68,
             this.cauHinhTVHomeToolStripMenuItem,
+            this.toolStripSeparator92,
+            this.xóaDịchVụKhiXóaPhiếuThuToolStripMenuItem,
             this.toolStripSeparator7,
             this.nhomNguoiSuDungToolStripMenuItem,
             this.nguoiSuDungToolStripMenuItem,
@@ -797,6 +801,17 @@
             this.cauHinhTVHomeToolStripMenuItem.Name = "cauHinhTVHomeToolStripMenuItem";
             this.cauHinhTVHomeToolStripMenuItem.Tag = "TVHomeConfig";
             this.cauHinhTVHomeToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator92
+            // 
+            this.toolStripSeparator92.Name = "toolStripSeparator92";
+            resources.ApplyResources(this.toolStripSeparator92, "toolStripSeparator92");
+            // 
+            // xóaDịchVụKhiXóaPhiếuThuToolStripMenuItem
+            // 
+            resources.ApplyResources(this.xóaDịchVụKhiXóaPhiếuThuToolStripMenuItem, "xóaDịchVụKhiXóaPhiếuThuToolStripMenuItem");
+            this.xóaDịchVụKhiXóaPhiếuThuToolStripMenuItem.Name = "xóaDịchVụKhiXóaPhiếuThuToolStripMenuItem";
+            this.xóaDịchVụKhiXóaPhiếuThuToolStripMenuItem.Click += new System.EventHandler(this.xóaDịchVụKhiXóaPhiếuThuToolStripMenuItem_Click);
             // 
             // toolStripSeparator7
             // 
@@ -3522,6 +3537,8 @@
         private Controls.uThongKeChiDinhDuocXuatHoaDon _uThongKeChiDinhDuocXuatHoaDon;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator91;
         private System.Windows.Forms.ToolStripMenuItem cấuHìnhShareFolderToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator92;
+        private System.Windows.Forms.ToolStripMenuItem xóaDịchVụKhiXóaPhiếuThuToolStripMenuItem;
 
     }
 }

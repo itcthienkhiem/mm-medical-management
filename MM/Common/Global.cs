@@ -36,7 +36,7 @@ namespace MM.Common
         public static string Password = string.Empty;
         public static StaffType StaffType = Common.StaffType.Admin;
         public static bool AllowShowServiePrice = true;
-
+        
         //Phiếu thu dịch vụ
         public static bool AllowExportPhieuThuDichVu = true;
         public static bool AllowPrintPhieuThuDichVu = true;

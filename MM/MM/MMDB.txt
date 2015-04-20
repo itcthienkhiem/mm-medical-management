@@ -410,3 +410,48 @@ server: ftp.ris.com.au
 user: onlineresult@ris.com.au
 pass: Password001qazxdr5
 folder: 
+==============================================
+SELECT * FROM QuanLySoHoaDon
+--WHERE DaXuat = 0
+ORDER BY SoHoaDon, NgayBatDau
+
+SELECT MAX(InvoiceDate) AS MinDate 
+FROM Invoice WITH(NOLOCK) 
+WHERE Status = 0 AND CAST(InvoiceCode as int) < 1454 AND InvoiceDate >= '2015-01-04 21:14:16.297' 
+SELECT MAX(NgayXuatHoaDon) AS MinDate 
+FROM HoaDonThuoc 
+WHERE Status = 0 AND CAST(SoHoaDon as int) < 1454 AND NgayXuatHoaDon >= '2015-01-04 21:14:16.297' 
+SELECT MAX(NgayXuatHoaDon) AS MinDate 
+FROM HoaDonXuatTruoc 
+WHERE Status = 0 AND CAST(SoHoaDon as int) < 1454 AND NgayXuatHoaDon >= '2015-01-04 21:14:16.297' 
+SELECT MIN(InvoiceDate) AS MaxDate 
+FROM Invoice 
+WHERE Status = 0 AND CAST(InvoiceCode as int) > 1454 AND InvoiceDate >= '2015-01-04 21:14:16.297' 
+SELECT MIN(NgayXuatHoaDon) AS MaxDate 
+FROM HoaDonThuoc 
+WHERE Status = 0 AND CAST(SoHoaDon as int) > 1454 AND NgayXuatHoaDon >= '2015-01-04 21:14:16.297' 
+SELECT MIN(NgayXuatHoaDon) AS MaxDate 
+FROM HoaDonXuatTruoc 
+WHERE Status = 0 AND CAST(SoHoaDon as int) > 1454 AND NgayXuatHoaDon >= '2015-01-04 21:14:16.297'
+
+34E70EDF-7552-4FCE-A6F8-DDF0AB8A966F	1454	0	0	2015-01-04 21:14:16.297
+
+MinDate 2015-04-20 07:39:25.230
+MaxDate 2015-04-14 10:23:50.473
+
+SELECT * FROM Invoice
+WHERE Status = 1 AND InvoiceCode = 1455 AND
+InvoiceDate >= '2015-01-04 21:14:16.297'
+ORDER BY InvoiceDate DESC
+
+SELECT *
+FROM Invoice WITH(NOLOCK) 
+WHERE Status = 0 AND CAST(InvoiceCode as int) < 1454 AND InvoiceDate >= '2015-01-04 21:14:16.297' 
+
+SELECT *
+FROM Invoice 
+WHERE Status = 0 AND CAST(InvoiceCode as int) > 1454 AND InvoiceDate >= '2015-01-04 21:14:16.297' 
+
+UPDATE Invoice
+SET InvoiceDate = '2015-04-20 11:21:45.127'
+WHERE InvoiceGUID = '7798067F-1B07-4E97-BB29-3174660C9CCA'
