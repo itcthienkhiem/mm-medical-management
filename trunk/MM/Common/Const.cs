@@ -29,6 +29,8 @@ namespace MM.Common
 
         public static string ShareFolderKey = "ShareFolderKey";
 
+        public static string XoaDichVuKhiXoaPhieuThuKey = "XoaDichVuKhiXoaPhieuThuKey";
+
         public static string AdminGUID = "00000000-0000-0000-0000-000000000000";
 
         public static string Contract = "Contract";

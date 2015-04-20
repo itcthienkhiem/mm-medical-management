@@ -271,6 +271,20 @@ namespace MM
                     Global.HDGTGTSettings.Serialize(Global.HDGTGTSettingsPath);
                 else
                     Global.HDGTGTSettings.Deserialize(Global.HDGTGTSettingsPath);
+
+                //Get Setting XoaDichVuKhiXoaPhieuThu
+                result = SettingBus.GetValue(Const.XoaDichVuKhiXoaPhieuThuKey);
+                if (result.IsOK)
+                {
+                    if (result.QueryResult != null)
+                    {
+                        Setting s = result.QueryResult as Setting;
+                        bool check = Convert.ToBoolean(s.SettingValue);
+                        xóaDịchVụKhiXóaPhiếuThuToolStripMenuItem.Checked = check;
+                    }
+                }
+                else
+                    Utility.WriteToTraceLog(result.GetErrorAsString("SettingBus.GetValue"));
             };
 
             if (InvokeRequired) BeginInvoke(method);
@@ -498,12 +512,14 @@ namespace MM
                 thayDoiSoHoaDonToolStripMenuItem.Enabled = isLogin;
                 cauHinhFTPToolStripMenuItem.Enabled = isLogin;
                 cấuHìnhShareFolderToolStripMenuItem.Enabled = isLogin;
+                xóaDịchVụKhiXóaPhiếuThuToolStripMenuItem.Enabled = isLogin;
             }
             else
             {
                 thayDoiSoHoaDonToolStripMenuItem.Enabled = false;
                 cauHinhFTPToolStripMenuItem.Enabled = false;
                 cấuHìnhShareFolderToolStripMenuItem.Enabled = false;
+                xóaDịchVụKhiXóaPhiếuThuToolStripMenuItem.Enabled = false;
             }
 
             if (Global.StaffType != StaffType.Admin)
@@ -3876,6 +3892,15 @@ namespace MM
         {
             if (_isStartToaThuocMoi) OnToaThuocTrongNgay();
         }
+
+        private void xóaDịchVụKhiXóaPhiếuThuToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            xóaDịchVụKhiXóaPhiếuThuToolStripMenuItem.Checked = !xóaDịchVụKhiXóaPhiếuThuToolStripMenuItem.Checked;
+
+            Result result = SettingBus.SetValue(Const.XoaDichVuKhiXoaPhieuThuKey, xóaDịchVụKhiXóaPhiếuThuToolStripMenuItem.Checked);
+            if (!result.IsOK)
+                Utility.WriteToTraceLog(result.GetErrorAsString("SettingBus.SetValue"));
+        }
         #endregion
 
         #region AutoUpdate
@@ -4032,6 +4057,10 @@ namespace MM
             }
         }
         #endregion
+
+       
+
+        
 
         #region COM
         //private void CloseAllCOMPort()

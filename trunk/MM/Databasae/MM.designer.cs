@@ -357,6 +357,9 @@ namespace MM.Databasae
     partial void InsertKetQuaSoiCTC(KetQuaSoiCTC instance);
     partial void UpdateKetQuaSoiCTC(KetQuaSoiCTC instance);
     partial void DeleteKetQuaSoiCTC(KetQuaSoiCTC instance);
+    partial void InsertSetting(Setting instance);
+    partial void UpdateSetting(Setting instance);
+    partial void DeleteSetting(Setting instance);
     #endregion
 		
 		public MMDataContext() : 
@@ -1826,6 +1829,14 @@ namespace MM.Databasae
 			get
 			{
 				return this.GetTable<KetQuaSoiCTCView>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Setting> Settings
+		{
+			get
+			{
+				return this.GetTable<Setting>();
 			}
 		}
 		
@@ -84775,6 +84786,92 @@ namespace MM.Databasae
 				{
 					this._ImageName2 = value;
 				}
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Settings")]
+	public partial class Setting : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private string _SettingKey;
+		
+		private string _SettingValue;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnSettingKeyChanging(string value);
+    partial void OnSettingKeyChanged();
+    partial void OnSettingValueChanging(string value);
+    partial void OnSettingValueChanged();
+    #endregion
+		
+		public Setting()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SettingKey", DbType="NVarChar(50) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		public string SettingKey
+		{
+			get
+			{
+				return this._SettingKey;
+			}
+			set
+			{
+				if ((this._SettingKey != value))
+				{
+					this.OnSettingKeyChanging(value);
+					this.SendPropertyChanging();
+					this._SettingKey = value;
+					this.SendPropertyChanged("SettingKey");
+					this.OnSettingKeyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_SettingValue", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string SettingValue
+		{
+			get
+			{
+				return this._SettingValue;
+			}
+			set
+			{
+				if ((this._SettingValue != value))
+				{
+					this.OnSettingValueChanging(value);
+					this.SendPropertyChanging();
+					this._SettingValue = value;
+					this.SendPropertyChanged("SettingValue");
+					this.OnSettingValueChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
 		}
 	}
