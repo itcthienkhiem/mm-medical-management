@@ -102,6 +102,8 @@
             this.btnStop = new System.Windows.Forms.Button();
             this.btnPlay = new System.Windows.Forms.Button();
             this.imgList = new System.Windows.Forms.ImageList(this.components);
+            this._uKetQuaNoiSoiDaDay = new MM.Controls.uKetQuaNoiSoiDaDay();
+            this._uKetQuaNoiSoiTrucTrang = new MM.Controls.uKetQuaNoiSoiTrucTrang();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHinh1)).BeginInit();
             this.ctmHinh1.SuspendLayout();
@@ -439,7 +441,9 @@
             "Mũi",
             "Họng - Thanh quản",
             "Tai - Mũi - Họng",
-            "Tổng quát"});
+            "Tổng quát",
+            "Dạ dày",
+            "Trực tràng"});
             this.cboLoaiNoiSoi.Location = new System.Drawing.Point(98, 6);
             this.cboLoaiNoiSoi.Name = "cboLoaiNoiSoi";
             this.cboLoaiNoiSoi.Size = new System.Drawing.Size(223, 21);
@@ -606,6 +610,8 @@
             // 
             // panel5
             // 
+            this.panel5.Controls.Add(this._uKetQuaNoiSoiTrucTrang);
+            this.panel5.Controls.Add(this._uKetQuaNoiSoiDaDay);
             this.panel5.Controls.Add(this._uKetQuaNoiSoiTaiMuiHong);
             this.panel5.Controls.Add(this._uKetQuaNoiSoiHongThanhQuan);
             this.panel5.Controls.Add(this._uKetQuaNoiSoiTongQuat);
@@ -771,36 +777,36 @@
             this.toolStripSeparator2,
             this.chọnHìnhToolStripMenuItem});
             this.ctmCapture.Name = "ctmCapture";
-            this.ctmCapture.Size = new System.Drawing.Size(153, 104);
+            this.ctmCapture.Size = new System.Drawing.Size(131, 82);
             // 
             // xóaToolStripMenuItem
             // 
             this.xóaToolStripMenuItem.Name = "xóaToolStripMenuItem";
-            this.xóaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.xóaToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.xóaToolStripMenuItem.Text = "Xóa";
             this.xóaToolStripMenuItem.Click += new System.EventHandler(this.xóaToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(127, 6);
             // 
             // xóaTấtCảToolStripMenuItem
             // 
             this.xóaTấtCảToolStripMenuItem.Name = "xóaTấtCảToolStripMenuItem";
-            this.xóaTấtCảToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.xóaTấtCảToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.xóaTấtCảToolStripMenuItem.Text = "Xóa tất cả";
             this.xóaTấtCảToolStripMenuItem.Click += new System.EventHandler(this.xóaTấtCảToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(127, 6);
             // 
             // chọnHìnhToolStripMenuItem
             // 
             this.chọnHìnhToolStripMenuItem.Name = "chọnHìnhToolStripMenuItem";
-            this.chọnHìnhToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.chọnHìnhToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.chọnHìnhToolStripMenuItem.Text = "Chọn hình";
             this.chọnHìnhToolStripMenuItem.Click += new System.EventHandler(this.chọnHìnhToolStripMenuItem_Click);
             // 
@@ -883,6 +889,38 @@
             this.imgList.TransparentColor = System.Drawing.Color.Transparent;
             this.imgList.Images.SetKeyName(0, "camera-icon (1).png");
             this.imgList.Images.SetKeyName(1, "clipboard-search-result-icon.png");
+            // 
+            // _uKetQuaNoiSoiDaDay
+            // 
+            this._uKetQuaNoiSoiDaDay.Clotest = "Âm tính";
+            this._uKetQuaNoiSoiDaDay.DaDay = "Dạ dày sạch, không ứ đọng. Tâm vị, thân vị, hang vị bình thường, bờ cong nhỏ khôn" +
+                "g loét, không u. Lỗ môn vị tròn co bóp tốt.";
+            this._uKetQuaNoiSoiDaDay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uKetQuaNoiSoiDaDay.HangVi = "Bình thường";
+            this._uKetQuaNoiSoiDaDay.HanhTaTrang = "Không biến dạng";
+            this._uKetQuaNoiSoiDaDay.Location = new System.Drawing.Point(0, 0);
+            this._uKetQuaNoiSoiDaDay.MonVi = "Lỗ môn vị tròn co bóp tốt.";
+            this._uKetQuaNoiSoiDaDay.Name = "_uKetQuaNoiSoiDaDay";
+            this._uKetQuaNoiSoiDaDay.Size = new System.Drawing.Size(834, 246);
+            this._uKetQuaNoiSoiDaDay.TabIndex = 13;
+            this._uKetQuaNoiSoiDaDay.ThucQuan = "Bình thường";
+            this._uKetQuaNoiSoiDaDay.Visible = false;
+            // 
+            // _uKetQuaNoiSoiTrucTrang
+            // 
+            this._uKetQuaNoiSoiTrucTrang.DaiTrangGocGan = "Bình thường";
+            this._uKetQuaNoiSoiTrucTrang.DaiTrangGocLach = "Bình thường";
+            this._uKetQuaNoiSoiTrucTrang.DaiTrangNgang = "Bình thường";
+            this._uKetQuaNoiSoiTrucTrang.DaiTrangPhai = "Bình thường";
+            this._uKetQuaNoiSoiTrucTrang.DaiTrangTrai = "Bình thường";
+            this._uKetQuaNoiSoiTrucTrang.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uKetQuaNoiSoiTrucTrang.Location = new System.Drawing.Point(0, 0);
+            this._uKetQuaNoiSoiTrucTrang.ManhTrang = "Bình thường";
+            this._uKetQuaNoiSoiTrucTrang.Name = "_uKetQuaNoiSoiTrucTrang";
+            this._uKetQuaNoiSoiTrucTrang.Size = new System.Drawing.Size(834, 246);
+            this._uKetQuaNoiSoiTrucTrang.TabIndex = 14;
+            this._uKetQuaNoiSoiTrucTrang.TrucTrang = "Bình thường";
+            this._uKetQuaNoiSoiTrucTrang.Visible = false;
             // 
             // dlgAddKetQuaNoiSoi
             // 
@@ -1005,6 +1043,8 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator5;
         private System.Windows.Forms.ToolStripMenuItem chọnHìnhTừBênNgoàiToolStripMenuItem3;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator6;
+        private Controls.uKetQuaNoiSoiDaDay _uKetQuaNoiSoiDaDay;
+        private Controls.uKetQuaNoiSoiTrucTrang _uKetQuaNoiSoiTrucTrang;
 
     }
 }

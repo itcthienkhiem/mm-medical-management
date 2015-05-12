@@ -247,6 +247,23 @@ namespace MM.Dialogs
                         _uKetQuaNoiSoiTongQuat.HomNhiTrai = drKetQuaNoiSoi["HomNhiTrai"].ToString();
                         _uKetQuaNoiSoiTongQuat.HomNhiPhai = drKetQuaNoiSoi["HomNhiPhai"].ToString();
                         break;
+                    case LoaiNoiSoi.DaDay:
+                        _uKetQuaNoiSoiDaDay.ThucQuan = drKetQuaNoiSoi["ThucQuan"].ToString();
+                        _uKetQuaNoiSoiDaDay.DaDay = drKetQuaNoiSoi["DaDay"].ToString();
+                        _uKetQuaNoiSoiDaDay.HangVi = drKetQuaNoiSoi["HangVi"].ToString();
+                        _uKetQuaNoiSoiDaDay.MonVi = drKetQuaNoiSoi["MonVi"].ToString();
+                        _uKetQuaNoiSoiDaDay.HanhTaTrang = drKetQuaNoiSoi["HanhTaTrang"].ToString();
+                        _uKetQuaNoiSoiDaDay.Clotest = drKetQuaNoiSoi["Clotest"].ToString();
+                        break;
+                    case LoaiNoiSoi.TrucTrang:
+                        _uKetQuaNoiSoiTrucTrang.TrucTrang = drKetQuaNoiSoi["TrucTrang"].ToString();
+                        _uKetQuaNoiSoiTrucTrang.DaiTrangTrai = drKetQuaNoiSoi["DaiTrangTrai"].ToString();
+                        _uKetQuaNoiSoiTrucTrang.DaiTrangGocLach = drKetQuaNoiSoi["DaiTrangGocLach"].ToString();
+                        _uKetQuaNoiSoiTrucTrang.DaiTrangNgang = drKetQuaNoiSoi["DaiTrangNgang"].ToString();
+                        _uKetQuaNoiSoiTrucTrang.DaiTrangGocGan = drKetQuaNoiSoi["DaiTrangGocGan"].ToString();
+                        _uKetQuaNoiSoiTrucTrang.DaiTrangPhai = drKetQuaNoiSoi["DaiTrangPhai"].ToString();
+                        _uKetQuaNoiSoiTrucTrang.ManhTrang = drKetQuaNoiSoi["ManhTrang"].ToString();
+                        break;
                 }
 
                 _ketQuaNoiSoi.KetQuaNoiSoiGUID = Guid.Parse(drKetQuaNoiSoi["KetQuaNoiSoiGUID"].ToString());
@@ -443,6 +460,23 @@ namespace MM.Dialogs
                             _ketQuaNoiSoi.HomNhiTrai = _uKetQuaNoiSoiTongQuat.HomNhiTrai;
                             _ketQuaNoiSoi.HomNhiPhai = _uKetQuaNoiSoiTongQuat.HomNhiPhai;
                             break;
+                        case LoaiNoiSoi.DaDay:
+                            _ketQuaNoiSoi.ThucQuan = _uKetQuaNoiSoiDaDay.ThucQuan;
+                            _ketQuaNoiSoi.DaDay = _uKetQuaNoiSoiDaDay.DaDay;
+                            _ketQuaNoiSoi.HangVi = _uKetQuaNoiSoiDaDay.HangVi;
+                            _ketQuaNoiSoi.MonVi = _uKetQuaNoiSoiDaDay.MonVi;
+                            _ketQuaNoiSoi.HanhTaTrang = _uKetQuaNoiSoiDaDay.HanhTaTrang;
+                            _ketQuaNoiSoi.Clotest = _uKetQuaNoiSoiDaDay.Clotest;
+                            break;
+                        case LoaiNoiSoi.TrucTrang:
+                            _ketQuaNoiSoi.TrucTrang = _uKetQuaNoiSoiTrucTrang.TrucTrang;
+                            _ketQuaNoiSoi.DaiTrangTrai = _uKetQuaNoiSoiTrucTrang.DaiTrangTrai;
+                            _ketQuaNoiSoi.DaiTrangGocLach = _uKetQuaNoiSoiTrucTrang.DaiTrangGocLach;
+                            _ketQuaNoiSoi.DaiTrangNgang = _uKetQuaNoiSoiTrucTrang.DaiTrangNgang;
+                            _ketQuaNoiSoi.DaiTrangGocGan = _uKetQuaNoiSoiTrucTrang.DaiTrangGocGan;
+                            _ketQuaNoiSoi.DaiTrangPhai = _uKetQuaNoiSoiTrucTrang.DaiTrangPhai;
+                            _ketQuaNoiSoi.ManhTrang = _uKetQuaNoiSoiTrucTrang.ManhTrang;
+                            break;
                     }
 
                     Result result = KetQuaNoiSoiBus.InsertKetQuaNoiSoi(_ketQuaNoiSoi);
@@ -471,6 +505,12 @@ namespace MM.Dialogs
                                 break;
                             case LoaiNoiSoi.TongQuat:
                                 bookmarkList = GetBoommarkTongQuat();
+                                break;
+                            case LoaiNoiSoi.DaDay:
+                                bookmarkList = GetBoommarkDaDay();
+                                break;
+                            case LoaiNoiSoi.TrucTrang:
+                                bookmarkList = GetBoommarkTrucTrang();
                                 break;
                         }
 
@@ -1051,6 +1091,158 @@ namespace MM.Dialogs
             return bookmarkList;
         }
 
+        private List<Bookmark> GetBoommarkDaDay()
+        {
+            List<Bookmark> bookmarkList = new List<Bookmark>();
+            Bookmark bookmark = null;
+
+            if (_uKetQuaNoiSoiDaDay.ThucQuan.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiThanhQuan;
+                bookmark.Value = _uKetQuaNoiSoiDaDay.ThucQuan;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiDaDay.DaDay.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiDaDay;
+                bookmark.Value = _uKetQuaNoiSoiDaDay.DaDay;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiDaDay.HangVi.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiHangVi;
+                bookmark.Value = _uKetQuaNoiSoiDaDay.HangVi;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiDaDay.MonVi.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiMonVi;
+                bookmark.Value = _uKetQuaNoiSoiDaDay.MonVi;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiDaDay.HanhTaTrang.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiHanhTaTrang;
+                bookmark.Value = _uKetQuaNoiSoiDaDay.HanhTaTrang;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiDaDay.Clotest.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiClotest;
+                bookmark.Value = _uKetQuaNoiSoiDaDay.Clotest;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (cboKetLuan.Text.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetLuanNoiSoiDaDay;
+                bookmark.Value = cboKetLuan.Text;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (cboDeNghi.Text.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.DeNghiNoiSoiDaDay;
+                bookmark.Value = cboDeNghi.Text;
+                bookmarkList.Add(bookmark);
+            }
+
+            return bookmarkList;
+        }
+
+        private List<Bookmark> GetBoommarkTrucTrang()
+        {
+            List<Bookmark> bookmarkList = new List<Bookmark>();
+            Bookmark bookmark = null;
+
+            if (_uKetQuaNoiSoiTrucTrang.TrucTrang.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiTrucTrang;
+                bookmark.Value = _uKetQuaNoiSoiTrucTrang.TrucTrang;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiTrucTrang.DaiTrangTrai.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiDaiTrangTrai;
+                bookmark.Value = _uKetQuaNoiSoiTrucTrang.DaiTrangTrai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiTrucTrang.DaiTrangGocLach.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiDaiTrangGocLach;
+                bookmark.Value = _uKetQuaNoiSoiTrucTrang.DaiTrangGocLach;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiTrucTrang.DaiTrangNgang.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiDaiTrangNgang;
+                bookmark.Value = _uKetQuaNoiSoiTrucTrang.DaiTrangNgang;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiTrucTrang.DaiTrangGocGan.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiDaiTrangGocGan;
+                bookmark.Value = _uKetQuaNoiSoiTrucTrang.DaiTrangGocGan;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiTrucTrang.DaiTrangPhai.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiDaiTrangPhai;
+                bookmark.Value = _uKetQuaNoiSoiTrucTrang.DaiTrangPhai;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (_uKetQuaNoiSoiTrucTrang.ManhTrang.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetQuaNoiSoiManhTrang;
+                bookmark.Value = _uKetQuaNoiSoiTrucTrang.ManhTrang;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (cboKetLuan.Text.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.KetLuanNoiSoiTrucTrang;
+                bookmark.Value = cboKetLuan.Text;
+                bookmarkList.Add(bookmark);
+            }
+
+            if (cboDeNghi.Text.Trim() != string.Empty)
+            {
+                bookmark = new Bookmark();
+                bookmark.Type = (int)BookMarkType.DeNghiNoiSoiTrucTrang;
+                bookmark.Value = cboDeNghi.Text;
+                bookmarkList.Add(bookmark);
+            }
+
+            return bookmarkList;
+        }
+
         private void OnPlayWebCam()
         {
             try
@@ -1132,7 +1324,21 @@ namespace MM.Dialogs
                     result = BookmarkBus.GetBookmark(BookMarkType.KetLuanNoiSoiTongQuat);
                     if (result.IsOK) dtKetLuan = result.QueryResult as DataTable;
 
-                    result = BookmarkBus.GetBookmark(BookMarkType.KetLuanNoiSoiTongQuat);
+                    result = BookmarkBus.GetBookmark(BookMarkType.DeNghiNoiSoiTongQuat);
+                    if (result.IsOK) dtDeNghi = result.QueryResult as DataTable;
+                    break;
+                case LoaiNoiSoi.DaDay:
+                    result = BookmarkBus.GetBookmark(BookMarkType.KetLuanNoiSoiDaDay);
+                    if (result.IsOK) dtKetLuan = result.QueryResult as DataTable;
+
+                    result = BookmarkBus.GetBookmark(BookMarkType.DeNghiNoiSoiDaDay);
+                    if (result.IsOK) dtDeNghi = result.QueryResult as DataTable;
+                    break;
+                case LoaiNoiSoi.TrucTrang:
+                    result = BookmarkBus.GetBookmark(BookMarkType.KetLuanNoiSoiTrucTrang);
+                    if (result.IsOK) dtKetLuan = result.QueryResult as DataTable;
+
+                    result = BookmarkBus.GetBookmark(BookMarkType.DeNghiNoiSoiTrucTrang);
                     if (result.IsOK) dtDeNghi = result.QueryResult as DataTable;
                     break;
             }
@@ -1178,6 +1384,8 @@ namespace MM.Dialogs
                 _uKetQuaNoiSoiHongThanhQuan.SetDefault();
                 _uKetQuaNoiSoiTaiMuiHong.SetDefault();
                 _uKetQuaNoiSoiTongQuat.SetDefault();
+                _uKetQuaNoiSoiDaDay.SetDefault();
+                _uKetQuaNoiSoiTrucTrang.SetDefault();
             }
         }
 
@@ -1200,6 +1408,12 @@ namespace MM.Dialogs
                     break;
                 case LoaiNoiSoi.TongQuat:
                     ViewControl(_uKetQuaNoiSoiTongQuat);
+                    break;
+                case LoaiNoiSoi.DaDay:
+                    ViewControl(_uKetQuaNoiSoiDaDay);
+                    break;
+                case LoaiNoiSoi.TrucTrang:
+                    ViewControl(_uKetQuaNoiSoiTrucTrang);
                     break;
             }
 

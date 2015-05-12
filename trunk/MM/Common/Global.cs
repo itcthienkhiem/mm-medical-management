@@ -220,6 +220,8 @@ namespace MM.Common
             ExcelTemplates.Add(Const.KetQuaNoiSoiTaiMuiHongTemplate);
             ExcelTemplates.Add(Const.KetQuaNoiSoiTaiTemplate);
             ExcelTemplates.Add(Const.KetQuaNoiSoiTongQuatTemplate);
+            ExcelTemplates.Add(Const.KetQuaNoiSoiDaDayTemplate);
+            ExcelTemplates.Add(Const.KetQuaNoiSoiTrucTrangTemplate);
             ExcelTemplates.Add(Const.KetQuaSoiCTCTemplate);
             ExcelTemplates.Add(Const.KhamSucKhoeTongQuatTemplate);
             ExcelTemplates.Add(Const.NhatKyLienHeCongTyTemplate);

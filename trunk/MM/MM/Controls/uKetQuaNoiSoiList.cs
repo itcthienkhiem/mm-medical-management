@@ -350,6 +350,40 @@ namespace MM.Controls
 
                                     break;
                                 }
+                            case LoaiNoiSoi.DaDay:
+                                if (!ExportExcel.ExportKetQuaNoiSoiDaDayToExcel(exportFileName, _patientRow, row))
+                                    return;
+                                else
+                                {
+                                    try
+                                    {
+                                        ExcelPrintPreview.PrintPreview(exportFileName, Global.PageSetupConfig.GetPageSetup(Const.KetQuaNoiSoiDaDayTemplate));
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                                        return;
+                                    }
+
+                                    break;
+                                }
+                            case LoaiNoiSoi.TrucTrang:
+                                if (!ExportExcel.ExportKetQuaNoiSoiTrucTrangToExcel(exportFileName, _patientRow, row))
+                                    return;
+                                else
+                                {
+                                    try
+                                    {
+                                        ExcelPrintPreview.PrintPreview(exportFileName, Global.PageSetupConfig.GetPageSetup(Const.KetQuaNoiSoiTrucTrangTemplate));
+                                    }
+                                    catch (Exception ex)
+                                    {
+                                        MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                                        return;
+                                    }
+
+                                    break;
+                                }
                         }
                     }
                 }
@@ -438,6 +472,40 @@ namespace MM.Controls
                                         try
                                         {
                                             ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.KetQuaNoiSoiTongQuatTemplate));
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                                            return;
+                                        }
+
+                                        break;
+                                    }
+                                case LoaiNoiSoi.DaDay:
+                                    if (!ExportExcel.ExportKetQuaNoiSoiDaDayToExcel(exportFileName, _patientRow, row))
+                                        return;
+                                    else
+                                    {
+                                        try
+                                        {
+                                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.KetQuaNoiSoiDaDayTemplate));
+                                        }
+                                        catch (Exception ex)
+                                        {
+                                            MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                                            return;
+                                        }
+
+                                        break;
+                                    }
+                                case LoaiNoiSoi.TrucTrang:
+                                    if (!ExportExcel.ExportKetQuaNoiSoiTrucTrangToExcel(exportFileName, _patientRow, row))
+                                        return;
+                                    else
+                                    {
+                                        try
+                                        {
+                                            ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.KetQuaNoiSoiTrucTrangTemplate));
                                         }
                                         catch (Exception ex)
                                         {
@@ -550,6 +618,40 @@ namespace MM.Controls
 
                             break;
                         }
+                    case LoaiNoiSoi.DaDay:
+                        if (!ExportExcel.ExportKetQuaNoiSoiDaDayToExcel(exportFileName, _patientRow, drKetQuaNoiSoi))
+                            return;
+                        else
+                        {
+                            try
+                            {
+                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.KetQuaNoiSoiDaDayTemplate));
+                            }
+                            catch (Exception ex)
+                            {
+                                MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                                return;
+                            }
+
+                            break;
+                        }
+                    case LoaiNoiSoi.TrucTrang:
+                        if (!ExportExcel.ExportKetQuaNoiSoiTrucTrangToExcel(exportFileName, _patientRow, drKetQuaNoiSoi))
+                            return;
+                        else
+                        {
+                            try
+                            {
+                                ExcelPrintPreview.Print(exportFileName, _printDialog.PrinterSettings.PrinterName, Global.PageSetupConfig.GetPageSetup(Const.KetQuaNoiSoiTrucTrangTemplate));
+                            }
+                            catch (Exception ex)
+                            {
+                                MsgBox.Show(Application.ProductName, "Vui lòng kiểm tra lại máy in.", IconType.Error);
+                                return;
+                            }
+
+                            break;
+                        }
                 }
             }
         }
@@ -592,6 +694,16 @@ namespace MM.Controls
                                     break;
                             case LoaiNoiSoi.TongQuat:
                                 if (!ExportExcel.ExportKetQuaNoiSoiTongQuatToExcel(dlg.FileName, _patientRow, row))
+                                    return;
+                                else
+                                    break;
+                            case LoaiNoiSoi.DaDay:
+                                if (!ExportExcel.ExportKetQuaNoiSoiDaDayToExcel(dlg.FileName, _patientRow, row))
+                                    return;
+                                else
+                                    break;
+                            case LoaiNoiSoi.TrucTrang:
+                                if (!ExportExcel.ExportKetQuaNoiSoiTrucTrangToExcel(dlg.FileName, _patientRow, row))
                                     return;
                                 else
                                     break;
