@@ -288,6 +288,23 @@ namespace MM.Bussiness
                                ketQuaNoiSoi.OngTaiPhai, ketQuaNoiSoi.MangNhiTrai, ketQuaNoiSoi.MangNhiPhai, ketQuaNoiSoi.CanBuaTrai, ketQuaNoiSoi.CanBuaPhai,
                                ketQuaNoiSoi.HomNhiTrai, ketQuaNoiSoi.HomNhiPhai);
                         }
+                        else if ((LoaiNoiSoi)ketQuaNoiSoi.LoaiNoiSoi == LoaiNoiSoi.DaDay)
+                        {
+                            desc += string.Format("- GUID: '{0}', Ngày khám: '{1}', Bệnh nhân: '{2}', Lý do khám: '{3}', BSCD: '{4}', Bác sĩ soi: '{5}', Kết luận: '{6}', Đề nghị: '{7}', Loại nội soi: '{8}', Thực quản: '{9}', Dạ dày: '{10}', Hang vị: '{11}', Môn vị: '{12}', Hành tá tràng: '{13}', Clotest: '{14}'\n",
+                               ketQuaNoiSoi.KetQuaNoiSoiGUID.ToString(), ketQuaNoiSoi.NgayKham.ToString("dd/MM/yyyy HH:mm:ss"),
+                               ketQuaNoiSoi.Patient.Contact.FullName, ketQuaNoiSoi.LyDoKham, tenBSCD, ketQuaNoiSoi.DocStaff.Contact.FullName,
+                               ketQuaNoiSoi.KetLuan, ketQuaNoiSoi.DeNghi, Utility.ParseLoaiNoiSoiEnumToName((LoaiNoiSoi)ketQuaNoiSoi.LoaiNoiSoi), ketQuaNoiSoi.ThucQuan,
+                               ketQuaNoiSoi.DaDay, ketQuaNoiSoi.HangVi, ketQuaNoiSoi.MonVi, ketQuaNoiSoi.HanhTaTrang, ketQuaNoiSoi.Clotest);
+                        }
+                        else if ((LoaiNoiSoi)ketQuaNoiSoi.LoaiNoiSoi == LoaiNoiSoi.TrucTrang)
+                        {
+                            desc += string.Format("- GUID: '{0}', Ngày khám: '{1}', Bệnh nhân: '{2}', Lý do khám: '{3}', BSCD: '{4}', Bác sĩ soi: '{5}', Kết luận: '{6}', Đề nghị: '{7}', Loại nội soi: '{8}', Trực tràng: '{9}', Đại tràng trái: '{10}', Đại tràng góc lách: '{11}', Đại tràng ngang: '{12}', Đại tràng góc gan: '{13}', Đại tràng phải: '{14}', Manh tràng: '{15}'\n",
+                               ketQuaNoiSoi.KetQuaNoiSoiGUID.ToString(), ketQuaNoiSoi.NgayKham.ToString("dd/MM/yyyy HH:mm:ss"),
+                               ketQuaNoiSoi.Patient.Contact.FullName, ketQuaNoiSoi.LyDoKham, tenBSCD, ketQuaNoiSoi.DocStaff.Contact.FullName,
+                               ketQuaNoiSoi.KetLuan, ketQuaNoiSoi.DeNghi, Utility.ParseLoaiNoiSoiEnumToName((LoaiNoiSoi)ketQuaNoiSoi.LoaiNoiSoi), ketQuaNoiSoi.TrucTrang,
+                               ketQuaNoiSoi.DaiTrangTrai, ketQuaNoiSoi.DaiTrangGocLach, ketQuaNoiSoi.DaiTrangNgang, ketQuaNoiSoi.DaiTrangGocGan, ketQuaNoiSoi.DaiTrangPhai, 
+                               ketQuaNoiSoi.ManhTrang);
+                        }
 
                         Tracking tk = new Tracking();
                         tk.TrackingGUID = Guid.NewGuid();
@@ -359,6 +376,19 @@ namespace MM.Bussiness
                             kqns.MomMoc_BongSang = ketQuaNoiSoi.MomMoc_BongSang;
                             kqns.Vom = ketQuaNoiSoi.Vom;
                             kqns.ThanhQuan = ketQuaNoiSoi.ThanhQuan;
+                            kqns.ThucQuan = ketQuaNoiSoi.ThucQuan;
+                            kqns.DaDay = ketQuaNoiSoi.DaDay;
+                            kqns.HangVi = ketQuaNoiSoi.HangVi;
+                            kqns.MonVi = ketQuaNoiSoi.MonVi;
+                            kqns.HanhTaTrang = ketQuaNoiSoi.HanhTaTrang;
+                            kqns.Clotest = ketQuaNoiSoi.Clotest;
+                            kqns.TrucTrang = ketQuaNoiSoi.TrucTrang;
+                            kqns.DaiTrangTrai = ketQuaNoiSoi.DaiTrangTrai;
+                            kqns.DaiTrangGocLach = ketQuaNoiSoi.DaiTrangGocLach;
+                            kqns.DaiTrangNgang = ketQuaNoiSoi.DaiTrangNgang;
+                            kqns.DaiTrangGocGan = ketQuaNoiSoi.DaiTrangGocGan;
+                            kqns.DaiTrangPhai = ketQuaNoiSoi.DaiTrangPhai;
+                            kqns.ManhTrang = ketQuaNoiSoi.ManhTrang;
                             kqns.Hinh1 = ketQuaNoiSoi.Hinh1;
                             kqns.Hinh2 = ketQuaNoiSoi.Hinh2;
                             kqns.Hinh3 = ketQuaNoiSoi.Hinh3;
@@ -424,6 +454,23 @@ namespace MM.Bussiness
                                    kqns.KetLuan, kqns.DeNghi, Utility.ParseLoaiNoiSoiEnumToName((LoaiNoiSoi)kqns.LoaiNoiSoi), kqns.OngTaiTrai,
                                    kqns.OngTaiPhai, kqns.MangNhiTrai, kqns.MangNhiPhai, kqns.CanBuaTrai, kqns.CanBuaPhai,
                                    kqns.HomNhiTrai, kqns.HomNhiPhai);
+                            }
+                            else if ((LoaiNoiSoi)kqns.LoaiNoiSoi == LoaiNoiSoi.DaDay)
+                            {
+                                desc += string.Format("- GUID: '{0}', Ngày khám: '{1}', Bệnh nhân: '{2}', Lý do khám: '{3}', BSCD: '{4}', Bác sĩ soi: '{5}', Kết luận: '{6}', Đề nghị: '{7}', Loại nội soi: '{8}', Thực quản: '{9}', Dạ dày: '{10}', Hang vị: '{11}', Môn vị: '{12}', Hành tá tràng: '{13}', Clotest: '{14}'\n",
+                                   kqns.KetQuaNoiSoiGUID.ToString(), kqns.NgayKham.ToString("dd/MM/yyyy HH:mm:ss"),
+                                   kqns.Patient.Contact.FullName, kqns.LyDoKham, tenBSCD, kqns.DocStaff.Contact.FullName,
+                                   kqns.KetLuan, kqns.DeNghi, Utility.ParseLoaiNoiSoiEnumToName((LoaiNoiSoi)kqns.LoaiNoiSoi), kqns.ThucQuan,
+                                   kqns.DaDay, kqns.HangVi, kqns.MonVi, kqns.HanhTaTrang, kqns.Clotest);
+                            }
+                            else if ((LoaiNoiSoi)kqns.LoaiNoiSoi == LoaiNoiSoi.TrucTrang)
+                            {
+                                desc += string.Format("- GUID: '{0}', Ngày khám: '{1}', Bệnh nhân: '{2}', Lý do khám: '{3}', BSCD: '{4}', Bác sĩ soi: '{5}', Kết luận: '{6}', Đề nghị: '{7}', Loại nội soi: '{8}', Trực tràng: '{9}', Đại tràng trái: '{10}', Đại tràng góc lách: '{11}', Đại tràng ngang: '{12}', Đại tràng góc gan: '{13}', Đại tràng phải: '{14}', Manh tràng: '{15}'\n",
+                                   kqns.KetQuaNoiSoiGUID.ToString(), kqns.NgayKham.ToString("dd/MM/yyyy HH:mm:ss"),
+                                   kqns.Patient.Contact.FullName, kqns.LyDoKham, tenBSCD, kqns.DocStaff.Contact.FullName,
+                                   kqns.KetLuan, kqns.DeNghi, Utility.ParseLoaiNoiSoiEnumToName((LoaiNoiSoi)kqns.LoaiNoiSoi), kqns.TrucTrang,
+                                   kqns.DaiTrangTrai, kqns.DaiTrangGocLach, kqns.DaiTrangNgang, kqns.DaiTrangGocGan, kqns.DaiTrangPhai,
+                                   kqns.ManhTrang);
                             }
 
                             Tracking tk = new Tracking();

@@ -147,7 +147,9 @@ namespace MM.Common
         Mui,
         Hong_ThanhQuan,
         TaiMuiHong,
-        TongQuat
+        TongQuat,
+        DaDay, 
+        TrucTrang
     };
 
     public enum BookMarkType : int
@@ -198,7 +200,28 @@ namespace MM.Common
         KetQuaSoiRanhGioiLatTru,
         KetQuaSoiSauAcidAcetic,
         KetQuaSoiSauLugol,
-        KetLuanSoiCTCT
+        KetLuanSoiCTCT,
+
+        KetLuanNoiSoiDaDay,
+        KetLuanNoiSoiTrucTrang,
+
+        DeNghiNoiSoiDaDay,
+        DeNghiNoiSoiTrucTrang,
+
+        KetQuaNoiSoiThucQuan,
+        KetQuaNoiSoiDaDay,
+        KetQuaNoiSoiHangVi,
+        KetQuaNoiSoiMonVi,
+        KetQuaNoiSoiHanhTaTrang,
+        KetQuaNoiSoiClotest,
+
+        KetQuaNoiSoiTrucTrang,
+        KetQuaNoiSoiDaiTrangTrai,
+        KetQuaNoiSoiDaiTrangGocLach,
+        KetQuaNoiSoiDaiTrangNgang,
+        KetQuaNoiSoiDaiTrangGocGan,
+        KetQuaNoiSoiDaiTrangPhai,
+        KetQuaNoiSoiManhTrang
     };
 
     public enum LoaiHoaDon : int

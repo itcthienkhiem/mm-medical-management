@@ -5505,6 +5505,351 @@ namespace MM.Exports
             return true;
         }
 
+        public static bool ExportKetQuaNoiSoiDaDayToExcel(string exportFileName, DataRow patientRow, DataRow ketQuaNoiSoi)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            IWorkbook workBook = null;
+
+            try
+            {
+                string excelTemplateName = string.Format("{0}\\Templates\\KetQuaNoiSoiDaDayTemplate.xls", Application.StartupPath);
+                Utility.CopyTemplates(excelTemplateName);
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+                workSheet.Cells["A6"].Value = string.Format("Họ tên: {0}", patientRow["FullName"].ToString());
+                workSheet.Cells["D6"].Value = string.Format("Tuổi: {0}", patientRow["DobStr"].ToString());
+                workSheet.Cells["F6"].Value = string.Format("          Giới tính: {0}", patientRow["GenderAsStr"].ToString());
+
+                if (patientRow["FileNum"] != null && patientRow["FileNum"] != DBNull.Value)
+                    workSheet.Cells["A7"].Value = string.Format("Địa chỉ: {0}", patientRow["FileNum"].ToString());
+
+                if (patientRow["Mobile"] != null && patientRow["Mobile"] != DBNull.Value)
+                    workSheet.Cells["D7"].Value = string.Format("ĐT: {0}", patientRow["Mobile"].ToString());
+
+                if (patientRow["Occupation"] != null && patientRow["Occupation"] != DBNull.Value)
+                    workSheet.Cells["F7"].Value = string.Format("          Nghề nghiệp: {0}", patientRow["Occupation"].ToString());
+
+                if (ketQuaNoiSoi["LyDoKham"] != null && ketQuaNoiSoi["LyDoKham"] != DBNull.Value)
+                    workSheet.Cells["A8"].Value = string.Format("Lý do khám: {0}", ketQuaNoiSoi["LyDoKham"].ToString());
+
+                if (ketQuaNoiSoi["TenBacSiChiDinh"] != null && ketQuaNoiSoi["TenBacSiChiDinh"] != DBNull.Value)
+                    workSheet.Cells["D8"].Value = string.Format("BSCĐ: {0}", ketQuaNoiSoi["TenBacSiChiDinh"].ToString());
+
+                List<byte[]> hinhList = new List<byte[]>();
+                //if (ketQuaNoiSoi["ImageName1"] != null && ketQuaNoiSoi["ImageName1"] != DBNull.Value)
+                //{
+                //    string fileName = Path.Combine(Global.ShareFolder, ketQuaNoiSoi["ImageName1"].ToString());
+                //    if (File.Exists(fileName))
+                //        hinhList.Add(Utility.LoadBytesFromFile(fileName));
+                //}
+
+                //if (ketQuaNoiSoi["ImageName2"] != null && ketQuaNoiSoi["ImageName2"] != DBNull.Value)
+                //{
+                //    string fileName = Path.Combine(Global.ShareFolder, ketQuaNoiSoi["ImageName2"].ToString());
+                //    if (File.Exists(fileName))
+                //        hinhList.Add(Utility.LoadBytesFromFile(fileName));
+                //}
+
+                //if (ketQuaNoiSoi["ImageName3"] != null && ketQuaNoiSoi["ImageName3"] != DBNull.Value)
+                //{
+                //    string fileName = Path.Combine(Global.ShareFolder, ketQuaNoiSoi["ImageName3"].ToString());
+                //    if (File.Exists(fileName))
+                //        hinhList.Add(Utility.LoadBytesFromFile(fileName));
+                //}
+
+                //if (ketQuaNoiSoi["ImageName4"] != null && ketQuaNoiSoi["ImageName4"] != DBNull.Value)
+                //{
+                //    string fileName = Path.Combine(Global.ShareFolder, ketQuaNoiSoi["ImageName4"].ToString());
+                //    if (File.Exists(fileName))
+                //        hinhList.Add(Utility.LoadBytesFromFile(fileName));
+                //}
+
+                if (ketQuaNoiSoi["Hinh1"] != null && ketQuaNoiSoi["Hinh1"] != DBNull.Value)
+                    hinhList.Add((byte[])ketQuaNoiSoi["Hinh1"]);
+
+                if (ketQuaNoiSoi["Hinh2"] != null && ketQuaNoiSoi["Hinh2"] != DBNull.Value)
+                    hinhList.Add((byte[])ketQuaNoiSoi["Hinh2"]);
+
+                if (ketQuaNoiSoi["Hinh3"] != null && ketQuaNoiSoi["Hinh3"] != DBNull.Value)
+                    hinhList.Add((byte[])ketQuaNoiSoi["Hinh3"]);
+
+                if (ketQuaNoiSoi["Hinh4"] != null && ketQuaNoiSoi["Hinh4"] != DBNull.Value)
+                    hinhList.Add((byte[])ketQuaNoiSoi["Hinh4"]);
+
+                double left = 0.73803149606299212;
+                double top = 195;
+                double width = 128.50485241420625;
+                double height = 129.2431496062992;
+
+                if (hinhList.Count == 4)
+                {
+                    left = 0.73803149606299212;
+                    top = 195;
+                    width = 128.50485241420625;
+                    height = 129.2431496062992;
+                    workSheet.Cells["A10"].RowHeight = height;
+
+                    workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
+
+                    left = 134.99997052444246;
+                    workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
+
+                    left = 269.12107375824547;
+                    workSheet.Shapes.AddPicture(hinhList[2], left, top, width, height);
+
+                    left = 403.32905700657312;
+                    workSheet.Shapes.AddPicture(hinhList[3], left, top, width, height);
+                }
+                else if (hinhList.Count == 3)
+                {
+                    left = 0.73803149606299212;
+                    width = 163.64469756847291;
+                    height = 171.0;
+                    workSheet.Cells["A10"].RowHeight = height;
+
+                    workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
+
+                    left = 184.49902827713433;
+                    workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
+
+                    left = 368.15975936217569;
+                    workSheet.Shapes.AddPicture(hinhList[2], left, top, width, height);
+                }
+                else if (hinhList.Count == 2)
+                {
+                    left = 96.134184222258924;
+                    width = 163.64469756847291;
+                    height = 171.0; ;
+                    workSheet.Cells["A10"].RowHeight = height;
+
+                    workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
+
+                    left = 272.01223594316349;
+                    workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
+                }
+                else
+                {
+                    left = 183.74839835587449;
+                    width = 163.64469756847291;
+                    height = 171.0; ;
+                    workSheet.Cells["A10"].RowHeight = height;
+
+                    workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
+                }
+
+
+                workSheet.Cells["C13"].Value = ketQuaNoiSoi["ThucQuan"].ToString();
+                workSheet.Cells["C14"].Value = ketQuaNoiSoi["DaDay"].ToString();
+                workSheet.Cells["C15"].Value = ketQuaNoiSoi["HangVi"].ToString();
+                workSheet.Cells["C16"].Value = ketQuaNoiSoi["MonVi"].ToString();
+                workSheet.Cells["C17"].Value = ketQuaNoiSoi["HanhTaTrang"].ToString();
+                workSheet.Cells["C18"].Value = ketQuaNoiSoi["Clotest"].ToString();
+
+                workSheet.Cells["B20"].Value = ketQuaNoiSoi["KetLuan"].ToString();
+                workSheet.Cells["B22"].Value = ketQuaNoiSoi["DeNghi"].ToString();
+
+                workSheet.Cells["F24"].Value = string.Format("Ngày: {0}",
+                    Convert.ToDateTime(ketQuaNoiSoi["NgayKham"]).ToString("dd/MM/yyyy"));
+
+                workSheet.Cells["F28"].Value = ketQuaNoiSoi["TenBacSiNoiSoi"].ToString();
+
+                string path = string.Format("{0}\\Temp", Application.StartupPath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
+
+        public static bool ExportKetQuaNoiSoiTrucTrangToExcel(string exportFileName, DataRow patientRow, DataRow ketQuaNoiSoi)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            IWorkbook workBook = null;
+
+            try
+            {
+                string excelTemplateName = string.Format("{0}\\Templates\\KetQuaNoiSoiTrucTrangTemplate.xls", Application.StartupPath);
+                Utility.CopyTemplates(excelTemplateName);
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+                workSheet.Cells["A6"].Value = string.Format("Họ tên: {0}", patientRow["FullName"].ToString());
+                workSheet.Cells["D6"].Value = string.Format("Tuổi: {0}", patientRow["DobStr"].ToString());
+                workSheet.Cells["F6"].Value = string.Format("          Giới tính: {0}", patientRow["GenderAsStr"].ToString());
+
+                if (patientRow["FileNum"] != null && patientRow["FileNum"] != DBNull.Value)
+                    workSheet.Cells["A7"].Value = string.Format("Địa chỉ: {0}", patientRow["FileNum"].ToString());
+
+                if (patientRow["Mobile"] != null && patientRow["Mobile"] != DBNull.Value)
+                    workSheet.Cells["D7"].Value = string.Format("ĐT: {0}", patientRow["Mobile"].ToString());
+
+                if (patientRow["Occupation"] != null && patientRow["Occupation"] != DBNull.Value)
+                    workSheet.Cells["F7"].Value = string.Format("          Nghề nghiệp: {0}", patientRow["Occupation"].ToString());
+
+                if (ketQuaNoiSoi["LyDoKham"] != null && ketQuaNoiSoi["LyDoKham"] != DBNull.Value)
+                    workSheet.Cells["A8"].Value = string.Format("Lý do khám: {0}", ketQuaNoiSoi["LyDoKham"].ToString());
+
+                if (ketQuaNoiSoi["TenBacSiChiDinh"] != null && ketQuaNoiSoi["TenBacSiChiDinh"] != DBNull.Value)
+                    workSheet.Cells["D8"].Value = string.Format("SBSCĐ: {0}", ketQuaNoiSoi["TenBacSiChiDinh"].ToString());
+
+                List<byte[]> hinhList = new List<byte[]>();
+                //if (ketQuaNoiSoi["ImageName1"] != null && ketQuaNoiSoi["ImageName1"] != DBNull.Value)
+                //{
+                //    string fileName = Path.Combine(Global.ShareFolder, ketQuaNoiSoi["ImageName1"].ToString());
+                //    if (File.Exists(fileName))
+                //        hinhList.Add(Utility.LoadBytesFromFile(fileName));
+                //}
+
+                //if (ketQuaNoiSoi["ImageName2"] != null && ketQuaNoiSoi["ImageName2"] != DBNull.Value)
+                //{
+                //    string fileName = Path.Combine(Global.ShareFolder, ketQuaNoiSoi["ImageName2"].ToString());
+                //    if (File.Exists(fileName))
+                //        hinhList.Add(Utility.LoadBytesFromFile(fileName));
+                //}
+
+                //if (ketQuaNoiSoi["ImageName3"] != null && ketQuaNoiSoi["ImageName3"] != DBNull.Value)
+                //{
+                //    string fileName = Path.Combine(Global.ShareFolder, ketQuaNoiSoi["ImageName3"].ToString());
+                //    if (File.Exists(fileName))
+                //        hinhList.Add(Utility.LoadBytesFromFile(fileName));
+                //}
+
+                //if (ketQuaNoiSoi["ImageName4"] != null && ketQuaNoiSoi["ImageName4"] != DBNull.Value)
+                //{
+                //    string fileName = Path.Combine(Global.ShareFolder, ketQuaNoiSoi["ImageName4"].ToString());
+                //    if (File.Exists(fileName))
+                //        hinhList.Add(Utility.LoadBytesFromFile(fileName));
+                //}
+
+                if (ketQuaNoiSoi["Hinh1"] != null && ketQuaNoiSoi["Hinh1"] != DBNull.Value)
+                    hinhList.Add((byte[])ketQuaNoiSoi["Hinh1"]);
+
+                if (ketQuaNoiSoi["Hinh2"] != null && ketQuaNoiSoi["Hinh2"] != DBNull.Value)
+                    hinhList.Add((byte[])ketQuaNoiSoi["Hinh2"]);
+
+                if (ketQuaNoiSoi["Hinh3"] != null && ketQuaNoiSoi["Hinh3"] != DBNull.Value)
+                    hinhList.Add((byte[])ketQuaNoiSoi["Hinh3"]);
+
+                if (ketQuaNoiSoi["Hinh4"] != null && ketQuaNoiSoi["Hinh4"] != DBNull.Value)
+                    hinhList.Add((byte[])ketQuaNoiSoi["Hinh4"]);
+
+                double left = 0.73803149606299212;
+                double top = 195;
+                double width = 128.50485241420625;
+                double height = 129.2431496062992;
+
+                if (hinhList.Count == 4)
+                {
+                    left = 0.73803149606299212;
+                    top = 195;
+                    width = 128.50485241420625;
+                    height = 129.2431496062992;
+                    workSheet.Cells["A10"].RowHeight = height;
+
+                    workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
+
+                    left = 134.99997052444246;
+                    workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
+
+                    left = 269.12107375824547;
+                    workSheet.Shapes.AddPicture(hinhList[2], left, top, width, height);
+
+                    left = 403.32905700657312;
+                    workSheet.Shapes.AddPicture(hinhList[3], left, top, width, height);
+                }
+                else if (hinhList.Count == 3)
+                {
+                    left = 0.73803149606299212;
+                    width = 163.64469756847291;
+                    height = 171.0;
+                    workSheet.Cells["A10"].RowHeight = height;
+
+                    workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
+
+                    left = 184.49902827713433;
+                    workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
+
+                    left = 368.15975936217569;
+                    workSheet.Shapes.AddPicture(hinhList[2], left, top, width, height);
+                }
+                else if (hinhList.Count == 2)
+                {
+                    left = 96.134184222258924;
+                    width = 163.64469756847291;
+                    height = 171.0; ;
+                    workSheet.Cells["A10"].RowHeight = height;
+
+                    workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
+
+                    left = 272.01223594316349;
+                    workSheet.Shapes.AddPicture(hinhList[1], left, top, width, height);
+                }
+                else
+                {
+                    left = 183.74839835587449;
+                    width = 163.64469756847291;
+                    height = 171.0; ;
+                    workSheet.Cells["A10"].RowHeight = height;
+
+                    workSheet.Shapes.AddPicture(hinhList[0], left, top, width, height);
+                }
+
+                workSheet.Cells["C13"].Value = ketQuaNoiSoi["TrucTrang"].ToString();
+                workSheet.Cells["C14"].Value = ketQuaNoiSoi["DaiTrangTrai"].ToString();
+                workSheet.Cells["C15"].Value = ketQuaNoiSoi["DaiTrangGocLach"].ToString();
+                workSheet.Cells["C16"].Value = ketQuaNoiSoi["DaiTrangNgang"].ToString();
+                workSheet.Cells["C17"].Value = ketQuaNoiSoi["DaiTrangGocGan"].ToString();
+                workSheet.Cells["C18"].Value = ketQuaNoiSoi["DaiTrangPhai"].ToString();
+                workSheet.Cells["C19"].Value = ketQuaNoiSoi["ManhTrang"].ToString();
+                //workSheet.Cells["C20"].Value = ketQuaNoiSoi["Vom"].ToString();
+                //workSheet.Cells["C21"].Value = ketQuaNoiSoi["Amydale"].ToString();
+                //workSheet.Cells["C22"].Value = ketQuaNoiSoi["ThanhQuan"].ToString();
+
+                workSheet.Cells["B21"].Value = ketQuaNoiSoi["KetLuan"].ToString();
+                workSheet.Cells["B23"].Value = ketQuaNoiSoi["DeNghi"].ToString();
+
+                workSheet.Cells["F25"].Value = string.Format("Ngày: {0}",
+                    Convert.ToDateTime(ketQuaNoiSoi["NgayKham"]).ToString("dd/MM/yyyy"));
+
+                workSheet.Cells["F29"].Value = ketQuaNoiSoi["TenBacSiNoiSoi"].ToString();
+
+                string path = string.Format("{0}\\Temp", Application.StartupPath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
+
         public static bool ExportKetQuaNoiSoiTaiMuiHongToExcel(string exportFileName, DataRow patientRow, DataRow ketQuaNoiSoi)
         {
             Cursor.Current = Cursors.WaitCursor;

@@ -881,6 +881,10 @@ namespace MM.Common
                     return "Tai - Mũi - Họng";
                 case LoaiNoiSoi.TongQuat:
                     return "Tổng quát";
+                case LoaiNoiSoi.DaDay:
+                    return "Dạ dày";
+                case LoaiNoiSoi.TrucTrang:
+                    return "Trực tràng";
             }
 
             return string.Empty;

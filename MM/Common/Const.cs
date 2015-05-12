@@ -157,6 +157,8 @@ namespace MM.Common
         public static string KetQuaNoiSoiTaiMuiHongTemplate = "Kết quả nội soi tai mũi họng";
         public static string KetQuaNoiSoiTaiTemplate = "Kết quả nội soi tai";
         public static string KetQuaNoiSoiTongQuatTemplate = "Kết quả nội soi tổng quát";
+        public static string KetQuaNoiSoiDaDayTemplate = "Kết quả nội soi dạ dày";
+        public static string KetQuaNoiSoiTrucTrangTemplate = "Kết quả nội soi trực tràng";
         public static string KetQuaSoiCTCTemplate = "Kết quả nội soi cổ tử cung";
         public static string KhamSucKhoeTongQuatTemplate = "Khám sức khỏe tổng quát";
         public static string NhatKyLienHeCongTyTemplate = "Nhật kí liên hệ công ty";
