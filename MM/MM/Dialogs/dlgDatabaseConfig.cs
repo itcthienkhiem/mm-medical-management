@@ -217,7 +217,7 @@ namespace MM.Dialogs
 
         private void btnMacDinh_Click(object sender, EventArgs e)
         {
-            cboServerName.Text = "Vigor-srv01";
+            cboServerName.Text = @"Vigor-SRV02\SQL2K8R2";
             txtDatabaseName.Text = "MM";
             cboAuthentication.SelectedIndex = 1;
             txtUserName.Text = "sa";
