@@ -272,6 +272,8 @@
             this.dichVuXetNghiemToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator91 = new System.Windows.Forms.ToolStripSeparator();
             this.cấuHìnhShareFolderToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator93 = new System.Windows.Forms.ToolStripSeparator();
+            this.phieuChiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sMSToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tinNhanMauToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator71 = new System.Windows.Forms.ToolStripSeparator();
@@ -409,6 +411,7 @@
             this._uServicesList = new MM.Controls.uServicesList();
             this._timerCheckAlert = new System.Windows.Forms.Timer(this.components);
             this._timerPatient = new System.Windows.Forms.Timer(this.components);
+            this._uPhieuChiList = new MM.Controls.uPhieuChiList();
             this._mainToolbar.SuspendLayout();
             this._mainStatus.SuspendLayout();
             this._mainMenu.SuspendLayout();
@@ -2001,7 +2004,9 @@
             this.toolStripSeparator78,
             this.dichVuXetNghiemToolStripMenuItem,
             this.toolStripSeparator91,
-            this.cấuHìnhShareFolderToolStripMenuItem});
+            this.cấuHìnhShareFolderToolStripMenuItem,
+            this.toolStripSeparator93,
+            this.phieuChiToolStripMenuItem});
             resources.ApplyResources(this.toolsToolStripMenuItem, "toolsToolStripMenuItem");
             this.toolsToolStripMenuItem.Name = "toolsToolStripMenuItem";
             // 
@@ -2154,6 +2159,18 @@
             this.cấuHìnhShareFolderToolStripMenuItem.Name = "cấuHìnhShareFolderToolStripMenuItem";
             this.cấuHìnhShareFolderToolStripMenuItem.Tag = "CauHinhShareFolder";
             this.cấuHìnhShareFolderToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
+            // 
+            // toolStripSeparator93
+            // 
+            this.toolStripSeparator93.Name = "toolStripSeparator93";
+            resources.ApplyResources(this.toolStripSeparator93, "toolStripSeparator93");
+            // 
+            // phieuChiToolStripMenuItem
+            // 
+            resources.ApplyResources(this.phieuChiToolStripMenuItem, "phieuChiToolStripMenuItem");
+            this.phieuChiToolStripMenuItem.Name = "phieuChiToolStripMenuItem";
+            this.phieuChiToolStripMenuItem.Tag = "PhieuChi";
+            this.phieuChiToolStripMenuItem.Click += new System.EventHandler(this.toolStripMenuItem_Click);
             // 
             // sMSToolStripMenuItem
             // 
@@ -2570,6 +2587,7 @@
             this._mainPanel.BackColor = System.Drawing.SystemColors.Control;
             resources.ApplyResources(this._mainPanel, "_mainPanel");
             this._mainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this._mainPanel.Controls.Add(this._uPhieuChiList);
             this._mainPanel.Controls.Add(this._uThongKeChiDinhDuocXuatHoaDon);
             this._mainPanel.Controls.Add(this._uBaoCaoDoanhThuThuocTheoPhieuThu);
             this._mainPanel.Controls.Add(this._uHoaDonXetNghiemList);
@@ -3128,6 +3146,11 @@
             // 
             this._timerPatient.Interval = 5000;
             // 
+            // _uPhieuChiList
+            // 
+            resources.ApplyResources(this._uPhieuChiList, "_uPhieuChiList");
+            this._uPhieuChiList.Name = "_uPhieuChiList";
+            // 
             // MainForm
             // 
             resources.ApplyResources(this, "$this");
@@ -3539,6 +3562,9 @@
         private System.Windows.Forms.ToolStripMenuItem cấuHìnhShareFolderToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator92;
         private System.Windows.Forms.ToolStripMenuItem xóaDịchVụKhiXóaPhiếuThuToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator93;
+        private System.Windows.Forms.ToolStripMenuItem phieuChiToolStripMenuItem;
+        private Controls.uPhieuChiList _uPhieuChiList;
 
     }
 }

@@ -131,6 +131,12 @@
     <Compile Include="Controls\uHoaDonXetNghiemList.Designer.cs">
       <DependentUpon>uHoaDonXetNghiemList.cs</DependentUpon>
     </Compile>
+    <Compile Include="Controls\uPhieuChiList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uPhieuChiList.Designer.cs">
+      <DependentUpon>uPhieuChiList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uThongKeChiDinhDuocXuatHoaDon.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -238,6 +244,12 @@
     </Compile>
     <Compile Include="Controls\uSMSLog.Designer.cs">
       <DependentUpon>uSMSLog.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddPhieuChi.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddPhieuChi.Designer.cs">
+      <DependentUpon>dlgAddPhieuChi.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\dlgCauHinhShareFolder.cs">
       <SubType>Form</SubType>
@@ -1812,6 +1824,9 @@
     <EmbeddedResource Include="Controls\uHoaDonXetNghiemList.resx">
       <DependentUpon>uHoaDonXetNghiemList.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Controls\uPhieuChiList.resx">
+      <DependentUpon>uPhieuChiList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uThongKeChiDinhDuocXuatHoaDon.resx">
       <DependentUpon>uThongKeChiDinhDuocXuatHoaDon.cs</DependentUpon>
     </EmbeddedResource>
@@ -1865,6 +1880,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uSMSLog.resx">
       <DependentUpon>uSMSLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddPhieuChi.resx">
+      <DependentUpon>dlgAddPhieuChi.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgCauHinhShareFolder.resx">
       <DependentUpon>dlgCauHinhShareFolder.cs</DependentUpon>
@@ -2656,6 +2674,7 @@
     <None Include="Properties\DataSources\MM.Databasae.NhomThuoc.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.PatientView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.PermissionView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.PhieuChi.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.PhieuThuCapCuuView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.PhieuThuHopDong.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.PhieuThuThuoc.datasource" />
@@ -2728,6 +2747,7 @@
     <None Include="Templates\DanhSachDichVuKhongGiaTemplate.xls" />
     <None Include="Templates\DanhSachDichVuXuatPhieuThuTemplate.xls" />
     <None Include="Templates\DanhSachNhanVienTemplate.xls" />
+    <None Include="Templates\DanhSachPhieuChiTemplate.xls" />
     <None Include="Templates\DanhSachThuocTemplate.xls" />
     <None Include="Templates\DichVuHopDongTemplate.xls" />
     <None Include="Templates\DichVuTuTucTemplate.xls" />
@@ -2863,6 +2883,7 @@
     <None Include="Resources\WhiteImage.PNG" />
     <None Include="Resources\email-alert-icon %282%29.png" />
     <None Include="Resources\email-alert-icon.png" />
+    <Content Include="Scripts\ScriptUpdate_KH_2015-05-23.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2015-05-11.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2015-04-20.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2015-01-27.sql" />

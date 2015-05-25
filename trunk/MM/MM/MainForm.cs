@@ -475,6 +475,8 @@ namespace MM
                 _uBaoCaoDoanhThuThuocTheoPhieuThu.InitData();
             else if (ctrl.GetType() == typeof(uThongKeChiDinhDuocXuatHoaDon))
                 _uThongKeChiDinhDuocXuatHoaDon.InitData();
+            else if (ctrl.GetType() == typeof(uPhieuChiList))
+                _uPhieuChiList.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -513,6 +515,7 @@ namespace MM
                 cauHinhFTPToolStripMenuItem.Enabled = isLogin;
                 cấuHìnhShareFolderToolStripMenuItem.Enabled = isLogin;
                 xóaDịchVụKhiXóaPhiếuThuToolStripMenuItem.Enabled = isLogin;
+                phieuChiToolStripMenuItem.Enabled = isLogin;
             }
             else
             {
@@ -520,6 +523,7 @@ namespace MM
                 cauHinhFTPToolStripMenuItem.Enabled = false;
                 cấuHìnhShareFolderToolStripMenuItem.Enabled = false;
                 xóaDịchVụKhiXóaPhiếuThuToolStripMenuItem.Enabled = false;
+                phieuChiToolStripMenuItem.Enabled = false;
             }
 
             if (Global.StaffType != StaffType.Admin)
@@ -2676,7 +2680,18 @@ namespace MM
                 case "CauHinhShareFolder":
                     OnCauHinhShareFolder();
                     break;
+
+                case "PhieuChi":
+                    OnPhieuChi();
+                    break;
             }
+        }
+
+        private void OnPhieuChi()
+        {
+            this.Text = string.Format("{0} - Phieu chi", Application.ProductName);
+            ViewControl(_uPhieuChiList);
+            _uPhieuChiList.DisplayAsThread();
         }
 
         private void OnCauHinhShareFolder()
@@ -3525,6 +3540,8 @@ namespace MM
                 _uKhoCapCuu.ClearData();
             else if (ctrl.GetType() == typeof(uNhanVienTrungLapList))
                 _uNhanVienTrungLap.ClearData();
+            else if (ctrl.GetType() == typeof(uPhieuChiList))
+                _uPhieuChiList.ClearData();
         }
 
         private void OnDoctorList()
@@ -3803,6 +3820,7 @@ namespace MM
             _uTraHoSo.ClearData();
             _uHuyThuocList.ClearData();
             _uHoaDonXetNghiemList.ClearData();
+            _uPhieuChiList.ClearData();
         }
         #endregion
 
