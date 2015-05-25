@@ -11,6 +11,7 @@ using System.IO;
 using MM.Common;
 using MM.Bussiness;
 using MM.Databasae;
+using System.Drawing.Imaging;
 
 namespace MM.Dialogs
 {
@@ -26,6 +27,8 @@ namespace MM.Dialogs
         private int _imgCount = 0;
         private bool _isPrint = false;
         private bool _allowEdit = true;
+        public string MaBenhNhan = string.Empty;
+        public string TenBenhNhan = string.Empty; 
         #endregion
 
         #region Constructor
@@ -61,10 +64,12 @@ namespace MM.Dialogs
         #region UI Command
         private void InitData()
         {
+            
             Cursor.Current = Cursors.WaitCursor;
             dtpkNgayKham.Value = DateTime.Now;
             cboLoaiNoiSoi.SelectedIndex = 0;
 
+            CleanCache();
             DisplayDSBacSiChiDinh();
             DisplayDSBasSiSoi();
 
@@ -1368,6 +1373,52 @@ namespace MM.Dialogs
                 picBox.Image = bmp;
             }
         }
+
+        private void CacheImage(Image image)
+        {
+            try
+            {
+                string path = Path.Combine(Application.StartupPath, "Cache\\KetQuaNoiSoi",
+                DateTime.Now.ToString("yyyy-MM-dd"), string.Format("{0}-{1}", MaBenhNhan, Utility.ConvertToUnSign2(TenBenhNhan)));
+
+                Utility.CreateFolder(path);
+
+                path = Path.Combine(path, string.Format("{0}.png", DateTime.Now.ToString("yyyy_MM_dd_HH_mm_ss_ms")));
+                image.Save(path, ImageFormat.Png);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Utility.WriteToTraceLog(ex.Message);
+            }
+            
+        }
+
+        private void CleanCache()
+        {
+            try
+            {
+                string path = Path.Combine(Application.StartupPath, "Cache\\KetQuaNoiSoi");
+                string[] dirs = Directory.GetDirectories(path);
+
+                DateTime minDate = DateTime.Now.AddDays(-7);
+                minDate = new DateTime(minDate.Year, minDate.Month, minDate.Day, 0, 0, 0);
+                foreach (var dir in dirs)
+                {
+
+                    string strDate = dir.Replace(Path.GetDirectoryName(dir) + Path.DirectorySeparatorChar, "");
+                    DateTime date = DateTime.ParseExact(strDate, "yyyy-MM-dd", null);
+                    if (date < minDate)
+                        Directory.Delete(dir, true);
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Utility.WriteToTraceLog(ex.Message);
+            }
+            
+        }
         #endregion
 
         #region Window Event Handlers
@@ -1467,6 +1518,7 @@ namespace MM.Dialogs
             if (picWebCam.Image == null) return;
 
             Image img = picWebCam.Image;
+            CacheImage(img);
             imgListCapture.Images.Add(img);
 
             _imgCount++;
