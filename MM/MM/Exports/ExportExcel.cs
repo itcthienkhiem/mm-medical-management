@@ -11742,5 +11742,64 @@ namespace MM.Exports
 
             return true;
         }
+
+        public static bool ExportDanhSachPhieuChiToExcel(string exportFileName, List<DataRow> phieuChiRows)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            IWorkbook workBook = null;
+
+            try
+            {
+                string excelTemplateName = string.Format("{0}\\Templates\\DanhSachPhieuChiTemplate.xls", Application.StartupPath);
+                Utility.CopyTemplates(excelTemplateName);
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+                int rowIndex = 2;
+                IRange range;
+                foreach (DataRow row in phieuChiRows)
+                {
+                    range = workSheet.Cells[rowIndex, 0];
+                    range.Value = row["SoPhieuChi"].ToString();
+
+                    range = workSheet.Cells[rowIndex, 1];
+                    range.Value = Convert.ToDateTime(row["NgayChi"]);
+
+                    range = workSheet.Cells[rowIndex, 2];
+                    range.Value = Convert.ToDouble(row["SoTien"]);
+
+                    range = workSheet.Cells[rowIndex, 3];
+                    range.Value = row["DienGiai"] as string;
+                    range.WrapText = true;
+
+                    rowIndex++;
+                }
+
+                range = workSheet.Cells[string.Format("A3:D{0}", rowIndex)];
+                range.Borders.Color = Color.Black;
+                range.Borders.LineStyle = LineStyle.Continuous;
+                range.Borders.Weight = BorderWeight.Thin;
+
+                string path = string.Format("{0}\\Temp", Application.StartupPath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
     }
 }
