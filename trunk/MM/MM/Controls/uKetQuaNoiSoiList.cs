@@ -169,7 +169,11 @@ namespace MM.Controls
         {
             _isPrint = false;
             _ketQuaNoiSoi = null;
+            string maBenhNhan = _patientRow["FileNum"].ToString();
+            string tenBenhNhan = _patientRow["FullName"].ToString();
             dlgAddKetQuaNoiSoi dlg = new dlgAddKetQuaNoiSoi(_patientGUID);
+            dlg.MaBenhNhan = maBenhNhan;
+            dlg.TenBenhNhan = tenBenhNhan;
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 _isPrint = dlg.IsPrint;
@@ -190,7 +194,11 @@ namespace MM.Controls
 
             DataRow drKetQuaNoiSoi = (dgKhamNoiSoi.SelectedRows[0].DataBoundItem as DataRowView).Row;
             bool allowEdit = _isChuyenBenhAn ? false : Global.AllowEditKhamNoiSoi;
+            string maBenhNhan = _patientRow["FileNum"].ToString();
+            string tenBenhNhan = _patientRow["FullName"].ToString();
             dlgAddKetQuaNoiSoi dlg = new dlgAddKetQuaNoiSoi(_patientGUID, drKetQuaNoiSoi, allowEdit);
+            dlg.MaBenhNhan = maBenhNhan;
+            dlg.TenBenhNhan = tenBenhNhan;
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 _isPrint = dlg.IsPrint;
