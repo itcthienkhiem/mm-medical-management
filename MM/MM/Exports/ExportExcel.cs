@@ -6225,15 +6225,21 @@ namespace MM.Exports
                 IRange range;
                 foreach (DataRow row in yKienKhachHangList)
                 {
+                    string tenCongTy = row["TenCongTy"] as string;
+                    string maKhachHang = row["MaKhachHang"] as string;
                     string tenKhachHang = row["TenKhachHang"].ToString();
                     string soDienThoai = row["SoDienThoai"].ToString();
                     string diaChi = row["DiaChi"].ToString();
+                    string mucDich = row["MucDich"] as string;
                     string yeuCau = row["YeuCau"].ToString();
                     DateTime ngayLienHe = Convert.ToDateTime(row["ContactDate"]);
                     string nguon = row["Nguon"].ToString();
                     string nguoiTao = row["NguoiTao"].ToString();
                     string huongGiaiQuyet = string.Empty;
                     string daXong = row["DaXongStr"].ToString();
+                    string ngayCapNhat = string.Empty;
+                    if (row["UpdatedDate"] != null && row["UpdatedDate"] != DBNull.Value)
+                        ngayCapNhat = Convert.ToDateTime(row["UpdatedDate"]).ToString("dd/MM/yyyy HH:mm:ss");
 
                     if (row["KetLuan"] != null && row["KetLuan"] != DBNull.Value)
                         huongGiaiQuyet = row["KetLuan"].ToString();
@@ -6243,34 +6249,49 @@ namespace MM.Exports
                         bacSiPhuTrach = row["BacSiPhuTrach"].ToString();
 
                     range = workSheet.Cells[rowIndex, 0];
-                    range.Value = ngayLienHe.ToString("dd/MM/yyyy HH:mm:ss"); ;
+                    range.Value = ngayLienHe.ToString("dd/MM/yyyy HH:mm:ss");
 
                     range = workSheet.Cells[rowIndex, 1];
-                    range.Value = tenKhachHang;
+                    range.Value = ngayCapNhat;
 
                     range = workSheet.Cells[rowIndex, 2];
-                    range.Value = soDienThoai;
+                    range.Value = tenCongTy;
 
                     range = workSheet.Cells[rowIndex, 3];
-                    range.Value = yeuCau;
+                    range.Value = maKhachHang;
 
                     range = workSheet.Cells[rowIndex, 4];
-                    range.Value = huongGiaiQuyet;
+                    range.Value = tenKhachHang;
 
                     range = workSheet.Cells[rowIndex, 5];
-                    range.Value = nguoiTao;
+                    range.Value = soDienThoai;
 
                     range = workSheet.Cells[rowIndex, 6];
-                    range.Value = bacSiPhuTrach;
+                    range.Value = diaChi;
 
                     range = workSheet.Cells[rowIndex, 7];
+                    range.Value = mucDich;
+
+                    range = workSheet.Cells[rowIndex, 8];
+                    range.Value = yeuCau;
+
+                    range = workSheet.Cells[rowIndex, 9];
+                    range.Value = huongGiaiQuyet;
+
+                    range = workSheet.Cells[rowIndex, 10];
+                    range.Value = nguoiTao;
+
+                    range = workSheet.Cells[rowIndex, 11];
+                    range.Value = bacSiPhuTrach;
+
+                    range = workSheet.Cells[rowIndex, 12];
                     range.Value = daXong;
 
                     rowIndex++;
                     
                 }
 
-                range = workSheet.Cells[string.Format("A3:H{0}", rowIndex)];
+                range = workSheet.Cells[string.Format("A3:M{0}", rowIndex)];
                 range.Borders.Color = Color.Black;
                 range.Borders.LineStyle = LineStyle.Continuous;
                 range.Borders.Weight = BorderWeight.Thin;
