@@ -85,6 +85,9 @@ namespace MM.Dialogs
                 txtDiaChi.Text = drYKienKhachHang["DiaChi"] as string;
                 txtYeuCau.Text = drYKienKhachHang["YeuCau"] as string;
                 cboNguon.Text = drYKienKhachHang["Nguon"] as string;
+                txtTenCongTy.Text = drYKienKhachHang["TenCongTy"] as string;
+                txtMaKhachHang.Text = drYKienKhachHang["MaKhachHang"] as string;
+                txtMucDich.Text = drYKienKhachHang["MucDich"] as string;
 
                 bool isIN = Convert.ToBoolean(drYKienKhachHang["IsIN"]);
                 raIN.Checked = isIN;
@@ -218,6 +221,9 @@ namespace MM.Dialogs
                     else
                         _yKienKhachHang.PatientGUID = null;
 
+                    _yKienKhachHang.TenCongTy = txtTenCongTy.Text;
+                    _yKienKhachHang.MaKhachHang = txtMaKhachHang.Text;
+                    _yKienKhachHang.MucDich = txtMucDich.Text;
                     _yKienKhachHang.TenKhachHang = txtTenKhachHang.Text;
                     _yKienKhachHang.SoDienThoai = txtSoDienThoai.Text;
                     _yKienKhachHang.DiaChi = txtDiaChi.Text;
@@ -327,6 +333,7 @@ namespace MM.Dialogs
                     txtTenKhachHang.Text = patientRow["FullName"].ToString();
                     txtSoDienThoai.Text = patientRow["Mobile"].ToString();
                     txtDiaChi.Text = patientRow["Address"].ToString();
+                    txtMaKhachHang.Text = patientRow["FileNum"].ToString();
                 }
             }
         }

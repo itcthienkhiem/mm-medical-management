@@ -178,6 +178,9 @@ namespace MM.Bussiness
                         if (ykkh != null)
                         {
                             ykkh.PatientGUID = yKienKhachHang.PatientGUID;
+                            ykkh.TenCongTy = yKienKhachHang.TenCongTy;
+                            ykkh.MaKhachHang = yKienKhachHang.MaKhachHang;
+                            ykkh.MucDich = yKienKhachHang.MucDich;
                             ykkh.TenKhachHang = yKienKhachHang.TenKhachHang;
                             ykkh.SoDienThoai = yKienKhachHang.SoDienThoai;
                             ykkh.DiaChi = yKienKhachHang.DiaChi;
