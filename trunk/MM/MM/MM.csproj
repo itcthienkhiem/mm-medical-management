@@ -107,6 +107,12 @@
     <Reference Include="TXTextControl, Version=15.1.800.500, Culture=neutral, PublicKeyToken=6b83fe9a75cfb638" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\uThongKeChiDinhCuaBacSi.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uThongKeChiDinhCuaBacSi.Designer.cs">
+      <DependentUpon>uThongKeChiDinhCuaBacSi.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uKetQuaNoiSoiTrucTrang.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -1812,6 +1818,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\uThongKeChiDinhCuaBacSi.resx">
+      <DependentUpon>uThongKeChiDinhCuaBacSi.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uKetQuaNoiSoiTrucTrang.resx">
       <DependentUpon>uKetQuaNoiSoiTrucTrang.cs</DependentUpon>
     </EmbeddedResource>
@@ -2808,6 +2817,7 @@
     <None Include="Templates\SieuAmTemplate\6.rtf" />
     <None Include="Templates\SieuAmTemplate\Cac bao cao.doc" />
     <None Include="Templates\SymptomTemplate.xls" />
+    <None Include="Templates\ThongKeChiDinhCuaBacSiTemplate.xls" />
     <None Include="Templates\ThongKeChiDinhDuocXuatHoaDonTemplate.xls" />
     <None Include="Templates\ThongKeHoaDonDichVuVaThuocTemplate.xls" />
     <None Include="Templates\ThongKePhieuThuDichVuVaThuocTemplate.xls" />

@@ -475,6 +475,8 @@ namespace MM
                 _uBaoCaoDoanhThuThuocTheoPhieuThu.InitData();
             else if (ctrl.GetType() == typeof(uThongKeChiDinhDuocXuatHoaDon))
                 _uThongKeChiDinhDuocXuatHoaDon.InitData();
+            else if (ctrl.GetType() == typeof(uThongKeChiDinhCuaBacSi))
+                _uThongKeChiDinhCuaBacSi.InitData();
             else if (ctrl.GetType() == typeof(uPhieuChiList))
                 _uPhieuChiList.DisplayAsThread();
         }
@@ -1912,6 +1914,20 @@ namespace MM
                             _uThongKeChiDinhDuocXuatHoaDon.AllowExportAll = isExportAll;
                             _uThongKeChiDinhDuocXuatHoaDon.AllowConfirm = isConfirm;
                         }
+                        else if (functionCode == Const.ThongKeChiDinhCuaBacSi)
+                        {
+                            reportToolStripMenuItem.Enabled = isLogin;
+                            thongKeChiDinhCuaBacSiToolStripMenuItem.Enabled = isView && isLogin;
+                            _uThongKeChiDinhCuaBacSi.AllowAdd = isAdd;
+                            _uThongKeChiDinhCuaBacSi.AllowEdit = isEdit;
+                            _uThongKeChiDinhCuaBacSi.AllowDelete = isDelete;
+                            _uThongKeChiDinhCuaBacSi.AllowPrint = isPrint;
+                            _uThongKeChiDinhCuaBacSi.AllowExport = isExport;
+                            _uThongKeChiDinhCuaBacSi.AllowImport = isImport;
+                            _uThongKeChiDinhCuaBacSi.AllowLock = isLock;
+                            _uThongKeChiDinhCuaBacSi.AllowExportAll = isExportAll;
+                            _uThongKeChiDinhCuaBacSi.AllowConfirm = isConfirm;
+                        }
                     }
                 }
                 else
@@ -2162,6 +2178,7 @@ namespace MM
                 hoaDonXetNghiemToolStripMenuItem.Enabled = isLogin;
                 baoCaoDoanhThuThuocTheoPhieuThuToolStripMenuItem.Enabled = isLogin;
                 thongKeChiDinhDuocXuatHoaDonToolStripMenuItem.Enabled = isLogin;
+                thongKeChiDinhCuaBacSiToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -2684,7 +2701,18 @@ namespace MM
                 case "PhieuChi":
                     OnPhieuChi();
                     break;
+
+                case "ThongKeChiDinhCuaBacSi":
+                    OnThongKeChiDinhCuaBacSi();
+                    break;
             }
+        }
+
+        private void OnThongKeChiDinhCuaBacSi()
+        {
+            this.Text = string.Format("{0} - Thong ke chi dinh của bác sĩ", Application.ProductName);
+            ViewControl(_uThongKeChiDinhCuaBacSi);
+            _uThongKeChiDinhCuaBacSi.InitData();
         }
 
         private void OnPhieuChi()
