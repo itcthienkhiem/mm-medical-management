@@ -199,6 +199,96 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetChiDinhCuaBacSi(DateTime fromDate, DateTime toDate, string docStaffGUID)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+
+                var hoaDonList = from h in db.Invoices
+                                 where h.Status == (byte)Status.Actived &&
+                                 h.ReceiptGUIDList != null &&
+                                 h.ReceiptGUIDList != string.Empty &&
+                                 h.InvoiceDate >= fromDate && h.InvoiceDate <= toDate
+                                 select h;
+
+                if (hoaDonList != null)
+                {
+                    List<HoaDonDichVuChiDinh> hddvcds = new List<HoaDonDichVuChiDinh>();
+                    foreach (var hoaDon in hoaDonList)
+                    {
+                        string[] keys = hoaDon.ReceiptGUIDList.Split(",".ToCharArray());
+                        List<string> ptGUIDList = new List<string>(keys);
+
+                        var ctptList = db.ReceiptDetails.Where(p => ptGUIDList.Contains(p.ReceiptGUID.ToString()));
+                        if (ctptList != null)
+                        {
+                            foreach (var ctpt in ctptList)
+                            {
+                                ChiDinh chiDinh = GetChiDinh(ctpt.ServiceHistoryGUID.ToString(), db);
+                                if (chiDinh == null) continue;
+                                if (chiDinh.BacSiChiDinhGUID.ToString().ToUpper() != docStaffGUID.ToUpper())
+                                    continue;
+
+                                InvoiceDetail cthd = hoaDon.InvoiceDetails.Where(h => h.TenDichVu.Trim().ToLower() == ctpt.ServiceHistory.Service.Name.Trim().ToLower()).FirstOrDefault();
+                                if (cthd == null) continue;
+
+                                HoaDonDichVuChiDinh item = new HoaDonDichVuChiDinh();
+                                item.BSCDGUID = chiDinh.BacSiChiDinhGUID.ToString();
+                                item.BSCDFirstName = chiDinh.DocStaff.Contact.FirstName;
+                                item.BSCDFullName = chiDinh.DocStaff.Contact.FullName;
+                                item.NgayXuatHD = hoaDon.InvoiceDate;
+                                item.SoPhieuThu = ctpt.Receipt.ReceiptCode;
+                                item.SoHoaDon = hoaDon.InvoiceCode;
+                                item.VAT = hoaDon.VAT.Value;
+                                item.TenDichVu = cthd.TenDichVu;
+                                item.DonGia = cthd.DonGia;
+                                item.SoLuong = cthd.SoLuong;
+                                item.ThanhTien = cthd.ThanhTien;
+
+                                if (item.VAT > 0)
+                                    item.ThanhTien = (item.DonGia * item.SoLuong) + ((item.DonGia * item.SoLuong * item.VAT) / 100);
+
+                                hddvcds.Add(item);
+                            }
+                        }
+                    }
+
+                    if (hddvcds.Count > 0)
+                    {
+                        hddvcds = hddvcds.OrderBy(x => x.BSCDFirstName).ThenBy(x => x.BSCDFullName)
+                            .ThenBy(x => x.BSCDGUID).ThenBy(x => x.SoHoaDon).ThenBy(x => x.NgayXuatHD)
+                            .ThenBy(x => x.TenDichVu).ToList();
+                        result.QueryResult = hddvcds;
+                    }
+                }
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+
+            return result;
+        }
+
         public static Result GetDoanhThuNhanVienTongHop(DateTime fromDate, DateTime toDate, string docStaffGUID, byte type)
         {
             Result result = new Result();

@@ -173,6 +173,161 @@ namespace MM.Exports
             return true;
         }
 
+        public static bool ExportChiDinhCuaBacSi(string exportFileName, DateTime tuNgay, DateTime denNgay, string docStaffGUID)
+        {
+            Cursor.Current = Cursors.WaitCursor;
+            IWorkbook workBook = null;
+
+            try
+            {
+                Result result = ReportBus.GetChiDinhCuaBacSi(tuNgay, denNgay, docStaffGUID);
+                if (!result.IsOK)
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReportBus.GetChiDinhCuaBacSi"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("ReportBus.GetChiDinhCuaBacSi"));
+                    return false;
+                }
+
+                List<HoaDonDichVuChiDinh> data = result.QueryResult as List<HoaDonDichVuChiDinh>;
+                string excelTemplateName = string.Format("{0}\\Templates\\ThongKeChiDinhCuaBacSiTemplate.xls", Application.StartupPath);
+                Utility.CopyTemplates(excelTemplateName);
+
+                workBook = SpreadsheetGear.Factory.GetWorkbook(excelTemplateName);
+                IWorksheet workSheet = workBook.Worksheets[0];
+                workSheet.Cells["A2"].Value = string.Format("Từ ngày: {0} đến ngày: {1}", tuNgay.ToString("dd/MM/yyyy"), denNgay.ToString("dd/MM/yyyy"));
+
+                if (data != null && data.Count > 0)
+                {
+                    //Result ttResult = ReportBus.GetTongTienPhieuThuKhongXuatHD(tuNgay, denNgay);
+                    //if (!ttResult.IsOK)
+                    //{
+                    //    MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReportBus.GetTongTienPhieuThuKhongXuatHD"), IconType.Error);
+                    //    Utility.WriteToTraceLog(result.GetErrorAsString("ReportBus.GetTongTienPhieuThuKhongXuatHD"));
+                    //    return false;
+                    //}
+
+                    //Dictionary<string, double> dictTongTien = ttResult.QueryResult as Dictionary<string, double>;
+
+                    int rowIndex = 3;
+                    IRange range;
+
+                    string key = data[0].BSCDGUID;
+                    int count = 0;
+                    //double tongTien = 0;
+                    //double tongCong = 0;
+                    string bsChiDinh = data[0].BSCDFullName;
+                    int start, end;
+
+                    foreach (var item in data)
+                    {
+                        if (key == item.BSCDGUID)
+                        {
+                            workSheet.Cells[rowIndex, 1].Value = item.NgayXuatHD.ToString("dd/MM/yyyy");
+                            workSheet.Cells[rowIndex, 2].Value = item.SoPhieuThu;
+                            workSheet.Cells[rowIndex, 3].Value = item.SoHoaDon;
+                            workSheet.Cells[rowIndex, 4].Value = item.TenDichVu;
+                            workSheet.Cells[rowIndex, 5].Value = item.SoLuong;
+                            //workSheet.Cells[rowIndex, 6].Value = item.DonGia;
+                            //workSheet.Cells[rowIndex, 7].Value = item.VAT;
+                            //workSheet.Cells[rowIndex, 8].Value = item.ThanhTien;
+                            //tongTien += item.ThanhTien;
+                            //tongCong += item.ThanhTien;
+                            rowIndex++;
+                            count++;
+                        }
+                        else
+                        {
+                            start = rowIndex - count + 1;
+                            end = rowIndex;
+                            range = workSheet.Cells[string.Format("A{0}:A{1}", start, end)];
+                            range.Merge();
+                            workSheet.Cells[string.Format("A{0}", start)].Value = bsChiDinh;
+
+                            //range = workSheet.Cells[string.Format("J{0}:J{1}", start, end)];
+                            //range.Merge();
+
+                            //if (dictTongTien != null && dictTongTien.ContainsKey(key))
+                            //{
+                            //    tongTien += dictTongTien[key];
+                            //    tongCong += dictTongTien[key];
+                            //}
+
+                            //workSheet.Cells[string.Format("J{0}", start)].Value = tongTien;
+
+                            workSheet.Cells[rowIndex, 1].Value = item.NgayXuatHD.ToString("dd/MM/yyyy");
+                            workSheet.Cells[rowIndex, 2].Value = item.SoPhieuThu;
+                            workSheet.Cells[rowIndex, 3].Value = item.SoHoaDon;
+                            workSheet.Cells[rowIndex, 4].Value = item.TenDichVu;
+                            workSheet.Cells[rowIndex, 5].Value = item.SoLuong;
+                            //workSheet.Cells[rowIndex, 6].Value = item.DonGia;
+                            //workSheet.Cells[rowIndex, 7].Value = item.VAT;
+                            //workSheet.Cells[rowIndex, 8].Value = item.ThanhTien;
+                            rowIndex++;
+
+                            key = item.BSCDGUID;
+                            bsChiDinh = item.BSCDFullName;
+                            //tongTien = item.ThanhTien;
+                            //tongCong += item.ThanhTien;
+                            count = 1;
+                        }
+                    }
+
+                    start = rowIndex - count + 1;
+                    end = rowIndex;
+                    range = workSheet.Cells[string.Format("A{0}:A{1}", start, end)];
+                    range.Merge();
+                    workSheet.Cells[string.Format("A{0}", start)].Value = bsChiDinh;
+
+                    //range = workSheet.Cells[string.Format("J{0}:J{1}", start, end)];
+                    //range.Merge();
+
+                    //if (dictTongTien != null && dictTongTien.ContainsKey(key))
+                    //{
+                    //    tongTien += dictTongTien[key];
+                    //    tongCong += dictTongTien[key];
+                    //}
+
+                    //workSheet.Cells[string.Format("J{0}", start)].Value = tongTien;
+
+                    range = workSheet.Cells[string.Format("A4:F{0}", rowIndex)];
+                    range.Borders.Color = Color.Black;
+                    range.Borders.LineStyle = LineStyle.Continuous;
+                    range.Borders.Weight = BorderWeight.Thin;
+
+                    //rowIndex++;
+                    //range = workSheet.Cells[string.Format("I{0}", rowIndex)];
+                    //range.Value = "Tổng cộng:";
+                    //range.Font.Bold = true;
+
+                    //range = workSheet.Cells[string.Format("J{0}", rowIndex)];
+                    //range.Value = tongCong;
+                    //range.Font.Bold = true;
+                }
+
+                string path = string.Format("{0}\\Temp", Application.StartupPath);
+                if (!Directory.Exists(path))
+                    Directory.CreateDirectory(path);
+
+                workBook.SaveAs(exportFileName, SpreadsheetGear.FileFormat.Excel8);
+
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(Application.ProductName, ex.Message, IconType.Error);
+                return false;
+            }
+            finally
+            {
+                if (workBook != null)
+                {
+                    workBook.Close();
+                    workBook = null;
+                }
+            }
+
+            return true;
+        }
+
         public static bool ExportDoanhThuThuocTheoPhieuThuKhongGiaNhapToExcel(string exportFileName, DateTime tuNgay, DateTime denNgay, int type)
         {
             Cursor.Current = Cursors.WaitCursor;
