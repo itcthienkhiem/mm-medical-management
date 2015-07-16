@@ -162,6 +162,9 @@ namespace MM.Common
         //Y kiến khách hàng
         public static bool AllowAddYKienKhachHang = true;
 
+        //Tư vấn khách hàng
+        public static bool AllowAddTuVanKhachHang = true;
+
         //Hồ sơ
         public static bool AllowTaoHoSo = true;
         public static bool AllowUploadHoSo = true;

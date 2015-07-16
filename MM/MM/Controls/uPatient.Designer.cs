@@ -71,6 +71,7 @@
             this.pageKeToa = new DevComponents.DotNetBar.TabItem(this.components);
             this.panel1 = new System.Windows.Forms.Panel();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.btnTaoMatKhau = new System.Windows.Forms.Button();
             this.btnXemHoSo = new System.Windows.Forms.Button();
             this.btnUploadHoSo = new System.Windows.Forms.Button();
             this.btnTaoHoSo = new System.Windows.Forms.Button();
@@ -99,7 +100,7 @@
             this.panel4 = new System.Windows.Forms.Panel();
             this.panel3 = new System.Windows.Forms.Panel();
             this._uPrintKetQuaSieuAm = new MM.Controls.uPrintKetQuaSieuAm();
-            this.btnTaoMatKhau = new System.Windows.Forms.Button();
+            this.btnThemTVKH = new System.Windows.Forms.Button();
             this.tabControlPanel1.SuspendLayout();
             this.panel2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.tabServiceHistory)).BeginInit();
@@ -148,10 +149,12 @@
             // _uServiceHistory
             // 
             this._uServiceHistory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uServiceHistory.IsChuyenBenhAn = false;
             this._uServiceHistory.IsDailyService = false;
             this._uServiceHistory.Location = new System.Drawing.Point(1, 1);
             this._uServiceHistory.Name = "_uServiceHistory";
             this._uServiceHistory.PatientRow = null;
+            this._uServiceHistory.PatientRow2 = null;
             this._uServiceHistory.Size = new System.Drawing.Size(1171, 423);
             this._uServiceHistory.TabIndex = 0;
             // 
@@ -230,10 +233,12 @@
             // _uDailyServiceHistory
             // 
             this._uDailyServiceHistory.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uDailyServiceHistory.IsChuyenBenhAn = false;
             this._uDailyServiceHistory.IsDailyService = true;
             this._uDailyServiceHistory.Location = new System.Drawing.Point(1, 1);
             this._uDailyServiceHistory.Name = "_uDailyServiceHistory";
             this._uDailyServiceHistory.PatientRow = null;
+            this._uDailyServiceHistory.PatientRow2 = null;
             this._uDailyServiceHistory.Size = new System.Drawing.Size(1171, 423);
             this._uDailyServiceHistory.TabIndex = 0;
             // 
@@ -265,9 +270,11 @@
             // _uKetQuaCanLamSangList
             // 
             this._uKetQuaCanLamSangList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uKetQuaCanLamSangList.IsChuyenBenhAn = false;
             this._uKetQuaCanLamSangList.Location = new System.Drawing.Point(1, 1);
             this._uKetQuaCanLamSangList.Name = "_uKetQuaCanLamSangList";
             this._uKetQuaCanLamSangList.PatientRow = null;
+            this._uKetQuaCanLamSangList.PatientRow2 = null;
             this._uKetQuaCanLamSangList.Size = new System.Drawing.Size(1171, 423);
             this._uKetQuaCanLamSangList.TabIndex = 0;
             // 
@@ -299,9 +306,11 @@
             // _uKetLuanList
             // 
             this._uKetLuanList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uKetLuanList.IsChuyenBenhAn = false;
             this._uKetLuanList.Location = new System.Drawing.Point(1, 1);
             this._uKetLuanList.Name = "_uKetLuanList";
             this._uKetLuanList.PatientRow = null;
+            this._uKetLuanList.PatientRow2 = null;
             this._uKetLuanList.Size = new System.Drawing.Size(1171, 423);
             this._uKetLuanList.TabIndex = 0;
             // 
@@ -333,9 +342,11 @@
             // _uLoiKhuyenList
             // 
             this._uLoiKhuyenList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uLoiKhuyenList.IsChuyenBenhAn = false;
             this._uLoiKhuyenList.Location = new System.Drawing.Point(1, 1);
             this._uLoiKhuyenList.Name = "_uLoiKhuyenList";
             this._uLoiKhuyenList.PatientRow = null;
+            this._uLoiKhuyenList.PatientRow2 = null;
             this._uLoiKhuyenList.Size = new System.Drawing.Size(1171, 423);
             this._uLoiKhuyenList.TabIndex = 0;
             // 
@@ -367,9 +378,11 @@
             // _uKetQuaLamSangList
             // 
             this._uKetQuaLamSangList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uKetQuaLamSangList.IsChuyenBenhAn = false;
             this._uKetQuaLamSangList.Location = new System.Drawing.Point(1, 1);
             this._uKetQuaLamSangList.Name = "_uKetQuaLamSangList";
             this._uKetQuaLamSangList.PatientRow = null;
+            this._uKetQuaLamSangList.PatientRow2 = null;
             this._uKetQuaLamSangList.Size = new System.Drawing.Size(1171, 423);
             this._uKetQuaLamSangList.TabIndex = 0;
             // 
@@ -401,9 +414,11 @@
             // _uKetQuaSieuAmList
             // 
             this._uKetQuaSieuAmList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uKetQuaSieuAmList.IsChuyenBenhAn = false;
             this._uKetQuaSieuAmList.Location = new System.Drawing.Point(1, 1);
             this._uKetQuaSieuAmList.Name = "_uKetQuaSieuAmList";
             this._uKetQuaSieuAmList.PatientRow = null;
+            this._uKetQuaSieuAmList.PatientRow2 = null;
             this._uKetQuaSieuAmList.Size = new System.Drawing.Size(1171, 423);
             this._uKetQuaSieuAmList.TabIndex = 0;
             // 
@@ -435,9 +450,11 @@
             // _uKetQuaSoiCTCList
             // 
             this._uKetQuaSoiCTCList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uKetQuaSoiCTCList.IsChuyenBenhAn = false;
             this._uKetQuaSoiCTCList.Location = new System.Drawing.Point(1, 1);
             this._uKetQuaSoiCTCList.Name = "_uKetQuaSoiCTCList";
             this._uKetQuaSoiCTCList.PatientRow = null;
+            this._uKetQuaSoiCTCList.PatientRow2 = null;
             this._uKetQuaSoiCTCList.Size = new System.Drawing.Size(1171, 423);
             this._uKetQuaSoiCTCList.TabIndex = 0;
             // 
@@ -469,9 +486,11 @@
             // _uKetQuaNoiSoiList
             // 
             this._uKetQuaNoiSoiList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uKetQuaNoiSoiList.IsChuyenBenhAn = false;
             this._uKetQuaNoiSoiList.Location = new System.Drawing.Point(1, 1);
             this._uKetQuaNoiSoiList.Name = "_uKetQuaNoiSoiList";
             this._uKetQuaNoiSoiList.PatientRow = null;
+            this._uKetQuaNoiSoiList.PatientRow2 = null;
             this._uKetQuaNoiSoiList.Size = new System.Drawing.Size(1171, 423);
             this._uKetQuaNoiSoiList.TabIndex = 0;
             // 
@@ -503,9 +522,11 @@
             // _uCanDoList
             // 
             this._uCanDoList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uCanDoList.IsChuyenBenhAn = false;
             this._uCanDoList.Location = new System.Drawing.Point(1, 1);
             this._uCanDoList.Name = "_uCanDoList";
             this._uCanDoList.PatientRow = null;
+            this._uCanDoList.PatientRow2 = null;
             this._uCanDoList.Size = new System.Drawing.Size(1171, 423);
             this._uCanDoList.TabIndex = 0;
             // 
@@ -537,9 +558,11 @@
             // _uChiDinhList
             // 
             this._uChiDinhList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uChiDinhList.IsChuyenBenhAn = false;
             this._uChiDinhList.Location = new System.Drawing.Point(1, 1);
             this._uChiDinhList.Name = "_uChiDinhList";
             this._uChiDinhList.PatientRow = null;
+            this._uChiDinhList.PatientRow2 = null;
             this._uChiDinhList.Size = new System.Drawing.Size(1171, 423);
             this._uChiDinhList.TabIndex = 0;
             // 
@@ -571,9 +594,11 @@
             // _uToaThuocList
             // 
             this._uToaThuocList.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uToaThuocList.IsChuyenBenhAn = false;
             this._uToaThuocList.Location = new System.Drawing.Point(1, 1);
             this._uToaThuocList.Name = "_uToaThuocList";
             this._uToaThuocList.PatientRow = null;
+            this._uToaThuocList.PatientRow2 = null;
             this._uToaThuocList.Size = new System.Drawing.Size(1171, 423);
             this._uToaThuocList.TabIndex = 0;
             // 
@@ -599,6 +624,7 @@
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.btnThemTVKH);
             this.groupBox1.Controls.Add(this.btnTaoMatKhau);
             this.groupBox1.Controls.Add(this.btnXemHoSo);
             this.groupBox1.Controls.Add(this.btnUploadHoSo);
@@ -627,11 +653,23 @@
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Thông tin bệnh nhân";
             // 
+            // btnTaoMatKhau
+            // 
+            this.btnTaoMatKhau.Image = ((System.Drawing.Image)(resources.GetObject("btnTaoMatKhau.Image")));
+            this.btnTaoMatKhau.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnTaoMatKhau.Location = new System.Drawing.Point(862, 150);
+            this.btnTaoMatKhau.Name = "btnTaoMatKhau";
+            this.btnTaoMatKhau.Size = new System.Drawing.Size(101, 25);
+            this.btnTaoMatKhau.TabIndex = 85;
+            this.btnTaoMatKhau.Text = "      &Tạo mật khẩu";
+            this.btnTaoMatKhau.UseVisualStyleBackColor = true;
+            this.btnTaoMatKhau.Click += new System.EventHandler(this.btnTaoMatKhau_Click);
+            // 
             // btnXemHoSo
             // 
             this.btnXemHoSo.Image = ((System.Drawing.Image)(resources.GetObject("btnXemHoSo.Image")));
             this.btnXemHoSo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnXemHoSo.Location = new System.Drawing.Point(621, 150);
+            this.btnXemHoSo.Location = new System.Drawing.Point(668, 150);
             this.btnXemHoSo.Name = "btnXemHoSo";
             this.btnXemHoSo.Size = new System.Drawing.Size(86, 25);
             this.btnXemHoSo.TabIndex = 83;
@@ -643,7 +681,7 @@
             // 
             this.btnUploadHoSo.Image = ((System.Drawing.Image)(resources.GetObject("btnUploadHoSo.Image")));
             this.btnUploadHoSo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnUploadHoSo.Location = new System.Drawing.Point(711, 150);
+            this.btnUploadHoSo.Location = new System.Drawing.Point(758, 150);
             this.btnUploadHoSo.Name = "btnUploadHoSo";
             this.btnUploadHoSo.Size = new System.Drawing.Size(100, 25);
             this.btnUploadHoSo.TabIndex = 84;
@@ -655,7 +693,7 @@
             // 
             this.btnTaoHoSo.Image = ((System.Drawing.Image)(resources.GetObject("btnTaoHoSo.Image")));
             this.btnTaoHoSo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTaoHoSo.Location = new System.Drawing.Point(531, 150);
+            this.btnTaoHoSo.Location = new System.Drawing.Point(578, 150);
             this.btnTaoHoSo.Name = "btnTaoHoSo";
             this.btnTaoHoSo.Size = new System.Drawing.Size(86, 25);
             this.btnTaoHoSo.TabIndex = 82;
@@ -665,7 +703,7 @@
             // 
             // txtNgayLienHeGanNhat
             // 
-            this.txtNgayLienHeGanNhat.Location = new System.Drawing.Point(392, 153);
+            this.txtNgayLienHeGanNhat.Location = new System.Drawing.Point(439, 153);
             this.txtNgayLienHeGanNhat.Name = "txtNgayLienHeGanNhat";
             this.txtNgayLienHeGanNhat.ReadOnly = true;
             this.txtNgayLienHeGanNhat.Size = new System.Drawing.Size(133, 20);
@@ -674,7 +712,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(275, 156);
+            this.label2.Location = new System.Drawing.Point(322, 156);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(114, 13);
             this.label2.TabIndex = 80;
@@ -682,12 +720,14 @@
             // 
             // btnThemYKienKhachHang
             // 
+            this.btnThemYKienKhachHang.Image = ((System.Drawing.Image)(resources.GetObject("btnThemYKienKhachHang.Image")));
             this.btnThemYKienKhachHang.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnThemYKienKhachHang.Location = new System.Drawing.Point(134, 151);
+            this.btnThemYKienKhachHang.Location = new System.Drawing.Point(115, 151);
             this.btnThemYKienKhachHang.Name = "btnThemYKienKhachHang";
-            this.btnThemYKienKhachHang.Size = new System.Drawing.Size(135, 23);
+            this.btnThemYKienKhachHang.Size = new System.Drawing.Size(90, 23);
             this.btnThemYKienKhachHang.TabIndex = 79;
-            this.btnThemYKienKhachHang.Text = "&Thêm ý kiến khách hàng";
+            this.btnThemYKienKhachHang.Text = "&Thêm YKKH";
+            this.btnThemYKienKhachHang.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.btnThemYKienKhachHang.UseVisualStyleBackColor = true;
             this.btnThemYKienKhachHang.Click += new System.EventHandler(this.btnThemYKienKhachHang_Click);
             // 
@@ -697,9 +737,9 @@
             this.btnRefresh.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
             this.btnRefresh.Location = new System.Drawing.Point(6, 151);
             this.btnRefresh.Name = "btnRefresh";
-            this.btnRefresh.Size = new System.Drawing.Size(124, 23);
+            this.btnRefresh.Size = new System.Drawing.Size(105, 23);
             this.btnRefresh.TabIndex = 78;
-            this.btnRefresh.Text = "   &Làm mới dữ liệu";
+            this.btnRefresh.Text = "     &Làm mới dữ liệu";
             this.btnRefresh.UseVisualStyleBackColor = true;
             this.btnRefresh.Click += new System.EventHandler(this.btnRefresh_Click);
             // 
@@ -882,17 +922,18 @@
             this._uPrintKetQuaSieuAm.Size = new System.Drawing.Size(115, 109);
             this._uPrintKetQuaSieuAm.TabIndex = 85;
             // 
-            // btnTaoMatKhau
+            // btnThemTVKH
             // 
-            this.btnTaoMatKhau.Image = ((System.Drawing.Image)(resources.GetObject("btnTaoMatKhau.Image")));
-            this.btnTaoMatKhau.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnTaoMatKhau.Location = new System.Drawing.Point(815, 150);
-            this.btnTaoMatKhau.Name = "btnTaoMatKhau";
-            this.btnTaoMatKhau.Size = new System.Drawing.Size(101, 25);
-            this.btnTaoMatKhau.TabIndex = 85;
-            this.btnTaoMatKhau.Text = "      &Tạo mật khẩu";
-            this.btnTaoMatKhau.UseVisualStyleBackColor = true;
-            this.btnTaoMatKhau.Click += new System.EventHandler(this.btnTaoMatKhau_Click);
+            this.btnThemTVKH.Image = ((System.Drawing.Image)(resources.GetObject("btnThemTVKH.Image")));
+            this.btnThemTVKH.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnThemTVKH.Location = new System.Drawing.Point(209, 151);
+            this.btnThemTVKH.Name = "btnThemTVKH";
+            this.btnThemTVKH.Size = new System.Drawing.Size(109, 23);
+            this.btnThemTVKH.TabIndex = 86;
+            this.btnThemTVKH.Text = "&Thêm tư vấn KH";
+            this.btnThemTVKH.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.btnThemTVKH.UseVisualStyleBackColor = true;
+            this.btnThemTVKH.Click += new System.EventHandler(this.btnThemTVKH_Click);
             // 
             // uPatient
             // 
@@ -997,5 +1038,6 @@
         private System.Windows.Forms.Button btnTaoHoSo;
         private uPrintKetQuaSieuAm _uPrintKetQuaSieuAm;
         private System.Windows.Forms.Button btnTaoMatKhau;
+        private System.Windows.Forms.Button btnThemTVKH;
     }
 }

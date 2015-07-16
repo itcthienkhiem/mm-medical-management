@@ -375,6 +375,8 @@ namespace MM
                 _uHoaDonHopDongList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uYKienKhachHangList))
                 _uYKienKhachHangList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uTuVanKhachHangList))
+                _uTuVanKhachHangList.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uNhatKyLienHeCongTy))
                 _uNhatKyLienHeCongTy.DisplayAsThread();
             else if (ctrl.GetType() == typeof(uBookingList))
@@ -614,6 +616,7 @@ namespace MM
                 Global.AllowAddDichVu = false;
                 Global.AllowEditThayDoiSoHoaDon = false;
                 Global.AllowEditThayDoiSoHoaDonXetNghiem = false;
+                Global.AllowAddTuVanKhachHang = false;
 
                 Result result = LogonBus.GetPermission2(Global.LogonGUID);
                 if (result.IsOK)
@@ -1086,6 +1089,19 @@ namespace MM
                             _uYKienKhachHangList.AllowExport = isExport;
                             _uYKienKhachHangList.AllowImport = isImport;
                             _uYKienKhachHangList.AllowLock = isLock;
+                        }
+                        else if (functionCode == Const.TuVanKhachHang)
+                        {
+                            chamSocKhachHangToolStripMenuItem.Enabled = isLogin;
+                            tuVanKhachHangToolStripMenuItem.Enabled = isView && isLogin;
+                            Global.AllowAddTuVanKhachHang= isAdd;
+                            _uTuVanKhachHangList.AllowAdd = isAdd;
+                            _uTuVanKhachHangList.AllowEdit = isEdit;
+                            _uTuVanKhachHangList.AllowDelete = isDelete;
+                            _uTuVanKhachHangList.AllowPrint = isPrint;
+                            _uTuVanKhachHangList.AllowExport = isExport;
+                            _uTuVanKhachHangList.AllowImport = isImport;
+                            _uTuVanKhachHangList.AllowLock = isLock;
                         }
                         else if (functionCode == Const.NhatKyLienHeCongTy)
                         {
@@ -2016,6 +2032,7 @@ namespace MM
                 Global.AllowEditThayDoiSoHoaDonXetNghiem = true;
                 Global.AllowPrintHoaDonXetNghiem = true;
                 Global.AllowExportHoaDonXetNghiem = true;
+                Global.AllowAddTuVanKhachHang = true;
 
                 foreach (Control ctrl in this._mainPanel.Controls)
                 {   
@@ -2179,6 +2196,7 @@ namespace MM
                 baoCaoDoanhThuThuocTheoPhieuThuToolStripMenuItem.Enabled = isLogin;
                 thongKeChiDinhDuocXuatHoaDonToolStripMenuItem.Enabled = isLogin;
                 thongKeChiDinhCuaBacSiToolStripMenuItem.Enabled = isLogin;
+                tuVanKhachHangToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -2705,7 +2723,20 @@ namespace MM
                 case "ThongKeChiDinhCuaBacSi":
                     OnThongKeChiDinhCuaBacSi();
                     break;
+
+                case "TuVanKhachHang":
+                    ClearAllData();
+                    OnTuVanKhachHang();
+                    break;
             }
+        }
+
+        private void OnTuVanKhachHang()
+        {
+            this.Text = string.Format("{0} - Tu van khach hang.", Application.ProductName);
+            ViewControl(_uTuVanKhachHangList);
+            _uTuVanKhachHangList.DisplayBacSiPhuTrach();
+            _uTuVanKhachHangList.DisplayAsThread();
         }
 
         private void OnThongKeChiDinhCuaBacSi()
@@ -3558,6 +3589,8 @@ namespace MM
                 _uHoaDonHopDongList.ClearData();
             else if (ctrl.GetType() == typeof(uYKienKhachHangList))
                 _uYKienKhachHangList.ClearData();
+            else if (ctrl.GetType() == typeof(uTuVanKhachHangList))
+                _uTuVanKhachHangList.ClearData();
             else if (ctrl.GetType() == typeof(uNhatKyLienHeCongTy))
                 _uNhatKyLienHeCongTy.ClearData();
             else if (ctrl.GetType() == typeof(uDiaChiCongTyList))
@@ -3849,6 +3882,7 @@ namespace MM
             _uHuyThuocList.ClearData();
             _uHoaDonXetNghiemList.ClearData();
             _uPhieuChiList.ClearData();
+            _uTuVanKhachHangList.ClearData();
         }
         #endregion
 
