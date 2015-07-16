@@ -616,7 +616,15 @@ namespace MM.Controls
         #region Window Event Handlers
         private void btnThemYKienKhachHang_Click(object sender, EventArgs e)
         {
-            dlgAddYKienKhachHang dlg = new dlgAddYKienKhachHang(_patientRow);
+            object obj = _patientRow;
+            dlgAddYKienKhachHang dlg = new dlgAddYKienKhachHang(obj);
+            dlg.ShowDialog(this);
+        }
+
+        private void btnThemTVKH_Click(object sender, EventArgs e)
+        {
+            object obj = _patientRow;
+            dlgAddTuVanKhachHang dlg = new dlgAddTuVanKhachHang(obj);
             dlg.ShowDialog(this);
         }
 
@@ -772,6 +780,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
         
 

@@ -74,6 +74,7 @@ namespace MM.Common
         public static string PhieuThuHopDong = "PhieuThuHopDong";
         public static string HoaDonHopDong = "HoaDonHopDong";
         public static string YKienKhachHang = "YKienKhachHang";
+        public static string TuVanKhachHang = "TuVanKhachHang";
         public static string NhatKyLienHeCongTy = "NhatKyLienHeCongTy";
         public static string DichVuDaSuDung = "DichVuDaSuDung";
         public static string CanDo = "CanDo";
@@ -172,6 +173,7 @@ namespace MM.Common
         public static string ToaThuocChungTemplate = "Toa thuốc chung";
         public static string ToaThuocSanKhoaTemplate = "Toa thuốc sản khoa";
         public static string YKienKhachHangTemplate = "Ý kiến khách hàng";
+        public static string TuVanKhachHangTemplate = "Tư vấn khách hàng";
         public static string KetQuaXetNghiemCellDyn3200Template = "Kết quả xét nghiệm CellDyn3200";
         public static string KetQuaXetNghiemSinhHoaTemplate = "Kết quả xét nghiệm sinh hóa";
         public static string DanhSachDichVuXuatPhieuThuTemplate = "Danh sách dịch vụ xuất phiếu thu";
