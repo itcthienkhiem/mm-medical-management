@@ -455,3 +455,7 @@ WHERE Status = 0 AND CAST(InvoiceCode as int) > 1454 AND InvoiceDate >= '2015-01
 UPDATE Invoice
 SET InvoiceDate = '2015-04-20 11:21:45.127'
 WHERE InvoiceGUID = '7798067F-1B07-4E97-BB29-3174660C9CCA'
+=======================================================================
+1. Ý kiến khách hàng (YKienKhachHangTemplate.xls)
+2. Tư vấn khách hàng (TuVanKhachHangTemplate.xls)
+3. Thống kê phiếu thu dịch vụ và thuốc (ThongKePhieuThuDichVuVaThuocTemplate.xls)
