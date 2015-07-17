@@ -140,6 +140,8 @@ namespace MM.Controls
                     dgReceipt.DataSource = result.QueryResult;
                     HighlightExportedInvoice();
                     lbKetQuaTimDuoc.Text = string.Format("Kết quả tìm được: {0}", dt.Rows.Count);
+
+                    ShowTongTien();
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -326,6 +328,25 @@ namespace MM.Controls
 
             HighlightExportedInvoice();
         }
+
+        private void ShowTongTien()
+        {
+            if (!chkTongTien.Checked)
+                chkTongTien.Text = "Tổng tiền:";
+            else
+            {
+                Result result = ReceiptBus.GetTongTien(_isFromDateToDate, _fromDate, _toDate, _tenBenhNhan, _type, _type2);
+                if (result.IsOK)
+                {
+                    chkTongTien.Text = string.Format("Tổng tiền: {0:N0} VNĐ", result.QueryResult);
+                }
+                else
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReceiptBus.GetTongTien"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("ReceiptBus.GetTongTien"));
+                }
+            }
+        }
         #endregion
 
         #region Window Event Handlers
@@ -480,6 +501,11 @@ namespace MM.Controls
         {
             DisplayAsThread();
         }
+
+        private void chkTongTien_CheckedChanged(object sender, EventArgs e)
+        {
+            ShowTongTien();
+        }
         #endregion
 
         #region Working Thread
@@ -501,5 +527,7 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
     }
 }

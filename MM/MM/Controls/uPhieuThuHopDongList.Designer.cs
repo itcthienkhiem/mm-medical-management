@@ -30,10 +30,14 @@
         {
             this.components = new System.ComponentModel.Container();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle18 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle14 = new System.Windows.Forms.DataGridViewCellStyle();
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle17 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
             this.panel2 = new System.Windows.Forms.Panel();
+            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.raChuaThuTien = new System.Windows.Forms.RadioButton();
+            this.raDaThuTien = new System.Windows.Forms.RadioButton();
+            this.raAll = new System.Windows.Forms.RadioButton();
             this.cboMaHopDong = new System.Windows.Forms.ComboBox();
             this.companyContractViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.raHopDong = new System.Windows.Forms.RadioButton();
@@ -82,11 +86,9 @@
             this.xuatHoaDonToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.phieuThuHopDongBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._printDialog = new System.Windows.Forms.PrintDialog();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.raChuaThuTien = new System.Windows.Forms.RadioButton();
-            this.raDaThuTien = new System.Windows.Forms.RadioButton();
-            this.raAll = new System.Windows.Forms.RadioButton();
+            this.chkTongTien = new System.Windows.Forms.CheckBox();
             this.panel2.SuspendLayout();
+            this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.companyContractViewBindingSource)).BeginInit();
             this.groupBox1.SuspendLayout();
             this.panel1.SuspendLayout();
@@ -94,11 +96,11 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgPhieuThu)).BeginInit();
             this.ctmAction.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.phieuThuHopDongBindingSource)).BeginInit();
-            this.groupBox2.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel2
             // 
+            this.panel2.Controls.Add(this.chkTongTien);
             this.panel2.Controls.Add(this.groupBox2);
             this.panel2.Controls.Add(this.cboMaHopDong);
             this.panel2.Controls.Add(this.raHopDong);
@@ -116,6 +118,52 @@
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(813, 152);
             this.panel2.TabIndex = 9;
+            // 
+            // groupBox2
+            // 
+            this.groupBox2.Controls.Add(this.raChuaThuTien);
+            this.groupBox2.Controls.Add(this.raDaThuTien);
+            this.groupBox2.Controls.Add(this.raAll);
+            this.groupBox2.Location = new System.Drawing.Point(16, 112);
+            this.groupBox2.Name = "groupBox2";
+            this.groupBox2.Size = new System.Drawing.Size(359, 32);
+            this.groupBox2.TabIndex = 18;
+            this.groupBox2.TabStop = false;
+            // 
+            // raChuaThuTien
+            // 
+            this.raChuaThuTien.AutoSize = true;
+            this.raChuaThuTien.Location = new System.Drawing.Point(261, 10);
+            this.raChuaThuTien.Name = "raChuaThuTien";
+            this.raChuaThuTien.Size = new System.Drawing.Size(88, 17);
+            this.raChuaThuTien.TabIndex = 3;
+            this.raChuaThuTien.Text = "Chưa thu tiền";
+            this.raChuaThuTien.UseVisualStyleBackColor = true;
+            this.raChuaThuTien.CheckedChanged += new System.EventHandler(this.raChuaThuTien_CheckedChanged);
+            // 
+            // raDaThuTien
+            // 
+            this.raDaThuTien.AutoSize = true;
+            this.raDaThuTien.Location = new System.Drawing.Point(129, 10);
+            this.raDaThuTien.Name = "raDaThuTien";
+            this.raDaThuTien.Size = new System.Drawing.Size(77, 17);
+            this.raDaThuTien.TabIndex = 2;
+            this.raDaThuTien.Text = "Đã thu tiền";
+            this.raDaThuTien.UseVisualStyleBackColor = true;
+            this.raDaThuTien.CheckedChanged += new System.EventHandler(this.raDaThuTien_CheckedChanged);
+            // 
+            // raAll
+            // 
+            this.raAll.AutoSize = true;
+            this.raAll.Checked = true;
+            this.raAll.Location = new System.Drawing.Point(20, 10);
+            this.raAll.Name = "raAll";
+            this.raAll.Size = new System.Drawing.Size(56, 17);
+            this.raAll.TabIndex = 1;
+            this.raAll.TabStop = true;
+            this.raAll.Text = "Tất cả";
+            this.raAll.UseVisualStyleBackColor = true;
+            this.raAll.CheckedChanged += new System.EventHandler(this.raAll_CheckedChanged);
             // 
             // cboMaHopDong
             // 
@@ -396,14 +444,14 @@
             this.NguoiTao});
             this.dgPhieuThu.ContextMenuStrip = this.ctmAction;
             this.dgPhieuThu.DataSource = this.phieuThuHopDongBindingSource;
-            dataGridViewCellStyle18.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle18.BackColor = System.Drawing.SystemColors.Window;
-            dataGridViewCellStyle18.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle18.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle18.SelectionBackColor = System.Drawing.SystemColors.Highlight;
-            dataGridViewCellStyle18.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle18.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
-            this.dgPhieuThu.DefaultCellStyle = dataGridViewCellStyle18;
+            dataGridViewCellStyle4.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle4.BackColor = System.Drawing.SystemColors.Window;
+            dataGridViewCellStyle4.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle4.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.SelectionBackColor = System.Drawing.SystemColors.Highlight;
+            dataGridViewCellStyle4.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle4.WrapMode = System.Windows.Forms.DataGridViewTriState.False;
+            this.dgPhieuThu.DefaultCellStyle = dataGridViewCellStyle4;
             this.dgPhieuThu.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgPhieuThu.EditMode = System.Windows.Forms.DataGridViewEditMode.EditOnEnter;
             this.dgPhieuThu.GridColor = System.Drawing.Color.FromArgb(((int)(((byte)(208)))), ((int)(((byte)(215)))), ((int)(((byte)(229)))));
@@ -438,10 +486,10 @@
             // ngayThuDataGridViewTextBoxColumn
             // 
             this.ngayThuDataGridViewTextBoxColumn.DataPropertyName = "NgayThu";
-            dataGridViewCellStyle14.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle14.Format = "dd/MM/yyyy";
-            dataGridViewCellStyle14.NullValue = null;
-            this.ngayThuDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle14;
+            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle2.Format = "dd/MM/yyyy";
+            dataGridViewCellStyle2.NullValue = null;
+            this.ngayThuDataGridViewTextBoxColumn.DefaultCellStyle = dataGridViewCellStyle2;
             this.ngayThuDataGridViewTextBoxColumn.HeaderText = "Ngày thu";
             this.ngayThuDataGridViewTextBoxColumn.Name = "ngayThuDataGridViewTextBoxColumn";
             this.ngayThuDataGridViewTextBoxColumn.ReadOnly = true;
@@ -505,8 +553,8 @@
             // HinhThucThanhToanStr
             // 
             this.HinhThucThanhToanStr.DataPropertyName = "HinhThucThanhToanStr";
-            dataGridViewCellStyle17.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            this.HinhThucThanhToanStr.DefaultCellStyle = dataGridViewCellStyle17;
+            dataGridViewCellStyle3.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            this.HinhThucThanhToanStr.DefaultCellStyle = dataGridViewCellStyle3;
             this.HinhThucThanhToanStr.HeaderText = "Hình thức thanh toán";
             this.HinhThucThanhToanStr.Name = "HinhThucThanhToanStr";
             this.HinhThucThanhToanStr.ReadOnly = true;
@@ -533,65 +581,65 @@
             this.toolStripSeparator5,
             this.xuatHoaDonToolStripMenuItem});
             this.ctmAction.Name = "cmtAction";
-            this.ctmAction.Size = new System.Drawing.Size(153, 160);
+            this.ctmAction.Size = new System.Drawing.Size(146, 138);
             // 
             // addToolStripMenuItem
             // 
             this.addToolStripMenuItem.Image = global::MM.Properties.Resources.add;
             this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.addToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.addToolStripMenuItem.Text = "Thêm";
             this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(142, 6);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Image = global::MM.Properties.Resources.del;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.deleteToolStripMenuItem.Text = "Xóa";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(142, 6);
             // 
             // printPreviewToolStripMenuItem
             // 
             this.printPreviewToolStripMenuItem.Image = global::MM.Properties.Resources.Actions_print_preview_icon;
             this.printPreviewToolStripMenuItem.Name = "printPreviewToolStripMenuItem";
-            this.printPreviewToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.printPreviewToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.printPreviewToolStripMenuItem.Text = "Xem bản in";
             this.printPreviewToolStripMenuItem.Click += new System.EventHandler(this.printPreviewToolStripMenuItem_Click);
             // 
             // toolStripSeparator4
             // 
             this.toolStripSeparator4.Name = "toolStripSeparator4";
-            this.toolStripSeparator4.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator4.Size = new System.Drawing.Size(142, 6);
             // 
             // printToolStripMenuItem
             // 
             this.printToolStripMenuItem.Image = global::MM.Properties.Resources.Printer_icon__1_;
             this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.printToolStripMenuItem.Text = "In";
             this.printToolStripMenuItem.Click += new System.EventHandler(this.printToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(142, 6);
             // 
             // xuatHoaDonToolStripMenuItem
             // 
             this.xuatHoaDonToolStripMenuItem.Image = global::MM.Properties.Resources.invoice_icon;
             this.xuatHoaDonToolStripMenuItem.Name = "xuatHoaDonToolStripMenuItem";
-            this.xuatHoaDonToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.xuatHoaDonToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
             this.xuatHoaDonToolStripMenuItem.Text = "Xuất hóa đơn";
             this.xuatHoaDonToolStripMenuItem.Click += new System.EventHandler(this.xuatHoaDonToolStripMenuItem_Click);
             // 
@@ -603,51 +651,18 @@
             // 
             this._printDialog.UseEXDialog = true;
             // 
-            // groupBox2
+            // chkTongTien
             // 
-            this.groupBox2.Controls.Add(this.raChuaThuTien);
-            this.groupBox2.Controls.Add(this.raDaThuTien);
-            this.groupBox2.Controls.Add(this.raAll);
-            this.groupBox2.Location = new System.Drawing.Point(16, 112);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(359, 32);
-            this.groupBox2.TabIndex = 18;
-            this.groupBox2.TabStop = false;
-            // 
-            // raChuaThuTien
-            // 
-            this.raChuaThuTien.AutoSize = true;
-            this.raChuaThuTien.Location = new System.Drawing.Point(261, 10);
-            this.raChuaThuTien.Name = "raChuaThuTien";
-            this.raChuaThuTien.Size = new System.Drawing.Size(88, 17);
-            this.raChuaThuTien.TabIndex = 3;
-            this.raChuaThuTien.Text = "Chưa thu tiền";
-            this.raChuaThuTien.UseVisualStyleBackColor = true;
-            this.raChuaThuTien.CheckedChanged += new System.EventHandler(this.raChuaThuTien_CheckedChanged);
-            // 
-            // raDaThuTien
-            // 
-            this.raDaThuTien.AutoSize = true;
-            this.raDaThuTien.Location = new System.Drawing.Point(129, 10);
-            this.raDaThuTien.Name = "raDaThuTien";
-            this.raDaThuTien.Size = new System.Drawing.Size(77, 17);
-            this.raDaThuTien.TabIndex = 2;
-            this.raDaThuTien.Text = "Đã thu tiền";
-            this.raDaThuTien.UseVisualStyleBackColor = true;
-            this.raDaThuTien.CheckedChanged += new System.EventHandler(this.raDaThuTien_CheckedChanged);
-            // 
-            // raAll
-            // 
-            this.raAll.AutoSize = true;
-            this.raAll.Checked = true;
-            this.raAll.Location = new System.Drawing.Point(20, 10);
-            this.raAll.Name = "raAll";
-            this.raAll.Size = new System.Drawing.Size(56, 17);
-            this.raAll.TabIndex = 1;
-            this.raAll.TabStop = true;
-            this.raAll.Text = "Tất cả";
-            this.raAll.UseVisualStyleBackColor = true;
-            this.raAll.CheckedChanged += new System.EventHandler(this.raAll_CheckedChanged);
+            this.chkTongTien.AutoSize = true;
+            this.chkTongTien.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.chkTongTien.ForeColor = System.Drawing.Color.Red;
+            this.chkTongTien.Location = new System.Drawing.Point(622, 123);
+            this.chkTongTien.Name = "chkTongTien";
+            this.chkTongTien.Size = new System.Drawing.Size(84, 17);
+            this.chkTongTien.TabIndex = 21;
+            this.chkTongTien.Text = "Tổng tiền:";
+            this.chkTongTien.UseVisualStyleBackColor = true;
+            this.chkTongTien.CheckedChanged += new System.EventHandler(this.chkTongTien_CheckedChanged);
             // 
             // uPhieuThuHopDongList
             // 
@@ -660,6 +675,8 @@
             this.Size = new System.Drawing.Size(813, 454);
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
+            this.groupBox2.ResumeLayout(false);
+            this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.companyContractViewBindingSource)).EndInit();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
@@ -669,8 +686,6 @@
             ((System.ComponentModel.ISupportInitialize)(this.dgPhieuThu)).EndInit();
             this.ctmAction.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.phieuThuHopDongBindingSource)).EndInit();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -730,5 +745,6 @@
         private System.Windows.Forms.RadioButton raChuaThuTien;
         private System.Windows.Forms.RadioButton raDaThuTien;
         private System.Windows.Forms.RadioButton raAll;
+        private System.Windows.Forms.CheckBox chkTongTien;
     }
 }
