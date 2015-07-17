@@ -75,6 +75,85 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetTongTien(bool isFromDateToDate, DateTime fromDate, DateTime toDate, string tenBenhNhan, int type, int type2)
+        {
+            Result result = new Result();
+
+            try
+            {
+                string query = string.Empty;
+                string subQuery = string.Empty;
+                if (type2 == 1 || type2 == 2) subQuery = type2 == 1 ? " AND ChuaThuTien = 0 " : " AND ChuaThuTien = 1 ";
+                if (isFromDateToDate)
+                {
+                    if (type == 0) //Tất cả
+                    {
+                        query = string.Format(@"SELECT SUM(ThanhTien) AS TongTien FROM PhieuThuThuocView P WITH(NOLOCK), ChiTietPhieuThuThuoc C WITH(NOLOCK) 
+                                                WHERE P.PhieuThuThuocGUID = C.PhieuThuThuocGUID AND C.Status = 0 AND NgayThu BETWEEN '{0}' AND '{1}'{2}",
+                           fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"), subQuery);
+                    }
+                    else if (type == 1) //Chưa xóa
+                    {
+                        query = string.Format(@"SELECT SUM(ThanhTien) AS TongTien FROM PhieuThuThuocView P WITH(NOLOCK), ChiTietPhieuThuThuoc C WITH(NOLOCK) 
+                                                WHERE P.PhieuThuThuocGUID = C.PhieuThuThuocGUID AND C.Status = 0 AND P.Status={0} AND NgayThu BETWEEN '{1}' AND '{2}'{3}",
+                        (byte)Status.Actived, fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"), subQuery);
+                    }
+                    else //Đã xóa
+                    {
+                        query = string.Format(@"SELECT SUM(ThanhTien) AS TongTien FROM PhieuThuThuocView P WITH(NOLOCK), ChiTietPhieuThuThuoc C WITH(NOLOCK) 
+                                                WHERE P.PhieuThuThuocGUID = C.PhieuThuThuocGUID AND C.Status = 0 AND P.Status={0} AND NgayThu BETWEEN '{1}' AND '{2}'{3}",
+                        (byte)Status.Deactived, fromDate.ToString("yyyy-MM-dd HH:ss:mm"), toDate.ToString("yyyy-MM-dd HH:ss:mm"), subQuery);
+                    }
+
+                }
+                else
+                {
+                    if (type == 0) //Tất cả
+                    {
+                        query = string.Format(@"SELECT SUM(ThanhTien) AS TongTien FROM PhieuThuThuocView P WITH(NOLOCK), ChiTietPhieuThuThuoc C WITH(NOLOCK) 
+                                                WHERE P.PhieuThuThuocGUID = C.PhieuThuThuocGUID AND C.Status = 0 AND TenBenhNhan LIKE N'%{0}%'{1}", tenBenhNhan, subQuery);
+                    }
+                    else if (type == 1) //Chưa xóa
+                    {
+                        query = string.Format(@"SELECT SUM(ThanhTien) AS TongTien FROM PhieuThuThuocView P WITH(NOLOCK), ChiTietPhieuThuThuoc C WITH(NOLOCK) 
+                                                WHERE P.PhieuThuThuocGUID = C.PhieuThuThuocGUID AND C.Status = 0 AND P.Status={0} AND TenBenhNhan LIKE N'%{1}%'{2}",
+                        (byte)Status.Actived, tenBenhNhan, subQuery);
+                    }
+                    else //Đã xóa
+                    {
+                        query = string.Format(@"SELECT SUM(ThanhTien) AS TongTien FROM PhieuThuThuocView P WITH(NOLOCK), ChiTietPhieuThuThuoc C WITH(NOLOCK) 
+                                                WHERE P.PhieuThuThuocGUID = C.PhieuThuThuocGUID AND C.Status = 0 AND P.Status={0} AND TenBenhNhan LIKE N'%{1}%'{2}",
+                        (byte)Status.Deactived, tenBenhNhan, subQuery);
+                    }
+
+                }
+
+                result = ExcuteQuery(query);
+
+                double tongTien = 0;
+                if (result.IsOK)
+                {
+                    DataTable dt = result.QueryResult as DataTable;
+                    if (dt != null && dt.Rows.Count > 0 && dt.Rows[0][0] != DBNull.Value)
+                        tongTien = Convert.ToDouble(dt.Rows[0][0]);
+                }
+
+                result.QueryResult = tongTien;
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetPhieuThuThuocAsDataTable(string phieuThuThuocGUID)
         {
             Result result = new Result();

@@ -56,6 +56,8 @@ namespace MM.Controls
         #endregion
 
         #region UI Command
+
+
         private void UpdateGUI()
         {
             btnAdd.Enabled = AllowAdd;
@@ -156,6 +158,25 @@ namespace MM.Controls
             }
         }
 
+        private void ShowTongTien()
+        {
+            if (!chkTongTien.Checked)
+                chkTongTien.Text = "Tổng tiền:";
+            else
+            {
+                Result result = PhieuThuHopDongBus.GetTongTien(_filterType, _fromDate, _toDate, _tenNguoiNop, _tenHopDong, _type, _type2);
+                if (result.IsOK)
+                {
+                    chkTongTien.Text = string.Format("Tổng tiền: {0:N0} VNĐ", result.QueryResult);
+                }
+                else
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("PhieuThuHopDongBus.GetTongTien"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("PhieuThuHopDongBus.GetTongTien"));
+                }
+            }
+        }
+
         private void OnDisplayPhieuThuHopDongList()
         {
             Result result = PhieuThuHopDongBus.GetPhieuThuHopDongList(_filterType, _fromDate, _toDate, _tenNguoiNop, _tenHopDong, _type, _type2);
@@ -169,6 +190,8 @@ namespace MM.Controls
                     HighlightExportedInvoice();
 
                     lbKetQuaTimDuoc.Text = string.Format("Kết quả tìm được: {0}", dt.Rows.Count);
+
+                    ShowTongTien();
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -360,6 +383,11 @@ namespace MM.Controls
         #endregion
 
         #region Window Event Handlers
+        private void chkTongTien_CheckedChanged(object sender, EventArgs e)
+        {
+            ShowTongTien();
+        }
+
         private void raTuNgayToiNgay_CheckedChanged(object sender, EventArgs e)
         {
             dtpkTuNgay.Enabled = raTuNgayToiNgay.Checked;
@@ -547,6 +575,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
         
 
