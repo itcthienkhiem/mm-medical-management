@@ -3583,32 +3583,38 @@ namespace MM.Exports
                         range.Value = Convert.ToInt32(row["SoLuong"]);
 
                         range = workSheet.Cells[rowIndex, 6];
-                        range.Value = Convert.ToDouble(row["Amount"]);
+                        range.Value = Convert.ToDouble(row["Price"]);
 
                         range = workSheet.Cells[rowIndex, 7];
-                        range.Value = giaVon;
+                        range.Value = Convert.ToDouble(row["Discount"]);
 
                         range = workSheet.Cells[rowIndex, 8];
+                        range.Value = Convert.ToDouble(row["Amount"]);
+
+                        range = workSheet.Cells[rowIndex, 9];
+                        range.Value = giaVon;
+
+                        range = workSheet.Cells[rowIndex, 10];
                         range.Value = bacSiChiDinh;
 
                         string bsThucHien = string.Empty;
                         if (row["FullName"] != null && row["FullName"] != DBNull.Value)
                             bsThucHien = row["FullName"].ToString();
 
-                        range = workSheet.Cells[rowIndex, 9];
+                        range = workSheet.Cells[rowIndex, 11];
                         range.Value = bsThucHien;
 
-                        range = workSheet.Cells[rowIndex, 10];
+                        range = workSheet.Cells[rowIndex, 12];
                         range.Value = thuTien;
 
-                        range = workSheet.Cells[rowIndex, 11];
+                        range = workSheet.Cells[rowIndex, 13];
                         range.Value = xuatHD;
 
                         rowIndex++;
                     }
                 }
 
-                range = workSheet.Cells[string.Format("A3:L{0}", rowIndex)];
+                range = workSheet.Cells[string.Format("A3:N{0}", rowIndex)];
                 range.Borders.Color = Color.Black;
                 range.Borders.LineStyle = LineStyle.Continuous;
                 range.Borders.Weight = BorderWeight.Thin;
@@ -3699,13 +3705,22 @@ namespace MM.Exports
                         range.WrapText = true;
 
                         range = workSheet.Cells[rowIndex, 5];
+                        range.Value = Convert.ToInt32(row["SoLuong"]);
+
+                        range = workSheet.Cells[rowIndex, 6];
+                        range.Value = Convert.ToDouble(row["DonGia"]);
+
+                        range = workSheet.Cells[rowIndex, 7];
+                        range.Value = Convert.ToDouble(row["Giam"]);
+
+                        range = workSheet.Cells[rowIndex, 8];
                         range.Value = Convert.ToDouble(row["ThanhTien"]);
 
                         rowIndex++;
                     }
                 }
 
-                range = workSheet.Cells[string.Format("A3:F{0}", rowIndex)];
+                range = workSheet.Cells[string.Format("A3:I{0}", rowIndex)];
                 range.Borders.Color = Color.Black;
                 range.Borders.LineStyle = LineStyle.Continuous;
                 range.Borders.Weight = BorderWeight.Thin;
@@ -3796,13 +3811,22 @@ namespace MM.Exports
                         range.WrapText = true;
 
                         range = workSheet.Cells[rowIndex, 5];
+                        range.Value = Convert.ToInt32(row["SoLuong"]);
+
+                        range = workSheet.Cells[rowIndex, 6];
+                        range.Value = Convert.ToDouble(row["DonGia"]);
+
+                        range = workSheet.Cells[rowIndex, 7];
+                        range.Value = Convert.ToDouble(row["Giam"]);
+
+                        range = workSheet.Cells[rowIndex, 8];
                         range.Value = Convert.ToDouble(row["ThanhTien"]);
 
                         rowIndex++;
                     }
                 }
 
-                range = workSheet.Cells[string.Format("A3:F{0}", rowIndex)];
+                range = workSheet.Cells[string.Format("A3:I{0}", rowIndex)];
                 range.Borders.Color = Color.Black;
                 range.Borders.LineStyle = LineStyle.Continuous;
                 range.Borders.Weight = BorderWeight.Thin;

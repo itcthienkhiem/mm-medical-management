@@ -458,5 +458,6 @@ WHERE InvoiceGUID = '7798067F-1B07-4E97-BB29-3174660C9CCA'
 =======================================================================
 1. Ý kiến khách hàng (YKienKhachHangTemplate.xls)
 2. Tư vấn khách hàng (TuVanKhachHangTemplate.xls)
-3. Thống kê phiếu thu dịch vụ và thuốc (ThongKePhieuThuDichVuVaThuocTemplate.xls)
+3. Thống kê phiếu thu dịch vụ và thuốc (ThongKePhieuThuDichVuVaThuocTemplate.xls, 
+ChiTietPhieuThuTemplate.xls, ChiTietPhieuThuThuocTemplate.xls, ChiTietPhieuThuCapCuuTemplate.xls)
 4. Thông kê chỉ định của bác sĩ (ThongKeChiDinhCuaBacSiTemplate.xls)
