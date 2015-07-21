@@ -617,6 +617,10 @@ namespace MM
                 Global.AllowEditThayDoiSoHoaDon = false;
                 Global.AllowEditThayDoiSoHoaDonXetNghiem = false;
                 Global.AllowAddTuVanKhachHang = false;
+                Global.AllowViewGhiNhanTraNo = false;
+                Global.AllowAddGhiNhanTraNo = false;
+                Global.AllowEditGhiNhanTraNo = false;
+                Global.AllowDeleteGhiNhanTraNo = false;
 
                 Result result = LogonBus.GetPermission2(Global.LogonGUID);
                 if (result.IsOK)
@@ -1944,6 +1948,13 @@ namespace MM
                             _uThongKeChiDinhCuaBacSi.AllowExportAll = isExportAll;
                             _uThongKeChiDinhCuaBacSi.AllowConfirm = isConfirm;
                         }
+                        else if (functionCode == Const.GhiNhanTraNo)
+                        {
+                            Global.AllowViewGhiNhanTraNo = isView;
+                            Global.AllowAddGhiNhanTraNo = isAdd;
+                            Global.AllowEditGhiNhanTraNo = isEdit;
+                            Global.AllowDeleteGhiNhanTraNo = isDelete;
+                        }
                     }
                 }
                 else
@@ -2033,6 +2044,10 @@ namespace MM
                 Global.AllowPrintHoaDonXetNghiem = true;
                 Global.AllowExportHoaDonXetNghiem = true;
                 Global.AllowAddTuVanKhachHang = true;
+                Global.AllowViewGhiNhanTraNo = true;
+                Global.AllowAddGhiNhanTraNo = true;
+                Global.AllowEditGhiNhanTraNo = true;
+                Global.AllowDeleteGhiNhanTraNo = true;
 
                 foreach (Control ctrl in this._mainPanel.Controls)
                 {   
