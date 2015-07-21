@@ -177,6 +177,12 @@ namespace MM.Common
         public static bool AllowEditThayDoiSoHoaDon = true;
         public static bool AllowEditThayDoiSoHoaDonXetNghiem = true;
 
+        //Ghi nhận trả nợ
+        public static bool AllowViewGhiNhanTraNo = true;
+        public static bool AllowAddGhiNhanTraNo = true;
+        public static bool AllowEditGhiNhanTraNo = true;
+        public static bool AllowDeleteGhiNhanTraNo = true;
+
         public static DateTime MinDateTime = new DateTime(1753, 1, 1);
         public static DateTime MaxDateTime = new DateTime(9997, 12, 31);
 
