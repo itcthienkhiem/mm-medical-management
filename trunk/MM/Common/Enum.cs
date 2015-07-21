@@ -5,6 +5,14 @@ using System.Text;
 
 namespace MM.Common
 {
+    public enum LoaiPT : byte
+    {
+        DichVu = 0,
+        Thuoc,
+        HopDong,
+        CapCuu
+    }
+
     public enum ServiceType : byte
     {
         CanLamSang = 0,
