@@ -144,7 +144,7 @@ namespace MM.Controls
                 if (MsgBox.Question(Application.ProductName, "Bạn có muốn xóa những ghi nhận trả nợ mà bạn đã đánh dấu ?") == DialogResult.Yes)
                 {
 
-                    Result result = GhiNhanTraNoBus.DeleteGhiNhanTraNo(keys);
+                    Result result = GhiNhanTraNoBus.DeleteGhiNhanTraNo(keys, PhieuThuGUID, LoaiPT);
                     if (result.IsOK)
                         DisplayAsThread();
                     else
