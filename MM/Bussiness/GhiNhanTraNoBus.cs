@@ -38,16 +38,18 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result GetTongTienTraNo(string phieuThuGUID, LoaiPT loaiPT)
+        public static Result GetTongTienTraNo(string ghiNhanTraNoGUID, string phieuThuGUID, LoaiPT loaiPT)
         {
             Result result = new Result();
 
             try
             {
-                string query = string.Format(@"SELECT SUM(SoTien) AS TongTien FROM GhiNhanTraNo WITH(NOLOCK) 
-                                                WHERE MaPhieuThuGUID = '{0}' AND LoaiPT = {1} AND [Status] = 0", 
-                                                phieuThuGUID, (int)loaiPT);
+                string subQuery = ghiNhanTraNoGUID == string.Empty ? 
+                    string.Empty : string.Format("AND GhiNhanTraNoGUID <> '{0}'", ghiNhanTraNoGUID);
 
+                string query = string.Format(@"SELECT SUM(SoTien) AS TongTien FROM GhiNhanTraNo WITH(NOLOCK) 
+                                                WHERE MaPhieuThuGUID = '{0}' AND LoaiPT = {1} AND [Status] = 0 {2}", 
+                                                phieuThuGUID, (int)loaiPT, subQuery);
 
                 result = ExcuteQuery(query);
 
@@ -130,7 +132,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result DeleteGhiNhanTraNo(List<string> keys)
+        public static Result DeleteGhiNhanTraNo(List<string> keys, string phieuThuGUID, LoaiPT loaiPT)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -140,6 +142,7 @@ namespace MM.Bussiness
                 db = new MMOverride();
                 using (TransactionScope t = new TransactionScope(TransactionScopeOption.RequiresNew))
                 {
+                    bool isDelete = false;
                     string desc = string.Empty;
                     foreach (string key in keys)
                     {
@@ -148,10 +151,38 @@ namespace MM.Bussiness
                         {
                             tn.DeletedDate = DateTime.Now;
                             tn.DeletedBy = Guid.Parse(Global.UserGUID);
+
+                            if (tn.Status == (byte)Status.Actived)
+                                isDelete = true;
+
                             tn.Status = (byte)Status.Deactived;
 
                             desc += string.Format("- GUID: '{0}', Phiếu thu GUID: '{1}', Ngày trả: '{2}', Số tiền: '{3}', Ghi chú: '{4}'\n",
                                 tn.GhiNhanTraNoGUID.ToString(), tn.MaPhieuThuGUID.ToString(), tn.NgayTra.ToString("dd/MM/yyyy HH:mm:ss"), tn.SoTien, tn.GhiChu);
+                        }
+                    }
+
+                    //Update trạng thái phiếu thu
+                    if (isDelete)
+                    {
+                        switch (loaiPT)
+                        {
+                            case LoaiPT.DichVu:
+                                Receipt ptdv = db.Receipts.Where(p => p.ReceiptGUID.ToString() == phieuThuGUID).FirstOrDefault();
+                                ptdv.ChuaThuTien = true;
+                                break;
+                            case LoaiPT.Thuoc:
+                                PhieuThuThuoc ptt = db.PhieuThuThuocs.Where(p => p.PhieuThuThuocGUID.ToString() == phieuThuGUID).FirstOrDefault();
+                                ptt.ChuaThuTien = true;
+                                break;
+                            case LoaiPT.HopDong:
+                                PhieuThuHopDong pthd = db.PhieuThuHopDongs.Where(p => p.PhieuThuHopDongGUID.ToString() == phieuThuGUID).FirstOrDefault();
+                                pthd.ChuaThuTien = true;
+                                break;
+                            case LoaiPT.CapCuu:
+                                PhieuThuCapCuu ptcc = db.PhieuThuCapCuus.Where(p => p.PhieuThuCapCuuGUID.ToString() == phieuThuGUID).FirstOrDefault();
+                                ptcc.ChuaThuTien = true;
+                                break;
                         }
                     }
 
