@@ -1550,6 +1550,8 @@ namespace MM.Dialogs
         {
             if (lvCapture.SelectedItems == null || lvCapture.SelectedItems.Count <= 0) return;
 
+            if (MsgBox.Question(this.Text, "Bạn có muốn xóa hình bạn đang chọn ?") == System.Windows.Forms.DialogResult.No) return;
+
             foreach (ListViewItem item in lvCapture.SelectedItems)
             {
                 int imgIndex = item.ImageIndex;
@@ -1560,6 +1562,8 @@ namespace MM.Dialogs
 
         private void xóaTấtCảToolStripMenuItem_Click(object sender, EventArgs e)
         {
+            if (MsgBox.Question(this.Text, "Bạn có muốn xóa tất cả hình ?") == System.Windows.Forms.DialogResult.No) return;
+
             lvCapture.Items.Clear();
             imgListCapture.Images.Clear();
             _imgCount = 0;
