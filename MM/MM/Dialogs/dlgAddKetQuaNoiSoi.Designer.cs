@@ -79,6 +79,8 @@
             this.tabKhamNoiSoi = new System.Windows.Forms.TabControl();
             this.pageKetQuaNoiSoi = new System.Windows.Forms.TabPage();
             this.panel5 = new System.Windows.Forms.Panel();
+            this._uKetQuaNoiSoiTrucTrang = new MM.Controls.uKetQuaNoiSoiTrucTrang();
+            this._uKetQuaNoiSoiDaDay = new MM.Controls.uKetQuaNoiSoiDaDay();
             this._uKetQuaNoiSoiTaiMuiHong = new MM.Controls.uKetQuaNoiSoiTaiMuiHong();
             this._uKetQuaNoiSoiHongThanhQuan = new MM.Controls.uKetQuaNoiSoiHongThanhQuan();
             this._uKetQuaNoiSoiTongQuat = new MM.Controls.uKetQuaNoiSoiTongQuat();
@@ -102,8 +104,6 @@
             this.btnStop = new System.Windows.Forms.Button();
             this.btnPlay = new System.Windows.Forms.Button();
             this.imgList = new System.Windows.Forms.ImageList(this.components);
-            this._uKetQuaNoiSoiDaDay = new MM.Controls.uKetQuaNoiSoiDaDay();
-            this._uKetQuaNoiSoiTrucTrang = new MM.Controls.uKetQuaNoiSoiTrucTrang();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHinh1)).BeginInit();
             this.ctmHinh1.SuspendLayout();
@@ -400,7 +400,7 @@
             this.toolStripSeparator6,
             this.toolStripMenuItem3});
             this.ctmHinh4.Name = "ctmHinh1";
-            this.ctmHinh4.Size = new System.Drawing.Size(201, 54);
+            this.ctmHinh4.Size = new System.Drawing.Size(201, 76);
             // 
             // chọnHìnhTừBênNgoàiToolStripMenuItem3
             // 
@@ -622,6 +622,38 @@
             this.panel5.Name = "panel5";
             this.panel5.Size = new System.Drawing.Size(834, 246);
             this.panel5.TabIndex = 3;
+            // 
+            // _uKetQuaNoiSoiTrucTrang
+            // 
+            this._uKetQuaNoiSoiTrucTrang.DaiTrangGocGan = "Bình thường";
+            this._uKetQuaNoiSoiTrucTrang.DaiTrangGocLach = "Bình thường";
+            this._uKetQuaNoiSoiTrucTrang.DaiTrangNgang = "Bình thường";
+            this._uKetQuaNoiSoiTrucTrang.DaiTrangPhai = "Bình thường";
+            this._uKetQuaNoiSoiTrucTrang.DaiTrangTrai = "Bình thường";
+            this._uKetQuaNoiSoiTrucTrang.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uKetQuaNoiSoiTrucTrang.Location = new System.Drawing.Point(0, 0);
+            this._uKetQuaNoiSoiTrucTrang.ManhTrang = "Bình thường";
+            this._uKetQuaNoiSoiTrucTrang.Name = "_uKetQuaNoiSoiTrucTrang";
+            this._uKetQuaNoiSoiTrucTrang.Size = new System.Drawing.Size(834, 246);
+            this._uKetQuaNoiSoiTrucTrang.TabIndex = 14;
+            this._uKetQuaNoiSoiTrucTrang.TrucTrang = "Bình thường";
+            this._uKetQuaNoiSoiTrucTrang.Visible = false;
+            // 
+            // _uKetQuaNoiSoiDaDay
+            // 
+            this._uKetQuaNoiSoiDaDay.Clotest = "Âm tính";
+            this._uKetQuaNoiSoiDaDay.DaDay = "Dạ dày sạch, không ứ đọng. Tâm vị, thân vị, hang vị bình thường, bờ cong nhỏ khôn" +
+                "g loét, không u. Lỗ môn vị tròn co bóp tốt.";
+            this._uKetQuaNoiSoiDaDay.Dock = System.Windows.Forms.DockStyle.Fill;
+            this._uKetQuaNoiSoiDaDay.HangVi = "Bình thường";
+            this._uKetQuaNoiSoiDaDay.HanhTaTrang = "Không biến dạng";
+            this._uKetQuaNoiSoiDaDay.Location = new System.Drawing.Point(0, 0);
+            this._uKetQuaNoiSoiDaDay.MonVi = "Lỗ môn vị tròn co bóp tốt.";
+            this._uKetQuaNoiSoiDaDay.Name = "_uKetQuaNoiSoiDaDay";
+            this._uKetQuaNoiSoiDaDay.Size = new System.Drawing.Size(834, 246);
+            this._uKetQuaNoiSoiDaDay.TabIndex = 13;
+            this._uKetQuaNoiSoiDaDay.ThucQuan = "Bình thường";
+            this._uKetQuaNoiSoiDaDay.Visible = false;
             // 
             // _uKetQuaNoiSoiTaiMuiHong
             // 
@@ -889,38 +921,6 @@
             this.imgList.TransparentColor = System.Drawing.Color.Transparent;
             this.imgList.Images.SetKeyName(0, "camera-icon (1).png");
             this.imgList.Images.SetKeyName(1, "clipboard-search-result-icon.png");
-            // 
-            // _uKetQuaNoiSoiDaDay
-            // 
-            this._uKetQuaNoiSoiDaDay.Clotest = "Âm tính";
-            this._uKetQuaNoiSoiDaDay.DaDay = "Dạ dày sạch, không ứ đọng. Tâm vị, thân vị, hang vị bình thường, bờ cong nhỏ khôn" +
-                "g loét, không u. Lỗ môn vị tròn co bóp tốt.";
-            this._uKetQuaNoiSoiDaDay.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._uKetQuaNoiSoiDaDay.HangVi = "Bình thường";
-            this._uKetQuaNoiSoiDaDay.HanhTaTrang = "Không biến dạng";
-            this._uKetQuaNoiSoiDaDay.Location = new System.Drawing.Point(0, 0);
-            this._uKetQuaNoiSoiDaDay.MonVi = "Lỗ môn vị tròn co bóp tốt.";
-            this._uKetQuaNoiSoiDaDay.Name = "_uKetQuaNoiSoiDaDay";
-            this._uKetQuaNoiSoiDaDay.Size = new System.Drawing.Size(834, 246);
-            this._uKetQuaNoiSoiDaDay.TabIndex = 13;
-            this._uKetQuaNoiSoiDaDay.ThucQuan = "Bình thường";
-            this._uKetQuaNoiSoiDaDay.Visible = false;
-            // 
-            // _uKetQuaNoiSoiTrucTrang
-            // 
-            this._uKetQuaNoiSoiTrucTrang.DaiTrangGocGan = "Bình thường";
-            this._uKetQuaNoiSoiTrucTrang.DaiTrangGocLach = "Bình thường";
-            this._uKetQuaNoiSoiTrucTrang.DaiTrangNgang = "Bình thường";
-            this._uKetQuaNoiSoiTrucTrang.DaiTrangPhai = "Bình thường";
-            this._uKetQuaNoiSoiTrucTrang.DaiTrangTrai = "Bình thường";
-            this._uKetQuaNoiSoiTrucTrang.Dock = System.Windows.Forms.DockStyle.Fill;
-            this._uKetQuaNoiSoiTrucTrang.Location = new System.Drawing.Point(0, 0);
-            this._uKetQuaNoiSoiTrucTrang.ManhTrang = "Bình thường";
-            this._uKetQuaNoiSoiTrucTrang.Name = "_uKetQuaNoiSoiTrucTrang";
-            this._uKetQuaNoiSoiTrucTrang.Size = new System.Drawing.Size(834, 246);
-            this._uKetQuaNoiSoiTrucTrang.TabIndex = 14;
-            this._uKetQuaNoiSoiTrucTrang.TrucTrang = "Bình thường";
-            this._uKetQuaNoiSoiTrucTrang.Visible = false;
             // 
             // dlgAddKetQuaNoiSoi
             // 
