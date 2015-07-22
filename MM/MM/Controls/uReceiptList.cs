@@ -364,7 +364,7 @@ namespace MM.Controls
 
             dlgGhiNhanTraNo dlg = new dlgGhiNhanTraNo(LoaiPT.DichVu, phieuThuGUID, daThuTien);
             dlg.ShowDialog();
-            if (dlg.IsChangeData) DisplayAsThread();
+            if (dlg.IsDataChange) DisplayAsThread();
         }
         #endregion
 

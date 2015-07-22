@@ -52,7 +52,7 @@
             this.MinimizeBox = false;
             this.Name = "dlgGhiNhanTraNo";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "Ghi Nhan Tra No";
+            this.Text = "Ghi nhan tra no";
             this.Load += new System.EventHandler(this.dlgGhiNhanTraNo_Load);
             this.ResumeLayout(false);
 

@@ -263,6 +263,12 @@
     <Compile Include="Controls\uSMSLog.Designer.cs">
       <DependentUpon>uSMSLog.cs</DependentUpon>
     </Compile>
+    <Compile Include="Dialogs\dlgAddGhiNhanTraNo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddGhiNhanTraNo.Designer.cs">
+      <DependentUpon>dlgAddGhiNhanTraNo.cs</DependentUpon>
+    </Compile>
     <Compile Include="Dialogs\dlgAddTuVanKhachHang.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -1919,6 +1925,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Controls\uSMSLog.resx">
       <DependentUpon>uSMSLog.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddGhiNhanTraNo.resx">
+      <DependentUpon>dlgAddGhiNhanTraNo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddTuVanKhachHang.resx">
       <DependentUpon>dlgAddTuVanKhachHang.cs</DependentUpon>

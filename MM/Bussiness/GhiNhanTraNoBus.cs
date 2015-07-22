@@ -225,7 +225,7 @@ namespace MM.Bussiness
             return result;
         }
 
-        public static Result InsertGhiNhanTraNo(GhiNhanTraNo ghiNhanTraNo)
+        public static Result InsertGhiNhanTraNo(GhiNhanTraNo ghiNhanTraNo, bool isDataTraDu, string phieuThuGUID, LoaiPT loaiPT)
         {
             Result result = new Result();
             MMOverride db = null;
@@ -298,6 +298,28 @@ namespace MM.Bussiness
                             db.SubmitChanges();
                         }
                     }
+
+                    switch (loaiPT)
+                    {
+                        case LoaiPT.DichVu:
+                            Receipt ptdv = db.Receipts.Where(p => p.ReceiptGUID.ToString() == phieuThuGUID).FirstOrDefault();
+                            ptdv.ChuaThuTien = !isDataTraDu;
+                            break;
+                        case LoaiPT.Thuoc:
+                            PhieuThuThuoc ptt = db.PhieuThuThuocs.Where(p => p.PhieuThuThuocGUID.ToString() == phieuThuGUID).FirstOrDefault();
+                            ptt.ChuaThuTien = !isDataTraDu;
+                            break;
+                        case LoaiPT.HopDong:
+                            PhieuThuHopDong pthd = db.PhieuThuHopDongs.Where(p => p.PhieuThuHopDongGUID.ToString() == phieuThuGUID).FirstOrDefault();
+                            pthd.ChuaThuTien = !isDataTraDu;
+                            break;
+                        case LoaiPT.CapCuu:
+                            PhieuThuCapCuu ptcc = db.PhieuThuCapCuus.Where(p => p.PhieuThuCapCuuGUID.ToString() == phieuThuGUID).FirstOrDefault();
+                            ptcc.ChuaThuTien = !isDataTraDu;
+                            break;
+                    }
+
+                    db.SubmitChanges();
 
                     t.Complete();
                 }
