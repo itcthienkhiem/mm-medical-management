@@ -372,7 +372,7 @@ namespace MM.Databasae
     #endregion
 		
 		public MMDataContext() : 
-				base(global::MM.Databasae.Properties.Settings.Default.MMConnectionString13, mappingSource)
+				base(global::MM.Databasae.Properties.Settings.Default.MMConnectionString14, mappingSource)
 		{
 			OnCreated();
 		}
@@ -87213,6 +87213,8 @@ namespace MM.Databasae
 		
 		private int _LoaiPT;
 		
+		private string _GhiChu;
+		
 		private System.Nullable<System.DateTime> _CreatedDate;
 		
 		private System.Nullable<System.Guid> _CreatedBy;
@@ -87241,6 +87243,8 @@ namespace MM.Databasae
     partial void OnSoTienChanged();
     partial void OnLoaiPTChanging(int value);
     partial void OnLoaiPTChanged();
+    partial void OnGhiChuChanging(string value);
+    partial void OnGhiChuChanged();
     partial void OnCreatedDateChanging(System.Nullable<System.DateTime> value);
     partial void OnCreatedDateChanged();
     partial void OnCreatedByChanging(System.Nullable<System.Guid> value);
@@ -87358,6 +87362,26 @@ namespace MM.Databasae
 					this._LoaiPT = value;
 					this.SendPropertyChanged("LoaiPT");
 					this.OnLoaiPTChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GhiChu", DbType="NVarChar(MAX)")]
+		public string GhiChu
+		{
+			get
+			{
+				return this._GhiChu;
+			}
+			set
+			{
+				if ((this._GhiChu != value))
+				{
+					this.OnGhiChuChanging(value);
+					this.SendPropertyChanging();
+					this._GhiChu = value;
+					this.SendPropertyChanged("GhiChu");
+					this.OnGhiChuChanged();
 				}
 			}
 		}
@@ -87554,6 +87578,8 @@ namespace MM.Databasae
 		private string _NguoiTao;
 		
 		private string _NguoiCapNhat;
+		
+		private string _GhiChu;
 		
 		public GhiNhanTraNoView()
 		{
@@ -87779,6 +87805,22 @@ namespace MM.Databasae
 				if ((this._NguoiCapNhat != value))
 				{
 					this._NguoiCapNhat = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_GhiChu", DbType="NVarChar(MAX)")]
+		public string GhiChu
+		{
+			get
+			{
+				return this._GhiChu;
+			}
+			set
+			{
+				if ((this._GhiChu != value))
+				{
+					this._GhiChu = value;
 				}
 			}
 		}
