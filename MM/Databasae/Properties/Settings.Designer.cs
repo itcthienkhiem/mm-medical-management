@@ -183,5 +183,16 @@ namespace MM.Databasae.Properties {
                 return ((string)(this["MMConnectionString13"]));
             }
         }
+        
+        [global::System.Configuration.ApplicationScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=(local)\\SQL2008EXPRESS;Initial Catalog=MM;Persist Security Info=True;" +
+            "User ID=sa;Password=sql^12345678")]
+        public string MMConnectionString14 {
+            get {
+                return ((string)(this["MMConnectionString14"]));
+            }
+        }
     }
 }
