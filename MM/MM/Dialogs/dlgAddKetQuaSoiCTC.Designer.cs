@@ -431,7 +431,7 @@
             this.toolStripSeparator2,
             this.chọnHìnhToolStripMenuItem});
             this.ctmCapture.Name = "ctmCapture";
-            this.ctmCapture.Size = new System.Drawing.Size(135, 82);
+            this.ctmCapture.Size = new System.Drawing.Size(153, 104);
             // 
             // xóaToolStripMenuItem
             // 
@@ -443,7 +443,7 @@
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(131, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
             // 
             // xóaTấtCảToolStripMenuItem
             // 
@@ -455,7 +455,7 @@
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(131, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
             // 
             // chọnHìnhToolStripMenuItem
             // 
