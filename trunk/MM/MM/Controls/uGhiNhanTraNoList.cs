@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using MM.Common;
 using System.Threading;
 using MM.Bussiness;
+using MM.Dialogs;
 
 namespace MM.Controls
 {
@@ -23,6 +24,7 @@ namespace MM.Controls
         public string PhieuThuGUID = string.Empty;
         public bool DaThuTien = true;
         public event CloseClickEventHandler OnCloseEvent = null;
+        public bool IsDataChange = false;
         #endregion
 
         #region Constructor
@@ -89,21 +91,21 @@ namespace MM.Controls
 
         private void CalculateCongNo()
         {
-            //Get tổng tiền đã trả
-            double tongTienTra = 0;
-            Result result = GhiNhanTraNoBus.GetTongTienTraNo(PhieuThuGUID, LoaiPT);
-            if (result.IsOK)
-                tongTienTra = Convert.ToDouble(result.QueryResult);
-            else
-            {
-                MsgBox.Show(Application.ProductName, result.GetErrorAsString("GhiNhanTraNoBus.GetTongTienTraNo"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("GhiNhanTraNoBus.GetTongTienTraNo"));
-            }
-
-            //Get tổng tiền còn nợ
-            double tongTienNo = 0;
             if (!DaThuTien)
             {
+                //Get tổng tiền đã trả
+                double tongTienTra = 0;
+                Result result = GhiNhanTraNoBus.GetTongTienTraNo(string.Empty, PhieuThuGUID, LoaiPT);
+                if (result.IsOK)
+                    tongTienTra = Convert.ToDouble(result.QueryResult);
+                else
+                {
+                    MsgBox.Show(Application.ProductName, result.GetErrorAsString("GhiNhanTraNoBus.GetTongTienTraNo"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("GhiNhanTraNoBus.GetTongTienTraNo"));
+                }
+
+                //Get tổng tiền còn nợ
+                double tongTienNo = 0;
                 result = GhiNhanTraNoBus.GetTongTienPhieuThu(PhieuThuGUID, LoaiPT);
                 if (result.IsOK)
                     tongTienNo = Convert.ToDouble(result.QueryResult);
@@ -112,21 +114,47 @@ namespace MM.Controls
                     MsgBox.Show(Application.ProductName, result.GetErrorAsString("GhiNhanTraNoBus.GetTongTienPhieuThu"), IconType.Error);
                     Utility.WriteToTraceLog(result.GetErrorAsString("GhiNhanTraNoBus.GetTongTienPhieuThu"));
                 }
+
+                tongTienNo = tongTienNo - tongTienTra;
+
+                lbConNo.Text = string.Format("Còn nợ: {0:N0} VNĐ", tongTienNo);
             }
-
-            tongTienNo = tongTienNo - tongTienTra;
-
-            lbConNo.Text = string.Format("Còn nợ: {0:N0} VNĐ", tongTienNo);
+            else
+                lbConNo.Text = "Còn nợ: 0 VNĐ";
         }
 
         private void OnAdd()
         {
+            if (DaThuTien)
+            {
+                MsgBox.Show(Application.ProductName, "Phiếu thu này đã thanh toán tiền hết rồi.", IconType.Information);
+                return;
+            }
 
+            dlgAddGhiNhanTraNo dlg = new dlgAddGhiNhanTraNo(PhieuThuGUID, LoaiPT);
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                IsDataChange = true;
+                DisplayAsThread();
+            }
         }
 
         private void OnEdit()
         {
+            if (dgTraNo.SelectedRows == null || dgTraNo.SelectedRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 ghi nhận trả nợ.", IconType.Information);
+                return;
+            }
 
+            DataRow drData = (dgTraNo.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            dlgAddGhiNhanTraNo dlg = new dlgAddGhiNhanTraNo(drData, PhieuThuGUID, LoaiPT);
+            if (dlg.ShowDialog(this) == DialogResult.OK)
+            {
+                IsDataChange = true;
+                DaThuTien = dlg.IsDaTraDu;
+                DisplayAsThread();
+            }
         }
 
         private void OnDelete()
@@ -146,7 +174,11 @@ namespace MM.Controls
 
                     Result result = GhiNhanTraNoBus.DeleteGhiNhanTraNo(keys, PhieuThuGUID, LoaiPT);
                     if (result.IsOK)
+                    {
+                        IsDataChange = true;
+                        DaThuTien = false;
                         DisplayAsThread();
+                    }
                     else
                     {
                         MsgBox.Show(Application.ProductName, result.GetErrorAsString("GhiNhanTraNoBus.DeleteGhiNhanTraNo"), IconType.Error);
@@ -162,7 +194,8 @@ namespace MM.Controls
         #region Window Event Handlers
         private void dgTraNo_CellDoubleClick(object sender, DataGridViewCellEventArgs e)
         {
-
+            if (!Global.AllowEditGhiNhanTraNo) return;
+            OnEdit();
         }
 
         private void btnAdd_Click(object sender, EventArgs e)

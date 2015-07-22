@@ -16,7 +16,6 @@ namespace MM.Dialogs
         private LoaiPT _loaiPT = LoaiPT.DichVu;
         private string _phieuThuGUID = string.Empty;
         private bool _daThuTien = true;
-        public bool IsChangeData = false;
         #endregion
 
         #region Constructor
@@ -30,6 +29,14 @@ namespace MM.Dialogs
             _uGhiNhanTraNoList.PhieuThuGUID = _phieuThuGUID;
             _uGhiNhanTraNoList.DaThuTien = _daThuTien;
             _uGhiNhanTraNoList.OnCloseEvent += new MM.Controls.CloseClickEventHandler(_uGhiNhanTraNoList_OnCloseEvent);
+        }
+        #endregion
+
+        #region Properties
+        public bool IsDataChange
+        {
+            get { return _uGhiNhanTraNoList.IsDataChange; }
+            set { _uGhiNhanTraNoList.IsDataChange = value; }
         }
         #endregion
 
