@@ -107,6 +107,12 @@
     <Reference Include="TXTextControl, Version=15.1.800.500, Culture=neutral, PublicKeyToken=6b83fe9a75cfb638" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\uGhiNhanTraNoList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uGhiNhanTraNoList.Designer.cs">
+      <DependentUpon>uGhiNhanTraNoList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uTuVanKhachHangList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -274,6 +280,12 @@
     </Compile>
     <Compile Include="Dialogs\dlgCauHinhShareFolder.Designer.cs">
       <DependentUpon>dlgCauHinhShareFolder.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgGhiNhanTraNo.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgGhiNhanTraNo.Designer.cs">
+      <DependentUpon>dlgGhiNhanTraNo.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\dlgHoaDonXetNghiem.cs">
       <SubType>Form</SubType>
@@ -1830,6 +1842,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\uGhiNhanTraNoList.resx">
+      <DependentUpon>uGhiNhanTraNoList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uTuVanKhachHangList.resx">
       <DependentUpon>uTuVanKhachHangList.cs</DependentUpon>
     </EmbeddedResource>
@@ -1913,6 +1928,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgCauHinhShareFolder.resx">
       <DependentUpon>dlgCauHinhShareFolder.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgGhiNhanTraNo.resx">
+      <DependentUpon>dlgGhiNhanTraNo.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgHoaDonXetNghiem.resx">
       <DependentUpon>dlgHoaDonXetNghiem.cs</DependentUpon>
@@ -2672,6 +2690,7 @@
     <None Include="Properties\DataSources\MM.Databasae.DichVuConView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.DichVuLamThemView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.DocStaffView.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.GhiNhanTraNoView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.GiaCapCuuView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.GiaDichVuHopDongView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.GiaThuocView.datasource" />

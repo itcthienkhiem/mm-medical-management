@@ -75,11 +75,13 @@ namespace MM.Controls
             btnPrint.Enabled = AllowPrint;
             btnExportInvoice.Enabled = Global.AllowExportHoaDonDichVu;
             btnExportExcel.Enabled = AllowExport;
+            btnGhiNhanTraNo.Enabled = Global.AllowViewGhiNhanTraNo;
 
             deleteToolStripMenuItem.Enabled = AllowDelete;
             printToolStripMenuItem.Enabled = AllowPrint;
             exportExcelToolStripMenuItem.Enabled = AllowExport;
             xuatHoaDonToolStripMenuItem.Enabled = Global.AllowExportHoaDonDichVu;
+            ghiNhanTraNoToolStripMenuItem.Enabled = Global.AllowViewGhiNhanTraNo;
         }
 
         public void DisplayAsThread()
@@ -347,6 +349,23 @@ namespace MM.Controls
                 }
             }
         }
+
+        private void GhiNhanTraNo()
+        {
+            if (dgReceipt.SelectedRows == null || dgReceipt.SelectedRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 phiếu thu.", IconType.Information);
+                return;
+            }
+
+            DataRow drReceipt = (dgReceipt.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            string phieuThuGUID = drReceipt["ReceiptGUID"].ToString();
+            bool daThuTien = Convert.ToBoolean(drReceipt["DaThuTien"]);
+
+            dlgGhiNhanTraNo dlg = new dlgGhiNhanTraNo(LoaiPT.DichVu, phieuThuGUID, daThuTien);
+            dlg.ShowDialog();
+            if (dlg.IsChangeData) DisplayAsThread();
+        }
         #endregion
 
         #region Window Event Handlers
@@ -505,6 +524,16 @@ namespace MM.Controls
         private void chkTongTien_CheckedChanged(object sender, EventArgs e)
         {
             ShowTongTien();
+        }
+
+        private void btnGhiNhanTraNo_Click(object sender, EventArgs e)
+        {
+            GhiNhanTraNo();
+        }
+
+        private void ghiNhanTraNoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GhiNhanTraNo();
         }
         #endregion
 

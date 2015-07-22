@@ -33,6 +33,7 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle4 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle3 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(uReceiptList));
             this.panel1 = new System.Windows.Forms.Panel();
             this.btnExportExcel = new System.Windows.Forms.Button();
             this.btnExportInvoice = new System.Windows.Forms.Button();
@@ -82,6 +83,9 @@
             this.receiptViewBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this._printDialog = new System.Windows.Forms.PrintDialog();
             this.panel3 = new System.Windows.Forms.Panel();
+            this.btnGhiNhanTraNo = new System.Windows.Forms.Button();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.ghiNhanTraNoToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.panel1.SuspendLayout();
             this.panel2.SuspendLayout();
             this.groupBox2.SuspendLayout();
@@ -94,6 +98,7 @@
             // 
             // panel1
             // 
+            this.panel1.Controls.Add(this.btnGhiNhanTraNo);
             this.panel1.Controls.Add(this.btnExportExcel);
             this.panel1.Controls.Add(this.btnExportInvoice);
             this.panel1.Controls.Add(this.btnPrint);
@@ -536,54 +541,56 @@
             this.toolStripSeparator5,
             this.exportExcelToolStripMenuItem,
             this.toolStripSeparator1,
-            this.xuatHoaDonToolStripMenuItem});
+            this.xuatHoaDonToolStripMenuItem,
+            this.toolStripSeparator2,
+            this.ghiNhanTraNoToolStripMenuItem});
             this.ctmAction.Name = "cmtAction";
-            this.ctmAction.Size = new System.Drawing.Size(146, 110);
+            this.ctmAction.Size = new System.Drawing.Size(157, 160);
             // 
             // deleteToolStripMenuItem
             // 
             this.deleteToolStripMenuItem.Image = global::MM.Properties.Resources.del;
             this.deleteToolStripMenuItem.Name = "deleteToolStripMenuItem";
-            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.deleteToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.deleteToolStripMenuItem.Text = "Xóa";
             this.deleteToolStripMenuItem.Click += new System.EventHandler(this.deleteToolStripMenuItem_Click);
             // 
             // toolStripSeparator3
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
-            this.toolStripSeparator3.Size = new System.Drawing.Size(142, 6);
+            this.toolStripSeparator3.Size = new System.Drawing.Size(153, 6);
             // 
             // printToolStripMenuItem
             // 
             this.printToolStripMenuItem.Image = global::MM.Properties.Resources.Printer_icon__1_;
             this.printToolStripMenuItem.Name = "printToolStripMenuItem";
-            this.printToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.printToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.printToolStripMenuItem.Text = "In phiếu thu";
             this.printToolStripMenuItem.Click += new System.EventHandler(this.printToolStripMenuItem_Click);
             // 
             // toolStripSeparator5
             // 
             this.toolStripSeparator5.Name = "toolStripSeparator5";
-            this.toolStripSeparator5.Size = new System.Drawing.Size(142, 6);
+            this.toolStripSeparator5.Size = new System.Drawing.Size(153, 6);
             // 
             // exportExcelToolStripMenuItem
             // 
             this.exportExcelToolStripMenuItem.Image = global::MM.Properties.Resources.page_excel_icon;
             this.exportExcelToolStripMenuItem.Name = "exportExcelToolStripMenuItem";
-            this.exportExcelToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.exportExcelToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.exportExcelToolStripMenuItem.Text = "Xuất Excel";
             this.exportExcelToolStripMenuItem.Click += new System.EventHandler(this.exportExcelToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(142, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(153, 6);
             // 
             // xuatHoaDonToolStripMenuItem
             // 
             this.xuatHoaDonToolStripMenuItem.Image = global::MM.Properties.Resources.invoice_icon;
             this.xuatHoaDonToolStripMenuItem.Name = "xuatHoaDonToolStripMenuItem";
-            this.xuatHoaDonToolStripMenuItem.Size = new System.Drawing.Size(145, 22);
+            this.xuatHoaDonToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
             this.xuatHoaDonToolStripMenuItem.Text = "Xuất hóa đơn";
             this.xuatHoaDonToolStripMenuItem.Click += new System.EventHandler(this.xuatHoaDonToolStripMenuItem_Click);
             // 
@@ -604,6 +611,31 @@
             this.panel3.Name = "panel3";
             this.panel3.Size = new System.Drawing.Size(1252, 287);
             this.panel3.TabIndex = 4;
+            // 
+            // btnGhiNhanTraNo
+            // 
+            this.btnGhiNhanTraNo.Image = ((System.Drawing.Image)(resources.GetObject("btnGhiNhanTraNo.Image")));
+            this.btnGhiNhanTraNo.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btnGhiNhanTraNo.Location = new System.Drawing.Point(395, 6);
+            this.btnGhiNhanTraNo.Name = "btnGhiNhanTraNo";
+            this.btnGhiNhanTraNo.Size = new System.Drawing.Size(106, 25);
+            this.btnGhiNhanTraNo.TabIndex = 17;
+            this.btnGhiNhanTraNo.Text = "      &Ghi nhận trả nợ";
+            this.btnGhiNhanTraNo.UseVisualStyleBackColor = true;
+            this.btnGhiNhanTraNo.Click += new System.EventHandler(this.btnGhiNhanTraNo_Click);
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(153, 6);
+            // 
+            // ghiNhanTraNoToolStripMenuItem
+            // 
+            this.ghiNhanTraNoToolStripMenuItem.Image = ((System.Drawing.Image)(resources.GetObject("ghiNhanTraNoToolStripMenuItem.Image")));
+            this.ghiNhanTraNoToolStripMenuItem.Name = "ghiNhanTraNoToolStripMenuItem";
+            this.ghiNhanTraNoToolStripMenuItem.Size = new System.Drawing.Size(156, 22);
+            this.ghiNhanTraNoToolStripMenuItem.Text = "Ghi nhận trả nợ";
+            this.ghiNhanTraNoToolStripMenuItem.Click += new System.EventHandler(this.ghiNhanTraNoToolStripMenuItem_Click);
             // 
             // uReceiptList
             // 
@@ -684,5 +716,8 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn HinhThucThanhToanStr;
         private System.Windows.Forms.DataGridViewTextBoxColumn NguoiTao;
         private System.Windows.Forms.CheckBox chkTongTien;
+        private System.Windows.Forms.Button btnGhiNhanTraNo;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem ghiNhanTraNoToolStripMenuItem;
     }
 }

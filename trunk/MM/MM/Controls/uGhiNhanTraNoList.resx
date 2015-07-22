@@ -117,71 +117,13 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
-  <data name="btnGhiNhanTraNo.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAFeSURBVDhPhZK/S8NAFMezN/+Si5NjwcUfi9hFly466GIjgoM/Ci1GXEQREaFoJVgcdGiLUigX
-        oYNDKThot4qDg47P+77mzjvTpA8+5H6890ku95zZmTl6udrxJHUJxv/xnLSA4LGcp8/nCv30hSQ0ELwO
-        UZQeDwg6ZxvUD5KBKFECgfCXqFXMUSifzOEy1danNdj7fmvzOCr7i4zrsqB7vkKtvQVVVIi2HVUECY4T
-        k0DwtL/In/rRPJD4nLR7NzEWLcAERfj8Qb1EgwYoU+92jYLKPFU7eWq8blvEBOD0aEodQXOzmSX/clLn
-        AEuAMBcVx7UsiWvP7AemGuR0Di7AEphg7aG5Su/ixOqNr+49i2KCceA4+NHDhgv5x2uBCpWEK1Nz3pAh
-        xwXMcdXD7izGBQhTgrECzaUaDXvoXlxAVGaHkqSB5ksUIPit0RtHgf1UAUImeUgcwYVkK+O69AueMA5N
-        m9sPpAAAAABJRU5ErkJggg==
-</value>
-  </data>
   <metadata name="colChecked.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
     <value>True</value>
   </metadata>
-  <metadata name="ReceiptCode.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="FileNum.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Address.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="LyDoGiam.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="Notes.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="IsExportedInVoice.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="DaThuTien.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="TrongGoiKham.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="HinhThucThanhToanStr.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
-  <metadata name="NguoiTao.UserAddedColumn" type="System.Boolean, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
-    <value>True</value>
-  </metadata>
   <metadata name="ctmAction.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>698, 17</value>
+    <value>507, 18</value>
   </metadata>
-  <data name="ghiNhanTraNoToolStripMenuItem.Image" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
-    <value>
-        iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8/9hAAAAAXNSR0IArs4c6QAAAARnQU1BAACxjwv8
-        YQUAAAFeSURBVDhPhZK/S8NAFMezN/+Si5NjwcUfi9hFly466GIjgoM/Ci1GXEQREaFoJVgcdGiLUigX
-        oYNDKThot4qDg47P+77mzjvTpA8+5H6890ku95zZmTl6udrxJHUJxv/xnLSA4LGcp8/nCv30hSQ0ELwO
-        UZQeDwg6ZxvUD5KBKFECgfCXqFXMUSifzOEy1danNdj7fmvzOCr7i4zrsqB7vkKtvQVVVIi2HVUECY4T
-        k0DwtL/In/rRPJD4nLR7NzEWLcAERfj8Qb1EgwYoU+92jYLKPFU7eWq8blvEBOD0aEodQXOzmSX/clLn
-        AEuAMBcVx7UsiWvP7AemGuR0Di7AEphg7aG5Su/ixOqNr+49i2KCceA4+NHDhgv5x2uBCpWEK1Nz3pAh
-        xwXMcdXD7izGBQhTgrECzaUaDXvoXlxAVGaHkqSB5ksUIPit0RtHgf1UAUImeUgcwYVkK+O69AueMA5N
-        m9sPpAAAAABJRU5ErkJggg==
-</value>
-  </data>
-  <metadata name="receiptViewBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+  <metadata name="ghiNhanTraNoViewBindingSource.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
     <value>17, 17</value>
-  </metadata>
-  <metadata name="_printDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
-    <value>211, 17</value>
   </metadata>
 </root>
