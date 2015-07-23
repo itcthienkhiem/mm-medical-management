@@ -158,6 +158,41 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetDocStaffList(List<byte> staffTypes, string docStaffGUID)
+        {
+            Result result = null;
+
+            try
+            {
+                string staffTypeStr = string.Empty;
+                foreach (byte type in staffTypes)
+                {
+                    staffTypeStr += string.Format("{0},", type);
+                }
+
+                if (staffTypeStr != string.Empty)
+                    staffTypeStr = staffTypeStr.Substring(0, staffTypeStr.Length - 1);
+
+                staffTypeStr = string.Format("({0})", staffTypeStr);
+
+                string query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM DocStaffView WITH(NOLOCK) WHERE AvailableToWork = 'True' AND StaffType IN {0} AND DocStaffGUID = '{1}' ORDER BY FirstName, FullName", 
+                    staffTypeStr, docStaffGUID);
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result DeleteDocStaff(List<String> docStaffKeys)
         {
             Result result = new Result();

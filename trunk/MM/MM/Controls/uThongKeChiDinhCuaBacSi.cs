@@ -37,7 +37,14 @@ namespace MM.Controls
             staffTypes.Add((byte)StaffType.BacSiNgoaiTongQuat);
             staffTypes.Add((byte)StaffType.BacSiNoiTongQuat);
             staffTypes.Add((byte)StaffType.BacSiPhuKhoa);
-            Result result = DocStaffBus.GetDocStaffList(staffTypes);
+
+            Result result = null;
+
+            if (Global.UserGUID == Guid.Empty.ToString())
+                result = DocStaffBus.GetDocStaffList(staffTypes);
+            else
+                result = DocStaffBus.GetDocStaffList(staffTypes, Global.UserGUID);
+
             if (!result.IsOK)
             {
                 MsgBox.Show(this.Text, result.GetErrorAsString("DocStaffBus.GetDocStaffList"), IconType.Error);
