@@ -240,6 +240,7 @@ namespace MM.Bussiness
                                 item.BSCDGUID = chiDinh.BacSiChiDinhGUID.ToString();
                                 item.BSCDFirstName = chiDinh.DocStaff.Contact.FirstName;
                                 item.BSCDFullName = chiDinh.DocStaff.Contact.FullName;
+                                item.TenBenhNhan = chiDinh.Patient.Contact.FullName;
                                 item.NgayXuatHD = hoaDon.InvoiceDate;
                                 item.SoPhieuThu = ctpt.Receipt.ReceiptCode;
                                 item.SoHoaDon = hoaDon.InvoiceCode;

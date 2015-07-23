@@ -222,11 +222,12 @@ namespace MM.Exports
                     {
                         if (key == item.BSCDGUID)
                         {
-                            workSheet.Cells[rowIndex, 1].Value = item.NgayXuatHD.ToString("dd/MM/yyyy");
-                            workSheet.Cells[rowIndex, 2].Value = item.SoPhieuThu;
-                            workSheet.Cells[rowIndex, 3].Value = item.SoHoaDon;
-                            workSheet.Cells[rowIndex, 4].Value = item.TenDichVu;
-                            workSheet.Cells[rowIndex, 5].Value = item.SoLuong;
+                            workSheet.Cells[rowIndex, 1].Value = item.TenBenhNhan;
+                            workSheet.Cells[rowIndex, 2].Value = item.NgayXuatHD.ToString("dd/MM/yyyy");
+                            workSheet.Cells[rowIndex, 3].Value = item.SoPhieuThu;
+                            workSheet.Cells[rowIndex, 4].Value = item.SoHoaDon;
+                            workSheet.Cells[rowIndex, 5].Value = item.TenDichVu;
+                            workSheet.Cells[rowIndex, 6].Value = item.SoLuong;
                             //workSheet.Cells[rowIndex, 6].Value = item.DonGia;
                             //workSheet.Cells[rowIndex, 7].Value = item.VAT;
                             //workSheet.Cells[rowIndex, 8].Value = item.ThanhTien;
@@ -254,11 +255,12 @@ namespace MM.Exports
 
                             //workSheet.Cells[string.Format("J{0}", start)].Value = tongTien;
 
-                            workSheet.Cells[rowIndex, 1].Value = item.NgayXuatHD.ToString("dd/MM/yyyy");
-                            workSheet.Cells[rowIndex, 2].Value = item.SoPhieuThu;
-                            workSheet.Cells[rowIndex, 3].Value = item.SoHoaDon;
-                            workSheet.Cells[rowIndex, 4].Value = item.TenDichVu;
-                            workSheet.Cells[rowIndex, 5].Value = item.SoLuong;
+                            workSheet.Cells[rowIndex, 1].Value = item.TenBenhNhan;
+                            workSheet.Cells[rowIndex, 2].Value = item.NgayXuatHD.ToString("dd/MM/yyyy");
+                            workSheet.Cells[rowIndex, 3].Value = item.SoPhieuThu;
+                            workSheet.Cells[rowIndex, 4].Value = item.SoHoaDon;
+                            workSheet.Cells[rowIndex, 5].Value = item.TenDichVu;
+                            workSheet.Cells[rowIndex, 6].Value = item.SoLuong;
                             //workSheet.Cells[rowIndex, 6].Value = item.DonGia;
                             //workSheet.Cells[rowIndex, 7].Value = item.VAT;
                             //workSheet.Cells[rowIndex, 8].Value = item.ThanhTien;
@@ -289,7 +291,7 @@ namespace MM.Exports
 
                     //workSheet.Cells[string.Format("J{0}", start)].Value = tongTien;
 
-                    range = workSheet.Cells[string.Format("A4:F{0}", rowIndex)];
+                    range = workSheet.Cells[string.Format("A4:G{0}", rowIndex)];
                     range.Borders.Color = Color.Black;
                     range.Borders.LineStyle = LineStyle.Continuous;
                     range.Borders.Weight = BorderWeight.Thin;
