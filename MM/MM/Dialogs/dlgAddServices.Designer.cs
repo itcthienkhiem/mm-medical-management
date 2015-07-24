@@ -49,12 +49,19 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
+            this.label9 = new System.Windows.Forms.Label();
+            this.numDiscount = new System.Windows.Forms.NumericUpDown();
+            this.label10 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPrice)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDiscount)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
             // 
+            this.groupBox1.Controls.Add(this.label9);
+            this.groupBox1.Controls.Add(this.numDiscount);
+            this.groupBox1.Controls.Add(this.label10);
             this.groupBox1.Controls.Add(this.cboStaffType);
             this.groupBox1.Controls.Add(this.label21);
             this.groupBox1.Controls.Add(this.cboType);
@@ -179,11 +186,11 @@
             // 
             // txtDescription
             // 
-            this.txtDescription.Location = new System.Drawing.Point(139, 170);
+            this.txtDescription.Location = new System.Drawing.Point(139, 196);
             this.txtDescription.MaxLength = 500;
             this.txtDescription.Multiline = true;
             this.txtDescription.Name = "txtDescription";
-            this.txtDescription.Size = new System.Drawing.Size(325, 121);
+            this.txtDescription.Size = new System.Drawing.Size(325, 96);
             this.txtDescription.TabIndex = 10;
             // 
             // numPrice
@@ -228,7 +235,7 @@
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(88, 173);
+            this.label4.Location = new System.Drawing.Point(88, 196);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(47, 13);
             this.label4.TabIndex = 3;
@@ -285,6 +292,33 @@
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
+            // label9
+            // 
+            this.label9.AutoSize = true;
+            this.label9.Location = new System.Drawing.Point(213, 172);
+            this.label9.Name = "label9";
+            this.label9.Size = new System.Drawing.Size(21, 13);
+            this.label9.TabIndex = 51;
+            this.label9.Text = "(%)";
+            // 
+            // numDiscount
+            // 
+            this.numDiscount.DecimalPlaces = 1;
+            this.numDiscount.Location = new System.Drawing.Point(139, 169);
+            this.numDiscount.Name = "numDiscount";
+            this.numDiscount.Size = new System.Drawing.Size(69, 20);
+            this.numDiscount.TabIndex = 52;
+            this.numDiscount.ThousandsSeparator = true;
+            // 
+            // label10
+            // 
+            this.label10.AutoSize = true;
+            this.label10.Location = new System.Drawing.Point(99, 172);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(34, 13);
+            this.label10.TabIndex = 50;
+            this.label10.Text = "Giảm:";
+            // 
             // dlgAddServices
             // 
             this.AcceptButton = this.btnOK;
@@ -307,6 +341,7 @@
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.numPrice)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.numDiscount)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -333,5 +368,8 @@
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.ComboBox cboStaffType;
         private System.Windows.Forms.Label label21;
+        private System.Windows.Forms.Label label9;
+        private System.Windows.Forms.NumericUpDown numDiscount;
+        private System.Windows.Forms.Label label10;
     }
 }

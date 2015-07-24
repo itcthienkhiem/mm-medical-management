@@ -307,8 +307,9 @@ namespace MM.Bussiness
                             string staffTypeStr = string.Empty;
                             if (s.StaffType.HasValue) staffTypeStr = Utility.ParseStaffTypeEnumToName((StaffType)s.StaffType.Value);
 
-                            desc += string.Format("- GUID: '{0}', Mã dịch vụ: '{1}', Tên dịch vụ: '{2}', Tên tiếng anh: '{3}', Giá: '{4}', Loại: '{5}', Loại nhân viên: '{6}', Ghi chú: '{7}'\n",
-                                s.ServiceGUID.ToString(), s.Code, s.Name, s.EnglishName, s.Price, s.Type == 0 ? "Lâm sàng" : "Cận lâm sàng", staffTypeStr, noteList[index]);
+                            desc += string.Format("- GUID: '{0}', Mã dịch vụ: '{1}', Tên dịch vụ: '{2}', Tên tiếng anh: '{3}', Giá: '{4}', Giảm: '{5}', Loại: '{6}', Loại nhân viên: '{7}', Ghi chú: '{8}'\n",
+                                s.ServiceGUID.ToString(), s.Code, s.Name, s.EnglishName, s.Price, s.Discount, 
+                                s.Type == 0 ? "Lâm sàng" : "Cận lâm sàng", staffTypeStr, noteList[index]);
                         }
 
                         index++;
@@ -417,8 +418,8 @@ namespace MM.Bussiness
                         string staffTypeStr = string.Empty;
                         if (service.StaffType.HasValue) staffTypeStr = Utility.ParseStaffTypeEnumToName((StaffType)service.StaffType.Value);
 
-                        desc += string.Format("- GUID: '{0}', Mã dịch vụ: '{1}', Tên dịch vụ: '{2}', Tên tiếng anh: '{3}', Giá: '{4}', Loại: '{5}', Loại nhân viên: '{6}', Ghi chú: '{7}'",
-                                service.ServiceGUID.ToString(), service.Code, service.Name, service.EnglishName, service.Price, 
+                        desc += string.Format("- GUID: '{0}', Mã dịch vụ: '{1}', Tên dịch vụ: '{2}', Tên tiếng anh: '{3}', Giá: '{4}', Giảm: '{5}', Loại: '{6}', Loại nhân viên: '{7}', Ghi chú: '{8}'",
+                                service.ServiceGUID.ToString(), service.Code, service.Name, service.EnglishName, service.Price, service.Discount, 
                                 service.Type == 0 ? "Lâm sàng" : "Cận lâm sàng", staffTypeStr, service.Description);
 
                         Tracking tk = new Tracking();
@@ -446,6 +447,7 @@ namespace MM.Bussiness
                             srv.Type = service.Type;
                             srv.StaffType = service.StaffType;
                             srv.Price = service.Price;
+                            srv.Discount = service.Discount;
                             srv.Description = service.Description;
                             srv.CreatedDate = service.CreatedDate;
                             srv.CreatedBy = service.CreatedBy;
@@ -459,8 +461,8 @@ namespace MM.Bussiness
                             string staffTypeStr = string.Empty;
                             if (srv.StaffType.HasValue) staffTypeStr = Utility.ParseStaffTypeEnumToName((StaffType)srv.StaffType.Value);
 
-                            desc += string.Format("- GUID: '{0}', Mã dịch vụ: '{1}', Tên dịch vụ: '{2}', Tên tiếng anh: '{3}', Giá: '{4}', Loại: '{5}', Loại nhân viên: '{6}', Ghi chú: '{7}'",
-                                srv.ServiceGUID.ToString(), srv.Code, srv.Name, srv.EnglishName, srv.Price,
+                            desc += string.Format("- GUID: '{0}', Mã dịch vụ: '{1}', Tên dịch vụ: '{2}', Tên tiếng anh: '{3}', Giá: '{4}', Giảm: '{5}', Loại: '{6}', Loại nhân viên: '{7}', Ghi chú: '{8}'",
+                                srv.ServiceGUID.ToString(), srv.Code, srv.Name, srv.EnglishName, srv.Price, srv.Discount,
                                 srv.Type == 0 ? "Lâm sàng" : "Cận lâm sàng", staffTypeStr, srv.Description);
 
                             Tracking tk = new Tracking();

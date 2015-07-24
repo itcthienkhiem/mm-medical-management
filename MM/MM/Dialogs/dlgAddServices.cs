@@ -80,6 +80,7 @@ namespace MM.Dialogs
                 txtCode.Text = drService["Code"] as string;
                 txtName.Text = drService["Name"] as string;
                 numPrice.Value = (decimal)Double.Parse(drService["Price"].ToString());
+                numDiscount.Value = (decimal)Double.Parse(drService["Discount"].ToString());
                 txtDescription.Text = drService["Description"] as string;
 
                 if (drService["StaffType"] != null && drService["StaffType"] != DBNull.Value)
@@ -210,6 +211,7 @@ namespace MM.Dialogs
                 _service.Name = txtName.Text;
                 _service.EnglishName = txtEnglishName.Text;
                 _service.Price = (double)numPrice.Value;
+                _service.Discount = (double)numDiscount.Value;
                 _service.Description = txtDescription.Text;
                 _service.Status = (byte)Status.Actived;
 
