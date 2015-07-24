@@ -407,12 +407,12 @@ namespace MM.Controls
         #region Window Event Handlers
         private void ghiNhanTraNoToolStripMenuItem_Click(object sender, EventArgs e)
         {
-
+            GhiNhanTraNo();
         }
 
         private void btnGhiNhanTraNo_Click(object sender, EventArgs e)
         {
-
+            GhiNhanTraNo();
         }
 
         private void chkTongTien_CheckedChanged(object sender, EventArgs e)
