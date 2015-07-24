@@ -816,6 +816,7 @@ namespace MM.Dialogs
             if (rows != null && rows.Length > 0)
             {
                 numPrice.Value = (decimal)Double.Parse(rows[0]["Price"].ToString());
+                numDiscount.Value = (decimal)Double.Parse(rows[0]["Discount"].ToString());
 
                 if (rows[0]["StaffType"] != null && rows[0]["StaffType"] != DBNull.Value)
                     _staffType = (StaffType)Convert.ToByte(rows[0]["StaffType"]);
