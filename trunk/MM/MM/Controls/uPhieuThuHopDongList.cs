@@ -65,12 +65,14 @@ namespace MM.Controls
             btnPrint.Enabled = AllowPrint;
             btnPrintPreview.Enabled = AllowPrint;
             btnExportInvoice.Enabled = Global.AllowExportHoaDonHopDong;
+            btnGhiNhanTraNo.Enabled = Global.AllowViewGhiNhanTraNo;
 
             addToolStripMenuItem.Enabled = AllowAdd;
             deleteToolStripMenuItem.Enabled = AllowDelete;
             printPreviewToolStripMenuItem.Enabled = AllowPrint;
             printToolStripMenuItem.Enabled = AllowPrint;
             xuatHoaDonToolStripMenuItem.Enabled = Global.AllowExportHoaDonHopDong;
+            ghiNhanTraNoToolStripMenuItem.Enabled = Global.AllowViewGhiNhanTraNo;
         }
 
         public void DisplayComboHopDong()
@@ -380,9 +382,36 @@ namespace MM.Controls
 
             HighlightExportedInvoice();
         }
+
+        private void GhiNhanTraNo()
+        {
+            if (dgPhieuThu.SelectedRows == null || dgPhieuThu.SelectedRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 phiếu thu.", IconType.Information);
+                return;
+            }
+
+            DataRow drReceipt = (dgPhieuThu.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            string phieuThuGUID = drReceipt["PhieuThuHopDongGUID"].ToString();
+            bool daThuTien = Convert.ToBoolean(drReceipt["DaThuTien"]);
+
+            dlgGhiNhanTraNo dlg = new dlgGhiNhanTraNo(LoaiPT.HopDong, phieuThuGUID, daThuTien);
+            dlg.ShowDialog();
+            if (dlg.IsDataChange) DisplayAsThread();
+        }
         #endregion
 
         #region Window Event Handlers
+        private void btnGhiNhanTraNo_Click(object sender, EventArgs e)
+        {
+            GhiNhanTraNo();
+        }
+
+        private void ghiNhanTraNoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GhiNhanTraNo();
+        }
+
         private void chkTongTien_CheckedChanged(object sender, EventArgs e)
         {
             ShowTongTien();
@@ -575,6 +604,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
         
 

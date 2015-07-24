@@ -63,6 +63,7 @@ namespace MM.Controls
             btnPrintPreview.Enabled = AllowPrint;
             btnExportExcel.Enabled = AllowExport;
             btnExportInvoice.Enabled = Global.AllowExportHoaDonThuoc;
+            btnGhiNhanTraNo.Enabled = Global.AllowViewGhiNhanTraNo;
 
             addToolStripMenuItem.Enabled = AllowAdd;
             deleteToolStripMenuItem.Enabled = AllowDelete;
@@ -70,6 +71,7 @@ namespace MM.Controls
             printPreviewToolStripMenuItem.Enabled = AllowPrint;
             exportExcelToolStripMenuItem.Enabled = AllowExport;
             xuatHoaDonToolStripMenuItem.Enabled = Global.AllowExportHoaDonThuoc;
+            ghiNhanTraNoToolStripMenuItem.Enabled = Global.AllowViewGhiNhanTraNo;
         }
 
         public void ClearData()
@@ -386,6 +388,23 @@ namespace MM.Controls
                 }
             }
         }
+
+        private void GhiNhanTraNo()
+        {
+            if (dgPhieuThu.SelectedRows == null || dgPhieuThu.SelectedRows.Count <= 0)
+            {
+                MsgBox.Show(Application.ProductName, "Vui lòng chọn 1 phiếu thu.", IconType.Information);
+                return;
+            }
+
+            DataRow drReceipt = (dgPhieuThu.SelectedRows[0].DataBoundItem as DataRowView).Row;
+            string phieuThuGUID = drReceipt["PhieuThuThuocGUID"].ToString();
+            bool daThuTien = Convert.ToBoolean(drReceipt["DaThuTien"]);
+
+            dlgGhiNhanTraNo dlg = new dlgGhiNhanTraNo(LoaiPT.Thuoc, phieuThuGUID, daThuTien);
+            dlg.ShowDialog();
+            if (dlg.IsDataChange) DisplayAsThread();
+        }
         #endregion
 
         #region Window Event Handlers
@@ -563,6 +582,16 @@ namespace MM.Controls
         {
             ShowTongTien();
         }
+
+        private void btnGhiNhanTraNo_Click(object sender, EventArgs e)
+        {
+            GhiNhanTraNo();
+        }
+
+        private void ghiNhanTraNoToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            GhiNhanTraNo();
+        }
         #endregion
 
         #region Working Thread
@@ -584,6 +613,8 @@ namespace MM.Controls
             }
         }
         #endregion
+
+        
 
         
 
