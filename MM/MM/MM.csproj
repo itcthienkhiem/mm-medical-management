@@ -2742,6 +2742,7 @@
     <None Include="Properties\DataSources\MM.Databasae.LoiKhuyenView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.LoThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.MauHoSo.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.NhanXetKhamLamSang.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.NhanXetKhamLamSangView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.NhapKhoCapCuuView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.NhatKyLienHeCongTyView.datasource" />

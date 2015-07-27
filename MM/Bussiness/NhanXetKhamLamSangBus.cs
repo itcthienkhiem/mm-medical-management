@@ -39,6 +39,32 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetNhanXetKhamLamSangist(int loai)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Format(@"SELECT * FROM NhanXetKhamLamSangView WITH(NOLOCK) 
+                                                WHERE Status={0} AND Loai = {1} ORDER BY NhanXet",
+                                                (byte)Status.Actived, loai);
+
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result CheckNhanXetExist(string nhanXetKhamLamSangGUID, int loai, string nhanXet)
         {
             Result result = new Result();

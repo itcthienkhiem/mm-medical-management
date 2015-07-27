@@ -248,7 +248,7 @@
             // 
             this.chkAbnormal_KhamPhuKhoa.AutoSize = true;
             this.chkAbnormal_KhamPhuKhoa.Enabled = false;
-            this.chkAbnormal_KhamPhuKhoa.Location = new System.Drawing.Point(213, 429);
+            this.chkAbnormal_KhamPhuKhoa.Location = new System.Drawing.Point(206, 429);
             this.chkAbnormal_KhamPhuKhoa.Name = "chkAbnormal_KhamPhuKhoa";
             this.chkAbnormal_KhamPhuKhoa.Size = new System.Drawing.Size(78, 17);
             this.chkAbnormal_KhamPhuKhoa.TabIndex = 80;
@@ -260,7 +260,7 @@
             // 
             this.chkNormal_KhamPhuKhoa.AutoSize = true;
             this.chkNormal_KhamPhuKhoa.Enabled = false;
-            this.chkNormal_KhamPhuKhoa.Location = new System.Drawing.Point(115, 429);
+            this.chkNormal_KhamPhuKhoa.Location = new System.Drawing.Point(112, 429);
             this.chkNormal_KhamPhuKhoa.Name = "chkNormal_KhamPhuKhoa";
             this.chkNormal_KhamPhuKhoa.Size = new System.Drawing.Size(83, 17);
             this.chkNormal_KhamPhuKhoa.TabIndex = 79;
@@ -297,10 +297,10 @@
             // 
             // txtKetQuaKhamPhuKhoa
             // 
-            this.txtKetQuaKhamPhuKhoa.Location = new System.Drawing.Point(164, 403);
+            this.txtKetQuaKhamPhuKhoa.Location = new System.Drawing.Point(112, 403);
             this.txtKetQuaKhamPhuKhoa.Name = "txtKetQuaKhamPhuKhoa";
             this.txtKetQuaKhamPhuKhoa.ReadOnly = true;
-            this.txtKetQuaKhamPhuKhoa.Size = new System.Drawing.Size(202, 20);
+            this.txtKetQuaKhamPhuKhoa.Size = new System.Drawing.Size(254, 20);
             this.txtKetQuaKhamPhuKhoa.TabIndex = 75;
             // 
             // label17
@@ -308,9 +308,9 @@
             this.label17.AutoSize = true;
             this.label17.Location = new System.Drawing.Point(39, 406);
             this.label17.Name = "label17";
-            this.label17.Size = new System.Drawing.Size(124, 13);
+            this.label17.Size = new System.Drawing.Size(71, 13);
             this.label17.TabIndex = 74;
-            this.label17.Text = "Kết quả khám phụ khoa:";
+            this.label17.Text = "Kết quả KPK:";
             // 
             // txtPARA
             // 
