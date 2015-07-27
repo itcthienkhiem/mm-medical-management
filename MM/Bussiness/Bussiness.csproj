@@ -92,6 +92,7 @@
     <Compile Include="CompanyContractBus.cs" />
     <Compile Include="CongTacNgoaiGioBus.cs" />
     <Compile Include="GhiNhanTraNoBus.cs" />
+    <Compile Include="NhanXetKhamLamSangBus.cs" />
     <Compile Include="TuVanKhachHangBus.cs" />
     <Compile Include="HoaDonXetNghiemBus.cs" />
     <Compile Include="PhieuChiBus.cs" />
