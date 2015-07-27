@@ -107,6 +107,12 @@
     <Reference Include="TXTextControl, Version=15.1.800.500, Culture=neutral, PublicKeyToken=6b83fe9a75cfb638" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\uNhanXetKhamLamSangList.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="Controls\uNhanXetKhamLamSangList.Designer.cs">
+      <DependentUpon>uNhanXetKhamLamSangList.cs</DependentUpon>
+    </Compile>
     <Compile Include="Controls\uGhiNhanTraNoList.cs">
       <SubType>UserControl</SubType>
     </Compile>
@@ -268,6 +274,12 @@
     </Compile>
     <Compile Include="Dialogs\dlgAddGhiNhanTraNo.Designer.cs">
       <DependentUpon>dlgAddGhiNhanTraNo.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddNhanXetKhamLamSang.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Dialogs\dlgAddNhanXetKhamLamSang.Designer.cs">
+      <DependentUpon>dlgAddNhanXetKhamLamSang.cs</DependentUpon>
     </Compile>
     <Compile Include="Dialogs\dlgAddTuVanKhachHang.cs">
       <SubType>Form</SubType>
@@ -1848,6 +1860,9 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Controls\uNhanXetKhamLamSangList.resx">
+      <DependentUpon>uNhanXetKhamLamSangList.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Controls\uGhiNhanTraNoList.resx">
       <DependentUpon>uGhiNhanTraNoList.cs</DependentUpon>
     </EmbeddedResource>
@@ -1928,6 +1943,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddGhiNhanTraNo.resx">
       <DependentUpon>dlgAddGhiNhanTraNo.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Dialogs\dlgAddNhanXetKhamLamSang.resx">
+      <DependentUpon>dlgAddNhanXetKhamLamSang.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Dialogs\dlgAddTuVanKhachHang.resx">
       <DependentUpon>dlgAddTuVanKhachHang.cs</DependentUpon>
@@ -2724,6 +2742,7 @@
     <None Include="Properties\DataSources\MM.Databasae.LoiKhuyenView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.LoThuocView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.MauHoSo.datasource" />
+    <None Include="Properties\DataSources\MM.Databasae.NhanXetKhamLamSangView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.NhapKhoCapCuuView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.NhatKyLienHeCongTyView.datasource" />
     <None Include="Properties\DataSources\MM.Databasae.NhomThuoc.datasource" />
@@ -2940,6 +2959,7 @@
     <None Include="Resources\WhiteImage.PNG" />
     <None Include="Resources\email-alert-icon %282%29.png" />
     <None Include="Resources\email-alert-icon.png" />
+    <Content Include="Scripts\ScriptUpdate_KH_2015-07-27.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2015-07-21.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2015-07-14.sql" />
     <Content Include="Scripts\ScriptUpdate_KH_2015-05-23.sql" />

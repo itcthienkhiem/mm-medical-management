@@ -481,6 +481,8 @@ namespace MM
                 _uThongKeChiDinhCuaBacSi.InitData();
             else if (ctrl.GetType() == typeof(uPhieuChiList))
                 _uPhieuChiList.DisplayAsThread();
+            else if (ctrl.GetType() == typeof(uNhanXetKhamLamSangList))
+                _uNhanXetKhamLamSangList.DisplayAsThread();
         }
 
         private void SaveAppConfig()
@@ -1955,6 +1957,17 @@ namespace MM
                             Global.AllowEditGhiNhanTraNo = isEdit;
                             Global.AllowDeleteGhiNhanTraNo = isDelete;
                         }
+                        else if (functionCode == Const.NhanXetKhamLamSang)
+                        {
+                            nhanXetKhamLamSangToolStripMenuItem.Enabled = isView && isLogin;
+                            _uNhanXetKhamLamSangList.AllowAdd = isAdd;
+                            _uNhanXetKhamLamSangList.AllowEdit = isEdit;
+                            _uNhanXetKhamLamSangList.AllowDelete = isDelete;
+                            _uNhanXetKhamLamSangList.AllowPrint = isPrint;
+                            _uNhanXetKhamLamSangList.AllowExport = isExport;
+                            _uNhanXetKhamLamSangList.AllowImport = isImport;
+                            _uNhanXetKhamLamSangList.AllowLock = isLock;
+                        }
                     }
                 }
                 else
@@ -2212,6 +2225,7 @@ namespace MM
                 thongKeChiDinhDuocXuatHoaDonToolStripMenuItem.Enabled = isLogin;
                 thongKeChiDinhCuaBacSiToolStripMenuItem.Enabled = isLogin;
                 tuVanKhachHangToolStripMenuItem.Enabled = isLogin;
+                nhanXetKhamLamSangToolStripMenuItem.Enabled = isLogin;
             }
         }
 
@@ -2743,7 +2757,19 @@ namespace MM
                     ClearAllData();
                     OnTuVanKhachHang();
                     break;
+
+                case "NhanXetKhamLamSang":
+                    ClearAllData();
+                    OnNhanXetKhamLamSang();
+                    break;
             }
+        }
+
+        private void OnNhanXetKhamLamSang()
+        {
+            this.Text = string.Format("{0} - Nhan xet kham lam sang.", Application.ProductName);
+            ViewControl(_uNhanXetKhamLamSangList);
+            _uNhanXetKhamLamSangList.DisplayAsThread();
         }
 
         private void OnTuVanKhachHang()
