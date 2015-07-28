@@ -188,7 +188,7 @@ namespace SonoOnlineResult
             LoadLogos();
             LoadAds();
 
-            //string query = string.Format("SELECT * FROM Tracking WHERE Email='cu.truong@gmail.com'");
+            //string query = string.Format("DELETE FROM Users WHERE Email = 'ntvu82@yahoo.com'");
             //Result result = MySQLHelper.ExecuteQuery(query);
         }
 
@@ -973,9 +973,7 @@ namespace SonoOnlineResult
             {
                 if (info.IsImageFile)
                 {
-                    string fn = string.Format("{0}\\{1}", Application.StartupPath, Path.GetFileName(info.FileName));
-                    //info.TemplateName = _templateName;
-                    //info.LogoName = _logoName;
+                    string fn = string.Format("{0}\\{1}", Application.StartupPath, Path.GetFileName(info.NewFileName));
                     Image img = info.ProcessResultImage();
                     img.Save(fn, ImageFormat.Jpeg);
 
@@ -994,8 +992,6 @@ namespace SonoOnlineResult
                     thumbnail.Save(thumbnailFileName, ImageFormat.Jpeg);
                     thumbnail.Dispose();
                     thumbnail = null;
-                    //img.Dispose();
-                    //img = null;
 
                     remoteFileName = string.Format("{0}/{1}", Global.FTPFolder, Path.GetFileName(thumbnailFileName));
                     result = FTP.UploadFile(Global.FTPConnectionInfo, thumbnailFileName, remoteFileName);
@@ -1011,7 +1007,7 @@ namespace SonoOnlineResult
                 }
                 else
                 {
-                    string remoteFileName = string.Format("{0}/{1}", Global.FTPFolder, Path.GetFileName(info.FileName));
+                    string remoteFileName = string.Format("{0}/{1}", Global.FTPFolder, Path.GetFileName(info.NewFileName));
                     Result result = FTP.UploadFile(Global.FTPConnectionInfo, info.FileName, remoteFileName);
                     if (!result.IsOK)
                     {
@@ -1274,7 +1270,7 @@ namespace SonoOnlineResult
     public class ResultFileInfo
     {
         #region Members
-        public string FileName = string.Empty;
+        //public string FileName = string.Empty;
         public string LogoName = "[None]";
         public string TemplateName = "[None]";
         public string Text1 = string.Empty;
@@ -1283,6 +1279,8 @@ namespace SonoOnlineResult
         public Image OrgImage = null;
         public FileType Type = FileType.Result;
         public bool HasStretch = false;
+        private string _fileName = string.Empty;
+        private string _newFileName = string.Empty;
         #endregion
 
         #region Constructor
@@ -1293,6 +1291,22 @@ namespace SonoOnlineResult
         #endregion
 
         #region Properties
+        public string NewFileName
+        {
+            get { return _newFileName; }
+        }
+
+        public string FileName
+        {
+            get { return _fileName; }
+            set
+            {
+                _fileName = value;
+                _newFileName = string.Format("{0}_{1}{2}",
+                    Path.GetFileNameWithoutExtension(_fileName), DateTime.Now.ToString("yyMMddHHmmssms"), Path.GetExtension(_fileName));
+            }
+        }
+
         public bool IsImageFile
         {
             get
