@@ -259,6 +259,34 @@ namespace MM.Dialogs
             return true;
         }
 
+        private void InsertNhanXetKhamLamSang(string nhanXet, int loai)
+        {
+            Result result = NhanXetKhamLamSangBus.CheckNhanXetExist(null, loai, nhanXet.Trim());
+            if (result.Error.Code == ErrorCode.EXIST || result.Error.Code == ErrorCode.NOT_EXIST)
+            {
+                if (result.Error.Code == ErrorCode.NOT_EXIST)
+                {
+                    NhanXetKhamLamSang nhanXetKhamLamSang = new NhanXetKhamLamSang();
+                    nhanXetKhamLamSang.Status = (byte)Status.Actived;
+                    nhanXetKhamLamSang.CreatedDate = DateTime.Now;
+                    nhanXetKhamLamSang.CreatedBy = Guid.Parse(Global.UserGUID);
+                    //result = NhanXetKhamLamSangBus.InsertNhanXetKhamLamSang(_nhanXetKhamLamSang);
+                    //if (!result.IsOK)
+                    //{
+                    //    MsgBox.Show(this.Text, result.GetErrorAsString("NhanXetKhamLamSangBus.InsertNhanXetKhamLamSang"), IconType.Error);
+                    //    Utility.WriteToTraceLog(result.GetErrorAsString("NhanXetKhamLamSangBus.InsertNhanXetKhamLamSang"));
+                    //    this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                    //}
+                }
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("NhanXetKhamLamSangBus.CheckNhanXetExist"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("NhanXetKhamLamSangBus.CheckNhanXetExist"));
+                return;
+            }
+        }
+
         private void SaveInfoAsThread()
         {
             try
