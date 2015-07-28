@@ -42,10 +42,6 @@ namespace MM.Dialogs
         }
         #endregion
 
-        #region Properties
-
-        #endregion
-
         #region UI Command
         private void InitData()
         {
@@ -71,6 +67,41 @@ namespace MM.Dialogs
                 cboDocStaff.SelectedValue = Global.UserGUID;
                 cboDocStaff.Enabled = false;
             }*/
+
+            InitNhanXet(CoQuan.TaiMuiHong, txtNhanXet_TaiMuiHong);
+            InitNhanXet(CoQuan.RangHamMat, txtNhanXet_RangHamMat);
+            InitNhanXet(CoQuan.Mat, txtNhanXet_Mat);
+            InitNhanXet(CoQuan.HoHap, txtNhanXet_HoHap);
+            InitNhanXet(CoQuan.TimMach, txtNhanXet_TimMach);
+            InitNhanXet(CoQuan.TieuHoa, txtNhanXet_TieuHoa);
+            InitNhanXet(CoQuan.TietNieuSinhDuc, txtNhanXet_TietNieuSinhDuc);
+            InitNhanXet(CoQuan.CoXuongKhop, txtNhanXet_CoXuongKhop);
+            InitNhanXet(CoQuan.DaLieu, txtNhanXet_DaLieu);
+            InitNhanXet(CoQuan.ThanKinh, txtNhanXet_ThanKinh);
+            InitNhanXet(CoQuan.NoiTiet, txtNhanXet_NoiTiet);
+            InitNhanXet(CoQuan.Khac, txtNhanXet_CoQuanKhac);
+            InitNhanXet(CoQuan.KhamPhuKhoa, txtKetQuaKhamPhuKhoa);
+        }
+
+        private void InitNhanXet(CoQuan coQuan, ComboBox cboNhanXet)
+        {
+            Result result = NhanXetKhamLamSangBus.GetNhanXetKhamLamSangist((int)coQuan);
+            if (!result.IsOK)
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("NhanXetKhamLamSangBus.GetNhanXetKhamLamSangist"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("NhanXetKhamLamSangBus.GetNhanXetKhamLamSangist"));
+                return;
+            }
+            else
+            {
+                DataTable dtNhanXet = result.QueryResult as DataTable;
+                DataRow newRow = dtNhanXet.NewRow();
+                newRow["NhanXetKhamLamSangGUID"] = Guid.Empty;
+                newRow["NhanXet"] = string.Empty;
+                dtNhanXet.Rows.InsertAt(newRow, 0);
+
+                cboNhanXet.DataSource = dtNhanXet;
+            }
         }
 
         private void DisplayBacSi()
@@ -345,6 +376,39 @@ namespace MM.Dialogs
             }
         }
 
+        private bool InsertNhanXetKhamLamSang(string nhanXet, int loai)
+        {
+            if (nhanXet.Trim() == string.Empty) return true;
+            Result result = NhanXetKhamLamSangBus.CheckNhanXetExist(null, loai, nhanXet);
+            if (result.Error.Code == ErrorCode.EXIST || result.Error.Code == ErrorCode.NOT_EXIST)
+            {
+                if (result.Error.Code == ErrorCode.NOT_EXIST)
+                {
+                    NhanXetKhamLamSang nhanXetKhamLamSang = new NhanXetKhamLamSang();
+                    nhanXetKhamLamSang.Status = (byte)Status.Actived;
+                    nhanXetKhamLamSang.CreatedDate = DateTime.Now;
+                    nhanXetKhamLamSang.CreatedBy = Guid.Parse(Global.UserGUID);
+                    nhanXetKhamLamSang.NhanXet = nhanXet;
+                    nhanXetKhamLamSang.Loai = loai;
+                    result = NhanXetKhamLamSangBus.InsertNhanXetKhamLamSang(nhanXetKhamLamSang);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(this.Text, result.GetErrorAsString("NhanXetKhamLamSangBus.InsertNhanXetKhamLamSang"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("NhanXetKhamLamSangBus.InsertNhanXetKhamLamSang"));
+                        return false;
+                    }
+                }
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("NhanXetKhamLamSangBus.CheckNhanXetExist"), IconType.Error);
+                Utility.WriteToTraceLog(result.GetErrorAsString("NhanXetKhamLamSangBus.CheckNhanXetExist"));
+                return false;
+            }
+
+            return true;
+        }
+
         private void OnSaveInfo()
         {
             try
@@ -473,6 +537,22 @@ namespace MM.Dialogs
                         Utility.WriteToTraceLog(result.GetErrorAsString("KetQuaLamSangBus.InsertKetQuaLamSang"));
                         this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
                     }
+                    else
+                    {
+                        InsertNhanXetKhamLamSang(txtNhanXet_TaiMuiHong.Text, (int)CoQuan.TaiMuiHong);
+                        InsertNhanXetKhamLamSang(txtNhanXet_RangHamMat.Text, (int)CoQuan.RangHamMat);
+                        InsertNhanXetKhamLamSang(txtNhanXet_Mat.Text, (int)CoQuan.Mat);
+                        InsertNhanXetKhamLamSang(txtNhanXet_HoHap.Text, (int)CoQuan.HoHap);
+                        InsertNhanXetKhamLamSang(txtNhanXet_TimMach.Text, (int)CoQuan.TimMach);
+                        InsertNhanXetKhamLamSang(txtNhanXet_TieuHoa.Text, (int)CoQuan.TieuHoa);
+                        InsertNhanXetKhamLamSang(txtNhanXet_TietNieuSinhDuc.Text, (int)CoQuan.TietNieuSinhDuc);
+                        InsertNhanXetKhamLamSang(txtNhanXet_CoXuongKhop.Text, (int)CoQuan.CoXuongKhop);
+                        InsertNhanXetKhamLamSang(txtNhanXet_DaLieu.Text, (int)CoQuan.DaLieu);
+                        InsertNhanXetKhamLamSang(txtNhanXet_ThanKinh.Text, (int)CoQuan.ThanKinh);
+                        InsertNhanXetKhamLamSang(txtNhanXet_NoiTiet.Text, (int)CoQuan.NoiTiet);
+                        InsertNhanXetKhamLamSang(txtNhanXet_CoQuanKhac.Text, (int)CoQuan.Khac);
+                        InsertNhanXetKhamLamSang(txtKetQuaKhamPhuKhoa.Text, (int)CoQuan.KhamPhuKhoa);
+                    }
                 };
 
                 if (InvokeRequired) BeginInvoke(method);
@@ -522,7 +602,7 @@ namespace MM.Dialogs
         {
             chkNormal_Mat.Enabled = raMat.Checked;
             chkAbnormal_Mat.Enabled = raMat.Checked;
-            txtNhanXet_Mat.ReadOnly = !raMat.Checked;
+            txtNhanXet_Mat.Enabled = raMat.Checked;
 
             if (raMat.Checked && _type != 1)
             {
@@ -541,7 +621,7 @@ namespace MM.Dialogs
         {
             chkNormal_TaiMuiHong.Enabled = raTaiMuiHong.Checked;
             chkAbnormal_TaiMuiHong.Enabled = raTaiMuiHong.Checked;
-            txtNhanXet_TaiMuiHong.ReadOnly = !raTaiMuiHong.Checked;
+            txtNhanXet_TaiMuiHong.Enabled = raTaiMuiHong.Checked;
 
             if (raTaiMuiHong.Checked && _type != 0)
             {
@@ -569,7 +649,7 @@ namespace MM.Dialogs
         {
             chkNormal_RangHamMat.Enabled = raRangHamMat.Checked;
             chkAbnormal_RangHamMat.Enabled = raRangHamMat.Checked;
-            txtNhanXet_RangHamMat.ReadOnly = !raRangHamMat.Checked;
+            txtNhanXet_RangHamMat.Enabled = raRangHamMat.Checked;
 
             if (raRangHamMat.Checked && _type != 0)
             {
@@ -597,7 +677,7 @@ namespace MM.Dialogs
         {
             chkNormal_HoHap.Enabled = raHoHap.Checked;
             chkAbnormal_HoHap.Enabled = raHoHap.Checked;
-            txtNhanXet_HoHap.ReadOnly = !raHoHap.Checked;
+            txtNhanXet_HoHap.Enabled = raHoHap.Checked;
 
             if (raHoHap.Checked && _type != 1)
             {
@@ -616,7 +696,7 @@ namespace MM.Dialogs
         {
             chkNormal_TimMach.Enabled = raTimMach.Checked;
             chkAbnormal_TimMach.Enabled = raTimMach.Checked;
-            txtNhanXet_TimMach.ReadOnly = !raTimMach.Checked;
+            txtNhanXet_TimMach.Enabled = raTimMach.Checked;
 
             if (raTimMach.Checked && _type != 1)
             {
@@ -635,7 +715,7 @@ namespace MM.Dialogs
         {
             chkNormal_TieuHoa.Enabled = raTieuHoa.Checked;
             chkAbnormal_TieuHoa.Enabled = raTieuHoa.Checked;
-            txtNhanXet_TieuHoa.ReadOnly = !raTieuHoa.Checked;
+            txtNhanXet_TieuHoa.Enabled = raTieuHoa.Checked;
 
             if (raTieuHoa.Checked && _type != 1)
             {
@@ -654,7 +734,7 @@ namespace MM.Dialogs
         {
             chkNormal_TietNieuSinhDuc.Enabled = raTietNieuSinhDuc.Checked;
             chkAbnormal_TietNieuSinhDuc.Enabled = raTietNieuSinhDuc.Checked;
-            txtNhanXet_TietNieuSinhDuc.ReadOnly = !raTietNieuSinhDuc.Checked;
+            txtNhanXet_TietNieuSinhDuc.Enabled = raTietNieuSinhDuc.Checked;
 
             if (raTietNieuSinhDuc.Checked && _type != 1)
             {
@@ -673,7 +753,7 @@ namespace MM.Dialogs
         {
             chkNormal_CoXuongKhop.Enabled = raCoXuongKhop.Checked;
             chkAbnormal_CoXuongKhop.Enabled = raCoXuongKhop.Checked;
-            txtNhanXet_CoXuongKhop.ReadOnly = !raCoXuongKhop.Checked;
+            txtNhanXet_CoXuongKhop.Enabled = raCoXuongKhop.Checked;
 
             if (raCoXuongKhop.Checked && _type != 1)
             {
@@ -692,7 +772,7 @@ namespace MM.Dialogs
         {
             chkNormal_DaLieu.Enabled = raDaLieu.Checked;
             chkAbnormal_DaLieu.Enabled = raDaLieu.Checked;
-            txtNhanXet_DaLieu.ReadOnly = !raDaLieu.Checked;
+            txtNhanXet_DaLieu.Enabled = raDaLieu.Checked;
 
             if (raDaLieu.Checked && _type != 1)
             {
@@ -711,7 +791,7 @@ namespace MM.Dialogs
         {
             chkNormal_ThanKinh.Enabled = raThanKinh.Checked;
             chkAbnormal_ThanKinh.Enabled = raThanKinh.Checked;
-            txtNhanXet_ThanKinh.ReadOnly = !raThanKinh.Checked;
+            txtNhanXet_ThanKinh.Enabled = raThanKinh.Checked;
 
             if (raThanKinh.Checked && _type != 1)
             {
@@ -730,7 +810,7 @@ namespace MM.Dialogs
         {
             chkNormal_NoiTiet.Enabled = raNoiTiet.Checked;
             chkAbnormal_NoiTiet.Enabled = raNoiTiet.Checked;
-            txtNhanXet_NoiTiet.ReadOnly = !raNoiTiet.Checked;
+            txtNhanXet_NoiTiet.Enabled = raNoiTiet.Checked;
 
             if (raNoiTiet.Checked && _type != 1)
             {
@@ -747,7 +827,7 @@ namespace MM.Dialogs
 
         private void raCacCoQuanKhac_CheckedChanged(object sender, EventArgs e)
         {
-            txtNhanXet_CoQuanKhac.ReadOnly = !raCacCoQuanKhac.Checked;
+            txtNhanXet_CoQuanKhac.Enabled = raCacCoQuanKhac.Checked;
 
             if (raCacCoQuanKhac.Checked && _type != 1)
             {
@@ -767,7 +847,7 @@ namespace MM.Dialogs
             txtPARA.ReadOnly = !raKhamPhuKhoa.Checked;
             chkKinhChot.Enabled = raKhamPhuKhoa.Checked;
             dtpkNgayKinhChot.Enabled = raKhamPhuKhoa.Checked && chkKinhChot.Checked;
-            txtKetQuaKhamPhuKhoa.ReadOnly = !raKhamPhuKhoa.Checked;
+            txtKetQuaKhamPhuKhoa.Enabled = raKhamPhuKhoa.Checked;
             txtPhuKhoaNote.ReadOnly = !raKhamPhuKhoa.Checked;
             txtSoiTuoiHuyetTrang.ReadOnly = !raKhamPhuKhoa.Checked;
             chkNormal_KhamPhuKhoa.Enabled = raKhamPhuKhoa.Checked;
