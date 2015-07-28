@@ -259,9 +259,10 @@ namespace MM.Dialogs
             return true;
         }
 
-        private void InsertNhanXetKhamLamSang(string nhanXet, int loai)
+        private bool InsertNhanXetKhamLamSang(string nhanXet, int loai)
         {
-            Result result = NhanXetKhamLamSangBus.CheckNhanXetExist(null, loai, nhanXet.Trim());
+            if (nhanXet.Trim() == string.Empty) return true;
+            Result result = NhanXetKhamLamSangBus.CheckNhanXetExist(null, loai, nhanXet);
             if (result.Error.Code == ErrorCode.EXIST || result.Error.Code == ErrorCode.NOT_EXIST)
             {
                 if (result.Error.Code == ErrorCode.NOT_EXIST)
@@ -270,21 +271,25 @@ namespace MM.Dialogs
                     nhanXetKhamLamSang.Status = (byte)Status.Actived;
                     nhanXetKhamLamSang.CreatedDate = DateTime.Now;
                     nhanXetKhamLamSang.CreatedBy = Guid.Parse(Global.UserGUID);
-                    //result = NhanXetKhamLamSangBus.InsertNhanXetKhamLamSang(_nhanXetKhamLamSang);
-                    //if (!result.IsOK)
-                    //{
-                    //    MsgBox.Show(this.Text, result.GetErrorAsString("NhanXetKhamLamSangBus.InsertNhanXetKhamLamSang"), IconType.Error);
-                    //    Utility.WriteToTraceLog(result.GetErrorAsString("NhanXetKhamLamSangBus.InsertNhanXetKhamLamSang"));
-                    //    this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
-                    //}
+                    nhanXetKhamLamSang.NhanXet = nhanXet;
+                    nhanXetKhamLamSang.Loai = loai;
+                    result = NhanXetKhamLamSangBus.InsertNhanXetKhamLamSang(nhanXetKhamLamSang);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(this.Text, result.GetErrorAsString("NhanXetKhamLamSangBus.InsertNhanXetKhamLamSang"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("NhanXetKhamLamSangBus.InsertNhanXetKhamLamSang"));
+                        return false;
+                    }
                 }
             }
             else
             {
                 MsgBox.Show(this.Text, result.GetErrorAsString("NhanXetKhamLamSangBus.CheckNhanXetExist"), IconType.Error);
                 Utility.WriteToTraceLog(result.GetErrorAsString("NhanXetKhamLamSangBus.CheckNhanXetExist"));
-                return;
+                return false;
             }
+
+            return true;
         }
 
         private void SaveInfoAsThread()
@@ -517,6 +522,22 @@ namespace MM.Dialogs
                         MsgBox.Show(this.Text, result.GetErrorAsString("KetQuaLamSangBus.InsertKetQuaLamSang"), IconType.Error);
                         Utility.WriteToTraceLog(result.GetErrorAsString("KetQuaLamSangBus.InsertKetQuaLamSang"));
                         this.DialogResult = System.Windows.Forms.DialogResult.Cancel;
+                    }
+                    else
+                    {
+                        InsertNhanXetKhamLamSang(txtNhanXet_TaiMuiHong.Text, (int)CoQuan.TaiMuiHong);
+                        InsertNhanXetKhamLamSang(txtNhanXet_RangHamMat.Text, (int)CoQuan.RangHamMat);
+                        InsertNhanXetKhamLamSang(txtNhanXet_Mat.Text, (int)CoQuan.Mat);
+                        InsertNhanXetKhamLamSang(txtNhanXet_HoHap.Text, (int)CoQuan.HoHap);
+                        InsertNhanXetKhamLamSang(txtNhanXet_TimMach.Text, (int)CoQuan.TimMach);
+                        InsertNhanXetKhamLamSang(txtNhanXet_TieuHoa.Text, (int)CoQuan.TieuHoa);
+                        InsertNhanXetKhamLamSang(txtNhanXet_TietNieuSinhDuc.Text, (int)CoQuan.TietNieuSinhDuc);
+                        InsertNhanXetKhamLamSang(txtNhanXet_CoXuongKhop.Text, (int)CoQuan.CoXuongKhop);
+                        InsertNhanXetKhamLamSang(txtNhanXet_DaLieu.Text, (int)CoQuan.DaLieu);
+                        InsertNhanXetKhamLamSang(txtNhanXet_ThanKinh.Text, (int)CoQuan.ThanKinh);
+                        InsertNhanXetKhamLamSang(txtNhanXet_NoiTiet.Text, (int)CoQuan.NoiTiet);
+                        InsertNhanXetKhamLamSang(txtNhanXet_CoQuanKhac.Text, (int)CoQuan.Khac);
+                        InsertNhanXetKhamLamSang(txtKetQuaKhamPhuKhoa.Text, (int)CoQuan.KhamPhuKhoa);
                     }
                 };
 
