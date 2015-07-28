@@ -188,7 +188,8 @@ namespace SonoOnlineResult
             LoadLogos();
             LoadAds();
 
-            
+            //string query = string.Format("SELECT * FROM Tracking WHERE Email='cu.truong@gmail.com'");
+            //Result result = MySQLHelper.ExecuteQuery(query);
         }
 
         private void LoadImageTemplates()
