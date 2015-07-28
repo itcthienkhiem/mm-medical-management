@@ -88,7 +88,7 @@ namespace SonoOnlineResult
                     foreach (var info in resultFileInfos)
                     {
                         query = string.Format("INSERT INTO LastUploadDetail(LastUploadKey, FileName) VALUES({0}, '{1}')",
-                            lastUploadKey, Path.GetFileName(info.FileName));
+                            lastUploadKey, Path.GetFileName(info.NewFileName));
 
                         cmd.CommandText = query;
                         cmd.ExecuteNonQuery();
@@ -533,7 +533,7 @@ namespace SonoOnlineResult
                 foreach (var info in results)
                 {
                     string query = string.Format("INSERT INTO UploadHistory(UploadDate, FileName, Note) VALUES('{0}', '{1}', '{2}')",
-                    dtNow.ToString("yyyy-MM-dd HH:mm:ss"), Path.GetFileName(info.FileName), string.Empty);
+                    dtNow.ToString("yyyy-MM-dd HH:mm:ss"), Path.GetFileName(info.NewFileName), string.Empty);
                     result = MySQLHelper.ExecuteNoneQuery(query);
                     if (!result.IsOK) return result;
                 }
