@@ -41,28 +41,22 @@
             this.label19 = new System.Windows.Forms.Label();
             this.txtSoiTuoiHuyetTrang = new System.Windows.Forms.TextBox();
             this.label18 = new System.Windows.Forms.Label();
-            this.txtKetQuaKhamPhuKhoa = new System.Windows.Forms.TextBox();
             this.label17 = new System.Windows.Forms.Label();
             this.txtPARA = new System.Windows.Forms.TextBox();
             this.label15 = new System.Windows.Forms.Label();
             this.raKhamPhuKhoa = new System.Windows.Forms.RadioButton();
             this.chkAbnormal_Mat = new System.Windows.Forms.CheckBox();
             this.raMat = new System.Windows.Forms.RadioButton();
-            this.txtNhanXet_CoQuanKhac = new System.Windows.Forms.TextBox();
             this.label14 = new System.Windows.Forms.Label();
-            this.txtNhanXet_Mat = new System.Windows.Forms.TextBox();
             this.chkNormal_Mat = new System.Windows.Forms.CheckBox();
             this.raCacCoQuanKhac = new System.Windows.Forms.RadioButton();
-            this.txtNhanXet_NoiTiet = new System.Windows.Forms.TextBox();
             this.label13 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.chkAbnormal_NoiTiet = new System.Windows.Forms.CheckBox();
-            this.txtNhanXet_HoHap = new System.Windows.Forms.TextBox();
             this.chkNormal_NoiTiet = new System.Windows.Forms.CheckBox();
             this.raHoHap = new System.Windows.Forms.RadioButton();
             this.chkNormal_HoHap = new System.Windows.Forms.CheckBox();
             this.raNoiTiet = new System.Windows.Forms.RadioButton();
-            this.txtNhanXet_ThanKinh = new System.Windows.Forms.TextBox();
             this.label12 = new System.Windows.Forms.Label();
             this.chkAbnormal_HoHap = new System.Windows.Forms.CheckBox();
             this.chkAbnormal_ThanKinh = new System.Windows.Forms.CheckBox();
@@ -70,16 +64,12 @@
             this.chkNormal_ThanKinh = new System.Windows.Forms.CheckBox();
             this.raTimMach = new System.Windows.Forms.RadioButton();
             this.chkNormal_TimMach = new System.Windows.Forms.CheckBox();
-            this.txtNhanXet_DaLieu = new System.Windows.Forms.TextBox();
             this.raThanKinh = new System.Windows.Forms.RadioButton();
             this.label11 = new System.Windows.Forms.Label();
             this.chkAbnormal_TimMach = new System.Windows.Forms.CheckBox();
             this.chkAbnormal_DaLieu = new System.Windows.Forms.CheckBox();
             this.label7 = new System.Windows.Forms.Label();
             this.chkNormal_DaLieu = new System.Windows.Forms.CheckBox();
-            this.txtNhanXet_TimMach = new System.Windows.Forms.TextBox();
-            this.txtNhanXet_TieuHoa = new System.Windows.Forms.TextBox();
-            this.txtNhanXet_CoXuongKhop = new System.Windows.Forms.TextBox();
             this.label10 = new System.Windows.Forms.Label();
             this.raDaLieu = new System.Windows.Forms.RadioButton();
             this.raTieuHoa = new System.Windows.Forms.RadioButton();
@@ -88,7 +78,6 @@
             this.chkNormal_CoXuongKhop = new System.Windows.Forms.CheckBox();
             this.chkAbnormal_TieuHoa = new System.Windows.Forms.CheckBox();
             this.label8 = new System.Windows.Forms.Label();
-            this.txtNhanXet_TietNieuSinhDuc = new System.Windows.Forms.TextBox();
             this.raTietNieuSinhDuc = new System.Windows.Forms.RadioButton();
             this.label9 = new System.Windows.Forms.Label();
             this.raCoXuongKhop = new System.Windows.Forms.RadioButton();
@@ -99,8 +88,6 @@
             this.chkNormal_TaiMuiHong = new System.Windows.Forms.CheckBox();
             this.chkAbnormal_TaiMuiHong = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
-            this.txtNhanXet_TaiMuiHong = new System.Windows.Forms.TextBox();
-            this.txtNhanXet_RangHamMat = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
             this.raRangHamMat = new System.Windows.Forms.RadioButton();
             this.chkAbnormal_RangHamMat = new System.Windows.Forms.CheckBox();
@@ -112,10 +99,25 @@
             this.label1 = new System.Windows.Forms.Label();
             this.btnCancel = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
+            this.nhanXetKhamLamSangBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.txtNhanXet_TaiMuiHong = new System.Windows.Forms.ComboBox();
+            this.txtNhanXet_RangHamMat = new System.Windows.Forms.ComboBox();
+            this.txtNhanXet_Mat = new System.Windows.Forms.ComboBox();
+            this.txtNhanXet_HoHap = new System.Windows.Forms.ComboBox();
+            this.txtNhanXet_TimMach = new System.Windows.Forms.ComboBox();
+            this.txtNhanXet_TieuHoa = new System.Windows.Forms.ComboBox();
+            this.txtNhanXet_TietNieuSinhDuc = new System.Windows.Forms.ComboBox();
+            this.txtNhanXet_CoXuongKhop = new System.Windows.Forms.ComboBox();
+            this.txtNhanXet_DaLieu = new System.Windows.Forms.ComboBox();
+            this.txtNhanXet_ThanKinh = new System.Windows.Forms.ComboBox();
+            this.txtNhanXet_NoiTiet = new System.Windows.Forms.ComboBox();
+            this.txtNhanXet_CoQuanKhac = new System.Windows.Forms.ComboBox();
+            this.txtKetQuaKhamPhuKhoa = new System.Windows.Forms.ComboBox();
             this.groupBox1.SuspendLayout();
             this.groupBox3.SuspendLayout();
             this.groupBox2.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nhanXetKhamLamSangBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // groupBox1
@@ -135,6 +137,17 @@
             // 
             // groupBox3
             // 
+            this.groupBox3.Controls.Add(this.txtKetQuaKhamPhuKhoa);
+            this.groupBox3.Controls.Add(this.txtNhanXet_CoQuanKhac);
+            this.groupBox3.Controls.Add(this.txtNhanXet_NoiTiet);
+            this.groupBox3.Controls.Add(this.txtNhanXet_ThanKinh);
+            this.groupBox3.Controls.Add(this.txtNhanXet_DaLieu);
+            this.groupBox3.Controls.Add(this.txtNhanXet_CoXuongKhop);
+            this.groupBox3.Controls.Add(this.txtNhanXet_TietNieuSinhDuc);
+            this.groupBox3.Controls.Add(this.txtNhanXet_TieuHoa);
+            this.groupBox3.Controls.Add(this.txtNhanXet_TimMach);
+            this.groupBox3.Controls.Add(this.txtNhanXet_HoHap);
+            this.groupBox3.Controls.Add(this.txtNhanXet_Mat);
             this.groupBox3.Controls.Add(this.txtPhuKhoaNote);
             this.groupBox3.Controls.Add(this.label16);
             this.groupBox3.Controls.Add(this.dtpkNgayKinhChot);
@@ -144,28 +157,22 @@
             this.groupBox3.Controls.Add(this.label19);
             this.groupBox3.Controls.Add(this.txtSoiTuoiHuyetTrang);
             this.groupBox3.Controls.Add(this.label18);
-            this.groupBox3.Controls.Add(this.txtKetQuaKhamPhuKhoa);
             this.groupBox3.Controls.Add(this.label17);
             this.groupBox3.Controls.Add(this.txtPARA);
             this.groupBox3.Controls.Add(this.label15);
             this.groupBox3.Controls.Add(this.raKhamPhuKhoa);
             this.groupBox3.Controls.Add(this.chkAbnormal_Mat);
             this.groupBox3.Controls.Add(this.raMat);
-            this.groupBox3.Controls.Add(this.txtNhanXet_CoQuanKhac);
             this.groupBox3.Controls.Add(this.label14);
-            this.groupBox3.Controls.Add(this.txtNhanXet_Mat);
             this.groupBox3.Controls.Add(this.chkNormal_Mat);
             this.groupBox3.Controls.Add(this.raCacCoQuanKhac);
-            this.groupBox3.Controls.Add(this.txtNhanXet_NoiTiet);
             this.groupBox3.Controls.Add(this.label13);
             this.groupBox3.Controls.Add(this.label3);
             this.groupBox3.Controls.Add(this.chkAbnormal_NoiTiet);
-            this.groupBox3.Controls.Add(this.txtNhanXet_HoHap);
             this.groupBox3.Controls.Add(this.chkNormal_NoiTiet);
             this.groupBox3.Controls.Add(this.raHoHap);
             this.groupBox3.Controls.Add(this.chkNormal_HoHap);
             this.groupBox3.Controls.Add(this.raNoiTiet);
-            this.groupBox3.Controls.Add(this.txtNhanXet_ThanKinh);
             this.groupBox3.Controls.Add(this.label12);
             this.groupBox3.Controls.Add(this.chkAbnormal_HoHap);
             this.groupBox3.Controls.Add(this.chkAbnormal_ThanKinh);
@@ -173,16 +180,12 @@
             this.groupBox3.Controls.Add(this.chkNormal_ThanKinh);
             this.groupBox3.Controls.Add(this.raTimMach);
             this.groupBox3.Controls.Add(this.chkNormal_TimMach);
-            this.groupBox3.Controls.Add(this.txtNhanXet_DaLieu);
             this.groupBox3.Controls.Add(this.raThanKinh);
             this.groupBox3.Controls.Add(this.label11);
             this.groupBox3.Controls.Add(this.chkAbnormal_TimMach);
             this.groupBox3.Controls.Add(this.chkAbnormal_DaLieu);
             this.groupBox3.Controls.Add(this.label7);
             this.groupBox3.Controls.Add(this.chkNormal_DaLieu);
-            this.groupBox3.Controls.Add(this.txtNhanXet_TimMach);
-            this.groupBox3.Controls.Add(this.txtNhanXet_TieuHoa);
-            this.groupBox3.Controls.Add(this.txtNhanXet_CoXuongKhop);
             this.groupBox3.Controls.Add(this.label10);
             this.groupBox3.Controls.Add(this.raDaLieu);
             this.groupBox3.Controls.Add(this.raTieuHoa);
@@ -191,7 +194,6 @@
             this.groupBox3.Controls.Add(this.chkNormal_CoXuongKhop);
             this.groupBox3.Controls.Add(this.chkAbnormal_TieuHoa);
             this.groupBox3.Controls.Add(this.label8);
-            this.groupBox3.Controls.Add(this.txtNhanXet_TietNieuSinhDuc);
             this.groupBox3.Controls.Add(this.raTietNieuSinhDuc);
             this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.raCoXuongKhop);
@@ -295,14 +297,6 @@
             this.label18.TabIndex = 76;
             this.label18.Text = "Soi tươi huyết trắng:";
             // 
-            // txtKetQuaKhamPhuKhoa
-            // 
-            this.txtKetQuaKhamPhuKhoa.Location = new System.Drawing.Point(112, 403);
-            this.txtKetQuaKhamPhuKhoa.Name = "txtKetQuaKhamPhuKhoa";
-            this.txtKetQuaKhamPhuKhoa.ReadOnly = true;
-            this.txtKetQuaKhamPhuKhoa.Size = new System.Drawing.Size(254, 20);
-            this.txtKetQuaKhamPhuKhoa.TabIndex = 75;
-            // 
             // label17
             // 
             this.label17.AutoSize = true;
@@ -368,14 +362,6 @@
             this.raMat.UseVisualStyleBackColor = true;
             this.raMat.CheckedChanged += new System.EventHandler(this.raMat_CheckedChanged);
             // 
-            // txtNhanXet_CoQuanKhac
-            // 
-            this.txtNhanXet_CoQuanKhac.Location = new System.Drawing.Point(454, 312);
-            this.txtNhanXet_CoQuanKhac.Name = "txtNhanXet_CoQuanKhac";
-            this.txtNhanXet_CoQuanKhac.ReadOnly = true;
-            this.txtNhanXet_CoQuanKhac.Size = new System.Drawing.Size(272, 20);
-            this.txtNhanXet_CoQuanKhac.TabIndex = 48;
-            // 
             // label14
             // 
             this.label14.AutoSize = true;
@@ -384,14 +370,6 @@
             this.label14.Size = new System.Drawing.Size(53, 13);
             this.label14.TabIndex = 68;
             this.label14.Text = "Nhận xét:";
-            // 
-            // txtNhanXet_Mat
-            // 
-            this.txtNhanXet_Mat.Location = new System.Drawing.Point(94, 61);
-            this.txtNhanXet_Mat.Name = "txtNhanXet_Mat";
-            this.txtNhanXet_Mat.ReadOnly = true;
-            this.txtNhanXet_Mat.Size = new System.Drawing.Size(272, 20);
-            this.txtNhanXet_Mat.TabIndex = 6;
             // 
             // chkNormal_Mat
             // 
@@ -419,14 +397,6 @@
             this.raCacCoQuanKhac.Text = "Orthers (Các cơ quan khác)";
             this.raCacCoQuanKhac.UseVisualStyleBackColor = true;
             this.raCacCoQuanKhac.CheckedChanged += new System.EventHandler(this.raCacCoQuanKhac_CheckedChanged);
-            // 
-            // txtNhanXet_NoiTiet
-            // 
-            this.txtNhanXet_NoiTiet.Location = new System.Drawing.Point(94, 335);
-            this.txtNhanXet_NoiTiet.Name = "txtNhanXet_NoiTiet";
-            this.txtNhanXet_NoiTiet.ReadOnly = true;
-            this.txtNhanXet_NoiTiet.Size = new System.Drawing.Size(272, 20);
-            this.txtNhanXet_NoiTiet.TabIndex = 46;
             // 
             // label13
             // 
@@ -457,14 +427,6 @@
             this.chkAbnormal_NoiTiet.Text = "Bất thường";
             this.chkAbnormal_NoiTiet.UseVisualStyleBackColor = true;
             this.chkAbnormal_NoiTiet.CheckedChanged += new System.EventHandler(this.chkAbnormal_NoiTiet_CheckedChanged);
-            // 
-            // txtNhanXet_HoHap
-            // 
-            this.txtNhanXet_HoHap.Location = new System.Drawing.Point(454, 61);
-            this.txtNhanXet_HoHap.Name = "txtNhanXet_HoHap";
-            this.txtNhanXet_HoHap.ReadOnly = true;
-            this.txtNhanXet_HoHap.Size = new System.Drawing.Size(272, 20);
-            this.txtNhanXet_HoHap.TabIndex = 18;
             // 
             // chkNormal_NoiTiet
             // 
@@ -519,14 +481,6 @@
             this.raNoiTiet.Text = "Endocrine system (Nội tiết)";
             this.raNoiTiet.UseVisualStyleBackColor = true;
             this.raNoiTiet.CheckedChanged += new System.EventHandler(this.raNoiTiet_CheckedChanged);
-            // 
-            // txtNhanXet_ThanKinh
-            // 
-            this.txtNhanXet_ThanKinh.Location = new System.Drawing.Point(454, 267);
-            this.txtNhanXet_ThanKinh.Name = "txtNhanXet_ThanKinh";
-            this.txtNhanXet_ThanKinh.ReadOnly = true;
-            this.txtNhanXet_ThanKinh.Size = new System.Drawing.Size(272, 20);
-            this.txtNhanXet_ThanKinh.TabIndex = 42;
             // 
             // label12
             // 
@@ -611,14 +565,6 @@
             this.chkNormal_TimMach.UseVisualStyleBackColor = true;
             this.chkNormal_TimMach.CheckedChanged += new System.EventHandler(this.chkNormal_TimMach_CheckedChanged);
             // 
-            // txtNhanXet_DaLieu
-            // 
-            this.txtNhanXet_DaLieu.Location = new System.Drawing.Point(94, 267);
-            this.txtNhanXet_DaLieu.Name = "txtNhanXet_DaLieu";
-            this.txtNhanXet_DaLieu.ReadOnly = true;
-            this.txtNhanXet_DaLieu.Size = new System.Drawing.Size(272, 20);
-            this.txtNhanXet_DaLieu.TabIndex = 38;
-            // 
             // raThanKinh
             // 
             this.raThanKinh.AutoSize = true;
@@ -687,30 +633,6 @@
             this.chkNormal_DaLieu.Text = "Bình thường";
             this.chkNormal_DaLieu.UseVisualStyleBackColor = true;
             this.chkNormal_DaLieu.CheckedChanged += new System.EventHandler(this.chkNormal_DaLieu_CheckedChanged);
-            // 
-            // txtNhanXet_TimMach
-            // 
-            this.txtNhanXet_TimMach.Location = new System.Drawing.Point(94, 129);
-            this.txtNhanXet_TimMach.Name = "txtNhanXet_TimMach";
-            this.txtNhanXet_TimMach.ReadOnly = true;
-            this.txtNhanXet_TimMach.Size = new System.Drawing.Size(272, 20);
-            this.txtNhanXet_TimMach.TabIndex = 22;
-            // 
-            // txtNhanXet_TieuHoa
-            // 
-            this.txtNhanXet_TieuHoa.Location = new System.Drawing.Point(454, 129);
-            this.txtNhanXet_TieuHoa.Name = "txtNhanXet_TieuHoa";
-            this.txtNhanXet_TieuHoa.ReadOnly = true;
-            this.txtNhanXet_TieuHoa.Size = new System.Drawing.Size(272, 20);
-            this.txtNhanXet_TieuHoa.TabIndex = 26;
-            // 
-            // txtNhanXet_CoXuongKhop
-            // 
-            this.txtNhanXet_CoXuongKhop.Location = new System.Drawing.Point(454, 198);
-            this.txtNhanXet_CoXuongKhop.Name = "txtNhanXet_CoXuongKhop";
-            this.txtNhanXet_CoXuongKhop.ReadOnly = true;
-            this.txtNhanXet_CoXuongKhop.Size = new System.Drawing.Size(272, 20);
-            this.txtNhanXet_CoXuongKhop.TabIndex = 34;
             // 
             // label10
             // 
@@ -808,14 +730,6 @@
             this.label8.TabIndex = 46;
             this.label8.Text = "Nhận xét:";
             // 
-            // txtNhanXet_TietNieuSinhDuc
-            // 
-            this.txtNhanXet_TietNieuSinhDuc.Location = new System.Drawing.Point(94, 198);
-            this.txtNhanXet_TietNieuSinhDuc.Name = "txtNhanXet_TietNieuSinhDuc";
-            this.txtNhanXet_TietNieuSinhDuc.ReadOnly = true;
-            this.txtNhanXet_TietNieuSinhDuc.Size = new System.Drawing.Size(272, 20);
-            this.txtNhanXet_TietNieuSinhDuc.TabIndex = 30;
-            // 
             // raTietNieuSinhDuc
             // 
             this.raTietNieuSinhDuc.AutoSize = true;
@@ -879,12 +793,12 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.txtNhanXet_RangHamMat);
+            this.groupBox2.Controls.Add(this.txtNhanXet_TaiMuiHong);
             this.groupBox2.Controls.Add(this.raTaiMuiHong);
             this.groupBox2.Controls.Add(this.chkNormal_TaiMuiHong);
             this.groupBox2.Controls.Add(this.chkAbnormal_TaiMuiHong);
             this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.txtNhanXet_TaiMuiHong);
-            this.groupBox2.Controls.Add(this.txtNhanXet_RangHamMat);
             this.groupBox2.Controls.Add(this.label5);
             this.groupBox2.Controls.Add(this.raRangHamMat);
             this.groupBox2.Controls.Add(this.chkAbnormal_RangHamMat);
@@ -943,22 +857,6 @@
             this.label4.Size = new System.Drawing.Size(53, 13);
             this.label4.TabIndex = 30;
             this.label4.Text = "Nhận xét:";
-            // 
-            // txtNhanXet_TaiMuiHong
-            // 
-            this.txtNhanXet_TaiMuiHong.Location = new System.Drawing.Point(94, 62);
-            this.txtNhanXet_TaiMuiHong.Name = "txtNhanXet_TaiMuiHong";
-            this.txtNhanXet_TaiMuiHong.ReadOnly = true;
-            this.txtNhanXet_TaiMuiHong.Size = new System.Drawing.Size(272, 20);
-            this.txtNhanXet_TaiMuiHong.TabIndex = 10;
-            // 
-            // txtNhanXet_RangHamMat
-            // 
-            this.txtNhanXet_RangHamMat.Location = new System.Drawing.Point(454, 62);
-            this.txtNhanXet_RangHamMat.Name = "txtNhanXet_RangHamMat";
-            this.txtNhanXet_RangHamMat.ReadOnly = true;
-            this.txtNhanXet_RangHamMat.Size = new System.Drawing.Size(272, 20);
-            this.txtNhanXet_RangHamMat.TabIndex = 14;
             // 
             // label5
             // 
@@ -1076,6 +974,192 @@
             this.btnOK.Text = "   &Lưu";
             this.btnOK.UseVisualStyleBackColor = true;
             // 
+            // nhanXetKhamLamSangBindingSource
+            // 
+            this.nhanXetKhamLamSangBindingSource.DataSource = typeof(MM.Databasae.NhanXetKhamLamSang);
+            // 
+            // txtNhanXet_TaiMuiHong
+            // 
+            this.txtNhanXet_TaiMuiHong.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtNhanXet_TaiMuiHong.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.txtNhanXet_TaiMuiHong.DataSource = this.nhanXetKhamLamSangBindingSource;
+            this.txtNhanXet_TaiMuiHong.DisplayMember = "NhanXet";
+            this.txtNhanXet_TaiMuiHong.Enabled = false;
+            this.txtNhanXet_TaiMuiHong.FormattingEnabled = true;
+            this.txtNhanXet_TaiMuiHong.Location = new System.Drawing.Point(94, 61);
+            this.txtNhanXet_TaiMuiHong.Name = "txtNhanXet_TaiMuiHong";
+            this.txtNhanXet_TaiMuiHong.Size = new System.Drawing.Size(272, 21);
+            this.txtNhanXet_TaiMuiHong.TabIndex = 10;
+            this.txtNhanXet_TaiMuiHong.ValueMember = "NhanXetKhamLamSangGUID";
+            // 
+            // txtNhanXet_RangHamMat
+            // 
+            this.txtNhanXet_RangHamMat.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtNhanXet_RangHamMat.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.txtNhanXet_RangHamMat.DataSource = this.nhanXetKhamLamSangBindingSource;
+            this.txtNhanXet_RangHamMat.DisplayMember = "NhanXet";
+            this.txtNhanXet_RangHamMat.Enabled = false;
+            this.txtNhanXet_RangHamMat.FormattingEnabled = true;
+            this.txtNhanXet_RangHamMat.Location = new System.Drawing.Point(454, 61);
+            this.txtNhanXet_RangHamMat.Name = "txtNhanXet_RangHamMat";
+            this.txtNhanXet_RangHamMat.Size = new System.Drawing.Size(272, 21);
+            this.txtNhanXet_RangHamMat.TabIndex = 14;
+            this.txtNhanXet_RangHamMat.ValueMember = "NhanXetKhamLamSangGUID";
+            // 
+            // txtNhanXet_Mat
+            // 
+            this.txtNhanXet_Mat.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtNhanXet_Mat.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.txtNhanXet_Mat.DataSource = this.nhanXetKhamLamSangBindingSource;
+            this.txtNhanXet_Mat.DisplayMember = "NhanXet";
+            this.txtNhanXet_Mat.Enabled = false;
+            this.txtNhanXet_Mat.FormattingEnabled = true;
+            this.txtNhanXet_Mat.Location = new System.Drawing.Point(94, 60);
+            this.txtNhanXet_Mat.Name = "txtNhanXet_Mat";
+            this.txtNhanXet_Mat.Size = new System.Drawing.Size(272, 21);
+            this.txtNhanXet_Mat.TabIndex = 6;
+            this.txtNhanXet_Mat.ValueMember = "NhanXetKhamLamSangGUID";
+            // 
+            // txtNhanXet_HoHap
+            // 
+            this.txtNhanXet_HoHap.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtNhanXet_HoHap.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.txtNhanXet_HoHap.DataSource = this.nhanXetKhamLamSangBindingSource;
+            this.txtNhanXet_HoHap.DisplayMember = "NhanXet";
+            this.txtNhanXet_HoHap.Enabled = false;
+            this.txtNhanXet_HoHap.FormattingEnabled = true;
+            this.txtNhanXet_HoHap.Location = new System.Drawing.Point(454, 60);
+            this.txtNhanXet_HoHap.Name = "txtNhanXet_HoHap";
+            this.txtNhanXet_HoHap.Size = new System.Drawing.Size(272, 21);
+            this.txtNhanXet_HoHap.TabIndex = 18;
+            this.txtNhanXet_HoHap.ValueMember = "NhanXetKhamLamSangGUID";
+            // 
+            // txtNhanXet_TimMach
+            // 
+            this.txtNhanXet_TimMach.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtNhanXet_TimMach.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.txtNhanXet_TimMach.DataSource = this.nhanXetKhamLamSangBindingSource;
+            this.txtNhanXet_TimMach.DisplayMember = "NhanXet";
+            this.txtNhanXet_TimMach.Enabled = false;
+            this.txtNhanXet_TimMach.FormattingEnabled = true;
+            this.txtNhanXet_TimMach.Location = new System.Drawing.Point(94, 128);
+            this.txtNhanXet_TimMach.Name = "txtNhanXet_TimMach";
+            this.txtNhanXet_TimMach.Size = new System.Drawing.Size(272, 21);
+            this.txtNhanXet_TimMach.TabIndex = 22;
+            this.txtNhanXet_TimMach.ValueMember = "NhanXetKhamLamSangGUID";
+            // 
+            // txtNhanXet_TieuHoa
+            // 
+            this.txtNhanXet_TieuHoa.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtNhanXet_TieuHoa.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.txtNhanXet_TieuHoa.DataSource = this.nhanXetKhamLamSangBindingSource;
+            this.txtNhanXet_TieuHoa.DisplayMember = "NhanXet";
+            this.txtNhanXet_TieuHoa.Enabled = false;
+            this.txtNhanXet_TieuHoa.FormattingEnabled = true;
+            this.txtNhanXet_TieuHoa.Location = new System.Drawing.Point(454, 128);
+            this.txtNhanXet_TieuHoa.Name = "txtNhanXet_TieuHoa";
+            this.txtNhanXet_TieuHoa.Size = new System.Drawing.Size(272, 21);
+            this.txtNhanXet_TieuHoa.TabIndex = 26;
+            this.txtNhanXet_TieuHoa.ValueMember = "NhanXetKhamLamSangGUID";
+            // 
+            // txtNhanXet_TietNieuSinhDuc
+            // 
+            this.txtNhanXet_TietNieuSinhDuc.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtNhanXet_TietNieuSinhDuc.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.txtNhanXet_TietNieuSinhDuc.DataSource = this.nhanXetKhamLamSangBindingSource;
+            this.txtNhanXet_TietNieuSinhDuc.DisplayMember = "NhanXet";
+            this.txtNhanXet_TietNieuSinhDuc.Enabled = false;
+            this.txtNhanXet_TietNieuSinhDuc.FormattingEnabled = true;
+            this.txtNhanXet_TietNieuSinhDuc.Location = new System.Drawing.Point(94, 197);
+            this.txtNhanXet_TietNieuSinhDuc.Name = "txtNhanXet_TietNieuSinhDuc";
+            this.txtNhanXet_TietNieuSinhDuc.Size = new System.Drawing.Size(272, 21);
+            this.txtNhanXet_TietNieuSinhDuc.TabIndex = 30;
+            this.txtNhanXet_TietNieuSinhDuc.ValueMember = "NhanXetKhamLamSangGUID";
+            // 
+            // txtNhanXet_CoXuongKhop
+            // 
+            this.txtNhanXet_CoXuongKhop.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtNhanXet_CoXuongKhop.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.txtNhanXet_CoXuongKhop.DataSource = this.nhanXetKhamLamSangBindingSource;
+            this.txtNhanXet_CoXuongKhop.DisplayMember = "NhanXet";
+            this.txtNhanXet_CoXuongKhop.Enabled = false;
+            this.txtNhanXet_CoXuongKhop.FormattingEnabled = true;
+            this.txtNhanXet_CoXuongKhop.Location = new System.Drawing.Point(454, 197);
+            this.txtNhanXet_CoXuongKhop.Name = "txtNhanXet_CoXuongKhop";
+            this.txtNhanXet_CoXuongKhop.Size = new System.Drawing.Size(272, 21);
+            this.txtNhanXet_CoXuongKhop.TabIndex = 34;
+            this.txtNhanXet_CoXuongKhop.ValueMember = "NhanXetKhamLamSangGUID";
+            // 
+            // txtNhanXet_DaLieu
+            // 
+            this.txtNhanXet_DaLieu.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtNhanXet_DaLieu.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.txtNhanXet_DaLieu.DataSource = this.nhanXetKhamLamSangBindingSource;
+            this.txtNhanXet_DaLieu.DisplayMember = "NhanXet";
+            this.txtNhanXet_DaLieu.Enabled = false;
+            this.txtNhanXet_DaLieu.FormattingEnabled = true;
+            this.txtNhanXet_DaLieu.Location = new System.Drawing.Point(94, 266);
+            this.txtNhanXet_DaLieu.Name = "txtNhanXet_DaLieu";
+            this.txtNhanXet_DaLieu.Size = new System.Drawing.Size(272, 21);
+            this.txtNhanXet_DaLieu.TabIndex = 38;
+            this.txtNhanXet_DaLieu.ValueMember = "NhanXetKhamLamSangGUID";
+            // 
+            // txtNhanXet_ThanKinh
+            // 
+            this.txtNhanXet_ThanKinh.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtNhanXet_ThanKinh.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.txtNhanXet_ThanKinh.DataSource = this.nhanXetKhamLamSangBindingSource;
+            this.txtNhanXet_ThanKinh.DisplayMember = "NhanXet";
+            this.txtNhanXet_ThanKinh.Enabled = false;
+            this.txtNhanXet_ThanKinh.FormattingEnabled = true;
+            this.txtNhanXet_ThanKinh.Location = new System.Drawing.Point(454, 266);
+            this.txtNhanXet_ThanKinh.Name = "txtNhanXet_ThanKinh";
+            this.txtNhanXet_ThanKinh.Size = new System.Drawing.Size(272, 21);
+            this.txtNhanXet_ThanKinh.TabIndex = 42;
+            this.txtNhanXet_ThanKinh.ValueMember = "NhanXetKhamLamSangGUID";
+            // 
+            // txtNhanXet_NoiTiet
+            // 
+            this.txtNhanXet_NoiTiet.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtNhanXet_NoiTiet.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.txtNhanXet_NoiTiet.DataSource = this.nhanXetKhamLamSangBindingSource;
+            this.txtNhanXet_NoiTiet.DisplayMember = "NhanXet";
+            this.txtNhanXet_NoiTiet.Enabled = false;
+            this.txtNhanXet_NoiTiet.FormattingEnabled = true;
+            this.txtNhanXet_NoiTiet.Location = new System.Drawing.Point(94, 334);
+            this.txtNhanXet_NoiTiet.Name = "txtNhanXet_NoiTiet";
+            this.txtNhanXet_NoiTiet.Size = new System.Drawing.Size(272, 21);
+            this.txtNhanXet_NoiTiet.TabIndex = 46;
+            this.txtNhanXet_NoiTiet.ValueMember = "NhanXetKhamLamSangGUID";
+            // 
+            // txtNhanXet_CoQuanKhac
+            // 
+            this.txtNhanXet_CoQuanKhac.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtNhanXet_CoQuanKhac.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.txtNhanXet_CoQuanKhac.DataSource = this.nhanXetKhamLamSangBindingSource;
+            this.txtNhanXet_CoQuanKhac.DisplayMember = "NhanXet";
+            this.txtNhanXet_CoQuanKhac.Enabled = false;
+            this.txtNhanXet_CoQuanKhac.FormattingEnabled = true;
+            this.txtNhanXet_CoQuanKhac.Location = new System.Drawing.Point(454, 312);
+            this.txtNhanXet_CoQuanKhac.Name = "txtNhanXet_CoQuanKhac";
+            this.txtNhanXet_CoQuanKhac.Size = new System.Drawing.Size(272, 21);
+            this.txtNhanXet_CoQuanKhac.TabIndex = 48;
+            this.txtNhanXet_CoQuanKhac.ValueMember = "NhanXetKhamLamSangGUID";
+            // 
+            // txtKetQuaKhamPhuKhoa
+            // 
+            this.txtKetQuaKhamPhuKhoa.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Suggest;
+            this.txtKetQuaKhamPhuKhoa.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.txtKetQuaKhamPhuKhoa.DataSource = this.nhanXetKhamLamSangBindingSource;
+            this.txtKetQuaKhamPhuKhoa.DisplayMember = "NhanXet";
+            this.txtKetQuaKhamPhuKhoa.Enabled = false;
+            this.txtKetQuaKhamPhuKhoa.FormattingEnabled = true;
+            this.txtKetQuaKhamPhuKhoa.Location = new System.Drawing.Point(110, 402);
+            this.txtKetQuaKhamPhuKhoa.Name = "txtKetQuaKhamPhuKhoa";
+            this.txtKetQuaKhamPhuKhoa.Size = new System.Drawing.Size(256, 21);
+            this.txtKetQuaKhamPhuKhoa.TabIndex = 75;
+            this.txtKetQuaKhamPhuKhoa.ValueMember = "NhanXetKhamLamSangGUID";
+            // 
             // dlgAddKhamLamSang
             // 
             this.AcceptButton = this.btnOK;
@@ -1104,6 +1188,7 @@
             this.groupBox2.ResumeLayout(false);
             this.groupBox2.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.nhanXetKhamLamSangBindingSource)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -1116,49 +1201,37 @@
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.ComboBox cboDocStaff;
         private System.Windows.Forms.BindingSource docStaffViewBindingSource;
-        private System.Windows.Forms.TextBox txtNhanXet_CoQuanKhac;
         private System.Windows.Forms.Label label14;
-        private System.Windows.Forms.TextBox txtNhanXet_NoiTiet;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.CheckBox chkAbnormal_NoiTiet;
         private System.Windows.Forms.CheckBox chkNormal_NoiTiet;
-        private System.Windows.Forms.TextBox txtNhanXet_ThanKinh;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.CheckBox chkAbnormal_ThanKinh;
         private System.Windows.Forms.CheckBox chkNormal_ThanKinh;
-        private System.Windows.Forms.TextBox txtNhanXet_DaLieu;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.CheckBox chkAbnormal_DaLieu;
         private System.Windows.Forms.CheckBox chkNormal_DaLieu;
-        private System.Windows.Forms.TextBox txtNhanXet_CoXuongKhop;
         private System.Windows.Forms.Label label10;
         private System.Windows.Forms.CheckBox chkAbnormal_CoXuongKhop;
         private System.Windows.Forms.CheckBox chkNormal_CoXuongKhop;
-        private System.Windows.Forms.TextBox txtNhanXet_TietNieuSinhDuc;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.CheckBox chkAbnormal_TietNieuSinhDuc;
         private System.Windows.Forms.CheckBox chkNormal_TietNieuSinhDuc;
-        private System.Windows.Forms.TextBox txtNhanXet_TieuHoa;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.CheckBox chkAbnormal_TieuHoa;
         private System.Windows.Forms.CheckBox chkNormal_TieuHoa;
-        private System.Windows.Forms.TextBox txtNhanXet_TimMach;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.CheckBox chkAbnormal_TimMach;
         private System.Windows.Forms.CheckBox chkNormal_TimMach;
-        private System.Windows.Forms.TextBox txtNhanXet_HoHap;
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.CheckBox chkAbnormal_HoHap;
         private System.Windows.Forms.CheckBox chkNormal_HoHap;
-        private System.Windows.Forms.TextBox txtNhanXet_RangHamMat;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox chkAbnormal_RangHamMat;
         private System.Windows.Forms.CheckBox chkNormal_RangHamMat;
-        private System.Windows.Forms.TextBox txtNhanXet_TaiMuiHong;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.CheckBox chkAbnormal_TaiMuiHong;
         private System.Windows.Forms.CheckBox chkNormal_TaiMuiHong;
-        private System.Windows.Forms.TextBox txtNhanXet_Mat;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.CheckBox chkAbnormal_Mat;
         private System.Windows.Forms.CheckBox chkNormal_Mat;
@@ -1183,7 +1256,6 @@
         private System.Windows.Forms.Label label19;
         private System.Windows.Forms.TextBox txtSoiTuoiHuyetTrang;
         private System.Windows.Forms.Label label18;
-        private System.Windows.Forms.TextBox txtKetQuaKhamPhuKhoa;
         private System.Windows.Forms.Label label17;
         private System.Windows.Forms.DateTimePicker dtpkNgayKinhChot;
         private System.Windows.Forms.TextBox txtPARA;
@@ -1192,5 +1264,19 @@
         private System.Windows.Forms.CheckBox chkKinhChot;
         private System.Windows.Forms.TextBox txtPhuKhoaNote;
         private System.Windows.Forms.Label label16;
+        private System.Windows.Forms.BindingSource nhanXetKhamLamSangBindingSource;
+        private System.Windows.Forms.ComboBox txtNhanXet_TaiMuiHong;
+        private System.Windows.Forms.ComboBox txtNhanXet_RangHamMat;
+        private System.Windows.Forms.ComboBox txtNhanXet_Mat;
+        private System.Windows.Forms.ComboBox txtNhanXet_HoHap;
+        private System.Windows.Forms.ComboBox txtNhanXet_TimMach;
+        private System.Windows.Forms.ComboBox txtNhanXet_TieuHoa;
+        private System.Windows.Forms.ComboBox txtNhanXet_TietNieuSinhDuc;
+        private System.Windows.Forms.ComboBox txtNhanXet_CoXuongKhop;
+        private System.Windows.Forms.ComboBox txtNhanXet_DaLieu;
+        private System.Windows.Forms.ComboBox txtNhanXet_ThanKinh;
+        private System.Windows.Forms.ComboBox txtNhanXet_NoiTiet;
+        private System.Windows.Forms.ComboBox txtKetQuaKhamPhuKhoa;
+        private System.Windows.Forms.ComboBox txtNhanXet_CoQuanKhac;
     }
 }
