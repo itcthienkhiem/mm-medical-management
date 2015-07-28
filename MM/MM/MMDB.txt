@@ -465,7 +465,8 @@ ChiTietPhieuThuTemplate.xls, ChiTietPhieuThuThuocTemplate.xls, ChiTietPhieuThuCa
 1. Thêm cột ghi chú xuất excel phiếu thu (Done)
 2. Thêm cấu hình nhận xét khám lâm sàng (Done)
 3. Thay background (Done)
-4. Khám lâm sàn cho chọn nhanh nhận xét
-5. Báo cái bệnh nhân đến khám chỉnh lại chỉ lọc bệnh nhân theo ngày khám
-5. Check hóa đơn 23/7.
-6. Phục hồi kết quả khám bệnh
+4. Khám lâm sàn cho chọn nhanh nhận xét (Done)
+5. Báo cáo bệnh nhân đến khám chỉnh lại chỉ lọc bệnh nhân theo ngày khám
+6. Tư vấn khách hàng, Ý kiến khách hàng xem lại logic check Khách hàng trùng tên
+7. Check hóa đơn 23/7.
+8. Phục hồi kết quả khám bệnh
