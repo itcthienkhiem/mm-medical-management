@@ -462,11 +462,11 @@ WHERE InvoiceGUID = '7798067F-1B07-4E97-BB29-3174660C9CCA'
 ChiTietPhieuThuTemplate.xls, ChiTietPhieuThuThuocTemplate.xls, ChiTietPhieuThuCapCuuTemplate.xls)
 4. Thông kê chỉ định của bác sĩ (ThongKeChiDinhCuaBacSiTemplate.xls)
 =========================================================================
-1. Thêm cột ghi chú xuất excel phiếu thu (Done)
+1. Thêm cột ghi chú xuất excel phiếu thu (Done) (Update Excel Temlate: 
 2. Thêm cấu hình nhận xét khám lâm sàng (Done)
 3. Thay background (Done)
 4. Khám lâm sàn cho chọn nhanh nhận xét (Done)
 5. Báo cáo bệnh nhân đến khám chỉnh lại chỉ lọc bệnh nhân theo ngày khám (Done)
-6. Tư vấn khách hàng, Ý kiến khách hàng xem lại logic check Khách hàng trùng tên
-7. Check hóa đơn 23/7.
-8. Phục hồi kết quả khám bệnh
+6. Tư vấn khách hàng, Ý kiến khách hàng xem lại logic check Khách hàng trùng tên (Done)
+7. Phục hồi kết quả khám bệnh
+8. Check hóa đơn 23/7.

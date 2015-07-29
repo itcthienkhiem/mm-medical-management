@@ -11745,6 +11745,7 @@ namespace MM.Exports
 
                     double thanhTien = Convert.ToDouble(row["ThanhTien"]);
                     string hinhThucThanhToan = row["HinhThucThanhToan"].ToString();
+                    string ghiChu = row["GhiChu"] as string;
 
                     workSheet.Cells[rowIndex, 0].Value = stt++;
                     workSheet.Cells[rowIndex, 1].Value = soPhieuThu;
@@ -11760,6 +11761,7 @@ namespace MM.Exports
                     workSheet.Cells[rowIndex, 11].Value = giam;
                     workSheet.Cells[rowIndex, 12].Value = thanhTien;
                     workSheet.Cells[rowIndex, 13].Value = hinhThucThanhToan;
+                    workSheet.Cells[rowIndex, 14].Value = ghiChu;
                     rowIndex++;
                 }
 
@@ -11774,7 +11776,7 @@ namespace MM.Exports
 
                 range.Value = string.Format("=SUM(M5:M{0})", rowIndex);
 
-                range = workSheet.Cells[string.Format("A5:N{0}", rowIndex + 1)];
+                range = workSheet.Cells[string.Format("A5:O{0}", rowIndex + 1)];
                 range.Borders.Color = Color.Black;
                 range.Borders.LineStyle = LineStyle.Continuous;
                 range.Borders.Weight = BorderWeight.Thin;

@@ -150,26 +150,26 @@ namespace MM.Dialogs
                 return false;
             }
 
-            string tuVanKhachHangGUID = string.Empty;
-            if (!_isNew) tuVanKhachHangGUID = _tuVanKhachHang.TuVanKhachHangGUID.ToString();
+            //string tuVanKhachHangGUID = string.Empty;
+            //if (!_isNew) tuVanKhachHangGUID = _tuVanKhachHang.TuVanKhachHangGUID.ToString();
 
-            Result result = TuVanKhachHangBus.CheckKhachHangExist(txtTenKhachHang.Text, tuVanKhachHangGUID);
-            if (result.Error.Code == ErrorCode.EXIST || result.Error.Code == ErrorCode.NOT_EXIST)
-            {
-                if (result.Error.Code == ErrorCode.EXIST)
-                {
-                    MsgBox.Show(this.Text, string.Format("Khách hàng: '{0}' đã được tư vấn trước rồi. Vui lòng cập nhật thông tin cho khách hàng này.", txtTenKhachHang.Text),
-                        IconType.Information);
+            //Result result = TuVanKhachHangBus.CheckKhachHangExist(txtTenKhachHang.Text, tuVanKhachHangGUID);
+            //if (result.Error.Code == ErrorCode.EXIST || result.Error.Code == ErrorCode.NOT_EXIST)
+            //{
+            //    if (result.Error.Code == ErrorCode.EXIST)
+            //    {
+            //        MsgBox.Show(this.Text, string.Format("Khách hàng: '{0}' đã được tư vấn trước rồi. Vui lòng cập nhật thông tin cho khách hàng này.", txtTenKhachHang.Text),
+            //            IconType.Information);
 
-                    _isView = true;
-                    return false;
-                }
-            }
-            else
-            {
-                MsgBox.Show(this.Text, result.GetErrorAsString("TuVanKhachHangBus.CheckKhachHangExist"), IconType.Error);
-                return false;
-            }
+            //        _isView = true;
+            //        return false;
+            //    }
+            //}
+            //else
+            //{
+            //    MsgBox.Show(this.Text, result.GetErrorAsString("TuVanKhachHangBus.CheckKhachHangExist"), IconType.Error);
+            //    return false;
+            //}
 
             //if (cboDocStaff.SelectedValue == null || cboDocStaff.Text.Trim() == string.Empty)
             //{
