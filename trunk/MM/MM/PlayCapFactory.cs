@@ -52,6 +52,7 @@ namespace MM
                     System.Threading.Thread.Sleep(500);
                 }
 
+                //
                 while (!InitClient())
                 {
                     System.Threading.Thread.Sleep(500);
