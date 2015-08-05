@@ -12,6 +12,7 @@ namespace MM.Common
         public string BSCDFirstName = string.Empty;
         public string BSCDFullName = string.Empty;
         public string TenBenhNhan = string.Empty;
+        public string MaBenhNhan = string.Empty;
         public string SoPhieuThu = string.Empty;
         public string SoHoaDon = string.Empty;
         public DateTime NgayXuatHD = DateTime.Now;

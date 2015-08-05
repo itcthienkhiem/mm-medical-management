@@ -199,6 +199,81 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetChiDinhCuaBacSiTheoPhieuThu(DateTime fromDate, DateTime toDate, string docStaffGUID)
+        {
+            Result result = new Result();
+            MMOverride db = null;
+
+            try
+            {
+                db = new MMOverride();
+
+                List<HoaDonDichVuChiDinh> hddvcds = new List<HoaDonDichVuChiDinh>();
+                var ctptList = db.ReceiptDetails.Where(p => p.Status == 0 && p.Receipt.Status == 0 &&
+                    p.Receipt.ReceiptDate >= fromDate && p.Receipt.ReceiptDate <= toDate);
+
+                if (ctptList != null)
+                {
+                    foreach (var ctpt in ctptList)
+                    {
+                        ChiDinh chiDinh = GetChiDinh(ctpt.ServiceHistoryGUID.ToString(), db);
+                        if (chiDinh == null) continue;
+                        if (chiDinh.BacSiChiDinhGUID.ToString().ToUpper() != docStaffGUID.ToUpper())
+                            continue;
+
+                        string soHoaDon = string.Empty;
+                        if (ctpt.Receipt.IsExportedInVoice)
+                        {
+                            Invoice hoaDon = db.Invoices.Where(h => h.ReceiptGUIDList.Contains(ctpt.Receipt.ReceiptGUID.ToString())).FirstOrDefault();
+                            if (hoaDon != null) soHoaDon = hoaDon.InvoiceCode;
+                        }
+
+                        HoaDonDichVuChiDinh item = new HoaDonDichVuChiDinh();
+                        item.BSCDGUID = chiDinh.BacSiChiDinhGUID.ToString();
+                        item.BSCDFirstName = chiDinh.DocStaff.Contact.FirstName;
+                        item.BSCDFullName = chiDinh.DocStaff.Contact.FullName;
+                        item.MaBenhNhan = chiDinh.Patient.FileNum;
+                        item.TenBenhNhan = chiDinh.Patient.Contact.FullName;
+                        item.NgayXuatHD = ctpt.Receipt.ReceiptDate;
+                        item.SoPhieuThu = ctpt.Receipt.ReceiptCode;
+                        item.SoHoaDon = soHoaDon;
+                        item.TenDichVu = ctpt.ServiceHistory.Service.Name;
+                        item.SoLuong = ctpt.SoLuong;
+                        hddvcds.Add(item);
+                    }
+                }
+
+                if (hddvcds.Count > 0)
+                {
+                    hddvcds = hddvcds.OrderBy(x => x.BSCDFirstName).ThenBy(x => x.BSCDFullName)
+                        .ThenBy(x => x.BSCDGUID).ThenBy(x => x.SoHoaDon).ThenBy(x => x.NgayXuatHD)
+                        .ThenBy(x => x.TenDichVu).ToList();
+                    result.QueryResult = hddvcds;
+                }
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+            finally
+            {
+                if (db != null)
+                {
+                    db.Dispose();
+                    db = null;
+                }
+            }
+
+
+            return result;
+        }
+
         public static Result GetChiDinhCuaBacSi(DateTime fromDate, DateTime toDate, string docStaffGUID)
         {
             Result result = new Result();

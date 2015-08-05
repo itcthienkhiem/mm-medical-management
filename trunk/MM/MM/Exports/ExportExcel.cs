@@ -180,7 +180,7 @@ namespace MM.Exports
 
             try
             {
-                Result result = ReportBus.GetChiDinhCuaBacSi(tuNgay, denNgay, docStaffGUID);
+                Result result = ReportBus.GetChiDinhCuaBacSiTheoPhieuThu(tuNgay, denNgay, docStaffGUID);
                 if (!result.IsOK)
                 {
                     MsgBox.Show(Application.ProductName, result.GetErrorAsString("ReportBus.GetChiDinhCuaBacSi"), IconType.Error);
@@ -223,16 +223,12 @@ namespace MM.Exports
                         if (key == item.BSCDGUID)
                         {
                             workSheet.Cells[rowIndex, 1].Value = item.TenBenhNhan;
-                            workSheet.Cells[rowIndex, 2].Value = item.NgayXuatHD.ToString("dd/MM/yyyy");
-                            workSheet.Cells[rowIndex, 3].Value = item.SoPhieuThu;
-                            workSheet.Cells[rowIndex, 4].Value = item.SoHoaDon;
-                            workSheet.Cells[rowIndex, 5].Value = item.TenDichVu;
-                            workSheet.Cells[rowIndex, 6].Value = item.SoLuong;
-                            //workSheet.Cells[rowIndex, 6].Value = item.DonGia;
-                            //workSheet.Cells[rowIndex, 7].Value = item.VAT;
-                            //workSheet.Cells[rowIndex, 8].Value = item.ThanhTien;
-                            //tongTien += item.ThanhTien;
-                            //tongCong += item.ThanhTien;
+                            workSheet.Cells[rowIndex, 2].Value = item.MaBenhNhan;
+                            workSheet.Cells[rowIndex, 3].Value = item.NgayXuatHD.ToString("dd/MM/yyyy");
+                            workSheet.Cells[rowIndex, 4].Value = item.SoPhieuThu;
+                            workSheet.Cells[rowIndex, 5].Value = item.SoHoaDon;
+                            workSheet.Cells[rowIndex, 6].Value = item.TenDichVu;
+                            workSheet.Cells[rowIndex, 7].Value = item.SoLuong;
                             rowIndex++;
                             count++;
                         }
@@ -244,32 +240,17 @@ namespace MM.Exports
                             range.Merge();
                             workSheet.Cells[string.Format("A{0}", start)].Value = bsChiDinh;
 
-                            //range = workSheet.Cells[string.Format("J{0}:J{1}", start, end)];
-                            //range.Merge();
-
-                            //if (dictTongTien != null && dictTongTien.ContainsKey(key))
-                            //{
-                            //    tongTien += dictTongTien[key];
-                            //    tongCong += dictTongTien[key];
-                            //}
-
-                            //workSheet.Cells[string.Format("J{0}", start)].Value = tongTien;
-
                             workSheet.Cells[rowIndex, 1].Value = item.TenBenhNhan;
-                            workSheet.Cells[rowIndex, 2].Value = item.NgayXuatHD.ToString("dd/MM/yyyy");
-                            workSheet.Cells[rowIndex, 3].Value = item.SoPhieuThu;
-                            workSheet.Cells[rowIndex, 4].Value = item.SoHoaDon;
-                            workSheet.Cells[rowIndex, 5].Value = item.TenDichVu;
-                            workSheet.Cells[rowIndex, 6].Value = item.SoLuong;
-                            //workSheet.Cells[rowIndex, 6].Value = item.DonGia;
-                            //workSheet.Cells[rowIndex, 7].Value = item.VAT;
-                            //workSheet.Cells[rowIndex, 8].Value = item.ThanhTien;
+                            workSheet.Cells[rowIndex, 2].Value = item.MaBenhNhan;
+                            workSheet.Cells[rowIndex, 3].Value = item.NgayXuatHD.ToString("dd/MM/yyyy");
+                            workSheet.Cells[rowIndex, 4].Value = item.SoPhieuThu;
+                            workSheet.Cells[rowIndex, 5].Value = item.SoHoaDon;
+                            workSheet.Cells[rowIndex, 6].Value = item.TenDichVu;
+                            workSheet.Cells[rowIndex, 7].Value = item.SoLuong;
                             rowIndex++;
 
                             key = item.BSCDGUID;
                             bsChiDinh = item.BSCDFullName;
-                            //tongTien = item.ThanhTien;
-                            //tongCong += item.ThanhTien;
                             count = 1;
                         }
                     }
@@ -280,30 +261,10 @@ namespace MM.Exports
                     range.Merge();
                     workSheet.Cells[string.Format("A{0}", start)].Value = bsChiDinh;
 
-                    //range = workSheet.Cells[string.Format("J{0}:J{1}", start, end)];
-                    //range.Merge();
-
-                    //if (dictTongTien != null && dictTongTien.ContainsKey(key))
-                    //{
-                    //    tongTien += dictTongTien[key];
-                    //    tongCong += dictTongTien[key];
-                    //}
-
-                    //workSheet.Cells[string.Format("J{0}", start)].Value = tongTien;
-
-                    range = workSheet.Cells[string.Format("A4:G{0}", rowIndex)];
+                    range = workSheet.Cells[string.Format("A4:H{0}", rowIndex)];
                     range.Borders.Color = Color.Black;
                     range.Borders.LineStyle = LineStyle.Continuous;
                     range.Borders.Weight = BorderWeight.Thin;
-
-                    //rowIndex++;
-                    //range = workSheet.Cells[string.Format("I{0}", rowIndex)];
-                    //range.Value = "Tổng cộng:";
-                    //range.Font.Bold = true;
-
-                    //range = workSheet.Cells[string.Format("J{0}", rowIndex)];
-                    //range.Value = tongCong;
-                    //range.Font.Bold = true;
                 }
 
                 string path = string.Format("{0}\\Temp", Application.StartupPath);
