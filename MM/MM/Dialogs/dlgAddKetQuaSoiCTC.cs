@@ -66,46 +66,55 @@ namespace MM.Dialogs
         #region UI Command
         private void InitData()
         {
-            Cursor.Current = Cursors.WaitCursor;
-            dtpkNgayKham.Value = DateTime.Now;
-            DisplayDSBasSiSoi();
-
-            if (_allowEdit)
+            try
             {
-                _watchingFolder = new WatchingFolder();
-                _watchingFolder.OnCreatedFileEvent += new CreatedFileEventHandler(_watchingFolder_OnCreatedFileEvent);
-                _watchingFolder.StartMoritoring(Global.HinhChupPath);
+                Cursor.Current = Cursors.WaitCursor;
+                dtpkNgayKham.Value = DateTime.Now;
+                DisplayDSBasSiSoi();
 
-                if (!Utility.CheckRunningProcess(Const.TVHomeProcessName))
-                    Utility.ExecuteFile(Global.TVHomeConfig.Path);
+                if (_allowEdit)
+                {
+                    _watchingFolder = new WatchingFolder();
+                    _watchingFolder.OnCreatedFileEvent += new CreatedFileEventHandler(_watchingFolder_OnCreatedFileEvent);
+                    _watchingFolder.StartMoritoring(Global.HinhChupPath);
 
-                //if (!Global.TVHomeConfig.SuDungSoiCTC)
-                //{
-                //    PlayCapFactory.RunPlayCapProcess(true);
-                //    PlayCapFactory.OnCaptureCompletedEvent += new CaptureCompletedHandler(PlayCapFactory_OnCaptureCompletedEvent);
-                //}
-                //else
-                //{
-                //    _watchingFolder = new WatchingFolder();
-                //    _watchingFolder.OnCreatedFileEvent += new CreatedFileEventHandler(_watchingFolder_OnCreatedFileEvent);
-                //    _watchingFolder.StartMoritoring(Global.HinhChupPath);
+                    if (!Utility.CheckRunningProcess(Const.TVHomeProcessName))
+                        Utility.ExecuteFile(Global.TVHomeConfig.Path);
 
-                //    if (!Utility.CheckRunningProcess(Const.TVHomeProcessName))
-                //        Utility.ExecuteFile(Global.TVHomeConfig.Path);
-                //}
+                    //if (!Global.TVHomeConfig.SuDungSoiCTC)
+                    //{
+                    //    PlayCapFactory.RunPlayCapProcess(true);
+                    //    PlayCapFactory.OnCaptureCompletedEvent += new CaptureCompletedHandler(PlayCapFactory_OnCaptureCompletedEvent);
+                    //}
+                    //else
+                    //{
+                    //    _watchingFolder = new WatchingFolder();
+                    //    _watchingFolder.OnCreatedFileEvent += new CreatedFileEventHandler(_watchingFolder_OnCreatedFileEvent);
+                    //    _watchingFolder.StartMoritoring(Global.HinhChupPath);
+
+                    //    if (!Utility.CheckRunningProcess(Const.TVHomeProcessName))
+                    //        Utility.ExecuteFile(Global.TVHomeConfig.Path);
+                    //}
+                }
+
+                Result result = PatientBus.GetPatient2(_patientGUID);
+                if (result.IsOK)
+                {
+                    PatientView patient = result.QueryResult as PatientView;
+                    _maBenhNhan = patient.FileNum;
+                }
+                else
+                {
+                    MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.GetPatient"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatient"));
+                }
             }
-
-            Result result = PatientBus.GetPatient2(_patientGUID);
-            if (result.IsOK)
+            catch (Exception ex)
             {
-                PatientView patient = result.QueryResult as PatientView;
-                _maBenhNhan = patient.FileNum;
+                MsgBox.Show(this.Text, ex.Message, IconType.Error);
+                Utility.WriteToTraceLog(ex.Message);
             }
-            else
-            {
-                MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.GetPatient"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatient"));
-            }
+            
         }
                 
         private void DisplayDSBasSiSoi()
@@ -578,7 +587,7 @@ namespace MM.Dialogs
                     int count = 0;
                     Image bmp = null;
                     string fileName = string.Format("{0}\\SoiCTC-{1}-{2}.png", Global.HinhChupPath, _maBenhNhan, DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss-ms"));
-                    while (bmp == null && count <= 10)
+                    while (bmp == null && count <= 15)
                     {
                         try
                         {
@@ -591,6 +600,7 @@ namespace MM.Dialogs
                         }
                         
                         count++;
+                        Thread.Sleep(500);
                     }
 
                     if (bmp == null) return;

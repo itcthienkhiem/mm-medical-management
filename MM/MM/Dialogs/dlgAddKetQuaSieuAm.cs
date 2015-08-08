@@ -70,46 +70,54 @@ namespace MM.Dialogs
         #region UI Commnad
         private void InitData()
         {
-            Cursor.Current = Cursors.WaitCursor;
-            dtpkNgaySieuAm.Value = DateTime.Now;
-            DisplayDSBacSiChiDinh();
-            DisplayDSBasSiSieuAm();
-            DisplayLoaiSieuAm();
-
-            btnHinh1.Enabled = _allowEdit;
-            btnHinh2.Enabled = _allowEdit;
-
-            if (_allowEdit)
+            try
             {
-                if (!Global.TVHomeConfig.SuDungSieuAm)
+                Cursor.Current = Cursors.WaitCursor;
+                dtpkNgaySieuAm.Value = DateTime.Now;
+                DisplayDSBacSiChiDinh();
+                DisplayDSBasSiSieuAm();
+                DisplayLoaiSieuAm();
+
+                btnHinh1.Enabled = _allowEdit;
+                btnHinh2.Enabled = _allowEdit;
+
+                if (_allowEdit)
                 {
-                    PlayCapFactory.RunPlayCapProcess(false);
-                    PlayCapFactory.OnCaptureCompletedEvent += new CaptureCompletedHandler(PlayCapFactory_OnCaptureCompletedEvent);
+                    //if (!Global.TVHomeConfig.SuDungSieuAm)
+                    //{
+                    //    PlayCapFactory.RunPlayCapProcess(false);
+                    //    PlayCapFactory.OnCaptureCompletedEvent += new CaptureCompletedHandler(PlayCapFactory_OnCaptureCompletedEvent);
+                    //}
+                    //else
+                    {
+                        btnHinh1.Visible = false;
+                        btnHinh2.Visible = false;
+
+                        _watchingFolder = new WatchingFolder();
+                        _watchingFolder.OnCreatedFileEvent += new CreatedFileEventHandler(_watchingFolder_OnCreatedFileEvent);
+                        _watchingFolder.StartMoritoring(Global.HinhChupPath);
+
+                        if (!Utility.CheckRunningProcess(Const.TVHomeProcessName))
+                            Utility.ExecuteFile(Global.TVHomeConfig.Path);
+                    }
+                }
+
+                Result result = PatientBus.GetPatient2(_patientGUID);
+                if (result.IsOK)
+                {
+                    PatientView patient = result.QueryResult as PatientView;
+                    _maBenhNhan = patient.FileNum;
                 }
                 else
                 {
-                    btnHinh1.Visible = false;
-                    btnHinh2.Visible = false;
-
-                    _watchingFolder = new WatchingFolder();
-                    _watchingFolder.OnCreatedFileEvent += new CreatedFileEventHandler(_watchingFolder_OnCreatedFileEvent);
-                    _watchingFolder.StartMoritoring(Global.HinhChupPath);
-
-                    if (!Utility.CheckRunningProcess(Const.TVHomeProcessName))
-                        Utility.ExecuteFile(Global.TVHomeConfig.Path);
+                    MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.GetPatient"), IconType.Error);
+                    Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatient"));
                 }
             }
-
-            Result result = PatientBus.GetPatient2(_patientGUID);
-            if (result.IsOK)
+            catch (Exception ex)
             {
-                PatientView patient = result.QueryResult as PatientView;
-                _maBenhNhan = patient.FileNum;
-            }
-            else
-            {
-                MsgBox.Show(this.Text, result.GetErrorAsString("PatientBus.GetPatient"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("PatientBus.GetPatient"));
+                MsgBox.Show(this.Text, ex.Message, IconType.Error);
+                Utility.WriteToTraceLog(ex.Message);
             }
         }
 
@@ -519,6 +527,7 @@ namespace MM.Dialogs
                     }
                     
                     count++;
+                    Thread.Sleep(500);
                 }
 
                 if (bmp == null) return;

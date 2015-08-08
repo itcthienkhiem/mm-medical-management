@@ -59,7 +59,7 @@
             this.groupBox1.Controls.Add(this.label1);
             this.groupBox1.Location = new System.Drawing.Point(7, 2);
             this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(519, 81);
+            this.groupBox1.Size = new System.Drawing.Size(519, 53);
             this.groupBox1.TabIndex = 0;
             this.groupBox1.TabStop = false;
             // 
@@ -67,30 +67,31 @@
             // 
             this.panel2.Controls.Add(this.raSieuAm_Co);
             this.panel2.Controls.Add(this.raSieuAm_Khong);
-            this.panel2.Location = new System.Drawing.Point(120, 45);
+            this.panel2.Location = new System.Drawing.Point(120, 50);
             this.panel2.Name = "panel2";
             this.panel2.Size = new System.Drawing.Size(148, 25);
             this.panel2.TabIndex = 8;
+            this.panel2.Visible = false;
             // 
             // raSieuAm_Co
             // 
             this.raSieuAm_Co.AutoSize = true;
+            this.raSieuAm_Co.Checked = true;
             this.raSieuAm_Co.Location = new System.Drawing.Point(3, 4);
             this.raSieuAm_Co.Name = "raSieuAm_Co";
             this.raSieuAm_Co.Size = new System.Drawing.Size(38, 17);
             this.raSieuAm_Co.TabIndex = 5;
+            this.raSieuAm_Co.TabStop = true;
             this.raSieuAm_Co.Text = "Có";
             this.raSieuAm_Co.UseVisualStyleBackColor = true;
             // 
             // raSieuAm_Khong
             // 
             this.raSieuAm_Khong.AutoSize = true;
-            this.raSieuAm_Khong.Checked = true;
             this.raSieuAm_Khong.Location = new System.Drawing.Point(86, 4);
             this.raSieuAm_Khong.Name = "raSieuAm_Khong";
             this.raSieuAm_Khong.Size = new System.Drawing.Size(56, 17);
             this.raSieuAm_Khong.TabIndex = 6;
-            this.raSieuAm_Khong.TabStop = true;
             this.raSieuAm_Khong.Text = "Không";
             this.raSieuAm_Khong.UseVisualStyleBackColor = true;
             // 
@@ -129,11 +130,12 @@
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(68, 50);
+            this.label3.Location = new System.Drawing.Point(68, 55);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(49, 13);
             this.label3.TabIndex = 4;
             this.label3.Text = "Siêu Âm:";
+            this.label3.Visible = false;
             // 
             // label2
             // 
@@ -178,7 +180,7 @@
             this.btnCancel.DialogResult = System.Windows.Forms.DialogResult.Cancel;
             this.btnCancel.Image = global::MM.Properties.Resources.Log_Out_icon__1_;
             this.btnCancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnCancel.Location = new System.Drawing.Point(268, 87);
+            this.btnCancel.Location = new System.Drawing.Point(268, 61);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 25);
             this.btnCancel.TabIndex = 6;
@@ -190,7 +192,7 @@
             this.btnOK.DialogResult = System.Windows.Forms.DialogResult.OK;
             this.btnOK.Image = global::MM.Properties.Resources.save;
             this.btnOK.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btnOK.Location = new System.Drawing.Point(189, 87);
+            this.btnOK.Location = new System.Drawing.Point(189, 61);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 25);
             this.btnOK.TabIndex = 5;
@@ -203,7 +205,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.CancelButton = this.btnCancel;
-            this.ClientSize = new System.Drawing.Size(532, 117);
+            this.ClientSize = new System.Drawing.Size(532, 91);
             this.Controls.Add(this.btnCancel);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.groupBox1);
