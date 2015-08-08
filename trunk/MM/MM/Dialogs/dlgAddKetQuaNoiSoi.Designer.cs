@@ -400,7 +400,7 @@
             this.toolStripSeparator6,
             this.toolStripMenuItem3});
             this.ctmHinh4.Name = "ctmHinh1";
-            this.ctmHinh4.Size = new System.Drawing.Size(201, 76);
+            this.ctmHinh4.Size = new System.Drawing.Size(201, 54);
             // 
             // chọnHìnhTừBênNgoàiToolStripMenuItem3
             // 
@@ -780,9 +780,9 @@
             // 
             this.panel7.Controls.Add(this.lvCapture);
             this.panel7.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.panel7.Location = new System.Drawing.Point(3, 257);
+            this.panel7.Location = new System.Drawing.Point(3, 31);
             this.panel7.Name = "panel7";
-            this.panel7.Size = new System.Drawing.Size(834, 369);
+            this.panel7.Size = new System.Drawing.Size(834, 595);
             this.panel7.TabIndex = 1;
             // 
             // lvCapture
@@ -793,7 +793,7 @@
             this.lvCapture.LargeImageList = this.imgListCapture;
             this.lvCapture.Location = new System.Drawing.Point(0, 0);
             this.lvCapture.Name = "lvCapture";
-            this.lvCapture.Size = new System.Drawing.Size(834, 369);
+            this.lvCapture.Size = new System.Drawing.Size(834, 595);
             this.lvCapture.SmallImageList = this.imgListCapture;
             this.lvCapture.Sorting = System.Windows.Forms.SortOrder.Ascending;
             this.lvCapture.TabIndex = 0;
@@ -859,7 +859,7 @@
             this.panel6.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.panel6.Location = new System.Drawing.Point(3, 3);
             this.panel6.Name = "panel6";
-            this.panel6.Size = new System.Drawing.Size(834, 254);
+            this.panel6.Size = new System.Drawing.Size(834, 28);
             this.panel6.TabIndex = 0;
             // 
             // label14
@@ -867,7 +867,7 @@
             this.label14.AutoSize = true;
             this.label14.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, ((System.Drawing.FontStyle)((System.Drawing.FontStyle.Bold | System.Drawing.FontStyle.Italic))), System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label14.ForeColor = System.Drawing.Color.Blue;
-            this.label14.Location = new System.Drawing.Point(5, 234);
+            this.label14.Location = new System.Drawing.Point(5, 5);
             this.label14.Name = "label14";
             this.label14.Size = new System.Drawing.Size(177, 15);
             this.label14.TabIndex = 15;
@@ -882,6 +882,7 @@
             this.picWebCam.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.picWebCam.TabIndex = 14;
             this.picWebCam.TabStop = false;
+            this.picWebCam.Visible = false;
             // 
             // btnCapture
             // 
@@ -892,6 +893,7 @@
             this.btnCapture.Size = new System.Drawing.Size(42, 42);
             this.btnCapture.TabIndex = 2;
             this.btnCapture.UseVisualStyleBackColor = true;
+            this.btnCapture.Visible = false;
             this.btnCapture.Click += new System.EventHandler(this.btnCapture_Click);
             // 
             // btnStop
@@ -903,6 +905,7 @@
             this.btnStop.Size = new System.Drawing.Size(42, 42);
             this.btnStop.TabIndex = 1;
             this.btnStop.UseVisualStyleBackColor = true;
+            this.btnStop.Visible = false;
             this.btnStop.Click += new System.EventHandler(this.btnStop_Click);
             // 
             // btnPlay
@@ -913,6 +916,7 @@
             this.btnPlay.Size = new System.Drawing.Size(42, 42);
             this.btnPlay.TabIndex = 0;
             this.btnPlay.UseVisualStyleBackColor = true;
+            this.btnPlay.Visible = false;
             this.btnPlay.Click += new System.EventHandler(this.btnPlay_Click);
             // 
             // imgList

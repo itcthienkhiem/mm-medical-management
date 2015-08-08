@@ -28,7 +28,8 @@ namespace MM.Dialogs
         private bool _isPrint = false;
         private bool _allowEdit = true;
         public string MaBenhNhan = string.Empty;
-        public string TenBenhNhan = string.Empty; 
+        public string TenBenhNhan = string.Empty;
+        private WatchingFolder _watchingFolder = null;
         #endregion
 
         #region Constructor
@@ -64,19 +65,34 @@ namespace MM.Dialogs
         #region UI Command
         private void InitData()
         {
+            try
+            {
+                Cursor.Current = Cursors.WaitCursor;
+                dtpkNgayKham.Value = DateTime.Now;
+                cboLoaiNoiSoi.SelectedIndex = 0;
+
+                CleanCache();
+                DisplayDSBacSiChiDinh();
+                DisplayDSBasSiSoi();
+
+                //_webCam = new WebCam();
+                //_webCam.InitializeWebCam(ref picWebCam);
+
+                //OnPlayWebCam();
+
+                _watchingFolder = new WatchingFolder();
+                _watchingFolder.OnCreatedFileEvent += new CreatedFileEventHandler(_watchingFolder_OnCreatedFileEvent);
+                _watchingFolder.StartMoritoring(Global.HinhChupPath);
+
+                if (!Utility.CheckRunningProcess(Const.TVHomeProcessName))
+                    Utility.ExecuteFile(Global.TVHomeConfig.Path);
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(this.Text, ex.Message, IconType.Error);
+                Utility.WriteToTraceLog(ex.Message);
+            }
             
-            Cursor.Current = Cursors.WaitCursor;
-            dtpkNgayKham.Value = DateTime.Now;
-            cboLoaiNoiSoi.SelectedIndex = 0;
-
-            CleanCache();
-            DisplayDSBacSiChiDinh();
-            DisplayDSBasSiSoi();
-
-            _webCam = new WebCam();
-            _webCam.InitializeWebCam(ref picWebCam);
-
-            //OnPlayWebCam();
         }
 
         private void ViewControl(Control view)
@@ -1478,7 +1494,7 @@ namespace MM.Dialogs
                 if (CheckInfo())
                 {
                     SaveInfoAsThread();
-                    OnStopWebCam();
+                    //OnStopWebCam();
                 }
                 else
                     e.Cancel = true;
@@ -1491,13 +1507,13 @@ namespace MM.Dialogs
                     {
                         this.DialogResult = System.Windows.Forms.DialogResult.OK;
                         SaveInfoAsThread();
-                        OnStopWebCam();
+                        //OnStopWebCam();
                     }
                     else
                         e.Cancel = true;
                 }
-                else
-                    OnStopWebCam();
+                //else
+                //    OnStopWebCam();
             }
 
             
@@ -1505,45 +1521,107 @@ namespace MM.Dialogs
 
         private void btnPlay_Click(object sender, EventArgs e)
         {
-            OnPlayWebCam();
+            //OnPlayWebCam();
         }
 
         private void btnStop_Click(object sender, EventArgs e)
         {
-            OnStopWebCam();
+            //OnStopWebCam();
         }
 
         private void btnCapture_Click(object sender, EventArgs e)
         {
-            if (picWebCam.Image == null) return;
+            //if (picWebCam.Image == null) return;
 
-            Image img = picWebCam.Image;
-            CacheImage(img);
-            imgListCapture.Images.Add(img);
+            //Image img = picWebCam.Image;
+            //CacheImage(img);
+            //imgListCapture.Images.Add(img);
 
-            _imgCount++;
-            ListViewItem item = new ListViewItem(string.Format("Hình {0}", _imgCount), imgListCapture.Images.Count - 1);
-            item.Tag = picWebCam.Image;
-            lvCapture.Items.Add(item);
+            //_imgCount++;
+            //ListViewItem item = new ListViewItem(string.Format("Hình {0}", _imgCount), imgListCapture.Images.Count - 1);
+            //item.Tag = picWebCam.Image;
+            //lvCapture.Items.Add(item);
 
-            if (lvCapture.Items.Count <= 4)
+            //if (lvCapture.Items.Count <= 4)
+            //{
+            //    switch (lvCapture.Items.Count)
+            //    {
+            //        case 1:
+            //            picHinh1.Image = (Image)lvCapture.Items[0].Tag;
+            //            break;
+            //        case 2:
+            //            picHinh2.Image = (Image)lvCapture.Items[1].Tag;
+            //            break;
+            //        case 3:
+            //            picHinh3.Image = (Image)lvCapture.Items[2].Tag;
+            //            break;
+            //        case 4:
+            //            picHinh4.Image = (Image)lvCapture.Items[3].Tag;
+            //            break;
+            //    }
+            //}
+        }
+
+        private void _watchingFolder_OnCreatedFileEvent(FileSystemEventArgs e)
+        {
+            Thread.Sleep(1000);
+            try
             {
-                switch (lvCapture.Items.Count)
+                lvCapture.Invoke(new MethodInvoker(delegate()
                 {
-                    case 1:
-                        picHinh1.Image = (Image)lvCapture.Items[0].Tag;
-                        break;
-                    case 2:
-                        picHinh2.Image = (Image)lvCapture.Items[1].Tag;
-                        break;
-                    case 3:
-                        picHinh3.Image = (Image)lvCapture.Items[2].Tag;
-                        break;
-                    case 4:
-                        picHinh4.Image = (Image)lvCapture.Items[3].Tag;
-                        break;
-                }
+                    int count = 0;
+                    Image bmp = null;
+                    string fileName = string.Format("{0}\\KQNS-{1}-{2}.png", Global.HinhChupPath, MaBenhNhan, DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss-ms"));
+                    while (bmp == null && count <= 15)
+                    {
+                        try
+                        {
+                            bmp = Utility.LoadImageFromFile(e.FullPath);
+                            Utility.RenameFileName(e.FullPath, fileName);
+                        }
+                        catch (Exception ex)
+                        {
+                            bmp = null;
+                        }
+
+                        count++;
+                        Thread.Sleep(500);
+                    }
+
+                    if (bmp == null) return;
+
+                    imgListCapture.Images.Add(bmp);
+
+                    _imgCount++;
+                    ListViewItem item = new ListViewItem(string.Format("Hình {0}", _imgCount), imgListCapture.Images.Count - 1);
+                    item.Tag = bmp;
+                    lvCapture.Items.Add(item);
+
+                    if (lvCapture.Items.Count <= 4)
+                    {
+                        switch (lvCapture.Items.Count)
+                        {
+                            case 1:
+                                picHinh1.Image = (Image)lvCapture.Items[0].Tag;
+                                break;
+                            case 2:
+                                picHinh2.Image = (Image)lvCapture.Items[1].Tag;
+                                break;
+                            case 3:
+                                picHinh3.Image = (Image)lvCapture.Items[2].Tag;
+                                break;
+                            case 4:
+                                picHinh4.Image = (Image)lvCapture.Items[3].Tag;
+                                break;
+                        }
+                    }
+                }));
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
         }
 
         private void xóaToolStripMenuItem_Click(object sender, EventArgs e)
@@ -1581,11 +1659,11 @@ namespace MM.Dialogs
 
         private void tabKhamNoiSoi_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (_allowEdit && tabKhamNoiSoi.SelectedIndex == 1)
-            {
-                if (btnPlay.Enabled)
-                    OnPlayWebCam();
-            }
+            //if (_allowEdit && tabKhamNoiSoi.SelectedIndex == 1)
+            //{
+            //    if (btnPlay.Enabled)
+            //        OnPlayWebCam();
+            //}
         }
 
         private void xóaToolStripMenuItem1_Click(object sender, EventArgs e)
