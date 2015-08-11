@@ -415,6 +415,9 @@ namespace MM.Dialogs
         #region Window Event Handlers
         private void dlgAddKetQuaSieuAm_Load(object sender, EventArgs e)
         {
+            if (!this.IsHandleCreated)
+                this.CreateHandle();
+
             InitData();
             if (!_isNew) DisplayInfo();
         }

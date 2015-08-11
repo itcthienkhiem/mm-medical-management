@@ -451,6 +451,9 @@ namespace MM.Dialogs
         #region Window Event Handlers
         private void dlgAddKetQuaSoiCTC_Load(object sender, EventArgs e)
         {
+            if (!this.IsHandleCreated)
+                this.CreateHandle();
+
             InitData();
 
             if (!_isNew)
