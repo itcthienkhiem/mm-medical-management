@@ -71,7 +71,7 @@ namespace MM.Dialogs
                 dtpkNgayKham.Value = DateTime.Now;
                 cboLoaiNoiSoi.SelectedIndex = 0;
 
-                CleanCache();
+                //CleanCache();
                 DisplayDSBacSiChiDinh();
                 DisplayDSBasSiSoi();
 
@@ -1415,6 +1415,7 @@ namespace MM.Dialogs
             try
             {
                 string path = Path.Combine(Application.StartupPath, "Cache\\KetQuaNoiSoi");
+                Utility.CreateFolder(path);
                 string[] dirs = Directory.GetDirectories(path);
 
                 DateTime minDate = DateTime.Now.AddDays(-7);
@@ -1440,6 +1441,9 @@ namespace MM.Dialogs
         #region Window Event Handlers
         private void dlgAddKetQuaNoiSoi_Load(object sender, EventArgs e)
         {
+            if (!this.IsHandleCreated)
+                this.CreateHandle();
+
             InitData();
 
             if (!_isNew)
