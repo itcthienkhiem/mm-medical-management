@@ -538,7 +538,7 @@ namespace MM.Dialogs
                 int count = 0;
                 Image bmp = null;
                 string fileName = string.Format("{0}\\SieuAm-{1}-{2}.png", Global.HinhChupPath, _maBenhNhan, DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss-ms"));
-                while (bmp == null && count <= 10)
+                while (bmp == null && count <= 30)
                 {
                     try
                     {
