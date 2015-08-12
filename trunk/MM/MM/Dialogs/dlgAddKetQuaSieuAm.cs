@@ -121,6 +121,22 @@ namespace MM.Dialogs
             }
         }
 
+        private void StopWatchingFolder()
+        {
+            try
+            {
+                if (_watchingFolder == null) return;
+                _watchingFolder.OnCreatedFileEvent -= new CreatedFileEventHandler(_watchingFolder_OnCreatedFileEvent);
+                _watchingFolder.StopMoritoring();
+                _watchingFolder = null;
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(this.Text, ex.Message, IconType.Error);
+                Utility.WriteToTraceLog(ex.Message);
+            }
+        }
+
         private void DisplayLoaiSieuAm()
         {
             bool isNam = _gioiTinh.ToLower() == "nam" ? true : false;
@@ -447,6 +463,11 @@ namespace MM.Dialogs
             }
         }
 
+        private void dlgAddKetQuaSieuAm_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            StopWatchingFolder();
+        }
+
         private void btnHinh1_Click(object sender, EventArgs e)
         {
             _hinh = 1;
@@ -591,6 +612,8 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+       
 
         
 

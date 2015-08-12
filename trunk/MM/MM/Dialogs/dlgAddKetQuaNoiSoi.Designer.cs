@@ -944,6 +944,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Them kham noi soi";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.dlgAddKetQuaNoiSoi_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.dlgAddKetQuaNoiSoi_FormClosed);
             this.Load += new System.EventHandler(this.dlgAddKetQuaNoiSoi_Load);
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.picHinh1)).EndInit();
