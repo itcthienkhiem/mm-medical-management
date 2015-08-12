@@ -1559,7 +1559,7 @@ namespace MM.Common
             return regex.Replace(strFormD, String.Empty).Replace('\u0111', 'd').Replace('\u0110', 'D');
         }
 
-        public static void RenameFileName(string sourceFileName, string destFileName)
+        public static bool RenameFileName(string sourceFileName, string destFileName)
         {
             try
             {
@@ -1569,8 +1569,11 @@ namespace MM.Common
             catch (Exception e)
             {
                 WriteToTraceLog(e.Message);
+                return false;
                 throw e;
             }
+
+            return true;
         }
 
         public static Image LoadImageFromFile(string path)

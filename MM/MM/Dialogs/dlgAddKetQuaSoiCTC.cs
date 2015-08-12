@@ -603,32 +603,51 @@ namespace MM.Dialogs
 
         private void _watchingFolder_OnCreatedFileEvent(FileSystemEventArgs e)
         {
-            Thread.Sleep(1000);
             try
             {
-                lvCapture.Invoke(new MethodInvoker(delegate()
+                
+                int count = 0;
+                Image bmp = null;
+                bool isRenameOK = false;
+                string fileName = string.Format("{0}\\SoiCTC-{1}-{2}.png", Global.HinhChupPath, _maBenhNhan, DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss-ms"));
+                while (File.Exists(fileName))
                 {
-                    int count = 0;
-                    Image bmp = null;
-                    string fileName = string.Format("{0}\\SoiCTC-{1}-{2}.png", Global.HinhChupPath, _maBenhNhan, DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss-ms"));
-                    while (bmp == null && count <= 30)
+                    fileName = string.Format("{0}\\SoiCTC-{1}-{2}.png", Global.HinhChupPath, _maBenhNhan, DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss-ms"));
+                    Thread.Sleep(5);
+                }
+
+                while ((bmp == null || !isRenameOK) && count <= Const.DeplayCount)
+                {
+                    try
+                    {
+                        if (bmp == null)
+                            bmp = Utility.LoadImageFromFile(e.FullPath);
+                    }
+                    catch (Exception ex)
+                    {
+                        bmp = null;
+                    }
+
+                    if (bmp != null)
                     {
                         try
                         {
-                            bmp = Utility.LoadImageFromFile(e.FullPath);
-                            Utility.RenameFileName(e.FullPath, fileName);
+                            isRenameOK = Utility.RenameFileName(e.FullPath, fileName);
                         }
                         catch (Exception ex)
                         {
-                            bmp = null;   
+
                         }
-                        
-                        count++;
-                        Thread.Sleep(500);
                     }
+                        
+                    count++;
+                    Thread.Sleep(10);
+                }
 
-                    if (bmp == null) return;
+                if (bmp == null) return;
 
+                this.Invoke(new MethodInvoker(delegate()
+                {
                     imgListCapture.Images.Add(bmp);
 
                     _imgCount++;
