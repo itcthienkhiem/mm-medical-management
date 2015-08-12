@@ -317,7 +317,7 @@
             this.toolStripSeparator2,
             this.toolStripMenuItem1});
             this.ctmHinh2.Name = "ctmHinh1";
-            this.ctmHinh2.Size = new System.Drawing.Size(201, 76);
+            this.ctmHinh2.Size = new System.Drawing.Size(201, 54);
             // 
             // chọnHìnhTừBênNgoàiToolStripMenuItem1
             // 
@@ -426,6 +426,7 @@
             this.Text = "Them ket qua sieu am";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.dlgAddKetQuaSieuAm_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.dlgAddKetQuaSieuAm_FormClosed);
             this.Load += new System.EventHandler(this.dlgAddKetQuaSieuAm_Load);
             this.panel1.ResumeLayout(false);
             this.panel2.ResumeLayout(false);

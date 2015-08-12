@@ -116,6 +116,22 @@ namespace MM.Dialogs
             }
             
         }
+
+        private void StopWatchingFolder()
+        {
+            try
+            {
+                if (_watchingFolder == null) return;
+                _watchingFolder.OnCreatedFileEvent -= new CreatedFileEventHandler(_watchingFolder_OnCreatedFileEvent);
+                _watchingFolder.StopMoritoring();
+                _watchingFolder = null;
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(this.Text, ex.Message, IconType.Error);
+                Utility.WriteToTraceLog(ex.Message);
+            }
+        }
                 
         private void DisplayDSBasSiSoi()
         {
@@ -505,6 +521,11 @@ namespace MM.Dialogs
             }
         }
 
+        private void dlgAddKetQuaSoiCTC_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            StopWatchingFolder();
+        }
+
         private void PlayCapFactory_OnCaptureCompletedEvent(Image b)
         {
             imgListCapture.Images.Add(b);
@@ -675,5 +696,7 @@ namespace MM.Dialogs
             }
         }
         #endregion
+
+        
     }
 }

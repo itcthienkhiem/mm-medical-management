@@ -95,6 +95,22 @@ namespace MM.Dialogs
             
         }
 
+        private void StopWatchingFolder()
+        {
+            try
+            {
+                if (_watchingFolder == null) return;
+                _watchingFolder.OnCreatedFileEvent -= new CreatedFileEventHandler(_watchingFolder_OnCreatedFileEvent);
+                _watchingFolder.StopMoritoring();
+                _watchingFolder = null; 
+            }
+            catch (Exception ex)
+            {
+                MsgBox.Show(this.Text, ex.Message, IconType.Error);
+                Utility.WriteToTraceLog(ex.Message);
+            }
+        }
+
         private void ViewControl(Control view)
         {
             view.Visible = true;
@@ -1441,8 +1457,8 @@ namespace MM.Dialogs
         #region Window Event Handlers
         private void dlgAddKetQuaNoiSoi_Load(object sender, EventArgs e)
         {
-            if (!this.IsHandleCreated)
-                this.CreateHandle();
+            while (!this.IsHandleCreated)
+                Thread.Sleep(1000);
 
             InitData();
 
@@ -1518,9 +1534,7 @@ namespace MM.Dialogs
                 }
                 //else
                 //    OnStopWebCam();
-            }
-
-            
+            } 
         }
 
         private void btnPlay_Click(object sender, EventArgs e)
@@ -1571,12 +1585,12 @@ namespace MM.Dialogs
             Thread.Sleep(1000);
             try
             {
-                lvCapture.Invoke(new MethodInvoker(delegate()
+                this.Invoke(new MethodInvoker(delegate()
                 {
                     int count = 0;
                     Image bmp = null;
                     string fileName = string.Format("{0}\\KQNS-{1}-{2}.png", Global.HinhChupPath, MaBenhNhan, DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss-ms"));
-                    while (bmp == null && count <= 15)
+                    while (bmp == null && count <= 30)
                     {
                         try
                         {
@@ -1624,6 +1638,7 @@ namespace MM.Dialogs
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, this.Text, MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Utility.WriteToTraceLog(ex.Message);
             }
 
         }
@@ -1668,6 +1683,11 @@ namespace MM.Dialogs
             //    if (btnPlay.Enabled)
             //        OnPlayWebCam();
             //}
+        }
+
+        private void dlgAddKetQuaNoiSoi_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            StopWatchingFolder();
         }
 
         private void xóaToolStripMenuItem1_Click(object sender, EventArgs e)
@@ -1761,6 +1781,7 @@ namespace MM.Dialogs
         }
         #endregion
 
+        
         
 
         

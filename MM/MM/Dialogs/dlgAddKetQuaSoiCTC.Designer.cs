@@ -431,36 +431,36 @@
             this.toolStripSeparator2,
             this.chọnHìnhToolStripMenuItem});
             this.ctmCapture.Name = "ctmCapture";
-            this.ctmCapture.Size = new System.Drawing.Size(153, 104);
+            this.ctmCapture.Size = new System.Drawing.Size(131, 82);
             // 
             // xóaToolStripMenuItem
             // 
             this.xóaToolStripMenuItem.Name = "xóaToolStripMenuItem";
-            this.xóaToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.xóaToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.xóaToolStripMenuItem.Text = "Xóa";
             this.xóaToolStripMenuItem.Click += new System.EventHandler(this.xóaToolStripMenuItem_Click);
             // 
             // toolStripSeparator1
             // 
             this.toolStripSeparator1.Name = "toolStripSeparator1";
-            this.toolStripSeparator1.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator1.Size = new System.Drawing.Size(127, 6);
             // 
             // xóaTấtCảToolStripMenuItem
             // 
             this.xóaTấtCảToolStripMenuItem.Name = "xóaTấtCảToolStripMenuItem";
-            this.xóaTấtCảToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.xóaTấtCảToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.xóaTấtCảToolStripMenuItem.Text = "Xóa tất cả";
             this.xóaTấtCảToolStripMenuItem.Click += new System.EventHandler(this.xóaTấtCảToolStripMenuItem_Click);
             // 
             // toolStripSeparator2
             // 
             this.toolStripSeparator2.Name = "toolStripSeparator2";
-            this.toolStripSeparator2.Size = new System.Drawing.Size(149, 6);
+            this.toolStripSeparator2.Size = new System.Drawing.Size(127, 6);
             // 
             // chọnHìnhToolStripMenuItem
             // 
             this.chọnHìnhToolStripMenuItem.Name = "chọnHìnhToolStripMenuItem";
-            this.chọnHìnhToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
+            this.chọnHìnhToolStripMenuItem.Size = new System.Drawing.Size(130, 22);
             this.chọnHìnhToolStripMenuItem.Text = "Chọn hình";
             this.chọnHìnhToolStripMenuItem.Click += new System.EventHandler(this.chọnHìnhToolStripMenuItem_Click);
             // 
@@ -560,6 +560,7 @@
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Them ket qua soi CTC";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.dlgAddKetQuaSoiCTC_FormClosing);
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.dlgAddKetQuaSoiCTC_FormClosed);
             this.Load += new System.EventHandler(this.dlgAddKetQuaSoiCTC_Load);
             ((System.ComponentModel.ISupportInitialize)(this.docStaffViewBindingSource)).EndInit();
             this.panel5.ResumeLayout(false);
