@@ -198,5 +198,7 @@ namespace MM.Common
         public static string HoaDonXetNghiemYKhoaTemplate = "Hóa đơn xét nghiệm";
         
         public static string TVHomeProcessName = "TVHome Media2";
+
+        public static int DeplayCount = 10000;
     }
 }

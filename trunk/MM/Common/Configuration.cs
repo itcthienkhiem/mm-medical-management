@@ -170,7 +170,8 @@ namespace MM.Common
             }
             catch (Exception ex)
             {
-                Utility.WriteToTraceLog(string.Format("Save config: {0}"), ex.Message);
+                string errorMessage = ex.Message != null ? ex.Message : "Access denied.";
+                Utility.WriteToTraceLog(string.Format("Save config: {0}"), errorMessage);
                 return false;
             }
 
@@ -251,7 +252,8 @@ namespace MM.Common
             }
             catch (Exception ex)
             {
-                Utility.WriteToTraceLog(string.Format("Save config: {0}"), ex.Message);
+                string errorMessage = ex.Message != null ? ex.Message : "Access denied.";
+                Utility.WriteToTraceLog(string.Format("Save config: {0}"), errorMessage);
                 return false;
             }
             finally

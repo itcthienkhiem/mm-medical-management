@@ -531,41 +531,61 @@ namespace MM.Dialogs
 
         private void _watchingFolder_OnCreatedFileEvent(FileSystemEventArgs e)
         {
-            Thread.Sleep(1000);
-
             try
             {
                 int count = 0;
                 Image bmp = null;
+                bool isRenameOK = false;
                 string fileName = string.Format("{0}\\SieuAm-{1}-{2}.png", Global.HinhChupPath, _maBenhNhan, DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss-ms"));
-                while (bmp == null && count <= 30)
+                while (File.Exists(fileName))
+                {
+                    fileName = string.Format("{0}\\SieuAm-{1}-{2}.png", Global.HinhChupPath, _maBenhNhan, DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss-ms"));
+                    Thread.Sleep(5);
+                }
+
+                while ((bmp == null || !isRenameOK) && count <= Const.DeplayCount)
                 {
                     try
                     {
-                        bmp = Utility.LoadImageFromFile(e.FullPath);
-                        Utility.RenameFileName(e.FullPath, fileName);
+                        if (bmp == null)
+                            bmp = Utility.LoadImageFromFile(e.FullPath);
                     }
-                    catch
+                    catch (Exception ex)
                     {
                         bmp = null;
                     }
+
+                    if (bmp != null)
+                    {
+                        try
+                        {
+                            isRenameOK = Utility.RenameFileName(e.FullPath, fileName);
+                        }
+                        catch (Exception ex)
+                        {
+
+                        }
+                    }
                     
                     count++;
-                    Thread.Sleep(500);
+                    Thread.Sleep(10);
                 }
 
                 if (bmp == null) return;
 
-                if (_hinh == 1)
+                this.Invoke(new MethodInvoker(delegate()
                 {
-                    picHinh1.Image = bmp;
-                    _hinh = 2;
-                }
-                else if (_hinh == 2)
-                {
-                    picHinh2.Image = bmp;
-                    _hinh = 1;
-                }
+                    if (_hinh == 1)
+                    {
+                        picHinh1.Image = bmp;
+                        _hinh = 2;
+                    }
+                    else if (_hinh == 2)
+                    {
+                        picHinh2.Image = bmp;
+                        _hinh = 1;
+                    }
+                }));
             }
             catch (Exception ex)
             {

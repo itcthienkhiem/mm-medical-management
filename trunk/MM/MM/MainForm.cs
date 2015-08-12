@@ -52,7 +52,6 @@ namespace MM
             //DateTime fromDate = new DateTime(2000, 1, 1);
             //DateTime toDate = new DateTime(2015, 1, 1);
             //ReportBus.GetChiDinhDuocXuatHoaDon(fromDate, toDate);
-
         }
         #endregion
 
