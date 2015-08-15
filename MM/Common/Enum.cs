@@ -336,4 +336,10 @@ namespace MM.Common
         BenhNhanKhongThanThuoc,
         NhanVienHopDong
     }
+
+    public enum TVHomeImageFormat : int
+    {
+        BMP = 0,
+        JPG
+    }
 }

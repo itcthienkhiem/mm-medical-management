@@ -1850,6 +1850,17 @@ namespace MM.Common
             string pattern = @"^\\{2}[\w-]+(\\{1}(([\w-][\w-\s]*[\w-]+[$$]?)|([\w-][$$]?$)))+";
             return Regex.IsMatch(path, pattern);
         }
+
+        public static bool CheckTVHomeFormat(string ext, TVHomeImageFormat format)
+        {
+            if (format == TVHomeImageFormat.BMP && ext.Trim().ToUpper() == ".BMP")
+                return true;
+
+            if (format == TVHomeImageFormat.JPG && ext.Trim().ToUpper() == ".JPG")
+                return true;
+
+            return false;
+        }
     }
 }
 

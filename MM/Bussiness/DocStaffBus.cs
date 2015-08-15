@@ -124,6 +124,29 @@ namespace MM.Bussiness
             return result;
         }
 
+        public static Result GetDocStaffList(string maCK)
+        {
+            Result result = null;
+
+            try
+            {
+                string query = string.Format("SELECT  CAST(0 AS Bit) AS Checked, * FROM DocStaffView WITH(NOLOCK) WHERE AvailableToWork = 'True' AND Code = '{0}' ORDER BY FirstName, FullName", maCK);
+                return ExcuteQuery(query);
+            }
+            catch (System.Data.SqlClient.SqlException se)
+            {
+                result.Error.Code = (se.Message.IndexOf("Timeout expired") >= 0) ? ErrorCode.SQL_QUERY_TIMEOUT : ErrorCode.INVALID_SQL_STATEMENT;
+                result.Error.Description = se.ToString();
+            }
+            catch (Exception e)
+            {
+                result.Error.Code = ErrorCode.UNKNOWN_ERROR;
+                result.Error.Description = e.ToString();
+            }
+
+            return result;
+        }
+
         public static Result GetDocStaffList(List<byte> staffTypes)
         {
             Result result = null;
