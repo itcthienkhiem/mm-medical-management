@@ -11,6 +11,7 @@ namespace MM.Common
         private string _path = string.Empty;
         private bool _suDungSoiCTC = false;
         private bool _suDungSieuAm = false;
+        private TVHomeImageFormat _format = TVHomeImageFormat.JPG;
         #endregion
 
         #region Constructor
@@ -37,6 +38,12 @@ namespace MM.Common
         {
             get { return _suDungSieuAm; }
             set { _suDungSieuAm = value; }
+        }
+
+        public TVHomeImageFormat Format
+        {
+            get { return _format; }
+            set { _format = value; }
         }
         #endregion
     }

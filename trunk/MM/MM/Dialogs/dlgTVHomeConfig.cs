@@ -49,6 +49,7 @@ namespace MM.Dialogs
             Global.TVHomeConfig.Path = txtPath.Text;
             Global.TVHomeConfig.SuDungSoiCTC = raSoiCTC_Co.Checked;
             Global.TVHomeConfig.SuDungSieuAm = raSieuAm_Co.Checked;
+            Global.TVHomeConfig.Format = raJPG.Checked ? TVHomeImageFormat.JPG : TVHomeImageFormat.BMP;
         }
         #endregion
 
@@ -60,6 +61,8 @@ namespace MM.Dialogs
             raSoiCTC_Khong.Checked = !Global.TVHomeConfig.SuDungSoiCTC;
             raSieuAm_Co.Checked = Global.TVHomeConfig.SuDungSieuAm;
             raSieuAm_Khong.Checked = !Global.TVHomeConfig.SuDungSieuAm;
+            raJPG.Checked = Global.TVHomeConfig.Format == TVHomeImageFormat.JPG;
+            raBMP.Checked = Global.TVHomeConfig.Format == TVHomeImageFormat.BMP;
         }
 
         private void btnBrowser_Click(object sender, EventArgs e)

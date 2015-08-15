@@ -606,6 +606,9 @@ namespace MM.Dialogs
             try
             {
                 string ext = Path.GetExtension(e.FullPath);
+                if (!Utility.CheckTVHomeFormat(ext, Global.TVHomeConfig.Format))
+                    return;
+
                 int count = 0;
                 Image bmp = null;
                 bool isRenameOK = false;

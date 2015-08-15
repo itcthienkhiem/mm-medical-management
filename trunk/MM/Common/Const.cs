@@ -24,6 +24,7 @@ namespace MM.Common
         public static string TVHomePathKey = "TVHomePathKey";
         public static string TVHomeSoiCTCKey = "TVHomeSoiCTCKey";
         public static string TVHomeSieuAmKey = "TVHomeSieuAmKey";
+        public static string TVHomeFormatKey = "TVHomeFormatKey";
 
         public static string UsernameKey = "UsernameKey";
 

@@ -31,25 +31,114 @@ namespace MM.Dialogs
         private void InitData()
         {
             dtpkNgay.Value = DateTime.Now;
-
-            //Bác sĩ ngoại khoa tổng quát
             List<byte> staffTypes = new List<byte>();
-            staffTypes.Add((byte)StaffType.BacSiNgoaiTongQuat);
-            Result result = DocStaffBus.GetDocStaffList(staffTypes);
-            if (!result.IsOK)
+
+            //Check chuyên khoa Răng hàm mặt CK005
+            Result result = SpecialityBus.CheckSpecialityExistCode(null, "CK005");
+            if (result.Error.Code == ErrorCode.EXIST || result.Error.Code == ErrorCode.NOT_EXIST)
             {
-                MsgBox.Show(this.Text, result.GetErrorAsString("DocStaffBus.GetDocStaffList"), IconType.Error);
-                Utility.WriteToTraceLog(result.GetErrorAsString("DocStaffBus.GetDocStaffList"));
-                return;
+                if (result.Error.Code == ErrorCode.EXIST)
+                {
+                    result = DocStaffBus.GetDocStaffList("CK005");
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(this.Text, result.GetErrorAsString("DocStaffBus.GetDocStaffList"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("DocStaffBus.GetDocStaffList"));
+                        return;
+                    }
+                    else
+                    {
+                        DataTable dt = result.QueryResult as DataTable;
+                        cboDocStaff_RangHamMat.DataSource = dt;
+                    }
+                }
+                else
+                {
+                    //Bác sĩ ngoại khoa tổng quát
+                    staffTypes.Clear();
+                    staffTypes.Add((byte)StaffType.BacSiNgoaiTongQuat);
+                    result = DocStaffBus.GetDocStaffList(staffTypes);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(this.Text, result.GetErrorAsString("DocStaffBus.GetDocStaffList"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("DocStaffBus.GetDocStaffList"));
+                        return;
+                    }
+                    else
+                    {
+                        DataTable dt = result.QueryResult as DataTable;
+                        cboDocStaff_RangHamMat.DataSource = dt;
+                    }
+                }
             }
             else
             {
-                DataTable dt = result.QueryResult as DataTable;
-                cboDocStaff_TaiMuiHong.DataSource = dt;
-                cboDocStaff_RangHamMat.DataSource = dt;
+                MsgBox.Show(this.Text, result.GetErrorAsString("SpecialityBus.CheckSpecialityExistCode"), IconType.Error);
+                return;
+            }
+
+            //Check chuyên khoa tai mũi họng CK006
+            result = SpecialityBus.CheckSpecialityExistCode(null, "CK006");
+            if (result.Error.Code == ErrorCode.EXIST || result.Error.Code == ErrorCode.NOT_EXIST)
+            {
+                if (result.Error.Code == ErrorCode.EXIST)
+                {
+                    result = DocStaffBus.GetDocStaffList("CK006");
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(this.Text, result.GetErrorAsString("DocStaffBus.GetDocStaffList"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("DocStaffBus.GetDocStaffList"));
+                        return;
+                    }
+                    else
+                    {
+                        DataTable dt = result.QueryResult as DataTable;
+                        cboDocStaff_TaiMuiHong.DataSource = dt;
+                    }
+                }
+                else
+                {
+                    //Bác sĩ ngoại khoa tổng quát
+                    staffTypes.Clear();
+                    staffTypes.Add((byte)StaffType.BacSiNgoaiTongQuat);
+                    result = DocStaffBus.GetDocStaffList(staffTypes);
+                    if (!result.IsOK)
+                    {
+                        MsgBox.Show(this.Text, result.GetErrorAsString("DocStaffBus.GetDocStaffList"), IconType.Error);
+                        Utility.WriteToTraceLog(result.GetErrorAsString("DocStaffBus.GetDocStaffList"));
+                        return;
+                    }
+                    else
+                    {
+                        DataTable dt = result.QueryResult as DataTable;
+                        cboDocStaff_TaiMuiHong.DataSource = dt;
+                    }
+                }
+            }
+            else
+            {
+                MsgBox.Show(this.Text, result.GetErrorAsString("SpecialityBus.CheckSpecialityExistCode"), IconType.Error);
+                return;
             }
 
             //Bác sĩ ngoại khoa tổng quát
+            //List<byte> staffTypes = new List<byte>();
+            //staffTypes.Add((byte)StaffType.BacSiNgoaiTongQuat);
+            //result = DocStaffBus.GetDocStaffList(staffTypes);
+            //if (!result.IsOK)
+            //{
+            //    MsgBox.Show(this.Text, result.GetErrorAsString("DocStaffBus.GetDocStaffList"), IconType.Error);
+            //    Utility.WriteToTraceLog(result.GetErrorAsString("DocStaffBus.GetDocStaffList"));
+            //    return;
+            //}
+            //else
+            //{
+            //    DataTable dt = result.QueryResult as DataTable;
+            //    cboDocStaff_TaiMuiHong.DataSource = dt;
+            //    cboDocStaff_RangHamMat.DataSource = dt;
+            //}
+
+            //Bác sĩ nội khoa tổng quát
             staffTypes.Clear();
             staffTypes.Add((byte)StaffType.BacSiNoiTongQuat);
             result = DocStaffBus.GetDocStaffList(staffTypes);

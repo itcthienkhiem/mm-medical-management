@@ -159,6 +159,9 @@ namespace MM
                     obj = Configuration.GetValues(Const.TVHomeSieuAmKey);
                     if (obj != null) Global.TVHomeConfig.SuDungSieuAm = Convert.ToBoolean(obj);
 
+                    obj = Configuration.GetValues(Const.TVHomeFormatKey);
+                    if (obj != null) Global.TVHomeConfig.Format = (TVHomeImageFormat)Convert.ToInt32(obj);
+
                     //Share Folder
                     obj = Configuration.GetValues(Const.ShareFolderKey);
                     if (obj != null) Global.ShareFolder = obj.ToString();
@@ -506,6 +509,7 @@ namespace MM
             Configuration.SetValues(Const.TVHomePathKey, Global.TVHomeConfig.Path);
             Configuration.SetValues(Const.TVHomeSoiCTCKey, Global.TVHomeConfig.SuDungSoiCTC);
             Configuration.SetValues(Const.TVHomeSieuAmKey, Global.TVHomeConfig.SuDungSieuAm);
+            Configuration.SetValues(Const.TVHomeFormatKey, (int)Global.TVHomeConfig.Format);
 
             Configuration.SetValues(Const.ShareFolderKey, Global.ShareFolder);
 
