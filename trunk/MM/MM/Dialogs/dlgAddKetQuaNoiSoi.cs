@@ -1584,14 +1584,16 @@ namespace MM.Dialogs
         {
             try
             {
-                
+                string ext = Path.GetExtension(e.FullPath);
                 int count = 0;
                 Image bmp = null;
                 bool isRenameOK = false;
-                string fileName = string.Format("{0}\\KQNS-{1}-{2}.png", Global.HinhChupPath, MaBenhNhan, DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss-ms"));
+                string fileName = string.Format("{0}\\KQNS-{1}-{2}{3}", Global.HinhChupPath, MaBenhNhan, 
+                    DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss-ms"), ext);
                 while (File.Exists(fileName))
                 {
-                    fileName = string.Format("{0}\\KQNS-{1}-{2}.png", Global.HinhChupPath, MaBenhNhan, DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss-ms"));
+                    fileName = string.Format("{0}\\KQNS-{1}-{2}{3}", Global.HinhChupPath, MaBenhNhan, 
+                        DateTime.Now.ToString("dd-MM-yyyy-HH-mm-ss-ms"), ext);
                     Thread.Sleep(5);
                 }
 
