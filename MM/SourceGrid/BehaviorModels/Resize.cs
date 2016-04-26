@@ -1,3 +1,23 @@
+/* Copyright (c) 2016, Cocosoft Inc.
+ All rights reserved.
+ http://www.Cocosofttech.com
+
+ This file is part of the LIS open source project.
+
+ The LIS  open source project is free software: you can
+ redistribute it and/or modify it under the terms of the GNU General Public
+ License as published by the Free Software Foundation, either version 3 of the
+ License, or (at your option) any later version.
+
+ The ClearCanvas LIS open source project is distributed in the hope that it
+ will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General
+ Public License for more details.
+
+ You should have received a copy of the GNU General Public License along with
+ the LIS open source project.  If not, see
+ <http://www.gnu.org/licenses/>.
+*/
 using System;
 using System.Drawing;
 using SourceGrid2.Cells;
@@ -73,7 +93,7 @@ namespace SourceGrid2.BehaviorModels
 			if (e.Position.Column < e.Grid.FixedColumns)
 				l_AbsPoint.X = l_MousePoint.X;
 
-			//sono già in fase di resizing
+			//sono giï¿½ in fase di resizing
 			if (e.Grid.MouseDownPosition == e.Position)
 			{
 				if (m_IsWidthResize)
@@ -143,7 +163,7 @@ namespace SourceGrid2.BehaviorModels
 
 		private Cursor m_ModelCursor = new Cursor();
 
-		//Queste variabili indoco lo stato del resize (essendo usate però in un contesto di MouseEnter e MouseLeave possono essere tranquillamente condivise tra più cello o griglie, visto che il mouse in un dato momento sarà solo in una cella particolare, di un thread particolare, ...). Questo è un motivo in più per non poter usare questo controllo in multi thread (cosa che nessun controllo windows form può fare ...)
+		//Queste variabili indoco lo stato del resize (essendo usate perï¿½ in un contesto di MouseEnter e MouseLeave possono essere tranquillamente condivise tra piï¿½ cello o griglie, visto che il mouse in un dato momento sarï¿½ solo in una cella particolare, di un thread particolare, ...). Questo ï¿½ un motivo in piï¿½ per non poter usare questo controllo in multi thread (cosa che nessun controllo windows form puï¿½ fare ...)
 		private bool m_IsWidthResize = false;
 		private bool m_IsHeightResize = false;
 

@@ -1,3 +1,23 @@
+/* Copyright (c) 2016, Cocosoft Inc.
+ All rights reserved.
+ http://www.Cocosofttech.com
+
+ This file is part of the LIS open source project.
+
+ The LIS  open source project is free software: you can
+ redistribute it and/or modify it under the terms of the GNU General Public
+ License as published by the Free Software Foundation, either version 3 of the
+ License, or (at your option) any later version.
+
+ The ClearCanvas LIS open source project is distributed in the hope that it
+ will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General
+ Public License for more details.
+
+ You should have received a copy of the GNU General Public License along with
+ the LIS open source project.  If not, see
+ <http://www.gnu.org/licenses/>.
+*/
 using System;
 using System.Windows.Forms;
 using SourceGrid2.Cells;
@@ -26,7 +46,7 @@ namespace SourceGrid2.BehaviorModels
 			if (e.KeyEventArgs.KeyCode == Keys.F2 &&  e.Cell.DataModel != null && ((e.Cell.DataModel.EditableMode & EditableMode.F2Key) == EditableMode.F2Key))
 				e.Cell.StartEdit(e.Position, null);
 
-			//viene già gestito nella selection
+			//viene giï¿½ gestito nella selection
 //			//on cancel
 //			if (e.KeyEventArgs.KeyCode == Keys.Delete && e.Cell.IsEditing(e.Position) == false && e.Cell.DataModel != null)
 //			{
@@ -86,7 +106,7 @@ namespace SourceGrid2.BehaviorModels
 				//seleziono questa cella e automaticamente sposto la visuale su questa cella
 				e.Grid.ShowCell(e.Position);
 
-				//Getsione dell'edit sul focus, non lo metto all'interno della cella perchè un utente potrebbe chiamare direttamente il metodo SetFocusCell senza passare dalla cella
+				//Getsione dell'edit sul focus, non lo metto all'interno della cella perchï¿½ un utente potrebbe chiamare direttamente il metodo SetFocusCell senza passare dalla cella
 				if ( e.Cell.DataModel != null && (e.Cell.DataModel.EditableMode & EditableMode.Focus) == EditableMode.Focus)
 					e.Cell.StartEdit(e.Position, null);
 			}

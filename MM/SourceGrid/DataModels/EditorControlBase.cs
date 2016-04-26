@@ -1,3 +1,23 @@
+/* Copyright (c) 2016, Cocosoft Inc.
+ All rights reserved.
+ http://www.Cocosofttech.com
+
+ This file is part of the LIS open source project.
+
+ The LIS  open source project is free software: you can
+ redistribute it and/or modify it under the terms of the GNU General Public
+ License as published by the Free Software Foundation, either version 3 of the
+ License, or (at your option) any later version.
+
+ The ClearCanvas LIS open source project is distributed in the hope that it
+ will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General
+ Public License for more details.
+
+ You should have received a copy of the GNU General Public License along with
+ the LIS open source project.  If not, see
+ <http://www.gnu.org/licenses/>.
+*/
 using System;
 using System.Windows.Forms;
 
@@ -42,9 +62,9 @@ namespace SourceGrid2.DataModels
 				throw new SourceGridException("Editor not attached to the grid, call AttachEditorControl first");
 		}
 
-		//ATTENZIONE: Ho dovuto fare un sistema di chiavi per i controlli dell'edit perchè altrimenti non riuscivo a fare uno share corretto degli editor.
-		// questo perchè se ad esempio aggiungo un controllo di edito a una griglia e questa griglia viene distrutta, viene chiamato il
-		// dispose su tutti gli oggetti contenuti, questo di fatto distruggeva l'editor che invece era magari condiviso da più griglie
+		//ATTENZIONE: Ho dovuto fare un sistema di chiavi per i controlli dell'edit perchï¿½ altrimenti non riuscivo a fare uno share corretto degli editor.
+		// questo perchï¿½ se ad esempio aggiungo un controllo di edito a una griglia e questa griglia viene distrutta, viene chiamato il
+		// dispose su tutti gli oggetti contenuti, questo di fatto distruggeva l'editor che invece era magari condiviso da piï¿½ griglie
 
 		/// <summary>
 		/// Returns true if the control is atteched to the grid. This method use IsAttached(GridSubPanel p_GridPanel) with ScrollablePanel property.
@@ -242,14 +262,14 @@ namespace SourceGrid2.DataModels
 				{
 					if (EditCell == null)
 					{
-						System.Diagnostics.Debug.Assert(false); //non dovrebbe succedere ma in debug un paio di volte è capitato ma non sono riuscito a riprodurlo
+						System.Diagnostics.Debug.Assert(false); //non dovrebbe succedere ma in debug un paio di volte ï¿½ capitato ma non sono riuscito a riprodurlo
 					}
 					else
 					{
 						GridVirtual l_Grid = EditCell.Grid;
 						GridSubPanel l_Panel = l_Grid.PanelAtPosition(EditPosition);
 						//di fatto mettendo questa property a null termina logicamente l'edit
-						// e è importante che venga fatto appena possibile (in particolare prima della chiamata a SetFocusOnGridSubPanel perchè altrimenti questa chiamerebbe nuovamente EndEdit(false)
+						// e ï¿½ importante che venga fatto appena possibile (in particolare prima della chiamata a SetFocusOnGridSubPanel perchï¿½ altrimenti questa chiamerebbe nuovamente EndEdit(false)
 						SetEditCell(null, Position.Empty);
 
 						Control l_EditorControl = null;
@@ -258,7 +278,7 @@ namespace SourceGrid2.DataModels
 
 						if (l_EditorControl!=null)
 						{
-							//se il controllo ha il focus, metto il focus sulle cella in modo da forzare un eventuale validate, se il controllo non ha il fuoco il validate dovrebbe essere già stato chiamato
+							//se il controllo ha il focus, metto il focus sulle cella in modo da forzare un eventuale validate, se il controllo non ha il fuoco il validate dovrebbe essere giï¿½ stato chiamato
 							if (l_Grid != null && l_EditorControl.ContainsFocus )
 								l_Grid.SetFocusOnCells();
 

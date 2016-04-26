@@ -1,3 +1,23 @@
+/* Copyright (c) 2016, Cocosoft Inc.
+ All rights reserved.
+ http://www.Cocosofttech.com
+
+ This file is part of the LIS open source project.
+
+ The LIS  open source project is free software: you can
+ redistribute it and/or modify it under the terms of the GNU General Public
+ License as published by the Free Software Foundation, either version 3 of the
+ License, or (at your option) any later version.
+
+ The ClearCanvas LIS open source project is distributed in the hope that it
+ will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General
+ Public License for more details.
+
+ You should have received a copy of the GNU General Public License along with
+ the LIS open source project.  If not, see
+ <http://www.gnu.org/licenses/>.
+*/
 using System;
 using System.Collections;
 using System.ComponentModel;
@@ -332,7 +352,7 @@ namespace SourceGrid2
 					int l_minRows = Math.Min(l_tmp.GetLength(0),rows);
 					int l_minCols = Math.Min(l_tmp.GetLength(1),cols);
 
-					//cancello le celle non più utilizzate
+					//cancello le celle non piï¿½ utilizzate
 					for (int i = l_minRows; i <l_tmp.GetLength(0); i++)
 						for (int j = 0; j < l_tmp.GetLength(1); j++)
 							RemoveCell(i,j);
@@ -523,7 +543,7 @@ namespace SourceGrid2
 				return base.SetFocusCell (p_CellToSetFocus, p_DeselectOtherCells);
 			else
 			{
-				ICell l_Cell = this[p_CellToSetFocus.Row,p_CellToSetFocus.Column];//N.B. questo metodo mi restituisce la cella reale (anche se questa posizione è occupata solo perchè in merge con Row/Col Span)
+				ICell l_Cell = this[p_CellToSetFocus.Row,p_CellToSetFocus.Column];//N.B. questo metodo mi restituisce la cella reale (anche se questa posizione ï¿½ occupata solo perchï¿½ in merge con Row/Col Span)
 				if (l_Cell!=null)
 					return base.SetFocusCell(l_Cell.Range.Start, p_DeselectOtherCells); //chiamo il set focus con la cella reale
 				else
@@ -719,7 +739,7 @@ namespace SourceGrid2
 		#region Selection
 		private void Selection_SelectionChange(object sender, SelectionChangeEventArgs e)
 		{
-			//se è abilitato RowColSpan devo assicurarmi di selezionare la cella di origine e non quella che sfrutta il RowCol Span
+			//se ï¿½ abilitato RowColSpan devo assicurarmi di selezionare la cella di origine e non quella che sfrutta il RowCol Span
 			if (EnableRowColSpan)
 			{
 				if (e.EventType == SelectionChangeEventType.Add)
@@ -727,12 +747,12 @@ namespace SourceGrid2
 					for (int r = e.Range.Start.Row; r <= e.Range.End.Row; r++)
 						for (int c = e.Range.Start.Column; c <= e.Range.End.Column; c++)
 						{
-							ICell l_Cell = this[r,c];//N.B. questo metodo mi restituisce la cella reale (anche se questa posizione è occupata slo perchè in mee con Row/Col Span)
+							ICell l_Cell = this[r,c];//N.B. questo metodo mi restituisce la cella reale (anche se questa posizione ï¿½ occupata slo perchï¿½ in mee con Row/Col Span)
 							if (l_Cell!=null)
 							{
 								Range l_Range = l_Cell.Range;
 
-								if (l_Range != new Range(new Position(r,c)) ) //se la cella occupa più righe o colonne
+								if (l_Range != new Range(new Position(r,c)) ) //se la cella occupa piï¿½ righe o colonne
 									Selection.AddRange(l_Range); //la seleziono tutta
 							}
 						}
@@ -742,12 +762,12 @@ namespace SourceGrid2
 					for (int r = e.Range.Start.Row; r <= e.Range.End.Row; r++)
 						for (int c = e.Range.Start.Column; c <= e.Range.End.Column; c++)
 						{
-							ICell l_Cell = this[r,c];//N.B. questo metodo mi restituisce la cella reale (anche se questa posizione è occupata slo perchè in mee con Row/Col Span)
+							ICell l_Cell = this[r,c];//N.B. questo metodo mi restituisce la cella reale (anche se questa posizione ï¿½ occupata slo perchï¿½ in mee con Row/Col Span)
 							if (l_Cell!=null)
 							{
 								Range l_Range = l_Cell.Range;
 
-								if (l_Range != new Range(new Position(r,c)) ) //se la cella occupa più righe o colonne
+								if (l_Range != new Range(new Position(r,c)) ) //se la cella occupa piï¿½ righe o colonne
 									Selection.RemoveRange(l_Range); //la seleziono tutta
 							}
 						}

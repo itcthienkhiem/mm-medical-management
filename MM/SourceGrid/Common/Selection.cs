@@ -1,3 +1,23 @@
+/* Copyright (c) 2016, Cocosoft Inc.
+ All rights reserved.
+ http://www.Cocosofttech.com
+
+ This file is part of the LIS open source project.
+
+ The LIS  open source project is free software: you can
+ redistribute it and/or modify it under the terms of the GNU General Public
+ License as published by the Free Software Foundation, either version 3 of the
+ License, or (at your option) any later version.
+
+ The ClearCanvas LIS open source project is distributed in the hope that it
+ will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General
+ Public License for more details.
+
+ You should have received a copy of the GNU General Public License along with
+ the LIS open source project.  If not, see
+ <http://www.gnu.org/licenses/>.
+*/
 using System;
 using System.Drawing;
 using System.Collections;
@@ -126,7 +146,7 @@ namespace SourceGrid2
 			if (Count<=0)
 				return false;
 
-			//prima cerco se è presente un range esattamente come quello richiesto
+			//prima cerco se ï¿½ presente un range esattamente come quello richiesto
 			if (m_RangeList.Contains(p_Range))
 				return true;
 
@@ -629,7 +649,7 @@ namespace SourceGrid2
 						{
 							for (int c = l_Range.Start.Column;c <= l_Range.End.Column; c++)
 							{
-								//devo controllare che la cella sia selezionata perchè la find trova soltanto gli estremi
+								//devo controllare che la cella sia selezionata perchï¿½ la find trova soltanto gli estremi
 								if ( m_Grid.GetCell(r,c) != null && m_Grid.Selection.Contains(new Position(r,c)) )
 								{
 									if ( m_Grid.GetCell(r,c).DataModel != null)

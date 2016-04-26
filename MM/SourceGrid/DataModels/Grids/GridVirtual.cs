@@ -1,3 +1,23 @@
+/* Copyright (c) 2016, Cocosoft Inc.
+ All rights reserved.
+ http://www.Cocosofttech.com
+
+ This file is part of the LIS open source project.
+
+ The LIS  open source project is free software: you can
+ redistribute it and/or modify it under the terms of the GNU General Public
+ License as published by the Free Software Foundation, either version 3 of the
+ License, or (at your option) any later version.
+
+ The ClearCanvas LIS open source project is distributed in the hope that it
+ will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General
+ Public License for more details.
+
+ You should have received a copy of the GNU General Public License along with
+ the LIS open source project.  If not, see
+ <http://www.gnu.org/licenses/>.
+*/
 using System;
 using System.Collections;
 using System.ComponentModel;
@@ -29,7 +49,7 @@ namespace SourceGrid2
 			m_ScrollablePanel = new GridSubPanel(this, true);
 			m_ScrollablePanel.TabStop = false;
 			m_HiddenFocusPanel = new GridSubPanel(this, false);
-			m_HiddenFocusPanel.TabStop = true; //questo è l'unico pannello a poter ricevere il tab
+			m_HiddenFocusPanel.TabStop = true; //questo ï¿½ l'unico pannello a poter ricevere il tab
 
 			m_Rows = new RowInfo.RowInfoCollection(this);
 			m_Rows.RowHeightChanged += new RowInfoEventHandler(m_Rows_RowHeightChanged);
@@ -79,7 +99,7 @@ namespace SourceGrid2
 		{
 			MenuCollection l_BuiltInMenu = new MenuCollection();
 
-			//se nel context menu sono presenti già dei menu aggiungo un separatore
+			//se nel context menu sono presenti giï¿½ dei menu aggiungo un separatore
 			if (ContextMenu.MenuItems.Count>0)
 			{
 				MenuItem l_menuBreak = new MenuItem("-");
@@ -190,7 +210,7 @@ namespace SourceGrid2
 		}
 
 
-		private ContextMenuStyle m_ContextMenuStyle = 0; //qui la variabile viene messa a None e poi nel costruttore viene reimposta usando la property che in più aggancia il contextmenu all'evento popup
+		private ContextMenuStyle m_ContextMenuStyle = 0; //qui la variabile viene messa a None e poi nel costruttore viene reimposta usando la property che in piï¿½ aggancia il contextmenu all'evento popup
 
 		/// <summary>
 		/// Context Menu flags enum ( default = ContextMenuStyle.AllowAutoSize | ContextMenuStyle.AllowColumnResize | ContextMenuStyle.AllowRowResize ).
@@ -432,7 +452,7 @@ namespace SourceGrid2
 			//calcolo la grandezza attuale
 			if (ColumnsCount>0)
 			{
-				int l_CurrentPos = Columns.Right + 4; //più 4 per non arrivare proprio a filo
+				int l_CurrentPos = Columns.Right + 4; //piï¿½ 4 per non arrivare proprio a filo
 				if (DisplayRectangle.Width > l_CurrentPos)
 				{
 					int l_Count = 0;
@@ -463,7 +483,7 @@ namespace SourceGrid2
 			//calcolo la grandezza attuale
 			if (RowsCount>0)
 			{
-				int l_CurrentPos = Rows.Bottom + 4; //più 4 per non arrivare proprio a filo
+				int l_CurrentPos = Rows.Bottom + 4; //piï¿½ 4 per non arrivare proprio a filo
 				if (DisplayRectangle.Height > l_CurrentPos)
 				{
 					int l_Count = 0;
@@ -814,8 +834,8 @@ namespace SourceGrid2
 			if (e.Cancel)
 				return;
 
-			//N.B. E' importante impostare prima la variabile m_FocusCell e dopo chiamare l'evento OnEnter, altrimenti nel caso in cui la cella sia impostata in edit sul focus, l'eseguzione va in loop (cerca di fare l'edit ma per far questo è necessario avere il focus ...)
-			m_FocusPosition = e.Position; //logicamente è questa l'istruzione che imposta la focus cell
+			//N.B. E' importante impostare prima la variabile m_FocusCell e dopo chiamare l'evento OnEnter, altrimenti nel caso in cui la cella sia impostata in edit sul focus, l'eseguzione va in loop (cerca di fare l'edit ma per far questo ï¿½ necessario avere il focus ...)
+			m_FocusPosition = e.Position; //logicamente ï¿½ questa l'istruzione che imposta la focus cell
 			e.Cell.OnFocusEntered(e);
 		}
 
@@ -829,7 +849,7 @@ namespace SourceGrid2
 				return;
 
 			bool l_FocusContainer = true;
-			if (ContainsFocus) // se la griglia ha il Focus cerco di impostare il focus sulle celle (il codice in realtà lo imposta su un pannello) in modo da forzare un eventuale Validated di qualche controllo figlio. Questo bisogna farlo però solo se la griglia ha il focus altrimenti sposto il focus senza motivo sulla griglia.
+			if (ContainsFocus) // se la griglia ha il Focus cerco di impostare il focus sulle celle (il codice in realtï¿½ lo imposta su un pannello) in modo da forzare un eventuale Validated di qualche controllo figlio. Questo bisogna farlo perï¿½ solo se la griglia ha il focus altrimenti sposto il focus senza motivo sulla griglia.
 				l_FocusContainer = SetFocusOnCells(); //questo scatena un EndEdit sul Validate dell'editor (anche se successivamente io chiamo un endEdit forzatamente)
 
 			if (l_FocusContainer)
@@ -850,7 +870,7 @@ namespace SourceGrid2
 			if (e.Cancel)
 				return;
 
-			m_FocusPosition = Position.Empty; //logicamente è questa l'istruzione che imposta la focus cell null
+			m_FocusPosition = Position.Empty; //logicamente ï¿½ questa l'istruzione che imposta la focus cell null
 			e.Cell.OnFocusLeft(e);
 		}
 
@@ -900,7 +920,7 @@ namespace SourceGrid2
 		{
 			//deseleziono le celle precedentemente selezionate
 			bool l_bControlPress = ((Control.ModifierKeys & Keys.Control) == Keys.Control);
-			//se control non è stato premuto deseleziono tutte le celle precedentemente selezionate
+			//se control non ï¿½ stato premuto deseleziono tutte le celle precedentemente selezionate
 			if ( l_bControlPress == false || Selection.EnableMultiSelection == false) 
 				return SetFocusCell(p_CellToSetFocus,true);
 			else
@@ -931,7 +951,7 @@ namespace SourceGrid2
 		{
 			if (p_CellToSetFocus != FocusCellPosition)
 			{
-				//N.B. E' importante chiamare prima Entering in modo tale da poter controllare il cancel e nel caso è impostato a true non viene scatenato un LostFocus sulla cella precedente
+				//N.B. E' importante chiamare prima Entering in modo tale da poter controllare il cancel e nel caso ï¿½ impostato a true non viene scatenato un LostFocus sulla cella precedente
 
 				//New Focus Cell Entering
 				ICellVirtual l_CellToFocus = GetCell(p_CellToSetFocus);
@@ -944,7 +964,7 @@ namespace SourceGrid2
 						return false;
 				}
 
-				//se la cella non può ricevere il focus non posso continuare
+				//se la cella non puï¿½ ricevere il focus non posso continuare
 				if (l_CellToFocus != null && l_CellToFocus.CanReceiveFocus==false)
 					return false;
 
@@ -1033,7 +1053,7 @@ namespace SourceGrid2
 
 		#region Selection
 		/// <summary>
-		/// indica l'ultima cella su cui il mouse è stato spostato 
+		/// indica l'ultima cella su cui il mouse ï¿½ stato spostato 
 		/// serve per la gestione dell'evento Cell.MouseLeave e MouseEnter
 		/// </summary>
 		private Position m_MouseCellPosition = Position.Empty;
@@ -1056,7 +1076,7 @@ namespace SourceGrid2
 			if (m_MouseCellPosition != p_Cell)
 			{
 				if (m_MouseCellPosition.IsEmpty() == false &&
-					m_MouseCellPosition != m_MouseDownPosition) //se la cella che sta perdento il mouse è anche quella che ha ricevuto un eventuale evento di MouseDown non scateno il MouseLeave (che invece verrà scatenato dopo il MouseUp)
+					m_MouseCellPosition != m_MouseDownPosition) //se la cella che sta perdento il mouse ï¿½ anche quella che ha ricevuto un eventuale evento di MouseDown non scateno il MouseLeave (che invece verrï¿½ scatenato dopo il MouseUp)
 				{
 					ICellVirtual l_OldCell = GetCell(m_MouseCellPosition.Row, m_MouseCellPosition.Column);
 					if (l_OldCell!=null)
@@ -1275,7 +1295,7 @@ namespace SourceGrid2
 						while (tmp == null && tmpRow < RowsCount)
 						{
 							l_NewPosition = new Position(tmpRow, m_FocusPosition.Column);
-							//verifico che la posizione di partenza non coincida con quella di focus, altrimenti significa che ci stiamo spostando sulla stessa cella perchè usa un RowSpan/ColSpan
+							//verifico che la posizione di partenza non coincida con quella di focus, altrimenti significa che ci stiamo spostando sulla stessa cella perchï¿½ usa un RowSpan/ColSpan
 							if (GetStartingPosition(l_NewPosition) == m_FocusPosition)
 								tmp = null;
 							else
@@ -1295,7 +1315,7 @@ namespace SourceGrid2
 						while (tmp == null && tmpRow >= 0)
 						{
 							l_NewPosition = new Position(tmpRow, m_FocusPosition.Column);
-							//verifico che la posizione di partenza non coincida con quella di focus, altrimenti significa che ci stiamo spostando sulla stessa cella perchè usa un RowSpan/ColSpan
+							//verifico che la posizione di partenza non coincida con quella di focus, altrimenti significa che ci stiamo spostando sulla stessa cella perchï¿½ usa un RowSpan/ColSpan
 							if (GetStartingPosition(l_NewPosition) == m_FocusPosition)
 								tmp = null;
 							else
@@ -1315,7 +1335,7 @@ namespace SourceGrid2
 						while (tmp == null && tmpCol < ColumnsCount)
 						{
 							l_NewPosition = new Position(m_FocusPosition.Row, tmpCol);
-							//verifico che la posizione di partenza non coincida con quella di focus, altrimenti significa che ci stiamo spostando sulla stessa cella perchè usa un RowSpan/ColSpan
+							//verifico che la posizione di partenza non coincida con quella di focus, altrimenti significa che ci stiamo spostando sulla stessa cella perchï¿½ usa un RowSpan/ColSpan
 							if (GetStartingPosition(l_NewPosition) == m_FocusPosition)
 								tmp = null;
 							else
@@ -1335,7 +1355,7 @@ namespace SourceGrid2
 						while (tmp == null && tmpCol >= 0)
 						{
 							l_NewPosition = new Position(m_FocusPosition.Row, tmpCol);
-							//verifico che la posizione di partenza non coincida con quella di focus, altrimenti significa che ci stiamo spostando sulla stessa cella perchè usa un RowSpan/ColSpan
+							//verifico che la posizione di partenza non coincida con quella di focus, altrimenti significa che ci stiamo spostando sulla stessa cella perchï¿½ usa un RowSpan/ColSpan
 							if (GetStartingPosition(l_NewPosition) == m_FocusPosition)
 								tmp = null;
 							else
@@ -1348,7 +1368,7 @@ namespace SourceGrid2
 							tmpCol--;
 						}
 					}
-					else if (e.KeyCode == Keys.Tab && l_enableTab)//se è premuto tab e non ho trovato nessuna cella provo a muovermi sulla riga in basso e partendo nuovamente dall'inizio ricerco una cella valida
+					else if (e.KeyCode == Keys.Tab && l_enableTab)//se ï¿½ premuto tab e non ho trovato nessuna cella provo a muovermi sulla riga in basso e partendo nuovamente dall'inizio ricerco una cella valida
 					{
 						int tmpRow = m_FocusPosition.Row;
 						int tmpCol = m_FocusPosition.Column;
@@ -1361,7 +1381,7 @@ namespace SourceGrid2
 								while (tmp == null && tmpCol >= 0)
 								{
 									l_NewPosition = new Position(tmpRow,tmpCol);
-									//verifico che la posizione di partenza non coincida con quella di focus, altrimenti significa che ci stiamo spostando sulla stessa cella perchè usa un RowSpan/ColSpan
+									//verifico che la posizione di partenza non coincida con quella di focus, altrimenti significa che ci stiamo spostando sulla stessa cella perchï¿½ usa un RowSpan/ColSpan
 									if (GetStartingPosition(l_NewPosition) == m_FocusPosition)
 										tmp = null;
 									else
@@ -1386,7 +1406,7 @@ namespace SourceGrid2
 								while (tmp == null && tmpCol < ColumnsCount)
 								{
 									l_NewPosition = new Position(tmpRow,tmpCol);
-									//verifico che la posizione di partenza non coincida con quella di focus, altrimenti significa che ci stiamo spostando sulla stessa cella perchè usa un RowSpan/ColSpan
+									//verifico che la posizione di partenza non coincida con quella di focus, altrimenti significa che ci stiamo spostando sulla stessa cella perchï¿½ usa un RowSpan/ColSpan
 									if (GetStartingPosition(l_NewPosition) == m_FocusPosition)
 										tmp = null;
 									else
@@ -1595,7 +1615,7 @@ namespace SourceGrid2
 				
 					if (l_bShiftPress == false || FocusCellPosition.IsEmpty() )
 					{//normale gestione del focus della cella
-						if (Selection.Contains(m_MouseDownPosition) == false || e.Button == MouseButtons.Left) //solo se non è stata ancora selezionata
+						if (Selection.Contains(m_MouseDownPosition) == false || e.Button == MouseButtons.Left) //solo se non ï¿½ stata ancora selezionata
 							SetFocusCell(m_MouseDownPosition);
 					}
 					else //gestione speciale caso shift
@@ -1622,7 +1642,7 @@ namespace SourceGrid2
 			if (MouseUp!=null)
 				MouseUp(this, e);
 
-			//questo è per assicurarsi che la selezione precedentemente fatta tramite mouse venga effettivamente deselezionata
+			//questo ï¿½ per assicurarsi che la selezione precedentemente fatta tramite mouse venga effettivamente deselezionata
 			MouseSelectionFinish();
 
 			if (m_MouseDownPosition.IsEmpty() == false)
@@ -1663,7 +1683,7 @@ namespace SourceGrid2
 			}
 			else //se non ho nessuna cella attualmente che ha ricevuto un mousedown, l'evento di MouseMove viene segnalato sulla cella correntemente sotto il Mouse
 			{
-				// se non c'è nessuna cella MouseDown cambio la cella corrente sotto il Mouse
+				// se non c'ï¿½ nessuna cella MouseDown cambio la cella corrente sotto il Mouse
 				ChangeMouseCell(l_PointPosition);//in ogni caso cambio la cella corrente
 				if (l_PointPosition.IsEmpty() == false)
 				{
@@ -1755,10 +1775,10 @@ namespace SourceGrid2
 
 			ChangeMouseCell(Position.Empty);
 
-			//questo è per assicurarsi che la selezione del mouse venga effettivamente deselezionata
+			//questo ï¿½ per assicurarsi che la selezione del mouse venga effettivamente deselezionata
 			MouseSelectionFinish();
 
-			//Questo non serve perchè anche se esco dalla grigila comunque deve lanciare un eventuale MouseUp ad esempio in seguito
+			//Questo non serve perchï¿½ anche se esco dalla grigila comunque deve lanciare un eventuale MouseUp ad esempio in seguito
 			//per assicurarsi che se lascio il controllo anche la cella con l'eventuale MouseDown deve essere deferenziata
 			//m_MouseDownCell = null;
 		}
@@ -1863,7 +1883,7 @@ namespace SourceGrid2
 				Click(this, e);
 
 			//Se ho precedentemente scatenato un MouseDown su una cella 
-			// e se questa corrisponde alla cella sotto il puntatore del mouse (non posso usare MouseCellPosition perchè questa viene aggiornata solo quando non si ha una cella come MouseDownPosition
+			// e se questa corrisponde alla cella sotto il puntatore del mouse (non posso usare MouseCellPosition perchï¿½ questa viene aggiornata solo quando non si ha una cella come MouseDownPosition
 			if (m_MouseDownPosition.IsEmpty() == false && 
 				m_MouseDownPosition == PositionAtPoint(this.PointToClient(Control.MousePosition)) /* MouseCellPosition && 
 				m_MouseDownCell.Focused == true //tolto altrimenti non funzionava per le celle Selectable==false*/)
@@ -1950,7 +1970,7 @@ namespace SourceGrid2
 
             if (e.KeyChar == 27 || e.KeyChar == 8) return;
 
-			//solo se diverso da tab e da a capo ( e non è un comando di copia/incolla)
+			//solo se diverso da tab e da a capo ( e non ï¿½ un comando di copia/incolla)
 			if (m_FocusPosition.IsEmpty() || e.KeyChar == '\t' || e.KeyChar == 13 ||
 				e.KeyChar == 3 || e.KeyChar == 22 || e.KeyChar == 24)
 			{
@@ -2127,7 +2147,7 @@ namespace SourceGrid2
 			m_LeftPanel.ResumeLayout();
 			m_TopLeftPanel.ResumeLayout();
 			ResumeLayout(true);
-			//RefreshGridLayout(); non serve perchè chiamo automaticamente un Refresh sull'evento OnLayout scatenato da resumeLayout
+			//RefreshGridLayout(); non serve perchï¿½ chiamo automaticamente un Refresh sull'evento OnLayout scatenato da resumeLayout
 		}
 
 		/// <summary>
@@ -2364,7 +2384,7 @@ namespace SourceGrid2
 		private GridSubPanel m_TopPanel;
 		private GridSubPanel m_TopLeftPanel;
 		private GridSubPanel m_ScrollablePanel;
-		//questo è un pannello nascosto per gestire il focus della cella. Gli editor adesso vengono inseriti nei panelli a seconda della posizione delle celle e quindi per poter rimuovere il focus dalla cella bisogna spostare il focus su un controllo parallelo che non sia parent dell'editor.
+		//questo ï¿½ un pannello nascosto per gestire il focus della cella. Gli editor adesso vengono inseriti nei panelli a seconda della posizione delle celle e quindi per poter rimuovere il focus dalla cella bisogna spostare il focus su un controllo parallelo che non sia parent dell'editor.
 		private GridSubPanel m_HiddenFocusPanel;
 
 		/// <summary>
@@ -2718,7 +2738,7 @@ namespace SourceGrid2
 		#endregion
 
 		#region Events MouseEnter/Leave/Wheel
-		//questi eventi non sono gestiti a livello di Panel perchè devono fare riferimento all'intero controllo
+		//questi eventi non sono gestiti a livello di Panel perchï¿½ devono fare riferimento all'intero controllo
 
 		/// <summary>
 		/// Fired when a user scroll with the mouse wheel

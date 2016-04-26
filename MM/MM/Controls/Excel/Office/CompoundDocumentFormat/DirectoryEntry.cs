@@ -1,3 +1,23 @@
+/* Copyright (c) 2016, Cocosoft Inc.
+ All rights reserved.
+ http://www.Cocosofttech.com
+
+ This file is part of the LIS open source project.
+
+ The LIS  open source project is free software: you can
+ redistribute it and/or modify it under the terms of the GNU General Public
+ License as published by the Free Software Foundation, either version 3 of the
+ License, or (at your option) any later version.
+
+ The ClearCanvas LIS open source project is distributed in the hope that it
+ will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General
+ Public License for more details.
+
+ You should have received a copy of the GNU General Public License along with
+ the LIS open source project.  If not, see
+ <http://www.gnu.org/licenses/>.
+*/
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -37,20 +57,20 @@ namespace QiHe.Office.CompoundDocumentFormat
 
         /// <summary>
         /// DID of the left child node inside the red-black tree of all direct members of the parent storage 
-        /// (if this entry is a user storage or stream), ¨C1 if there is no left child
+        /// (if this entry is a user storage or stream), ï¿½C1 if there is no left child
         /// </summary>
         public int LeftChildDID;
 
         /// <summary>
         /// DID of the right child node inside the red-black tree of all direct members of the parent storage
-        /// (if this entry is a user storage or stream), ¨C1 if there is no right child
+        /// (if this entry is a user storage or stream), ï¿½C1 if there is no right child
         /// </summary>
         public int RightChildDID;
 
         /// <summary>
         /// The directory organises direct members (storages and streams) of each storage in a separate red-black tree.
         /// DID of the root node entry of the red-black tree of all storage members
-        /// (if this entry is a storage), ¨C1 otherwise
+        /// (if this entry is a storage), ï¿½C1 otherwise
         /// </summary>
         public int MembersTreeNodeDID;
 

@@ -1,3 +1,23 @@
+/* Copyright (c) 2016, Cocosoft Inc.
+ All rights reserved.
+ http://www.Cocosofttech.com
+
+ This file is part of the LIS open source project.
+
+ The LIS  open source project is free software: you can
+ redistribute it and/or modify it under the terms of the GNU General Public
+ License as published by the Free Software Foundation, either version 3 of the
+ License, or (at your option) any later version.
+
+ The ClearCanvas LIS open source project is distributed in the hope that it
+ will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General
+ Public License for more details.
+
+ You should have received a copy of the GNU General Public License along with
+ the LIS open source project.  If not, see
+ <http://www.gnu.org/licenses/>.
+*/
 using System;
 using System.IO;
 using System.Collections.Generic;
@@ -171,13 +191,13 @@ namespace QiHe.CodeLib
             sw.Close();
         }
         /// <summary>
-        /// ·µ»Ø´ÓreaderµÄµ±Ç°Î»ÖÃµ½tagÖ®¼äµÄÄÚÈÝ
-        /// ÒªÇótag¶ÀÕ¼Ò»ÐÐ
-        /// Èç¹ûtagÎªnull,·µ»Øµ±Ç°Î»ÖÃµ½Ä©Î²µÄÄÚÈÝ
+        /// ï¿½ï¿½ï¿½Ø´ï¿½readerï¿½Äµï¿½Ç°Î»ï¿½Ãµï¿½tagÖ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        /// Òªï¿½ï¿½tagï¿½ï¿½Õ¼Ò»ï¿½ï¿½
+        /// ï¿½ï¿½ï¿½tagÎªnull,ï¿½ï¿½ï¿½Øµï¿½Ç°Î»ï¿½Ãµï¿½Ä©Î²ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
         /// </summary>
         /// <param name="reader"></param>
         /// <param name="tag"></param>
-        /// <returns>readerµÄµ±Ç°Î»ÖÃµ½tagÖ®¼äµÄÄÚÈÝ,²»°üÀ¨tag</returns>
+        /// <returns>readerï¿½Äµï¿½Ç°Î»ï¿½Ãµï¿½tagÖ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½,ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½tag</returns>
         public static string GetText(TextReader reader, string tag)
         {
             if (tag == null)
@@ -204,13 +224,13 @@ namespace QiHe.CodeLib
         }
 
         /// <summary>
-        /// È¡ÎÄ¼þÖÐÁ½¸ötagÖ®¼äµÄÄÚÈÝ
-        /// ÒªÇótag¶ÀÕ¼Ò»ÐÐ£¬nullÎªÎÄ¼þÎ²
+        /// È¡ï¿½Ä¼ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½tagÖ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+        /// Òªï¿½ï¿½tagï¿½ï¿½Õ¼Ò»ï¿½Ð£ï¿½nullÎªï¿½Ä¼ï¿½Î²
         /// </summary>
-        /// <param name="file">UTF8ÎÄ±¾ÎÄ¼þ</param>
-        /// <param name="startTag">ÆôÊ¼Tag</param>
-        /// <param name="endTag">½áÊøTag</param>
-        /// <returns>Á½¸ötagÖ®¼äµÄÄÚÈÝ£¬Èç¹ûÎ´ÕÒµ½startTag·µ»Ønull</returns>
+        /// <param name="file">UTF8ï¿½Ä±ï¿½ï¿½Ä¼ï¿½</param>
+        /// <param name="startTag">ï¿½ï¿½Ê¼Tag</param>
+        /// <param name="endTag">ï¿½ï¿½ï¿½ï¿½Tag</param>
+        /// <returns>ï¿½ï¿½ï¿½ï¿½tagÖ®ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ý£ï¿½ï¿½ï¿½ï¿½Î´ï¿½Òµï¿½startTagï¿½ï¿½ï¿½ï¿½null</returns>
         public static string GetText(string file, string startTag, string endTag)
         {
             StreamReader reader = File.OpenText(file);

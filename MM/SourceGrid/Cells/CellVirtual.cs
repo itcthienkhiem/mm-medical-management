@@ -1,3 +1,23 @@
+/* Copyright (c) 2016, Cocosoft Inc.
+ All rights reserved.
+ http://www.Cocosofttech.com
+
+ This file is part of the LIS open source project.
+
+ The LIS  open source project is free software: you can
+ redistribute it and/or modify it under the terms of the GNU General Public
+ License as published by the Free Software Foundation, either version 3 of the
+ License, or (at your option) any later version.
+
+ The ClearCanvas LIS open source project is distributed in the hope that it
+ will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General
+ Public License for more details.
+
+ You should have received a copy of the GNU General Public License along with
+ the LIS open source project.  If not, see
+ <http://www.gnu.org/licenses/>.
+*/
 using System;
 using System.Collections;
 using System.ComponentModel;
@@ -342,7 +362,7 @@ namespace SourceGrid2.Cells.Virtual
 		{
 			if (m_Grid!=null && 
 				m_CellModel != null && 
-				IsEditing(p_Position) == false &&  //se la cella non è già in stato edit
+				IsEditing(p_Position) == false &&  //se la cella non ï¿½ giï¿½ in stato edit
 				m_CellModel.EnableEdit && 
 				m_Grid.SetFocusCell(p_Position)) //per finire eventuali altri edit e posizionare il focus su questa cella
 			{
@@ -650,7 +670,7 @@ namespace SourceGrid2.Cells.Virtual
 		{
 			if (m_Grid != null)
 			{
-				//Non avendo la posizione della cella non conosco quale area invalidare. Ma visto che questa cella può essere usata per più posizioni credo sia giusto.
+				//Non avendo la posizione della cella non conosco quale area invalidare. Ma visto che questa cella puï¿½ essere usata per piï¿½ posizioni credo sia giusto.
 				m_Grid.InvalidateCell(p_Position);
 			}
 		}

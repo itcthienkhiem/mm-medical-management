@@ -1,3 +1,23 @@
+/* Copyright (c) 2016, Cocosoft Inc.
+ All rights reserved.
+ http://www.Cocosofttech.com
+
+ This file is part of the LIS open source project.
+
+ The LIS  open source project is free software: you can
+ redistribute it and/or modify it under the terms of the GNU General Public
+ License as published by the Free Software Foundation, either version 3 of the
+ License, or (at your option) any later version.
+
+ The ClearCanvas LIS open source project is distributed in the hope that it
+ will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU General
+ Public License for more details.
+
+ You should have received a copy of the GNU General Public License along with
+ the LIS open source project.  If not, see
+ <http://www.gnu.org/licenses/>.
+*/
 using System;
 using System.Windows.Forms;
 
@@ -6,7 +26,7 @@ namespace QiHe.CodeLib
     public enum FileType { Txt, Xml, PDF, Bin, Zip, All, Img }
     public class FileSelector
     {
-        public static string Title = "ÇëÑ¡ÔñÎÄ¼þ";
+        public static string Title = "ï¿½ï¿½Ñ¡ï¿½ï¿½ï¿½Ä¼ï¿½";
         public static string Filter = "Text files (*.txt)|*.txt|All files (*.*)|*.*";
         public static FileType FileExtension
         {
